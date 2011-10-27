@@ -1,0 +1,5 @@
+*-- This line substitutes GENMENUX
+_GENMENU=GENMENUX.PRG
+
+*-- This line loads the INTL GENMENUX driver
+_MNXDRV2=INTL.PRG
