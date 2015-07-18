@@ -229,51 +229,51 @@ cType         = "Abstract"
 Visible       = .F.
 
 *-- Concrete methods
- *====================================
- *-- cINTLAbstract::GetLogicalParent()
- *====================================
- * Returns the logical parent.
- * Not Hooked
- *
- FUNCTION GetLogicalParent()
+*====================================
+*-- cINTLAbstract::GetLogicalParent()
+*====================================
+* Returns the logical parent.
+* Not Hooked
+*
+FUNCTION GetLogicalParent()
    RETURN this.oLogicalParent
 
- *====================================
- *-- cINTLAbstract::GetHook()
- *====================================
- * Returns an object reference to the hook member.
- * Not Hooked
- *
- FUNCTION GetHook()
+*====================================
+*-- cINTLAbstract::GetHook()
+*====================================
+* Returns an object reference to the hook member.
+* Not Hooked
+*
+FUNCTION GetHook()
    RETURN this.oHook
 
- *====================================
- *-- cINTLAbstract::GetType()
- *====================================
- * Returns the object's type
- * Not Hooked
- *
- FUNCTION GetType()
+*====================================
+*-- cINTLAbstract::GetType()
+*====================================
+* Returns the object's type
+* Not Hooked
+*
+FUNCTION GetType()
    RETURN this.cType
 
- *====================================
- *-- cINTLAbstract::IsINTLClass( o)
- *====================================
- * Returns logical true if the passed parameter
- * is an object of the INTL Class.
- * Not hookable.
- *
- FUNCTION IsINTLClass( toPassed)
+*====================================
+*-- cINTLAbstract::IsINTLClass( o)
+*====================================
+* Returns logical true if the passed parameter
+* is an object of the INTL Class.
+* Not hookable.
+*
+FUNCTION IsINTLClass( toPassed)
    RETURN TYPE( "toPassed.INTL_Abstract_ID" )<> "U"
 
- *====================================
- *-- cINTLAbstract::SetLogicalParent( o)
- *====================================
- *  Sets the logical parent property of a
- *  given INTL object.
- *  Not hookable.
- *
- FUNCTION SetLogicalParent( toParent)
+*====================================
+*-- cINTLAbstract::SetLogicalParent( o)
+*====================================
+*  Sets the logical parent property of a
+*  given INTL object.
+*  Not hookable.
+*
+FUNCTION SetLogicalParent( toParent)
    LOCAL llRetval
    llRetVal = .F.
 
@@ -288,460 +288,460 @@ Visible       = .F.
    RETURN llRetVal
 
 *-- Abstract methods
- *====================================
- *-- cINTLAbstract::AdornMemento( o)
- *====================================
- * Puts an INTL memento in oMementoHolder
- * Not Hookable
- *
- FUNCTION AdornMemento( oMementoHolder)
+*====================================
+*-- cINTLAbstract::AdornMemento( o)
+*====================================
+* Puts an INTL memento in oMementoHolder
+* Not Hookable
+*
+FUNCTION AdornMemento( oMementoHolder)
    RETURN NULL
 
- *====================================
- *-- cINTLAbstract::alang( a)
- *====================================
- * Fills an array with the currently supported languages.
- * Hookable.
- *
- FUNCTION aLang( taArray)
+*====================================
+*-- cINTLAbstract::alang( a)
+*====================================
+* Fills an array with the currently supported languages.
+* Hookable.
+*
+FUNCTION aLang( taArray)
    IF INTL_HOOK_TEST
      RETURN this.oHook.alang( @taArray)
    ELSE
      RETURN NULL
    ENDIF
 
- *====================================
- *-- cINTLAbstract::aStrat( an)
- *====================================
- * Fills an array with the names of the loaded strategies
- * in their execution order.
- * Hookable.
- *
- FUNCTION aStrat( taArray, tnType)
+*====================================
+*-- cINTLAbstract::aStrat( an)
+*====================================
+* Fills an array with the names of the loaded strategies
+* in their execution order.
+* Hookable.
+*
+FUNCTION aStrat( taArray, tnType)
    IF INTL_HOOK_TEST
      RETURN this.oHook.aStrat( @taArray, @tnType)
    ELSE
      RETURN NULL
    ENDIF
 
- *====================================
- *-- cINTLAbstract::CreateStrategyCDX
- *====================================
- * Rebuild the strategy's resource index.
- * Hookable.
- *
- FUNCTION CreateStrategyCDX()
+*====================================
+*-- cINTLAbstract::CreateStrategyCDX
+*====================================
+* Rebuild the strategy's resource index.
+* Hookable.
+*
+FUNCTION CreateStrategyCDX()
    IF INTL_HOOK_TEST
      RETURN this.oHook.CreateStrategyCDX()
    ELSE
      RETURN NULL
    ENDIF
 
- *====================================
- *-- cINTLAbstract::CreateStrategyTable( c)
- *====================================
- FUNCTION CreateStrategyTable( tcPassed)
- * Creates the strategy's resource table
- * Hookable.
- *
+*====================================
+*-- cINTLAbstract::CreateStrategyTable( c)
+*====================================
+FUNCTION CreateStrategyTable( tcPassed)
+* Creates the strategy's resource table
+* Hookable.
+*
    IF INTL_HOOK_TEST
      RETURN this.oHook.CreateStrategyTable( @tcPassed)
    ELSE
      RETURN NULL
    ENDIF
 
- *====================================
- *-- cINTLAbstract::GetAlias()
- *====================================
- * Return the resource alias, if applicable
- * Hookable.
- *
- FUNCTION GetAlias()
+*====================================
+*-- cINTLAbstract::GetAlias()
+*====================================
+* Return the resource alias, if applicable
+* Hookable.
+*
+FUNCTION GetAlias()
    IF INTL_HOOK_TEST
      RETURN this.oHook.GetAlias()
    ELSE
      RETURN NULL
    ENDIF
 
- *====================================
- *-- cINTLAbstract::Execute( xx)
- *====================================
- * Execute this object's primitive assignment
- * Hookable.
- *
- FUNCTION Execute( lxPassedn, txPassed2)
+*====================================
+*-- cINTLAbstract::Execute( xx)
+*====================================
+* Execute this object's primitive assignment
+* Hookable.
+*
+FUNCTION Execute( lxPassedn, txPassed2)
    IF INTL_HOOK_TEST
      RETURN this.oHook.Execute( @lxPassed, @txPassed2)
    ELSE
      RETURN NULL
    ENDIF
 
- *====================================
- *-- cINTLAbstract::GetConfig()
- *====================================
- FUNCTION GetConfig()
- * Return configuration integer
- * Hookable.
- *
+*====================================
+*-- cINTLAbstract::GetConfig()
+*====================================
+FUNCTION GetConfig()
+* Return configuration integer
+* Hookable.
+*
  IF INTL_HOOK_TEST
    RETURN this.oHook.GetConfig()
  ELSE
    RETURN NULL
  ENDIF
 
- *====================================
- *-- cINTLAbstract::GetConversion( cxx)
- *====================================
- * Return a conversion factor
- * Hookable.
- *
- FUNCTION GetConversion( tcLocale, txOther1, txOther2)
+*====================================
+*-- cINTLAbstract::GetConversion( cxx)
+*====================================
+* Return a conversion factor
+* Hookable.
+*
+FUNCTION GetConversion( tcLocale, txOther1, txOther2)
    IF INTL_HOOK_TEST
      RETURN this.oHook.GetConversion( @tcLocale, @txOther1, @txOther2)
    ELSE
      RETURN NULL
    ENDIF
 
- *====================================
- *-- cINTLAbstract::GetExplicit()
- *====================================
- * Return the current explicit mode setting.
- * Hookable.
- *
- FUNCTION GetExplicit()
+*====================================
+*-- cINTLAbstract::GetExplicit()
+*====================================
+* Return the current explicit mode setting.
+* Hookable.
+*
+FUNCTION GetExplicit()
    IF INTL_HOOK_TEST
      RETURN this.oHook.GetExplicit()
    ELSE
      RETURN NULL
    ENDIF
 
- *====================================
- *-- cINTLAbstract::GetLanguage()
- *====================================
- * Return the current localization language
- * Hookable.
- *
- FUNCTION GetLanguage()
+*====================================
+*-- cINTLAbstract::GetLanguage()
+*====================================
+* Return the current localization language
+* Hookable.
+*
+FUNCTION GetLanguage()
    IF INTL_HOOK_TEST
      RETURN this.oHook.GetLanguage()
    ELSE
      RETURN NULL
    ENDIF
 
- *====================================
- *-- cINTLAbstract::GetLocale()
- *====================================
+*====================================
+*-- cINTLAbstract::GetLocale()
+*====================================
   * Return the current localization locale
- * Hookable.
- *
- FUNCTION GetLocale()
+* Hookable.
+*
+FUNCTION GetLocale()
    IF INTL_HOOK_TEST
      RETURN this.oHook.GetLocale()
    ELSE
      RETURN NULL
    ENDIF
 
- *====================================
- *-- cINTLAbstract::GetRightToLeft()
- *====================================
- * Return the current Right To Left localization setting
- * Hookable.
- *
- FUNCTION GetRightToLeft()
+*====================================
+*-- cINTLAbstract::GetRightToLeft()
+*====================================
+* Return the current Right To Left localization setting
+* Hookable.
+*
+FUNCTION GetRightToLeft()
    IF INTL_HOOK_TEST
      RETURN this.oHook.GetRightToLeft()
    ELSE
      RETURN NULL
    ENDIF
 
- *====================================
- *-- cINTLAbstract::GetStrategy( cx)
- *====================================
- * Return a strategy object for a given strategy alias
- * Hookable.
- *
- FUNCTION GetStrategy( tcService, txOther)
+*====================================
+*-- cINTLAbstract::GetStrategy( cx)
+*====================================
+* Return a strategy object for a given strategy alias
+* Hookable.
+*
+FUNCTION GetStrategy( tcService, txOther)
    IF INTL_HOOK_TEST
      RETURN this.oHook.GetStrategy( @tcService, @txOther)
    ELSE
      RETURN NULL
    ENDIF
 
- *====================================
- *-- cINTLAbstract::GetStrategyClass( c)
- *====================================
- * Return the strategy class of a given strategy alias
- * Hookable.
- *
- FUNCTION GetStrategyClass( tcService)
+*====================================
+*-- cINTLAbstract::GetStrategyClass( c)
+*====================================
+* Return the strategy class of a given strategy alias
+* Hookable.
+*
+FUNCTION GetStrategyClass( tcService)
    IF INTL_HOOK_TEST
      RETURN this.oHook.GetStrategyClass( @tcService)
    ELSE
      RETURN NULL
    ENDIF
 
- *====================================
- *-- cINTLAbstract::GetTable()
- *====================================
- * Return the table for this object
- * Hookable.
- *
- FUNCTION GetTable()
+*====================================
+*-- cINTLAbstract::GetTable()
+*====================================
+* Return the table for this object
+* Hookable.
+*
+FUNCTION GetTable()
    IF INTL_HOOK_TEST
      RETURN this.oHook.GetTable()
    ELSE
      RETURN NULL
    ENDIF
 
- *====================================
- *-- cINTLAbstract::GetUpdateMode()
- *====================================
+*====================================
+*-- cINTLAbstract::GetUpdateMode()
+*====================================
 * Return the current update mode setting
- * Hookable.
- *
- FUNCTION GetUpdateMode()
+* Hookable.
+*
+FUNCTION GetUpdateMode()
    IF INTL_HOOK_TEST
      RETURN this.oHook.GetUpdateMode()
    ELSE
      RETURN NULL
    ENDIF
 
- *====================================
- *-- cINTLAbstract::I()
- *====================================
- * Localize the passed object
- * Hookable.
- *
- FUNCTION I( txpara1, tcSpecialProc)
+*====================================
+*-- cINTLAbstract::I()
+*====================================
+* Localize the passed object
+* Hookable.
+*
+FUNCTION I( txpara1, tcSpecialProc)
    IF INTL_HOOK_TEST
      RETURN this.oHook.I( @txpara1, @tcSpecialProc)
    ELSE
      RETURN NULL
    ENDIF
 
- *====================================
- *-- cINTLAbstract::Init()
- *====================================
- *
- FUNCTION Init( txPara1, txPara2, txPara3)
+*====================================
+*-- cINTLAbstract::Init()
+*====================================
+*
+FUNCTION Init( txPara1, txPara2, txPara3)
    RETURN
 
- *====================================
- *-- cINTLAbstract::IsValidLanguage()
- *====================================
- * Hookable.
- *
- FUNCTION IsValidLanguage( tcLanguage)
+*====================================
+*-- cINTLAbstract::IsValidLanguage()
+*====================================
+* Hookable.
+*
+FUNCTION IsValidLanguage( tcLanguage)
    IF INTL_HOOK_TEST
      RETURN this.oHook.IsValidLanguage( @tcLanguage)
    ELSE
      RETURN NULL
    ENDIF
 
- *====================================
- *-- cINTLAbstract::IsInResource(x)
- *====================================
- * Hookable.
- *
- FUNCTION IsInResource( txElement)
+*====================================
+*-- cINTLAbstract::IsInResource(x)
+*====================================
+* Hookable.
+*
+FUNCTION IsInResource( txElement)
    IF INTL_HOOK_TEST
      RETURN this.oHook.IsInResource( txElement)
    ELSE
      RETURN NULL
    ENDIF
 
- *====================================
- *-- cINTLAbstract::LoadStrategies()
- *====================================
- * Not Hooked
- *
- FUNCTION LoadStrategies()
+*====================================
+*-- cINTLAbstract::LoadStrategies()
+*====================================
+* Not Hooked
+*
+FUNCTION LoadStrategies()
    RETURN NULL
 
- *====================================
- *-- cINTLAbstract::Localize( xx)
- *====================================
- FUNCTION Localize( txPara1, txPara2)
+*====================================
+*-- cINTLAbstract::Localize( xx)
+*====================================
+FUNCTION Localize( txPara1, txPara2)
    IF INTL_HOOK_TEST
      RETURN this.oHook.Localize( @txPara1, @txPara2)
    ELSE
      RETURN NULL
    ENDIF
 
- *====================================
- *-- cINTLAbstract::LoopOut( o)
- *====================================
- *
- FUNCTION LoopOut( toPara1)
+*====================================
+*-- cINTLAbstract::LoopOut( o)
+*====================================
+*
+FUNCTION LoopOut( toPara1)
    IF INTL_HOOK_TEST
      RETURN this.oHook.LoopOut( @toPara1)
    ELSE
      RETURN NULL
    ENDIF
 
- *====================================
- *-- cINTLAbstract::Mov( on)
- *====================================
- * Not Hooked
- *
- FUNCTION Mov( toPassed, tnStackLevel)
+*====================================
+*-- cINTLAbstract::Mov( on)
+*====================================
+* Not Hooked
+*
+FUNCTION Mov( toPassed, tnStackLevel)
    RETURN NULL
 
- *====================================
- *-- cINTLAbstract::objArray( oa)
- *====================================
- * Not Hooked: Traverses an object hierarchy
- *   and fills a passed array with object references.
- *
- FUNCTION objArray( toPassedObject, taPassedArray)
+*====================================
+*-- cINTLAbstract::objArray( oa)
+*====================================
+* Not Hooked: Traverses an object hierarchy
+*   and fills a passed array with object references.
+*
+FUNCTION objArray( toPassedObject, taPassedArray)
    RETURN NULL
 
- *====================================
- *-- cINTLAbstract::OpenStrategy( cc)
- *====================================
- * Open a particular strategy
- * Hookable.
- *
- FUNCTION OpenStrategy( tcFile, tcOptions)
+*====================================
+*-- cINTLAbstract::OpenStrategy( cc)
+*====================================
+* Open a particular strategy
+* Hookable.
+*
+FUNCTION OpenStrategy( tcFile, tcOptions)
    IF INTL_HOOK_TEST
      RETURN this.oHook.OpenStrategy( @tcFile, @tcOptions)
    ELSE
      RETURN NULL
    ENDIF
 
- *====================================
- *-- cINTLAbstract::Pitch()
- *====================================
- * Not Hooked
- *
- FUNCTION Pitch()
+*====================================
+*-- cINTLAbstract::Pitch()
+*====================================
+* Not Hooked
+*
+FUNCTION Pitch()
    RETURN NULL
 
- *====================================
- *-- cINTLAbstract::Pop()
- *====================================
- * Not Hooked
- *
- FUNCTION Pop( toPassed)
+*====================================
+*-- cINTLAbstract::Pop()
+*====================================
+* Not Hooked
+*
+FUNCTION Pop( toPassed)
    RETURN NULL
 
- *====================================
- *-- cINTLAbstract::Push()
- *====================================
- * Not Hooked
- *
- FUNCTION Push( toPassed)
+*====================================
+*-- cINTLAbstract::Push()
+*====================================
+* Not Hooked
+*
+FUNCTION Push( toPassed)
    RETURN NULL
 
- *====================================
- *-- cINTLAbstract::QueryInterface()
- *====================================
- * Not Hooked
- *
- FUNCTION QueryInterface( IID, oInterface)
+*====================================
+*-- cINTLAbstract::QueryInterface()
+*====================================
+* Not Hooked
+*
+FUNCTION QueryInterface( IID, oInterface)
    RETURN NULL
 
- *====================================
- *-- cINTLAbstract::Release()
- *====================================
- * Not Hooked
- *
- FUNCTION Release()
+*====================================
+*-- cINTLAbstract::Release()
+*====================================
+* Not Hooked
+*
+FUNCTION Release()
    IF INTL_HOOK_TEST
      this.oHook.Release()
    ENDIF
    RELEASE This
 
- *====================================
- *-- cINTLAbstract::ResourceInsert( x)
- *====================================
- * Hookable.
- *
- FUNCTION ResourceInsert( txPassed)
+*====================================
+*-- cINTLAbstract::ResourceInsert( x)
+*====================================
+* Hookable.
+*
+FUNCTION ResourceInsert( txPassed)
    IF INTL_HOOK_TEST
      RETURN this.oHook.ResourceInsert( @txPassed)
    ELSE
      RETURN NULL
    ENDIF
 
- *====================================
- *-- cINTLAbstract::SetAlias( c)
- *====================================
- * Hookable.
- *
- FUNCTION SetAlias( tcAlias)
+*====================================
+*-- cINTLAbstract::SetAlias( c)
+*====================================
+* Hookable.
+*
+FUNCTION SetAlias( tcAlias)
    IF INTL_HOOK_TEST
      RETURN this.oHook.SetAlias( @tcAlias)
    ELSE
      RETURN NULL
    ENDIF
 
- *====================================
- *-- cINTLAbstract::SetConfig( x)
- *====================================
- * Hookable.
- *
- FUNCTION SetConfig( txPara1)
+*====================================
+*-- cINTLAbstract::SetConfig( x)
+*====================================
+* Hookable.
+*
+FUNCTION SetConfig( txPara1)
    IF INTL_HOOK_TEST
      RETURN this.oHook.SetConfig( @txPara1)
    ELSE
      RETURN NULL
    ENDIF
 
- *====================================
- *-- cINTLAbstract::SetConversion( cnx)
- *====================================
- * Hookable.
- *
- FUNCTION SetConversion( tcLocale, tnFactor, txOther)
+*====================================
+*-- cINTLAbstract::SetConversion( cnx)
+*====================================
+* Hookable.
+*
+FUNCTION SetConversion( tcLocale, tnFactor, txOther)
    IF INTL_HOOK_TEST
      RETURN this.oHook.SetConversion( @tcLocale, @tnFactor, @txOther)
    ELSE
      RETURN NULL
    ENDIF
 
- *====================================
- *-- cINTLAbstract::SetDefaults()
- *====================================
- * Hookable.
- *
- FUNCTION SetDefaults()
+*====================================
+*-- cINTLAbstract::SetDefaults()
+*====================================
+* Hookable.
+*
+FUNCTION SetDefaults()
    IF INTL_HOOK_TEST
      RETURN this.oHook.SetDefaults()
    ELSE
      RETURN NULL
    ENDIF
 
- *====================================
- *-- cINTLAbstract::SetExplicit( l)
- *====================================
- * Hookable.
- *
- FUNCTION SetExplicit( tlSetting)
+*====================================
+*-- cINTLAbstract::SetExplicit( l)
+*====================================
+* Hookable.
+*
+FUNCTION SetExplicit( tlSetting)
    IF INTL_HOOK_TEST
      RETURN this.oHook.SetExplicit( @tlSetting)
    ELSE
      RETURN NULL
    ENDIF
 
- *====================================
- *-- cINTLAbstract::SetLanguage( cc)
- *====================================
- * Hookable.
- *
- FUNCTION SetLanguage( tcLanguage, txPassed1)
+*====================================
+*-- cINTLAbstract::SetLanguage( cc)
+*====================================
+* Hookable.
+*
+FUNCTION SetLanguage( tcLanguage, txPassed1)
    IF INTL_HOOK_TEST
      RETURN this.oHook.SetLanguage( @tcLanguage, @txPassed1)
    ELSE
      RETURN NULL
    ENDIF
 
- *====================================
- *-- cINTLAbstract::SetLocale( c)
- *====================================
- * Hookable.
- *
- FUNCTION SetLocale( tcLocale)
+*====================================
+*-- cINTLAbstract::SetLocale( c)
+*====================================
+* Hookable.
+*
+FUNCTION SetLocale( tcLocale)
    IF INTL_HOOK_TEST
      RETURN this.oHook.SetLocale( @tcLocale)
    ELSE
@@ -749,24 +749,24 @@ Visible       = .F.
    ENDIF
 
 
- *====================================
- *-- cINTLAbstract::SetHook( x)
- *====================================
- * Hookable.
- *
- FUNCTION SetHook( txPassed)
+*====================================
+*-- cINTLAbstract::SetHook( x)
+*====================================
+* Hookable.
+*
+FUNCTION SetHook( txPassed)
    IF INTL_HOOK_TEST
      RETURN this.oHook.SetHook( @txPassed)
    ELSE
      RETURN NULL
    ENDIF
 
- *====================================
- *-- cINTLAbstract::SetRightToLeft( l)
- *====================================
- * Hookable.
- *
- FUNCTION SetRightToLeft( tlSetting)
+*====================================
+*-- cINTLAbstract::SetRightToLeft( l)
+*====================================
+* Hookable.
+*
+FUNCTION SetRightToLeft( tlSetting)
    IF INTL_HOOK_TEST
      RETURN this.oHook.SetRightToLeft( @tlSetting)
    ELSE
@@ -774,69 +774,69 @@ Visible       = .F.
    ENDIF
 
 
- *====================================
- *-- cINTLAbstract::SetStrategy( cx)
- *====================================
- * Hookable.
- *
- FUNCTION SetStrategy( tcService, txClass)
+*====================================
+*-- cINTLAbstract::SetStrategy( cx)
+*====================================
+* Hookable.
+*
+FUNCTION SetStrategy( tcService, txClass)
    IF INTL_HOOK_TEST
      RETURN this.oHook.SetStrategy( @tcService, @txClass)
    ELSE
      RETURN NULL
    ENDIF
 
- *====================================
- *-- cINTLAbstract::SetStrategyClass( cc)
- *====================================
- * Hookable.
- *
- FUNCTION SetStrategy( tcService, tcClass)
+*====================================
+*-- cINTLAbstract::SetStrategyClass( cc)
+*====================================
+* Hookable.
+*
+FUNCTION SetStrategy( tcService, tcClass)
    IF INTL_HOOK_TEST
      RETURN this.oHook.SetStrategyClass( @tcService, @tcClass)
    ELSE
      RETURN NULL
    ENDIF
 
- *====================================
- *-- cINTLAbstract::SetTable( c)
- *====================================
- * Hookable.
- *
- FUNCTION SetTable( tcFile)
+*====================================
+*-- cINTLAbstract::SetTable( c)
+*====================================
+* Hookable.
+*
+FUNCTION SetTable( tcFile)
    IF INTL_HOOK_TEST
      RETURN this.oHook.SetTable( @tcFile)
    ELSE
      RETURN NULL
    ENDIF
 
- *====================================
- *-- cINTLAbstract::SetUpdateMode( l)
- *====================================
- * Hookable.
- *
- FUNCTION SetUpdateMode( tlTurnOn)
+*====================================
+*-- cINTLAbstract::SetUpdateMode( l)
+*====================================
+* Hookable.
+*
+FUNCTION SetUpdateMode( tlTurnOn)
    IF INTL_HOOK_TEST
      RETURN this.oHook.SetUpdateMode( @tlTurnOn)
    ELSE
      RETURN NULL
    ENDIF
 
- *====================================
- *-- cINTLAbstract::GetVersion( x)
- *====================================
- * NotHookable.
- *
- FUNCTION GetVersion( txPassed)
+*====================================
+*-- cINTLAbstract::GetVersion( x)
+*====================================
+* NotHookable.
+*
+FUNCTION GetVersion( txPassed)
     * RETURN ccProgramName+ CHR(13)+ CHR(10)+ this.cMajorVersion+"."+ this.cRevision+"."+ this.cBuild+ " "+ this.cDate
     RETURN ccProgramName+ " "+this.cMajorVersion+"."+ this.cRevision+"."+ this.cBuild+ " "+ this.cDate
 
- *====================================
- *-- cINTLAbstract::UpdateResource( xx)
- *====================================
- * Hookable.
- *
- FUNCTION UpdateResource( txPassed, txLocation)
+*====================================
+*-- cINTLAbstract::UpdateResource( xx)
+*====================================
+* Hookable.
+*
+FUNCTION UpdateResource( txPassed, txLocation)
    IF INTL_HOOK_TEST
      RETURN this.oHook.UpdateResource( @txPassed, @txLocation)
    ELSE
@@ -854,7 +854,7 @@ ENDDEFINE
 *//////////////////////////////////////////////////////////////////////////////
 DEFINE CLASS cINTLMemento AS cINTLAbstract
 
- *-- Exposed Properties
+*-- Exposed Properties
  Name                 = "cINTLMemento"
  cLang                = NULL
  cLocale              = NULL
@@ -872,8 +872,8 @@ DEFINE CLASS cINTLMemento AS cINTLAbstract
  DIMENSION aStrategies[ 1, 2]
  aStrategies[ 1] = NULL
 
- *-- Protected Properties
- * PROTECTED ARRAY a_Stack[ 1, MEMENTO_ELEMENTS]
+*-- Protected Properties
+* PROTECTED ARRAY a_Stack[ 1, MEMENTO_ELEMENTS]
  DIMENSION a_Stack[ 1, MEMENTO_ELEMENTS]
  a_Stack[ 1] = NULL
 
@@ -893,10 +893,10 @@ DEFINE CLASS cINTLMemento AS cINTLAbstract
  cType            = "Memento"
  nConfig          = NULL
 
- *-- Connaisance alert: In this problem domain, there
- *-- are many elements that one can reasonably expect.
- *-- Here they are, references stored in domain-specific
- *-- properties, there for the asking.
+*-- Connaisance alert: In this problem domain, there
+*-- are many elements that one can reasonably expect.
+*-- Here they are, references stored in domain-specific
+*-- properties, there for the asking.
  cCurrencyStrategy   = NULL
  cDataStrategy       = NULL
  cFontStrategy       = NULL
@@ -909,11 +909,11 @@ DEFINE CLASS cINTLMemento AS cINTLAbstract
  nDefaultConfig      = NULL
 
 
- *====================================
- *-- cINTLMemento::Init( [ o])
- *====================================
- *
- FUNCTION Init( toPrototype, txPassed2, txPassed3)
+*====================================
+*-- cINTLMemento::Init( [ o])
+*====================================
+*
+FUNCTION Init( toPrototype, txPassed2, txPassed3)
    IF this.IsINTLClass( toPrototype)
      *-- Grab properties from the prototype
      toPrototype.Mov( This)
@@ -924,19 +924,18 @@ DEFINE CLASS cINTLMemento AS cINTLAbstract
 
    RETURN
 
- *====================================
- *-- cINTLMemento::aStrat( an)
- *====================================
- * This function, like all VFP "a" finctions,
- * loads an array, in this case an array of
- * supported localization strategies.
- *
- *  n=0: Standard 1- D array of strategy names
- *  n=1: 2- D array, strategy names and pointers
- *  n=2: 2- D array, strategy names and config integers
- *
-
- FUNCTION aStrat( taArray, tnArrayType)
+*====================================
+*-- cINTLMemento::aStrat( an)
+*====================================
+* This function, like all VFP "a" finctions,
+* loads an array, in this case an array of
+* supported localization strategies.
+*
+*  n=0: Standard 1- D array of strategy names
+*  n=1: 2- D array, strategy names and pointers
+*  n=2: 2- D array, strategy names and config integers
+*
+FUNCTION aStrat( taArray, tnArrayType)
    *-- Reject null parameters
    IF ISNULL( taArray) OR ISNULL( tnArrayType)
      RETURN NULL
@@ -994,12 +993,12 @@ DEFINE CLASS cINTLMemento AS cINTLAbstract
 
    RETURN lnRetVal
 
- *====================================
- *-- cINTLMemento::AdornMemento( [ o])
- *====================================
- * Puts an INTL cookie into the passed object...
- *
- FUNCTION AdornMemento( oMementoHolder)
+*====================================
+*-- cINTLMemento::AdornMemento( [ o])
+*====================================
+* Puts an INTL cookie into the passed object...
+*
+FUNCTION AdornMemento( oMementoHolder)
 
    * ... if it can hold one.
    IF TYPE( "oMementoHolder.BaseClass" )<>"U" AND ;
@@ -1026,55 +1025,55 @@ DEFINE CLASS cINTLMemento AS cINTLAbstract
 
  RETURN oMementoHolder.oINTLMemento
 
- *====================================
- *-- cINTLMemento::GetConfig()
- *====================================
- * Return the configuration integer
- *
- FUNCTION GetConfig()
+*====================================
+*-- cINTLMemento::GetConfig()
+*====================================
+* Return the configuration integer
+*
+FUNCTION GetConfig()
    RETURN this.nConfig
 
- *====================================
- *-- cINTLMemento::GetExplicit()
- *====================================
- * Returns: The true if explicit localization mode
- * is set.
- *
- FUNCTION GetExplicit()
+*====================================
+*-- cINTLMemento::GetExplicit()
+*====================================
+* Returns: The true if explicit localization mode
+* is set.
+*
+FUNCTION GetExplicit()
    RETURN this.lExplicit
 
- *====================================
- *-- cINTLMemento::GetLanguage()
- *====================================
- * Returns: String, the current language.
- *
- FUNCTION GetLanguage()
+*====================================
+*-- cINTLMemento::GetLanguage()
+*====================================
+* Returns: String, the current language.
+*
+FUNCTION GetLanguage()
    RETURN this.cLang
 
- *====================================
- *-- cINTLMemento::GetLocale()
- *====================================
- * Returns: String, the current locale.
- *
- FUNCTION GetLocale()
+*====================================
+*-- cINTLMemento::GetLocale()
+*====================================
+* Returns: String, the current locale.
+*
+FUNCTION GetLocale()
    RETURN this.cLocale
 
- *====================================
- *-- cINTLMemento::GetRightToLeft()
- *====================================
- * Returns: The true if Right-To-Left writing is used
- *
- FUNCTION GetRightToLeft()
+*====================================
+*-- cINTLMemento::GetRightToLeft()
+*====================================
+* Returns: The true if Right-To-Left writing is used
+*
+FUNCTION GetRightToLeft()
    RETURN this.lRightToLeft
 
- *====================================
- *-- cINTLMemento::GetStrategy( c,n])
- *====================================
- * tcLocale: The Strategy- ID
- * Returns:  Handle of the strategy
- *           Handle or attribute (tnSpecial>0)
- *
- FUNCTION GetStrategy( tcStrategy, tnSpecial)
+*====================================
+*-- cINTLMemento::GetStrategy( c,n])
+*====================================
+* tcLocale: The Strategy- ID
+* Returns:  Handle of the strategy
+*           Handle or attribute (tnSpecial>0)
+*
+FUNCTION GetStrategy( tcStrategy, tnSpecial)
    LOCAL lcStrategy
 
    IF EMPTY( tnSpecial)
@@ -1120,14 +1119,14 @@ DEFINE CLASS cINTLMemento AS cINTLAbstract
 
    RETURN loRetVal
 
- *====================================
- *-- cINTLMemento::GetStrategyClass( cx)
- *====================================
- * Returns the name of the strategy class to
- * be used for subsequent strategy object
- * instantiations
- *
- FUNCTION GetStrategyClass( tcAlias )
+*====================================
+*-- cINTLMemento::GetStrategyClass( cx)
+*====================================
+* Returns the name of the strategy class to
+* be used for subsequent strategy object
+* instantiations
+*
+FUNCTION GetStrategyClass( tcAlias )
    *-- Reject null parameter
    IF ISNULL( tcAlias)
      RETURN NULL
@@ -1145,12 +1144,12 @@ DEFINE CLASS cINTLMemento AS cINTLAbstract
    lcAlias = PROPER( tcAlias)
 
 
-   IF   lcAlias = "String"   OR ;
-        lcAlias = "Font"     OR ;
-        lcAlias = "Data"     OR ;
-        lcAlias = "Picture"  OR ;
-        lcAlias = "Currency" OR ;
-        lcAlias = "Righttoleft"
+   IF lcAlias = "String"   OR ;
+      lcAlias = "Font"     OR ;
+      lcAlias = "Data"     OR ;
+      lcAlias = "Picture"  OR ;
+      lcAlias = "Currency" OR ;
+      lcAlias = "Righttoleft"
 
      lcRetVal = this.c&lcAlias.Strategy
 
@@ -1158,13 +1157,13 @@ DEFINE CLASS cINTLMemento AS cINTLAbstract
 
    RETURN lcRetval
 
- *====================================
- *-- cINTLMemento::Mov( [ o], n)
- *====================================
- * Move the operational properties of This object
- * to the parameterized object.
- *
- FUNCTION Mov( toPassTo, tnStackLevel)
+*====================================
+*-- cINTLMemento::Mov( [ o], n)
+*====================================
+* Move the operational properties of This object
+* to the parameterized object.
+*
+FUNCTION Mov( toPassTo, tnStackLevel)
    *-- Reject null parameters
    IF ISNULL( toPassTo) OR ISNULL( tnStackLevel)
      RETURN NULL
@@ -1212,11 +1211,11 @@ DEFINE CLASS cINTLMemento AS cINTLAbstract
 
    RETURN .T.
 
- *====================================
- *-- cINTLMemento::Push( [ o])
- *====================================
- *
- FUNCTION Push( toPassed)
+*====================================
+*-- cINTLMemento::Push( [ o])
+*====================================
+*
+FUNCTION Push( toPassed)
 
    *-- Reject a null parameter
    IF ISNULL( toPassed)
@@ -1245,11 +1244,11 @@ DEFINE CLASS cINTLMemento AS cINTLAbstract
 
    RETURN lnPropsIndex
 
- *====================================
- *-- cINTLMemento::Pop( [ o])
- *====================================
- *
- FUNCTION Pop( toPassed)
+*====================================
+*-- cINTLMemento::Pop( [ o])
+*====================================
+*
+FUNCTION Pop( toPassed)
 
    *-- Reject a null parameter
    IF ISNULL( toPassed)
@@ -1274,11 +1273,11 @@ DEFINE CLASS cINTLMemento AS cINTLAbstract
 
    RETURN llRetVal
 
- *====================================
- *-- cINTLMemento::Pitch()
- *====================================
- *
- FUNCTION Pitch()
+*====================================
+*-- cINTLMemento::Pitch()
+*====================================
+*
+FUNCTION Pitch()
    *-- Clear the last element in the stack
    LOCAL lxRetVal
    DO CASE
@@ -1291,12 +1290,12 @@ DEFINE CLASS cINTLMemento AS cINTLAbstract
    ENDCASE
    RETURN lxRetVal
 
- *====================================
- *-- cINTLMemento::Release()
- *====================================
- * Not Hooked
- *
- FUNCTION Release()
+*====================================
+*-- cINTLMemento::Release()
+*====================================
+* Not Hooked
+*
+FUNCTION Release()
    *-- Tickle the logical parent
    LOCAL loTemp
    loTemp = this.GetLogicalParent()
@@ -1309,14 +1308,14 @@ DEFINE CLASS cINTLMemento AS cINTLAbstract
    DODEFAULT()
    RETURN
 
- *====================================
- *-- cINTLMemento::QueryInterface( xo)
- *====================================
- * IID: Interface Id expected
- * PInterface: Reference to an object
- * Returns: Nothing
- *
- FUNCTION QueryInterface( IID, oInt)
+*====================================
+*-- cINTLMemento::QueryInterface( xo)
+*====================================
+* IID: Interface Id expected
+* PInterface: Reference to an object
+* Returns: Nothing
+*
+FUNCTION QueryInterface( IID, oInt)
 
    *-- Reject a null parameter
    IF ISNULL( IID)
@@ -1362,12 +1361,12 @@ DEFINE CLASS cINTLMemento AS cINTLAbstract
 
    RETURN
 
- *====================================
- *-- INTLMemento::SetConfig( [ n])
- *====================================
- * Set the configuration integer.
- *
- FUNCTION SetConfig( txPara1)
+*====================================
+*-- INTLMemento::SetConfig( [ n])
+*====================================
+* Set the configuration integer.
+*
+FUNCTION SetConfig( txPara1)
 
    LOCAL lxRetVal
    lxRetVal = .F.
@@ -1397,12 +1396,12 @@ DEFINE CLASS cINTLMemento AS cINTLAbstract
 
    RETURN lxRetVal
 
- *====================================
- *-- cINTLMemento::SetDefaults()
- *====================================
- * Sets INTL memento properties to default values
- *
- FUNCTION SetDefaults()
+*====================================
+*-- cINTLMemento::SetDefaults()
+*====================================
+* Sets INTL memento properties to default values
+*
+FUNCTION SetDefaults()
 
    *-- Broadcast first to the hooks
    IF INTL_HOOK_TEST
@@ -1430,17 +1429,17 @@ DEFINE CLASS cINTLMemento AS cINTLAbstract
    ENDIF
    RETURN llRetVal
 
- *====================================
- *-- cINTLMemento::SetStrategy( cx)
- *====================================
- * Activate Put a strategy in the array of loaded
- *   Strategies.
- * tcAlias:    A character strategy name
- * txStrategy: Strategy Class name, or
- *             existing engine reference, or
- *             config integer
- *
- FUNCTION SetStrategy( tcAlias, txStrategy)
+*====================================
+*-- cINTLMemento::SetStrategy( cx)
+*====================================
+* Activate Put a strategy in the array of loaded
+*   Strategies.
+* tcAlias:    A character strategy name
+* txStrategy: Strategy Class name, or
+*             existing engine reference, or
+*             config integer
+*
+FUNCTION SetStrategy( tcAlias, txStrategy)
 
    *-- Reject a null parameter
    IF ISNULL( tcAlias)
@@ -1547,17 +1546,17 @@ DEFINE CLASS cINTLMemento AS cINTLAbstract
 
    RETURN llRetval
 
- *====================================
- *-- cINTLMemento::SetStrategyClass( cx)
- *====================================
- * Change the strategy class for subsequent
- * automatic loading
- * tcClassType:  A character strategy name
- * tcClassName:  Strategy Class name, or
- *             existing engine reference, or
- *             config integer
- *
- FUNCTION SetStrategyClass( tcAlias, tcStrategy)
+*====================================
+*-- cINTLMemento::SetStrategyClass( cx)
+*====================================
+* Change the strategy class for subsequent
+* automatic loading
+* tcClassType:  A character strategy name
+* tcClassName:  Strategy Class name, or
+*             existing engine reference, or
+*             config integer
+*
+FUNCTION SetStrategyClass( tcAlias, tcStrategy)
    *-- Reject null parameters
    IF ISNULL( tcAlias) OR ;
       ISNULL( tcStrategy)
@@ -1594,12 +1593,12 @@ DEFINE CLASS cINTLMemento AS cINTLAbstract
 
    RETURN llRetval
 
- *====================================
- *-- cINTLMemento::SetExplicit( l)
- *====================================
- * Set the Explicit mode.
- *
- FUNCTION SetExplicit( tlSetting)
+*====================================
+*-- cINTLMemento::SetExplicit( l)
+*====================================
+* Set the Explicit mode.
+*
+FUNCTION SetExplicit( tlSetting)
 
    *-- Broadcast first to the hooks
    IF INTL_HOOK_TEST
@@ -1620,11 +1619,11 @@ DEFINE CLASS cINTLMemento AS cINTLAbstract
    this.lExplicit = tlSetting
    RETURN .T.
 
- *====================================
- *-- cINTLMemento::SetLanguage( cc)
- *====================================
- *
- FUNCTION SetLanguage( tcLanguage, txPassed2)
+*====================================
+*-- cINTLMemento::SetLanguage( cc)
+*====================================
+*
+FUNCTION SetLanguage( tcLanguage, txPassed2)
 
    *-- Broadcast first to the hooks
    IF INTL_HOOK_TEST
@@ -1674,13 +1673,13 @@ DEFINE CLASS cINTLMemento AS cINTLAbstract
 
    RETURN .T.
 
- *====================================
- *-- cINTLMemento::SetLocale( c)
- *====================================
- * tcLocale: String, the locale.
- * Returns:  True if successful.
- *
- FUNCTION SetLocale( tcLocale)
+*====================================
+*-- cINTLMemento::SetLocale( c)
+*====================================
+* tcLocale: String, the locale.
+* Returns:  True if successful.
+*
+FUNCTION SetLocale( tcLocale)
 
    *-- Broadcast first to the hooks
    IF INTL_HOOK_TEST
@@ -1714,12 +1713,12 @@ DEFINE CLASS cINTLMemento AS cINTLAbstract
 
    RETURN .T.
 
- *====================================
- *-- cINTLMemento::SetHook( o)
- *====================================
- *-- Mementos hook mementos
- *
- FUNCTION SetHook( txPassed1)
+*====================================
+*-- cINTLMemento::SetHook( o)
+*====================================
+*-- Mementos hook mementos
+*
+FUNCTION SetHook( txPassed1)
    *-- Defer first to hooks so the
    *-- new hook can be chained.
    LOCAL llRetVal, ;
@@ -1770,12 +1769,12 @@ DEFINE CLASS cINTLMemento AS cINTLAbstract
 
    RETURN llRetVal
 
- *====================================
- *-- cINTLMemento::SetRightToLeft( l)
- *====================================
- * Set the right-to-left writing mode.
- *
- FUNCTION SetRightToLeft( tlSetting)
+*====================================
+*-- cINTLMemento::SetRightToLeft( l)
+*====================================
+* Set the right-to-left writing mode.
+*
+FUNCTION SetRightToLeft( tlSetting)
 
    *-- Broadcast first to the hooks
    IF INTL_HOOK_TEST
@@ -1812,7 +1811,7 @@ ENDDEFINE
 *//////////////////////////////////////////////////////////////////////////////
 DEFINE CLASS Intl AS cINTLMemento
 
- *-- Exposed properties
+*-- Exposed properties
  Name = "INTL"
  cCurrencyStrategy    = "cINTLCurrency"
  cDataStrategy        = "cINTLData"
@@ -1826,11 +1825,11 @@ DEFINE CLASS Intl AS cINTLMemento
  languages[1] = NULL
 
 
- *====================================
- *-- INTL::Execute( ax)
- *====================================
- *
- FUNCTION Execute( lxPassed, txpassed2)
+*====================================
+*-- INTL::Execute( ax)
+*====================================
+*
+FUNCTION Execute( lxPassed, txpassed2)
 
    *-- Null!  Yech.
    IF ISNULL( lxPassed)
@@ -1883,11 +1882,11 @@ DEFINE CLASS Intl AS cINTLMemento
 
    RETURN lxRetVal
 
- *====================================
- *-- INTL::I( x1, [x2])
- *====================================
- *
- FUNCTION I( txPassed1, txPassed2)
+*====================================
+*-- INTL::I( x1, [x2])
+*====================================
+*
+FUNCTION I( txPassed1, txPassed2)
 
    *-- Nulls.  Yech.
    IF ISNULL( txPassed1) OR ISNULL( txPassed2)
@@ -1926,13 +1925,13 @@ DEFINE CLASS Intl AS cINTLMemento
    RETURN lxRetVal
 
 
- *====================================
- *-- INTL::Init( [ c|n|o], [ c|n|o], [ c|n|o])
- *-- You can pass a ( C)- Language, a ( N)
- *-- Config, and/or an ( O)- Object, in any
- *-- sequence
- *====================================
- FUNCTION Init( txPara1, txPara2, txPara3)
+*====================================
+*-- INTL::Init( [ c|n|o], [ c|n|o], [ c|n|o])
+*-- You can pass a ( C)- Language, a ( N)
+*-- Config, and/or an ( O)- Object, in any
+*-- sequence
+*====================================
+FUNCTION Init( txPara1, txPara2, txPara3)
    SET TALK OFF
    LOCAL ;
          llConfigDone, ;
@@ -2029,12 +2028,12 @@ DEFINE CLASS Intl AS cINTLMemento
    ENDIF
    RETURN
 
- *====================================
- *-- INTL::GetConversion(xxx)
- *====================================
- *
- FUNCTION GetConversion( tcLocale, txOther1, txOther2)
- *-- A hook call, basically
+*====================================
+*-- INTL::GetConversion(xxx)
+*====================================
+*
+FUNCTION GetConversion( tcLocale, txOther1, txOther2)
+*-- A hook call, basically
  LOCAL lxtest
  lxtest = cINTLMemento::GetConversion( @tcLocale, @txOther1, @txOther2)
  IF !ISNULL( lxTest)
@@ -2049,11 +2048,11 @@ DEFINE CLASS Intl AS cINTLMemento
    ENDIF
  ENDIF
 
- *====================================
- *-- INTL::LoadLanguageCollection()
- *====================================
- *
- FUNCTION LoadLanguageCollection( toPassed)
+*====================================
+*-- INTL::LoadLanguageCollection()
+*====================================
+*
+FUNCTION LoadLanguageCollection( toPassed)
  LOCAL ARRAY laLanguages[ 1]
  LOCAL lnLangs, lnI
  IF ! this.IsINTLClass( toPassed)
@@ -2071,11 +2070,11 @@ DEFINE CLASS Intl AS cINTLMemento
  ENDIF
  RETURN lnlangs
 
- *====================================
- *-- INTL::LoadStrategies()
- *====================================
- *
- FUNCTION LoadStrategies()
+*====================================
+*-- INTL::LoadStrategies()
+*====================================
+*
+FUNCTION LoadStrategies()
 
    *-- Broadcast first to any hook
    IF INTL_HOOK_TEST
@@ -2149,15 +2148,14 @@ DEFINE CLASS Intl AS cINTLMemento
 
    RETURN .T.
 
- *====================================
- *-- INTL::Localize( [ c|o[ o|c]])
- *====================================
- *-- You can pas a ( C)- language/locale and
- *-- an ( O)- Object in any sequence.
- *? ER: Accept an array of objects
- *-- Returns: The previous locale identifier
-
- FUNCTION Localize( txPara1, txPara2)
+*====================================
+*-- INTL::Localize( [ c|o[ o|c]])
+*====================================
+*-- You can pas a ( C)- language/locale and
+*-- an ( O)- Object in any sequence.
+*? ER: Accept an array of objects
+*-- Returns: The previous locale identifier
+FUNCTION Localize( txPara1, txPara2)
 
    *-- Nulls.  Done.
    IF ISNULL( txPara1) OR ISNULL( txPara2)
@@ -2330,16 +2328,16 @@ DEFINE CLASS Intl AS cINTLMemento
 
    RETURN lcRetVal
 
- *====================================
- *-- INTL::ObjArray( oa)
- *====================================
- * Sample call:
- *   DIMENSION laTempArray[ 1]
- *   =ACOPY( this.laElements, laTempArray)
- *   =objArray( this.loMasterContainer, @laTempArray)
- *   =ACOPY( laTempArray, this.laElements )
- *
- FUNCTION objArray( toPassedObject, taPassedArray)
+*====================================
+*-- INTL::ObjArray( oa)
+*====================================
+* Sample call:
+*   DIMENSION laTempArray[ 1]
+*   =ACOPY( this.laElements, laTempArray)
+*   =objArray( this.loMasterContainer, @laTempArray)
+*   =ACOPY( laTempArray, this.laElements )
+*
+FUNCTION objArray( toPassedObject, taPassedArray)
 
    IF ISNULL( toPassedObject) OR ISNULL( taPassedArray)
      RETURN NULL
@@ -2379,13 +2377,13 @@ DEFINE CLASS Intl AS cINTLMemento
    ENDIF
    RETURN
 
- *====================================
- *-- INTL::SetConversion(cn[x])
- *====================================
- *
- FUNCTION SetConversion(tcLocale, tnFactor, txOther)
+*====================================
+*-- INTL::SetConversion(cn[x])
+*====================================
+*
+FUNCTION SetConversion(tcLocale, tnFactor, txOther)
  LOCAL lxtest
- *-- A hook call, basically
+*-- A hook call, basically
  lxtest = cINTLMemento::SetConversion( @tcLocale, @tnFactor, @txOther)
  IF !ISNULL( lxTest)
    RETURN lxTest
@@ -2988,12 +2986,12 @@ DEFINE CLASS cINTLCurrency AS cINTLStrategy
   aConversion[ 1, 2] = 1
   lUpdateable = .F.
 
- *====================================
- *-- INTLCurrency::Execute( ax)
- *====================================
- * Traverse an array of object references
- *
- FUNCTION Execute( laObjects, txpassed2)
+*====================================
+*-- INTLCurrency::Execute( ax)
+*====================================
+* Traverse an array of object references
+*
+FUNCTION Execute( laObjects, txpassed2)
 
  #DEFINE coINTL  "_SCREEN.oINTL"
 
@@ -3249,12 +3247,12 @@ DEFINE CLASS cINTLData AS cINTLStrategy
   cTable = ccDefaultStringsTable
   nConfig = 1
 
- *====================================
- *-- INTLData::Execute( ax)
- *====================================
- * Traverse an array of object references
- *
- FUNCTION Execute( laObj, txpassed2)
+*====================================
+*-- INTLData::Execute( ax)
+*====================================
+* Traverse an array of object references
+*
+FUNCTION Execute( laObj, txpassed2)
 
    *-- Broadcast first to the hooks
    IF INTL_HOOK_TEST
@@ -3351,10 +3349,10 @@ DEFINE CLASS cINTLData AS cINTLStrategy
    ENDFOR
    RETURN lxRetVal
 
- *====================================
- *-- INTLData::I( cc)
- *====================================
- FUNCTION I( tcPassed1, tcContext)
+*====================================
+*-- INTLData::I( cc)
+*====================================
+FUNCTION I( tcPassed1, tcContext)
    LOCAL lcCookie
    lcCookie = ''
    IF EMPTY( tcPassed1) OR ISNULL( tcPassed1) OR TYPE( 'tcPassed1') <> "C"
@@ -3389,12 +3387,12 @@ DEFINE CLASS cINTLFont AS cINTLStrategy
  cAlias        = "Strings"
  cTable        = ccDefaultStringsTable
 
- *====================================
- *-- INTLFont::Execute( ax)
- *====================================
- * Traverse an array of object references
- *
- FUNCTION Execute( laObj, txpassed2)
+*====================================
+*-- INTLFont::Execute( ax)
+*====================================
+* Traverse an array of object references
+*
+FUNCTION Execute( laObj, txpassed2)
 
    *-- Broadcast first to the hooks
    IF INTL_HOOK_TEST
@@ -3490,10 +3488,7 @@ DEFINE CLASS cINTLFont AS cINTLStrategy
 
    ENDFOR
    RETURN lxRetVal
-
-
-
- FUNCTION I( tcPassed1, tcContext)
+FUNCTION I( tcPassed1, tcContext)
    LOCAL lcCookie
    lcCookie = ''
    IF EMPTY( tcPassed1) OR ISNULL( tcPassed1) OR TYPE( 'tcPassed1') <> "C"
@@ -3509,11 +3504,11 @@ DEFINE CLASS cINTLFont AS cINTLStrategy
 
 
 
- *====================================
- *-- cINTLFont::SetConfig( tnPassed)
- *====================================
- *
- FUNCTION SetConfig( txPara1)
+*====================================
+*-- cINTLFont::SetConfig( tnPassed)
+*====================================
+*
+FUNCTION SetConfig( txPara1)
 
    *-- Defer first to any hook
    IF INTL_HOOK_TEST
@@ -3584,12 +3579,12 @@ DEFINE CLASS cINTLPicture AS cINTLStrategy
  cAlias = "Strings"
  cTable = ccDefaultStringsTable
 
- *====================================
- *-- INTLPicture::Execute( ax)
- *====================================
- * Traverse the array of object references
- *
- FUNCTION Execute( laObj, txpassed2)
+*====================================
+*-- INTLPicture::Execute( ax)
+*====================================
+* Traverse the array of object references
+*
+FUNCTION Execute( laObj, txpassed2)
 
    *-- Broadcast first to the hooks
    IF INTL_HOOK_TEST
@@ -3654,10 +3649,10 @@ DEFINE CLASS cINTLPicture AS cINTLStrategy
    ENDFOR
    RETURN lxRetVal
 
- *====================================
- *-- INTLPicture::I( cc)
- *====================================
- FUNCTION I( tcPassed1, tcContext)
+*====================================
+*-- INTLPicture::I( cc)
+*====================================
+FUNCTION I( tcPassed1, tcContext)
    LOCAL lcCookie
    lcCookie = ''
 
@@ -3696,13 +3691,13 @@ DEFINE CLASS cINTLString AS cINTLStrategy
  nDefaultConfig = 7
 
 
- *====================================
- *-- cINTLString::aLang( a)
- *====================================
- * Return an array of languages supported by this Strategy
- * taArray must be passed by reference
- *
- FUNCTION aLang( taArray)
+*====================================
+*-- cINTLString::aLang( a)
+*====================================
+* Return an array of languages supported by this Strategy
+* taArray must be passed by reference
+*
+FUNCTION aLang( taArray)
 
    *-- Defer first to any hook
    IF INTL_HOOK_TEST
@@ -3753,11 +3748,11 @@ DEFINE CLASS cINTLString AS cINTLStrategy
    RETURN lnRetVal
 
 
- *====================================
- *-- cINTLString::IsValidLanguage( [ c])
- *====================================
- *
- FUNCTION IsValidLanguage( tcLanguage)
+*====================================
+*-- cINTLString::IsValidLanguage( [ c])
+*====================================
+*
+FUNCTION IsValidLanguage( tcLanguage)
 
    *-- Defer first to any hook
    IF INTL_HOOK_TEST
@@ -3783,12 +3778,12 @@ DEFINE CLASS cINTLString AS cINTLStrategy
    RETURN ASCAN( ScratchArray, tcLanguage)> 0
 
 
- *====================================
- *-- cINTLString::Execute( ax)
- *====================================
- * Traverse the passed array
- *
- FUNCTION Execute( laObj, txpassed2)
+*====================================
+*-- cINTLString::Execute( ax)
+*====================================
+* Traverse the passed array
+*
+FUNCTION Execute( laObj, txpassed2)
 
    *-- Broadcast first to the hooks
    IF INTL_HOOK_TEST
@@ -3966,12 +3961,12 @@ DEFINE CLASS cINTLString AS cINTLStrategy
    RETURN lxRetVal
 
 
- *====================================
- *-- cINTLString::CreateStrategyTable( [ c])
- *====================================
- *
- FUNCTION CreateStrategyTable( tcFile)
- * Create a local Strategy table
+*====================================
+*-- cINTLString::CreateStrategyTable( [ c])
+*====================================
+*
+FUNCTION CreateStrategyTable( tcFile)
+* Create a local Strategy table
 
    *-- Defer first to any hook
    IF INTL_HOOK_TEST
@@ -3994,7 +3989,7 @@ DEFINE CLASS cINTLString AS cINTLStrategy
     tcFile = this.cAlias
  ENDIF
 
- *-- Don't clobber any existing file.  Ever.
+*-- Don't clobber any existing file.  Ever.
  IF ! FILE( this.GetTable())
 
    PRIVATE jcStr
@@ -4028,13 +4023,13 @@ DEFINE CLASS cINTLString AS cINTLStrategy
  RETURN .F.
 
 
- *====================================
- *-- cINTLString::CreateStrategyCDX()
- *====================================
- FUNCTION CreateStrategyCDX()
- *) Description.......: PROCEDURE CreateStrategyCDX
- *)                     Reindex the strings table
- *] Dependencies......: Assumes, for now, that strings is local
+*====================================
+*-- cINTLString::CreateStrategyCDX()
+*====================================
+FUNCTION CreateStrategyCDX()
+*) Description.......: PROCEDURE CreateStrategyCDX
+*)                     Reindex the strings table
+*] Dependencies......: Assumes, for now, that strings is local
 
    *-- Broadcast to hooks
    IF INTL_HOOK_TEST
@@ -4088,11 +4083,11 @@ DEFINE CLASS cINTLString AS cINTLStrategy
    SELECT ( jnOldArea)
    RETURN .T.
 
- *====================================
- *-- cINTLString::SetConfig( tnPassed)
- *====================================
- *
- FUNCTION SetConfig( txPara1)
+*====================================
+*-- cINTLString::SetConfig( tnPassed)
+*====================================
+*
+FUNCTION SetConfig( txPara1)
 
    *-- Broadcast to hooks
    IF INTL_HOOK_TEST
@@ -4242,12 +4237,12 @@ DEFINE CLASS cINTLRightToLeft AS cINTLStrategy
  cType  = "Righttoleft"
  nConfig = 1
 
- *====================================
- *-- INTLRightToLeft::Execute( ax)
- *====================================
- * Traverse the array of object references
- *
- FUNCTION Execute( laObj, txpassed2)
+*====================================
+*-- INTLRightToLeft::Execute( ax)
+*====================================
+* Traverse the array of object references
+*
+FUNCTION Execute( laObj, txpassed2)
 
    *-- Broadcast first to the hooks
    IF INTL_HOOK_TEST
@@ -4418,21 +4413,21 @@ DEFINE CLASS cINTLTraverse AS Custom
  nObject   = 0
  oHook     = NULL
 
- *====================================
- *-- cINTLTraverse::Init( o)
- *====================================
- *
- FUNCTION Init( toObject)
+*====================================
+*-- cINTLTraverse::Init( o)
+*====================================
+*
+FUNCTION Init( toObject)
    this.oCurrent = toObject
    this.cBaseclass = this.oCurrent.BaseClass
    this.Name      = "cINTLTraverse"
    RETURN
 
- *====================================
- *-- cINTLTraverse::Next()
- *====================================
- *
- FUNCTION Next
+*====================================
+*-- cINTLTraverse::Next()
+*====================================
+*
+FUNCTION Next
    LOCAL lxRetVal
    lxRetVal = NULL
 
@@ -5316,8 +5311,6 @@ ENDDO
 _MLINE=m.lastmline
 RETURN IIF( m.returnmline, 0, CHR( 0))
 * END wordsearch
-
-
 FUNCTION dfltfld
 
 IF TYPE( "NAMECHANGE" )=="L" .AND. OBJTYPE= 1
@@ -5459,7 +5452,7 @@ RETURN "COMMENT"
 ***********************************************************************
 * P R O P O S E D
 ***********************************************************************
- FUNCTION warning
+FUNCTION warning
  PARAMETERS cmnd_str, operand
 
  m.warnings = m.warnings+ 1
@@ -5507,10 +5500,9 @@ RETURN "COMMENT"
      RETURN m.warnings
  ENDCASE
  m.autorun = "OFF"
- *  DO cleanup
+*  DO cleanup
  CANCEL
 * END warning
-
 FUNCTION IsTag ( tcTagName, tcAlias)
   *-- Receives a tag name and an alias ( which is optional)
   *-- and returns .T. if the tag name exists in the alias.
