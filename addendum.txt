@@ -1,6 +1,0 @@
-File: Addendum.TXT
-Date: Feb 20 1997
-Subject: Things about INTL for Visual FoxPro that may (or may not) be in the manual or the help file.
-
-Nothing to report.
-
