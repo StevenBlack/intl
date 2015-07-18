@@ -1,10 +1,10 @@
 *  Program...........: INTL.PRG
 #DEFINE ccProgramName   "Steven Black's INTL Toolkit for Visual FoxPro"
 *  Version...........:
-#DEFINE ccMajorVersion "5-6-7-8"
+#DEFINE ccMajorVersion "5-6-7-8-9"
 #DEFINE ccRevision     "00"
-#DEFINE ccBuild        "184"
-#DEFINE ccDate         "Jan 16 2004"
+#DEFINE ccBuild        "185"
+#DEFINE ccDate         "July 18 2015"
 *  Author............: Steven M. Black
 *} Project...........: INTL for Visual FoxPro
 *  Created...........: 04/30/93
