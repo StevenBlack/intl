@@ -39,12 +39,12 @@
 *               SET PROC TO INTL ADDITIVE
 *
 *               _SCREEN.ADDOBJECT( "oINTL", "INTL", "German")
-*               _SCREEN.oINTL.Localize( ThisFORM)
+*               _SCREEN.oINTL.Localize( thisform )
 *               ...
 *               _SCREEN.oINTL.SetLanguage( "Spanish")
-*               _SCREEN.oINTL.Localize( ThisFORM)
+*               _SCREEN.oINTL.Localize( thisform )
 *               ...
-*               _SCREEN.oINTL.Localize( ThisFORM, "French")
+*               _SCREEN.oINTL.Localize( thisform, "French")
 *               ....
 *
 *      *  Menus: Called by GENMENUX as follows:
@@ -257,27 +257,27 @@ FUNCTION GetType()
    RETURN this.cType
 
 *====================================
-*-- cINTLAbstract::IsINTLClass( o)
+*-- cINTLAbstract::IsINTLClass( o )
 *====================================
 * Returns logical true if the passed parameter
 * is an object of the INTL Class.
 * Not hookable.
 *
-FUNCTION IsINTLClass( toPassed)
+FUNCTION IsINTLClass( toPassed )
    RETURN TYPE( "toPassed.INTL_Abstract_ID" )<> "U"
 
 *====================================
-*-- cINTLAbstract::SetLogicalParent( o)
+*-- cINTLAbstract::SetLogicalParent( o )
 *====================================
 *  Sets the logical parent property of a
 *  given INTL object.
 *  Not hookable.
 *
-FUNCTION SetLogicalParent( toParent)
+FUNCTION SetLogicalParent( toParent )
    LOCAL llRetval
    llRetVal = .F.
 
-   IF ISNULL( toParent)
+   IF ISNULL( toParent )
      this.oLogicalparent = NULL
      llRetVal = .T.
    ENDIF
@@ -289,37 +289,37 @@ FUNCTION SetLogicalParent( toParent)
 
 *-- Abstract methods
 *====================================
-*-- cINTLAbstract::AdornMemento( o)
+*-- cINTLAbstract::AdornMemento( o )
 *====================================
 * Puts an INTL memento in oMementoHolder
 * Not Hookable
 *
-FUNCTION AdornMemento( oMementoHolder)
+FUNCTION AdornMemento( oMementoHolder )
    RETURN NULL
 
 *====================================
-*-- cINTLAbstract::alang( a)
+*-- cINTLAbstract::alang( a )
 *====================================
 * Fills an array with the currently supported languages.
 * Hookable.
 *
-FUNCTION aLang( taArray)
+FUNCTION aLang( taArray )
    IF INTL_HOOK_TEST
-     RETURN this.oHook.alang( @taArray)
+     RETURN this.oHook.alang( @taArray )
    ELSE
      RETURN NULL
    ENDIF
 
 *====================================
-*-- cINTLAbstract::aStrat( an)
+*-- cINTLAbstract::aStrat( an )
 *====================================
 * Fills an array with the names of the loaded strategies
 * in their execution order.
 * Hookable.
 *
-FUNCTION aStrat( taArray, tnType)
+FUNCTION aStrat( taArray, tnType )
    IF INTL_HOOK_TEST
-     RETURN this.oHook.aStrat( @taArray, @tnType)
+     RETURN this.oHook.aStrat( @taArray, @tnType )
    ELSE
      RETURN NULL
    ENDIF
@@ -338,14 +338,14 @@ FUNCTION CreateStrategyCDX()
    ENDIF
 
 *====================================
-*-- cINTLAbstract::CreateStrategyTable( c)
+*-- cINTLAbstract::CreateStrategyTable( c )
 *====================================
-FUNCTION CreateStrategyTable( tcPassed)
+FUNCTION CreateStrategyTable( tcPassed )
 * Creates the strategy's resource table
 * Hookable.
 *
    IF INTL_HOOK_TEST
-     RETURN this.oHook.CreateStrategyTable( @tcPassed)
+     RETURN this.oHook.CreateStrategyTable( @tcPassed )
    ELSE
      RETURN NULL
    ENDIF
@@ -364,14 +364,14 @@ FUNCTION GetAlias()
    ENDIF
 
 *====================================
-*-- cINTLAbstract::Execute( xx)
+*-- cINTLAbstract::Execute( xx )
 *====================================
 * Execute this object's primitive assignment
 * Hookable.
 *
-FUNCTION Execute( lxPassedn, txPassed2)
+FUNCTION Execute( lxPassedn, txPassed2 )
    IF INTL_HOOK_TEST
-     RETURN this.oHook.Execute( @lxPassed, @txPassed2)
+     RETURN this.oHook.Execute( @lxPassed, @txPassed2 )
    ELSE
      RETURN NULL
    ENDIF
@@ -390,14 +390,14 @@ FUNCTION GetConfig()
  ENDIF
 
 *====================================
-*-- cINTLAbstract::GetConversion( cxx)
+*-- cINTLAbstract::GetConversion( cxx )
 *====================================
 * Return a conversion factor
 * Hookable.
 *
-FUNCTION GetConversion( tcLocale, txOther1, txOther2)
+FUNCTION GetConversion( tcLocale, txOther1, txOther2 )
    IF INTL_HOOK_TEST
-     RETURN this.oHook.GetConversion( @tcLocale, @txOther1, @txOther2)
+     RETURN this.oHook.GetConversion( @tcLocale, @txOther1, @txOther2 )
    ELSE
      RETURN NULL
    ENDIF
@@ -455,27 +455,27 @@ FUNCTION GetRightToLeft()
    ENDIF
 
 *====================================
-*-- cINTLAbstract::GetStrategy( cx)
+*-- cINTLAbstract::GetStrategy( cx )
 *====================================
 * Return a strategy object for a given strategy alias
 * Hookable.
 *
-FUNCTION GetStrategy( tcService, txOther)
+FUNCTION GetStrategy( tcService, txOther )
    IF INTL_HOOK_TEST
-     RETURN this.oHook.GetStrategy( @tcService, @txOther)
+     RETURN this.oHook.GetStrategy( @tcService, @txOther )
    ELSE
      RETURN NULL
    ENDIF
 
 *====================================
-*-- cINTLAbstract::GetStrategyClass( c)
+*-- cINTLAbstract::GetStrategyClass( c )
 *====================================
 * Return the strategy class of a given strategy alias
 * Hookable.
 *
-FUNCTION GetStrategyClass( tcService)
+FUNCTION GetStrategyClass( tcService )
    IF INTL_HOOK_TEST
-     RETURN this.oHook.GetStrategyClass( @tcService)
+     RETURN this.oHook.GetStrategyClass( @tcService )
    ELSE
      RETURN NULL
    ENDIF
@@ -512,9 +512,9 @@ FUNCTION GetUpdateMode()
 * Localize the passed object
 * Hookable.
 *
-FUNCTION I( txpara1, tcSpecialProc)
+FUNCTION I( txpara1, tcSpecialProc )
    IF INTL_HOOK_TEST
-     RETURN this.oHook.I( @txpara1, @tcSpecialProc)
+     RETURN this.oHook.I( @txpara1, @tcSpecialProc )
    ELSE
      RETURN NULL
    ENDIF
@@ -523,7 +523,7 @@ FUNCTION I( txpara1, tcSpecialProc)
 *-- cINTLAbstract::Init()
 *====================================
 *
-FUNCTION Init( txPara1, txPara2, txPara3)
+FUNCTION Init( txPara1, txPara2, txPara3 )
    RETURN
 
 *====================================
@@ -531,21 +531,21 @@ FUNCTION Init( txPara1, txPara2, txPara3)
 *====================================
 * Hookable.
 *
-FUNCTION IsValidLanguage( tcLanguage)
+FUNCTION IsValidLanguage( tcLanguage )
    IF INTL_HOOK_TEST
-     RETURN this.oHook.IsValidLanguage( @tcLanguage)
+     RETURN this.oHook.IsValidLanguage( @tcLanguage )
    ELSE
      RETURN NULL
    ENDIF
 
 *====================================
-*-- cINTLAbstract::IsInResource(x)
+*-- cINTLAbstract::IsInResource(x )
 *====================================
 * Hookable.
 *
-FUNCTION IsInResource( txElement)
+FUNCTION IsInResource( txElement )
    IF INTL_HOOK_TEST
-     RETURN this.oHook.IsInResource( txElement)
+     RETURN this.oHook.IsInResource( txElement )
    ELSE
      RETURN NULL
    ENDIF
@@ -559,52 +559,52 @@ FUNCTION LoadStrategies()
    RETURN NULL
 
 *====================================
-*-- cINTLAbstract::Localize( xx)
+*-- cINTLAbstract::Localize( xx )
 *====================================
-FUNCTION Localize( txPara1, txPara2)
+FUNCTION Localize( txPara1, txPara2 )
    IF INTL_HOOK_TEST
-     RETURN this.oHook.Localize( @txPara1, @txPara2)
+     RETURN this.oHook.Localize( @txPara1, @txPara2 )
    ELSE
      RETURN NULL
    ENDIF
 
 *====================================
-*-- cINTLAbstract::LoopOut( o)
+*-- cINTLAbstract::LoopOut( o )
 *====================================
 *
-FUNCTION LoopOut( toPara1)
+FUNCTION LoopOut( toPara1 )
    IF INTL_HOOK_TEST
-     RETURN this.oHook.LoopOut( @toPara1)
+     RETURN this.oHook.LoopOut( @toPara1 )
    ELSE
      RETURN NULL
    ENDIF
 
 *====================================
-*-- cINTLAbstract::Mov( on)
+*-- cINTLAbstract::Mov( on )
 *====================================
 * Not Hooked
 *
-FUNCTION Mov( toPassed, tnStackLevel)
+FUNCTION Mov( toPassed, tnStackLevel )
    RETURN NULL
 
 *====================================
-*-- cINTLAbstract::objArray( oa)
+*-- cINTLAbstract::objArray( oa )
 *====================================
 * Not Hooked: Traverses an object hierarchy
 *   and fills a passed array with object references.
 *
-FUNCTION objArray( toPassedObject, taPassedArray)
+FUNCTION objArray( toPassedObject, taPassedArray )
    RETURN NULL
 
 *====================================
-*-- cINTLAbstract::OpenStrategy( cc)
+*-- cINTLAbstract::OpenStrategy( cc )
 *====================================
 * Open a particular strategy
 * Hookable.
 *
-FUNCTION OpenStrategy( tcFile, tcOptions)
+FUNCTION OpenStrategy( tcFile, tcOptions )
    IF INTL_HOOK_TEST
-     RETURN this.oHook.OpenStrategy( @tcFile, @tcOptions)
+     RETURN this.oHook.OpenStrategy( @tcFile, @tcOptions )
    ELSE
      RETURN NULL
    ENDIF
@@ -622,7 +622,7 @@ FUNCTION Pitch()
 *====================================
 * Not Hooked
 *
-FUNCTION Pop( toPassed)
+FUNCTION Pop( toPassed )
    RETURN NULL
 
 *====================================
@@ -630,7 +630,7 @@ FUNCTION Pop( toPassed)
 *====================================
 * Not Hooked
 *
-FUNCTION Push( toPassed)
+FUNCTION Push( toPassed )
    RETURN NULL
 
 *====================================
@@ -638,7 +638,7 @@ FUNCTION Push( toPassed)
 *====================================
 * Not Hooked
 *
-FUNCTION QueryInterface( IID, oInterface)
+FUNCTION QueryInterface( IID, oInterface )
    RETURN NULL
 
 *====================================
@@ -653,49 +653,49 @@ FUNCTION Release()
    RELEASE This
 
 *====================================
-*-- cINTLAbstract::ResourceInsert( x)
+*-- cINTLAbstract::ResourceInsert( x )
 *====================================
 * Hookable.
 *
-FUNCTION ResourceInsert( txPassed)
+FUNCTION ResourceInsert( txPassed )
    IF INTL_HOOK_TEST
-     RETURN this.oHook.ResourceInsert( @txPassed)
+     RETURN this.oHook.ResourceInsert( @txPassed )
    ELSE
      RETURN NULL
    ENDIF
 
 *====================================
-*-- cINTLAbstract::SetAlias( c)
+*-- cINTLAbstract::SetAlias( c )
 *====================================
 * Hookable.
 *
-FUNCTION SetAlias( tcAlias)
+FUNCTION SetAlias( tcAlias )
    IF INTL_HOOK_TEST
-     RETURN this.oHook.SetAlias( @tcAlias)
+     RETURN this.oHook.SetAlias( @tcAlias )
    ELSE
      RETURN NULL
    ENDIF
 
 *====================================
-*-- cINTLAbstract::SetConfig( x)
+*-- cINTLAbstract::SetConfig( x )
 *====================================
 * Hookable.
 *
-FUNCTION SetConfig( txPara1)
+FUNCTION SetConfig( txPara1 )
    IF INTL_HOOK_TEST
-     RETURN this.oHook.SetConfig( @txPara1)
+     RETURN this.oHook.SetConfig( @txPara1 )
    ELSE
      RETURN NULL
    ENDIF
 
 *====================================
-*-- cINTLAbstract::SetConversion( cnx)
+*-- cINTLAbstract::SetConversion( cnx )
 *====================================
 * Hookable.
 *
-FUNCTION SetConversion( tcLocale, tnFactor, txOther)
+FUNCTION SetConversion( tcLocale, tnFactor, txOther )
    IF INTL_HOOK_TEST
-     RETURN this.oHook.SetConversion( @tcLocale, @tnFactor, @txOther)
+     RETURN this.oHook.SetConversion( @tcLocale, @tnFactor, @txOther )
    ELSE
      RETURN NULL
    ENDIF
@@ -713,132 +713,132 @@ FUNCTION SetDefaults()
    ENDIF
 
 *====================================
-*-- cINTLAbstract::SetExplicit( l)
+*-- cINTLAbstract::SetExplicit( l )
 *====================================
 * Hookable.
 *
-FUNCTION SetExplicit( tlSetting)
+FUNCTION SetExplicit( tlSetting )
    IF INTL_HOOK_TEST
-     RETURN this.oHook.SetExplicit( @tlSetting)
+     RETURN this.oHook.SetExplicit( @tlSetting )
    ELSE
      RETURN NULL
    ENDIF
 
 *====================================
-*-- cINTLAbstract::SetLanguage( cc)
+*-- cINTLAbstract::SetLanguage( cc )
 *====================================
 * Hookable.
 *
-FUNCTION SetLanguage( tcLanguage, txPassed1)
+FUNCTION SetLanguage( tcLanguage, txPassed1 )
    IF INTL_HOOK_TEST
-     RETURN this.oHook.SetLanguage( @tcLanguage, @txPassed1)
+     RETURN this.oHook.SetLanguage( @tcLanguage, @txPassed1 )
    ELSE
      RETURN NULL
    ENDIF
 
 *====================================
-*-- cINTLAbstract::SetLocale( c)
+*-- cINTLAbstract::SetLocale( c )
 *====================================
 * Hookable.
 *
-FUNCTION SetLocale( tcLocale)
+FUNCTION SetLocale( tcLocale )
    IF INTL_HOOK_TEST
-     RETURN this.oHook.SetLocale( @tcLocale)
-   ELSE
-     RETURN NULL
-   ENDIF
-
-
-*====================================
-*-- cINTLAbstract::SetHook( x)
-*====================================
-* Hookable.
-*
-FUNCTION SetHook( txPassed)
-   IF INTL_HOOK_TEST
-     RETURN this.oHook.SetHook( @txPassed)
-   ELSE
-     RETURN NULL
-   ENDIF
-
-*====================================
-*-- cINTLAbstract::SetRightToLeft( l)
-*====================================
-* Hookable.
-*
-FUNCTION SetRightToLeft( tlSetting)
-   IF INTL_HOOK_TEST
-     RETURN this.oHook.SetRightToLeft( @tlSetting)
+     RETURN this.oHook.SetLocale( @tcLocale )
    ELSE
      RETURN NULL
    ENDIF
 
 
 *====================================
-*-- cINTLAbstract::SetStrategy( cx)
+*-- cINTLAbstract::SetHook( x )
 *====================================
 * Hookable.
 *
-FUNCTION SetStrategy( tcService, txClass)
+FUNCTION SetHook( txPassed )
    IF INTL_HOOK_TEST
-     RETURN this.oHook.SetStrategy( @tcService, @txClass)
+     RETURN this.oHook.SetHook( @txPassed )
    ELSE
      RETURN NULL
    ENDIF
 
 *====================================
-*-- cINTLAbstract::SetStrategyClass( cc)
+*-- cINTLAbstract::SetRightToLeft( l )
 *====================================
 * Hookable.
 *
-FUNCTION SetStrategy( tcService, tcClass)
+FUNCTION SetRightToLeft( tlSetting )
    IF INTL_HOOK_TEST
-     RETURN this.oHook.SetStrategyClass( @tcService, @tcClass)
+     RETURN this.oHook.SetRightToLeft( @tlSetting )
+   ELSE
+     RETURN NULL
+   ENDIF
+
+
+*====================================
+*-- cINTLAbstract::SetStrategy( cx )
+*====================================
+* Hookable.
+*
+FUNCTION SetStrategy( tcService, txClass )
+   IF INTL_HOOK_TEST
+     RETURN this.oHook.SetStrategy( @tcService, @txClass )
    ELSE
      RETURN NULL
    ENDIF
 
 *====================================
-*-- cINTLAbstract::SetTable( c)
+*-- cINTLAbstract::SetStrategyClass( cc )
 *====================================
 * Hookable.
 *
-FUNCTION SetTable( tcFile)
+FUNCTION SetStrategy( tcService, tcClass )
    IF INTL_HOOK_TEST
-     RETURN this.oHook.SetTable( @tcFile)
+     RETURN this.oHook.SetStrategyClass( @tcService, @tcClass )
    ELSE
      RETURN NULL
    ENDIF
 
 *====================================
-*-- cINTLAbstract::SetUpdateMode( l)
+*-- cINTLAbstract::SetTable( c )
 *====================================
 * Hookable.
 *
-FUNCTION SetUpdateMode( tlTurnOn)
+FUNCTION SetTable( tcFile )
    IF INTL_HOOK_TEST
-     RETURN this.oHook.SetUpdateMode( @tlTurnOn)
+     RETURN this.oHook.SetTable( @tcFile )
    ELSE
      RETURN NULL
    ENDIF
 
 *====================================
-*-- cINTLAbstract::GetVersion( x)
+*-- cINTLAbstract::SetUpdateMode( l )
+*====================================
+* Hookable.
+*
+FUNCTION SetUpdateMode( tlTurnOn )
+   IF INTL_HOOK_TEST
+     RETURN this.oHook.SetUpdateMode( @tlTurnOn )
+   ELSE
+     RETURN NULL
+   ENDIF
+
+*====================================
+*-- cINTLAbstract::GetVersion( x )
 *====================================
 * NotHookable.
 *
-FUNCTION GetVersion( txPassed)
+FUNCTION GetVersion( txPassed )
     * RETURN ccProgramName+ CHR(13)+ CHR(10)+ this.cMajorVersion+"."+ this.cRevision+"."+ this.cBuild+ " "+ this.cDate
     RETURN ccProgramName+ " "+this.cMajorVersion+"."+ this.cRevision+"."+ this.cBuild+ " "+ this.cDate
 
 *====================================
-*-- cINTLAbstract::UpdateResource( xx)
+*-- cINTLAbstract::UpdateResource( xx )
 *====================================
 * Hookable.
 *
-FUNCTION UpdateResource( txPassed, txLocation)
+FUNCTION UpdateResource( txPassed, txLocation )
    IF INTL_HOOK_TEST
-     RETURN this.oHook.UpdateResource( @txPassed, @txLocation)
+     RETURN this.oHook.UpdateResource( @txPassed, @txLocation )
    ELSE
      RETURN NULL
    ENDIF
@@ -913,10 +913,10 @@ DEFINE CLASS cINTLMemento AS cINTLAbstract
 *-- cINTLMemento::Init( [ o])
 *====================================
 *
-FUNCTION Init( toPrototype, txPassed2, txPassed3)
-   IF this.IsINTLClass( toPrototype)
+FUNCTION Init( toPrototype, txPassed2, txPassed3 )
+   IF this.IsINTLClass( toPrototype )
      *-- Grab properties from the prototype
-     toPrototype.Mov( This)
+     toPrototype.Mov( This )
    ELSE
      *-- Configure properties to default values
      this.SetDefaults()
@@ -925,7 +925,7 @@ FUNCTION Init( toPrototype, txPassed2, txPassed3)
    RETURN
 
 *====================================
-*-- cINTLMemento::aStrat( an)
+*-- cINTLMemento::aStrat( an )
 *====================================
 * This function, like all VFP "a" finctions,
 * loads an array, in this case an array of
@@ -935,9 +935,9 @@ FUNCTION Init( toPrototype, txPassed2, txPassed3)
 *  n=1: 2- D array, strategy names and pointers
 *  n=2: 2- D array, strategy names and config integers
 *
-FUNCTION aStrat( taArray, tnArrayType)
+FUNCTION aStrat( taArray, tnArrayType )
    *-- Reject null parameters
-   IF ISNULL( taArray) OR ISNULL( tnArrayType)
+   IF ISNULL( taArray) OR ISNULL( tnArrayType )
      RETURN NULL
    ENDIF
 
@@ -957,7 +957,7 @@ FUNCTION aStrat( taArray, tnArrayType)
    DO CASE
    *-- Standard 1- D array of strategy names
    CASE tnArrayType = 0
-     FOR lnI = 1 TO ALEN( this.aStrategies, 1)
+     FOR lnI = 1 TO ALEN( this.aStrategies, 1 )
        IF this.IsINTLClass( this.aStrategies[ lnI, 2])
          lnRetVal = lnRetVal+ 1
          DIMENSION taArray[ lnRetVal]
@@ -967,7 +967,7 @@ FUNCTION aStrat( taArray, tnArrayType)
 
    *-- 2- D array, strategy names and pointers
    CASE tnArrayType = 1
-     FOR lnI = 1 TO ALEN( this.aStrategies, 1)
+     FOR lnI = 1 TO ALEN( this.aStrategies, 1 )
        IF this.IsINTLClass( this.aStrategies[ lnI, 2])
          lnRetVal = lnRetVal+ 1
          DIMENSION taArray[ lnRetVal, 2]
@@ -978,7 +978,7 @@ FUNCTION aStrat( taArray, tnArrayType)
 
    *-- 2- D array, strategy names and config integers
    CASE tnArrayType = 2
-     FOR lnI = 1 TO ALEN( this.aStrategies, 1)
+     FOR lnI = 1 TO ALEN( this.aStrategies, 1 )
        lnRetVal = lnRetVal+ 1
        DIMENSION taArray[ lnRetVal, 2]
        taArray[ lnRetval, 1] = this.aStrategies[ lnI, 1]
@@ -998,7 +998,7 @@ FUNCTION aStrat( taArray, tnArrayType)
 *====================================
 * Puts an INTL cookie into the passed object...
 *
-FUNCTION AdornMemento( oMementoHolder)
+FUNCTION AdornMemento( oMementoHolder )
 
    * ... if it can hold one.
    IF TYPE( "oMementoHolder.BaseClass" )<>"U" AND ;
@@ -1011,7 +1011,7 @@ FUNCTION AdornMemento( oMementoHolder)
        oMementoHolder.AddObject( "oINTLMemento", "cINTLMemento" )
      ELSE
        *-- Make SURE it is of class INTL
-       IF ! this.IsINTLClass( oMementoHolder.oINTLMemento)
+       IF ! this.IsINTLClass( oMementoHolder.oINTLMemento )
          oMementoHolder.oINTLMemento = CREATE( "cINTLMemento" )
        ENDIF
      ENDIF
@@ -1021,7 +1021,7 @@ FUNCTION AdornMemento( oMementoHolder)
      RETURN NULL
    ENDIF
 
-   this.Mov( oMementoHolder.oINTLMemento)
+   this.Mov( oMementoHolder.oINTLMemento )
 
  RETURN oMementoHolder.oINTLMemento
 
@@ -1071,17 +1071,17 @@ FUNCTION GetRightToLeft()
 *====================================
 * tcLocale: The Strategy- ID
 * Returns:  Handle of the strategy
-*           Handle or attribute (tnSpecial>0)
+*           Handle or attribute (tnSpecial>0 )
 *
-FUNCTION GetStrategy( tcStrategy, tnSpecial)
+FUNCTION GetStrategy( tcStrategy, tnSpecial )
    LOCAL lcStrategy
 
-   IF EMPTY( tnSpecial)
+   IF EMPTY( tnSpecial )
      tnSpecial = 0
    ENDIF
 
    *-- By default, return the string strategy
-   IF EMPTY( tcStrategy)
+   IF EMPTY( tcStrategy )
      lcStrategy = "String"
    ELSE
      lcStrategy = PROPER( STRTRAN( UPPER( tcStrategy), "CINTL" ))
@@ -1094,25 +1094,25 @@ FUNCTION GetStrategy( tcStrategy, tnSpecial)
      RETURN NULL
    ENDIF
 
-   tcStrategy = PROPER( lcStrategy)
+   tcStrategy = PROPER( lcStrategy )
 
    LOCAL loRetVal, ;
          lnIndex
 
    loRetVal = NULL
 
-   lnIndex = ASCAN( this.aStrategies, lcStrategy)
+   lnIndex = ASCAN( this.aStrategies, lcStrategy )
 
    *-- If the INTL Oject doesn't exist. See if it can't be created
    *-- and try again.
    IF lnIndex = 0
       this.SetStrategy( lcStrategy, this.QueryInterface( lcStrategy ))
-      lnIndex = ASCAN( this.aStrategies, lcStrategy)
+      lnIndex = ASCAN( this.aStrategies, lcStrategy )
    ENDIF
 
    IF lnIndex<> 0 AND ;
       (this.IsINTLClass( this.aStrategies[ lnIndex+ 1]) OR ;
-       tnSpecial>0)
+       tnSpecial>0 )
 
      loRetVal = this.aStrategies[ lnIndex+ 1]
    ENDIF
@@ -1120,7 +1120,7 @@ FUNCTION GetStrategy( tcStrategy, tnSpecial)
    RETURN loRetVal
 
 *====================================
-*-- cINTLMemento::GetStrategyClass( cx)
+*-- cINTLMemento::GetStrategyClass( cx )
 *====================================
 * Returns the name of the strategy class to
 * be used for subsequent strategy object
@@ -1128,12 +1128,12 @@ FUNCTION GetStrategy( tcStrategy, tnSpecial)
 *
 FUNCTION GetStrategyClass( tcAlias )
    *-- Reject null parameter
-   IF ISNULL( tcAlias)
+   IF ISNULL( tcAlias )
      RETURN NULL
    ENDIF
 
    *--
-   IF EMPTY( tcAlias) OR ;
+   IF EMPTY( tcAlias ) OR ;
       TYPE( "tcAlias" )<>"C"
      RETURN ""
    ENDIF
@@ -1141,7 +1141,7 @@ FUNCTION GetStrategyClass( tcAlias )
    LOCAL llRetVal, lcAlias
    lcRetVal = ""
 
-   lcAlias = PROPER( tcAlias)
+   lcAlias = PROPER( tcAlias )
 
 
    IF lcAlias = "String"   OR ;
@@ -1158,22 +1158,22 @@ FUNCTION GetStrategyClass( tcAlias )
    RETURN lcRetval
 
 *====================================
-*-- cINTLMemento::Mov( [ o], n)
+*-- cINTLMemento::Mov( [ o], n )
 *====================================
 * Move the operational properties of This object
 * to the parameterized object.
 *
-FUNCTION Mov( toPassTo, tnStackLevel)
+FUNCTION Mov( toPassTo, tnStackLevel )
    *-- Reject null parameters
-   IF ISNULL( toPassTo) OR ISNULL( tnStackLevel)
+   IF ISNULL( toPassTo) OR ISNULL( tnStackLevel )
      RETURN NULL
    ENDIF
 
-   IF ! this.IsINTLClass( toPassTo)
+   IF ! this.IsINTLClass( toPassTo )
      toPassTo = This
    ENDIF
 
-   IF EMPTY( tnStacklevel)
+   IF EMPTY( tnStacklevel )
      tnStacklevel = 0
    ENDIF
 
@@ -1195,8 +1195,8 @@ FUNCTION Mov( toPassTo, tnStackLevel)
        *-- recurse engines!
        DIMENSION laThis[1], laThat[1]
        LOCAL lnThis, lnThat
-       lnThis = this.aStrat( @laThis, 2)
-       lnThat = .aStrat(     @laThat, 1)
+       lnThis = this.aStrat( @laThis, 2 )
+       lnThat = .aStrat(     @laThat, 1 )
        LOCAL lnI, lnMatchnum
        FOR lnI = 1 TO lnThis
          lnMatchNum =ASCAN( laThat, laThis[ lnI, 1])
@@ -1215,10 +1215,10 @@ FUNCTION Mov( toPassTo, tnStackLevel)
 *-- cINTLMemento::Push( [ o])
 *====================================
 *
-FUNCTION Push( toPassed)
+FUNCTION Push( toPassed )
 
    *-- Reject a null parameter
-   IF ISNULL( toPassed)
+   IF ISNULL( toPassed )
      RETURN NULL
    ENDIF
 
@@ -1231,7 +1231,7 @@ FUNCTION Push( toPassed)
 
    IF ! ISNULL[ this.a_Stack[ 1]]
      DIMENSION this.a_Stack[ ALEN( this.a_Stack, 1)+ 1, MEMENTO_ELEMENTS]
-     lnPropsIndex = ALEN( this.a_Stack, 1)
+     lnPropsIndex = ALEN( this.a_Stack, 1 )
    ENDIF
 
    WITH toPassed
@@ -1248,10 +1248,10 @@ FUNCTION Push( toPassed)
 *-- cINTLMemento::Pop( [ o])
 *====================================
 *
-FUNCTION Pop( toPassed)
+FUNCTION Pop( toPassed )
 
    *-- Reject a null parameter
-   IF ISNULL( toPassed)
+   IF ISNULL( toPassed )
      RETURN NULL
    ENDIF
 
@@ -1300,7 +1300,7 @@ FUNCTION Release()
    LOCAL loTemp
    loTemp = this.GetLogicalParent()
 
-   IF this.IsINTLClass( loTemp)
+   IF this.IsINTLClass( loTemp )
      loTemp.SetStrategy( this.GetType(), NULL )
    ENDIF
 
@@ -1309,16 +1309,16 @@ FUNCTION Release()
    RETURN
 
 *====================================
-*-- cINTLMemento::QueryInterface( xo)
+*-- cINTLMemento::QueryInterface( xo )
 *====================================
 * IID: Interface Id expected
 * PInterface: Reference to an object
 * Returns: Nothing
 *
-FUNCTION QueryInterface( IID, oInt)
+FUNCTION QueryInterface( IID, oInt )
 
    *-- Reject a null parameter
-   IF ISNULL( IID)
+   IF ISNULL( IID )
      RETURN NULL
    ENDIF
 
@@ -1326,7 +1326,7 @@ FUNCTION QueryInterface( IID, oInt)
      RETURN NULL
    ENDIF
 
-   IID = PROPER( IID)
+   IID = PROPER( IID )
    oInt = NULL
 
    DO CASE
@@ -1334,28 +1334,28 @@ FUNCTION QueryInterface( IID, oInt)
      oInt = This
 
    CASE IID = IID_MEMENTO
-     oInt = CREATEOBJECT( "cINTLMemento", oInt)
+     oInt = CREATEOBJECT( "cINTLMemento", oInt )
 
    CASE IID = IID_INTL
-     oInt = CREATEOBJECT( "Intl", oInt)
+     oInt = CREATEOBJECT( "Intl", oInt )
 
    CASE IID = IID_STRING_STRATEGY
-     oInt = CREATEOBJECT( "cINTLString", oInt)
+     oInt = CREATEOBJECT( "cINTLString", oInt )
 
    CASE IID = IID_Font
-     oInt = CREATEOBJECT( "cINTLFont", oInt)
+     oInt = CREATEOBJECT( "cINTLFont", oInt )
 
    CASE IID = IID_CURRENCY_STRATEGY
-     oInt = CREATEOBJECT( "cINTLCurrency", oInt)
+     oInt = CREATEOBJECT( "cINTLCurrency", oInt )
 
    CASE IID = IID_PICTURE_STRATEGY
-     oInt = CREATEOBJECT( "cINTLPicture", oInt)
+     oInt = CREATEOBJECT( "cINTLPicture", oInt )
 
    CASE IID = IID_DATA_STRATEGY
-     oInt = CREATEOBJECT( "cINTLData", oInt)
+     oInt = CREATEOBJECT( "cINTLData", oInt )
 
    CASE IID = IID_RIGHTTOLEFT_STRATEGY
-     oInt = CREATEOBJECT( "cINTLRightToLeft", oInt)
+     oInt = CREATEOBJECT( "cINTLRightToLeft", oInt )
 
    ENDCASE
 
@@ -1366,13 +1366,13 @@ FUNCTION QueryInterface( IID, oInt)
 *====================================
 * Set the configuration integer.
 *
-FUNCTION SetConfig( txPara1)
+FUNCTION SetConfig( txPara1 )
 
    LOCAL lxRetVal
    lxRetVal = .F.
 
    *-- Reject a null parameter
-   IF ISNULL( txPara1)
+   IF ISNULL( txPara1 )
      RETURN NULL
    ENDIF
 
@@ -1382,7 +1382,7 @@ FUNCTION SetConfig( txPara1)
    ENDIF
 
    DO CASE
-   CASE EMPTY( txPara1)
+   CASE EMPTY( txPara1 )
      this.nConfig = 0
      this.LoadStrategies()
      lxRetVal = .T.
@@ -1415,11 +1415,11 @@ FUNCTION SetDefaults()
 
    LOCAL ARRAY laScratch[ MEMENTO_ELEMENTS]
 
-   laScratch[ 1] = this.SetLocale( ccDefaultLocale)
-   laScratch[ 2] = this.SetLanguage( ccDefaultLanguage)
-   laScratch[ 3] = this.SetConfig( this.nDefaultConfig)
+   laScratch[ 1] = this.SetLocale( ccDefaultLocale )
+   laScratch[ 2] = this.SetLanguage( ccDefaultLanguage )
+   laScratch[ 3] = this.SetConfig( this.nDefaultConfig )
    laScratch[ 4] = this.SetExplicit( .F.)
-   laScratch[ 5] = this.SetRightToLeft( clDefaultRightToLeft)
+   laScratch[ 5] = this.SetRightToLeft( clDefaultRightToLeft )
 
    IF laScratch[ 1] AND laScratch[ 2] AND laScratch[ 3] AND laScratch[ 4] AND laScratch[ 5]
      llRetVal = .T.
@@ -1430,7 +1430,7 @@ FUNCTION SetDefaults()
    RETURN llRetVal
 
 *====================================
-*-- cINTLMemento::SetStrategy( cx)
+*-- cINTLMemento::SetStrategy( cx )
 *====================================
 * Activate Put a strategy in the array of loaded
 *   Strategies.
@@ -1439,15 +1439,15 @@ FUNCTION SetDefaults()
 *             existing engine reference, or
 *             config integer
 *
-FUNCTION SetStrategy( tcAlias, txStrategy)
+FUNCTION SetStrategy( tcAlias, txStrategy )
 
    *-- Reject a null parameter
-   IF ISNULL( tcAlias)
+   IF ISNULL( tcAlias )
      RETURN NULL
    ENDIF
 
    *-- Bail if tcAlias is emty
-   IF EMPTY( tcAlias) OR ;
+   IF EMPTY( tcAlias ) OR ;
      ( ! TYPE( "tcAlias" )= "C" )
      RETURN .F.
    ENDIF
@@ -1455,18 +1455,18 @@ FUNCTION SetStrategy( tcAlias, txStrategy)
    LOCAL llRetVal, lnIndex, lnElementIndex, loElement2, llRemoveStrategy
    llRetVal = .T.
 
-   tcAlias = PROPER( tcAlias)
-   llRemoveStrategy = ISNULL( txStrategy)
+   tcAlias = PROPER( tcAlias )
+   llRemoveStrategy = ISNULL( txStrategy )
 
    *-- Convert a class name to an object
    IF TYPE( "txStrategy" )= "C"
-     loElement2 = CREATEOBJECT( txStrategy)
+     loElement2 = CREATEOBJECT( txStrategy )
    ELSE
      loElement2 = txStrategy
    ENDIF
 
    *-- Is this strategy in the stack already?
-   lnElementIndex = ASCAN( this.aStrategies, tcAlias)
+   lnElementIndex = ASCAN( this.aStrategies, tcAlias )
 
    IF !llRemoveStrategy
      IF ! INLIST( TYPE( "txStrategy" ), "C", "O", "N" )
@@ -1480,7 +1480,7 @@ FUNCTION SetStrategy( tcAlias, txStrategy)
          lnIndex = 1
        ELSE
          DIMENSION this.aStrategies[ ALEN( this.aStrategies, 1)+ 1, 2]
-         lnIndex =ALEN( this.aStrategies, 1)
+         lnIndex =ALEN( this.aStrategies, 1 )
        ENDIF
 
        this.aStrategies[ lnIndex, 1] = tcAlias
@@ -1513,7 +1513,7 @@ FUNCTION SetStrategy( tcAlias, txStrategy)
 
    ELSE
      IF lnElementIndex > 0
-       =ADEL( this.aStrategies, ( lnElementIndex+ 1)/ 2)
+       =ADEL( this.aStrategies, ( lnElementIndex+ 1)/ 2 )
        DIMENSION this.aStrategies[ MAX( 1, ALEN( this.aStrategies, 1)- 1), 2]
        this.o&tcAlias.Strategy = NULL
      ENDIF
@@ -1523,21 +1523,21 @@ FUNCTION SetStrategy( tcAlias, txStrategy)
    *-- does an automatic SetConfig() if Possible
    LOCAL lnFinalconfig, lnI
    lnFinalConfig = 0
-   FOR lni = 1 TO ALEN( this.aStrategies, 1)
+   FOR lni = 1 TO ALEN( this.aStrategies, 1 )
      DO CASE
      CASE TYPE( "this.aStrategies[ lni,1]" ) <> "C" && Nothing loaded
      CASE this.aStrategies[ lni,1] = "String"
-       lnFinalConfig = BITSET( lnFinalConfig, 0)
+       lnFinalConfig = BITSET( lnFinalConfig, 0 )
      CASE this.aStrategies[ lni,1] = "Font"
-       lnFinalConfig = BITSET( lnFinalConfig, 1)
+       lnFinalConfig = BITSET( lnFinalConfig, 1 )
      CASE this.aStrategies[ lni,1] = "Data"
-       lnFinalConfig = BITSET( lnFinalConfig, 2)
+       lnFinalConfig = BITSET( lnFinalConfig, 2 )
      CASE this.aStrategies[ lni,1] = "Picture"
-       lnFinalConfig = BITSET( lnFinalConfig, 3)
+       lnFinalConfig = BITSET( lnFinalConfig, 3 )
      CASE this.aStrategies[ lni,1] = "Currency"
-       lnFinalConfig = BITSET( lnFinalConfig, 4)
+       lnFinalConfig = BITSET( lnFinalConfig, 4 )
      CASE this.aStrategies[ lni,1] = "Righttoleft"
-       lnFinalConfig = BITSET( lnFinalConfig, 5)
+       lnFinalConfig = BITSET( lnFinalConfig, 5 )
 
      ENDCASE
    ENDFOR
@@ -1547,7 +1547,7 @@ FUNCTION SetStrategy( tcAlias, txStrategy)
    RETURN llRetval
 
 *====================================
-*-- cINTLMemento::SetStrategyClass( cx)
+*-- cINTLMemento::SetStrategyClass( cx )
 *====================================
 * Change the strategy class for subsequent
 * automatic loading
@@ -1556,22 +1556,22 @@ FUNCTION SetStrategy( tcAlias, txStrategy)
 *             existing engine reference, or
 *             config integer
 *
-FUNCTION SetStrategyClass( tcAlias, tcStrategy)
+FUNCTION SetStrategyClass( tcAlias, tcStrategy )
    *-- Reject null parameters
-   IF ISNULL( tcAlias) OR ;
-      ISNULL( tcStrategy)
+   IF ISNULL( tcAlias ) OR ;
+      ISNULL( tcStrategy )
      RETURN NULL
    ENDIF
 
    *--
-   IF EMPTY( tcAlias) OR EMPTY( tcStrategy)
+   IF EMPTY( tcAlias ) OR EMPTY( tcStrategy )
      RETURN .F.
    ENDIF
 
    LOCAL llRetVal, lcAlias
    llRetVal = .T.
 
-   lcAlias = PROPER( tcAlias)
+   lcAlias = PROPER( tcAlias )
 
    DO CASE
    CASE TYPE( "lcAlias" ) <> "C" AND ;
@@ -1594,22 +1594,22 @@ FUNCTION SetStrategyClass( tcAlias, tcStrategy)
    RETURN llRetval
 
 *====================================
-*-- cINTLMemento::SetExplicit( l)
+*-- cINTLMemento::SetExplicit( l )
 *====================================
 * Set the Explicit mode.
 *
-FUNCTION SetExplicit( tlSetting)
+FUNCTION SetExplicit( tlSetting )
 
    *-- Broadcast first to the hooks
    IF INTL_HOOK_TEST
-     this.oHook.SetExplicit( @tlSetting)
+     this.oHook.SetExplicit( @tlSetting )
    ENDIF
 
    *-- Broadcast next to all strategies
    LOCAL lnI
-   FOR lnI = 1 TO ALEN( this.aStrategies, 1)
+   FOR lnI = 1 TO ALEN( this.aStrategies, 1 )
      IF this.IsINTLClass( this.aStrategies[ lnI, 2])
-       this.aStrategies[ lnI, 2].SetExplicit( tlsetting)
+       this.aStrategies[ lnI, 2].SetExplicit( tlsetting )
      ENDIF
    ENDFOR
 
@@ -1620,82 +1620,82 @@ FUNCTION SetExplicit( tlSetting)
    RETURN .T.
 
 *====================================
-*-- cINTLMemento::SetLanguage( cc)
+*-- cINTLMemento::SetLanguage( cc )
 *====================================
 *
-FUNCTION SetLanguage( tcLanguage, txPassed2)
+FUNCTION SetLanguage( tcLanguage, txPassed2 )
 
    *-- Broadcast first to the hooks
    IF INTL_HOOK_TEST
-     this.oHook.SetLanguage( @tcLanguage, @txPassed2)
+     this.oHook.SetLanguage( @tcLanguage, @txPassed2 )
    ENDIF
 
    *-- Broadcast the new language to all
    *-- strategy engines.
    LOCAL lnI
-   FOR lnI = 1 TO ALEN( this.aStrategies, 1)
+   FOR lnI = 1 TO ALEN( this.aStrategies, 1 )
      IF this.IsINTLClass( this.aStrategies[ lnI, 2])
-       this.aStrategies[ lnI, 2].SetLanguage( tcLanguage)
+       this.aStrategies[ lnI, 2].SetLanguage( tcLanguage )
      ENDIF
    ENDFOR
 
    *-- Reject a null parameter
-   IF ISNULL( tcLanguage)
+   IF ISNULL( tcLanguage )
      RETURN NULL
    ENDIF
 
    IF ! TYPE( "tcLanguage" )= "C" OR ;
-      EMPTY( tcLanguage)
+      EMPTY( tcLanguage )
      RETURN .F.
    ENDIF
 
-   IF ! this.IsValidLanguage( tcLanguage)
+   IF ! this.IsValidLanguage( tcLanguage )
      RETURN .F.
    ENDIF
 
-   tcLanguage = PROPER( tcLanguage)
-   IF tcLanguage = PROPER( ccMyLang)
+   tcLanguage = PROPER( tcLanguage )
+   IF tcLanguage = PROPER( ccMyLang )
      this.cLang = ccDefaultLanguage
    ELSE
-     this.cLang = PROPER( tcLanguage)
+     this.cLang = PROPER( tcLanguage )
    ENDIF
 
    Local lcAlias
    lcAlias = this.GetAlias()
-   IF !ISNULL( lcAlias) AND TYPE( "txPassed2" )= "C" AND USED( lcAlias)
+   IF !ISNULL( lcAlias ) AND TYPE( "txPassed2" )= "C" AND USED( lcAlias )
      PRIVATE jcOrder
      jcOrder  = "c"+ txPassed2
      *-- Halt, make sure the tag exists
      IF IsTag( jcOrder, lcAlias )
-       SET ORDER TO TAG ( jcorder) IN ( lcAlias)
+       SET ORDER TO TAG ( jcorder) IN ( lcAlias )
      ENDIF
    ENDIF
 
    RETURN .T.
 
 *====================================
-*-- cINTLMemento::SetLocale( c)
+*-- cINTLMemento::SetLocale( c )
 *====================================
 * tcLocale: String, the locale.
 * Returns:  True if successful.
 *
-FUNCTION SetLocale( tcLocale)
+FUNCTION SetLocale( tcLocale )
 
    *-- Broadcast first to the hooks
    IF INTL_HOOK_TEST
-     this.oHook.SetLocale( @tcLocale)
+     this.oHook.SetLocale( @tcLocale )
    ENDIF
 
    *-- Broadcast next to all strategies
    LOCAL lnI
-   FOR lnI = 1 TO ALEN( this.aStrategies, 1)
+   FOR lnI = 1 TO ALEN( this.aStrategies, 1 )
      IF this.IsINTLClass( this.aStrategies[ lnI, 2])
-       this.aStrategies[ lnI, 2].SetLocale( tcLocale)
+       this.aStrategies[ lnI, 2].SetLocale( tcLocale )
      ENDIF
    ENDFOR
 
    *-- Reject a null parameter
-   IF ISNULL( tcLocale)
+   IF ISNULL( tcLocale )
      RETURN NULL
    ENDIF
 
@@ -1704,21 +1704,21 @@ FUNCTION SetLocale( tcLocale)
      RETURN .F.
    ENDIF
 
-   tcLocale = PROPER( tcLocale)
-   IF tcLocale = PROPER( ccMyLocale)
+   tcLocale = PROPER( tcLocale )
+   IF tcLocale = PROPER( ccMyLocale )
      this.cLocale = ccDefaultLocale
    ELSE
-     this.cLocale = PROPER( tcLocale)
+     this.cLocale = PROPER( tcLocale )
    ENDIF
 
    RETURN .T.
 
 *====================================
-*-- cINTLMemento::SetHook( o)
+*-- cINTLMemento::SetHook( o )
 *====================================
 *-- Mementos hook mementos
 *
-FUNCTION SetHook( txPassed1)
+FUNCTION SetHook( txPassed1 )
    *-- Defer first to hooks so the
    *-- new hook can be chained.
    LOCAL llRetVal, ;
@@ -1736,7 +1736,7 @@ FUNCTION SetHook( txPassed1)
 
    ON ERROR lnErrorCode = ERROR()
    DO CASE
-   CASE ISNULL( txPassed1)
+   CASE ISNULL( txPassed1 )
      llRetVal = NULL
 
    CASE TYPE( "txPassed1" ) = "O" AND ;
@@ -1744,15 +1744,15 @@ FUNCTION SetHook( txPassed1)
      this.oHook = txPassed1
 
    CASE TYPE( "txPassed1" ) = "C"
-     this.oHook = CREATEOBJECT( txPassed1)
+     this.oHook = CREATEOBJECT( txPassed1 )
 
    OTHERWISE
      llRetVal = .F.
    ENDCASE
 
-   IF this.IsINTLClass( this.oHook)
+   IF this.IsINTLClass( this.oHook )
      WITH this.oHook
-       .SetLogicalParent( This)
+       .SetLogicalParent( This )
        .SetLocale(      this.GetLocale())
        .SetLanguage(    this.GetLanguage())
        .SetExplicit(    this.GetExplicit())
@@ -1770,22 +1770,22 @@ FUNCTION SetHook( txPassed1)
    RETURN llRetVal
 
 *====================================
-*-- cINTLMemento::SetRightToLeft( l)
+*-- cINTLMemento::SetRightToLeft( l )
 *====================================
 * Set the right-to-left writing mode.
 *
-FUNCTION SetRightToLeft( tlSetting)
+FUNCTION SetRightToLeft( tlSetting )
 
    *-- Broadcast first to the hooks
    IF INTL_HOOK_TEST
-     this.oHook.SetRightToLeft( @tlSetting)
+     this.oHook.SetRightToLeft( @tlSetting )
    ENDIF
 
    *-- Broadcast next to all strategies
    LOCAL lnI
-   FOR lnI = 1 TO ALEN( this.aStrategies, 1)
+   FOR lnI = 1 TO ALEN( this.aStrategies, 1 )
      IF this.IsINTLClass( this.aStrategies[ lnI, 2])
-       this.aStrategies[ lnI, 2].SetRightToLeft( tlsetting)
+       this.aStrategies[ lnI, 2].SetRightToLeft( tlsetting )
      ENDIF
    ENDFOR
 
@@ -1803,7 +1803,7 @@ ENDDEFINE
 * Purpose..: This class is the template method for localization
 * Version..: March 25 1996
 * Notes....: Configuration integers:
-*                [ 1] Strings  (Default)
+*                [ 1] Strings  (Default )
 *                [ 2] Fonts
 *                [ 4] Data
 *                [ 8] Images
@@ -1826,13 +1826,13 @@ DEFINE CLASS Intl AS cINTLMemento
 
 
 *====================================
-*-- INTL::Execute( ax)
+*-- INTL::Execute( ax )
 *====================================
 *
-FUNCTION Execute( lxPassed, txpassed2)
+FUNCTION Execute( lxPassed, txpassed2 )
 
    *-- Null!  Yech.
-   IF ISNULL( lxPassed)
+   IF ISNULL( lxPassed )
      RETURN NULL
    ENDIF
 
@@ -1845,9 +1845,9 @@ FUNCTION Execute( lxPassed, txpassed2)
    CASE lcTypePassed = "O" AND TYPE( "lxPassed[ 1]" )= "O"
      *-- Call on each active strategy and execute it.
      LOCAL lnI
-     FOR lnI = 1 TO ALEN( this.aStrategies, 1)
+     FOR lnI = 1 TO ALEN( this.aStrategies, 1 )
        IF this.IsINTLClass( this.aStrategies[ lnI, 2])
-         this.aStrategies[ lnI, 2].Execute( @lxPassed, txPassed2)
+         this.aStrategies[ lnI, 2].Execute( @lxPassed, txPassed2 )
        ENDIF
      ENDFOR
 
@@ -1856,27 +1856,27 @@ FUNCTION Execute( lxPassed, txpassed2)
      *-- Note: txPassed could be a container of
      *-- objects.
      LOCAL ARRAY laScratch[ 1024]
-     this.ObjArray( lcTypePassed, @laScratch)
+     this.ObjArray( lcTypePassed, @laScratch )
      IF TYPE( "laScratch[ 1]" )= "O"
        *-- Call on each active Strategy...
        LOCAL lnI
-       FOR lnI = 1 TO ALEN( this.aStrategies, 1)
+       FOR lnI = 1 TO ALEN( this.aStrategies, 1 )
          IF this.IsINTLClass( this.aStrategies[ lnI, 2])
-           this.aStrategies[ lnI, 2].Execute( @laScratch, txPassed2)
+           this.aStrategies[ lnI, 2].Execute( @laScratch, txPassed2 )
          ENDIF
        ENDFOR
      ENDIF
 
    *-- Character:
    CASE TYPE( "lxPassed" )= "C"
-     this.I( lxPassed)
+     this.I( lxPassed )
 
    *-- Currency:
    CASE TYPE( "lxPassed" )= "Y"
      LOCAL loCStrat
      loCStrat = GetStrategy( "Currency" )
-     IF this.IsINTLClass( loCStrat)
-       loCStrat.I( lxPassed)
+     IF this.IsINTLClass( loCStrat )
+       loCStrat.I( lxPassed )
      ENDIF
    ENDCASE
 
@@ -1886,10 +1886,10 @@ FUNCTION Execute( lxPassed, txpassed2)
 *-- INTL::I( x1, [x2])
 *====================================
 *
-FUNCTION I( txPassed1, txPassed2)
+FUNCTION I( txPassed1, txPassed2 )
 
    *-- Nulls.  Yech.
-   IF ISNULL( txPassed1) OR ISNULL( txPassed2)
+   IF ISNULL( txPassed1) OR ISNULL( txPassed2 )
      RETURN NULL
    ENDIF
 
@@ -1902,12 +1902,12 @@ FUNCTION I( txPassed1, txPassed2)
    *-- parameter passed.
    DO CASE
    *-- Case character, defer to the hook engines
-   CASE lcType = "C" AND this.IsINTLClass( this.oHook)
-     lxRetVal = this.oHook.I( @txPassed1, @txPassed2)
+   CASE lcType = "C" AND this.IsINTLClass( this.oHook )
+     lxRetVal = this.oHook.I( @txPassed1, @txPassed2 )
 
    *-- Case object, localize the object
    CASE TYPE( "txPassed1" ) = "O"
-     lxRetVal = this.Localize( txPassed1, txPassed2)
+     lxRetVal = this.Localize( txPassed1, txPassed2 )
 
    *-- Case numeric, invoke the currency engine.
    CASE ( !ISNULL( this.GetStrategy( "Currency" ))) AND ;
@@ -1927,11 +1927,11 @@ FUNCTION I( txPassed1, txPassed2)
 
 *====================================
 *-- INTL::Init( [ c|n|o], [ c|n|o], [ c|n|o])
-*-- You can pass a ( C)- Language, a ( N)
+*-- You can pass a ( C)- Language, a ( N )
 *-- Config, and/or an ( O)- Object, in any
 *-- sequence
 *====================================
-FUNCTION Init( txPara1, txPara2, txPara3)
+FUNCTION Init( txPara1, txPara2, txPara3 )
    SET TALK OFF
    LOCAL ;
          llConfigDone, ;
@@ -1941,7 +1941,7 @@ FUNCTION Init( txPara1, txPara2, txPara3)
          tnConfig, ;
          toLocalize
 
-   cINTLMemento::INIT( txPara1, txPara2, txPara3)
+   cINTLMemento::INIT( txPara1, txPara2, txPara3 )
 
    STORE .F. TO llLangDone, ;
                 llConfigDone, ;
@@ -1959,7 +1959,7 @@ FUNCTION Init( txPara1, txPara2, txPara3)
 
    DO CASE
    CASE lcPara1Type = "C"
-     tclanguage = PROPER( txpara1)
+     tclanguage = PROPER( txpara1 )
      llLangDone = .T.
    CASE lcPara1Type = "N"
      tnConfig = txPara1
@@ -1971,7 +1971,7 @@ FUNCTION Init( txPara1, txPara2, txPara3)
 
    DO CASE
    CASE lcPara2Type = "C" AND ! llLangDone
-     tclanguage = PROPER( txpara2)
+     tclanguage = PROPER( txpara2 )
      llLangDone = .T.
 
    CASE lcPara2Type = "N" AND ! llConfigDone
@@ -1986,7 +1986,7 @@ FUNCTION Init( txPara1, txPara2, txPara3)
 
    DO CASE
    CASE lcPara3Type = "C" AND ! llLangDone
-     tclanguage = PROPER( txpara3)
+     tclanguage = PROPER( txpara3 )
 
    CASE lcPara3Type = "N" AND ! llConfigDone
      tnConfig = txPara3
@@ -2001,7 +2001,7 @@ FUNCTION Init( txPara1, txPara2, txPara3)
                                ccDefaultLanguage, ;
                                tcLanguage ))
      *-- This is legit.  When all fails, default.
-     this.SetLanguage( ccDefaultLanguage)
+     this.SetLanguage( ccDefaultLanguage )
    ENDIF
 
    *-- Load a string strategy object reference into this
@@ -2009,8 +2009,8 @@ FUNCTION Init( txPara1, txPara2, txPara3)
    this.oStringStrategy = this.GetStrategy( "String" )
 
    *-- Configure this object.
-   this.SetConfig( tnConfig)
-   this.SetHook( this.oStringStrategy)
+   this.SetConfig( tnConfig )
+   this.SetHook( this.oStringStrategy )
 
    *-- Localize upon instantiation?
    LOCAL lcLanguage, lcLocale
@@ -2019,30 +2019,30 @@ FUNCTION Init( txPara1, txPara2, txPara3)
    IF PROPER( lcLanguage)<> ccDefaultLanguage OR ;
       PROPER( lcLocale) <> ccDefaultLocale
 
-     IF ISNULL( toLocalize)
-       this.Localize( lcLanguage)
+     IF ISNULL( toLocalize )
+       this.Localize( lcLanguage )
      ELSE
-       this.Localize( lcLanguage, toLocalize)
+       this.Localize( lcLanguage, toLocalize )
      ENDIF
 
    ENDIF
    RETURN
 
 *====================================
-*-- INTL::GetConversion(xxx)
+*-- INTL::GetConversion(xxx )
 *====================================
 *
-FUNCTION GetConversion( tcLocale, txOther1, txOther2)
+FUNCTION GetConversion( tcLocale, txOther1, txOther2 )
 *-- A hook call, basically
  LOCAL lxtest
- lxtest = cINTLMemento::GetConversion( @tcLocale, @txOther1, @txOther2)
- IF !ISNULL( lxTest)
+ lxtest = cINTLMemento::GetConversion( @tcLocale, @txOther1, @txOther2 )
+ IF !ISNULL( lxTest )
    RETURN lxTest
  ELSE
    *-- See if there is a currency strategy
    lxTest = this.GetStrategy( "Currency" )
-   IF this.IsINTLClass( lxTest)
-     RETURN lxTest.GetConversion( @tcLocale, @txOther1, @txOther2)
+   IF this.IsINTLClass( lxTest )
+     RETURN lxTest.GetConversion( @tcLocale, @txOther1, @txOther2 )
    ELSE
      RETURN NULL
    ENDIF
@@ -2052,13 +2052,13 @@ FUNCTION GetConversion( tcLocale, txOther1, txOther2)
 *-- INTL::LoadLanguageCollection()
 *====================================
 *
-FUNCTION LoadLanguageCollection( toPassed)
+FUNCTION LoadLanguageCollection( toPassed )
  LOCAL ARRAY laLanguages[ 1]
  LOCAL lnLangs, lnI
- IF ! this.IsINTLClass( toPassed)
+ IF ! this.IsINTLClass( toPassed )
    toPassed = This
  ENDIF
- lnlangs = toPassed.aLang( @laLanguages)
+ lnlangs = toPassed.aLang( @laLanguages )
  IF lnLangs>0
    DIMENSION toPassed.Languages[ lnLangs]
    FOR lnI = 1 TO lnlangs
@@ -2083,17 +2083,17 @@ FUNCTION LoadStrategies()
 
    LOCAL lnThisConfig
    lnThisConfig = this.GetConfig()
-   IF ISNULL( lnThisConfig)
+   IF ISNULL( lnThisConfig )
      RETURN .F.
    ENDIF
 
-   this.oStringStrategy = CREATE( this.cStringStrategy)
+   this.oStringStrategy = CREATE( this.cStringStrategy )
 
-   IF BITTEST( lnThisConfig, 0)
-     this.SetStrategy( "String",  this.oStringStrategy)
+   IF BITTEST( lnThisConfig, 0 )
+     this.SetStrategy( "String",  this.oStringStrategy )
      LOCAL oX
      oX = this.GetStrategy( "String" )
-     IF this.IsINTLClass( oX)
+     IF this.IsINTLClass( oX )
        oX.SetLocale( this.GetLocale())
        oX.SetLanguage( this.GetLanguage())
        oX.SetExplicit( this.GetExplicit())
@@ -2102,48 +2102,48 @@ FUNCTION LoadStrategies()
      ENDIF
 
      *-- Config the hook also
-     this.SetHook( NULL)
-     this.SetHook( oX)
+     this.SetHook( NULL )
+     this.SetHook( oX )
 
    ELSE
-     this.SetStrategy( "String", NULL)
+     this.SetStrategy( "String", NULL )
      *-- kill the hook also
      IF this.IsINTLClass( this.GetHook())
-       this.SetHook( NULL)
+       this.SetHook( NULL )
      ENDIF
    ENDIF
 
-   IF BITTEST( lnThisConfig, 1)
+   IF BITTEST( lnThisConfig, 1 )
      this.SetStrategy( "Font", this.cFontStrategy )
    ELSE
-     this.SetStrategy( "Font", NULL)
+     this.SetStrategy( "Font", NULL )
    ENDIF
 
-   IF BITTEST( lnThisConfig, 2)
+   IF BITTEST( lnThisConfig, 2 )
      this.SetStrategy( "Data", this.cDataStrategy )
    ELSE
-     this.SetStrategy( "Data", NULL)
+     this.SetStrategy( "Data", NULL )
    ENDIF
 
-   IF BITTEST( lnThisConfig, 3)
+   IF BITTEST( lnThisConfig, 3 )
      this.SetStrategy( "Picture", this.cPictureStrategy )
    ELSE
-     this.SetStrategy( "Picture", NULL)
+     this.SetStrategy( "Picture", NULL )
    ENDIF
 
-   IF BITTEST( lnThisConfig, 4)
+   IF BITTEST( lnThisConfig, 4 )
      this.SetStrategy( "Currency", this.cCurrencyStrategy )
      LOCAL oX
      oX = this.GetStrategy( "Currency" )
      oX.SetLocale( this.GetLocale())
    ELSE
-     this.SetStrategy( "Currency", NULL)
+     this.SetStrategy( "Currency", NULL )
    ENDIF
 
-   IF BITTEST( lnThisConfig, 5)
+   IF BITTEST( lnThisConfig, 5 )
      this.SetStrategy( "RightToLeft", this.cRightToLeftStrategy )
    ELSE
-     this.SetStrategy( "RightToLeft", NULL)
+     this.SetStrategy( "RightToLeft", NULL )
    ENDIF
 
    RETURN .T.
@@ -2155,10 +2155,10 @@ FUNCTION LoadStrategies()
 *-- an ( O)- Object in any sequence.
 *? ER: Accept an array of objects
 *-- Returns: The previous locale identifier
-FUNCTION Localize( txPara1, txPara2)
+FUNCTION Localize( txPara1, txPara2 )
 
    *-- Nulls.  Done.
-   IF ISNULL( txPara1) OR ISNULL( txPara2)
+   IF ISNULL( txPara1) OR ISNULL( txPara2 )
      RETURN NULL
    ENDIF
 
@@ -2182,7 +2182,7 @@ FUNCTION Localize( txPara1, txPara2)
      *-- Resolve the language which may, in this case, be
      *-- passed as the second parameter.
      IF TYPE( "txpara2" )= "C"
-       tcLanguage = PROPER( txPara2)
+       tcLanguage = PROPER( txPara2 )
      ELSE
        tcLanguage = this.GetLanguage()
      ENDIF
@@ -2207,10 +2207,10 @@ FUNCTION Localize( txPara1, txPara2)
    *-- Resolve Passed Languages
    DO CASE
    *-- 1) No language thus far.
-   CASE EMPTY( tcLanguage)
+   CASE EMPTY( tcLanguage )
      tcLanguage = this.GetLanguage()
    *-- 2) Language matches the original language.
-   CASE UPPER( tcLanguage) == UPPER( ccMyLang)
+   CASE UPPER( tcLanguage) == UPPER( ccMyLang )
      tcLanguage = ccDefaultLanguage
    ENDCASE
 
@@ -2226,12 +2226,12 @@ FUNCTION Localize( txPara1, txPara2)
      llOldLockScreen  = loScreenLockedObj.Lockscreen
      loScreenLockedObj.LockScreen = .T.
 
-   CASE TYPE( "ThisFORM" )= "O" AND ;
-        NORM( ThisFORM.Baseclass)<> NORM( "Toolbar" )
+   CASE TYPE( "thisform" )= "O" AND ;
+        NORM( thisform.Baseclass )<> NORM( "Toolbar" )
 
-     loScreenLockedObj = ThisFORM
-     llOldLockScreen  = ThisFORM.Lockscreen
-     ThisFORM.Lockscreen = .T.
+     loScreenLockedObj = thisform
+     llOldLockScreen  = thisform.Lockscreen
+     thisform.Lockscreen = .T.
    ENDCASE
 
    *-- Step 2.  Save the current agent's config, assume a default cookie
@@ -2251,8 +2251,8 @@ FUNCTION Localize( txPara1, txPara2)
    lnFinalConfig   = this.GetConfig()
    lnCookieConfig  = NULL
 
-   this.SetLocale( lcFinalLocale)
-   this.SetLanguage( lcFinalLanguage)
+   this.SetLocale( lcFinalLocale )
+   this.SetLanguage( lcFinalLanguage )
 
    this.Push()
 
@@ -2261,7 +2261,7 @@ FUNCTION Localize( txPara1, txPara2)
         loBasis.Baseclass == "Page" OR ;
         loBasis.Baseclass == "Toolbar" ) AND ;
         TYPE( "loBasis.oINTLMemento" )= "O" AND ;
-        this.IsINTLClass(loBasis.oINTLMemento)
+        this.IsINTLClass(loBasis.oINTLMemento )
 
       llCookieHere = .T.
 
@@ -2271,14 +2271,14 @@ FUNCTION Localize( txPara1, txPara2)
       lcCookieLocale  = loBasisMemento.GetLocale()
       lcCookieLanguage = loBasisMemento.GetLanguage()
       lnCookieConfig  = loBasisMemento.GetConfig()
-      lnFinalConfig   = BITOR( lnFinalConfig, lnCookieConfig)
-      loBasisMemento.Mov( This)
+      lnFinalConfig   = BITOR( lnFinalConfig, lnCookieConfig )
+      loBasisMemento.Mov( This )
    ENDIF
 
 
    *-- Step 4.  Collection access being so slow, load an array with object pointers.
    DIMENSION laObjects[ 1]
-   = this.objarray( loBasis, @laObjects)
+   = this.objarray( loBasis, @laObjects )
 
    *-- Step 5.  Localize back to cOriginal, if required
    IF llCookieHere AND ( ;
@@ -2287,30 +2287,30 @@ FUNCTION Localize( txPara1, txPara2)
       lnFinalConfig <> this.GetConfig() )
 
      IF lcCookieLocale <> ccDefaultLocale
-       this.SetLocale( ccDeFaultLocale)
+       this.SetLocale( ccDeFaultLocale )
      ENDIF
 
      IF lcCookieLanguage<> ccDefaultLanguage
-       this.SetLanguage( ccDeFaultLanguage, lcCookieLanguage)
+       this.SetLanguage( ccDeFaultLanguage, lcCookieLanguage )
      ENDIF
 
-     this.Execute( @laObjects, -1)
+     this.Execute( @laObjects, -1 )
    ENDIF
 
 
-   *-- Step 6.  Localize to the new language/locale (if required)
+   *-- Step 6.  Localize to the new language/locale (if required )
    this.POP()
-   this.SetConfig( lnFinalConfig)
+   this.SetConfig( lnFinalConfig )
 
    IF lcFinalLanguage<> ccDefaultLanguage OR ;
       lcFinalLocale<> ccDefaultLocale OR ;
       lnFinalConfig <> lnCookieConfig
 
-     this.SetLanguage( lcFinalLanguage, ccDefaultLanguage)
-     this.Execute( @laObjects, +1)
+     this.SetLanguage( lcFinalLanguage, ccDefaultLanguage )
+     this.Execute( @laObjects, +1 )
 
      *-- Leave a cookie behind
-     this.AdornMemento( loBasis)
+     this.AdornMemento( loBasis )
 
    ELSE
 
@@ -2322,24 +2322,24 @@ FUNCTION Localize( txPara1, txPara2)
 
 
    *-- Unlock the screen
-   IF ! ISNULL( loScreenLockedObj)
+   IF ! ISNULL( loScreenLockedObj )
      loScreenLockedObj.Lockscreen = llOldLockScreen
    ENDIF
 
    RETURN lcRetVal
 
 *====================================
-*-- INTL::ObjArray( oa)
+*-- INTL::ObjArray( oa )
 *====================================
 * Sample call:
 *   DIMENSION laTempArray[ 1]
-*   =ACOPY( this.laElements, laTempArray)
-*   =objArray( this.loMasterContainer, @laTempArray)
+*   =ACOPY( this.laElements, laTempArray )
+*   =objArray( this.loMasterContainer, @laTempArray )
 *   =ACOPY( laTempArray, this.laElements )
 *
-FUNCTION objArray( toPassedObject, taPassedArray)
+FUNCTION objArray( toPassedObject, taPassedArray )
 
-   IF ISNULL( toPassedObject) OR ISNULL( taPassedArray)
+   IF ISNULL( toPassedObject) OR ISNULL( taPassedArray )
      RETURN NULL
    ENDIF
 
@@ -2351,10 +2351,10 @@ FUNCTION objArray( toPassedObject, taPassedArray)
    ENDIF
 
    DIMENSION laSelObj[ 1]
-   lcBaseCLass = UPPER( toPassedObject.BaseClass)+ " "
+   lcBaseCLass = UPPER( toPassedObject.BaseClass )+ " "
 
    *-- Don't bother with ignorables.
-   IF !( lcBaseCLass $ ccIgnoreables)
+   IF !( lcBaseCLass $ ccIgnoreables )
      DIMENSION taPassedArray[ IIF( ALEN( taPassedArray)= 1 AND ;
                                       TYPE( "taPassedArray[ 1]" )<> "O", ;
                                    1, ;
@@ -2363,13 +2363,13 @@ FUNCTION objArray( toPassedObject, taPassedArray)
      taPassedArray[ ALEN( taPassedArray)] = toPassedObject
    ENDIF
 
-   IF lcBaseCLass $ ccContainers AND ( AMEMBERS( laSelObj,toPassedObject,2)>0)
-     loIterator = CREATE( "cINTLTraverse", toPassedObject)
+   IF lcBaseCLass $ ccContainers AND ( AMEMBERS( laSelObj,toPassedObject,2)>0 )
+     loIterator = CREATE( "cINTLTraverse", toPassedObject )
      LOCAL oObjectAdd
      oObjectAdd = .F.
-     DO WHILE !ISNULL( oObjectAdd)
+     DO WHILE !ISNULL( oObjectAdd )
        oObjectAdd = loIterator.Next()
-       IF !ISNULL( oObjectAdd)
+       IF !ISNULL( oObjectAdd )
          DIMENSION taPassedArray[ ALEN( taPassedArray)+ 1 ]
          taPassedArray[ ALEN( taPassedArray)] = oObjectAdd
        ENDIF
@@ -2381,17 +2381,17 @@ FUNCTION objArray( toPassedObject, taPassedArray)
 *-- INTL::SetConversion(cn[x])
 *====================================
 *
-FUNCTION SetConversion(tcLocale, tnFactor, txOther)
+FUNCTION SetConversion(tcLocale, tnFactor, txOther )
  LOCAL lxtest
 *-- A hook call, basically
- lxtest = cINTLMemento::SetConversion( @tcLocale, @tnFactor, @txOther)
- IF !ISNULL( lxTest)
+ lxtest = cINTLMemento::SetConversion( @tcLocale, @tnFactor, @txOther )
+ IF !ISNULL( lxTest )
    RETURN lxTest
  ELSE
    *-- See if there is a currency strategy
    lxTest = this.GetStrategy( "Currency" )
-   IF this.IsINTLClass( lxtest)
-     RETURN lxtest.SetConversion( @tcLocale, @tnFactor, @txOther)
+   IF this.IsINTLClass( lxtest )
+     RETURN lxtest.SetConversion( @tcLocale, @tnFactor, @txOther )
    ELSE
      RETURN NULL
    ENDIF
@@ -2450,21 +2450,21 @@ DEFINE CLASS cINTLStrategy AS cINTLMemento
     RETURN this.lUpdate
 
   *====================================
-  *-- cINTLStrategy::I( txpara1, tcSpecialProc)
+  *-- cINTLStrategy::I( txpara1, tcSpecialProc )
   *====================================
-  FUNCTION I( txpara1, tcSpecialProc)
+  FUNCTION I( txpara1, tcSpecialProc )
 
     *-- Defer first to any hook
     IF INTL_HOOK_TEST
       LOCAL lxRetVal
-      lxRetVal = this.oHook.I( @txPara1, @tcSpecialProc)
-      IF !ISNULL( lxRetVal)
+      lxRetVal = this.oHook.I( @txPara1, @tcSpecialProc )
+      IF !ISNULL( lxRetVal )
         RETURN lxRetVal
       ENDIF
     ENDIF
 
    *-- Reject null parameters
-    IF ISNULL( txPara1) OR ISNULL( tcSpecialProc)
+    IF ISNULL( txPara1) OR ISNULL( tcSpecialProc )
       RETURN NULL
     ENDIF
 
@@ -2488,7 +2488,7 @@ DEFINE CLASS cINTLStrategy AS cINTLMemento
 
     DO CASE
     *-- Nothing to process. Done.
-    CASE EMPTY( txPara1) OR ISNULL( txPara1)
+    CASE EMPTY( txPara1) OR ISNULL( txPara1 )
       RETURN txPara1
 
     *-- Non Character. Done.
@@ -2518,7 +2518,7 @@ DEFINE CLASS cINTLStrategy AS cINTLMemento
     *-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     *-- Lets remember a few things about our phrase
     *-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    jnParaLen    = LENC( txPara1)
+    jnParaLen    = LENC( txPara1 )
 
     *-- Leading spaces
     jnParaLPad   = jnParaLen - LENC( LTRIM( txPara1 ))
@@ -2547,7 +2547,7 @@ DEFINE CLASS cINTLStrategy AS cINTLMemento
     IF EMPTY( Order( "Strings" ))
       Local lcTagname
       lcTagname = "c"+ this.GetLanguage()
-      IF ! EMPTY( lcTagName)
+      IF ! EMPTY( lcTagName )
         SET ORDER TO ( lcTagName) IN Strings
       ELSE
         *-- Thanks to Rick Hodder for this one...
@@ -2560,10 +2560,10 @@ DEFINE CLASS cINTLStrategy AS cINTLMemento
       LOCAL cLang
       cLang = this.GetLanguage()
 
-      IF ISNULL( cLang)
+      IF ISNULL( cLang )
         cLang = ccDefaultLanguage
       ENDIF
-      jcPossible = TRIM( strings.c&cLang)
+      jcPossible = TRIM( strings.c&cLang )
     ELSE
       jcPossible = ""
     ENDIF
@@ -2577,9 +2577,9 @@ DEFINE CLASS cINTLStrategy AS cINTLMemento
     *?  segment in a production version.  This adds the
     *?  unfound string to the table for future translation
     *?  Note the limitation - - no hot keys are conveyed
-    *?  by the special procs process ( jcSearchString)
+    *?  by the special procs process ( jcSearchString )
         IF ! FOUND( "strings" ) AND this.GetUpdateMode()
-          IF PROPER( ORDER( "Strings" )) == PROPER( ccDefaultLanguageField)
+          IF PROPER( ORDER( "Strings" )) == PROPER( ccDefaultLanguageField )
             this.ResourceInsert( IIF( EMPTY( tcSpecialProc), ;
                                       ALLTRIM( txPara1), ;
                                       jcSearchString ))
@@ -2588,7 +2588,7 @@ DEFINE CLASS cINTLStrategy AS cINTLMemento
     *?  =============================================
     jcRetVal = ""
 
-    IF Empty( jcPossible)
+    IF Empty( jcPossible )
        jcRetVal = txPara1
     ELSE
 
@@ -2616,7 +2616,7 @@ DEFINE CLASS cINTLStrategy AS cINTLMemento
        ENDIF
 
        IF !jlHadColon AND RIGHTC( jcPossible, 1)= ":"
-          jcPossible = LEFTC( jcPossible, LENC( jcPossible)- 1)
+          jcPossible = LEFTC( jcPossible, LENC( jcPossible)- 1 )
        ENDIF
 
        *-- Fix thanks to David Bornstein, Nov 26 2002
@@ -2626,12 +2626,12 @@ DEFINE CLASS cINTLStrategy AS cINTLMemento
 
 
        IF !jlHadEqual AND RIGHTC( jcPossible, 1)= "="
-          jcPossible = LEFTC( jcPossible, LENC( jcPossible)- 1)
+          jcPossible = LEFTC( jcPossible, LENC( jcPossible)- 1 )
        ENDIF
 
        *-- Restore leading and trailing spaces
        jcRetVal =  REPLICATE( " ", jnParaLPad)+ jcPossible+ ;
-                     REPLICATE( " ", jnParaRPad)
+                     REPLICATE( " ", jnParaRPad )
 
     ENDIF
 
@@ -2639,12 +2639,12 @@ DEFINE CLASS cINTLStrategy AS cINTLMemento
 
 
   *====================================
-  *-- cINTLStrategy::Init( toPassed)
+  *-- cINTLStrategy::Init( toPassed )
   *====================================
   * Ignore this object?
-  FUNCTION Init( toPassed)
+  FUNCTION Init( toPassed )
 
-   cINTLMemento::Init( topassed)
+   cINTLMemento::Init( topassed )
 
    *-- Open resources, if required.
    LOCAL lcTable
@@ -2659,11 +2659,11 @@ DEFINE CLASS cINTLStrategy AS cINTLMemento
    ENDIF
 
   *====================================
-  *-- cINTLStrategy::LoopOut( toPassed)
+  *-- cINTLStrategy::LoopOut( toPassed )
   *====================================
   * Ignore this object?
   *
-  FUNCTION LoopOut( toPassed)
+  FUNCTION LoopOut( toPassed )
 
     LOCAL llRetVal
     llRetVal = .F.
@@ -2675,7 +2675,7 @@ DEFINE CLASS cINTLStrategy AS cINTLMemento
     *? Removing this IF statement is can improve performance
     *? if you don't intend to use INTL IGNORE in comment fields.
     IF !toPassed.BaseClass $ "Column Header Separator" AND ;
-        "INTL IGNORE" $ UPPER(toPassed.Comment)
+        "INTL IGNORE" $ UPPER(toPassed.Comment )
       RETURN .T.
     ENDIF
 
@@ -2685,12 +2685,12 @@ DEFINE CLASS cINTLStrategy AS cINTLMemento
       lxObjINTL = toPassed.INTL
 
       *-- IF INTL property is NULL, do as usual <<- - TAKE NOTE!
-      IF ! ISNULL( lxObjINTL)
+      IF ! ISNULL( lxObjINTL )
         *-- Type?
         DO CASE
         *-- It's an object
-        CASE this.IsINTLClass( lxObjINTL)
-          lxObjINTL.Localize( toPassed)
+        CASE this.IsINTLClass( lxObjINTL )
+          lxObjINTL.Localize( toPassed )
           RETURN .T.
 
         CASE TYPE( "lxObjINTL" )= "N"
@@ -2708,7 +2708,7 @@ DEFINE CLASS cINTLStrategy AS cINTLMemento
               this.Mov( loTempINTL)                 && New
               *-- Modify config of temp INTL object
               loTempINTL.SetConfig( toPassed.INTL)  && New
-              loTempINTL.Localize( toPassed)
+              loTempINTL.Localize( toPassed )
               RETURN .T.
             ENDIF
           ENDIF
@@ -2729,10 +2729,10 @@ DEFINE CLASS cINTLStrategy AS cINTLMemento
   *-- cINTLStrategy::OpenStrategy( [ c[ c]])
   *====================================
   *
-  FUNCTION OpenStrategy( tcFile, tcOptions)
+  FUNCTION OpenStrategy( tcFile, tcOptions )
 
     *-- Nulls. Sorry.
-    IF ISNULL( tcFile) OR ISNULL( tcOptions)
+    IF ISNULL( tcFile) OR ISNULL( tcOptions )
       RETURN NULL
     ENDIF
 
@@ -2741,29 +2741,29 @@ DEFINE CLASS cINTLStrategy AS cINTLMemento
 
     lcAlias = this.GetAlias()
 
-    IF EMPTY( tcFile)
+    IF EMPTY( tcFile )
       tcFile = this.GetTable()
     ENDIF
 
-    IF EMPTY( tcFile) OR ! this.SetTable( tcFile)
+    IF EMPTY( tcFile) OR ! this.SetTable( tcFile )
       RETURN llRetVal
     ENDIF
 
-    IF EMPTY( tcOptions)
+    IF EMPTY( tcOptions )
       tcOptions = ""
     ELSE
-      tcOptions =UPPER( tcOptions)
+      tcOptions =UPPER( tcOptions )
     ENDIF
 
-    lSetIndex     = ! ( "NOINDEX" $ tcOptions)
+    lSetIndex     = ! ( "NOINDEX" $ tcOptions )
     lSetExclusive = "EXCLUSIVE" $ tcOptions
 
-    IF ! USED( lcAlias)
-      IF ! FILE( tcFile)
+    IF ! USED( lcAlias )
+      IF ! FILE( tcFile )
         tcFile = GETFILE( "DBF", ;
                           "Where is "+ lcAlias+ " table?", ;
                           "Open", ;
-                           1)
+                           1 )
 
         IF "Untitled" $ tcFile
           *-- Remove the path from the file name
@@ -2776,8 +2776,8 @@ DEFINE CLASS cINTLStrategy AS cINTLMemento
         ENDIF
 
         IF ! ".DBF" $ UPPER( tcFile) OR ;
-           ! FILE( tcFile)
-          = this.CreateStrategyTable( tcFile)
+           ! FILE( tcFile )
+          = this.CreateStrategyTable( tcFile )
         ENDIF
       ENDIF
 
@@ -2818,7 +2818,7 @@ DEFINE CLASS cINTLStrategy AS cINTLMemento
 
       IF lSetIndex
         *-- Make sure order is set
-        IF !ISTAG( ccDefaultLanguageField, lcAlias)
+        IF !ISTAG( ccDefaultLanguageField, lcAlias )
           this.CreateStrategyCDX()
         ENDIF
       ENDIF
@@ -2829,11 +2829,11 @@ DEFINE CLASS cINTLStrategy AS cINTLMemento
   *====================================
   * Insert the passed item into the resource file
   *
-  FUNCTION ResourceInsert( txPassed, tcWhere)
-    IF ISNULL( txpassed)
+  FUNCTION ResourceInsert( txPassed, tcWhere )
+    IF ISNULL( txpassed )
       RETURN NULL
     ENDIF
-    IF ISNULL( tcWhere) OR EMPTY( tcWhere)
+    IF ISNULL( tcWhere) OR EMPTY( tcWhere )
       tcWhere = ""
     ENDIF
 
@@ -2844,10 +2844,10 @@ DEFINE CLASS cINTLStrategy AS cINTLMemento
 
     IF TYPE( "txPassed" ) = TYPE( "lxTemp" )
       llRetVal = .T.
-      INSERT INTO (this.cAlias) ;
+      INSERT INTO (this.cAlias ) ;
                   ( (ccDefaultLanguageField )) ;
              VALUES (  txPassed               )
-      this.ResourceLogLocation(  txPassed, tcWhere)
+      this.ResourceLogLocation(  txPassed, tcWhere )
     ENDIF
 
   *====================================
@@ -2855,11 +2855,11 @@ DEFINE CLASS cINTLStrategy AS cINTLMemento
   *====================================
   * Update the cWhere field in the resource table
   *
-  FUNCTION ResourceLogLocation( tcPassed, tcWhere)
-    IF ISNULL( tcpassed)
+  FUNCTION ResourceLogLocation( tcPassed, tcWhere )
+    IF ISNULL( tcpassed )
       RETURN NULL
     ENDIF
-    IF TYPE( "tcPassed" ) <> "C" OR EMPTY( tcPassed)
+    IF TYPE( "tcPassed" ) <> "C" OR EMPTY( tcPassed )
       RETURN .F.
     ENDIF
     IF TYPE( "tcWhere" ) <> "C"
@@ -2872,32 +2872,32 @@ DEFINE CLASS cINTLStrategy AS cINTLMemento
 
     IF TYPE( "tcPassed" ) = TYPE( "lxTemp" )
       IF TYPE( "&lcAlias..cWhere" ) <> "U"
-        IF SEEK( NoHot(tcPassed), this.cAlias, ccDefaultLanguageField)
+        IF SEEK( NoHot(tcPassed), this.cAlias, ccDefaultLanguageField )
           llRetVal = .T.
           IF ATC( tcWhere, &lcAlias..cWhere)= 0
             LOCAL lnAlias
             lnAlias = SELECT()
-            SELECT ( lcAlias)
+            SELECT ( lcAlias )
             REPLACE cWhere WITH cWhere + ;
                                 IIF(EMPTY( cWhere),'',CHR(13)+ CHR(10 ))+ ;
                                 tcWhere
-            SELECT (lnAlias)
+            SELECT (lnAlias )
           ENDIF
         ELSE
         ENDIF
       ELSE
-        * this.ResourceInsert( tcPassed, tcWhere)
+        * this.ResourceInsert( tcPassed, tcWhere )
       ENDIF
     ENDIF
 
   *====================================
-  *-- cINTLStrategy::SetAlias( c)
+  *-- cINTLStrategy::SetAlias( c )
   *====================================
   * Sets the alias of the table used by
   * this INTL strategy
   *
-  FUNCTION SetAlias( tcAlias)
-    IF ISNULL( tcAlias)
+  FUNCTION SetAlias( tcAlias )
+    IF ISNULL( tcAlias )
       RETURN NULL
     ENDIF
 
@@ -2913,12 +2913,12 @@ DEFINE CLASS cINTLStrategy AS cINTLMemento
 
 
   *====================================
-  *-- cINTLStrategy::SetTable( c)
+  *-- cINTLStrategy::SetTable( c )
   *====================================
   * Sets the table used by this INTL strategy
   *
-  FUNCTION SetTable( tcFile)
-    IF ISNULL( tcFile)
+  FUNCTION SetTable( tcFile )
+    IF ISNULL( tcFile )
       RETURN NULL
     ENDIF
 
@@ -2926,7 +2926,7 @@ DEFINE CLASS cINTLStrategy AS cINTLMemento
     llRetVal = .F.
     IF ( ! EMPTY( tcFIle )) AND ;
        TYPE( "tcFile" ) = "C" AND ;
-       FILE( tcFile)
+       FILE( tcFile )
 
       this.cTable = tcFile
       llRetVal = .T.
@@ -2935,15 +2935,15 @@ DEFINE CLASS cINTLStrategy AS cINTLMemento
 
 
   *====================================
-  *-- cINTLStrategy::SetUpdateMode( l)
+  *-- cINTLStrategy::SetUpdateMode( l )
   *====================================
   * tlTurnOn: Logical turn on?
   * Returns:  True if successful.
   *
-  FUNCTION SetUpdateMode( tlTurnOn)
+  FUNCTION SetUpdateMode( tlTurnOn )
 
     *-- Reject a null parameter
-    IF ISNULL( tlTurnOn)
+    IF ISNULL( tlTurnOn )
       RETURN NULL
     ENDIF
 
@@ -2987,24 +2987,24 @@ DEFINE CLASS cINTLCurrency AS cINTLStrategy
   lUpdateable = .F.
 
 *====================================
-*-- INTLCurrency::Execute( ax)
+*-- INTLCurrency::Execute( ax )
 *====================================
 * Traverse an array of object references
 *
-FUNCTION Execute( laObjects, txpassed2)
+FUNCTION Execute( laObjects, txpassed2 )
 
  #DEFINE coINTL  "_SCREEN.oINTL"
 
    *-- Broadcast first to the hooks
    IF INTL_HOOK_TEST
      LOCAL lxRetVal
-     lxRetVal = this.oHook.Execute( @laObjects, @txpassed2)
-     IF !ISNULL( lxRetVal)
+     lxRetVal = this.oHook.Execute( @laObjects, @txpassed2 )
+     IF !ISNULL( lxRetVal )
        RETURN lxRetVal
      ENDIF
    ENDIF
 
-   IF ISNULL( laObjects)
+   IF ISNULL( laObjects )
      RETURN NULL
    ENDIF
 
@@ -3023,7 +3023,7 @@ FUNCTION Execute( laObjects, txpassed2)
    lnThisConfig   = this.GetConfig()
    lxRetVal = NULL
 
-   FOR lnI = 1 to ALEN( laObjects)
+   FOR lnI = 1 to ALEN( laObjects )
 
      *-- Bail for the standard reasons
      IF this.LoopOut( laObjects[ lnI])
@@ -3043,10 +3043,10 @@ FUNCTION Execute( laObjects, txpassed2)
 
          IF txPassed2 < 0   &&  localizing back to Original
            IF TYPE( "loDataObject.ControlSource" ) <> "U" AND ;
-              !EMPTY(loDataObject.ControlSource)
+              !EMPTY(loDataObject.ControlSource )
              Local lcTemp
              lcTemp = ALLTRIM( STRTRAN(loDataObject.ControlSource,"(" + coINTL+ ".oCurrencyStrategy.I(" ))
-             lcTemp = LEFTC( lcTemp, LENC(lcTemp)-2)
+             lcTemp = LEFTC( lcTemp, LENC(lcTemp)-2 )
              loDataObject.ResetToDefault( "ControlSource" )
              loDataObject.ControlSource = lcTemp
            ELSE
@@ -3055,10 +3055,10 @@ FUNCTION Execute( laObjects, txpassed2)
          ELSE
            *-- localizing to new locale
            IF TYPE( "loDataObject.ControlSource" ) <> "U" AND ;
-              !EMPTY(loDataObject.ControlSource)
+              !EMPTY(loDataObject.ControlSource )
               loDataObject.ControlSource = "(" + coINTL+ ".oCurrencyStrategy.I("+loDataObject.ControlSource+" ))"
            ELSE
-              loDataObject.Value = this.I(loDataObject.Value)
+              loDataObject.Value = this.I(loDataObject.Value )
            ENDIF
          ENDIF
      ENDIF
@@ -3074,25 +3074,25 @@ FUNCTION Execute( laObjects, txpassed2)
     RETURN this.GetConversion()
 
   *====================================
-  *-- cINTLCurrency::GetConversion( xxx)
+  *-- cINTLCurrency::GetConversion( xxx )
   *====================================
-  FUNCTION GetConversion( tcLocale, txOther1, txOther2)
+  FUNCTION GetConversion( tcLocale, txOther1, txOther2 )
 
     *-- Defer first to any hook
     IF INTL_HOOK_TEST
       LOCAL lxRetVal
-      lxRetVal = this.oHook.GetConversion( @tcLocale, @txOther1, @txOther2)
-      IF !ISNULL( lxRetVal)
+      lxRetVal = this.oHook.GetConversion( @tcLocale, @txOther1, @txOther2 )
+      IF !ISNULL( lxRetVal )
         RETURN lxRetVal
       ENDIF
     ENDIF
 
    *-- Reject a null locale
-    IF ISNULL( tcLocale)
+    IF ISNULL( tcLocale )
       RETURN NULL
     ENDIF
 
-    IF EMPTY( tcLocale)
+    IF EMPTY( tcLocale )
       tcLocale = this.GetLocale()
     ENDIF
 
@@ -3104,39 +3104,39 @@ FUNCTION Execute( laObjects, txpassed2)
     LOCAL lnRetVal
     lnRetVal = this.aConversion[ 1, 2]
 
-    tcLocale = PROPER( tcLocale)
+    tcLocale = PROPER( tcLocale )
 
     lnRetVal = 1
     LOCAL lnIndex
-    lnIndex = ASCAN( this.aConversion, tcLocale)
+    lnIndex = ASCAN( this.aConversion, tcLocale )
     IF lnIndex<> 0
       lnRetVal = this.aConversion[ lnIndex+ 1]
     ENDIF
     RETURN lnRetVal
 
   *====================================
-  *-- cINTLCurrency::I( txPassed1, txPassed2)
+  *-- cINTLCurrency::I( txPassed1, txPassed2 )
   *====================================
   * Sets properties to default values
   *
   *-- Numeric value.  Convert.  Done.
-  FUNCTION I( txPassed1, txPassed2)
+  FUNCTION I( txPassed1, txPassed2 )
 
     *-- Defer first to any hook
     IF INTL_HOOK_TEST
       LOCAL lxRetVal
-      lxRetVal = this.oHook.I( @txPassed1, @txPassed2)
-      IF !ISNULL( lxRetVal)
+      lxRetVal = this.oHook.I( @txPassed1, @txPassed2 )
+      IF !ISNULL( lxRetVal )
         RETURN lxRetVal
       ENDIF
     ENDIF
 
-    IF ISNULL( txPassed1) OR ISNULL( txPassed2)
+    IF ISNULL( txPassed1) OR ISNULL( txPassed2 )
       RETURN NULL
     ENDIF
 
     IF TYPE( "txPassed1" )$ "YN"
-      RETURN txPassed1 * this.GetConversion( this.GetLocale(), txPassed2)
+      RETURN txPassed1 * this.GetConversion( this.GetLocale(), txPassed2 )
     ELSE
       RETURN NULL
     ENDIF
@@ -3151,29 +3151,29 @@ FUNCTION Execute( laObjects, txpassed2)
     IF INTL_HOOK_TEST
       this.oHook.SetDefaults()
     ENDIF
-    this.SetLocale( ccDefaultLocale)
-    this.SetConversion( ccDefaultLocale, 1)
-    this.SetConfig( this.nDefaultConfig)
+    this.SetLocale( ccDefaultLocale )
+    this.SetConversion( ccDefaultLocale, 1 )
+    this.SetConfig( this.nDefaultConfig )
     RETURN
 
   *====================================
-  *-- cINTLCurrency::SetConversion( cnx)
+  *-- cINTLCurrency::SetConversion( cnx )
   *====================================
   * txPassed1/2: A locale name & conversion factor
   * Returns:  True.
   *
-  FUNCTION SetConversion( tcLocale, tnFactor, txOther)
+  FUNCTION SetConversion( tcLocale, tnFactor, txOther )
 
     *-- Defer first to any hook
     IF INTL_HOOK_TEST
       LOCAL lxRetVal
-      lxRetVal = this.oHook.SetConversion( @tcLocale, @tnFactor)
-      IF !ISNULL( lxRetVal)
+      lxRetVal = this.oHook.SetConversion( @tcLocale, @tnFactor )
+      IF !ISNULL( lxRetVal )
         RETURN lxRetVal
       ENDIF
     ENDIF
 
-    IF ISNULL( tcLocale) OR ISNULL( tnFactor)
+    IF ISNULL( tcLocale) OR ISNULL( tnFactor )
       RETURN NULL
     ENDIF
 
@@ -3191,17 +3191,17 @@ FUNCTION Execute( laObjects, txpassed2)
     ENDCASE
 
     DO CASE
-    CASE TYPE( "tnFactor" )= "C" AND EMPTY( lcLocale)
+    CASE TYPE( "tnFactor" )= "C" AND EMPTY( lcLocale )
       lcLocale = tnFactor
-    CASE TYPE( "tnFactor" )= "N" AND EMPTY( lnFactor)
+    CASE TYPE( "tnFactor" )= "N" AND EMPTY( lnFactor )
       lnFactor = tnFactor
     ENDCASE
 
-    IF EMPTY( lnFactor)
+    IF EMPTY( lnFactor )
       RETURN .F.
     ENDIF
 
-    IF EMPTY( lcLocale)
+    IF EMPTY( lcLocale )
       lcLocale = this.GetLocale()
     ENDIF
 
@@ -3210,13 +3210,13 @@ FUNCTION Execute( laObjects, txpassed2)
     ENDIF
 
     llRetVal = .T.
-    lcLocale = PROPER( lcLocale)
+    lcLocale = PROPER( lcLocale )
 
     LOCAL lnIndex
-    lnIndex = ASCAN( this.aConversion, lcLocale)
+    lnIndex = ASCAN( this.aConversion, lcLocale )
     IF lnIndex = 0
       DIMENSION this.aConversion[ ALEN( this.aConversion, 1)+ 1, 2]
-      lnIndex =ALEN( this.aConversion, 1)
+      lnIndex =ALEN( this.aConversion, 1 )
       this.aConversion[ lnIndex, 1] = lcLocale
       this.aConversion[ lnIndex, 2] = lnFactor
     ELSE
@@ -3248,23 +3248,23 @@ DEFINE CLASS cINTLData AS cINTLStrategy
   nConfig = 1
 
 *====================================
-*-- INTLData::Execute( ax)
+*-- INTLData::Execute( ax )
 *====================================
 * Traverse an array of object references
 *
-FUNCTION Execute( laObj, txpassed2)
+FUNCTION Execute( laObj, txpassed2 )
 
    *-- Broadcast first to the hooks
    IF INTL_HOOK_TEST
      LOCAL lxRetVal
-     lxRetVal = this.oHook.Execute( @laObj, @txpassed2)
-     IF !ISNULL( lxRetVal)
+     lxRetVal = this.oHook.Execute( @laObj, @txpassed2 )
+     IF !ISNULL( lxRetVal )
        RETURN lxRetVal
      ENDIF
    ENDIF
 
    *-- Reject a null parameter
-   IF ISNULL( laObj)
+   IF ISNULL( laObj )
      RETURN .F.
    ENDIF
 
@@ -3274,7 +3274,7 @@ FUNCTION Execute( laObj, txpassed2)
    llIsExplicit = this.GetExplicit()
    lnThisConfig = this.GetConfig()
 
-   FOR lnI = 1 to ALEN( laObj)
+   FOR lnI = 1 to ALEN( laObj )
 
      *-- Performance note: Cast to a memvar to avoid
      *-- repeatedly accessing a property.
@@ -3293,9 +3293,9 @@ FUNCTION Execute( laObj, txpassed2)
      Note: Boundcolumn not supported any longer  [smb Feb 11 1997]
      #IF .F.
      *-- Bound column category localization
-     IF lcObjBaseclass $ ccBoundColumns AND BITTEST( lnThisConfig, 0)
+     IF lcObjBaseclass $ ccBoundColumns AND BITTEST( lnThisConfig, 0 )
          lcTemp = this.I( laObj[ lnI].BoundColumn, "BoundColumn" )
-         IF LOWER(laObj[ lnI].BoundColumn) <> LOWER(lcTemp)
+         IF LOWER(laObj[ lnI].BoundColumn) <> LOWER(lcTemp )
            laObj[ lnI].ResetToDefault( "BoundColumn" )
            laObj[ lnI].BoundColumn = lcTemp
          ENDIF
@@ -3303,9 +3303,9 @@ FUNCTION Execute( laObj, txpassed2)
      #ENDIF
 
      *-- Control source category localization
-     IF lcObjBaseclass $ ccControlSources AND BITTEST( lnThisConfig, 1)
+     IF lcObjBaseclass $ ccControlSources AND BITTEST( lnThisConfig, 1 )
          lcTemp = this.I( laObj[ lnI].ControlSource, "ControlSource" )
-         IF LOWER(laObj[ lnI].ControlSource) <> LOWER(lcTemp)
+         IF LOWER(laObj[ lnI].ControlSource) <> LOWER(lcTemp )
            laObj[ lnI].ResetToDefault( "ControlSource" )
            laObj[ lnI].ControlSource = lcTemp
          ENDIF
@@ -3313,11 +3313,11 @@ FUNCTION Execute( laObj, txpassed2)
      ENDIF
 
      *-- RowSources category localization
-     IF lcObjBaseclass $ ccRowSources AND BITTEST( lnThisConfig, 2)
+     IF lcObjBaseclass $ ccRowSources AND BITTEST( lnThisConfig, 2 )
        LOCAL lnTemp
        lnTemp = laObj[ lnI].ListIndex
        lcTemp = this.I( laObj[ lnI].RowSource, "RowSource" )
-       IF LOWER(laObj[ lnI].RowSource) <> LOWER(lcTemp)
+       IF LOWER(laObj[ lnI].RowSource) <> LOWER(lcTemp )
          *-- Preserve the listindex property, which is lost when
          *-- the rowsource is changed
          LOCAL lnTemp
@@ -3329,18 +3329,18 @@ FUNCTION Execute( laObj, txpassed2)
      ENDIF
 
      *-- RecordSource category localization
-     IF lcObjBaseclass $ ccRecordSources AND BITTEST( lnThisConfig, 3)
+     IF lcObjBaseclass $ ccRecordSources AND BITTEST( lnThisConfig, 3 )
        lcTemp = this.I( laObj[ lnI].RecordSource, "RecordSource" )
-       IF LOWER(laObj[ lnI].RecordSource) <> LOWER(lcTemp)
+       IF LOWER(laObj[ lnI].RecordSource) <> LOWER(lcTemp )
          laObj[ lnI].ResetToDefault( "RecordSource" )
          laObj[ lnI].RecordSource = lcTemp
        ENDIF
      ENDIF
 
      *-- InputMask category localization
-     IF lcObjBaseclass $ ccInputMasks AND BITTEST( lnThisConfig, 4)
+     IF lcObjBaseclass $ ccInputMasks AND BITTEST( lnThisConfig, 4 )
        lcTemp = this.I( laObj[ lnI].InputMask, "InputMask" )
-       IF LOWER(laObj[ lnI].InputMask) <> LOWER(lcTemp)
+       IF LOWER(laObj[ lnI].InputMask) <> LOWER(lcTemp )
          laObj[ lnI].ResetToDefault( "InputMask" )
          laObj[ lnI].InputMask = lcTemp
        ENDIF
@@ -3350,21 +3350,21 @@ FUNCTION Execute( laObj, txpassed2)
    RETURN lxRetVal
 
 *====================================
-*-- INTLData::I( cc)
+*-- INTLData::I( cc )
 *====================================
-FUNCTION I( tcPassed1, tcContext)
+FUNCTION I( tcPassed1, tcContext )
    LOCAL lcCookie
    lcCookie = ''
    IF EMPTY( tcPassed1) OR ISNULL( tcPassed1) OR TYPE( 'tcPassed1') <> "C"
      RETURN tcPassed1
    ENDIF
-   IF EMPTY( tcContext)
+   IF EMPTY( tcContext )
      tcContext = ''
    ELSE
      lcCookie = "(("+ PROPER( tcContext) + "))"
    ENDIF
 
-   RETURN STRTRAN(cINTLStrategy::I( lcCookie+ tcPassed1),lcCookie)
+   RETURN STRTRAN(cINTLStrategy::I( lcCookie+ tcPassed1),lcCookie )
 
 ENDDEFINE
 
@@ -3388,22 +3388,22 @@ DEFINE CLASS cINTLFont AS cINTLStrategy
  cTable        = ccDefaultStringsTable
 
 *====================================
-*-- INTLFont::Execute( ax)
+*-- INTLFont::Execute( ax )
 *====================================
 * Traverse an array of object references
 *
-FUNCTION Execute( laObj, txpassed2)
+FUNCTION Execute( laObj, txpassed2 )
 
    *-- Broadcast first to the hooks
    IF INTL_HOOK_TEST
      LOCAL lxRetVal
-     lxRetVal = this.oHook.Execute( @laObj, @txpassed2)
-     IF !ISNULL( lxRetVal)
+     lxRetVal = this.oHook.Execute( @laObj, @txpassed2 )
+     IF !ISNULL( lxRetVal )
        RETURN lxRetVal
      ENDIF
    ENDIF
 
-   IF ISNULL( laObj)
+   IF ISNULL( laObj )
      RETURN NULL
    ENDIF
 
@@ -3423,7 +3423,7 @@ FUNCTION Execute( laObj, txpassed2)
    lnOldINTLConfig = NULL
    lnThisConfig   = this.GetConfig()
 
-   FOR lnI = 1 to ALEN( laObj)
+   FOR lnI = 1 to ALEN( laObj )
      *-- Bail for the standard reasons
      IF this.LoopOut( laObj[ lnI])
        LOOP
@@ -3437,30 +3437,30 @@ FUNCTION Execute( laObj, txpassed2)
      DO CASE
      CASE lcObjBaseclass $ ccFonts
 
-       IF BITTEST( lnThisConfig, 0)
+       IF BITTEST( lnThisConfig, 0 )
          lcFontCombo = this.I( laObj[ lnI].FontName+ ;
                               ","+ ;
                               ALLTRIM( STR( laObj[ lnI].FontSize, 3 )), "Font" )
-         lnBreak    = AT_C( ",", lcFontCombo)
-         laObj[ lnI].FontName = LEFTC( lcFontCombo, lnBreak- 1)
+         lnBreak    = AT_C( ",", lcFontCombo )
+         laObj[ lnI].FontName = LEFTC( lcFontCombo, lnBreak- 1 )
          laObj[ lnI].FontSize = VAL( SUBSTRC( lcFontCombo, lnBreak+ 1 ))
        ENDIF
 
        IF BITTEST( lnThisConfig, 1) AND ;
          lcObjBaseclass = "COLUMN " AND ;
-         ! EMPTY( laObj[ lnI].DynamicFontName)
+         ! EMPTY( laObj[ lnI].DynamicFontName )
           *-- Same code as above, basically.
          lcFontCombo = this.I( laObj[ lnI].DynamicFontName+ ","+ ;
                               ALLTRIM( STR( laObj[ lnI].DynamicFontSize, 3 )), "DynamicFont" )
-         lnBreak    = AT_C( ",", lcFontCombo)
-         laObj[ lnI].DynamicFontName = LEFTC( lcFontCombo, lnBreak- 1)
+         lnBreak    = AT_C( ",", lcFontCombo )
+         laObj[ lnI].DynamicFontName = LEFTC( lcFontCombo, lnBreak- 1 )
          laObj[ lnI].DynamicFontSize = VAL( SUBSTRC( lcFontCombo, lnBreak+ 1 ))
        ENDIF
 
      *-- Supported OLE Controls
      CASE lcObjBaseclass = "OLECONTROL "
        LOCAL lcClass
-       lcClass = UPPER( laObj[ lni].OleClass)
+       lcClass = UPPER( laObj[ lni].OleClass )
        DO CASE
        *-- TreeView, ListView, TabStrip, StatusBar, and SSTab Controls
        CASE lcClass = "COMCTL.TREECTRL"       OR ;
@@ -3478,8 +3478,8 @@ FUNCTION Execute( laObj, txpassed2)
            lcFontCombo = this.I( .Font.Name+ ;
                               ","+ ;
                               ALLTRIM( STR( .Font.Size, 3 )), "Font" )
-           lnBreak    = AT_C( ",", lcFontCombo)
-           .Font.Name = LEFTC( lcFontCombo, lnBreak- 1)
+           lnBreak    = AT_C( ",", lcFontCombo )
+           .Font.Name = LEFTC( lcFontCombo, lnBreak- 1 )
            .Font.Size = VAL( SUBSTRC( lcFontCombo, lnBreak+ 1 ))
          ENDWITH
 
@@ -3488,39 +3488,39 @@ FUNCTION Execute( laObj, txpassed2)
 
    ENDFOR
    RETURN lxRetVal
-FUNCTION I( tcPassed1, tcContext)
+FUNCTION I( tcPassed1, tcContext )
    LOCAL lcCookie
    lcCookie = ''
    IF EMPTY( tcPassed1) OR ISNULL( tcPassed1) OR TYPE( 'tcPassed1') <> "C"
      RETURN tcPassed1
    ENDIF
-   IF EMPTY( tcContext)
+   IF EMPTY( tcContext )
      tcContext = ''
    ELSE
      lcCookie = "(("+ PROPER( tcContext) + "))"
    ENDIF
 
-   RETURN STRTRAN(cINTLStrategy::I( lcCookie+ tcPassed1),lcCookie)
+   RETURN STRTRAN(cINTLStrategy::I( lcCookie+ tcPassed1),lcCookie )
 
 
 
 *====================================
-*-- cINTLFont::SetConfig( tnPassed)
+*-- cINTLFont::SetConfig( tnPassed )
 *====================================
 *
-FUNCTION SetConfig( txPara1)
+FUNCTION SetConfig( txPara1 )
 
    *-- Defer first to any hook
    IF INTL_HOOK_TEST
      LOCAL lxRetVal
-     lxRetVal = this.oHook.SetConfig( @txPara1)
-     IF !ISNULL( lxRetVal)
+     lxRetVal = this.oHook.SetConfig( @txPara1 )
+     IF !ISNULL( lxRetVal )
        RETURN lxRetVal
      ENDIF
    ENDIF
 
    *-- Reject a null parameter
-   IF ISNULL( txPara1)
+   IF ISNULL( txPara1 )
      RETURN NULL
    ENDIF
 
@@ -3537,19 +3537,19 @@ FUNCTION SetConfig( txPara1)
 
    DO CASE
    *-- If Empty, set default.
-   CASE EMPTY( txPara1)
+   CASE EMPTY( txPara1 )
      this.nConfig = 3
      llRetVal = .T.
 
-   CASE TYPE( "TxPara1" )= "N" AND BETWEEN( txPara1, 1, ( 2^ALEN( laPropsServed ))- 1)
+   CASE TYPE( "TxPara1" )= "N" AND BETWEEN( txPara1, 1, ( 2^ALEN( laPropsServed ))- 1 )
      this.nConfig = txPara1
      llRetVal = .T.
 
    CASE TYPE( "TxPara1" )= "C"
      this.nConfig = 0
-     FOR lnI = 1 TO ALEN( laPropsServed)
+     FOR lnI = 1 TO ALEN( laPropsServed )
        IF ATCC( laPropsServed[ lnI], txPara1)> 0
-         this.nConfig = BITSET( this.nConfig, lnI- 1)
+         this.nConfig = BITSET( this.nConfig, lnI- 1 )
          llRetVal = .T.
        ENDIF
      ENDFOR
@@ -3580,23 +3580,23 @@ DEFINE CLASS cINTLPicture AS cINTLStrategy
  cTable = ccDefaultStringsTable
 
 *====================================
-*-- INTLPicture::Execute( ax)
+*-- INTLPicture::Execute( ax )
 *====================================
 * Traverse the array of object references
 *
-FUNCTION Execute( laObj, txpassed2)
+FUNCTION Execute( laObj, txpassed2 )
 
    *-- Broadcast first to the hooks
    IF INTL_HOOK_TEST
      LOCAL lxRetVal
-     lxRetVal = this.oHook.Execute( @laObj, @txpassed2)
-     IF !ISNULL( lxRetVal)
+     lxRetVal = this.oHook.Execute( @laObj, @txpassed2 )
+     IF !ISNULL( lxRetVal )
        RETURN lxRetVal
      ENDIF
    ENDIF
 
    *-- Reject a null parameter
-   IF ISNULL( laObj)
+   IF ISNULL( laObj )
      RETURN NULL
    ENDIF
    LOCAL llIsExplicit, lcObjBaseClass, lnThisConfig, lxRetVal, lnI
@@ -3606,7 +3606,7 @@ FUNCTION Execute( laObj, txpassed2)
    llIsExplicit = this.GetExplicit()
    lnThisConfig = this.GetConfig()
 
-   FOR lnI = 1 to ALEN( laObj)
+   FOR lnI = 1 to ALEN( laObj )
 
      *-- Performance note: Cast to a memvar to avoid
      *-- repeatedly accessing a property.
@@ -3623,36 +3623,36 @@ FUNCTION Execute( laObj, txpassed2)
      ENDIF
 
      *-- Picture category localization
-     IF lcObjBaseclass $ ccPictures AND BITTEST( lnThisConfig, 0)
+     IF lcObjBaseclass $ ccPictures AND BITTEST( lnThisConfig, 0 )
          laObj[ lnI].Picture = this.I( laObj[ lnI].Picture, "Picture" )
      ENDIF
 
      *-- DisabledPicture category localization
-     IF lcObjBaseclass $ ccDownPictures AND BITTEST( lnThisConfig, 1)
+     IF lcObjBaseclass $ ccDownPictures AND BITTEST( lnThisConfig, 1 )
          laObj[ lnI].DisabledPicture = this.I( laObj[ lnI].DisabledPicture, "DisabledPicture" )
      ENDIF
 
      *-- DownPicture category localization
-     IF lcObjBaseclass $ ccDownPictures AND BITTEST( lnThisConfig, 2)
+     IF lcObjBaseclass $ ccDownPictures AND BITTEST( lnThisConfig, 2 )
          laObj[ lnI].DownPicture = this.I( laObj[ lnI].DownPicture, "DownPicture" )
      ENDIF
 
      *-- Icon category localization
-     IF lcObjBaseclass $ ccIcons AND BITTEST( lnThisConfig, 3)
+     IF lcObjBaseclass $ ccIcons AND BITTEST( lnThisConfig, 3 )
          laObj[ lnI].Icon = this.I( laObj[ lnI].Icon, "Icon" )
      ENDIF
 
      *-- DragIcon category localization
-     IF lcObjBaseclass $ ccDragIcons AND BITTEST( lnThisConfig, 4)
+     IF lcObjBaseclass $ ccDragIcons AND BITTEST( lnThisConfig, 4 )
          laObj[ lnI].DragIcon = this.I( laObj[ lnI].DragIcon, "DragIcon" )
      ENDIF
    ENDFOR
    RETURN lxRetVal
 
 *====================================
-*-- INTLPicture::I( cc)
+*-- INTLPicture::I( cc )
 *====================================
-FUNCTION I( tcPassed1, tcContext)
+FUNCTION I( tcPassed1, tcContext )
    LOCAL lcCookie
    lcCookie = ''
 
@@ -3660,13 +3660,13 @@ FUNCTION I( tcPassed1, tcContext)
      RETURN tcPassed1
    ENDIF
 
-   IF EMPTY( tcContext)
+   IF EMPTY( tcContext )
      tcContext = ''
    ELSE
      lcCookie = "(("+ PROPER( tcContext) + "))"
    ENDIF
 
-   RETURN STRTRAN(cINTLStrategy::I( lcCookie+ tcPassed1), lcCookie)
+   RETURN STRTRAN(cINTLStrategy::I( lcCookie+ tcPassed1), lcCookie )
 
 ENDDEFINE
 
@@ -3692,24 +3692,24 @@ DEFINE CLASS cINTLString AS cINTLStrategy
 
 
 *====================================
-*-- cINTLString::aLang( a)
+*-- cINTLString::aLang( a )
 *====================================
 * Return an array of languages supported by this Strategy
 * taArray must be passed by reference
 *
-FUNCTION aLang( taArray)
+FUNCTION aLang( taArray )
 
    *-- Defer first to any hook
    IF INTL_HOOK_TEST
      LOCAL lxRetVal
      lxRetVal = this.oHook.aLang( @taArray )
-     IF !ISNULL( lxRetVal)
+     IF !ISNULL( lxRetVal )
        RETURN lxRetVal
      ENDIF
    ENDIF
 
    *-- Reject a null parameter
-   IF ISNULL( taArray)
+   IF ISNULL( taArray )
      RETURN NULL
    ENDIF
 
@@ -3724,8 +3724,8 @@ FUNCTION aLang( taArray)
 
    *-- open ( and later close) the Strategy
    *-- file, if required.
-   * IF ( ! this.lStrategyOpen)  AND !USED( this.cAlias)
-   IF ( ! this.lStrategyOpen)  OR !USED( this.cAlias)
+   * IF ( ! this.lStrategyOpen)  AND !USED( this.cAlias )
+   IF ( ! this.lStrategyOpen)  OR !USED( this.cAlias )
      IF !this.OpenStrategy()
        RETURN 0
      ELSE
@@ -3734,9 +3734,9 @@ FUNCTION aLang( taArray)
    ENDIF
 
    LOCAL ARRAY laFields[ 1]
-   IF aFields( laFields, this.cAlias)> 0
+   IF aFields( laFields, this.cAlias )> 0
      LOCAL lnI
-     FOR lnI = 1 TO ALEN( laFields, 1)
+     FOR lnI = 1 TO ALEN( laFields, 1 )
        IF laFields[ lnI, 2] = "C" AND laFields[ lnI, 1]<> "CWHERE"
          DIMENSION taArray[ lnI]
          taArray[ lnI] = PROPER( SUBSTRC( laFields[ lnI, 1], 2 ))
@@ -3752,46 +3752,46 @@ FUNCTION aLang( taArray)
 *-- cINTLString::IsValidLanguage( [ c])
 *====================================
 *
-FUNCTION IsValidLanguage( tcLanguage)
+FUNCTION IsValidLanguage( tcLanguage )
 
    *-- Defer first to any hook
    IF INTL_HOOK_TEST
      LOCAL lxRetVal
      lxRetVal = this.oHook.IsValidLanguage( @tcLanguage )
-     IF !ISNULL( lxRetVal)
+     IF !ISNULL( lxRetVal )
        RETURN lxRetVal
      ENDIF
    ENDIF
 
    DO CASE
-   CASE ISNULL( tcLanguage)
+   CASE ISNULL( tcLanguage )
      RETURN NULL
    CASE EMPTY( tcLanguage) OR AT_C( TYPE( "tcLanguage" ), "-NYDTL-OGU" ) > 0
      RETURN .F.
-   CASE PROPER( tcLanguage) = PROPER( ccMylang)
+   CASE PROPER( tcLanguage) = PROPER( ccMylang )
      RETURN .T.
    ENDCASE
 
-   tcLanguage = PROPER( tcLanguage)
+   tcLanguage = PROPER( tcLanguage )
    DIMENSION ScratchArray[ 1]
-   this.aLang( @ScratchArray)
+   this.aLang( @ScratchArray )
    RETURN ASCAN( ScratchArray, tcLanguage)> 0
 
 
 *====================================
-*-- cINTLString::Execute( ax)
+*-- cINTLString::Execute( ax )
 *====================================
 * Traverse the passed array
 *
-FUNCTION Execute( laObj, txpassed2)
+FUNCTION Execute( laObj, txpassed2 )
 
    *-- Broadcast first to the hooks
    IF INTL_HOOK_TEST
-     this.oHook.Execute( @laObj, @txpassed2)
+     this.oHook.Execute( @laObj, @txpassed2 )
    ENDIF
 
    *-- Reject a null parameter
-   IF ISNULL( laObj)
+   IF ISNULL( laObj )
      RETURN NULL
    ENDIF
 
@@ -3814,7 +3814,7 @@ FUNCTION Execute( laObj, txpassed2)
 
    *?  ER:  Use an iterator class to iterate
    *?  arrays of objects themselves...
-   FOR lnI = 1 to ALEN( laObj)
+   FOR lnI = 1 to ALEN( laObj )
 
      *-- Bail for the standard reasons
      IF this.LoopOut( laObj[ lnI])
@@ -3830,46 +3830,46 @@ FUNCTION Execute( laObj, txpassed2)
      CASE lcObjBaseclass $ ccCaptionObjects
        IF BITTEST( lnThisConfig, 0) AND ;
           lcObjBaseclass $ ccCaptions AND ;
-          !EMPTY( laObj[ lnI].Caption)
+          !EMPTY( laObj[ lnI].Caption )
 
-         laObj[ lnI].Caption = this.I( laObj[ lnI].Caption)
+         laObj[ lnI].Caption = this.I( laObj[ lnI].Caption )
        ENDIF
 
        IF BITTEST( lnThisConfig, 1) AND ;
           lcObjBaseclass $ ccToolTips AND ;
-          !EMPTY( laObj[ lnI].ToolTipText)
+          !EMPTY( laObj[ lnI].ToolTipText )
 
-         laObj[ lnI].ToolTipText = this.I( laObj[ lnI].ToolTipText)
+         laObj[ lnI].ToolTipText = this.I( laObj[ lnI].ToolTipText )
        ENDIF
 
        IF BITTEST( lnThisConfig, 2) AND ;
           lcObjBaseclass $ ccStatusbarTexts AND ;
-          !EMPTY( laObj[ lnI].StatusBarText)
+          !EMPTY( laObj[ lnI].StatusBarText )
 
-         laObj[ lnI].StatusBarText = this.I( laObj[ lnI].StatusBarText)
+         laObj[ lnI].StatusBarText = this.I( laObj[ lnI].StatusBarText )
        ENDIF
 
      *-- Supported OLE Controls
      CASE lcObjBaseclass = "OLECONTROL "
        LOCAL lcClass
-       lcClass = UPPER( laObj[ lni].OleClass)
+       lcClass = UPPER( laObj[ lni].OleClass )
 
        DO CASE
        *-- TreeView Control
        CASE lcClass = "COMCTL.TREECTRL"
          IF laObj[ lni].Object.Nodes.Count> 0
-           IF BITTEST( lnThisConfig, 0)
-             *-- Load an array of node references (for faster traversal)
+           IF BITTEST( lnThisConfig, 0 )
+             *-- Load an array of node references (for faster traversal )
              WITH laObj[ lni].Object
                LOCAL ARRAY aNodes[ .Nodes.Count]
                LOCAL lnz
-               FOR lnz = 1 TO ALEN( aNodes, 1)
-                 aNodes( lnz)= .Nodes( lnZ)
+               FOR lnz = 1 TO ALEN( aNodes, 1 )
+                 aNodes( lnz)= .Nodes( lnZ )
                ENDFOR
              ENDWITH
 
-             FOR lnZ = 1 TO ALEN( aNodes, 1)
-               aNodes( lnZ).Text = this.I( aNodes( lnZ).Text)
+             FOR lnZ = 1 TO ALEN( aNodes, 1 )
+               aNodes( lnZ).Text = this.I( aNodes( lnZ).Text )
              ENDFOR
            ENDIF
          ENDIF
@@ -3877,48 +3877,48 @@ FUNCTION Execute( laObj, txpassed2)
        *-- ListView Control
        CASE lcClass = "COMCTL.LISTVIEWCTRL"
          IF laObj[ lni].Object.ListItems.Count > 0
-           IF BITTEST( lnThisConfig, 0)
-             *-- Load an array of item references (for faster traversal)
+           IF BITTEST( lnThisConfig, 0 )
+             *-- Load an array of item references (for faster traversal )
              WITH laObj[ lni].Object
                LOCAL ARRAY aItems[ .ListItems.Count]
                LOCAL lnz
-               FOR lnz = 1 TO ALEN( aItems, 1)
-                 aItems( lnz)= .ListItems( lnZ)
+               FOR lnz = 1 TO ALEN( aItems, 1 )
+                 aItems( lnz)= .ListItems( lnZ )
                ENDFOR
              ENDWITH
 
              *-- Localize the caption
-             FOR lnZ = 1 TO ALEN( aItems, 1)
-               aItems( lnZ).Text = this.I( aItems( lnZ).Text)
+             FOR lnZ = 1 TO ALEN( aItems, 1 )
+               aItems( lnZ).Text = this.I( aItems( lnZ).Text )
              ENDFOR
            ENDIF
          ENDIF
 
        *-- Tabstrip Control
        CASE lcClass = "TABSTRIP.TABSTRIPCTRL"
-         *-- Load an array of page references (for faster traversal)
+         *-- Load an array of page references (for faster traversal )
          IF laObj[ lni].Object.Tabs.Count > 0
            WITH laObj[ lni].Object
              LOCAL ARRAY aPages[ .Tabs.Count]
              LOCAL lnz
-             FOR lnz = 1 TO ALEN( aPages, 1)
-               aPages( lnz)= .Tabs( lnZ)
+             FOR lnz = 1 TO ALEN( aPages, 1 )
+               aPages( lnz)= .Tabs( lnZ )
              ENDFOR
            ENDWITH
 
            *-- Localize the caption
-           IF BITTEST( lnThisConfig, 0)
+           IF BITTEST( lnThisConfig, 0 )
              *-- Few pages expected so don't bother creating a reference array
-             FOR lnZ = 1 TO ALEN( aPages)
-               aPages( lnZ).Caption = this.I( aPages( lnZ).Caption)
+             FOR lnZ = 1 TO ALEN( aPages )
+               aPages( lnZ).Caption = this.I( aPages( lnZ).Caption )
              ENDFOR
            ENDIF
 
            *-- Localize the tooltiptext
-           IF BITTEST( lnThisConfig, 1)
+           IF BITTEST( lnThisConfig, 1 )
              *-- Few pages expected so don't bother creating a reference array
-             FOR lnZ = 1 TO ALEN( aPages)
-               aPages( lnZ).ToolTiptext = this.I( aPages( lnZ).ToolTiptext)
+             FOR lnZ = 1 TO ALEN( aPages )
+               aPages( lnZ).ToolTiptext = this.I( aPages( lnZ).ToolTiptext )
              ENDFOR
            ENDIF
          ENDIF
@@ -3927,9 +3927,9 @@ FUNCTION Execute( laObj, txpassed2)
        CASE lcClass = "COMCTL.SBARCTRL"
          *-- Few panels expected so don't bother creating a reference array
          *-- Localize the caption
-         IF BITTEST( lnThisConfig, 0)
+         IF BITTEST( lnThisConfig, 0 )
            FOR EACH oPanel IN laObj[ lni].Object.Panels
-             oPanel.Text = this.I( oPanel.Text)
+             oPanel.Text = this.I( oPanel.Text )
            ENDFOR
          ENDIF
 
@@ -3937,7 +3937,7 @@ FUNCTION Execute( laObj, txpassed2)
        CASE lcClass = "TABDLG.SSTAB"
          *-- Few panels expected so don't bother creating a reference array
          *-- Localize the caption
-         IF BITTEST( lnThisConfig, 0)
+         IF BITTEST( lnThisConfig, 0 )
            LOCAL lnIndex
            *-- SSTab is zero-based
            FOR lnIndex = 0 TO laObj[ lni].Object.Tabs-1
@@ -3951,8 +3951,8 @@ FUNCTION Execute( laObj, txpassed2)
             lcClass = "THREED.SSFRAME" OR ;
             lcClass = "THREED.SSCOMMAND" OR ;
             lcClass = "THREED.SSCHECK"
-         IF BITTEST( lnThisConfig, 0)
-             laObj[ lni].Object.Caption = this.I( laObj[ lni].Object.Caption)
+         IF BITTEST( lnThisConfig, 0 )
+             laObj[ lni].Object.Caption = this.I( laObj[ lni].Object.Caption )
             ENDIF
 
        ENDCASE
@@ -3965,20 +3965,20 @@ FUNCTION Execute( laObj, txpassed2)
 *-- cINTLString::CreateStrategyTable( [ c])
 *====================================
 *
-FUNCTION CreateStrategyTable( tcFile)
+FUNCTION CreateStrategyTable( tcFile )
 * Create a local Strategy table
 
    *-- Defer first to any hook
    IF INTL_HOOK_TEST
      LOCAL lxRetVal
-     lxRetVal = this.oHook.CreateStrategyTable( @tcFile)
-     IF !ISNULL( lxRetVal)
+     lxRetVal = this.oHook.CreateStrategyTable( @tcFile )
+     IF !ISNULL( lxRetVal )
        RETURN lxRetVal
      ENDIF
    ENDIF
 
    *-- Reject a null parameter
-   IF ISNULL( tcFile)
+   IF ISNULL( tcFile )
      RETURN NULL
    ENDIF
 
@@ -4014,7 +4014,7 @@ FUNCTION CreateStrategyTable( tcFile)
    jcStr = jcStr + "cWhere M"
    LOCAL lcFileName
    lcFilename = this.GetTable()
-   CREATE TABLE &lcFileName ( &jcStr)
+   CREATE TABLE &lcFileName ( &jcStr )
    this.CreateStrategyCDX()
    *-- Don't assume we want it open
    USE
@@ -4040,7 +4040,7 @@ FUNCTION CreateStrategyCDX()
    LOCAL ARRAY jaFields[ 1]
 
    jlWasUsed     = .F.
-   jnOldArea     = SELECT( 0)
+   jnOldArea     = SELECT( 0 )
    jcStringsFile = this.GetTable()
 
    jlWasUsed =USED( "Strings" )
@@ -4053,14 +4053,14 @@ FUNCTION CreateStrategyCDX()
 
    *-- First tag, all versions, is the cOriginal field
    IF TYPE( "Strings." + ccDefaultLanguageField)<> "U"
-     INDEX ON STRTRAN( STRTRAN( STRTRAN( STRTRAN( STRTRAN( cOriginal, "\<" ), "\!" ), "\?" ), ":" ), "=" ) TAG (ccDefaultLanguageField)
+     INDEX ON STRTRAN( STRTRAN( STRTRAN( STRTRAN( STRTRAN( cOriginal, "\<" ), "\!" ), "\?" ), ":" ), "=" ) TAG (ccDefaultLanguageField )
    ENDIF
 
    DIMENSION jaFields[ 1]
-   this.aLang( @jaFields)
-   FOR jni = 1 TO ALEN( jaFields, 1)
+   this.aLang( @jaFields )
+   FOR jni = 1 TO ALEN( jaFields, 1 )
      IF TYPE( "jaFields( jni)" )= "C"
-       jcField = "C"+ jaFields( jni)
+       jcField = "C"+ jaFields( jni )
        IF INLIST( PROPER( jcField), PROPER( ccDefaultLanguageField ))
          LOOP
        ENDIF
@@ -4071,8 +4071,8 @@ FUNCTION CreateStrategyCDX()
    *-- Make sure it's non- EXCLUSIVE, or unused
    *-- if originally so
    IF jlWasUsed
-     USE ( jcStringsFile)
-     IF ! EMPTY( lcOldOrder)
+     USE ( jcStringsFile )
+     IF ! EMPTY( lcOldOrder )
        SET ORDER TO lcOldorder
      ENDIF
 
@@ -4080,22 +4080,22 @@ FUNCTION CreateStrategyCDX()
      USE
    ENDIF
 
-   SELECT ( jnOldArea)
+   SELECT ( jnOldArea )
    RETURN .T.
 
 *====================================
-*-- cINTLString::SetConfig( tnPassed)
+*-- cINTLString::SetConfig( tnPassed )
 *====================================
 *
-FUNCTION SetConfig( txPara1)
+FUNCTION SetConfig( txPara1 )
 
    *-- Broadcast to hooks
    IF INTL_HOOK_TEST
-     this.oHook.SetConfig( txPara1)
+     this.oHook.SetConfig( txPara1 )
    ENDIF
 
    *-- Reject a null parameter
-   IF ISNULL( txPara1)
+   IF ISNULL( txPara1 )
      RETURN NULL
    ENDIF
 
@@ -4113,19 +4113,19 @@ FUNCTION SetConfig( txPara1)
 
    DO CASE
    *-- If Empty, set default.
-   CASE EMPTY( txPara1)
+   CASE EMPTY( txPara1 )
      this.nConfig = 7
      llRetVal = .T.
 
-   CASE TYPE( "TxPara1" )= "N" AND BETWEEN( txPara1, 1, ( 2^ALEN( laProps ))- 1)
+   CASE TYPE( "TxPara1" )= "N" AND BETWEEN( txPara1, 1, ( 2^ALEN( laProps ))- 1 )
      this.nConfig = txPara1
      llRetVal = .T.
 
    CASE TYPE( "TxPara1" )= "C"
      this.nConfig = 0
-     FOR lnI = 1 TO ALEN( laProps)
+     FOR lnI = 1 TO ALEN( laProps )
        IF ATCC( laProps[ lnI], txPara1)> 0
-         this.nConfig = BITSET( this.nConfig, lnI- 1)
+         this.nConfig = BITSET( this.nConfig, lnI- 1 )
          llRetVal = .T.
        ENDIF
      ENDFOR
@@ -4136,12 +4136,12 @@ FUNCTION SetConfig( txPara1)
    RETURN llRetVal
 
    *====================================
-   *-- cINTLString::IsInResource(x)
+   *-- cINTLString::IsInResource(x )
    *====================================
    * Is the passed item in the resource file?
    *
-   FUNCTION IsInResource( txElement)
-     IF ISNULL( txElement)
+   FUNCTION IsInResource( txElement )
+     IF ISNULL( txElement )
        RETURN NULL
      ENDIF
      LOCAL llRetVal, lcAlias, lcOldExact
@@ -4149,14 +4149,14 @@ FUNCTION SetConfig( txPara1)
      IF TYPE( "txElement" ) = "C"
        lcAlias = this.GetAlias()
        *-- Open the resource table again
-       IF USED( lcAlias) OR this.OpenStrategy()
+       IF USED( lcAlias ) OR this.OpenStrategy()
          lcOldExact = SET( "Exact" )
          SET EXACT ON
 *!*	         IF KEYMATCH( NoHot(txElement), ;
 *!*	                      TAGNO( ccDefaultLanguageField, ;
 *!*	                             '', ;
-*!*	                             this.cAlias), ;
-*!*	                      this.cAlias)
+*!*	                             this.cAlias ), ;
+*!*	                      this.cAlias )
          IF INDEXSEEK( NoHot(txElement), ;
                        .T., ;
                        this.cAlias, ;
@@ -4175,11 +4175,11 @@ FUNCTION SetConfig( txPara1)
   *====================================
   * Insert the passed item into the resource file
   *
-  FUNCTION ResourceInsert( txPassed, tcWhere)
-    IF ISNULL( txpassed)
+  FUNCTION ResourceInsert( txPassed, tcWhere )
+    IF ISNULL( txpassed )
       RETURN NULL
     ENDIF
-    IF ISNULL( tcWhere) OR EMPTY( tcWhere)
+    IF ISNULL( tcWhere) OR EMPTY( tcWhere )
       tcWhere = ""
     ENDIF
 
@@ -4190,10 +4190,10 @@ FUNCTION SetConfig( txPara1)
 
     IF TYPE( "txPassed" ) = TYPE( "lxTemp" )
       llRetVal = .T.
-      INSERT INTO (this.cAlias) ;
+      INSERT INTO (this.cAlias ) ;
                   ( (ccDefaultLanguageField )) ;
              VALUES (  txPassed               )
-      this.ResourceLogLocation(  txPassed, tcWhere)
+      this.ResourceLogLocation(  txPassed, tcWhere )
     ENDIF
 
 
@@ -4202,21 +4202,21 @@ FUNCTION SetConfig( txPara1)
   *====================================
   * Insert the passed item into the resource file
   *
-  FUNCTION UpdateResource( txPassed, tcWhere)
-    IF ISNULL( txPassed)
+  FUNCTION UpdateResource( txPassed, tcWhere )
+    IF ISNULL( txPassed )
       RETURN NULL
     ENDIF
-    IF ISNULL( tcWhere) OR EMPTY( tcWhere)
+    IF ISNULL( tcWhere) OR EMPTY( tcWhere )
       tcWhere = ""
     ENDIF
 
     LOCAL llRetVal
     llRetVal = .F.
-    IF ! this.IsInResource( txPassed)
-      llRetVal = this.ResourceInsert( txPassed, tcWhere)
+    IF ! this.IsInResource( txPassed )
+      llRetVal = this.ResourceInsert( txPassed, tcWhere )
     ELSE
-      IF !EMPTY( tcWhere)
-        llRetVal = this.ResourceLogLocation( txPassed, tcWhere)
+      IF !EMPTY( tcWhere )
+        llRetVal = this.ResourceLogLocation( txPassed, tcWhere )
       ENDIF
     ENDIF
     RETURN llRetVal
@@ -4238,23 +4238,23 @@ DEFINE CLASS cINTLRightToLeft AS cINTLStrategy
  nConfig = 1
 
 *====================================
-*-- INTLRightToLeft::Execute( ax)
+*-- INTLRightToLeft::Execute( ax )
 *====================================
 * Traverse the array of object references
 *
-FUNCTION Execute( laObj, txpassed2)
+FUNCTION Execute( laObj, txpassed2 )
 
    *-- Broadcast first to the hooks
    IF INTL_HOOK_TEST
      LOCAL lxRetVal
-     lxRetVal = this.oHook.Execute( @laObj, @txpassed2)
-     IF !ISNULL( lxRetVal)
+     lxRetVal = this.oHook.Execute( @laObj, @txpassed2 )
+     IF !ISNULL( lxRetVal )
        RETURN lxRetVal
      ENDIF
    ENDIF
 
    *-- Reject a null parameter
-   IF ISNULL( laObj)
+   IF ISNULL( laObj )
      RETURN NULL
    ENDIF
    LOCAL llIsExplicit, lcObjBaseClass, lnThisConfig, lxRetVal, lnI
@@ -4264,7 +4264,7 @@ FUNCTION Execute( laObj, txpassed2)
    llIsExplicit = this.GetExplicit()
    lnThisConfig = this.GetConfig()
 
-   FOR lnI = 1 to ALEN( laObj)
+   FOR lnI = 1 to ALEN( laObj )
 
      *-- Performance note: Cast to a memvar to avoid
      *-- repeatedly accessing a property.
@@ -4414,10 +4414,10 @@ DEFINE CLASS cINTLTraverse AS Custom
  oHook     = NULL
 
 *====================================
-*-- cINTLTraverse::Init( o)
+*-- cINTLTraverse::Init( o )
 *====================================
 *
-FUNCTION Init( toObject)
+FUNCTION Init( toObject )
    this.oCurrent = toObject
    this.cBaseclass = this.oCurrent.BaseClass
    this.Name      = "cINTLTraverse"
@@ -4432,9 +4432,9 @@ FUNCTION Next
    lxRetVal = NULL
 
    *-- Defer first to any hook
-   IF !ISNULL( this.oHook)
+   IF !ISNULL( this.oHook )
      lxRetVal = this.oHook.Next()
-     IF !ISNULL( lxRetVal)
+     IF !ISNULL( lxRetVal )
        RETURN lxRetVal
      ELSE
        this.oHook = NULL
@@ -4450,21 +4450,21 @@ FUNCTION Next
    CASE lcBaseClass = "Pageframe"
 
      IF this.nObject <= this.oCurrent.PageCount
-       lxRetVal = this.oCurrent.Pages( this.nObject)
+       lxRetVal = this.oCurrent.Pages( this.nObject )
      ENDIF
 
      IF ISNULL( this.oHook) AND;
         this.oCurrent.PageCount>0 ;
-        AND ! ISNULL( lxRetVal)
+        AND ! ISNULL( lxRetVal )
 
-       this.oHook = CREATEOBJECT( "cINTLTraverse", @lxRetVal)
+       this.oHook = CREATEOBJECT( "cINTLTraverse", @lxRetVal )
      ENDIF
 
 
    CASE lcBaseClass = "Commandgroup" OR ;
         lcBaseClass = "Optiongroup"
      IF this.nObject <= this.oCurrent.ButtonCount
-       lxRetVal = this.oCurrent.Buttons( this.nObject)
+       lxRetVal = this.oCurrent.Buttons( this.nObject )
      ENDIF
 
    CASE INLIST( lcBaseClass, ;
@@ -4475,39 +4475,39 @@ FUNCTION Next
                "Form", ;
                "Toolbar" )
        IF this.nObject <= this.oCurrent.ControlCount
-         lxRetVal = this.oCurrent.Controls( this.nObject)
+         lxRetVal = this.oCurrent.Controls( this.nObject )
        ELSE
 
          RETURN NULL
        ENDIF
 
      IF ! ISNULL( lxRetVal) AND ;
-        UPPER( lxRetVal.Baseclass) $ ccContainers AND ;
+        UPPER( lxRetVal.Baseclass ) $ ccContainers AND ;
         ISNULL( this.oHook) AND;
         this.oCurrent.ControlCount>0
 
-       this.oHook = CREATEOBJECT( "cINTLTraverse", @lxRetVal)
+       this.oHook = CREATEOBJECT( "cINTLTraverse", @lxRetVal )
        * lxRetval = this.oHook.Next()
      ENDIF
 
    CASE lcBaseClass = "Grid"
      IF this.nObject <= this.oCurrent.ColumnCount
-       lxRetVal = this.oCurrent.Columns( this.nObject)
+       lxRetVal = this.oCurrent.Columns( this.nObject )
      ENDIF
      IF ISNULL( this.oHook) AND;
         this.oCurrent.ColumnCount>0 ;
-        AND ! ISNULL( lxRetVal)
-       this.oHook = CREATEOBJECT( "cINTLTraverse", @lxRetVal)
+        AND ! ISNULL( lxRetVal )
+       this.oHook = CREATEOBJECT( "cINTLTraverse", @lxRetVal )
      ENDIF
 
    CASE lcBaseClass = "Formset"
      IF this.nObject <= this.oCurrent.FormCount
-       lxRetVal = this.oCurrent.Forms( this.nObject)
+       lxRetVal = this.oCurrent.Forms( this.nObject )
      ENDIF
      IF ISNULL( this.oHook) AND;
         this.oCurrent.FormCount>0 ;
-        AND ! ISNULL( lxRetVal)
-       this.oHook = CREATEOBJECT( "cINTLTraverse", @lxRetVal)
+        AND ! ISNULL( lxRetVal )
+       this.oHook = CREATEOBJECT( "cINTLTraverse", @lxRetVal )
      ENDIF
    ENDCASE
 
@@ -4525,7 +4525,7 @@ ENDDEFINE
 
 *!*********************************************
 *!
-*!       Procedure: NoHot( c)
+*!       Procedure: NoHot( c )
 *!
 *!*********************************************
 Procedure NoHot
@@ -4553,7 +4553,7 @@ RETURN STRTRAN( STRTRAN( STRTRAN( STRTRAN( STRTRAN( lcRetVal, "\<" ), "\!" ), "\
 
 *!*********************************************
 *!
-*!       Procedure: nodelims( c)
+*!       Procedure: nodelims( c )
 *!
 *!*********************************************
 PROCEDURE nodelims
@@ -4572,15 +4572,15 @@ PROCEDURE nodelims
 PARAMETER tcToUndelim
 PRIVATE jcRetVal, jcLeft, jcRight
 
-jcRetVal = ALLTRIM( tcToUndelim)
+jcRetVal = ALLTRIM( tcToUndelim )
 DO WHILE LENC( jcRetVal) >=3
-   jcLeft  = LEFTC(  jcRetVal, 1)
-   jcRight = RIGHTC( jcRetVal, 1)
+   jcLeft  = LEFTC(  jcRetVal, 1 )
+   jcRight = RIGHTC( jcRetVal, 1 )
    IF ( jcLeft = '"' AND jcRight = '"') OR ;
       ( jcLeft = "'" AND jcRight = "'" ) OR ;
       ( jcLeft = "[ " AND jcRight = "]" )
 
-      jcRetVal = SUBSTRC( jcRetVal, 2, LENC( jcRetVal)- 2)
+      jcRetVal = SUBSTRC( jcRetVal, 2, LENC( jcRetVal)- 2 )
 
    ELSE
       EXIT
@@ -4612,7 +4612,7 @@ PARAMETER tcSearch, tcExpression, tnOccurence
 RETURN LEFTC( tcExpression, ;
              AT_C( tcSearch, ;
                  tcExpression, ;
-                 IIF( EMPTY( tnOccurence), 1, tnOccurence )) - 1)
+                 IIF( EMPTY( tnOccurence), 1, tnOccurence )) - 1 )
 
 *====================================
 *-- toright( cc[ n])
@@ -4672,13 +4672,13 @@ PRIVATE lcReturnVal, tnLeftpos
 lcReturnVal = [ ]
 tnLeftpos = AT_C( tcLeft, tcExpression, IIF( EMPTY( tnFirstOne), 1, tnFirstOne ))
 IF tnLeftpos> 0
-    tnLeftpos = tnLeftpos+ LENC( tcLeft)
-    IF tnLeftpos< LENC( tcExpression)
+    tnLeftpos = tnLeftpos+ LENC( tcLeft )
+    IF tnLeftpos< LENC( tcExpression )
         lcReturnVal = SUBSTRC( tcExpression, ;
                               tnLeftpos, ;
                               AT_C( tcRight, ;
                                   SUBSTRC( tcExpression, tnLeftpos), ;
-                                  IIF( EMPTY( tnFollowing), 1, tnFollowing ))- 1)
+                                  IIF( EMPTY( tnFollowing), 1, tnFollowing ))- 1 )
     ENDIF
 ENDIF
 RETURN lcReturnVal
@@ -4708,13 +4708,13 @@ PRIVATE lcRetVal,  lnLeft
 lcRetVal = [ ]
 lnLeft = ATCC( tcLeft, tcExpression, IIF( EMPTY( tnFirstOne), 1, tnFirstOne ))
 IF lnLeft>0
-    lnLeft = lnLeft+ LENC( tcLeft)
-    IF lnLeft<LENC( tcExpression)
+    lnLeft = lnLeft+ LENC( tcLeft )
+    IF lnLeft<LENC( tcExpression )
         lcRetVal = SUBSTRC( tcExpression, ;
                            lnLeft, ;
                            ATCC( tcRight, ;
                                 SUBSTRC( tcExpression, lnLeft), ;
-                                IIF( EMPTY( tnFollowing), 1, tnFollowing ))- 1)
+                                IIF( EMPTY( tnFollowing), 1, tnFollowing ))- 1 )
     ENDIF
 ENDIF
 RETURN lcRetVal
@@ -4788,9 +4788,9 @@ ENDIF
 *-- These could well be #DEFINEs, assuming
 *-- we liked those...
 llExplicit = .F.
-m.cr = CHR( 13)
-m.lf = CHR( 10)
-cr_lf = CHR( 13)+ CHR( 10)
+m.cr = CHR( 13 )
+m.lf = CHR( 10 )
+cr_lf = CHR(13)+ CHR( 10 )
 
 lcItsExprChar = ccItsExpression
 
@@ -4811,7 +4811,7 @@ lcLanguage = IIF( TYPE( "_INTLLang" )= "U", ;
                   PROPER( jcWorkAround), ;
                   _INTLLang )
 
-IF EMPTY( lcLanguage)
+IF EMPTY( lcLanguage )
    lcLanguage = ccDefaultLanguage
 ENDIF
 
@@ -4832,7 +4832,7 @@ IF llStrUpd
 
    *-- Do some error checking on this path
    *-- Take the strings file name out
-   lcStrUpdPath = STRTRAN( lcStrUpdPath, ccDefaultStringsTable)
+   lcStrUpdPath = STRTRAN( lcStrUpdPath, ccDefaultStringsTable )
 
    *-- Ending backslash or colon
    IF ! EMPTY( lcStrUpdPath) AND ! RIGHTC( lcStrUpdPath, 1) $ ":\"
@@ -4840,13 +4840,13 @@ IF llStrUpd
    ENDIF
 
    *-- Is there a STRINGS table there?
-   IF FILE( lcStrUpdPath + ccDefaultStringsTable)
-      *-- Is it the currently open strings table ( if any)
+   IF FILE( lcStrUpdPath + ccDefaultStringsTable )
+      *-- Is it the currently open strings table ( if any )
       IF USED( "STRINGS" )
          * Make sure it's the correct one
          IF ! lcStrUpdPath $ UPPER( DBF( "Strings" ))
             =warning( "INTL: Open strings file doesn't match target." + ;
-           CHR( 13) + "       No update will be performed." )
+           CHR(13) + "       No update will be performed." )
             llStrUpd = .F.
          ENDIF
       ELSE
@@ -4856,7 +4856,7 @@ IF llStrUpd
 
    ELSE
       =warning( "INTL: Invalid path to STRINGS table: "+ lcStrUpdPath+ ;
-           CHR( 13) + "       No update will be performed." )
+           CHR(13) + "       No update will be performed." )
       llStrUpd = .F.
    ENDIF
 
@@ -4867,7 +4867,7 @@ SCAN
   IF ! EMPTY( PROMPT) ;
       AND ! "I(" $ PROMPT ;
       AND ! "\-" $ PROMPT ;
-      AND ! "*:INTL IGNORE" $ UPPER( comment)
+      AND ! "*:INTL IGNORE" $ UPPER( comment )
 
     REPLACE PROMPT WITH ["+ ]+ ImenuEnvlp( "["+ TRIM( PROMPT)+ "]" )+ [ + "]
 
@@ -4875,7 +4875,7 @@ SCAN
     *{ Support for really cool language sensitive menus
     *? Crash city if invalid key, like Alt- *
     #IF .F.
-    IF NOT EMPTY( keyname)
+    IF NOT EMPTY( keyname )
       REPLACE comment WITH comment + ;
         [ *:KEYLAB &_intlLabel]+ m.cr_lf + ;
         '*:PREDEF _intlLabel = "'+ LEFTC( keyname, ATCC( "+ ", keyname ))+ '" + ;
@@ -4888,33 +4888,33 @@ SCAN
 
     *-- April 22 1997 Localize key names and key labels
     IF VAL(ItemNum)>1
-      IF NOT EMPTY( keyname)
+      IF NOT EMPTY( keyname )
         REPLACE comment WITH comment + m.cr_lf+ ;
           [*:KEYLAB &_intlLabel]+ m.cr_lf + ;
           '*:PREDEF _INTLLabel = I("{{KeyName}}" )'
       ENDIF
 
       *-- April 22 1997 Localize key names and key labels
-      IF NOT EMPTY( keyLabel)
+      IF NOT EMPTY( keyLabel )
         REPLACE KeyLabel WITH  ["+ _INTLLabel +"]
       ENDIF
     ENDIF
 
 
 
-    IF ! EMPTY( message)
+    IF ! EMPTY( message )
       jcMessage = message
       *-- We could have embedded CR_LF or just LF
       *-- ... another one of those gotchas <sigh>
       IF RIGHTC( message, 2) = m.cr_lf
-        jcMessage = LEFTC( message, LENC( message) - 2)
+        jcMessage = LEFTC( message, LENC( message) - 2 )
       ELSE
         IF RIGHTC( message, 1) = m.lf
-          jcMessage = LEFTC( message, LENC( message) - 1)
+          jcMessage = LEFTC( message, LENC( message) - 1 )
         ENDIF
       ENDIF
 
-      IF oktoint( jcMessage)
+      IF oktoint( jcMessage )
          REPLACE message WITH IMenuEnvlp( jcMessage)  + ;
              IIF( RIGHTC( message, 2) = m.cr_lf, cr_lf, "" )
 
@@ -4954,7 +4954,7 @@ PROCEDURE IMenuEnvlp
 PARAMETER tcPassedString, tcLeader, tcFollower
 PRIVATE jnNumPara, jcPrompt
 
-IF EMPTY( tcPassedString)
+IF EMPTY( tcPassedString )
    RETURN ""
 ENDIF
 
@@ -4992,7 +4992,7 @@ RETURN
 
 *!*********************************************
 *!
-*!       Procedure: OkToInt( c)
+*!       Procedure: OkToInt( c )
 *!
 *!*********************************************
 PROCEDURE oktoint
@@ -5015,12 +5015,12 @@ PROCEDURE oktoint
 PARAMETER tcToInt
 
   RETURN ( ! EMPTY( tcToInt )) AND ;
-          NeedInt( tcToInt)
+          NeedInt( tcToInt )
 
 
 *!*********************************************
 *!
-*!       Procedure: NeedInt( c)
+*!       Procedure: NeedInt( c )
 *!
 *!*********************************************
 PROCEDURE needint
@@ -5043,7 +5043,7 @@ RETURN ! ( LEFTC( tcPassedString, 2) = "I( " OR ( "+ I( " $ tcPassedString) OR (
 
 *!*********************************************
 *!
-*!       Procedure: updstrings( cc)
+*!       Procedure: updstrings( cc )
 *!
 *!*********************************************
 PROCEDURE updstrings
@@ -5062,7 +5062,7 @@ IF ! SEEK(  NOHOT( tcString), "STRINGS" )
    IF TYPE( "strings.cwhere" )<> "U"
       INSERT INTO strings ;
                   ( (ccDefaultLanguageField), cwhere) ;
-           VALUES ( ALLTRIM( tcString), tcFile)
+           VALUES ( ALLTRIM( tcString), tcFile )
    ELSE
       INSERT INTO strings ;
                   ( (ccDefaultLanguageField )) ;
@@ -5071,9 +5071,9 @@ IF ! SEEK(  NOHOT( tcString), "STRINGS" )
 
 ELSE
 
-   IF TYPE( "strings.cwhere" )<> "U" AND ( ! tcFile $ strings.cWhere)
+   IF TYPE( "strings.cwhere" )<> "U" AND ( ! tcFile $ strings.cWhere )
       REPLACE strings.cWhere WITH strings.cWhere + ;
-                                  CHR( 13) + CHR( 10) + ;
+                                  CHR(13) + CHR( 10) + ;
                                   tcFile
    ENDIF
 ENDIF
@@ -5089,15 +5089,15 @@ FUNCTION trimpath
 PARAMETERS filename, trim_ext, plattype
 PRIVATE at_pos
 
-IF EMPTY( m.filename)
+IF EMPTY( m.filename )
   RETURN ""
 ENDIF
-m.at_pos=AT_C( ":", m.filename)
+m.at_pos=AT_C( ":", m.filename )
 IF m.at_pos>0
-  m.filename=SUBSTRC( m.filename, m.at_pos+ 1)
+  m.filename=SUBSTRC( m.filename, m.at_pos+ 1 )
 ENDIF
 IF m.trim_ext
-  m.filename=trimext( m.filename)
+  m.filename=trimext( m.filename )
 ENDIF
 IF m.plattype
   m.filename=IIF( _DOS.OR._UNIX, UPPER( m.filename), LOWER( m.filename))
@@ -5121,17 +5121,17 @@ FUNCTION trimext
 PARAMETERS filename,plattype
 PRIVATE at_pos,at_pos2
 
-m.at_pos=RATC('.',m.filename)
+m.at_pos=RATC('.',m.filename )
 IF m.at_pos>0
   m.at_pos2=MAX(RATC('T',m.filename),RATC(':',m.filename))
   IF m.at_pos>m.at_pos2
-    m.filename=LEFTC(m.filename,m.at_pos-1)
+    m.filename=LEFTC(m.filename,m.at_pos-1 )
   ENDIF
 ENDIF
 IF m.plattype
   m.filename=IIF(_DOS.OR._UNIX,UPPER(m.filename),LOWER(m.filename))
 ENDIF
-RETURN ALLTRIM(m.filename)
+RETURN ALLTRIM(m.filename )
 
 * END trimext
 
@@ -5146,7 +5146,7 @@ FUNCTION trimfile
 PARAMETERS filename,plattype
 PRIVATE at_pos
 
-m.at_pos=RATC('\',m.filename)
+m.at_pos=RATC('\',m.filename )
 m.filename=ALLTRIM(IIF(m.at_pos=0,m.filename,LEFTC(m.filename,m.at_pos)))
 IF m.plattype
   m.filename=IIF(_DOS.OR._UNIX,UPPER(m.filename),LOWER(m.filename))
@@ -5167,11 +5167,11 @@ PRIVATE var_type, memodata, memline, memline2, str_data, lastmline
 PRIVATE matchcount, linecount, linecount2, at_mline, at_mline2, mline2
 PRIVATE cr, lf, lf_pos, lf_pos2, at_pos
 
-m.cr=CHR( 13)
-m.lf=CHR( 10)
+m.cr=CHR( 13 )
+m.lf=CHR( 10 )
 IF PARAMETERS()<=1
   IF TYPE( "OBJTYPE" )=="N".AND.TYPE( "CENTER" )=="L"
-    m.searchfld=( OBJTYPE=1)
+    m.searchfld=( OBJTYPE=1 )
   ELSE
     m.searchfld=dfltfld()
   ENDIF
@@ -5189,28 +5189,28 @@ m.var_type=TYPE( "m.searchfld" )
 DO CASE
   CASE m.var_type=="L"
     IF m.searchfld
-      IF EMPTY( SETUPCODE)
+      IF EMPTY( SETUPCODE )
         RETURN IIF( m.returnmline, 0, CHR( 0))
       ENDIF
       m.memodata=SETUPCODE
       m.searchfld="SETUPCODE"
     ELSE
-      IF EMPTY( COMMENT)
+      IF EMPTY( COMMENT )
         RETURN IIF( m.returnmline, 0, CHR( 0))
       ENDIF
       m.memodata=COMMENT
       m.searchfld="COMMENT"
     ENDIF
   CASE m.var_type=="C"
-    m.memodata=EVALUATE( m.searchfld)
-    IF EMPTY( m.searchfld)
+    m.memodata=EVALUATE( m.searchfld )
+    IF EMPTY( m.searchfld )
       RETURN IIF( m.returnmline, 0, CHR( 0))
     ENDIF
   OTHERWISE
     RETURN IIF( m.returnmline, 0, CHR( 0))
 ENDCASE
-m.find_str=ALLTRIM( m.find_str)
-IF EMPTY( m.find_str).OR.EMPTY( m.memodata).OR.m.memodata==CHR( 0)
+m.find_str=ALLTRIM( m.find_str )
+IF EMPTY( m.find_str).OR.EMPTY( m.memodata).OR.m.memodata==CHR( 0 )
   RETURN IIF( m.returnmline, 0, CHR( 0))
 ENDIF
 m.memline2=""
@@ -5224,10 +5224,10 @@ m.matchcount=0
 m.linecount=0
 m.linecount2=0
 m.memodata=m.lf+ m.memodata
-_MLINE=ATCC( m.lf+ m.find_str, m.memodata)
+_MLINE=ATCC( m.lf+ m.find_str, m.memodata )
 IF _MLINE=0
-  m.memodata=m.cr+ SUBSTRC( m.memodata, 2)
-  _MLINE=ATCC( m.cr+ m.find_str, m.memodata)
+  m.memodata=m.cr+ SUBSTRC( m.memodata, 2 )
+  _MLINE=ATCC( m.cr+ m.find_str, m.memodata )
   IF _MLINE=0
     _MLINE=m.lastmline
     RETURN IIF( m.returnmline, 0, CHR( 0))
@@ -5235,9 +5235,9 @@ IF _MLINE=0
 ENDIF
 DO WHILE .T.
   DO CASE
-    CASE m.occurance>0.AND._MLINE>=LENC( m.memodata)
+    CASE m.occurance>0.AND._MLINE>=LENC( m.memodata )
       EXIT
-    CASE _MLINE>=LENC( m.memodata)
+    CASE _MLINE>=LENC( m.memodata )
       m.occurance=- 1
     OTHERWISE
       m.at_mline=_MLINE
@@ -5246,17 +5246,17 @@ DO WHILE .T.
       IF m.lf_pos>0
         m.memline=ALLTRIM( LEFTC( m.memline, m.lf_pos- 1))
       ENDIF
-      m.str_data=SUBSTRC( m.memline, LENC( m.find_str)+ 1, 1)
-      m.at_pos=ATCC( m.find_str, m.memline)
+      m.str_data=SUBSTRC( m.memline, LENC( m.find_str)+ 1, 1 )
+      m.at_pos=ATCC( m.find_str, m.memline )
       IF m.at_pos#1.OR.( .NOT.m.ignoreword.AND..NOT.EMPTY( m.str_data))
         m.at_pos=0
-        m.memodata=m.lf+ SUBSTRC( m.memodata, _MLINE)
-        _MLINE=ATCC( m.lf+ m.find_str, m.memodata)
+        m.memodata=m.lf+ SUBSTRC( m.memodata, _MLINE )
+        _MLINE=ATCC( m.lf+ m.find_str, m.memodata )
         IF _MLINE>0
           LOOP
         ENDIF
-        m.memodata=m.cr+ SUBSTRC( m.memodata, 2)
-        _MLINE=ATCC( m.cr+ m.find_str, m.memodata)
+        m.memodata=m.cr+ SUBSTRC( m.memodata, 2 )
+        _MLINE=ATCC( m.cr+ m.find_str, m.memodata )
         IF _MLINE>0
           LOOP
         ENDIF
@@ -5294,18 +5294,18 @@ DO WHILE .T.
   m.mline2=_MLINE
   _MLINE=m.lastmline
   m.at_pos=0
-  m.str_data=SUBSTRC( m.memline, LENC( m.find_str)+ 1)
+  m.str_data=SUBSTRC( m.memline, LENC( m.find_str)+ 1 )
   IF m.ignoreword.AND..NOT.LEFTC( m.str_data, 1)==" "
-    m.at_pos=AT_C( " ", m.str_data)
+    m.at_pos=AT_C( " ", m.str_data )
     IF m.at_pos>0
-      m.str_data=SUBSTRC( m.str_data, m.at_pos+ 1)
+      m.str_data=SUBSTRC( m.str_data, m.at_pos+ 1 )
     ENDIF
   ENDIF
-  m.str_data=ALLTRIM( m.str_data)
+  m.str_data=ALLTRIM( m.str_data )
   IF .NOT.m.returnmline
     RETURN m.str_data
   ENDIF
-  m.returnmline=m.mline2- m.at_mline+ 1- IIF( m.lf_pos>0, 1, 0)
+  m.returnmline=m.mline2- m.at_mline+ 1- IIF( m.lf_pos>0, 1, 0 )
   RETURN m.at_mline+ m.linecount
 ENDDO
 _MLINE=m.lastmline
@@ -5348,8 +5348,8 @@ RETURN "COMMENT"
 *--      CASE objtype = cnSayGet AND ;
 *--        objcode >= 1
 *--
-*--        IF oktoint( picture)
-*--          * REPLACE picture WITH IntlEnvlp( picture)
+*--        IF oktoint( picture )
+*--          * REPLACE picture WITH IntlEnvlp( picture )
 *--        ENDIF
 *--
 *--        =Msg_Err()
@@ -5391,13 +5391,13 @@ RETURN "COMMENT"
 *--   Fix:  INTL sometimes didn't localize error and
 *--         message strings
 *--
-*--   Support "*:INTLALIGN [ LEFT|RIGHT|CENTER]" ( old)
-*--       and "*:INTL ALIGN [ LEFT|RIGHT|CENTER]" ( new)
+*--   Support "*:INTLALIGN [ LEFT|RIGHT|CENTER]" ( old )
+*--       and "*:INTL ALIGN [ LEFT|RIGHT|CENTER]" ( new )
 *--       in the setup and comment snippets.  New method
 *--       is more consistent, while still supporting the
 *--       old syntax.
 *--
-*-- Support for object exceptions ( i.e. skip certain objects)
+*-- Support for object exceptions ( i.e. skip certain objects )
 *--       with either
 *--         _INTLExcept= <cExcptStr>     in config.fp
 *--         m._INTLExcept = <cExcptStr>  generate- time memvar, overrides
@@ -5462,11 +5462,11 @@ FUNCTION warning
  IF TYPE( "m.operand" ) == "C"
    m.operand = STRTRAN( m.operand, " ", "" )
    IF LEFTC( m.operand, 1) == "."
-     m.operand = SUBSTRC( m.operand, 2)
+     m.operand = SUBSTRC( m.operand, 2 )
    ENDIF
    m.cmnd_str = m.cmnd_str+ " '"+ m.operand+ "' not found"
  ENDIF
- IF TYPE( "m.fscxbase" ) == "C".AND..NOT.EMPTY( m.fscxbase)
+ IF TYPE( "m.fscxbase" ) == "C".AND..NOT.EMPTY( m.fscxbase )
    m.cmnd_str = m.cmnd_str+ "  [ "+ trimpath( m.fscxbase)+ "]"
  ENDIF
  WAIT CLEAR
@@ -5474,9 +5474,9 @@ FUNCTION warning
    WAIT LEFTC( m.cmnd_str, 254) WINDOW NOWAIT
    RETURN m.warnings
  ENDIF
- IF _FOX26.OR..NOT.EMPTY( _FOX25REV)
-   m.cmnd_str ='GENSCRNX Warning Mode - {C}ancel  {S}uspend  {I}gnore'+ CHR( 13)+ ;
-              CHR( 13)+ m.cmnd_str
+ IF _FOX26.OR..NOT.EMPTY( _FOX25REV )
+   m.cmnd_str ='GENSCRNX Warning Mode - {C}ancel  {S}uspend  {I}gnore'+ CHR(13)+ ;
+              CHR(13)+ m.cmnd_str
  ENDIF
  CLEAR TYPEAHEAD
  WAIT LEFTC( m.cmnd_str, 254) WINDOW
@@ -5503,34 +5503,35 @@ FUNCTION warning
 *  DO cleanup
  CANCEL
 * END warning
-FUNCTION IsTag ( tcTagName, tcAlias)
-  *-- Receives a tag name and an alias ( which is optional)
-  *-- and returns .T. if the tag name exists in the alias.
-  *-- If no alias is passed, the current alias is assumed.
-  LOCAL llIsTag, ;
-        lcTagFound
 
-  IF PARAMETERS() < 2
+FUNCTION IsTag ( tcTagName, tcAlias )
+*-- Receives a tag name and an alias ( which is optional )
+*-- and returns .T. if the tag name exists in the alias.
+*-- If no alias is passed, the current alias is assumed.
+LOCAL llIsTag, ;
+      lcTagFound
+
+IF PARAMETERS() < 2
     tcAlias = ALIAS()
-  ENDIF
+ENDIF
 
-  IF EMPTY( tcAlias)
+IF EMPTY( tcAlias )
     RETURN .F.
-  ENDIF
+ENDIF
 
-  llIsTag = .F.
-  tcTagName = UPPER( ALLTRIM( tcTagName ))
+llIsTag    = .F.
+tcTagName  = UPPER( ALLTRIM( tcTagName ))
+lnTagNum   = 1
+lcTagFound = TAG( lnTagNum, tcAlias )
 
-  lnTagNum = 1
-  lcTagFound = TAG( lnTagNum, tcAlias)
-  DO WHILE !EMPTY( lcTagFound)
+DO WHILE !EMPTY( lcTagFound )
     IF UPPER( ALLTRIM( lcTagFound )) == tcTagName
       llIsTag = .T.
       EXIT
     ENDIF
-    lnTagNum = lnTagNum + 1
-    lcTagFound = TAG( lnTagNum, tcAlias)
-  ENDDO
+    lnTagNum   = lnTagNum + 1
+    lcTagFound = TAG( lnTagNum, tcAlias )
+ENDDO
 
-  RETURN llIsTag
+RETURN llIsTag
 
