@@ -2803,7 +2803,7 @@ DEFINE CLASS cINTLStrategy AS cINTLMemento
 
       IF lSetIndex
         *-- Make sure order is set
-        IF !ISTAG( ccDefaultLanguageField, lcAlias )
+        IF ! IsTag( ccDefaultLanguageField, lcAlias )
           this.CreateStrategyCDX()
         ENDIF
       ENDIF
@@ -4755,7 +4755,7 @@ PRIVATE jcWorkAround, lcLanguage, lcLocalize, lcStrUpd, lcStrUpdPath, ;
 
 
 *-- Bail out if required
-IF OBJTYPE = 1
+IF objType = 1
   IF WORDSEARCH( "*:INTL IGNORE", "SETUP" )<> CHR( 0) OR ;
      ( TYPE( "m._INTL" )= "C" AND UPPER( m._INTL)= "OFF" )
     GO BOTTOM
@@ -5143,53 +5143,53 @@ PRIVATE var_type, memodata, memline, memline2, str_data, lastmline
 PRIVATE matchcount, linecount, linecount2, at_mline, at_mline2, mline2
 PRIVATE cr, lf, lf_pos, lf_pos2, at_pos
 
-m.cr=CHR( 13 )
-m.lf=CHR( 10 )
-IF PARAMETERS()<=1
-  IF TYPE( "OBJTYPE" )=="N".AND.TYPE( "CENTER" )=="L"
-    m.searchfld=( OBJTYPE=1 )
+m.cr = CHR( 13 )
+m.lf = CHR( 10 )
+IF PARAMETERS() <= 1
+  IF TYPE( "objType" ) == "N" .AND. TYPE( "CENTER" ) == "L"
+    m.searchfld = ( objType = 1 )
   ELSE
-    m.searchfld=dfltfld()
+    m.searchfld = dfltfld()
   ENDIF
 ENDIF
-IF TYPE( "m.returnmline" )=="N"
+IF TYPE( "m.returnmline" ) == "N"
   m.returnmline=.T.
 ENDIF
 DO CASE
-  CASE TYPE( "m.occurance" )#"N"
-    m.occurance=1
-  CASE m.occurance<0
+  CASE TYPE( "m.occurance" ) # "N"
+    m.occurance = 1
+  CASE m.occurance < 0
     RETURN IIF( m.returnmline, 0, CHR( 0))
 ENDCASE
-m.var_type=TYPE( "m.searchfld" )
+m.var_type = TYPE( "m.searchfld" )
 DO CASE
-  CASE m.var_type=="L"
+  CASE m.var_type == "L"
     IF m.searchfld
       IF EMPTY( SETUPCODE )
         RETURN IIF( m.returnmline, 0, CHR( 0))
       ENDIF
-      m.memodata=SETUPCODE
-      m.searchfld="SETUPCODE"
+      m.memodata  = SETUPCODE
+      m.searchfld = "SETUPCODE"
     ELSE
-      IF EMPTY( COMMENT )
+      IF EMPTY( comment )
         RETURN IIF( m.returnmline, 0, CHR( 0))
       ENDIF
-      m.memodata=COMMENT
-      m.searchfld="COMMENT"
+      m.memodata = comment
+      m.searchfld = "comment"
     ENDIF
-  CASE m.var_type=="C"
-    m.memodata=EVALUATE( m.searchfld )
+  CASE m.var_type == "C"
+    m.memodata = EVALUATE( m.searchfld )
     IF EMPTY( m.searchfld )
       RETURN IIF( m.returnmline, 0, CHR( 0))
     ENDIF
   OTHERWISE
     RETURN IIF( m.returnmline, 0, CHR( 0))
 ENDCASE
-m.find_str=ALLTRIM( m.find_str )
-IF EMPTY( m.find_str).OR.EMPTY( m.memodata).OR.m.memodata==CHR( 0 )
+m.find_str = ALLTRIM( m.find_str )
+IF EMPTY( m.find_str) .OR. EMPTY( m.memodata) .OR. m.memodata == CHR( 0 )
    RETURN IIF( m.returnmline, 0, CHR( 0))
 ENDIF
-m.memline2=""
+m.memline2 = ""
 m.lastmline=_MLINE
 m.at_mline=0
 m.at_mline2=0
@@ -5287,15 +5287,46 @@ ENDDO
 _MLINE=m.lastmline
 RETURN IIF( m.returnmline, 0, CHR( 0))
 * END wordsearch
+
+
 FUNCTION dfltfld
 
-IF TYPE( "NAMECHANGE" )=="L" .AND. OBJTYPE= 1
-   RETURN "SETUP"
+IF TYPE( "namechange" ) == "L" .AND. objType = 1
+   RETURN "setup"
 ENDIF
-IF TYPE( "OUTFILE" )=="M" .OR. TYPE( "PTXDATA" )=="M"
-   RETURN "NAME"
+IF TYPE( "outfile" ) == "M" .OR. TYPE( "ptxdata" ) == "M"
+   RETURN "name"
 ENDIF
-RETURN "COMMENT"
+RETURN "comment"
+
+FUNCTION IsTag ( tcTagName, tcAlias )
+*-- Receives a tag name and an alias ( which is optional )
+*-- and returns .T. if the tag name exists in the alias.
+*-- If no alias is passed, the current alias is assumed.
+LOCAL llIsTag, lcTagFound
+
+IF PARAMETERS() < 2
+    tcAlias = ALIAS()
+ENDIF
+
+IF EMPTY( tcAlias )
+    RETURN .F.
+ENDIF
+
+llIsTag    = .F.
+tcTagName  = UPPER( ALLTRIM( tcTagName ))
+lnTagNum   = 1
+lcTagFound = TAG( lnTagNum, tcAlias )
+
+DO WHILE !EMPTY( lcTagFound )
+    IF UPPER( ALLTRIM( lcTagFound )) == tcTagName
+      llIsTag = .T.
+      EXIT
+    ENDIF
+    lnTagNum   = lnTagNum + 1
+    lcTagFound = TAG( lnTagNum, tcAlias )
+ENDDO
+   RETURN llIsTag
 
 
 * ///////////////////////////////////
@@ -5321,7 +5352,7 @@ RETURN "COMMENT"
 *--   and remove the comment on the REPLACE statement
 *--
 *--      *-- Picture clauses are localizable
-*--      CASE objtype = cnSayGet AND ;
+*--      CASE objType = cnSayGet AND ;
 *--        objcode >= 1
 *--
 *--        IF oktoint( picture )
@@ -5410,51 +5441,3 @@ RETURN "COMMENT"
 *-- New in Version 1.30
 *--   *:INTL FREE comment directive allows strings to
 *--          grow without regard to other objects
-
-
-***********************************************************************
-* E N H A N C E M E N T   R E Q U E S T S
-***********************************************************************
-*  SetStrings, GetStrings
-*  Config which tolerances to show.          [ arm 4.25.95]
-*  Add fields to strings table.              [ arm 4.25.95]
-*  Localize method code.                     [ arm 4.25.95]
-*  Prevent multi- instancing the INTL object. [ arm 4.26.95]
-*  Conversion manager
-*
-
-
-
-***********************************************************************
-* P R O P O S E D
-***********************************************************************
-FUNCTION IsTag ( tcTagName, tcAlias )
-*-- Receives a tag name and an alias ( which is optional )
-*-- and returns .T. if the tag name exists in the alias.
-*-- If no alias is passed, the current alias is assumed.
-LOCAL llIsTag, ;
-      lcTagFound
-
-IF PARAMETERS() < 2
-    tcAlias = ALIAS()
-ENDIF
-
-IF EMPTY( tcAlias )
-    RETURN .F.
-ENDIF
-
-llIsTag    = .F.
-tcTagName  = UPPER( ALLTRIM( tcTagName ))
-lnTagNum   = 1
-lcTagFound = TAG( lnTagNum, tcAlias )
-
-DO WHILE !EMPTY( lcTagFound )
-    IF UPPER( ALLTRIM( lcTagFound )) == tcTagName
-      llIsTag = .T.
-      EXIT
-    ENDIF
-    lnTagNum   = lnTagNum + 1
-    lcTagFound = TAG( lnTagNum, tcAlias )
-ENDDO
-   RETURN llIsTag
-
