@@ -4823,8 +4823,8 @@ IF llStrUpd
       IF USED( "STRINGS" )
          * Make sure it's the correct one
          IF ! lcStrUpdPath $ UPPER( DBF( "Strings" ))
-            =warning( "INTL: Open strings file doesn't match target." + ;
-           CHR(13) + "       No update will be performed." )
+            MESSASGEBOX( "INTL: Open strings file doesn't match target." + ;
+               CHR(13) + "       No update will be performed." )
             llStrUpd = .F.
          ENDIF
       ELSE
@@ -4833,8 +4833,8 @@ IF llStrUpd
       ENDIF
 
    ELSE
-      =warning( "INTL: Invalid path to STRINGS table: "+ lcStrUpdPath+ ;
-           CHR(13) + "       No update will be performed." )
+      MESSASGEBOX( "INTL: Invalid path to STRINGS table: "+ lcStrUpdPath+ ;
+         CHR(13) + "       No update will be performed." )
       llStrUpd = .F.
    ENDIF
 
@@ -5428,58 +5428,6 @@ RETURN "COMMENT"
 ***********************************************************************
 * P R O P O S E D
 ***********************************************************************
-FUNCTION warning
- PARAMETERS cmnd_str, operand
-
- m.warnings = m.warnings+ 1
- IF TYPE( "m.cmnd_str" )#"C"
-RETURN m.warnings
- ENDIF
- IF TYPE( "m.operand" ) == "C"
-   m.operand = STRTRAN( m.operand, " ", "" )
-   IF LEFTC( m.operand, 1) == "."
-     m.operand = SUBSTRC( m.operand, 2 )
-   ENDIF
-   m.cmnd_str = m.cmnd_str+ " '"+ m.operand+ "' not found"
- ENDIF
- IF TYPE( "m.fscxbase" ) == "C".AND..NOT.EMPTY( m.fscxbase )
-   m.cmnd_str = m.cmnd_str+ "  [ "+ trimpath( m.fscxbase)+ "]"
- ENDIF
- WAIT CLEAR
- IF TYPE( "m.autohalt" ) == "C".AND.m.autohalt == "OFF"
-   WAIT LEFTC( m.cmnd_str, 254) WINDOW NOWAIT
-RETURN m.warnings
- ENDIF
- IF _FOX26.OR..NOT.EMPTY( _FOX25REV )
-   m.cmnd_str ='GENSCRNX Warning Mode - {C}ancel  {S}uspend  {I}gnore'+ CHR(13)+ ;
-              CHR(13)+ m.cmnd_str
- ENDIF
- CLEAR TYPEAHEAD
- WAIT LEFTC( m.cmnd_str, 254) WINDOW
- DO CASE
-   CASE MDOWN()
-     = .F.
-   CASE UPPER( CHR( LASTKEY())) == "I"
-     RETURN m.warnings
-   CASE UPPER( CHR( LASTKEY())) == "S"
-     m.lasterror =ON( "ERROR" )
-     ON ERROR
-     WAIT CLEAR
-     CLEAR TYPEAHEAD
-     m.lastcursr = SET( "CURSOR" )
-     ACTIVATE WINDOW Command
-     SET ESCAPE ON
-     SUSPEND
-     SET ESCAPE OFF
-     SET CURSOR &lastcursr
-     ON ERROR &lasterror
-     RETURN m.warnings
- ENDCASE
- m.autorun = "OFF"
-*  DO cleanup
- CANCEL
-* END warning
-
 FUNCTION IsTag ( tcTagName, tcAlias )
 *-- Receives a tag name and an alias ( which is optional )
 *-- and returns .T. if the tag name exists in the alias.
