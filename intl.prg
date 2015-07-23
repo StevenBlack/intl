@@ -4766,17 +4766,17 @@ ENDIF
 *-- These could well be #DEFINEs, assuming
 *-- we liked those...
 llExplicit = .F.
-m.cr = CHR( 13 )
-m.lf = CHR( 10 )
-cr_lf = CHR(13)+ CHR( 10 )
+m.cr       = CHR(13)
+m.lf       = CHR(10)
+cr_lf      = CHR(13) + CHR(10)
 
 lcItsExprChar = ccItsExpression
 
 jcWorkAround = configfp( "IntlTiming", configfp( "_INTLTiming", [ ]))
 
 lcLocalize = IIF( TYPE( "_INTLTiming" )= "U", ;
-                  PROPER( jcWorkAround), ;
-                  PROPER( _INTLTiming) )
+                  PROPER( jcWorkAround ), ;
+                  PROPER( _INTLTiming ))
 
 IF EMPTY( lcLocalize) OR ! INLIST( lcLocalize, "Run", "Generate" )
   lcLocalize = "Run"
@@ -4786,7 +4786,7 @@ ENDIF
 jcWorkAround = configfp( "IntlLang", configfp( "_INTLLang", ccDefaultLanguage ))
 
 lcLanguage = IIF( TYPE( "_INTLLang" )= "U", ;
-                  PROPER( jcWorkAround), ;
+                  PROPER( jcWorkAround ), ;
                   _INTLLang )
 
 IF EMPTY( lcLanguage )
@@ -4813,7 +4813,7 @@ IF llStrUpd
    lcStrUpdPath = STRTRAN( lcStrUpdPath, ccDefaultStringsTable )
 
    *-- Ending backslash or colon
-   IF ! EMPTY( lcStrUpdPath) AND ! RIGHTC( lcStrUpdPath, 1) $ ":\"
+   IF ! EMPTY( lcStrUpdPath ) AND ! RIGHTC( lcStrUpdPath, 1 ) $ ":\"
       lcStrUpdPath = lcStrUpdPath+ "\"
    ENDIF
 
@@ -4847,7 +4847,7 @@ SCAN
       AND ! "\-" $ PROMPT ;
       AND ! "*:INTL IGNORE" $ UPPER( comment )
 
-    REPLACE PROMPT WITH ["+ ]+ ImenuEnvlp( "["+ TRIM( PROMPT)+ "]" )+ [ + "]
+    REPLACE PROMPT WITH ["+ ] + ImenuEnvlp( "[" + TRIM( PROMPT )+ "]" ) + [ + "]
 
     *{ 07/06/95 ARMACNEILL
     *{ Support for really cool language sensitive menus
@@ -5097,15 +5097,15 @@ FUNCTION trimext
 PARAMETERS filename,plattype
 PRIVATE at_pos,at_pos2
 
-m.at_pos=RATC('.',m.filename )
-IF m.at_pos>0
-  m.at_pos2=MAX(RATC('T',m.filename),RATC(':',m.filename))
-  IF m.at_pos>m.at_pos2
-    m.filename=LEFTC(m.filename,m.at_pos-1 )
+m.at_pos = RATC('.',m.filename )
+IF m.at_pos > 0
+  m.at_pos2 = MAX( RATC( 'T', m.filename ),RATC( ':' , m.filename ))
+  IF m.at_pos > m.at_pos2
+    m.filename = LEFTC( m.filename,m.at_pos-1 )
   ENDIF
 ENDIF
 IF m.plattype
-  m.filename=IIF(_DOS.OR._UNIX,UPPER(m.filename),LOWER(m.filename))
+  m.filename = IIF( _DOS .OR. _UNIX, UPPER( m.filename ), LOWER( m.filename ))
 ENDIF
 RETURN ALLTRIM(m.filename )
 
@@ -5122,10 +5122,10 @@ FUNCTION trimfile
 PARAMETERS filename,plattype
 PRIVATE at_pos
 
-m.at_pos=RATC('\',m.filename )
-m.filename=ALLTRIM(IIF(m.at_pos=0,m.filename,LEFTC(m.filename,m.at_pos)))
+m.at_pos   = RATC( '\', m.filename )
+m.filename = ALLTRIM( IIF( m.at_pos = 0, m.filename, LEFTC( m.filename, m.at_pos )))
 IF m.plattype
-  m.filename=IIF(_DOS.OR._UNIX,UPPER(m.filename),LOWER(m.filename))
+  m.filename=IIF(_DOS .OR. _UNIX, UPPER( m.filename ), LOWER( m.filename ))
 ENDIF
 RETURN m.filename
 
@@ -5143,8 +5143,8 @@ PRIVATE var_type, memodata, memline, memline2, str_data, lastmline
 PRIVATE matchcount, linecount, linecount2, at_mline, at_mline2, mline2
 PRIVATE cr, lf, lf_pos, lf_pos2, at_pos
 
-m.cr = CHR( 13 )
-m.lf = CHR( 10 )
+m.cr = CHR(13)
+m.lf = CHR(10)
 IF PARAMETERS() <= 1
   IF TYPE( "objType" ) == "N" .AND. TYPE( "CENTER" ) == "L"
     m.searchfld = ( objType = 1 )
@@ -5174,7 +5174,7 @@ DO CASE
       IF EMPTY( comment )
         RETURN IIF( m.returnmline, 0, CHR( 0))
       ENDIF
-      m.memodata = comment
+      m.memodata  = comment
       m.searchfld = "comment"
     ENDIF
   CASE m.var_type == "C"
@@ -5189,106 +5189,110 @@ m.find_str = ALLTRIM( m.find_str )
 IF EMPTY( m.find_str) .OR. EMPTY( m.memodata) .OR. m.memodata == CHR( 0 )
    RETURN IIF( m.returnmline, 0, CHR( 0))
 ENDIF
-m.memline2 = ""
-m.lastmline=_MLINE
-m.at_mline=0
-m.at_mline2=0
-m.mline2=0
-m.lf_pos=0
-m.lf_pos2=0
-m.matchcount=0
-m.linecount=0
-m.linecount2=0
-m.memodata=m.lf+ m.memodata
-_MLINE=ATCC( m.lf+ m.find_str, m.memodata )
-IF _MLINE=0
-  m.memodata=m.cr+ SUBSTRC( m.memodata, 2 )
-  _MLINE=ATCC( m.cr+ m.find_str, m.memodata )
-  IF _MLINE=0
-    _MLINE=m.lastmline
+m.memline2   = ""
+m.lastmline  = _MLINE
+m.at_mline   = 0
+m.at_mline2  = 0
+m.mline2     = 0
+m.lf_pos     = 0
+m.lf_pos2    = 0
+m.matchcount = 0
+m.linecount  = 0
+m.linecount2 = 0
+m.memodata   = m.lf+ m.memodata
+_MLINE = ATCC( m.lf+ m.find_str, m.memodata )
+IF _MLINE = 0
+  m.memodata = m.cr+ SUBSTRC( m.memodata, 2 )
+  _MLINE = ATCC( m.cr+ m.find_str, m.memodata )
+  IF _MLINE = 0
+    _MLINE = m.lastmline
     RETURN IIF( m.returnmline, 0, CHR( 0))
   ENDIF
 ENDIF
 DO WHILE .T.
   DO CASE
-    CASE m.occurance>0.AND._MLINE>=LENC( m.memodata )
+    CASE m.occurance > 0 .AND. _MLINE >= LENC( m.memodata )
       EXIT
-    CASE _MLINE>=LENC( m.memodata )
-      m.occurance=- 1
+    CASE _MLINE >= LENC( m.memodata )
+      m.occurance = - 1
     OTHERWISE
-      m.at_mline=_MLINE
-      m.memline=ALLTRIM( MLINE( m.memodata, 1, _MLINE))
-      m.lf_pos=AT_C( m.lf, SUBSTRC( m.memodata, m.at_mline+ 1, LENC( m.memline)))
-      IF m.lf_pos>0
-        m.memline=ALLTRIM( LEFTC( m.memline, m.lf_pos- 1))
+      m.at_mline = _MLINE
+      m.memline  = ALLTRIM( MLINE( m.memodata, 1, _MLINE))
+      m.lf_pos   = AT_C( m.lf, SUBSTRC( m.memodata, m.at_mline+ 1, LENC( m.memline)))
+      IF m.lf_pos > 0
+        m.memline = ALLTRIM( LEFTC( m.memline, m.lf_pos- 1))
       ENDIF
-      m.str_data=SUBSTRC( m.memline, LENC( m.find_str)+ 1, 1 )
-      m.at_pos=ATCC( m.find_str, m.memline )
-      IF m.at_pos#1.OR.( .NOT.m.ignoreword.AND..NOT.EMPTY( m.str_data))
-        m.at_pos=0
-        m.memodata=m.lf+ SUBSTRC( m.memodata, _MLINE )
-        _MLINE=ATCC( m.lf+ m.find_str, m.memodata )
-        IF _MLINE>0
+      m.str_data = SUBSTRC( m.memline, LENC( m.find_str)+ 1, 1 )
+      m.at_pos   = ATCC( m.find_str, m.memline )
+      IF m.at_pos#1 .OR. ( .NOT. m.ignoreword .AND. .NOT. EMPTY( m.str_data ))
+        m.at_pos   = 0
+        m.memodata = m.lf+ SUBSTRC( m.memodata, _MLINE )
+        _MLINE     = ATCC( m.lf+ m.find_str, m.memodata )
+        IF _MLINE > 0
           LOOP
         ENDIF
-        m.memodata=m.cr+ SUBSTRC( m.memodata, 2 )
-        _MLINE=ATCC( m.cr+ m.find_str, m.memodata )
-        IF _MLINE>0
+        m.memodata = m.cr + SUBSTRC( m.memodata, 2 )
+        _MLINE = ATCC( m.cr + m.find_str, m.memodata )
+        IF _MLINE > 0
           LOOP
         ENDIF
-        IF m.occurance>0
+        IF m.occurance > 0
           EXIT
         ENDIF
       ENDIF
-      m.matchcount=m.matchcount+ 1
-      IF m.matchcount<m.occurance.OR.m.occurance=0
-        IF m.at_pos=1.AND.( m.ignoreword.OR.EMPTY( m.str_data))
-          m.mline2=_MLINE
-          m.at_mline2=m.at_mline
-          m.memline2=m.memline
-          m.lf_pos2=m.lf_pos
-          m.linecount2=m.linecount
+      m.matchcount = m.matchcount+ 1
+      IF m.matchcount < m.occurance .OR. m.occurance = 0
+        IF m.at_pos = 1 .AND. ( m.ignoreword .OR. EMPTY( m.str_data ))
+          m.mline2     = _MLINE
+          m.at_mline2  = m.at_mline
+          m.memline2   = m.memline
+          m.lf_pos2    = m.lf_pos
+          m.linecount2 = m.linecount
         ENDIF
         IF BETWEEN( _MLINE, 1, LENC( m.memodata))
-          _MLINE=_MLINE- 2
-          m.linecount=m.linecount+ _MLINE
+          _MLINE      = _MLINE - 2
+          m.linecount = m.linecount + _MLINE
           LOOP
         ENDIF
       ENDIF
   ENDCASE
-  IF m.occurance<=0
-    IF m.mline2=0
-      RETURN IIF( m.returnmline, 0, CHR( 0))
+  IF m.occurance <= 0
+    IF m.mline2 = 0
+      RETURN IIF( m.returnmline, 0, CHR(0))
     ENDIF
-    _MLINE=m.mline2
-    m.at_mline=m.at_mline2
-    m.memline=m.memline2
-    m.lf_pos=m.lf_pos2
-    m.linecount=m.linecount2
-    m.occurance=1
+    _MLINE      = m.mline2
+    m.at_mline  = m.at_mline2
+    m.memline   = m.memline2
+    m.lf_pos    = m.lf_pos2
+    m.linecount = m.linecount2
+    m.occurance = 1
   ENDIF
-  m.mline2=_MLINE
-  _MLINE=m.lastmline
-  m.at_pos=0
-  m.str_data=SUBSTRC( m.memline, LENC( m.find_str)+ 1 )
-  IF m.ignoreword.AND..NOT.LEFTC( m.str_data, 1)==" "
-    m.at_pos=AT_C( " ", m.str_data )
-    IF m.at_pos>0
-      m.str_data=SUBSTRC( m.str_data, m.at_pos+ 1 )
+  m.mline2   = _MLINE
+  _MLINE     = m.lastmline
+  m.at_pos   = 0
+  m.str_data = SUBSTRC( m.memline, LENC( m.find_str) + 1 )
+  IF m.ignoreword .AND. .NOT. LEFTC( m.str_data, 1) == " "
+    m.at_pos = AT_C( " ", m.str_data )
+    IF m.at_pos > 0
+      m.str_data = SUBSTRC( m.str_data, m.at_pos+ 1 )
     ENDIF
   ENDIF
-  m.str_data=ALLTRIM( m.str_data )
-  IF .NOT.m.returnmline
+  m.str_data = ALLTRIM( m.str_data )
+  IF .NOT. m.returnmline
     RETURN m.str_data
   ENDIF
-  m.returnmline=m.mline2- m.at_mline+ 1- IIF( m.lf_pos>0, 1, 0 )
+  m.returnmline = m.mline2 - m.at_mline + 1- IIF( m.lf_pos>0, 1, 0 )
    RETURN m.at_mline+ m.linecount
 ENDDO
-_MLINE=m.lastmline
+_MLINE = m.lastmline
 RETURN IIF( m.returnmline, 0, CHR( 0))
 * END wordsearch
 
-
+*!*********************************************
+*!
+*!       Procedure: dfltfld
+*!
+*!*********************************************
 FUNCTION dfltfld
 
 IF TYPE( "namechange" ) == "L" .AND. objType = 1
