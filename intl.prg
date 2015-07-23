@@ -4756,8 +4756,8 @@ PRIVATE jcWorkAround, lcLanguage, lcLocalize, lcStrUpd, lcStrUpdPath, ;
 
 *-- Bail out if required
 IF objType = 1
-  IF WORDSEARCH( "*:INTL IGNORE", "SETUP" )<> CHR( 0) OR ;
-     ( TYPE( "m._INTL" ) = "C" AND UPPER( m._INTL)= "OFF" )
+  IF WORDSEARCH( "*:INTL IGNORE", "SETUP" ) <> CHR(0) OR ;
+     ( TYPE( "m._INTL" ) = "C" AND UPPER( m._INTL) = "OFF" )
     GO BOTTOM
     RETURN
   ENDIF
@@ -4785,7 +4785,7 @@ ENDIF
 *-- Support "INTLLANG" and "_INTLLang".
 jcWorkAround = configfp( "IntlLang", configfp( "_INTLLang", ccDefaultLanguage ))
 
-lcLanguage = IIF( TYPE( "_INTLLang" )= "U", ;
+lcLanguage = IIF( TYPE( "_INTLLang" ) = "U", ;
                   PROPER( jcWorkAround ), ;
                   _INTLLang )
 
@@ -4855,7 +4855,7 @@ SCAN
     #IF .F.
     IF NOT EMPTY( keyname )
       REPLACE comment WITH comment + ;
-        [*:KEYLAB &_intlLabel]+ m.cr_lf + ;
+        [*:KEYLAB &_intlLabel] + m.cr_lf + ;
         '*:PREDEF _intlLabel = "'+ LEFTC( keyname, ATCC( "+ ", keyname ))+ '" + ;
         SUBSTRC( TRIM( {{STRTRAN( STRTRAN( prompt, ["+ ]), [+ "])}}), ATCC( "\<", {{STRTRAN( STRTRAN( prompt, ["+ ]), [+ "])}})+ 2, 1) '
 
@@ -4901,7 +4901,7 @@ SCAN
     ENDIF
   ENDIF
 ENDSCAN
-   RETURN
+RETURN
 
 
 *!*********************************************
@@ -4990,8 +4990,7 @@ PROCEDURE oktoint
 *  Major change list.:
 
 PARAMETER tcToInt
-RETURN ( ! EMPTY( tcToInt )) AND ;
-          NeedInt( tcToInt )
+RETURN ( ! EMPTY( tcToInt )) AND NeedInt( tcToInt )
 
 
 *!*********************************************
@@ -5014,7 +5013,7 @@ PROCEDURE needint
 *  Returns...........:
 *  Major change list.:
 PARAMETER tcPassedString
-RETURN ! ( LEFTC( tcPassedString, 2) = "I( " OR ( "+ I( " $ tcPassedString) OR ( "=I( " $ tcPassedString) )
+RETURN ! ( LEFTC( tcPassedString, 2) = "I(" OR ( "+I(" $ tcPassedString) OR ( "=I(" $ tcPassedString) )
 
 
 *!*********************************************
@@ -5055,30 +5054,6 @@ ELSE
 ENDIF
 RETURN
 
-*!*********************************************
-*!
-*!       Procedure: trimext
-*!
-*!*********************************************
-FUNCTION trimext
-PARAMETERS filename,plattype
-PRIVATE at_pos,at_pos2
-
-m.at_pos = RATC('.',m.filename )
-IF m.at_pos > 0
-  m.at_pos2 = MAX( RATC( 'T', m.filename ),RATC( ':' , m.filename ))
-  IF m.at_pos > m.at_pos2
-    m.filename = LEFTC( m.filename,m.at_pos-1 )
-  ENDIF
-ENDIF
-IF m.plattype
-  m.filename = IIF( _DOS .OR. _UNIX, UPPER( m.filename ), LOWER( m.filename ))
-ENDIF
-RETURN ALLTRIM( m.filename )
-
-* END trimext
-
-
 
 *!*********************************************
 *!
@@ -5092,7 +5067,7 @@ PRIVATE at_pos
 m.at_pos   = RATC( '\', m.filename )
 m.filename = ALLTRIM( IIF( m.at_pos = 0, m.filename, LEFTC( m.filename, m.at_pos )))
 IF m.plattype
-  m.filename = IIF( _DOS .OR. _UNIX, UPPER( m.filename ), LOWER( m.filename ))
+  m.filename = LOWER( m.filename )
 ENDIF
 RETURN m.filename
 
@@ -5126,20 +5101,20 @@ DO CASE
   CASE TYPE( "m.occurance" ) # "N"
     m.occurance = 1
   CASE m.occurance < 0
-    RETURN IIF( m.returnmline, 0, CHR( 0))
+    RETURN IIF( m.returnmline, 0, CHR(0))
 ENDCASE
 m.var_type = TYPE( "m.searchfld" )
 DO CASE
   CASE m.var_type == "L"
     IF m.searchfld
       IF EMPTY( SETUPCODE )
-        RETURN IIF( m.returnmline, 0, CHR( 0))
+        RETURN IIF( m.returnmline, 0, CHR(0))
       ENDIF
       m.memodata  = SETUPCODE
       m.searchfld = "SETUPCODE"
     ELSE
       IF EMPTY( comment )
-        RETURN IIF( m.returnmline, 0, CHR( 0))
+        RETURN IIF( m.returnmline, 0, CHR(0))
       ENDIF
       m.memodata  = comment
       m.searchfld = "comment"
@@ -5147,14 +5122,14 @@ DO CASE
   CASE m.var_type == "C"
     m.memodata = EVALUATE( m.searchfld )
     IF EMPTY( m.searchfld )
-      RETURN IIF( m.returnmline, 0, CHR( 0))
+      RETURN IIF( m.returnmline, 0, CHR(0))
     ENDIF
   OTHERWISE
-    RETURN IIF( m.returnmline, 0, CHR( 0))
+    RETURN IIF( m.returnmline, 0, CHR(0))
 ENDCASE
 m.find_str = ALLTRIM( m.find_str )
 IF EMPTY( m.find_str) .OR. EMPTY( m.memodata) .OR. m.memodata == CHR( 0 )
-   RETURN IIF( m.returnmline, 0, CHR( 0))
+   RETURN IIF( m.returnmline, 0, CHR(0))
 ENDIF
 m.memline2   = ""
 m.lastmline  = _MLINE
@@ -5173,7 +5148,7 @@ IF _MLINE = 0
   _MLINE = ATCC( m.cr+ m.find_str, m.memodata )
   IF _MLINE = 0
     _MLINE = m.lastmline
-    RETURN IIF( m.returnmline, 0, CHR( 0))
+    RETURN IIF( m.returnmline, 0, CHR(0))
   ENDIF
 ENDIF
 DO WHILE .T.
