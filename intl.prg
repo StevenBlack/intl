@@ -2759,9 +2759,8 @@ DEFINE CLASS cINTLStrategy AS cINTLMemento
 
         ENDIF
 
-        IF ! ".DBF" $ UPPER( tcFile) OR ;
-           ! FILE( tcFile )
-          = this.CreateStrategyTable( tcFile )
+        IF ! ".DBF" $ UPPER( tcFile) OR ! FILE( tcFile )
+          this.CreateStrategyTable( tcFile )
         ENDIF
       ENDIF
 
@@ -4682,17 +4681,19 @@ RETURN lcReturnVal
 PROCEDURE withinc
 PARAMETER tcExpression,  tcLeft,  tcRight,  tnFirstOne,  tnFollowing
 PRIVATE lcRetVal,  lnLeft
+
 lcRetVal = []
-lnLeft = ATCC( tcLeft, tcExpression, IIF( EMPTY( tnFirstOne), 1, tnFirstOne ))
+lnLeft   = ATCC( tcLeft, tcExpression, IIF( EMPTY( tnFirstOne), 1, tnFirstOne ))
+
 IF lnLeft>0
-    lnLeft = lnLeft+ LENC( tcLeft )
-    IF lnLeft<LENC( tcExpression )
-        lcRetVal = SUBSTRC( tcExpression, ;
-                           lnLeft, ;
-                           ATCC( tcRight, ;
-                                SUBSTRC( tcExpression, lnLeft), ;
-                                IIF( EMPTY( tnFollowing), 1, tnFollowing ))- 1 )
-    ENDIF
+   lnLeft = lnLeft+ LENC( tcLeft )
+   IF lnLeft<LENC( tcExpression )
+      lcRetVal = SUBSTRC( tcExpression, ;
+                        lnLeft, ;
+                        ATCC( tcRight, ;
+                             SUBSTRC( tcExpression, lnLeft), ;
+                             IIF( EMPTY( tnFollowing), 1, tnFollowing ))- 1 )
+   ENDIF
 ENDIF
 RETURN lcRetVal
 
@@ -4748,18 +4749,16 @@ PROCEDURE intlmenu
 *  Comment Directives List
 *  =======================
 *    *:INTL IGNORE
-
 PRIVATE jcWorkAround, lcLanguage, lcLocalize, lcStrUpd, lcStrUpdPath, ;
         llStrUpd, llExplicit
 
-
 *-- Bail out if required
 IF objType = 1
-  IF WORDSEARCH( "*:INTL IGNORE", "SETUP" ) <> CHR(0) OR ;
-     ( TYPE( "m._INTL" ) = "C" AND UPPER( m._INTL) = "OFF" )
-    GO BOTTOM
-    RETURN
-  ENDIF
+   IF WORDSEARCH( "*:INTL IGNORE", "SETUP" ) <> CHR(0) OR ;
+         ( TYPE( "m._INTL" ) = "C" AND UPPER( m._INTL) = "OFF" )
+      GO BOTTOM
+      RETURN
+   ENDIF
 ENDIF
 
 *-- These could well be #DEFINEs, assuming
@@ -4778,7 +4777,7 @@ lcLocalize = IIF( TYPE( "_INTLTiming" ) = "U", ;
                   PROPER( _INTLTiming ))
 
 IF EMPTY( lcLocalize) OR ! INLIST( lcLocalize, "Run", "Generate" )
-  lcLocalize = "Run"
+   lcLocalize = "Run"
 ENDIF
 
 *-- Support "INTLLANG" and "_INTLLang".
@@ -4841,64 +4840,45 @@ ENDIF
 
 *-- Going through each part of the menu
 SCAN
-  IF ! EMPTY( PROMPT) ;
+   IF ! EMPTY( PROMPT) ;
       AND ! "I(" $ PROMPT ;
       AND ! "\-" $ PROMPT ;
       AND ! "*:INTL IGNORE" $ UPPER( comment )
 
-    REPLACE PROMPT WITH ["+ ] + ImenuEnvlp( "[" + TRIM( PROMPT )+ "]" ) + [+ "]
-
-    *{ 07/06/95 ARMACNEILL
-    *{ Support for really cool language sensitive menus
-    *? Crash city if invalid key, like Alt- *
-    #IF .F.
-    IF NOT EMPTY( keyname )
-      REPLACE comment WITH comment + ;
-        [*:KEYLAB &_intlLabel] + m.cr_lf + ;
-        '*:PREDEF _intlLabel = "'+ LEFTC( keyname, ATCC( "+ ", keyname ))+ '" + ;
-        SUBSTRC( TRIM( {{STRTRAN( STRTRAN( prompt, ["+ ]), [+ "])}}), ATCC( "\<", {{STRTRAN( STRTRAN( prompt, ["+ ]), [+ "])}})+ 2, 1) '
-
-    ENDIF
-    #ENDIF
-    *{ 07/06/96  ARMACNEILL
-    *{ End of changes
-
-    *-- April 22 1997 Localize key names and key labels
-    IF VAL(ItemNum)>1
-      IF NOT EMPTY( keyname )
-        REPLACE comment WITH comment + m.cr_lf+ ;
-          [*:KEYLAB &_intlLabel]+ m.cr_lf + ;
-          '*:PREDEF _INTLLabel = I("{{KeyName}}" )'
-      ENDIF
+      REPLACE PROMPT WITH ["+ ] + ImenuEnvlp( "[" + TRIM( PROMPT )+ "]" ) + [+ "]
 
       *-- April 22 1997 Localize key names and key labels
-      IF NOT EMPTY( keyLabel )
-        REPLACE KeyLabel WITH  ["+ _INTLLabel +"]
-      ENDIF
-    ENDIF
+      IF VAL(ItemNum)>1
+         IF NOT EMPTY( keyname )
+            REPLACE comment WITH comment + m.cr_lf+ ;
+             [*:KEYLAB &_intlLabel]+ m.cr_lf + ;
+             '*:PREDEF _INTLLabel = I("{{KeyName}}" )'
+         ENDIF
 
-
-
-    IF ! EMPTY( message )
-      jcMessage = message
-      *-- We could have embedded CR_LF or just LF
-      *-- ... another one of those gotchas <sigh>
-      IF RIGHTC( message, 2) = m.cr_lf
-        jcMessage = LEFTC( message, LENC( message) - 2 )
-      ELSE
-        IF RIGHTC( message, 1) = m.lf
-          jcMessage = LEFTC( message, LENC( message) - 1 )
-        ENDIF
+         IF NOT EMPTY( keyLabel )
+            REPLACE KeyLabel WITH  ["+ _INTLLabel +"]
+         ENDIF
       ENDIF
 
-      IF oktoint( jcMessage )
-         REPLACE message WITH IMenuEnvlp( jcMessage)  + ;
-             IIF( RIGHTC( message, 2) = m.cr_lf, cr_lf, "" )
+      IF ! EMPTY( message )
+         jcMessage = message
+         *-- We could have embedded CR_LF or just LF
+         *-- ... another one of those gotchas <sigh>
+         IF RIGHTC( message, 2) = m.cr_lf
+            jcMessage = LEFTC( message, LENC( message) - 2 )
+         ELSE
+            IF RIGHTC( message, 1) = m.lf
+               jcMessage = LEFTC( message, LENC( message) - 1 )
+            ENDIF
+         ENDIF
 
+         IF oktoint( jcMessage )
+            REPLACE message WITH IMenuEnvlp( jcMessage)  + ;
+                IIF( RIGHTC( message, 2) = m.cr_lf, cr_lf, "" )
+
+         ENDIF
       ENDIF
-
-    ENDIF
-  ENDIF
+   ENDIF
 ENDSCAN
 RETURN
 
@@ -4931,7 +4911,7 @@ PARAMETER tcPassedString, tcLeader, tcFollower
 PRIVATE jnNumPara, jcPrompt
 
 IF EMPTY( tcPassedString )
-RETURN ""
+   RETURN ""
 ENDIF
 
 jnNumPara = PARAMETERS()
@@ -4948,12 +4928,12 @@ CASE lcLocalize = "Run"
    *-- Update the strings table?
    *-- This does it
    IF llStrUpd
-      =updstrings( TRIM( Prompt), lcMnx_name ))
+      updstrings( TRIM( Prompt), lcMnx_name ))
    ENDIF
-RETURN  tcLeader + TRIM( tcPassedString) + tcFollower
+RETURN tcLeader + TRIM( tcPassedString) + tcFollower
 
 CASE lcLocalize = "Generate"
-RETURN  "[" + EVAL( tcLeader+ TRIM( tcPassedString)+ tcFollower) + "]"
+RETURN "[" + EVAL( tcLeader+ TRIM( tcPassedString)+ tcFollower) + "]"
 
 ENDCASE
 RETURN
@@ -5068,14 +5048,14 @@ PRIVATE cr, lf, lf_pos, lf_pos2, at_pos
 m.cr = CHR(13)
 m.lf = CHR(10)
 IF PARAMETERS() <= 1
-  IF TYPE( "objType" ) == "N" .AND. TYPE( "CENTER" ) == "L"
+  IF TYPE( "objType" ) == "N" AND TYPE( "CENTER" ) == "L"
     m.searchfld = ( objType = 1 )
   ELSE
     m.searchfld = dfltfld()
   ENDIF
 ENDIF
 IF TYPE( "m.returnmline" ) == "N"
-  m.returnmline=.T.
+  m.returnmline =  s.T.
 ENDIF
 DO CASE
   CASE TYPE( "m.occurance" ) # "N"
@@ -5108,7 +5088,7 @@ DO CASE
     RETURN IIF( m.returnmline, 0, CHR(0))
 ENDCASE
 m.find_str = ALLTRIM( m.find_str )
-IF EMPTY( m.find_str) .OR. EMPTY( m.memodata) .OR. m.memodata == CHR( 0 )
+IF EMPTY( m.find_str) OR EMPTY( m.memodata) OR m.memodata == CHR( 0 )
    RETURN IIF( m.returnmline, 0, CHR(0))
 ENDIF
 m.memline2   = ""
@@ -5133,7 +5113,7 @@ IF _MLINE = 0
 ENDIF
 DO WHILE .T.
   DO CASE
-    CASE m.occurance > 0 .AND. _MLINE >= LENC( m.memodata )
+    CASE m.occurance > 0 AND _MLINE >= LENC( m.memodata )
       EXIT
     CASE _MLINE >= LENC( m.memodata )
       m.occurance = - 1
@@ -5146,7 +5126,7 @@ DO WHILE .T.
       ENDIF
       m.str_data = SUBSTRC( m.memline, LENC( m.find_str)+ 1, 1 )
       m.at_pos   = ATCC( m.find_str, m.memline )
-      IF m.at_pos#1 .OR. ( .NOT. m.ignoreword .AND. .NOT. EMPTY( m.str_data ))
+      IF m.at_pos#1 OR ( NOT m.ignoreword AND NOT EMPTY( m.str_data ))
         m.at_pos   = 0
         m.memodata = m.lf+ SUBSTRC( m.memodata, _MLINE )
         _MLINE     = ATCC( m.lf+ m.find_str, m.memodata )
@@ -5163,8 +5143,8 @@ DO WHILE .T.
         ENDIF
       ENDIF
       m.matchcount = m.matchcount+ 1
-      IF m.matchcount < m.occurance .OR. m.occurance = 0
-        IF m.at_pos = 1 .AND. ( m.ignoreword .OR. EMPTY( m.str_data ))
+      IF m.matchcount < m.occurance OR m.occurance = 0
+        IF m.at_pos = 1 AND ( m.ignoreword OR EMPTY( m.str_data ))
           m.mline2     = _MLINE
           m.at_mline2  = m.at_mline
           m.memline2   = m.memline
@@ -5193,18 +5173,18 @@ DO WHILE .T.
   _MLINE     = m.lastmline
   m.at_pos   = 0
   m.str_data = SUBSTRC( m.memline, LENC( m.find_str) + 1 )
-  IF m.ignoreword .AND. .NOT. LEFTC( m.str_data, 1) == " "
+  IF m.ignoreword AND NOT LEFTC( m.str_data, 1) == " "
     m.at_pos = AT_C( " ", m.str_data )
     IF m.at_pos > 0
       m.str_data = SUBSTRC( m.str_data, m.at_pos+ 1 )
     ENDIF
   ENDIF
   m.str_data = ALLTRIM( m.str_data )
-  IF .NOT. m.returnmline
+  IF NOT m.returnmline
     RETURN m.str_data
   ENDIF
-  m.returnmline = m.mline2 - m.at_mline + 1- IIF( m.lf_pos>0, 1, 0 )
-   RETURN m.at_mline+ m.linecount
+  m.returnmline = m.mline2 - m.at_mline + 1 - IIF( m.lf_pos > 0, 1, 0 )
+   RETURN m.at_mline + m.linecount
 ENDDO
 _MLINE = m.lastmline
 RETURN IIF( m.returnmline, 0, CHR(0))
@@ -5217,10 +5197,10 @@ RETURN IIF( m.returnmline, 0, CHR(0))
 *!*********************************************
 FUNCTION dfltfld
 
-IF TYPE( "namechange" ) == "L" .AND. objType = 1
+IF TYPE( "namechange" ) == "L" AND objType = 1
    RETURN "setup"
 ENDIF
-IF TYPE( "outfile" ) == "M" .OR. TYPE( "ptxdata" ) == "M"
+IF TYPE( "outfile" ) == "M" OR TYPE( "ptxdata" ) == "M"
    RETURN "name"
 ENDIF
 RETURN "comment"
