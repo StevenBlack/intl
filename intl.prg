@@ -2752,7 +2752,6 @@ DEFINE CLASS cINTLStrategy AS cINTLMemento
 
         IF "Untitled" $ tcFile
           *-- Remove the path from the file name
-          * tcFile = this.TrimFile( tcFile)+ lcAlias+ ".DBF"
           tcFile = ALLTRIM( IIF( RATC( "\", tcFile)= 0, ;
                            tcFile, ;
                            LEFTC( tcFile, RATC( "\", tcFile ))))+ ;
@@ -5053,25 +5052,6 @@ ELSE
    ENDIF
 ENDIF
 RETURN
-
-
-*!*********************************************
-*!
-*!       Procedure: trimfile
-*!
-*!*********************************************
-FUNCTION trimfile
-PARAMETERS filename,plattype
-PRIVATE at_pos
-
-m.at_pos   = RATC( '\', m.filename )
-m.filename = ALLTRIM( IIF( m.at_pos = 0, m.filename, LEFTC( m.filename, m.at_pos )))
-IF m.plattype
-  m.filename = LOWER( m.filename )
-ENDIF
-RETURN m.filename
-
-* END trimfile
 
 
 *!*********************************************
