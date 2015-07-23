@@ -5055,39 +5055,6 @@ ELSE
 ENDIF
 RETURN
 
-
-*!*********************************************
-*!
-*!       Procedure: trimpath
-*!
-*!*********************************************
-FUNCTION trimpath
-PARAMETERS filename, trim_ext, plattype
-PRIVATE at_pos
-
-IF EMPTY( m.filename )
-   RETURN ""
-ENDIF
-m.at_pos=AT_C( ":", m.filename )
-IF m.at_pos>0
-  m.filename=SUBSTRC( m.filename, m.at_pos+ 1 )
-ENDIF
-IF m.trim_ext
-  m.filename=trimext( m.filename )
-ENDIF
-IF m.plattype
-  m.filename=IIF( _DOS.OR._UNIX, UPPER( m.filename), LOWER( m.filename))
-ENDIF
-m.filename=ALLTRIM( SUBSTRC( m.filename, AT_C( "\", m.filename, ;
-           MAX( OCCURS( "\", m.filename), 1))+ 1))
-DO WHILE LEFTC( m.filename, 1)=="."
-  m.filename=ALLTRIM( SUBSTRC( m.filename, 2))
-ENDDO
-DO WHILE RIGHTC( m.filename, 1)=="."
-  m.filename=ALLTRIM( LEFTC( m.filename, LENC( m.filename)- 1))
-ENDDO
-RETURN m.filename
-
 *!*********************************************
 *!
 *!       Procedure: trimext
