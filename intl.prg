@@ -280,7 +280,7 @@ IF ISNULL( toParent )
    this.oLogicalparent = NULL
    llRetVal = .T.
 ENDIF
-IF !llRetVal AND TYPE( "toParent" )= "O"
+IF !llRetVal AND TYPE( "toParent" ) = "O"
    this.oLogicalparent = toParent
    llRetVal = .T.
 ENDIF
@@ -868,13 +868,13 @@ oRightToLeftStrategy = NULL
 DIMENSION Languages[1]
 languages[1] = NULL
 
-DIMENSION aStrategies[ 1, 2]
-aStrategies[ 1] = NULL
+DIMENSION aStrategies[1, 2]
+aStrategies[1] = NULL
 
 *-- Protected Properties
-* PROTECTED ARRAY a_Stack[ 1, MEMENTO_ELEMENTS]
-DIMENSION a_Stack[ 1, MEMENTO_ELEMENTS]
-a_Stack[ 1] = NULL
+* PROTECTED ARRAY a_Stack[1, MEMENTO_ELEMENTS]
+DIMENSION a_Stack[1, MEMENTO_ELEMENTS]
+a_Stack[1] = NULL
 
 PROTECTED ;
         cCurrencyStrategy   , ;
@@ -908,7 +908,7 @@ lRightToLeft        = NULL
 nDefaultConfig      = NULL
 
 *====================================
-*-- cINTLMemento::Init( [ o])
+*-- cINTLMemento::Init( [o])
 *====================================
 *
 FUNCTION Init( toPrototype, txPassed2, txPassed3 )
@@ -941,7 +941,7 @@ ENDIF
 LOCAL lnRetVal, lnI
 lnRetVal = 0
 
-IF TYPE( "taArray[ 1]" )= "U"
+IF TYPE( "taArray[1]" ) = "U"
    RETURN lnRetVal
 ENDIF
 
@@ -955,21 +955,21 @@ DO CASE
 *-- Standard 1- D array of strategy names
 CASE tnArrayType = 0
    FOR lnI = 1 TO ALEN( this.aStrategies, 1 )
-      IF this.IsINTLClass( this.aStrategies[ lnI, 2])
+      IF this.IsINTLClass( this.aStrategies[lnI, 2])
          lnRetVal = lnRetVal+ 1
-         DIMENSION taArray[ lnRetVal]
-         taArray[ lnRetval] = this.aStrategies[ lnI, 1]
+         DIMENSION taArray[lnRetVal]
+         taArray[lnRetval] = this.aStrategies[lnI, 1]
       ENDIF
    ENDFOR
 
 *-- 2- D array, strategy names and pointers
 CASE tnArrayType = 1
    FOR lnI = 1 TO ALEN( this.aStrategies, 1 )
-      IF this.IsINTLClass( this.aStrategies[ lnI, 2])
+      IF this.IsINTLClass( this.aStrategies[lnI, 2])
          lnRetVal = lnRetVal+ 1
-         DIMENSION taArray[ lnRetVal, 2]
-         taArray[ lnRetval, 1] = this.aStrategies[ lnI, 1]
-         taArray[ lnRetval, 2] = this.aStrategies[ lnI, 2]
+         DIMENSION taArray[lnRetVal, 2]
+         taArray[lnRetval, 1] = this.aStrategies[lnI, 1]
+         taArray[lnRetval, 2] = this.aStrategies[lnI, 2]
       ENDIF
    ENDFOR
 
@@ -977,12 +977,12 @@ CASE tnArrayType = 1
 CASE tnArrayType = 2
    FOR lnI = 1 TO ALEN( this.aStrategies, 1 )
       lnRetVal = lnRetVal+ 1
-      DIMENSION taArray[ lnRetVal, 2]
-      taArray[ lnRetval, 1] = this.aStrategies[ lnI, 1]
-      IF this.IsINTLClass( this.aStrategies[ lnI, 2])
-         taArray[ lnRetval, 2] = this.aStrategies[ lnI, 2].GetConfig()
+      DIMENSION taArray[lnRetVal, 2]
+      taArray[lnRetval, 1] = this.aStrategies[lnI, 1]
+      IF this.IsINTLClass( this.aStrategies[lnI, 2])
+         taArray[lnRetval, 2] = this.aStrategies[lnI, 2].GetConfig()
       ELSE
-         taArray[ lnRetval, 2] = this.aStrategies[ lnI, 2]
+         taArray[lnRetval, 2] = this.aStrategies[lnI, 2]
       ENDIF
    ENDFOR
 
@@ -990,7 +990,7 @@ ENDCASE
 RETURN lnRetVal
 
 *====================================
-*-- cINTLMemento::AdornMemento( [ o])
+*-- cINTLMemento::AdornMemento( [o])
 *====================================
 * Puts an INTL cookie into the passed object...
 *
@@ -1106,10 +1106,10 @@ FUNCTION GetStrategy( tcStrategy, tnSpecial )
    ENDIF
 
    IF lnIndex<> 0 AND ;
-      (this.IsINTLClass( this.aStrategies[ lnIndex+ 1]) OR ;
+      (this.IsINTLClass( this.aStrategies[lnIndex+ 1]) OR ;
        tnSpecial>0 )
 
-     loRetVal = this.aStrategies[ lnIndex+ 1]
+     loRetVal = this.aStrategies[lnIndex+ 1]
    ENDIF
    RETURN loRetVal
 
@@ -1151,7 +1151,7 @@ ENDIF
 RETURN lcRetval
 
 *====================================
-*-- cINTLMemento::Mov( [ o], n )
+*-- cINTLMemento::Mov( [o], n )
 *====================================
 * Move the operational properties of This object
 * to the parameterized object.
@@ -1174,11 +1174,11 @@ WITH toPassTo
    IF tnStackLevel<> 0
       LOCAL lnIndex
       lnIndex = MIN( tnStackLevel, ALEN( this.a_Stack, 1 ))
-      .SetLanguage(    this.a_Stack[ lnIndex, 1])
-      .SetConfig(      this.a_Stack[ lnIndex, 2])
-      .SetExplicit(    this.a_Stack[ lnIndex, 3])
-      .SetLocale(      this.a_Stack[ lnIndex, 4])
-      .SetRightToLeft( this.a_Stack[ lnIndex, 5])
+      .SetLanguage(    this.a_Stack[lnIndex, 1])
+      .SetConfig(      this.a_Stack[lnIndex, 2])
+      .SetExplicit(    this.a_Stack[lnIndex, 3])
+      .SetLocale(      this.a_Stack[lnIndex, 4])
+      .SetRightToLeft( this.a_Stack[lnIndex, 5])
    ELSE
       .SetLanguage(    this.GetLanguage())
       .SetConfig(      this.GetConfig())
@@ -1192,11 +1192,11 @@ WITH toPassTo
       lnThat = .aStrat(     @laThat, 1 )
       LOCAL lnI, lnMatchnum
       FOR lnI = 1 TO lnThis
-         lnMatchNum =ASCAN( laThat, laThis[ lnI, 1])
+         lnMatchNum =ASCAN( laThat, laThis[lnI, 1])
          IF lnMatchNum>0 AND ALEN(laThat)>1
-            laThat[ lnMatchNum+1].SetConfig(laThis[ lnI, 2])
+            laThat[lnMatchNum+1].SetConfig(laThis[lnI, 2])
          ELSE
-            .SetStrategy(laThis[ lnI, 1], laThis[ lnI, 2])
+            .SetStrategy(laThis[lnI, 1], laThis[lnI, 2])
          ENDIF
       ENDFOR
    ENDIF
@@ -1204,7 +1204,7 @@ ENDWITH
 RETURN .T.
 
 *====================================
-*-- cINTLMemento::Push( [ o])
+*-- cINTLMemento::Push( [o])
 *====================================
 *
 FUNCTION Push( toPassed )
@@ -1221,22 +1221,22 @@ IF TYPE( "toPassed" )<> "O"
    toPassed = This
 ENDIF
 
-IF ! ISNULL[ this.a_Stack[ 1]]
-   DIMENSION this.a_Stack[ ALEN( this.a_Stack, 1)+ 1, MEMENTO_ELEMENTS]
+IF ! ISNULL[this.a_Stack[1]]
+   DIMENSION this.a_Stack[ALEN( this.a_Stack, 1)+ 1, MEMENTO_ELEMENTS]
    lnPropsIndex = ALEN( this.a_Stack, 1 )
 ENDIF
 
 WITH toPassed
-   this.a_Stack[ lnPropsIndex, 1] = .GetLanguage()
-   this.a_Stack[ lnPropsIndex, 2] = .GetConfig()
-   this.a_Stack[ lnPropsIndex, 3] = .GetExplicit()
-   this.a_Stack[ lnPropsIndex, 4] = .GetLocale()
-   this.a_Stack[ lnPropsIndex, 5] = .GetRightToLeft()
+   this.a_Stack[lnPropsIndex, 1] = .GetLanguage()
+   this.a_Stack[lnPropsIndex, 2] = .GetConfig()
+   this.a_Stack[lnPropsIndex, 3] = .GetExplicit()
+   this.a_Stack[lnPropsIndex, 4] = .GetLocale()
+   this.a_Stack[lnPropsIndex, 5] = .GetRightToLeft()
 ENDWITH
 RETURN lnPropsIndex
 
 *====================================
-*-- cINTLMemento::Pop( [ o])
+*-- cINTLMemento::Pop( [o])
 *====================================
 *
 FUNCTION Pop( toPassed )
@@ -1272,11 +1272,11 @@ FUNCTION Pitch()
 LOCAL lxRetVal
 DO CASE
 CASE ALEN( this.a_Stack, 1) > 1
-   DIMENSION this.a_Stack[ ALEN( this.a_Stack, 1)- 1, MEMENTO_ELEMENTS]
+   DIMENSION this.a_Stack[ALEN( this.a_Stack, 1)- 1, MEMENTO_ELEMENTS]
    lxRetVal = .T.
-CASE !ISNULL( this.a_Stack[ 1])
+CASE !ISNULL( this.a_Stack[1])
    lxRetVal = .T.
-   this.a_Stack[ 1] = NULL
+   this.a_Stack[1] = NULL
 ENDCASE
 RETURN lxRetVal
 
@@ -1351,7 +1351,7 @@ ENDCASE
 RETURN
 
 *====================================
-*-- INTLMemento::SetConfig( [ n])
+*-- INTLMemento::SetConfig( [n])
 *====================================
 * Set the configuration integer.
 *
@@ -1377,7 +1377,7 @@ CASE EMPTY( txPara1 )
    lxRetVal = .T.
 
 *-- Just accept the configuration
-CASE TYPE( "TxPara1" )= "N" AND txPara1 > 0
+CASE TYPE( "TxPara1" ) = "N" AND txPara1 > 0
    this.nConfig = txPara1
    this.LoadStrategies()
    lxRetVal = .T.
@@ -1401,15 +1401,15 @@ llRetVal = .F.
 this.Push()
 llAllPass = .F.
 
-LOCAL ARRAY laScratch[ MEMENTO_ELEMENTS]
+LOCAL ARRAY laScratch[MEMENTO_ELEMENTS]
 
-laScratch[ 1] = this.SetLocale( ccDefaultLocale )
-laScratch[ 2] = this.SetLanguage( ccDefaultLanguage )
-laScratch[ 3] = this.SetConfig( this.nDefaultConfig )
-laScratch[ 4] = this.SetExplicit( .F.)
-laScratch[ 5] = this.SetRightToLeft( clDefaultRightToLeft )
+laScratch[1] = this.SetLocale( ccDefaultLocale )
+laScratch[2] = this.SetLanguage( ccDefaultLanguage )
+laScratch[3] = this.SetConfig( this.nDefaultConfig )
+laScratch[4] = this.SetExplicit( .F.)
+laScratch[5] = this.SetRightToLeft( clDefaultRightToLeft )
 
-IF laScratch[ 1] AND laScratch[ 2] AND laScratch[ 3] AND laScratch[ 4] AND laScratch[ 5]
+IF laScratch[1] AND laScratch[2] AND laScratch[3] AND laScratch[4] AND laScratch[5]
    llRetVal = .T.
    this.Pitch()
 ELSE
@@ -1436,7 +1436,7 @@ ENDIF
 
 *-- Bail if tcAlias is emty
 IF EMPTY( tcAlias ) OR ;
-  ( ! TYPE( "tcAlias" )= "C" )
+  ( ! TYPE( "tcAlias" ) = "C" )
 
    RETURN .F.
 ENDIF
@@ -1448,7 +1448,7 @@ tcAlias = PROPER( tcAlias )
 llRemoveStrategy = ISNULL( txStrategy )
 
 *-- Convert a class name to an object
-IF TYPE( "txStrategy" )= "C"
+IF TYPE( "txStrategy" ) = "C"
    loElement2 = CREATEOBJECT( txStrategy )
 ELSE
    loElement2 = txStrategy
@@ -1464,46 +1464,46 @@ IF !llRemoveStrategy
 
    IF lnElementIndex = 0
       *-- Strategy does not exist.  Add it
-      *-- Artefact alert: aStrategies is born with aStrategies[ 1, 1] = NULL
-      IF ISNULL( this.aStrategies[ 1]) OR TYPE( "this.aStrategies[ 1]" )= "L"
+      *-- Artefact alert: aStrategies is born with aStrategies[1, 1] = NULL
+      IF ISNULL( this.aStrategies[1]) OR TYPE( "this.aStrategies[1]" ) = "L"
          lnIndex = 1
       ELSE
-         DIMENSION this.aStrategies[ ALEN( this.aStrategies, 1)+ 1, 2]
+         DIMENSION this.aStrategies[ALEN( this.aStrategies, 1)+ 1, 2]
          lnIndex =ALEN( this.aStrategies, 1 )
       ENDIF
 
-      this.aStrategies[ lnIndex, 1] = tcAlias
+      this.aStrategies[lnIndex, 1] = tcAlias
 
       *-- Do we already have an object of the
       *-- correct class in the permanent pointers?
       IF this.IsINTLClass( this.o&tcAlias.Strategy) AND ;
          this.o&tcAlias.Strategy.Class = loElement2.Class
 
-         this.aStrategies[ lnIndex, 2] = this.o&tcAlias.Strategy
+         this.aStrategies[lnIndex, 2] = this.o&tcAlias.Strategy
       ELSE
-         this.aStrategies[ lnIndex, 2] = loElement2
+         this.aStrategies[lnIndex, 2] = loElement2
       ENDIF
 
    ELSE
       *-- Strategy exists already.
       lnIndex = ( lnElementIndex+ 1) /2
-      *!*         IF ! this.IsINTLClass( this.aStrategies[ lnIndex+ 1]) OR ;
-      *!*            loElement2.Class <> this.aStrategies[ lnIndex+ 1].Class
-      IF ! this.IsINTLClass( this.aStrategies[ lnIndex, 2]) OR ;
-       loElement2.Class <> this.aStrategies[ lnIndex, 2].Class
+      *!*         IF ! this.IsINTLClass( this.aStrategies[lnIndex+ 1]) OR ;
+      *!*            loElement2.Class <> this.aStrategies[lnIndex+ 1].Class
+      IF ! this.IsINTLClass( this.aStrategies[lnIndex, 2]) OR ;
+       loElement2.Class <> this.aStrategies[lnIndex, 2].Class
 
-         this.aStrategies[ lnIndex, 2] = loElement2
+         this.aStrategies[lnIndex, 2] = loElement2
       ENDIF
    ENDIF
 
    IF TYPE( "this.o&tcAlias.Strategy" )<>"U"
-      this.o&tcAlias.Strategy = this.aStrategies[ lnIndex, 2]
+      this.o&tcAlias.Strategy = this.aStrategies[lnIndex, 2]
    ENDIF
 
 ELSE
    IF lnElementIndex > 0
       ADEL( this.aStrategies, ( lnElementIndex+ 1)/ 2 )
-      DIMENSION this.aStrategies[ MAX( 1, ALEN( this.aStrategies, 1)- 1), 2]
+      DIMENSION this.aStrategies[MAX( 1, ALEN( this.aStrategies, 1)- 1), 2]
       this.o&tcAlias.Strategy = NULL
    ENDIF
 ENDIF
@@ -1514,18 +1514,18 @@ LOCAL lnFinalconfig, lnI
 lnFinalConfig = 0
 FOR lni = 1 TO ALEN( this.aStrategies, 1 )
    DO CASE
-   CASE TYPE( "this.aStrategies[ lni,1]" ) <> "C" && Nothing loaded
-   CASE this.aStrategies[ lni,1] = "String"
+   CASE TYPE( "this.aStrategies[lni,1]" ) <> "C" && Nothing loaded
+   CASE this.aStrategies[lni,1] = "String"
       lnFinalConfig = BITSET( lnFinalConfig, 0 )
-   CASE this.aStrategies[ lni,1] = "Font"
+   CASE this.aStrategies[lni,1] = "Font"
       lnFinalConfig = BITSET( lnFinalConfig, 1 )
-   CASE this.aStrategies[ lni,1] = "Data"
+   CASE this.aStrategies[lni,1] = "Data"
       lnFinalConfig = BITSET( lnFinalConfig, 2 )
-   CASE this.aStrategies[ lni,1] = "Picture"
+   CASE this.aStrategies[lni,1] = "Picture"
       lnFinalConfig = BITSET( lnFinalConfig, 3 )
-   CASE this.aStrategies[ lni,1] = "Currency"
+   CASE this.aStrategies[lni,1] = "Currency"
       lnFinalConfig = BITSET( lnFinalConfig, 4 )
-   CASE this.aStrategies[ lni,1] = "Righttoleft"
+   CASE this.aStrategies[lni,1] = "Righttoleft"
       lnFinalConfig = BITSET( lnFinalConfig, 5 )
 
    ENDCASE
@@ -1595,8 +1595,8 @@ ENDIF
 *-- Broadcast next to all strategies
 LOCAL lnI
 FOR lnI = 1 TO ALEN( this.aStrategies, 1 )
-   IF this.IsINTLClass( this.aStrategies[ lnI, 2])
-      this.aStrategies[ lnI, 2].SetExplicit( tlsetting )
+   IF this.IsINTLClass( this.aStrategies[lnI, 2])
+      this.aStrategies[lnI, 2].SetExplicit( tlsetting )
    ENDIF
 ENDFOR
 
@@ -1621,8 +1621,8 @@ ENDIF
 *-- strategy engines.
 LOCAL lnI
 FOR lnI = 1 TO ALEN( this.aStrategies, 1 )
-   IF this.IsINTLClass( this.aStrategies[ lnI, 2])
-      this.aStrategies[ lnI, 2].SetLanguage( tcLanguage )
+   IF this.IsINTLClass( this.aStrategies[lnI, 2])
+      this.aStrategies[lnI, 2].SetLanguage( tcLanguage )
    ENDIF
 ENDFOR
 
@@ -1631,7 +1631,7 @@ IF ISNULL( tcLanguage )
    RETURN NULL
 ENDIF
 
-IF ! TYPE( "tcLanguage" )= "C" OR ;
+IF ! TYPE( "tcLanguage" ) = "C" OR ;
    EMPTY( tcLanguage )
 
    RETURN .F.
@@ -1650,7 +1650,7 @@ ENDIF
 
 LOCAL lcAlias
 lcAlias = this.GetAlias()
-IF !ISNULL( lcAlias ) AND TYPE( "txPassed2" )= "C" AND USED( lcAlias )
+IF !ISNULL( lcAlias ) AND TYPE( "txPassed2" ) = "C" AND USED( lcAlias )
    PRIVATE jcOrder
    jcOrder  = "c"+ txPassed2
    *-- Halt, make sure the tag exists
@@ -1676,8 +1676,8 @@ ENDIF
 *-- Broadcast next to all strategies
 LOCAL lnI
 FOR lnI = 1 TO ALEN( this.aStrategies, 1 )
-   IF this.IsINTLClass( this.aStrategies[ lnI, 2])
-      this.aStrategies[ lnI, 2].SetLocale( tcLocale )
+   IF this.IsINTLClass( this.aStrategies[lnI, 2])
+      this.aStrategies[lnI, 2].SetLocale( tcLocale )
    ENDIF
 ENDFOR
 
@@ -1771,8 +1771,8 @@ FUNCTION SetRightToLeft( tlSetting )
    *-- Broadcast next to all strategies
    LOCAL lnI
    FOR lnI = 1 TO ALEN( this.aStrategies, 1 )
-     IF this.IsINTLClass( this.aStrategies[ lnI, 2])
-       this.aStrategies[ lnI, 2].SetRightToLeft( tlsetting )
+     IF this.IsINTLClass( this.aStrategies[lnI, 2])
+       this.aStrategies[lnI, 2].SetRightToLeft( tlsetting )
      ENDIF
    ENDFOR
 
@@ -1790,10 +1790,10 @@ ENDDEFINE
 * Purpose..: This class is the template method for localization
 * Version..: March 25 1996
 * Notes....: Configuration integers:
-*                [ 1] Strings  (Default )
-*                [ 2] Fonts
-*                [ 4] Data
-*                [ 8] Images
+*                [1] Strings  (Default )
+*                [2] Fonts
+*                [4] Data
+*                [8] Images
 *                [16] Currency
 *//////////////////////////////////////////////////////////////////////////////
 DEFINE CLASS Intl AS cINTLMemento
@@ -1830,12 +1830,12 @@ lxRetVal     = NULL
 
 DO CASE
 *-- lxPassed is an array of objects
-CASE lcTypePassed = "O" AND TYPE( "lxPassed[ 1]" )= "O"
+CASE lcTypePassed = "O" AND TYPE( "lxPassed[1]" ) = "O"
    *-- Call on each active strategy and execute it.
    LOCAL lnI
    FOR lnI = 1 TO ALEN( this.aStrategies, 1 )
-      IF this.IsINTLClass( this.aStrategies[ lnI, 2])
-         this.aStrategies[ lnI, 2].Execute( @lxPassed, txPassed2 )
+      IF this.IsINTLClass( this.aStrategies[lnI, 2])
+         this.aStrategies[lnI, 2].Execute( @lxPassed, txPassed2 )
       ENDIF
    ENDFOR
 
@@ -1843,14 +1843,14 @@ CASE lcTypePassed = "O" AND TYPE( "lxPassed[ 1]" )= "O"
 CASE lcTypePassed = "O"
    *-- Note: txPassed could be a container of
    *-- objects.
-   LOCAL ARRAY laScratch[ 1024]
+   LOCAL ARRAY laScratch[1024]
    this.ObjArray( lcTypePassed, @laScratch )
-   IF TYPE( "laScratch[ 1]" )= "O"
+   IF TYPE( "laScratch[1]" )= "O"
       *-- Call on each active Strategy...
       LOCAL lnI
       FOR lnI = 1 TO ALEN( this.aStrategies, 1 )
-         IF this.IsINTLClass( this.aStrategies[ lnI, 2])
-            this.aStrategies[ lnI, 2].Execute( @laScratch, txPassed2 )
+         IF this.IsINTLClass( this.aStrategies[lnI, 2])
+            this.aStrategies[lnI, 2].Execute( @laScratch, txPassed2 )
          ENDIF
       ENDFOR
    ENDIF
@@ -1882,7 +1882,7 @@ ENDIF
 
 LOCAL lcType, llIsArray, lxRetVal
 lcType = TYPE( "TxPassed1" )
-llIsArray = TYPE( "txPassed[ 1]" )<> "U"
+llIsArray = TYPE( "txPassed[1]" )<> "U"
 lxRetVal = ''
 
 *-- Branch based on the type of the first
@@ -1913,7 +1913,7 @@ RETURN lxRetVal
 
 
 *====================================
-*-- INTL::Init( [ c|n|o], [ c|n|o], [ c|n|o])
+*-- INTL::Init( [c|n|o], [c|n|o], [c|n|o])
 *-- You can pass a ( C)- Language, a ( N )
 *-- Config, and/or an ( O)- Object, in any
 *-- sequence
@@ -2040,20 +2040,20 @@ ENDIF
 *====================================
 *
 FUNCTION LoadLanguageCollection( toPassed )
-LOCAL ARRAY laLanguages[ 1]
+LOCAL ARRAY laLanguages[1]
 LOCAL lnLangs, lnI
 IF ! this.IsINTLClass( toPassed )
    toPassed = This
 ENDIF
 lnlangs = toPassed.aLang( @laLanguages )
 IF lnLangs>0
-   DIMENSION toPassed.Languages[ lnLangs]
+   DIMENSION toPassed.Languages[lnLangs]
    FOR lnI = 1 TO lnlangs
-      toPassed.Languages[ lnI] = laLanguages[ lnI]
+      toPassed.Languages[lnI] = laLanguages[lnI]
    ENDFOR
 ELSE
-   DIMENSION toPassed.Languages[ 1]
-   toPassed.Languages[ 1] = NULL
+   DIMENSION toPassed.Languages[1]
+   toPassed.Languages[1] = NULL
 ENDIF
 RETURN lnlangs
 
@@ -2135,7 +2135,7 @@ ENDIF
 RETURN .T.
 
 *====================================
-*-- INTL::Localize( [ c|o[ o|c]])
+*-- INTL::Localize( [c|o[o|c]])
 *====================================
 *-- You can pas a ( C)- language/locale and
 *-- an ( O)- Object in any sequence.
@@ -2263,7 +2263,7 @@ FUNCTION Localize( txPara1, txPara2 )
 
 
    *-- Step 4.  Collection access being so slow, load an array with object pointers.
-   DIMENSION laObjects[ 1]
+   DIMENSION laObjects[1]
    = this.objarray( loBasis, @laObjects )
 
    *-- Step 5.  Localize back to cOriginal, if required
@@ -2317,7 +2317,7 @@ FUNCTION Localize( txPara1, txPara2 )
 *-- INTL::ObjArray( oa )
 *====================================
 * Sample call:
-*   DIMENSION laTempArray[ 1]
+*   DIMENSION laTempArray[1]
 *   =ACOPY( this.laElements, laTempArray )
 *   =objArray( this.loMasterContainer, @laTempArray )
 *   =ACOPY( laTempArray, this.laElements )
@@ -2331,21 +2331,21 @@ ENDIF
 LOCAL lnI, laSelObj, lcObject, laTempArray, lcbaseClass, loIterator
 loIterator = NULL
 
-IF TYPE( "toPassedObject" )<> "O" OR TYPE( "taPassedArray[ 1]" )= "U"
+IF TYPE( "toPassedObject" )<> "O" OR TYPE( "taPassedArray[1]" )= "U"
    RETURN 0
 ENDIF
 
-DIMENSION laSelObj[ 1]
+DIMENSION laSelObj[1]
 lcBaseCLass = UPPER( toPassedObject.BaseClass )+ " "
 
 *-- Don't bother with ignorables.
 IF !( lcBaseCLass $ ccIgnoreables )
-   DIMENSION taPassedArray[ IIF( ALEN( taPassedArray)= 1 AND ;
-                                   TYPE( "taPassedArray[ 1]" )<> "O", ;
+   DIMENSION taPassedArray[IIF( ALEN( taPassedArray)= 1 AND ;
+                                   TYPE( "taPassedArray[1]" )<> "O", ;
                                 1, ;
                                 ALEN( taPassedArray)+ 1)]
 
-   taPassedArray[ ALEN( taPassedArray)] = toPassedObject
+   taPassedArray[ALEN( taPassedArray)] = toPassedObject
 ENDIF
 
 IF lcBaseCLass $ ccContainers AND ( AMEMBERS( laSelObj,toPassedObject,2)>0 )
@@ -2355,8 +2355,8 @@ IF lcBaseCLass $ ccContainers AND ( AMEMBERS( laSelObj,toPassedObject,2)>0 )
    DO WHILE !ISNULL( oObjectAdd )
       oObjectAdd = loIterator.Next()
       IF !ISNULL( oObjectAdd )
-         DIMENSION taPassedArray[ ALEN( taPassedArray)+ 1 ]
-         taPassedArray[ ALEN( taPassedArray)] = oObjectAdd
+         DIMENSION taPassedArray[ALEN( taPassedArray)+ 1 ]
+         taPassedArray[ALEN( taPassedArray)] = oObjectAdd
       ENDIF
    ENDDO
 ENDIF
@@ -2711,7 +2711,7 @@ DEFINE CLASS cINTLStrategy AS cINTLMemento
     RETURN llRetVal
 
   *====================================
-  *-- cINTLStrategy::OpenStrategy( [ c[ c]])
+  *-- cINTLStrategy::OpenStrategy( [c[c]])
   *====================================
   *
   FUNCTION OpenStrategy( tcFile, tcOptions )
@@ -2966,9 +2966,9 @@ DEFINE CLASS cINTLCurrency AS cINTLStrategy
   cType = "Currency"
 
 
-  DIMENSION aConversion[ 1, 2]
-  aConversion[ 1, 1] = ccDefaultLanguage
-  aConversion[ 1, 2] = 1
+  DIMENSION aConversion[1, 2]
+  aConversion[1, 1] = ccDefaultLanguage
+  aConversion[1, 2] = 1
   lUpdateable = .F.
 
 *====================================
@@ -3011,17 +3011,17 @@ FUNCTION Execute( laObjects, txpassed2 )
    FOR lnI = 1 to ALEN( laObjects )
 
      *-- Bail for the standard reasons
-     IF this.LoopOut( laObjects[ lnI])
+     IF this.LoopOut( laObjects[lnI])
        LOOP
      ENDIF
 
      *-- Currency category localization
-     IF UPPER( laObjects[ lnI].Baseclass+ " " ) $ ccCurrencies AND ;
-        "$" $ UPPER( laObjects[ lni].Format) AND ;
-        TYPE( "laObjects[ lni].Value" ) $ "NY"
+     IF UPPER( laObjects[lnI].Baseclass+ " " ) $ ccCurrencies AND ;
+        "$" $ UPPER( laObjects[lni].Format) AND ;
+        TYPE( "laObjects[lni].Value" ) $ "NY"
 
         local loDataObject
-        loDataObject = laObjects[ lni]
+        loDataObject = laObjects[lni]
         IF loDataObject.Parent.Class = "Column"
           loDataObject = loDataObject.Parent
         ENDIF
@@ -3087,7 +3087,7 @@ RETURN lxRetVal
     ENDIF
 
     LOCAL lnRetVal
-    lnRetVal = this.aConversion[ 1, 2]
+    lnRetVal = this.aConversion[1, 2]
 
     tcLocale = PROPER( tcLocale )
 
@@ -3095,7 +3095,7 @@ RETURN lxRetVal
     LOCAL lnIndex
     lnIndex = ASCAN( this.aConversion, tcLocale )
     IF lnIndex<> 0
-      lnRetVal = this.aConversion[ lnIndex+ 1]
+      lnRetVal = this.aConversion[lnIndex+ 1]
     ENDIF
     RETURN lnRetVal
 
@@ -3200,12 +3200,12 @@ RETURN lxRetVal
     LOCAL lnIndex
     lnIndex = ASCAN( this.aConversion, lcLocale )
     IF lnIndex = 0
-      DIMENSION this.aConversion[ ALEN( this.aConversion, 1)+ 1, 2]
+      DIMENSION this.aConversion[ALEN( this.aConversion, 1)+ 1, 2]
       lnIndex =ALEN( this.aConversion, 1 )
-      this.aConversion[ lnIndex, 1] = lcLocale
-      this.aConversion[ lnIndex, 2] = lnFactor
+      this.aConversion[lnIndex, 1] = lcLocale
+      this.aConversion[lnIndex, 2] = lnFactor
     ELSE
-      this.aConversion[ lnIndex+ 1] = lnFactor
+      this.aConversion[lnIndex+ 1] = lnFactor
     ENDIF
 
     RETURN llRetval
@@ -3218,10 +3218,10 @@ ENDDEFINE
 * Purpose..: Data localization strategy
 * Version..: March 25 1996
 * Notes....: Configuration integers:
-*               [ 1] BoundColumn
-*               [ 2] ControlSource
-*               [ 4] RowSource
-*               [ 8] RecordSource
+*               [1] BoundColumn
+*               [2] ControlSource
+*               [4] RowSource
+*               [8] RecordSource
 *               [16] InputMask
 *//////////////////////////////////////////////////////////////////////////////
 DEFINE CLASS cINTLData AS cINTLStrategy
@@ -3263,7 +3263,7 @@ FUNCTION Execute( laObj, txpassed2 )
 
      *-- Performance note: Cast to a memvar to avoid
      *-- repeatedly accessing a property.
-     lcObjBaseClass =UPPER( laObj[ lnI].Baseclass+ " " )
+     lcObjBaseClass =UPPER( laObj[lnI].Baseclass+ " " )
 
      *-- Bail if the object doesn't do data
      IF ! lcObjBaseClass $ ccDataObjects
@@ -3271,7 +3271,7 @@ FUNCTION Execute( laObj, txpassed2 )
      ENDIF
 
      *-- Bail for the standard reasons
-     IF this.LoopOut( laObj[ lnI])
+     IF this.LoopOut( laObj[lnI])
        LOOP
      ENDIF
 
@@ -3279,20 +3279,20 @@ FUNCTION Execute( laObj, txpassed2 )
      #IF .F.
      *-- Bound column category localization
      IF lcObjBaseclass $ ccBoundColumns AND BITTEST( lnThisConfig, 0 )
-         lcTemp = this.I( laObj[ lnI].BoundColumn, "BoundColumn" )
-         IF LOWER(laObj[ lnI].BoundColumn) <> LOWER(lcTemp )
-           laObj[ lnI].ResetToDefault( "BoundColumn" )
-           laObj[ lnI].BoundColumn = lcTemp
+         lcTemp = this.I( laObj[lnI].BoundColumn, "BoundColumn" )
+         IF LOWER(laObj[lnI].BoundColumn) <> LOWER(lcTemp )
+           laObj[lnI].ResetToDefault( "BoundColumn" )
+           laObj[lnI].BoundColumn = lcTemp
          ENDIF
      ENDIF
      #ENDIF
 
      *-- Control source category localization
      IF lcObjBaseclass $ ccControlSources AND BITTEST( lnThisConfig, 1 )
-         lcTemp = this.I( laObj[ lnI].ControlSource, "ControlSource" )
-         IF LOWER(laObj[ lnI].ControlSource) <> LOWER(lcTemp )
-           laObj[ lnI].ResetToDefault( "ControlSource" )
-           laObj[ lnI].ControlSource = lcTemp
+         lcTemp = this.I( laObj[lnI].ControlSource, "ControlSource" )
+         IF LOWER(laObj[lnI].ControlSource) <> LOWER(lcTemp )
+           laObj[lnI].ResetToDefault( "ControlSource" )
+           laObj[lnI].ControlSource = lcTemp
          ENDIF
 
      ENDIF
@@ -3300,34 +3300,34 @@ FUNCTION Execute( laObj, txpassed2 )
      *-- RowSources category localization
      IF lcObjBaseclass $ ccRowSources AND BITTEST( lnThisConfig, 2 )
        LOCAL lnTemp
-       lnTemp = laObj[ lnI].ListIndex
-       lcTemp = this.I( laObj[ lnI].RowSource, "RowSource" )
-       IF LOWER(laObj[ lnI].RowSource) <> LOWER(lcTemp )
+       lnTemp = laObj[lnI].ListIndex
+       lcTemp = this.I( laObj[lnI].RowSource, "RowSource" )
+       IF LOWER(laObj[lnI].RowSource) <> LOWER(lcTemp )
          *-- Preserve the listindex property, which is lost when
          *-- the rowsource is changed
          LOCAL lnTemp
-         lnTemp = laObj[ lnI].ListIndex
-         laObj[ lnI].ResetToDefault( "RowSource" )
-         laObj[ lnI].RowSource = lcTemp
-         laObj[ lnI].ListIndex = lnTemp
+         lnTemp = laObj[lnI].ListIndex
+         laObj[lnI].ResetToDefault( "RowSource" )
+         laObj[lnI].RowSource = lcTemp
+         laObj[lnI].ListIndex = lnTemp
        ENDIF
      ENDIF
 
      *-- RecordSource category localization
      IF lcObjBaseclass $ ccRecordSources AND BITTEST( lnThisConfig, 3 )
-       lcTemp = this.I( laObj[ lnI].RecordSource, "RecordSource" )
-       IF LOWER(laObj[ lnI].RecordSource) <> LOWER(lcTemp )
-         laObj[ lnI].ResetToDefault( "RecordSource" )
-         laObj[ lnI].RecordSource = lcTemp
+       lcTemp = this.I( laObj[lnI].RecordSource, "RecordSource" )
+       IF LOWER(laObj[lnI].RecordSource) <> LOWER(lcTemp )
+         laObj[lnI].ResetToDefault( "RecordSource" )
+         laObj[lnI].RecordSource = lcTemp
        ENDIF
      ENDIF
 
      *-- InputMask category localization
      IF lcObjBaseclass $ ccInputMasks AND BITTEST( lnThisConfig, 4 )
-       lcTemp = this.I( laObj[ lnI].InputMask, "InputMask" )
-       IF LOWER(laObj[ lnI].InputMask) <> LOWER(lcTemp )
-         laObj[ lnI].ResetToDefault( "InputMask" )
-         laObj[ lnI].InputMask = lcTemp
+       lcTemp = this.I( laObj[lnI].InputMask, "InputMask" )
+       IF LOWER(laObj[lnI].InputMask) <> LOWER(lcTemp )
+         laObj[lnI].ResetToDefault( "InputMask" )
+         laObj[lnI].InputMask = lcTemp
        ENDIF
      ENDIF
 
@@ -3358,8 +3358,8 @@ ENDDEFINE
 * Purpose..: Font localization strategy
 * Version..: March 25 1996
 * Notes....: Configuration integers:
-*               [ 1] FontName & Size
-*               [ 2] DynamicFontName & Size
+*               [1] FontName & Size
+*               [2] DynamicFontName & Size
 *//////////////////////////////////////////////////////////////////////////////
 DEFINE CLASS cINTLFont AS cINTLStrategy
 
@@ -3391,7 +3391,7 @@ FUNCTION Execute( laObj, txpassed2 )
      RETURN NULL
    ENDIF
 
-   LOCAL ARRAY laFonts[ 1, 2]
+   LOCAL ARRAY laFonts[1, 2]
    LOCAL ;
          lcFontCombo,     ;
          lcObjBaseClass,  ;
@@ -3409,42 +3409,42 @@ FUNCTION Execute( laObj, txpassed2 )
 
    FOR lnI = 1 to ALEN( laObj )
      *-- Bail for the standard reasons
-     IF this.LoopOut( laObj[ lnI])
+     IF this.LoopOut( laObj[lnI])
        LOOP
      ENDIF
 
      *-- Performance note: Cast to a memvar to avoid
      *-- repeatedly accessing a property.
-     lcObjBaseclass =UPPER( laObj[ lnI].Baseclass+ " " )
+     lcObjBaseclass =UPPER( laObj[lnI].Baseclass+ " " )
 
      *-- FONT category localization
      DO CASE
      CASE lcObjBaseclass $ ccFonts
 
        IF BITTEST( lnThisConfig, 0 )
-         lcFontCombo = this.I( laObj[ lnI].FontName+ ;
+         lcFontCombo = this.I( laObj[lnI].FontName+ ;
                               ","+ ;
-                              ALLTRIM( STR( laObj[ lnI].FontSize, 3 )), "Font" )
+                              ALLTRIM( STR( laObj[lnI].FontSize, 3 )), "Font" )
          lnBreak    = AT_C( ",", lcFontCombo )
-         laObj[ lnI].FontName = LEFTC( lcFontCombo, lnBreak- 1 )
-         laObj[ lnI].FontSize = VAL( SUBSTRC( lcFontCombo, lnBreak+ 1 ))
+         laObj[lnI].FontName = LEFTC( lcFontCombo, lnBreak- 1 )
+         laObj[lnI].FontSize = VAL( SUBSTRC( lcFontCombo, lnBreak+ 1 ))
        ENDIF
 
        IF BITTEST( lnThisConfig, 1) AND ;
          lcObjBaseclass = "COLUMN " AND ;
-         ! EMPTY( laObj[ lnI].DynamicFontName )
+         ! EMPTY( laObj[lnI].DynamicFontName )
           *-- Same code as above, basically.
-         lcFontCombo = this.I( laObj[ lnI].DynamicFontName+ ","+ ;
-                              ALLTRIM( STR( laObj[ lnI].DynamicFontSize, 3 )), "DynamicFont" )
+         lcFontCombo = this.I( laObj[lnI].DynamicFontName+ ","+ ;
+                              ALLTRIM( STR( laObj[lnI].DynamicFontSize, 3 )), "DynamicFont" )
          lnBreak    = AT_C( ",", lcFontCombo )
-         laObj[ lnI].DynamicFontName = LEFTC( lcFontCombo, lnBreak- 1 )
-         laObj[ lnI].DynamicFontSize = VAL( SUBSTRC( lcFontCombo, lnBreak+ 1 ))
+         laObj[lnI].DynamicFontName = LEFTC( lcFontCombo, lnBreak- 1 )
+         laObj[lnI].DynamicFontSize = VAL( SUBSTRC( lcFontCombo, lnBreak+ 1 ))
        ENDIF
 
      *-- Supported OLE Controls
      CASE lcObjBaseclass = "OLECONTROL "
        LOCAL lcClass
-       lcClass = UPPER( laObj[ lni].OleClass )
+       lcClass = UPPER( laObj[lni].OleClass )
        DO CASE
        *-- TreeView, ListView, TabStrip, StatusBar, and SSTab Controls
        CASE lcClass = "COMCTL.TREECTRL"       OR ;
@@ -3458,7 +3458,7 @@ FUNCTION Execute( laObj, txpassed2 )
             lcClass = "THREED.SSCOMMAND" OR ;
             lcClass = "THREED.SSCHECK"
 
-         WITH laObj[ lni].Object
+         WITH laObj[lni].Object
            lcFontCombo = this.I( .Font.Name+ ;
                               ","+ ;
                               ALLTRIM( STR( .Font.Size, 3 )), "Font" )
@@ -3513,9 +3513,9 @@ FUNCTION SetConfig( txPara1 )
    ENDIF
 
    LOCAL llRetVal, lnI
-   LOCAL ARRAY laPropsServed[ 2]
-   laPropsServed[ 1] = "FontName"          && and size
-   laPropsServed[ 2] = "DynamicFontName"   && and size
+   LOCAL ARRAY laPropsServed[2]
+   laPropsServed[1] = "FontName"          && and size
+   laPropsServed[2] = "DynamicFontName"   && and size
    llRetVal = .F.
 
    DO CASE
@@ -3531,7 +3531,7 @@ FUNCTION SetConfig( txPara1 )
    CASE TYPE( "TxPara1" )= "C"
      this.nConfig = 0
      FOR lnI = 1 TO ALEN( laPropsServed )
-       IF ATCC( laPropsServed[ lnI], txPara1)> 0
+       IF ATCC( laPropsServed[lnI], txPara1)> 0
          this.nConfig = BITSET( this.nConfig, lnI- 1 )
          llRetVal = .T.
        ENDIF
@@ -3547,10 +3547,10 @@ ENDDEFINE
 * Purpose..: Picture localization strategy
 * Version..: March 25 1996
 * Notes....: Configuration integers:
-*               [ 1] Picture
-*               [ 2] DisabledPicture
-*               [ 4] DownPicture
-*               [ 8] Icon
+*               [1] Picture
+*               [2] DisabledPicture
+*               [4] DownPicture
+*               [8] Icon
 *               [16] DragIcon
 *//////////////////////////////////////////////////////////////////////////////
 DEFINE CLASS cINTLPicture AS cINTLStrategy
@@ -3592,7 +3592,7 @@ FUNCTION Execute( laObj, txpassed2 )
 
      *-- Performance note: Cast to a memvar to avoid
      *-- repeatedly accessing a property.
-     lcObjBaseClass =UPPER( laObj[ lnI].Baseclass+ " " )
+     lcObjBaseClass =UPPER( laObj[lnI].Baseclass+ " " )
 
      *-- Bail if the object doesn't do pictures
      IF ! lcObjBaseClass $ ccPictureObjects
@@ -3600,33 +3600,33 @@ FUNCTION Execute( laObj, txpassed2 )
      ENDIF
 
      *-- Bail for the standard reasons
-     IF this.LoopOut( laObj[ lnI])
+     IF this.LoopOut( laObj[lnI])
        LOOP
      ENDIF
 
      *-- Picture category localization
      IF lcObjBaseclass $ ccPictures AND BITTEST( lnThisConfig, 0 )
-         laObj[ lnI].Picture = this.I( laObj[ lnI].Picture, "Picture" )
+         laObj[lnI].Picture = this.I( laObj[lnI].Picture, "Picture" )
      ENDIF
 
      *-- DisabledPicture category localization
      IF lcObjBaseclass $ ccDownPictures AND BITTEST( lnThisConfig, 1 )
-         laObj[ lnI].DisabledPicture = this.I( laObj[ lnI].DisabledPicture, "DisabledPicture" )
+         laObj[lnI].DisabledPicture = this.I( laObj[lnI].DisabledPicture, "DisabledPicture" )
      ENDIF
 
      *-- DownPicture category localization
      IF lcObjBaseclass $ ccDownPictures AND BITTEST( lnThisConfig, 2 )
-         laObj[ lnI].DownPicture = this.I( laObj[ lnI].DownPicture, "DownPicture" )
+         laObj[lnI].DownPicture = this.I( laObj[lnI].DownPicture, "DownPicture" )
      ENDIF
 
      *-- Icon category localization
      IF lcObjBaseclass $ ccIcons AND BITTEST( lnThisConfig, 3 )
-         laObj[ lnI].Icon = this.I( laObj[ lnI].Icon, "Icon" )
+         laObj[lnI].Icon = this.I( laObj[lnI].Icon, "Icon" )
      ENDIF
 
      *-- DragIcon category localization
      IF lcObjBaseclass $ ccDragIcons AND BITTEST( lnThisConfig, 4 )
-         laObj[ lnI].DragIcon = this.I( laObj[ lnI].DragIcon, "DragIcon" )
+         laObj[lnI].DragIcon = this.I( laObj[lnI].DragIcon, "DragIcon" )
      ENDIF
    ENDFOR
 RETURN lxRetVal
@@ -3657,9 +3657,9 @@ ENDDEFINE
 * Purpose..: String localization strategy
 * Version..: March 25 1996
 * Notes....: Configuration integers:
-*               [ 1] Caption
-*               [ 2] Tooltip
-*               [ 4] StatusBarText
+*               [1] Caption
+*               [2] Tooltip
+*               [4] StatusBarText
 *//////////////////////////////////////////////////////////////////////////////
 DEFINE CLASS cINTLString AS cINTLStrategy
 
@@ -3699,7 +3699,7 @@ FUNCTION aLang( taArray )
    lnRetVal = 0
 
    *-- accept arrays only
-   IF TYPE( "taArray[ 1]" )= "U"
+   IF TYPE( "taArray[1]" )= "U"
       RETURN lnRetVal
    ENDIF
 
@@ -3714,13 +3714,13 @@ FUNCTION aLang( taArray )
      ENDIF
    ENDIF
 
-   LOCAL ARRAY laFields[ 1]
+   LOCAL ARRAY laFields[1]
    IF aFields( laFields, this.cAlias )> 0
      LOCAL lnI
      FOR lnI = 1 TO ALEN( laFields, 1 )
-       IF laFields[ lnI, 2] = "C" AND laFields[ lnI, 1]<> "CWHERE"
-         DIMENSION taArray[ lnI]
-         taArray[ lnI] = PROPER( SUBSTRC( laFields[ lnI, 1], 2 ))
+       IF laFields[lnI, 2] = "C" AND laFields[lnI, 1]<> "CWHERE"
+         DIMENSION taArray[lnI]
+         taArray[lnI] = PROPER( SUBSTRC( laFields[lnI, 1], 2 ))
          lnRetVal = lnRetVal+ 1
        ENDIF
      ENDFOR
@@ -3729,7 +3729,7 @@ FUNCTION aLang( taArray )
 
 
 *====================================
-*-- cINTLString::IsValidLanguage( [ c])
+*-- cINTLString::IsValidLanguage( [c])
 *====================================
 *
 FUNCTION IsValidLanguage( tcLanguage )
@@ -3753,7 +3753,7 @@ FUNCTION IsValidLanguage( tcLanguage )
    ENDCASE
 
    tcLanguage = PROPER( tcLanguage )
-   DIMENSION ScratchArray[ 1]
+   DIMENSION ScratchArray[1]
    this.aLang( @ScratchArray )
 RETURN ASCAN( ScratchArray, tcLanguage)> 0
 
@@ -3775,7 +3775,7 @@ FUNCTION Execute( laObj, txpassed2 )
      RETURN NULL
    ENDIF
 
-   LOCAL ARRAY laFonts[ 1, 2]
+   LOCAL ARRAY laFonts[1, 2]
    LOCAL ;
          lcFontCombo, ;
          lcObjBaseClass, ;
@@ -3797,51 +3797,51 @@ FUNCTION Execute( laObj, txpassed2 )
    FOR lnI = 1 to ALEN( laObj )
 
      *-- Bail for the standard reasons
-     IF this.LoopOut( laObj[ lnI])
+     IF this.LoopOut( laObj[lnI])
        LOOP
      ENDIF
 
      *-- Performance note: Cast to a memvar to avoid
      *-- repeatedly accessing a property.
-     lcObjBaseclass = UPPER( laObj[ lnI].Baseclass+ " " )
+     lcObjBaseclass = UPPER( laObj[lnI].Baseclass+ " " )
 
      DO CASE
      *-- CAPTION category localization
      CASE lcObjBaseclass $ ccCaptionObjects
        IF BITTEST( lnThisConfig, 0) AND ;
           lcObjBaseclass $ ccCaptions AND ;
-          !EMPTY( laObj[ lnI].Caption )
+          !EMPTY( laObj[lnI].Caption )
 
-         laObj[ lnI].Caption = this.I( laObj[ lnI].Caption )
+         laObj[lnI].Caption = this.I( laObj[lnI].Caption )
        ENDIF
 
        IF BITTEST( lnThisConfig, 1) AND ;
           lcObjBaseclass $ ccToolTips AND ;
-          !EMPTY( laObj[ lnI].ToolTipText )
+          !EMPTY( laObj[lnI].ToolTipText )
 
-         laObj[ lnI].ToolTipText = this.I( laObj[ lnI].ToolTipText )
+         laObj[lnI].ToolTipText = this.I( laObj[lnI].ToolTipText )
        ENDIF
 
        IF BITTEST( lnThisConfig, 2) AND ;
           lcObjBaseclass $ ccStatusbarTexts AND ;
-          !EMPTY( laObj[ lnI].StatusBarText )
+          !EMPTY( laObj[lnI].StatusBarText )
 
-         laObj[ lnI].StatusBarText = this.I( laObj[ lnI].StatusBarText )
+         laObj[lnI].StatusBarText = this.I( laObj[lnI].StatusBarText )
        ENDIF
 
      *-- Supported OLE Controls
      CASE lcObjBaseclass = "OLECONTROL "
        LOCAL lcClass
-       lcClass = UPPER( laObj[ lni].OleClass )
+       lcClass = UPPER( laObj[lni].OleClass )
 
        DO CASE
        *-- TreeView Control
        CASE lcClass = "COMCTL.TREECTRL"
-         IF laObj[ lni].Object.Nodes.Count> 0
+         IF laObj[lni].Object.Nodes.Count> 0
            IF BITTEST( lnThisConfig, 0 )
              *-- Load an array of node references (for faster traversal )
-             WITH laObj[ lni].Object
-               LOCAL ARRAY aNodes[ .Nodes.Count]
+             WITH laObj[lni].Object
+               LOCAL ARRAY aNodes[.Nodes.Count]
                LOCAL lnz
                FOR lnz = 1 TO ALEN( aNodes, 1 )
                  aNodes( lnz)= .Nodes( lnZ )
@@ -3856,11 +3856,11 @@ FUNCTION Execute( laObj, txpassed2 )
 
        *-- ListView Control
        CASE lcClass = "COMCTL.LISTVIEWCTRL"
-         IF laObj[ lni].Object.ListItems.Count > 0
+         IF laObj[lni].Object.ListItems.Count > 0
            IF BITTEST( lnThisConfig, 0 )
              *-- Load an array of item references (for faster traversal )
-             WITH laObj[ lni].Object
-               LOCAL ARRAY aItems[ .ListItems.Count]
+             WITH laObj[lni].Object
+               LOCAL ARRAY aItems[.ListItems.Count]
                LOCAL lnz
                FOR lnz = 1 TO ALEN( aItems, 1 )
                  aItems( lnz)= .ListItems( lnZ )
@@ -3877,9 +3877,9 @@ FUNCTION Execute( laObj, txpassed2 )
        *-- Tabstrip Control
        CASE lcClass = "TABSTRIP.TABSTRIPCTRL"
          *-- Load an array of page references (for faster traversal )
-         IF laObj[ lni].Object.Tabs.Count > 0
-           WITH laObj[ lni].Object
-             LOCAL ARRAY aPages[ .Tabs.Count]
+         IF laObj[lni].Object.Tabs.Count > 0
+           WITH laObj[lni].Object
+             LOCAL ARRAY aPages[.Tabs.Count]
              LOCAL lnz
              FOR lnz = 1 TO ALEN( aPages, 1 )
                aPages( lnz)= .Tabs( lnZ )
@@ -3908,7 +3908,7 @@ FUNCTION Execute( laObj, txpassed2 )
          *-- Few panels expected so don't bother creating a reference array
          *-- Localize the caption
          IF BITTEST( lnThisConfig, 0 )
-           FOR EACH oPanel IN laObj[ lni].Object.Panels
+           FOR EACH oPanel IN laObj[lni].Object.Panels
              oPanel.Text = this.I( oPanel.Text )
            ENDFOR
          ENDIF
@@ -3920,8 +3920,8 @@ FUNCTION Execute( laObj, txpassed2 )
          IF BITTEST( lnThisConfig, 0 )
            LOCAL lnIndex
            *-- SSTab is zero-based
-           FOR lnIndex = 0 TO laObj[ lni].Object.Tabs-1
-             laObj[ lni].Object.TabCaption( lnIndex)= this.I( laObj[ lni].Object.TabCaption( lnIndex ))
+           FOR lnIndex = 0 TO laObj[lni].Object.Tabs-1
+             laObj[lni].Object.TabCaption( lnIndex)= this.I( laObj[lni].Object.TabCaption( lnIndex ))
            ENDFOR
          ENDIF
 
@@ -3932,7 +3932,7 @@ FUNCTION Execute( laObj, txpassed2 )
             lcClass = "THREED.SSCOMMAND" OR ;
             lcClass = "THREED.SSCHECK"
          IF BITTEST( lnThisConfig, 0 )
-             laObj[ lni].Object.Caption = this.I( laObj[ lni].Object.Caption )
+             laObj[lni].Object.Caption = this.I( laObj[lni].Object.Caption )
             ENDIF
 
        ENDCASE
@@ -3942,7 +3942,7 @@ RETURN lxRetVal
 
 
 *====================================
-*-- cINTLString::CreateStrategyTable( [ c])
+*-- cINTLString::CreateStrategyTable( [c])
 *====================================
 *
 FUNCTION CreateStrategyTable( tcFile )
@@ -4017,7 +4017,7 @@ FUNCTION CreateStrategyCDX()
    ENDIF
 
    LOCAL jnOldArea, jlWasUsed, jcStringsFile, jcField, jni, lcOldOrder
-   LOCAL ARRAY jaFields[ 1]
+   LOCAL ARRAY jaFields[1]
 
    jlWasUsed     = .F.
    jnOldArea     = SELECT( 0 )
@@ -4036,7 +4036,7 @@ FUNCTION CreateStrategyCDX()
      INDEX ON STRTRAN( STRTRAN( STRTRAN( STRTRAN( STRTRAN( cOriginal, "\<" ), "\!" ), "\?" ), ":" ), "=" ) TAG (ccDefaultLanguageField )
    ENDIF
 
-   DIMENSION jaFields[ 1]
+   DIMENSION jaFields[1]
    this.aLang( @jaFields )
    FOR jni = 1 TO ALEN( jaFields, 1 )
      IF TYPE( "jaFields( jni)" )= "C"
@@ -4085,10 +4085,10 @@ FUNCTION SetConfig( txPara1 )
    ENDIF
 
    LOCAL llRetVal, lnI
-   LOCAL ARRAY laProps[ 3]
-   laProps[ 1] = "Caption"
-   laProps[ 2] = "TooltipText"
-   laProps[ 3] = "StatusBarText"
+   LOCAL ARRAY laProps[3]
+   laProps[1] = "Caption"
+   laProps[2] = "TooltipText"
+   laProps[3] = "StatusBarText"
    llRetVal = .F.
 
    DO CASE
@@ -4104,7 +4104,7 @@ FUNCTION SetConfig( txPara1 )
    CASE TYPE( "TxPara1" )= "C"
      this.nConfig = 0
      FOR lnI = 1 TO ALEN( laProps )
-       IF ATCC( laProps[ lnI], txPara1)> 0
+       IF ATCC( laProps[lnI], txPara1)> 0
          this.nConfig = BITSET( this.nConfig, lnI- 1 )
          llRetVal = .T.
        ENDIF
@@ -4209,7 +4209,7 @@ ENDDEFINE
 * Purpose..: Right-to-Left strategy for Middle Eastern writing systems
 * Version..: Feb 6 1997
 * Notes....: Configuration integers:
-*               [ 1] ON
+*               [1] ON
 *//////////////////////////////////////////////////////////////////////////////
 DEFINE CLASS cINTLRightToLeft AS cINTLStrategy
 
@@ -4248,7 +4248,7 @@ FUNCTION Execute( laObj, txpassed2 )
 
      *-- Performance note: Cast to a memvar to avoid
      *-- repeatedly accessing a property.
-     lcObjBaseClass =UPPER( laObj[ lnI].Baseclass+ " " )
+     lcObjBaseClass =UPPER( laObj[lnI].Baseclass+ " " )
 
      *-- Bail if the object doesn't do Right-To-Left
      IF lcObjBaseClass $ ccNoRightToLeft
@@ -4256,7 +4256,7 @@ FUNCTION Execute( laObj, txpassed2 )
      ENDIF
 
      *-- Bail for the standard reasons
-     IF this.LoopOut( laObj[ lnI])
+     IF this.LoopOut( laObj[lnI])
        LOOP
      ENDIF
 
@@ -4266,19 +4266,19 @@ FUNCTION Execute( laObj, txpassed2 )
      *-- Secial Checkbox consideration
      *-- Flip the Alignment property
      CASE lcObjBaseClass = "CHECKBOX "
-       IF laObj[ lnI].Alignment = 0
-         laObj[ lnI].Alignment = 1
+       IF laObj[lnI].Alignment = 0
+         laObj[lnI].Alignment = 1
        ELSE
-         laObj[ lnI].Alignment = 0
+         laObj[lnI].Alignment = 0
        ENDIF
 
      *-- Secial Optionbutton consideration
      *-- Flip the Alignment property
      CASE lcObjBaseClass = "OPTIONBUTTON "
-       IF laObj[ lnI].Alignment = 0
-         laObj[ lnI].Alignment = 1
+       IF laObj[lnI].Alignment = 0
+         laObj[lnI].Alignment = 1
        ELSE
-         laObj[ lnI].Alignment = 0
+         laObj[lnI].Alignment = 0
        ENDIF
 
      *-- Columns and Headers are special, with Top/Middle/Bottom
@@ -4286,24 +4286,24 @@ FUNCTION Execute( laObj, txpassed2 )
      CASE lcObjBaseClass = "COLUMN " OR ;
           lcObjBaseClass = "HEADER "
        DO CASE
-       CASE laObj[ lnI].Alignment = 0 OR ;
-            laObj[ lnI].Alignment = 4 OR ;
-            laObj[ lnI].Alignment = 7 OR ;
-         laObj[ lnI].Alignment = laObj[ lnI].Alignment+ 1
+       CASE laObj[lnI].Alignment = 0 OR ;
+            laObj[lnI].Alignment = 4 OR ;
+            laObj[lnI].Alignment = 7 OR ;
+         laObj[lnI].Alignment = laObj[lnI].Alignment+ 1
 
-       CASE laObj[ lnI].Alignment = 1 OR ;
-            laObj[ lnI].Alignment = 5 OR ;
-            laObj[ lnI].Alignment = 8 OR ;
-         laObj[ lnI].Alignment = laObj[ lnI].Alignment- 1
+       CASE laObj[lnI].Alignment = 1 OR ;
+            laObj[lnI].Alignment = 5 OR ;
+            laObj[lnI].Alignment = 8 OR ;
+         laObj[lnI].Alignment = laObj[lnI].Alignment- 1
 
        ENDCASE
 
      *-- These controls also have alignments
      CASE lcObjBaseClass $ "COMBOBOX EDITBOX LABEL SPINNER "
-        IF laObj[ lnI].Alignment = 0
-         laObj[ lnI].Alignment = 1
+        IF laObj[lnI].Alignment = 0
+         laObj[lnI].Alignment = 1
        ELSE
-         laObj[ lnI].Alignment = 0
+         laObj[lnI].Alignment = 0
        ENDIF
 
      *-- Secial Grid consideration
@@ -4311,12 +4311,12 @@ FUNCTION Execute( laObj, txpassed2 )
      CASE lcObjBaseClass = "GRID "
        LOCAL _lni, _lnj, _lnk
        _lnk = 0
-       FOR _lni = laObj[ lnI].ColumnCount TO (laObj[ lnI].ColumnCount/2) STEP -1
+       FOR _lni = laObj[lnI].ColumnCount TO (laObj[lnI].ColumnCount/2) STEP -1
          _lnk = _lnk+ 1
          _lnj = 1
          DO WHILE .T.
-           IF  laObj[ lnI].Columns(_lnj).ColumnOrder = _lni
-             laObj[ lnI].Columns(_lnj).ColumnOrder = _lnk
+           IF  laObj[lnI].Columns(_lnj).ColumnOrder = _lni
+             laObj[lnI].Columns(_lnj).ColumnOrder = _lnk
              EXIT
            ENDIF
            _lnj =_lnj+1
@@ -4329,54 +4329,54 @@ FUNCTION Execute( laObj, txpassed2 )
      *-- ...and don't lose the activepage.
      CASE lcObjBaseClass = "PAGEFRAME "
        LOCAL _lni, _lnj, lnActive
-       lnActive = laObj[ lnI].ActivePage
-       FOR _lni = 1 TO laObj[ lnI].PageCount
+       lnActive = laObj[lnI].ActivePage
+       FOR _lni = 1 TO laObj[lnI].PageCount
          _lnj = 1
          DO WHILE .T.
-           IF  laObj[ lnI].Pages(_lnj).PageOrder = _lni
-             laObj[ lnI].Pages(_lnj).PageOrder = 1
+           IF  laObj[lnI].Pages(_lnj).PageOrder = _lni
+             laObj[lnI].Pages(_lnj).PageOrder = 1
              EXIT
            ENDIF
            _lnj =_lnj+1
          ENDDO
        ENDFOR
-       laObj[ lni].ActivePage =laObj[ lnI].PageCount- lnActive+ 1
+       laObj[lni].ActivePage =laObj[lnI].PageCount- lnActive+ 1
 
      *-- Secial Line consideration
      *-- Lineslant!
      CASE lcObjBaseClass = "LINE "
-       IF laObj[ lnI].LineSlant = "\"
-         laObj[ lnI].LineSlant = "/"
+       IF laObj[lnI].LineSlant = "\"
+         laObj[lnI].LineSlant = "/"
        ELSE
-         laObj[ lnI].LineSlant = "\"
+         laObj[lnI].LineSlant = "\"
        ENDIF
 
      ENDCASE
 
      *-- Flip the Objects about a form's vertical axis
-     IF TYPE("laObj[ lnI].Parent" )= "U"
+     IF TYPE("laObj[lnI].Parent" )= "U"
        RETURN lxRetVal
      ENDIF
 
      LOCAL loParent
-     loParent = laObj[ lnI].Parent
+     loParent = laObj[lnI].Parent
 
      DO CASE
      *-- Do nothing
-     CASE laObj[ lnI].BaseClass == "COLUMN"
+     CASE laObj[lnI].BaseClass == "COLUMN"
 
      *-- Special Page consideration
      CASE loParent.BaseClass == "PAGE "
-       laObj[ lnI].Left = loParent.Parent.PageWidth- laObj[ lnI].Left- laObj[ lnI].Width
+       laObj[lnI].Left = loParent.Parent.PageWidth- laObj[lnI].Left- laObj[lnI].Width
 
-     CASE TYPE("laObj[ lnI].Left" )= "U" OR ;
+     CASE TYPE("laObj[lnI].Left" )= "U" OR ;
           TYPE("loParent.Width" )= "U"
 
-     CASE PEMSTATUS(laObj[ lnI], "Left", 1) && Read only
+     CASE PEMSTATUS(laObj[lnI], "Left", 1) && Read only
 
      OTHERWISE
 
-       laObj[ lnI].Left = loParent.Width- laObj[ lnI].Left- laObj[ lnI].Width
+       laObj[lnI].Left = loParent.Width- laObj[lnI].Left- laObj[lnI].Width
      ENDCASE
 
    ENDFOR
@@ -4557,7 +4557,7 @@ DO WHILE LENC( jcRetVal) >=3
    jcRight = RIGHTC( jcRetVal, 1 )
    IF ( jcLeft = '"' AND jcRight = '"') OR ;
       ( jcLeft = "'" AND jcRight = "'" ) OR ;
-      ( jcLeft = "[ " AND jcRight = "]" )
+      ( jcLeft = "[" AND jcRight = "]" )
 
       jcRetVal = SUBSTRC( jcRetVal, 2, LENC( jcRetVal)- 2 )
 
@@ -4569,7 +4569,7 @@ ENDDO
 RETURN jcRetVal
 
 *====================================
-*-- toleft( cc[ n])
+*-- toleft( cc[n])
 *====================================
 *  Program...........: TOLEFT.PRG
 *  Author............: Steven M. Black
@@ -4579,7 +4579,7 @@ RETURN jcRetVal
 *) Description.......: Returns characters from a character expression
 *)                     to the left of a specified string
 *] Dependencies......: None
-*  Calling Samples...: toleft( <expC1>, <expC2>[ , <expN>])
+*  Calling Samples...: toleft( <expC1>, <expC2>[, <expN>])
 *                      tcSearch     - The string to search for
 *                      tcExpression - The string that is searched
 *                      tnOccurence  - Which occurence of C1 in C2
@@ -4594,7 +4594,7 @@ RETURN LEFTC( tcExpression, ;
                  IIF( EMPTY( tnOccurence), 1, tnOccurence )) - 1 )
 
 *====================================
-*-- toright( cc[ n])
+*-- toright( cc[n])
 *====================================
 *  Program...........: TORIGHT.PRG
 *  Author............: Steven M. Black
@@ -4604,7 +4604,7 @@ RETURN LEFTC( tcExpression, ;
 *) Description.......: Returns characters from a character expression
 *)                     to the right of a specified string
 *] Dependencies......: None
-*  Calling Samples...: toright( <expC1>, <expC2>, [ , <expN>])
+*  Calling Samples...: toright( <expC1>, <expC2>, [, <expN>])
 *  Parameter List....: tcToSearch   - The string to search for
 *                      tcExpression - The string to search within
 *                      tnOccurence  - Which occurence of C1 in C2
@@ -4625,7 +4625,7 @@ xnsplitpos = AT_C( tcToSearch, ;
 
 
 *====================================
-*-- within( ccc[ n[ n]])
+*-- within( ccc[n[n]])
 *====================================
 *  Program...........: WITHIN.PRG
 *  Author............: Steven M. Black
@@ -4635,7 +4635,7 @@ xnsplitpos = AT_C( tcToSearch, ;
 *) Description.......: Returns string contained within two
 *)                     others.  Case sensitive
 *] Dependencies......:
-*  Calling Samples...: within( <expC>, <expC>, <expC> [ , <expN> [ , <expN>]])
+*  Calling Samples...: within( <expC>, <expC>, <expC> [, <expN> [, <expN>]])
 *  Parameter List....: tcExpression
 *                      tcLeft
 *                      tcRight
@@ -4647,7 +4647,7 @@ PROCEDURE within
 PARAMETER tcExpression, tcLeft, tcRight, tnFirstOne, tnFollowing
 
 PRIVATE lcReturnVal, tnLeftpos
-lcReturnVal = [ ]
+lcReturnVal = []
 tnLeftpos = AT_C( tcLeft, tcExpression, IIF( EMPTY( tnFirstOne), 1, tnFirstOne ))
 IF tnLeftpos> 0
     tnLeftpos = tnLeftpos+ LENC( tcLeft )
@@ -4662,7 +4662,7 @@ ENDIF
 RETURN lcReturnVal
 
 *====================================
-*-- withinc( ccc[ n[ n]])
+*-- withinc( ccc[n[n]])
 *====================================
 *  Program...........: WITHINC.PRG
 *  Author............: Steven M. Black
@@ -4672,7 +4672,7 @@ RETURN lcReturnVal
 *) Description.......: Returns string contained within two
 *)                     others.  Case in- sensitive
 *] Dependencies......:
-*  Calling Samples...: within( <expC>, <expC>, <expC> [ , <expN> [ , <expN>]])
+*  Calling Samples...: within( <expC>, <expC>, <expC> [, <expN> [, <expN>]])
 *  Parameter List....: tcExpression
 *                      tcLeft
 *                      tcRight
@@ -4683,7 +4683,7 @@ RETURN lcReturnVal
 PROCEDURE withinc
 PARAMETER tcExpression,  tcLeft,  tcRight,  tnFirstOne,  tnFollowing
 PRIVATE lcRetVal,  lnLeft
-lcRetVal = [ ]
+lcRetVal = []
 lnLeft = ATCC( tcLeft, tcExpression, IIF( EMPTY( tnFirstOne), 1, tnFirstOne ))
 IF lnLeft>0
     lnLeft = lnLeft+ LENC( tcLeft )
@@ -4757,7 +4757,7 @@ PRIVATE jcWorkAround, lcLanguage, lcLocalize, lcStrUpd, lcStrUpdPath, ;
 *-- Bail out if required
 IF objType = 1
   IF WORDSEARCH( "*:INTL IGNORE", "SETUP" )<> CHR( 0) OR ;
-     ( TYPE( "m._INTL" )= "C" AND UPPER( m._INTL)= "OFF" )
+     ( TYPE( "m._INTL" ) = "C" AND UPPER( m._INTL)= "OFF" )
     GO BOTTOM
     RETURN
   ENDIF
@@ -4772,9 +4772,9 @@ cr_lf      = CHR(13) + CHR(10)
 
 lcItsExprChar = ccItsExpression
 
-jcWorkAround = configfp( "IntlTiming", configfp( "_INTLTiming", [ ]))
+jcWorkAround = configfp( "IntlTiming", configfp( "_INTLTiming", []))
 
-lcLocalize = IIF( TYPE( "_INTLTiming" )= "U", ;
+lcLocalize = IIF( TYPE( "_INTLTiming" ) = "U", ;
                   PROPER( jcWorkAround ), ;
                   PROPER( _INTLTiming ))
 
@@ -4847,7 +4847,7 @@ SCAN
       AND ! "\-" $ PROMPT ;
       AND ! "*:INTL IGNORE" $ UPPER( comment )
 
-    REPLACE PROMPT WITH ["+ ] + ImenuEnvlp( "[" + TRIM( PROMPT )+ "]" ) + [ + "]
+    REPLACE PROMPT WITH ["+ ] + ImenuEnvlp( "[" + TRIM( PROMPT )+ "]" ) + [+ "]
 
     *{ 07/06/95 ARMACNEILL
     *{ Support for really cool language sensitive menus
@@ -4855,9 +4855,9 @@ SCAN
     #IF .F.
     IF NOT EMPTY( keyname )
       REPLACE comment WITH comment + ;
-        [ *:KEYLAB &_intlLabel]+ m.cr_lf + ;
+        [*:KEYLAB &_intlLabel]+ m.cr_lf + ;
         '*:PREDEF _intlLabel = "'+ LEFTC( keyname, ATCC( "+ ", keyname ))+ '" + ;
-        SUBSTRC( TRIM( {{STRTRAN( STRTRAN( prompt, [ "+ ]), [ + "])}}), ATCC( "\<", {{STRTRAN( STRTRAN( prompt, [ "+ ]), [ + "])}})+ 2, 1) '
+        SUBSTRC( TRIM( {{STRTRAN( STRTRAN( prompt, ["+ ]), [+ "])}}), ATCC( "\<", {{STRTRAN( STRTRAN( prompt, ["+ ]), [+ "])}})+ 2, 1) '
 
     ENDIF
     #ENDIF
@@ -4918,11 +4918,11 @@ PROCEDURE IMenuEnvlp
 *)                     Wrap the passed string in a
 *)                     call to I() or other calls
 *] Dependencies......:
-*  Calling Samples...: IMenuEnvlp( <expC>[ , <expC>[ , <expC>]])
+*  Calling Samples...: IMenuEnvlp( <expC>[, <expC>[, <expC>]])
 *  Parameter List....:
 *             tcPassedString - What to wrap
-*             [ tcLeader]     - L.H.S., default is "I( "
-*             [ tcFollower]   - R.H.S., default is ")"
+*             [tcLeader]     - L.H.S., default is "I( "
+*             [tcFollower]   - R.H.S., default is ")"
 *  Returns...........:
 *  Major change list.: Jul 2 1993 - Can now EVAL the enveloped
 *                                   string for compile- time
@@ -5107,7 +5107,7 @@ ENDIF
 IF m.plattype
   m.filename = IIF( _DOS .OR. _UNIX, UPPER( m.filename ), LOWER( m.filename ))
 ENDIF
-RETURN ALLTRIM(m.filename )
+RETURN ALLTRIM( m.filename )
 
 * END trimext
 
@@ -5125,7 +5125,7 @@ PRIVATE at_pos
 m.at_pos   = RATC( '\', m.filename )
 m.filename = ALLTRIM( IIF( m.at_pos = 0, m.filename, LEFTC( m.filename, m.at_pos )))
 IF m.plattype
-  m.filename=IIF(_DOS .OR. _UNIX, UPPER( m.filename ), LOWER( m.filename ))
+  m.filename = IIF( _DOS .OR. _UNIX, UPPER( m.filename ), LOWER( m.filename ))
 ENDIF
 RETURN m.filename
 
@@ -5217,10 +5217,10 @@ DO WHILE .T.
       m.occurance = - 1
     OTHERWISE
       m.at_mline = _MLINE
-      m.memline  = ALLTRIM( MLINE( m.memodata, 1, _MLINE))
-      m.lf_pos   = AT_C( m.lf, SUBSTRC( m.memodata, m.at_mline+ 1, LENC( m.memline)))
+      m.memline  = ALLTRIM( MLINE( m.memodata, 1, _MLINE ))
+      m.lf_pos   = AT_C( m.lf, SUBSTRC( m.memodata, m.at_mline+ 1, LENC( m.memline )))
       IF m.lf_pos > 0
-        m.memline = ALLTRIM( LEFTC( m.memline, m.lf_pos- 1))
+        m.memline = ALLTRIM( LEFTC( m.memline, m.lf_pos- 1 ))
       ENDIF
       m.str_data = SUBSTRC( m.memline, LENC( m.find_str)+ 1, 1 )
       m.at_pos   = ATCC( m.find_str, m.memline )
@@ -5285,7 +5285,7 @@ DO WHILE .T.
    RETURN m.at_mline+ m.linecount
 ENDDO
 _MLINE = m.lastmline
-RETURN IIF( m.returnmline, 0, CHR( 0))
+RETURN IIF( m.returnmline, 0, CHR(0))
 * END wordsearch
 
 *!*********************************************
@@ -5343,7 +5343,7 @@ ENDDO
 *-- New in version 3.0
 *--   Multicurrency support
 *--   INTL classes can be chained
-*--   [ removed] Support for VFP builders
+*--   [removed] Support for VFP builders
 *--   Support for VFP class browser addins
 *--   Single- source, multi- version
 *--   Support for object INTL properties
@@ -5402,8 +5402,8 @@ ENDDO
 *--   Fix:  INTL sometimes didn't localize error and
 *--         message strings
 *--
-*--   Support "*:INTLALIGN [ LEFT|RIGHT|CENTER]" ( old )
-*--       and "*:INTL ALIGN [ LEFT|RIGHT|CENTER]" ( new )
+*--   Support "*:INTLALIGN [LEFT|RIGHT|CENTER]" ( old )
+*--       and "*:INTL ALIGN [LEFT|RIGHT|CENTER]" ( new )
 *--       in the setup and comment snippets.  New method
 *--       is more consistent, while still supporting the
 *--       old syntax.
