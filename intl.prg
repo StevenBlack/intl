@@ -1527,7 +1527,6 @@ FOR lni = 1 TO ALEN( this.aStrategies, 1 )
       lnFinalConfig = BITSET( lnFinalConfig, 4 )
    CASE this.aStrategies[lni,1] = "Righttoleft"
       lnFinalConfig = BITSET( lnFinalConfig, 5 )
-
    ENDCASE
 ENDFOR
 this.nConfig = lnFinalConfig
@@ -1545,9 +1544,7 @@ RETURN llRetval
 *
 FUNCTION SetStrategyClass( tcAlias, tcStrategy )
 *-- Reject null parameters
-IF ISNULL( tcAlias ) OR ;
-   ISNULL( tcStrategy )
-
+IF ISNULL( tcAlias ) OR ISNULL( tcStrategy )
    RETURN NULL
 ENDIF
 
@@ -1631,9 +1628,7 @@ IF ISNULL( tcLanguage )
    RETURN NULL
 ENDIF
 
-IF ! TYPE( "tcLanguage" ) = "C" OR ;
-   EMPTY( tcLanguage )
-
+IF ! TYPE( "tcLanguage" ) = "C" OR EMPTY( tcLanguage )
    RETURN .F.
 ENDIF
 
@@ -1686,9 +1681,7 @@ IF ISNULL( tcLocale )
    RETURN NULL
 ENDIF
 
-IF EMPTY( tcLocale) OR ;
-   TYPE( "tcLocale" )<> "C"
-
+IF EMPTY( tcLocale) OR TYPE( "tcLocale" )<> "C"
    RETURN .F.
 ENDIF
 
@@ -1714,11 +1707,10 @@ LOCAL llRetVal, ;
       lxOldRef
 
 *-- Resolve parameters
-lxOldRef = this.oHook
-llRetVal = .T.
-
-this.oHook = NULL
-lcOldError = ON( "Error" )
+lxOldRef    = this.oHook
+llRetVal    = .T.
+this.oHook  = NULL
+lcOldError  = ON( "Error" )
 lnErrorCode = 0
 
 ON ERROR lnErrorCode = ERROR()
@@ -1741,10 +1733,10 @@ ENDCASE
 IF this.IsINTLClass( this.oHook )
    WITH this.oHook
      .SetLogicalParent( This )
-     .SetLocale(      this.GetLocale())
-     .SetLanguage(    this.GetLanguage())
-     .SetExplicit(    this.GetExplicit())
-     .SetRightToLeft( this.GetRightToLeft())
+     .SetLocale( this.GetLocale() )
+     .SetLanguage( this.GetLanguage() )
+     .SetExplicit( this.GetExplicit() )
+     .SetRightToLeft( this.GetRightToLeft() )
    ENDWITH
 ENDIF
 
@@ -1881,9 +1873,9 @@ IF ISNULL( txPassed1) OR ISNULL( txPassed2 )
 ENDIF
 
 LOCAL lcType, llIsArray, lxRetVal
-lcType = TYPE( "TxPassed1" )
+lcType    = TYPE( "TxPassed1" )
 llIsArray = TYPE( "txPassed[1]" )<> "U"
-lxRetVal = ''
+lxRetVal  = ''
 
 *-- Branch based on the type of the first
 *-- parameter passed.
@@ -1920,8 +1912,7 @@ RETURN lxRetVal
 *====================================
 FUNCTION Init( txPara1, txPara2, txPara3 )
 SET TALK OFF
-LOCAL ;
-      llConfigDone, ;
+LOCAL llConfigDone, ;
       llLangDone, ;
       llObjectDone, ;
       tcLanguage, ;
@@ -2081,11 +2072,10 @@ IF BITTEST( lnThisConfig, 0 )
    LOCAL oX
    oX = this.GetStrategy( "String" )
    IF this.IsINTLClass( oX )
-      oX.SetLocale( this.GetLocale())
-      oX.SetLanguage( this.GetLanguage())
-      oX.SetExplicit( this.GetExplicit())
-      oX.SetRightToLeft( this.GetRightToLeft())
-
+      oX.SetLocale( this.GetLocale() )
+      oX.SetLanguage( this.GetLanguage() )
+      oX.SetExplicit( this.GetExplicit() )
+      oX.SetRightToLeft( this.GetRightToLeft() )
    ENDIF
 
    *-- Config the hook also
@@ -2221,8 +2211,7 @@ FUNCTION Localize( txPara1, txPara2 )
    ENDCASE
 
    *-- Step 2.  Save the current agent's config, assume a default cookie
-   LOCAL ;
-         lcCookieLanguage, ;
+   LOCAL lcCookieLanguage, ;
          lcCookieLocale, ;
          lcFinalLanguage, ;
          lcFinalLocale, ;
@@ -2253,18 +2242,17 @@ FUNCTION Localize( txPara1, txPara2 )
 
       *-- Step 3a.  Use the cookie to configure This
       LOCAL loBasisMemento
-      loBasisMemento = loBasis.oINTLMemento
-      lcCookieLocale  = loBasisMemento.GetLocale()
+      loBasisMemento   = loBasis.oINTLMemento
+      lcCookieLocale   = loBasisMemento.GetLocale()
       lcCookieLanguage = loBasisMemento.GetLanguage()
-      lnCookieConfig  = loBasisMemento.GetConfig()
-      lnFinalConfig   = BITOR( lnFinalConfig, lnCookieConfig )
+      lnCookieConfig   = loBasisMemento.GetConfig()
+      lnFinalConfig    = BITOR( lnFinalConfig, lnCookieConfig )
       loBasisMemento.Mov( This )
    ENDIF
 
-
    *-- Step 4.  Collection access being so slow, load an array with object pointers.
    DIMENSION laObjects[1]
-   = this.objarray( loBasis, @laObjects )
+   this.objarray( loBasis, @laObjects )
 
    *-- Step 5.  Localize back to cOriginal, if required
    IF llCookieHere AND ( ;
@@ -2453,21 +2441,20 @@ DEFINE CLASS cINTLStrategy AS cINTLMemento
       RETURN NULL
     ENDIF
 
-    LOCAL ;
-       jcOldExact, ;
-       jcPossible, ;
-       jcRetVal, ;
-       jcSearchString, ;
-       jcStringsFile, ;
-       jlHadC_Enter, ;
-       jlHadEsc, ;
-       jlHadHotKey, ;
-       jnNewCol, ;
-       jnNumPara, ;
-       jnParaLen, ;
-       jnParaLPad, ;
-       jnParaRPad, ;
-       JnRatio
+    LOCAL jcOldExact, ;
+          jcPossible, ;
+          jcRetVal, ;
+          jcSearchString, ;
+          jcStringsFile, ;
+          jlHadC_Enter, ;
+          jlHadEsc, ;
+          jlHadHotKey, ;
+          jnNewCol, ;
+          jnNumPara, ;
+          jnParaLen, ;
+          jnParaLPad, ;
+          jnParaRPad, ;
+          JnRatio
 
     jnNumPara = PARAMETERS()
 
@@ -2991,8 +2978,7 @@ FUNCTION Execute( laObjects, txpassed2 )
      RETURN NULL
    ENDIF
 
-   LOCAL ;
-         lcFontCombo,     ;
+   LOCAL lcFontCombo,     ;
          lcObjBaseClass,  ;
          lnBreak,         ;
          lnConfig,        ;
@@ -3390,8 +3376,7 @@ FUNCTION Execute( laObj, txpassed2 )
    ENDIF
 
    LOCAL ARRAY laFonts[1, 2]
-   LOCAL ;
-         lcFontCombo,     ;
+   LOCAL lcFontCombo,     ;
          lcObjBaseClass,  ;
          lnBreak,         ;
          lnConfig,        ;
@@ -3406,18 +3391,18 @@ FUNCTION Execute( laObj, txpassed2 )
    lnThisConfig   = this.GetConfig()
 
    FOR lnI = 1 to ALEN( laObj )
-     *-- Bail for the standard reasons
-     IF this.LoopOut( laObj[lnI])
+      *-- Bail for the standard reasons
+      IF this.LoopOut( laObj[lnI])
        LOOP
-     ENDIF
+      ENDIF
 
-     *-- Performance note: Cast to a memvar to avoid
-     *-- repeatedly accessing a property.
-     lcObjBaseclass =UPPER( laObj[lnI].Baseclass+ " " )
+      *-- Performance note: Cast to a memvar to avoid
+      *-- repeatedly accessing a property.
+      lcObjBaseclass =UPPER( laObj[lnI].Baseclass+ " " )
 
-     *-- FONT category localization
-     DO CASE
-     CASE lcObjBaseclass $ ccFonts
+      *-- FONT category localization
+      DO CASE
+      CASE lcObjBaseclass $ ccFonts
 
        IF BITTEST( lnThisConfig, 0 )
          lcFontCombo = this.I( laObj[lnI].FontName+ ;
@@ -3439,13 +3424,13 @@ FUNCTION Execute( laObj, txpassed2 )
          laObj[lnI].DynamicFontSize = VAL( SUBSTRC( lcFontCombo, lnBreak+ 1 ))
        ENDIF
 
-     *-- Supported OLE Controls
-     CASE lcObjBaseclass = "OLECONTROL "
-       LOCAL lcClass
-       lcClass = UPPER( laObj[lni].OleClass )
-       DO CASE
-       *-- TreeView, ListView, TabStrip, StatusBar, and SSTab Controls
-       CASE lcClass = "COMCTL.TREECTRL"       OR ;
+      *-- Supported OLE Controls
+      CASE lcObjBaseclass = "OLECONTROL "
+         LOCAL lcClass
+         lcClass = UPPER( laObj[lni].OleClass )
+         DO CASE
+         *-- TreeView, ListView, TabStrip, StatusBar, and SSTab Controls
+         CASE lcClass = "COMCTL.TREECTRL"     OR ;
             lcClass = "COMCTL.LISTVIEWCTRL"   OR ;
             lcClass = "TABSTRIP.TABSTRIPCTRL" OR ;
             lcClass = "COMCTL.SBARCTRL"  OR ;
@@ -3456,32 +3441,33 @@ FUNCTION Execute( laObj, txpassed2 )
             lcClass = "THREED.SSCOMMAND" OR ;
             lcClass = "THREED.SSCHECK"
 
-         WITH laObj[lni].Object
-           lcFontCombo = this.I( .Font.Name+ ;
-                              ","+ ;
-                              ALLTRIM( STR( .Font.Size, 3 )), "Font" )
-           lnBreak    = AT_C( ",", lcFontCombo )
-           .Font.Name = LEFTC( lcFontCombo, lnBreak- 1 )
-           .Font.Size = VAL( SUBSTRC( lcFontCombo, lnBreak+ 1 ))
-         ENDWITH
+            WITH laObj[lni].Object
+              lcFontCombo = this.I( .Font.Name+ ;
+                                 ","+ ;
+                                 ALLTRIM( STR( .Font.Size, 3 )), "Font" )
+              lnBreak    = AT_C( ",", lcFontCombo )
+              .Font.Name = LEFTC( lcFontCombo, lnBreak- 1 )
+              .Font.Size = VAL( SUBSTRC( lcFontCombo, lnBreak+ 1 ))
+            ENDWITH
 
-       ENDCASE
-     ENDCASE
+         ENDCASE
+      ENDCASE
 
    ENDFOR
 RETURN lxRetVal
+
 FUNCTION I( tcPassed1, tcContext )
    LOCAL lcCookie
    lcCookie = ''
    IF EMPTY( tcPassed1) OR ISNULL( tcPassed1) OR TYPE( 'tcPassed1') <> "C"
-     RETURN tcPassed1
+      RETURN tcPassed1
    ENDIF
    IF EMPTY( tcContext )
-     tcContext = ''
+      tcContext = ''
    ELSE
-     lcCookie = "(("+ PROPER( tcContext) + "))"
+      lcCookie = "(("+ PROPER( tcContext) + "))"
    ENDIF
-   RETURN STRTRAN(cINTLStrategy::I( lcCookie+ tcPassed1),lcCookie )
+RETURN STRTRAN(cINTLStrategy::I( lcCookie+ tcPassed1),lcCookie )
 
 
 
@@ -3641,9 +3627,9 @@ FUNCTION I( tcPassed1, tcContext )
    ENDIF
 
    IF EMPTY( tcContext )
-     tcContext = ''
+      tcContext = ''
    ELSE
-     lcCookie = "(("+ PROPER( tcContext) + "))"
+      lcCookie = "(("+ PROPER( tcContext) + "))"
    ENDIF
    RETURN STRTRAN(cINTLStrategy::I( lcCookie+ tcPassed1), lcCookie )
 
@@ -3661,13 +3647,13 @@ ENDDEFINE
 *//////////////////////////////////////////////////////////////////////////////
 DEFINE CLASS cINTLString AS cINTLStrategy
 
- cAlias = "Strings"
- cTable = ccDefaultStringsTable
- cType = "String"
- lStrategyOpen = .F.
- Name = "cINTLString"
- nConfig = 7
- nDefaultConfig = 7
+cAlias         = "Strings"
+cTable         = ccDefaultStringsTable
+cType          = "String"
+lStrategyOpen  = .F.
+Name           = "cINTLString"
+nConfig        = 7
+nDefaultConfig = 7
 
 
 *====================================
@@ -3774,8 +3760,7 @@ FUNCTION Execute( laObj, txpassed2 )
    ENDIF
 
    LOCAL ARRAY laFonts[1, 2]
-   LOCAL ;
-         lcFontCombo, ;
+   LOCAL lcFontCombo, ;
          lcObjBaseClass, ;
          llIsExplicit, ;
          lnConfig, ;
@@ -3785,156 +3770,157 @@ FUNCTION Execute( laObj, txpassed2 )
          lxObjINTL, ;
          lxRetVal
 
-   llIsExplicit   = this.GetExplicit()
+   llIsExplicit    = this.GetExplicit()
    lnOldINTLConfig = NULL
-   lnThisConfig   = this.GetConfig()
-   lxRetVal       = NULL
+   lnThisConfig    = this.GetConfig()
+   lxRetVal        = NULL
 
    *?  ER:  Use an iterator class to iterate
    *?  arrays of objects themselves...
    FOR lnI = 1 to ALEN( laObj )
 
-     *-- Bail for the standard reasons
-     IF this.LoopOut( laObj[lnI])
-       LOOP
-     ENDIF
+      *-- Bail for the standard reasons
+      IF this.LoopOut( laObj[lnI])
+         LOOP
+      ENDIF
 
-     *-- Performance note: Cast to a memvar to avoid
-     *-- repeatedly accessing a property.
-     lcObjBaseclass = UPPER( laObj[lnI].Baseclass+ " " )
+      *-- Performance note: Cast to a memvar to avoid
+      *-- repeatedly accessing a property.
+      lcObjBaseclass = UPPER( laObj[lnI].Baseclass+ " " )
 
-     DO CASE
-     *-- CAPTION category localization
-     CASE lcObjBaseclass $ ccCaptionObjects
-       IF BITTEST( lnThisConfig, 0) AND ;
-          lcObjBaseclass $ ccCaptions AND ;
-          !EMPTY( laObj[lnI].Caption )
+      DO CASE
+      *-- CAPTION category localization
+      CASE lcObjBaseclass $ ccCaptionObjects
+      IF BITTEST( lnThisConfig, 0) AND ;
+         lcObjBaseclass $ ccCaptions AND ;
+         !EMPTY( laObj[lnI].Caption )
 
          laObj[lnI].Caption = this.I( laObj[lnI].Caption )
-       ENDIF
+      ENDIF
 
-       IF BITTEST( lnThisConfig, 1) AND ;
-          lcObjBaseclass $ ccToolTips AND ;
-          !EMPTY( laObj[lnI].ToolTipText )
+      IF BITTEST( lnThisConfig, 1) AND ;
+         lcObjBaseclass $ ccToolTips AND ;
+         !EMPTY( laObj[lnI].ToolTipText )
 
          laObj[lnI].ToolTipText = this.I( laObj[lnI].ToolTipText )
-       ENDIF
+      ENDIF
 
-       IF BITTEST( lnThisConfig, 2) AND ;
-          lcObjBaseclass $ ccStatusbarTexts AND ;
-          !EMPTY( laObj[lnI].StatusBarText )
+      IF BITTEST( lnThisConfig, 2) AND ;
+         lcObjBaseclass $ ccStatusbarTexts AND ;
+         !EMPTY( laObj[lnI].StatusBarText )
 
          laObj[lnI].StatusBarText = this.I( laObj[lnI].StatusBarText )
-       ENDIF
+      ENDIF
 
-     *-- Supported OLE Controls
-     CASE lcObjBaseclass = "OLECONTROL "
-       LOCAL lcClass
-       lcClass = UPPER( laObj[lni].OleClass )
+      *-- Supported OLE Controls
+      CASE lcObjBaseclass = "OLECONTROL "
+         LOCAL lcClass
+         lcClass = UPPER( laObj[lni].OleClass )
 
-       DO CASE
-       *-- TreeView Control
-       CASE lcClass = "COMCTL.TREECTRL"
-         IF laObj[lni].Object.Nodes.Count> 0
-           IF BITTEST( lnThisConfig, 0 )
-             *-- Load an array of node references (for faster traversal )
-             WITH laObj[lni].Object
-               LOCAL ARRAY aNodes[.Nodes.Count]
-               LOCAL lnz
-               FOR lnz = 1 TO ALEN( aNodes, 1 )
-                 aNodes( lnz)= .Nodes( lnZ )
-               ENDFOR
-             ENDWITH
+         DO CASE
+         *-- TreeView Control
+         CASE lcClass = "COMCTL.TREECTRL"
+            IF laObj[lni].Object.Nodes.Count> 0
+               IF BITTEST( lnThisConfig, 0 )
+                  *-- Load an array of node references (for faster traversal )
+                  WITH laObj[lni].Object
+                     LOCAL ARRAY aNodes[.Nodes.Count]
+                     LOCAL lnz
+                     FOR lnz = 1 TO ALEN( aNodes, 1 )
+                        aNodes( lnz)= .Nodes( lnZ )
+                     ENDFOR
+                  ENDWITH
 
-             FOR lnZ = 1 TO ALEN( aNodes, 1 )
-               aNodes( lnZ).Text = this.I( aNodes( lnZ).Text )
-             ENDFOR
-           ENDIF
-         ENDIF
-
-       *-- ListView Control
-       CASE lcClass = "COMCTL.LISTVIEWCTRL"
-         IF laObj[lni].Object.ListItems.Count > 0
-           IF BITTEST( lnThisConfig, 0 )
-             *-- Load an array of item references (for faster traversal )
-             WITH laObj[lni].Object
-               LOCAL ARRAY aItems[.ListItems.Count]
-               LOCAL lnz
-               FOR lnz = 1 TO ALEN( aItems, 1 )
-                 aItems( lnz)= .ListItems( lnZ )
-               ENDFOR
-             ENDWITH
-
-             *-- Localize the caption
-             FOR lnZ = 1 TO ALEN( aItems, 1 )
-               aItems( lnZ).Text = this.I( aItems( lnZ).Text )
-             ENDFOR
-           ENDIF
-         ENDIF
-
-       *-- Tabstrip Control
-       CASE lcClass = "TABSTRIP.TABSTRIPCTRL"
-         *-- Load an array of page references (for faster traversal )
-         IF laObj[lni].Object.Tabs.Count > 0
-           WITH laObj[lni].Object
-             LOCAL ARRAY aPages[.Tabs.Count]
-             LOCAL lnz
-             FOR lnz = 1 TO ALEN( aPages, 1 )
-               aPages( lnz)= .Tabs( lnZ )
-             ENDFOR
-           ENDWITH
-
-           *-- Localize the caption
-           IF BITTEST( lnThisConfig, 0 )
-             *-- Few pages expected so don't bother creating a reference array
-             FOR lnZ = 1 TO ALEN( aPages )
-               aPages( lnZ).Caption = this.I( aPages( lnZ).Caption )
-             ENDFOR
-           ENDIF
-
-           *-- Localize the tooltiptext
-           IF BITTEST( lnThisConfig, 1 )
-             *-- Few pages expected so don't bother creating a reference array
-             FOR lnZ = 1 TO ALEN( aPages )
-               aPages( lnZ).ToolTiptext = this.I( aPages( lnZ).ToolTiptext )
-             ENDFOR
-           ENDIF
-         ENDIF
-
-       *-- Statusbar Control
-       CASE lcClass = "COMCTL.SBARCTRL"
-         *-- Few panels expected so don't bother creating a reference array
-         *-- Localize the caption
-         IF BITTEST( lnThisConfig, 0 )
-           FOR EACH oPanel IN laObj[lni].Object.Panels
-             oPanel.Text = this.I( oPanel.Text )
-           ENDFOR
-         ENDIF
-
-       *-- SSTab Control
-       CASE lcClass = "TABDLG.SSTAB"
-         *-- Few panels expected so don't bother creating a reference array
-         *-- Localize the caption
-         IF BITTEST( lnThisConfig, 0 )
-           LOCAL lnIndex
-           *-- SSTab is zero-based
-           FOR lnIndex = 0 TO laObj[lni].Object.Tabs-1
-             laObj[lni].Object.TabCaption( lnIndex)= this.I( laObj[lni].Object.TabCaption( lnIndex ))
-           ENDFOR
-         ENDIF
-
-       *-- Threed panel and Option controls
-       CASE lcClass = "THREED.SSPANEL" OR ;
-            lcClass = "THREED.SSOPTION" OR ;
-            lcClass = "THREED.SSFRAME" OR ;
-            lcClass = "THREED.SSCOMMAND" OR ;
-            lcClass = "THREED.SSCHECK"
-         IF BITTEST( lnThisConfig, 0 )
-             laObj[lni].Object.Caption = this.I( laObj[lni].Object.Caption )
+                  FOR lnZ = 1 TO ALEN( aNodes, 1 )
+                     aNodes( lnZ).Text = this.I( aNodes( lnZ).Text )
+                  ENDFOR
+               ENDIF
             ENDIF
 
-       ENDCASE
-     ENDCASE
+         *-- ListView Control
+         CASE lcClass = "COMCTL.LISTVIEWCTRL"
+            IF laObj[lni].Object.ListItems.Count > 0
+               IF BITTEST( lnThisConfig, 0 )
+                *-- Load an array of item references (for faster traversal )
+                  WITH laObj[lni].Object
+                     LOCAL ARRAY aItems[.ListItems.Count]
+                     LOCAL lnz
+                     FOR lnz = 1 TO ALEN( aItems, 1 )
+                        aItems( lnz)= .ListItems( lnZ )
+                     ENDFOR
+                  ENDWITH
+
+                  *-- Localize the caption
+                  FOR lnZ = 1 TO ALEN( aItems, 1 )
+                     aItems( lnZ).Text = this.I( aItems( lnZ).Text )
+                  ENDFOR
+               ENDIF
+            ENDIF
+
+         *-- Tabstrip Control
+         CASE lcClass = "TABSTRIP.TABSTRIPCTRL"
+            *-- Load an array of page references (for faster traversal )
+            IF laObj[lni].Object.Tabs.Count > 0
+               WITH laObj[lni].Object
+                  LOCAL ARRAY aPages[.Tabs.Count]
+                  LOCAL lnz
+                  FOR lnz = 1 TO ALEN( aPages, 1 )
+                     aPages( lnz)= .Tabs( lnZ )
+                  ENDFOR
+               ENDWITH
+
+               *-- Localize the caption
+               IF BITTEST( lnThisConfig, 0 )
+                  *-- Few pages expected so don't bother creating a reference array
+                  FOR lnZ = 1 TO ALEN( aPages )
+                     aPages( lnZ).Caption = this.I( aPages( lnZ).Caption )
+                  ENDFOR
+               ENDIF
+
+               *-- Localize the tooltiptext
+               IF BITTEST( lnThisConfig, 1 )
+                  *-- Few pages expected so don't bother creating a reference array
+                  FOR lnZ = 1 TO ALEN( aPages )
+                     aPages( lnZ).ToolTiptext = this.I( aPages( lnZ).ToolTiptext )
+                  ENDFOR
+               ENDIF
+            ENDIF
+
+         *-- Statusbar Control
+         CASE lcClass = "COMCTL.SBARCTRL"
+            *-- Few panels expected so don't bother creating a reference array
+            *-- Localize the caption
+            IF BITTEST( lnThisConfig, 0 )
+               FOR EACH oPanel IN laObj[lni].Object.Panels
+                  oPanel.Text = this.I( oPanel.Text )
+               ENDFOR
+            ENDIF
+
+         *-- SSTab Control
+         CASE lcClass = "TABDLG.SSTAB"
+            *-- Few panels expected so don't bother creating a reference array
+            *-- Localize the caption
+            IF BITTEST( lnThisConfig, 0 )
+               LOCAL lnIndex
+               *-- SSTab is zero-based
+               FOR lnIndex = 0 TO laObj[lni].Object.Tabs-1
+                  laObj[lni].Object.TabCaption( lnIndex)= this.I( laObj[lni].Object.TabCaption( lnIndex ))
+               ENDFOR
+            ENDIF
+
+         *-- Threed panel and Option controls
+         CASE lcClass = "THREED.SSPANEL" OR ;
+              lcClass = "THREED.SSOPTION" OR ;
+              lcClass = "THREED.SSFRAME" OR ;
+              lcClass = "THREED.SSCOMMAND" OR ;
+              lcClass = "THREED.SSCHECK"
+
+            IF BITTEST( lnThisConfig, 0 )
+                laObj[lni].Object.Caption = this.I( laObj[lni].Object.Caption )
+            ENDIF
+
+         ENDCASE
+      ENDCASE
    ENDFOR
 RETURN lxRetVal
 
@@ -3946,29 +3932,30 @@ RETURN lxRetVal
 FUNCTION CreateStrategyTable( tcFile )
 * Create a local Strategy table
 
-   *-- Defer first to any hook
-   IF INTL_HOOK_TEST
-     LOCAL lxRetVal
-     lxRetVal = this.oHook.CreateStrategyTable( @tcFile )
-     IF !ISNULL( lxRetVal )
-       RETURN lxRetVal
-     ENDIF
+*-- Defer first to any hook
+IF INTL_HOOK_TEST
+   LOCAL lxRetVal
+   lxRetVal = this.oHook.CreateStrategyTable( @tcFile )
+   IF !ISNULL( lxRetVal )
+      RETURN lxRetVal
    ENDIF
+ENDIF
 
-   *-- Reject a null parameter
-   IF ISNULL( tcFile )
-     RETURN NULL
-   ENDIF
+*-- Reject a null parameter
+IF ISNULL( tcFile )
+   RETURN NULL
+ENDIF
 
 
- IF TYPE( 'tcFile')= "O" OR ;
+IF TYPE( 'tcFile')= "O" OR ;
     EMPTY( tcFile) OR ;
     TYPE( "tcFile" )<> "C"
-    tcFile = this.cAlias
- ENDIF
+
+   tcFile = this.cAlias
+ENDIF
 
 *-- Don't clobber any existing file.  Ever.
- IF ! FILE( this.GetTable())
+IF ! FILE( this.GetTable())
 
    PRIVATE jcStr
    jcStr = ccDefaultLanguageField + " C(" + cnStringWidth+ "), "
@@ -3996,9 +3983,9 @@ FUNCTION CreateStrategyTable( tcFile )
    this.CreateStrategyCDX()
    *-- Don't assume we want it open
    USE
-RETURN .T.
- ENDIF
-   RETURN .F.
+   RETURN .T.
+ENDIF
+RETURN .F.
 
 
 *====================================
