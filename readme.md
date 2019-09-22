@@ -335,55 +335,48 @@ It is important for VFP to find INTL’s files as needed. Here’s where to put 
 
 ## How to Instantiate an INTL Object
 
-<table>
-<tbody>
-<tr>
-<td><strong>Create a member named _SCREEN.oINTL to hold INTL.</strong></td>
-<td><p>In order to use INTL, your application must instantiate an INTL object. There are many ways to do this, the best being to add it to _SCREEN, like this:</p>
-<p>*-- Anywhere, anytime:</p>
-<p>*-- Instantiate INTL in _SCREEN</p>
-<p>SET PROCEDURE TO INTL ADDITIVE</p>
-<p>SCREEN.AddObject( "oINTL", "INTL")</p></td>
-</tr>
-</tbody>
-</table>
+Create a member named `_SCREEN.oINTL` to hold the INTL instance.
 
-##
-How to Localize Forms
+In order to use INTL, your application must instantiate an INTL object. There are many ways to do this, the best being to add it to _SCREEN, like this:
+
+```
+*-- Anywhere, anytime:
+*-- Instantiate INTL in _SCREEN
+SET PROCEDURE TO INTL ADDITIVE
+SCREEN.AddObject( "oINTL", "INTL")
+```
+
+## How to Localize Forms
 
 Localize forms by passing their object references to the Localize()
 method of an INTL class object.
 
-<table>
-<tbody>
-<tr>
-<td><strong>Forms (and any other container) can be localized by passing it to the oINTL.Localize() method.</strong></td>
-<td><p>*-- Configure oINTL to another language</p>
-<p>_SCREEN.oINTL.SetLanguage( "French")</p>
-<p>*-- Instantiate a form. If the form calls INTL in its INIT()</p>
-<p>*-- method, then the form appears in French….</p>
-<p>DO FORM MyForm Name MyForm</p>
-<p>*-- ….or you can localize the form on the fly.</p>
-<p>_SCREEN.oINTL.Localize( MyForm)</p></td>
-</tr>
-</tbody>
-</table>
+Forms (and any other container) are localized by passing its reference to the `oINTL.Localize()` method.
+
+<pre>
+*-- Configure oINTL to another language
+_SCREEN.oINTL.SetLanguage( "French")
+*-- Instantiate a form. If the form calls INTL in its INIT()
+*-- method, then the form appears in French….
+DO FORM MyForm Name MyForm
+*-- ….or you can localize the form on the fly.
+_SCREEN.oINTL.Localize( MyForm)
+</pre>
 
 ## How to Get Automatic Form Localization
 
-|                                                          |                                                                                                                                                                                                            |
-| -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Place a call to oINTL in your Form.Init() hierarchy.** | To make your forms localize themselves automatically call the oINTL.Localize() method in your form class hierarchy. To do so, place the following code in the INIT() method of your form class definition. |
+**Place a call to oINTL in your `Form.Init()` hierarchy.**
 
-\*-- Don't forget to call the ParentClass\!
+To make your forms localize themselves automatically call the oINTL.Localize() method in your form class hierarchy. To do so, place the following code in the INIT() method of your form class definition. |
 
+```
+*-- Don't forget to call the ParentClass\!
 ParentClass::Init()
 
-IF TYPE("\_SCREEN.oINTL") == "O"
-
-\_SCREEN.oINTL.Localize( THIS)
-
+IF TYPE("_SCREEN.oINTL") == "O"
+  _SCREEN.oINTL.Localize( THIS)
 ENDIF
+```
 
 ## How to Localize Menus
 
@@ -430,19 +423,19 @@ _SCREEN.oINTL.Localize( _SCREEN.ActiveForm )
 
 ## How to Swap Languages on the Fly
 
-|                                                                         |                                                                                                                                                                                                                         |
-| ----------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Nothing demos better than swapping the display language on the fly.** | To swap languages on the fly, which is always a success in a demo (do it even if it isn't required — it's so easy), create a mechanism in your application to configure the INTL object with SetLanguage(), as follows. |
+**Nothing demos better than swapping the display language on the fly.**
 
-\_SCREEN.oINTL.SetLanguage("German") && Configure INTL for German
+To swap languages on the fly, which is always a success in a demo (do it even if it isn't required — it's so easy), create a mechanism in your application to configure the INTL object with SetLanguage(), as follows.
 
-FOR i=1 TO ALEN(\_SCREEN.Forms) && Localize active forms
+```
+_SCREEN.oINTL.SetLanguage("German") && Configure INTL for German
 
-\_SCREEN.oINTL.Localize( \_SCREEN.Forms\[i\])
-
+FOR i=1 TO ALEN(_SCREEN.Forms) && Localize active forms
+  _SCREEN.oINTL.Localize( _SCREEN.Forms[i])
 ENDFOR
 
 DO MAIN.MPR && Refresh the menu too\!
+```
 
 ## How to Work With Locales
 
@@ -454,7 +447,7 @@ In this example, I've subclassed the INTL class to change all the locale-specifi
 
 Subclassing INTL for your own needs is a great way to meet locale demands with a minimum of code and fuss.
 
-Take note of the RightToLeft strategy, which is useful for Middle-Eastern writing systems.\
+Take note of the RightToLeft strategy, which is useful for Middle-Eastern writing systems.
 
 ```
 DEFINE CLASS MyINTL AS INTL
@@ -514,9 +507,9 @@ ENDDEFINE
 
 ## How to Demo your App in Swahili Today
 
-|                                                   |                                                                                                                                                                                                                                |
-| ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **INTL is engineered to be implemented quickly.** | Here’s what you need to do to localize your application this morning for a multilingual demo this afternoon. If you've used VFP's design tools properly, this is a quick job. If not, this will take a tad longer to engineer. |
+**INTL is designed to be implemented quickly.**
+
+Here’s what you need to do to localize your application this morning for a multilingual demo this afternoon. If you've used VFP's design tools properly, this is a quick job. If not, this will take a tad longer to engineer.
 
 The basic steps are:
 
@@ -565,30 +558,21 @@ The basic steps are:
 
 ## How to Configure Your Main INTL Object
 
+I recommend making a main INTL object named `_SCREEN.oINTL`.
+
+It's possible to have several separate INTL objects co-exist together. Each INTL object is an amalgam of other INTL objects called hooks or strategies. Your main INTL object is the master INTL object in your environment, which I assume is called `_SCREEN.oINTL`.
+
+Use the `SetConfig( n )` method to configure your main INTL object.
+
+You configure INTL with a `_SCREEN.oINTL.SetConfig( n )` method, where `n` is a bitwise integer value with the following interpretation:
+
 <table>
-<thead>
-<tr class="header">
-<th><strong>I recommend making a main INTL object named _SCREEN.oINTL.</strong></th>
-<th>It's possible to have several separate INTL objects co-exist together. Each INTL object is an amalgam of other INTL objects called hooks or strategies. Your main INTL object is the master INTL object in your environment, which I assume is called _SCREEN.oINTL.</th>
-<th></th>
-<th></th>
-</tr>
-</thead>
 <tbody>
 <tr>
-<td><strong>Use the SetConfig( n) method to configure your main INTL object.</strong></td>
-<td>You configure INTL with a _SCREEN.oINTL.SetConfig( <em><strong>n</strong></em>) method, where <em><strong>n</strong></em> is a bitwise integer value with the following interpretation:</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
 <td>Value</td>
 <td>Configuration Meaning</td>
-<td></td>
 </tr>
 <tr>
-<td></td>
 <td><p>1 (Default)</p>
 <p>2</p>
 <p>4</p>
@@ -606,21 +590,18 @@ The basic steps are:
 </tbody>
 </table>
 
-Configuration integers for the ::SetConfig() method for the various INTL
-classes.
 
 **Example: create an INTL object that localizes strings and fonts**
 
-\*-- create an INTL object
-
-\_SCREEN.AddObject("oINTL", "INTL")
-
-\*-- Load the strings and font strategies.
-
-\_SCREEN.oINTL.SetConfig( 1+ 2)
+```
+*-- create an INTL object
+_SCREEN.AddObject("oINTL", "INTL")
+*-- Load the strings and font strategies.
+_SCREEN.oINTL.SetConfig( 1 + 2 )
+```
 
 The operative language and locale of the main INTL object are configured
-with the SetLanguage() and SetLocale() methods.
+with the `SetLanguage()` and `SetLocale()` methods.
 
 ## How to Configure Strategies
 
@@ -703,71 +684,52 @@ strategy.
 **Example: create an INTL object that localizes strings but not
 Tooltips**
 
-<table>
-<tbody>
-<tr>
-<td><strong>Use the oINTL.GetStrategy() method to get an object reference, then use its SetConfig() method to configure it.</strong></td>
-<td><p>*-- create an INTL object</p>
-<p>_SCREEN.AddObject("oINTL", "INTL")</p>
-<p>*-- Load the strings and font strategies.</p>
-<p>_SCREEN.oINTL.SetConfig(3)</p>
-<p>*-- Configure Strings to NOT localize ToolTips</p>
-<p>LOCAL loTempHandle</p>
-<p>loTempHandle= _SCREEN.oINTL.GetStrategy("String")</p>
-<p>*-- For the string strategy, the configuration</p>
-<p>*-- for Caption and StatusBarText is 5</p>
-<p>loTempHandle.SetConfig( 1 + 4)</p></td>
-</tr>
-</tbody>
-</table>
+Use the oINTL.GetStrategy() method to get an object reference, then use its SetConfig() method to configure it.
+
+```
+*-- create an INTL object
+_SCREEN.AddObject("oINTL", "INTL")
+*-- Load the strings and font strategies.
+_SCREEN.oINTL.SetConfig(3)
+*-- Configure Strings to NOT localize ToolTips
+LOCAL loTempHandle
+loTempHandle= _SCREEN.oINTL.GetStrategy("String")
+*-- For the string strategy, the configuration
+*-- for Caption and StatusBarText is 5
+loTempHandle.SetConfig( 1 + 4)
+```
 
 **Example: create an INTL object that localizes only strings and
 InputMasks.**
 
-\*-- create an INTL object
-
-\_SCREEN.AddObject("oINTL", "INTL")
-
-\*-- Load the strings and data strategies.
-
-\_SCREEN.oINTL.SetConfig(5)
-
-\*-- now modify the data strategy from its default.
-
+```
+*-- create an INTL object
+_SCREEN.AddObject("oINTL", "INTL")
+*-- Load the strings and data strategies.
+_SCREEN.oINTL.SetConfig(5)
+*-- now modify the data strategy from its default.
 LOCAL oTemp
-
-oTemp= \_SCREEN.oINTL.GetStrategy("Data")
-
-\*-- Input masks only.
-
+oTemp= _SCREEN.oINTL.GetStrategy("Data")
+*-- Input masks only.
 oTemp.SetConfig( 16)
+```
 
 ## How to Localize Strings
 
+Interface strings are usually the first things that come to mind when we think of translating software.
+
+INTL loads only the string strategy by default.
+
+The following table lists the configuration bits for INTL. These configuration bits decide which strategy is loaded. By default, only the String strategy is loaded, which is to say that strings are automatically localized by INTL by default.
+
 <table>
-<thead>
-<tr class="header">
-<th></th>
-<th>Interface strings are usually the first things that come to mind when we think of translating software.</th>
-<th></th>
-<th></th>
-</tr>
-</thead>
 <tbody>
 <tr>
-<td><strong>INTL loads only the string strategy by default.</strong></td>
-<td>The following table lists the configuration bits for INTL. These configuration bits decide which strategy is loaded. By default, only the String strategy is loaded, which is to say that strings are automatically localized by INTL by default.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
 <td>Class</td>
 <td>Configuration bits</td>
 <td>Localization</td>
 </tr>
 <tr>
-<td></td>
 <td>INTL</td>
 <td><p><strong>1 (Default)</strong></p>
 <p>2</p>
@@ -783,7 +745,6 @@ oTemp.SetConfig( 16)
 <p>cINTLRightToLeft strategy loaded</p></td>
 </tr>
 <tr>
-<td></td>
 <td>CINTLString</td>
 <td><p>1 (Default)</p>
 <p>2 (Default)</p>
@@ -797,15 +758,18 @@ oTemp.SetConfig( 16)
 
 Activate the string strategy as follows:
 
-\*-- cINTLString is loaded by default.
-\*-- So there’s usually no need to do this
-
-\_SCREEN.oINTL.SetStrategy( "String", "cINTLString")
+```
+*-- cINTLString is loaded by default.
+*-- So there’s usually no need to do this
+_SCREEN.oINTL.SetStrategy( "String", "cINTLString")
+```
 
 Another more cryptic way to load the String strategy is:
 
-\*-- Set configuration bit 2^0 "ON"
-\_SCREEN.oINTL.SetConfig(BITSET(oINTL.GetConfig(),0))
+```
+-- Set configuration bit 2^0 "ON"
+_SCREEN.oINTL.SetConfig(BITSET(oINTL.GetConfig(),0))
+```
 
 So there are two ways to do it.
 
@@ -888,12 +852,12 @@ Strings can be localized by providing translations in `strings.dbf`.
 Activate the font strategy as follows:
 
 \*-- cINTLFont is the Font strategy class.
-\_SCREEN.oINTL.SetStrategy( "Font", "cINTLFont")
+_SCREEN.oINTL.SetStrategy( "Font", "cINTLFont")
 
 Another more cryptic way to load the Font strategy is:
 
 \*-- Set configuration bit 2^1 "ON"
-\_SCREEN.oINTL.SetConfig(BITSET(oINTL.GetConfig(),1))
+_SCREEN.oINTL.SetConfig(BITSET(oINTL.GetConfig(),1))
 
 So there are two ways to do it.
 
@@ -988,12 +952,12 @@ performance:
 Activate the data strategy as follows:
 
 \*-- cINTLData is the Graphics strategy class.
-\_SCREEN.oINTL.SetStrategy( "Data", "cINTLData")
+_SCREEN.oINTL.SetStrategy( "Data", "cINTLData")
 
 Another more cryptic way to load the Data strategy is:
 
 \*-- Set configuration bit 2^2 "ON"
-\_SCREEN.oINTL.SetConfig(BITSET(oINTL.GetConfig(),2))
+_SCREEN.oINTL.SetConfig(BITSET(oINTL.GetConfig(),2))
 
 So there are two ways to do it.
 
@@ -1072,12 +1036,12 @@ for example:
 Activate the picture strategy as follows:
 
 \*-- cINTLPicture is the Graphics strategy class.
-\_SCREEN.oINTL.SetStrategy( "Picture", "cINTLPicture")
+_SCREEN.oINTL.SetStrategy( "Picture", "cINTLPicture")
 
 Another more cryptic way to load the Picture strategy is:
 
 \*-- Set configuration bit 2^3 "ON"
-\_SCREEN.oINTL.SetConfig(BITSET(oINTL.GetConfig(),3))
+_SCREEN.oINTL.SetConfig(BITSET(oINTL.GetConfig(),3))
 
 So there are two ways to do it.
 
@@ -1340,11 +1304,11 @@ New classes added to the INTL class hierarchy.
 To use your subclasses instead of those that ship with INTL, call the
 setstrategy()method as follows:
 
-\*-- Assuming \_SCREEN.oINTL is already Instantiated
+\*-- Assuming _SCREEN.oINTL is already Instantiated
 
-\_SCREEN.oINTL.SetStrategy("String", "cMyString")
+_SCREEN.oINTL.SetStrategy("String", "cMyString")
 
-\_SCREEN.oINTL.SetStrategy("Currency", "cMyCurrency")
+_SCREEN.oINTL.SetStrategy("Currency", "cMyCurrency")
 
 ## How to Create Your Own Generic Strategy
 
@@ -1386,7 +1350,7 @@ strategy class to an existing strategy alias.
 
 \*-- Permanently install cMyStringStrategy for the string strategy.
 
-\_SCREEN.oINTL.SetStrategyClass("String", "cMyStringStrategy")
+_SCREEN.oINTL.SetStrategyClass("String", "cMyStringStrategy")
 
 ## How to Batch-Update `strings.dbf`
 
@@ -1431,9 +1395,9 @@ and *then* localize to the new locale using the second INTL object.
 
 ## Details of How MsgSvc() Works
 
-Upon first invocation, MsgSvc() creates an object named \_SCREEN.oMsgSvc
+Upon first invocation, MsgSvc() creates an object named _SCREEN.oMsgSvc
 which thereafter will manage messaging. If an object named
-\_SCREEN.oINTL exists, the \_SCREEN.MsgSvc object will obey its language
+_SCREEN.oINTL exists, the _SCREEN.MsgSvc object will obey its language
 settings and use its services.
 
 ## How to Distribute INTL Files
@@ -2195,7 +2159,7 @@ Returns true if a reference is an object belonging to the INTL class.
 
 Explicitly releases an INTL object.
 
-| **Syntax**    | \_SCREEN.oINTL.Release()                                                                                                                                                            |
+| **Syntax**    | _SCREEN.oINTL.Release()                                                                                                                                                            |
 | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Return**    | Logical true always.                                                                                                                                                                |
 | **Arguments** | None.                                                                                                                                                                               |
@@ -2209,7 +2173,7 @@ This access method sets the pointer to the object’s logical parent.
 | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Return**    | Logical true if successful, false otherwise.                                                                                                                                                                                                  |
 | **Arguments** | oObject: an object reference.                                                                                                                                                                                                                 |
-| **Example**   | ?this.SetLogicalParent( \_SCREEN.oINTL)                                                                                                                                                                                                       |
+| **Example**   | ?this.SetLogicalParent( _SCREEN.oINTL)                                                                                                                                                                                                       |
 | **Remarks**   | The logical parent reference is automatically assigned by the SetHook() method. INTL classes do not use the logical parent back-pointer reference. Included here for compatibility with some object-oriented error handlers my customers use. |
 | **See Also**  | **cINTLAbstract::GetLogicalParent()**                                                                                                                                                                                                         |
 
@@ -4084,7 +4048,7 @@ benefit from INTL at run-time.
 
 2.  Add a cSPANISH memo field to MSGSVC.DBF
 
-3.  \_SCREEN.oINTL.SetLanguage( “Spanish”)
+3.  _SCREEN.oINTL.SetLanguage( “Spanish”)
 
 4.  Run the program.
 
@@ -4704,7 +4668,7 @@ In the code above, the following things happen:
     iterator's services to visit each project record.
 
 Note that the visitor object needs the services of an INTL object, which
-it will create as \_SCREEN.oINTL if an object named \_Screen.oINTL does
+it will create as _SCREEN.oINTL if an object named _SCREEN.oINTL does
 not exist. Therefore, the file INTL.PRG must be available so an oINTL
 object can be created.
 
@@ -4737,7 +4701,7 @@ In the code above, the following things happen:
     iterator to visit each form record.
 
 Note that the visitor object needs the services of an INTL object, which
-it will create as \_SCREEN.oINTL if an object named \_Screen.oINTL does
+it will create as _SCREEN.oINTL if an object named _SCREEN.oINTL does
 not exist. Therefore, the file INTL.PRG must be available so an oINTL
 object can be created.
 
@@ -4770,7 +4734,7 @@ In the code above, the following things happen:
     iterator to visit each form record.
 
 Note that the visitor object needs the services of an INTL object, which
-it will create as \_SCREEN.oINTL if an object named \_Screen.oINTL does
+it will create as _SCREEN.oINTL if an object named _SCREEN.oINTL does
 not exist. Therefore, the file INTL.PRG must be available so an oINTL
 object can be created.
 
@@ -4803,7 +4767,7 @@ In the code above, the following things happen:
     iterator to visit each form record.
 
 Note that the visitor object needs the services of an INTL object, which
-it will create as \_SCREEN.oINTL if an object named \_Screen.oINTL does
+it will create as _SCREEN.oINTL if an object named _SCREEN.oINTL does
 not exist. Therefore, the file INTL.PRG must be available so an oINTL
 object can be created.
 
@@ -4836,7 +4800,7 @@ In the code above, the following things happen:
     iterator to visit each form record.
 
 Note that the visitor object needs the services of an INTL object, which
-it will create as \_SCREEN.oINTL if an object named \_Screen.oINTL does
+it will create as _SCREEN.oINTL if an object named _SCREEN.oINTL does
 not exist. Therefore, the file INTL.PRG must be available so an oINTL
 object can be created.
 
@@ -5343,7 +5307,7 @@ what gives INTL its default behavior.
 
 The reason why the line....
 
-\_SCREEN.oINTL.I("Yes")
+_SCREEN.oINTL.I("Yes")
 
 ....returns "Oui" is not because the oINTL object knows translation,
 it's because the object oINTL.oHook points to an object of the class
@@ -5471,7 +5435,7 @@ strategy, thus
 
 \*-- 1) Get a temporary handle on the currency strategy
 
-oX= \_SCREEN.oINTL.GetStrategy("Currency")
+oX= _SCREEN.oINTL.GetStrategy("Currency")
 
 \*-- 2) Hook It
 
@@ -6198,7 +6162,7 @@ its FONT (which might need to vary with locale); and the ICON file
 
 ### DefOLELCID Property
 
-The DefOLELCID property applies to Form and \_SCREEN objects, and
+The DefOLELCID property applies to Form and _SCREEN objects, and
 specifies the default ole Locale ID for a Form or the main vfp window.
 
 **Internationalization Gotcha**: this default value determines the
