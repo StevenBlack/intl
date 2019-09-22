@@ -585,7 +585,6 @@ You configure INTL with a `_SCREEN.oINTL.SetConfig( n )` method, where `n` is a 
 <p>Load the Picture strategy</p>
 <p>Load the Currency strategy</p>
 <p>Load the RightToLeft strategy</p></td>
-<td></td>
 </tr>
 </tbody>
 </table>
@@ -605,24 +604,18 @@ with the `SetLanguage()` and `SetLocale()` methods.
 
 ## How to Configure Strategies
 
+Strategies are bitwise configured.
+
+Configuring individual strategies is easy. Simply get a reference to the strategy, then configure it. Here are the configuration meanings for each configurable strategy.
+
 <table>
-<thead>
-<tr class="header">
-<th><strong>Strategies are bitwise configured.</strong></th>
-<th>Configuring individual strategies is easy. Simply get a reference to the strategy, then configure it. Here are the configuration meanings for each configurable strategy.</th>
-<th></th>
-<th></th>
-</tr>
-</thead>
 <tbody>
 <tr>
-<td></td>
 <td>Strategy</td>
 <td>Value</td>
 <td>Localization</td>
 </tr>
 <tr>
-<td></td>
 <td>Data</td>
 <td><p>1 (Default)</p>
 <p>2</p>
@@ -636,7 +629,6 @@ with the `SetLanguage()` and `SetLocale()` methods.
 <p>InputMask</p></td>
 </tr>
 <tr>
-<td></td>
 <td>Font</td>
 <td><p>1 (Default)</p>
 <p>2 (Default)</p></td>
@@ -644,7 +636,6 @@ with the `SetLanguage()` and `SetLocale()` methods.
 <p>DynamicFont and DynamicFontSize</p></td>
 </tr>
 <tr>
-<td></td>
 <td>Picture</td>
 <td><p>1 (Default)</p>
 <p>2</p>
@@ -656,13 +647,11 @@ with the `SetLanguage()` and `SetLocale()` methods.
 <p>DragIcon</p></td>
 </tr>
 <tr>
-<td></td>
 <td>RightToLeft</td>
 <td>1 (Default)</td>
 <td>All objects reversed within their respective containers</td>
 </tr>
 <tr>
-<td></td>
 <td>Strings</td>
 <td><p>1 (Default)</p>
 <p>2 (Default)</p>
@@ -789,7 +778,6 @@ Strings can be localized by providing translations in `strings.dbf`.
 <table>
 <tbody>
 <tr>
-<td></td>
 <td><p>*-- Get a handle on the string strategy:</p>
 <p>oFont= _SCREEN.oINTL.GetStrategy("String")</p>
 <p>*-- We want Caption (1) and StatusbarText (4) only</p>
@@ -800,30 +788,20 @@ Strings can be localized by providing translations in `strings.dbf`.
 
 ## How to Localize Fonts
 
+Fonts can be locale-specific.
+
+Fonts like Arial, Times New Roman, MS Sans Serif might not be suitable in some languages. This matters; we may need a way to change fonts when we change locales.
+
+The following table lists the configuration bits for the INTL object to load the Font strategy, and the configuration integers to configure the Font strategy.
+
 <table>
-<thead>
-<tr class="header">
-<th><strong>Fonts can be locale-specific.</strong></th>
-<th>Fonts like Arial, Times New Roman, MS Sans Serif might not be suitable in some languages. This matters; we may need a way to change fonts when we change locales.</th>
-<th></th>
-<th></th>
-</tr>
-</thead>
 <tbody>
 <tr>
-<td><strong>Fonts and other strategies: the big picture.</strong></td>
-<td>The following table lists the configuration bits for the INTL object to load the Font strategy, and the configuration integers to configure the Font strategy.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
 <td>Class</td>
 <td>Configuration bits</td>
 <td>Localization</td>
 </tr>
 <tr>
-<td></td>
 <td>INTL</td>
 <td><p>1 (Default)</p>
 <p><strong>2</strong></p>
@@ -839,7 +817,6 @@ Strings can be localized by providing translations in `strings.dbf`.
 <p>cINTLRightToLeft strategy loaded</p></td>
 </tr>
 <tr>
-<td></td>
 <td>CINTLFont</td>
 <td><p>1 (Default)</p>
 <p>2 (Default)</p></td>
@@ -851,12 +828,12 @@ Strings can be localized by providing translations in `strings.dbf`.
 
 Activate the font strategy as follows:
 
-\*-- cINTLFont is the Font strategy class.
+*-- cINTLFont is the Font strategy class.
 _SCREEN.oINTL.SetStrategy( "Font", "cINTLFont")
 
 Another more cryptic way to load the Font strategy is:
 
-\*-- Set configuration bit 2^1 "ON"
+*-- Set configuration bit 2^1 "ON"
 _SCREEN.oINTL.SetConfig(BITSET(oINTL.GetConfig(),1))
 
 So there are two ways to do it.
@@ -880,7 +857,6 @@ performance:
 <table>
 <tbody>
 <tr>
-<td></td>
 <td><p>*-- Set Font localization on</p>
 <p>oINTL.SetConfig( BITSET( oINTL.GetConfig(), 1 ) ) &amp;&amp; Set 2^1 "ON"</p>
 <p>*-- Get a handle on the font strategy:</p>
@@ -894,30 +870,22 @@ performance:
 
 ## How to Localize Data Sources
 
+Data can be locale-specific.
+
+Sometimes it is the data itself that needs to be localized. INTL allows you to present different fields for different locales.
+
+The Data strategy works just like the other strategies.
+
+The following table lists the configuration bits for the INTL object to load the Picture strategy, and the configuration integers to configure the Picture strategy.
+
 <table>
-<thead>
-<tr class="header">
-<th><strong>Data can be locale-specific.</strong></th>
-<th>Sometimes it is the data itself that needs to be localized. INTL allows you to present different fields for different locales.</th>
-<th></th>
-<th></th>
-</tr>
-</thead>
 <tbody>
 <tr>
-<td><strong>The Data strategy works just like the other strategies.</strong></td>
-<td>The following table lists the configuration bits for the INTL object to load the Picture strategy, and the configuration integers to configure the Picture strategy.</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
 <td>Class</td>
 <td>Configuration bits</td>
 <td>Localization</td>
 </tr>
 <tr>
-<td></td>
 <td>INTL</td>
 <td><p>1 (Default)</p>
 <p>2</p>
@@ -933,7 +901,6 @@ performance:
 <p>cINTLRightToLeft strategy loaded</p></td>
 </tr>
 <tr>
-<td></td>
 <td>CINTLData</td>
 <td><p>1 (Default)</p>
 <p>2</p>
@@ -951,45 +918,43 @@ performance:
 
 Activate the data strategy as follows:
 
-\*-- cINTLData is the Graphics strategy class.
+```
+*-- cINTLData is the Graphics strategy class.
 _SCREEN.oINTL.SetStrategy( "Data", "cINTLData")
+```
 
 Another more cryptic way to load the Data strategy is:
 
-\*-- Set configuration bit 2^2 "ON"
+```
+*-- Set configuration bit 2^2 "ON"
 _SCREEN.oINTL.SetConfig(BITSET(oINTL.GetConfig(),2))
+```
 
 So there are two ways to do it.
 
-Data elements can be localized by providing translations in `strings.dbf`.
-Data specifications are prefixed with the identifier “((Data))”, like
-for example:
+Data elements can be localized by providing translations in `strings.dbf`.  Data specifications are prefixed with the identifier “((Data))”, like for example:
 
 | cOriginal        | cRrussian            |
 | ---------------- | -------------------- |
 | ((Data))cEngDesc | ((Data))cRussianDesc |
 
-|                                                              |                                                                                                                             |
-| ------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------- |
-| **Configure the Data Strategy with its SetConfig() method.** | The INTL data strategy, like all strategies, is bitwise-configured. You can control the picture strategy object as follows: |
+**Configure the Data Strategy with its SetConfig() method.**
+
+The INTL data strategy, like all strategies, is bitwise-configured. You can control the picture strategy object as follows:
 
 **Example:** Localize ControlSource properties.
 
-<table>
-<tbody>
-<tr>
-<td></td>
-<td><p>*-- Set Data localization on</p>
-<p>*-- Set 2^2 "ON"</p>
-<p>oINTL.SetConfig( BITSET( oINTL.GetConfig(), 2) )</p>
-<p>*-- Get a handle on the font strategy:</p>
-<p>oData= _SCREEN.oINTL.GetStrategy("Data")</p>
-<p>*-- We want ControlSource (2)</p>
-<p>*-- property localized.</p>
-<p>oPicture.SetConfig( 2)</p></td>
-</tr>
-</tbody>
-</table>
+```
+*-- Set Data localization on
+*-- Set 2^2 "ON"
+oINTL.SetConfig( BITSET( oINTL.GetConfig(), 2) )
+*-- Get a handle on the data strategy:
+oData= _SCREEN.oINTL.GetStrategy("Data")
+*-- We want ControlSource (2)
+*-- property localized.
+oPicture.SetConfig( 2)
+```
+
 
 ## How to Localize Pictures
 
@@ -1035,13 +1000,17 @@ for example:
 
 Activate the picture strategy as follows:
 
-\*-- cINTLPicture is the Graphics strategy class.
+```
+*-- cINTLPicture is the Graphics strategy class.
 _SCREEN.oINTL.SetStrategy( "Picture", "cINTLPicture")
+```
 
 Another more cryptic way to load the Picture strategy is:
 
-\*-- Set configuration bit 2^3 "ON"
+```
+*-- Set configuration bit 2^3 "ON"
 _SCREEN.oINTL.SetConfig(BITSET(oINTL.GetConfig(),3))
+```
 
 So there are two ways to do it.
 
@@ -1054,39 +1023,30 @@ for example:
 | ((Picture))Doctor.BMP | ((Picture))Doktor.BMP  |
 | ((Picture))Friend.BMP | ((Picture))Comrade.BMP |
 
-|                                                                 |                                                                                                                                |
-| --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| **Configure the Picture Strategy with its SetConfig() method.** | The INTL picture strategy, like all strategies, is bitwise-configured. You can control the picture strategy object as follows: |
+**Configure the Picture Strategy with its SetConfig() method.**
+
+The INTL picture strategy, like all strategies, is bitwise-configured. You can control the picture strategy object as follows:
 
 **Example:** Localize Picture, DownPicture, and Icon properties.
 
-<table>
-<tbody>
-<tr>
-<td></td>
-<td><p>*-- Set Picture localization on</p>
-<p>*-- Set 2^3 "ON"</p>
-<p>oINTL.SetConfig( BITSET( oINTL.GetConfig(), 3 ) )</p>
-<p>*-- Get a handle on the font strategy:</p>
-<p>oPicture= _SCREEN.oINTL.GetStrategy("Picture")</p>
-<p>*-- We want Picture (1), DownPicture( 2) and Icon (4)</p>
-<p>*-- properties localized. 1+2+4= 7</p>
-<p>oPicture.SetConfig( 7)</p></td>
-</tr>
-</tbody>
-</table>
+```
+*-- Set Picture localization on
+*-- Set 2^3 "ON"
+oINTL.SetConfig( BITSET( oINTL.GetConfig(), 3 ) )
+*-- Get a handle on the font strategy:
+oPicture= _SCREEN.oINTL.GetStrategy("Picture")
+*-- We want Picture (1), DownPicture( 2) and Icon (4)
+*-- properties localized. 1+2+4= 7
+oPicture.SetConfig( 7)
+```
 
 ## How to Localize Currencies
 
-<table>
-<tbody>
-<tr>
-<td><strong>INTL provides a simple yet adaptable multi-currency capability.</strong></td>
-<td><p>INTL enables you to endow your application with a simple multi-currency capability. This architecture is flexible, and by subclassing the cINTLCurrency class you can probably implement almost any multi-currency scheme you need.</p>
-<p>At the heart of it all, the INTL Currency strategy works only on fields having a format property of "$".</p></td>
-</tr>
-</tbody>
-</table>
+INTL provides a simple yet adaptable multi-currency capability.
+
+INTL enables you to endow your application with a simple multi-currency capability. This architecture is flexible, and by subclassing the cINTLCurrency class you can probably implement almost any multi-currency scheme you need.
+
+At the heart of it all, the INTL Currency strategy works only on fields having a format property of "$".
 
 Recall that INTL strategies are bitwise-configured according to the
 following table.
@@ -1120,66 +1080,63 @@ following table.
 
 Activate the currency strategy as follows:
 
-<table>
-<tbody>
-<tr>
-<td><strong>Use oINTL.SetConfig() or oINTL.SetStrategy() to load the Currency strategy.</strong></td>
-<td><p>OINTL= _SCREEN.oINTL</p>
-<p>oINTL.SetStratrgy( "Currency", "cINTLCurrency")</p>
-<p>An alternate (and more cryptic) way is to use INTL's SetConfig() method to make INTL invoke the Font strategy of a given class, as follows:</p>
-<p>OINTL= _SCREEN.oINTL<br />
-*-- Set bit 2^4 "ON"</p>
-<p>oINTL.SetConfig( BITSET( oINTL.GetConfig(), 4 ) )</p></td>
-</tr>
-</tbody>
-</table>
+Use `oINTL.SetConfig()` or `oINTL.SetStrategy()` to load the Currency strategy.
+
+```
+OINTL= _SCREEN.oINTL
+oINTL.SetStratrgy( "Currency", "cINTLCurrency")
+```
+
+An alternate (and more cryptic) way is to use INTL's SetConfig() method to make INTL invoke the Font strategy of a given class, as follows:
+
+```
+OINTL= _SCREEN.oINTL
+*-- Set bit 2^4 "ON"
+oINTL.SetConfig( BITSET( oINTL.GetConfig(), 4 ) )
+```
 
 So there are two ways to do it.
 
-<table>
-<thead>
-<tr class="header">
-<th><strong>The Curremcy strategy is not like the others.</strong></th>
-<th><p>The INTL toolkit currency strategy is a little different from other strategies in three important respects:</p>
+The Curremcy strategy is not like the others. The INTL toolkit currency strategy is a little different from other strategies in three important respects:
+
 <ul>
-<li><blockquote>
-<p>currencies are <em>locale</em>-specific, not language-specific.</p>
-</blockquote></li>
-<li><blockquote>
-<p>class cINTLCurrency does not use class cINTLString services, and</p>
-</blockquote></li>
-<li><blockquote>
-<p>class cINTLCurrency makes many input fields read-only when the data is in a converted state.</p>
-</blockquote></li>
-</ul></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>The default exchange rate for all currencies is 1.00</strong></td>
-<td><p>With the cINTLCurrency class that ships with INTL, you assign currency conversion factors to different currencies. By default the conversion factor used by the Currency strategy is 1.00.</p>
-<p>If you need time-dependent currency conversions, you can subclass cINTLCurrency to do anything you need it to do, such as lookups.</p>
-<p>Let's configure INTL for the following currencies: Canadian dollar, German Mark, and US dollar. Assume that our data is based in Canadian dollars.</p></td>
-</tr>
-<tr>
-<td><p><strong>oINTL.SetConversion() sets the exchange rate between the original and other locales.</strong></p>
-<p><strong>Use SetLocale() to change the currency locale.</strong></p>
-<p><strong>Localize as usual.</strong></p></td>
-<td><p>oINTL= _SCREEN.oINTL</p>
-<p>*-- Load the currency strategy</p>
-<p>*-- Set 2^4 "ON"</p>
-<p>oINTL.SetConfig( BITSET( oINTL.GetConfig(), 4 ) )</p>
-<p>*-- Define a few locales and currencies</p>
-<p>oINTL.SetConversion( "Canada", 1)</p>
-<p>oINTL.SetConversion( "Germany", 0.96)</p>
-<p>oINTL.SetConversion( "USA", 1.33)</p>
-<p>*-- Lets assume we want to see it in US dollars</p>
-<p>oINTL.SetLocale( "USA")</p>
-<p>*-- Localize the current form</p>
-<p>oINTL.Localize(_SCREEN.ActiveForm)</p></td>
-</tr>
-</tbody>
-</table>
+<li>
+<p>currencies are <em>locale</em>-specific, not language-specific.</p></li>
+<li>
+<p>class cINTLCurrency does not use class cINTLString services, and</p></li>
+<li>
+<p>class cINTLCurrency makes many input fields read-only when the data is in a converted state.</p></li>
+</ul>
+
+The default exchange rate for all currencies is 1.00.
+
+With the cINTLCurrency class that ships with INTL, you assign currency conversion factors to different currencies. By default the conversion factor used by the Currency strategy is 1.00.
+
+If you need time-dependent currency conversions, you can subclass cINTLCurrency to do anything you need it to do, such as lookups.
+
+Let's configure INTL for the following currencies: Canadian dollar, Euro, and US dollar. Assume that our data is based in Canadian dollars.
+
+`oINTL.SetConversion()` sets the exchange rate between the original and other locales.
+
+Use `SetLocale()` to change the currency locale. Then localize as usual.
+
+```
+oINTL= _SCREEN.oINTL
+
+*-- Load the currency strategy
+*-- Set 2^4 "ON"
+oINTL.SetConfig( BITSET( oINTL.GetConfig(), 4 ) )
+*-- Define a few locales and currencies
+oINTL.SetConversion( "Canada", 1)
+oINTL.SetConversion( "Euro", 1.55)
+oINTL.SetConversion( "USA", 1.33)
+
+*-- Lets assume we want to see it in US dollars
+oINTL.SetLocale( "USA")
+
+*-- Localize the current form
+oINTL.Localize(_SCREEN.ActiveForm)
+```
 
 ## How to Localize for Right-To-Left Writing Systems
 
@@ -1265,7 +1222,6 @@ So there are two ways to do it.
 </thead>
 <tbody>
 <tr>
-<td></td>
 <td>Let's configure INTL for a right-to-left language. The cleanest way to do this is with a subclass of the INTL::SetLanguage() method. Alternately, you could also do it with the SetLocale() method. Either way, the implementation is the same.</td>
 </tr>
 <tr>
@@ -1304,7 +1260,7 @@ New classes added to the INTL class hierarchy.
 To use your subclasses instead of those that ship with INTL, call the
 setstrategy()method as follows:
 
-\*-- Assuming _SCREEN.oINTL is already Instantiated
+*-- Assuming _SCREEN.oINTL is already Instantiated
 
 _SCREEN.oINTL.SetStrategy("String", "cMyString")
 
@@ -1348,7 +1304,7 @@ If you wish to substitute your own strategies in subsequent strategy
 instantiations, use the SetStrategyClass() method to assign a new
 strategy class to an existing strategy alias.
 
-\*-- Permanently install cMyStringStrategy for the string strategy.
+*-- Permanently install cMyStringStrategy for the string strategy.
 
 _SCREEN.oINTL.SetStrategyClass("String", "cMyStringStrategy")
 
@@ -1642,22 +1598,18 @@ object in turn to all the active localization strategies.
 </thead>
 <tbody>
 <tr>
-<td></td>
 <td><strong>Syntax</strong></td>
 <td>oINTL.GetAlias()</td>
 </tr>
 <tr>
-<td></td>
 <td><strong>Return</strong></td>
 <td>The character value of the string strategy table alias.</td>
 </tr>
 <tr>
-<td></td>
 <td><strong>Arguments</strong></td>
 <td>None.</td>
 </tr>
 <tr>
-<td></td>
 <td><strong>Example</strong></td>
 <td><p>_SCREEN.AddObject( "oINTL", "INTL")</p>
 <p>*-- The following two are equivalent</p>
@@ -1665,14 +1617,11 @@ object in turn to all the active localization strategies.
 <p>_SCREEN.oINTL.GetAlias()</p></td>
 </tr>
 <tr>
-<td></td>
 <td><strong>Remarks</strong></td>
 <td>The GetAlias() method is a <em>hookable</em> method, meaning that if an object of class INTL has an attached hook object, then GetAlias() defers to the method of the hook object. Since by default objects of class INTL are hooked with an object of the cINTLStringStrategy class, invoking oINTL.GetAlias() is the equivalent of invoking oINTL.oStringStrategy.getAlias().</td>
 </tr>
 <tr>
-<td></td>
 <td><strong>See Also</strong></td>
-<td></td>
 </tr>
 </tbody>
 </table>
@@ -2645,7 +2594,6 @@ objects.
 </tr>
 <tr>
 <td><strong>See Also</strong></td>
-<td></td>
 </tr>
 </tbody>
 </table>
@@ -4646,15 +4594,15 @@ in an entire project with the following invocation:
 
 SET PROC TO INTLTool
 
-\*-- Create a project iterator
+*-- Create a project iterator
 
 oIterator= create( "CProjectIterator", cProjectFile)
 
-\*-- Create an object to "visit" a the project
+*-- Create an object to "visit" a the project
 
 oVisitor = create( "cINTLUpdateVisitor")
 
-\*-- Go\!
+*-- Go\!
 
 oIterator.Accept( oVisitor)
 
@@ -4679,15 +4627,15 @@ in a single form with the following invocation:
 
 SET PROC TO INTLTool
 
-\*-- Create a form iterator
+*-- Create a form iterator
 
 oIterator= create( "CSCXIterator", cScxFile)
 
-\*-- Create an object to "visit" a the form
+*-- Create an object to "visit" a the form
 
 oVisitor = create( "cINTLUpdateVisitor")
 
-\*-- Go\!
+*-- Go\!
 
 oIterator.Accept( oVisitor)
 
@@ -4712,15 +4660,15 @@ in a single visual class library with the following invocation:
 
 SET PROC TO INTLTools
 
-\*-- Create a form iterator
+*-- Create a form iterator
 
 oIterator= create( "CVCXIterator", cVcxFile)
 
-\*-- Create an object to "visit" a the visual class library
+*-- Create an object to "visit" a the visual class library
 
 oVisitor = create( "cINTLUpdateVisitor")
 
-\*-- Go\!
+*-- Go\!
 
 oIterator.Accept( oVisitor)
 
@@ -4745,15 +4693,15 @@ in a single menu file with the following invocation:
 
 SET PROC TO INTLTools
 
-\*-- Create a menu table iterator
+*-- Create a menu table iterator
 
 oIterator= create( "CMNXIterator", cMnxFile)
 
-\*-- Create an object to "visit" a the menu
+*-- Create an object to "visit" a the menu
 
 oVisitor = create( "cINTLUpdateVisitor")
 
-\*-- Go\!
+*-- Go\!
 
 oIterator.Accept( oVisitor)
 
@@ -4778,15 +4726,15 @@ in a single report file with the following invocation:
 
 SET PROC TO INTLTools
 
-\*-- Create a menu table iterator
+*-- Create a menu table iterator
 
 oIterator= create( "CFRXIterator", cFrxFile)
 
-\*-- Create an object to "visit" a the report
+*-- Create an object to "visit" a the report
 
 oVisitor = create( "cINTLUpdateVisitor")
 
-\*-- Go\!
+*-- Go\!
 
 oIterator.Accept( oVisitor)
 
@@ -4815,16 +4763,16 @@ application.
 
 SET PROC TO Intltool
 
-\*-- Create a project iterator
+*-- Create a project iterator
 
 oIterator=create("CProjectIterator",HOME()+
 "SAMPLES\\MAINSAMP\\Tastrade")
 
-\*-- Create a report visitor
+*-- Create a report visitor
 
 oVisitor=createobject("cINTLReportTransformVisitor")
 
-\*-- Have the visitor visit the iterator
+*-- Have the visitor visit the iterator
 
 oIterator.Accept( oVisitor)
 
@@ -4837,15 +4785,15 @@ Transformation Visitor on a FRX Iterator, like in the following example:
 
 SET PROC TO Intltool
 
-\*-- Create a project iterator
+*-- Create a project iterator
 
 oIterator=create("CFRXIterator", "MyReport.FRX")
 
-\*-- Create a report visitor
+*-- Create a report visitor
 
 oVisitor=createobject("cINTLReportTransformVisitor")
 
-\*-- Have the visitor visit the iterator
+*-- Have the visitor visit the iterator
 
 oIterator.Accept( oVisitor)
 
@@ -5401,7 +5349,7 @@ DEFINE CLASS MyCurrencyHook AS cINTLCurrency
 
 \*====================================
 
-\*-- MyCurrencyHook::I(\[c|n\])
+*-- MyCurrencyHook::I(\[c|n\])
 
 \*====================================
 
@@ -5409,13 +5357,13 @@ DEFINE CLASS MyCurrencyHook AS cINTLCurrency
 
 FUNCTION I( txPara1)
 
-\*-- Your code goes here. For now,
+*-- Your code goes here. For now,
 
-\*-- lets trivially assume you always want
+*-- lets trivially assume you always want
 
-\*-- to return a time-invariant conversion
+*-- to return a time-invariant conversion
 
-\*-- rate of 1.25.
+*-- rate of 1.25.
 
 IF TYPE( 'txPara')= "N"
 
@@ -5433,15 +5381,15 @@ Instantiating the hook involves connecting an instance of the hook to
 the hooked object. In our example, we want to hook the currency
 strategy, thus
 
-\*-- 1) Get a temporary handle on the currency strategy
+*-- 1) Get a temporary handle on the currency strategy
 
 oX= _SCREEN.oINTL.GetStrategy("Currency")
 
-\*-- 2) Hook It
+*-- 2) Hook It
 
 oX.SetHook(CREATEOBJECT("MyCurrencyHook"))
 
-\*-- 3) For safety, release the temporary handle.
+*-- 3) For safety, release the temporary handle.
 
 oX=.NULL.
 
@@ -5558,7 +5506,6 @@ error.
 <p><strong>Internationalization Gotcha:</strong> both the vfp and ODBC error messages vary with the localization of vfp.</p></td>
 </tr>
 <tr>
-<td></td>
 <td>Obviously, you'll want to avoid passing AERROR() messages to the user unless you are sure that their workstation has the correct localized versions of Windows and VFP.</td>
 </tr>
 </tbody>
@@ -5960,100 +5907,67 @@ fields.
 </thead>
 <tbody>
 <tr>
-<td></td>
 <td>DataSession-Scoped SET commands</td>
-<td></td>
-<td></td>
 </tr>
 <tr>
-<td></td>
 <td>SET ANSI</td>
 <td>SET AUTOSAVE</td>
-<td></td>
 </tr>
 <tr>
-<td></td>
 <td>SET BLOCKSIZE</td>
 <td>SET CARRY</td>
-<td></td>
 </tr>
 <tr>
-<td></td>
 <td><strong><span class="underline">SET CENTURY</span></strong></td>
 <td><strong><span class="underline">SET COLLATE</span></strong></td>
-<td></td>
 </tr>
 <tr>
-<td></td>
 <td><strong><span class="underline">SET CONFIRM</span></strong></td>
 <td><strong><span class="underline">SET CURRENCY</span></strong></td>
-<td></td>
 </tr>
 <tr>
-<td></td>
 <td><strong><span class="underline">SET DATABASE</span></strong></td>
 <td><strong><span class="underline">SET DATE</span></strong></td>
-<td></td>
 </tr>
 <tr>
-<td></td>
 <td><strong><span class="underline">SET DECIMALS</span></strong></td>
 <td>SET DELETED</td>
-<td></td>
 </tr>
 <tr>
-<td></td>
 <td><strong><span class="underline">SET DELIMITERS</span></strong></td>
 <td>SET EXACT</td>
-<td></td>
 </tr>
 <tr>
-<td></td>
 <td>SET EXCLUSIVE</td>
 <td>SET FIELDS</td>
-<td></td>
 </tr>
 <tr>
-<td></td>
 <td>SET FIXED</td>
 <td>SET LOCK</td>
-<td></td>
 </tr>
 <tr>
-<td></td>
 <td><strong><span class="underline">SET MARK TO</span></strong></td>
 <td>SET MEMOWIDTH</td>
-<td></td>
 </tr>
 <tr>
-<td></td>
 <td>SET MULTILOCKS</td>
 <td>SET NEAR</td>
-<td></td>
 </tr>
 <tr>
-<td></td>
 <td>SET NULL</td>
 <td><strong><span class="underline">SET POINT</span></strong></td>
-<td></td>
 </tr>
 <tr>
-<td></td>
 <td>SET REPROCESS</td>
 <td><strong><span class="underline">SET SAFETY</span></strong></td>
-<td></td>
 </tr>
 <tr>
-<td></td>
 <td><strong><span class="underline">SET SEPARATOR</span></strong></td>
 <td>SET SYSFORMATS</td>
-<td></td>
 </tr>
 <tr>
-<td></td>
 <td>SET TALK</td>
 <td>SET UNIQUE</td>
-<td></td>
 </tr>
 </tbody>
 </table>
@@ -7005,47 +6919,38 @@ n-byte systems.</strong></th>
 </thead>
 <tbody>
 <tr>
-<td></td>
 <td>nSetting</td>
 <td>Conversion</td>
 </tr>
 <tr>
-<td></td>
 <td>1</td>
 <td>Converts single-byte characters in cExpression to double-byte characters.</td>
 </tr>
 <tr>
-<td></td>
 <td>2</td>
 <td>Converts double-byte characters in cExpression to single-byte characters.</td>
 </tr>
 <tr>
-<td></td>
 <td>3</td>
 <td>Converts double-byte Hiragana characters in cExpression to double-byte Katakana characters.</td>
 </tr>
 <tr>
-<td></td>
 <td>4</td>
 <td>Converts double-byte Katakana characters in cExpression to double-byte Hiragana characters.</td>
 </tr>
 <tr>
-<td></td>
 <td>5</td>
 <td>Converts double-byte characters to UNICODE (wide characters).</td>
 </tr>
 <tr>
-<td></td>
 <td>6</td>
 <td>Converts UNICODE (wide characters) to double-byte characters.</td>
 </tr>
 <tr>
-<td></td>
 <td>7</td>
 <td>Converts cExpression to locale specific lowercase.</td>
 </tr>
 <tr>
-<td></td>
 <td>8</td>
 <td>Converts cExpression to locale specific uppercase.</td>
 </tr>
@@ -7203,58 +7108,40 @@ expression is not a good idea.
 </thead>
 <tbody>
 <tr>
-<td></td>
 <td>VERSION(3)</td>
 <td>Language</td>
-<td></td>
 </tr>
 <tr>
-<td></td>
 <td>00</td>
 <td>English</td>
-<td></td>
 </tr>
 <tr>
-<td></td>
 <td>33</td>
 <td>French</td>
-<td></td>
 </tr>
 <tr>
-<td></td>
 <td>34</td>
 <td>Spanish</td>
-<td></td>
 </tr>
 <tr>
-<td></td>
 <td>39</td>
 <td>Italian</td>
-<td></td>
 </tr>
 <tr>
-<td></td>
 <td>42</td>
 <td>Czech</td>
-<td></td>
 </tr>
 <tr>
-<td></td>
 <td>48</td>
 <td>Polish</td>
-<td></td>
 </tr>
 <tr>
-<td></td>
 <td>49</td>
 <td>German</td>
-<td></td>
 </tr>
 <tr>
-<td></td>
 <td>55</td>
 <td>Portuguese</td>
-<td></td>
 </tr>
 </tbody>
 </table>
