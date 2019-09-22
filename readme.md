@@ -321,34 +321,17 @@ Then,
 It is important for VFP to find INTL’s files as needed. Here’s where to put your INTL files so they are available to your development environment:
 
 **Deploy your files as follows:**
-<table>
-<tbody>
-<tr>
-<td>File</td>
-<td>Location</td>
-</tr>
-<tr>
-<td>`GENMENUX.PRG`</td>
-<td>VFP root or the project root directory.</td>
-</tr>
-<tr>
-<td>`intl.prg`</td>
-<td>VFP root or the project root directory, or along SET PATH<span class="smallcaps">.</span></td>
-</tr>
-<tr>
-<td>
-`strings.dbf strings.fpt strings.cdx`
-</td>
-<td>Project root directory, or along `SET PATH`.</td>
-</tr>
-<tr>
-<td>
-`msgsvc.dbf msgsvc.fpt msgsvc.cdx`
-</td>
-<td>VFP project root directory, or along `SET PATH`.</td>
-</tr>
-</tbody>
-</table>
+
+<dl>
+<dt><code>genmenux.prg</code></dt>
+  <dd>VFP root or the project root directory.</dd>
+<dt><code>intl.prg</code></dt>
+  <dd>VFP root or the project root directory, or along `SET PATH`.</dd>
+<dt><code>strings.dbf strings.fpt strings.cdx</code></dt>
+  <dd>Project root directory, or along `SET PATH`.</dd>
+<dt><code>msgsvc.dbf msgsvc.fpt msgsvc.cdx</code></dt>
+  <dd>VFP project root directory, or along `SET PATH`.</dd>
+</dl>
 
 ## How to Instantiate an INTL Object
 
@@ -436,15 +419,14 @@ Use the `SetLanguage()` method to change INTL’s language.
 
 INTL comes with a table named `strings.dbf` which contains a variety of fields, one of which is `cOriginal`, and it may contain other fields for different languages, for example `cFrench`, `cGerman`, `cSpanish`, and so on.
 
-The languages you support are determined by the structure of the `strings.dbf` table. To add a new language, just change the structure of `strings.dbf`.</p>
-<p>To change the current localization language, use the SetLanguage() method. Say we want a form to be in French. First set the language, then localize the form:</p></td>
-</tr>
-</tbody>
-</table>
+The languages you support are determined by the structure of the `strings.dbf` table. To add a new language, just change the structure of `strings.dbf`.
 
-\_SCREEN.oINTL.SetLanguage( "French")
+To change the current localization language, use the `SetLanguage()` method. Say we want a form to be in French. First set the language, then localize the form:
 
-\_SCREEN.oINTL.Localize( \_SCREEN.ActiveForm)
+```
+_SCREEN.oINTL.SetLanguage( "French" )
+_SCREEN.oINTL.Localize( _SCREEN.ActiveForm )
+```
 
 ## How to Swap Languages on the Fly
 
@@ -492,6 +474,7 @@ DEFINE CLASS MyINTL AS INTL
         this.SetRightToLeft( .F.)
         this.SetConversion( "Usa", 1.33)
         this.SetLanguage( "USEnglish")
+
       CASE PROPER(tcLocale)= "France"
         SET CURRENCY TO " F"
         SET CURRENCY RIGHT
@@ -502,6 +485,7 @@ DEFINE CLASS MyINTL AS INTL
         this.SetRightToLeft( .F.)
         this.SetConversion( "France", 0.28)
         this.SetLanguage( "French")
+
       CASE PROPER(tcLocale)= "Germany"
         SET CURRENCY TO " DM"
         SET CURRENCY RIGHT
@@ -512,6 +496,7 @@ DEFINE CLASS MyINTL AS INTL
         this.SetRightToLeft( .F.)
         this.SetConversion( "Germany", 0.28)
         this.SetLanguage( "German")
+
       CASE PROPER(tcLocale)= "Israel"
         SET CURRENCY TO "ILS"
         SET CURRENCY LEFT
