@@ -846,27 +846,23 @@ specifications are prefixed with the identifier “((Font))”, for example:
 | ((Font))Courier New,10 | ((Font))Courier New Cyr,10 |
 | ((Font))Arial,16       | ((Font))Arial Cyr,16       |
 
-|                                                              |                                                                                                                          |
-| ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| **Configure the Font Strategy with its SetConfig() method.** | The INTL Font strategy, like all strategies, is bitwise-configured. You can control the font strategy object as follows: |
+**Configure the Font Strategy with its SetConfig() method.**
+
+The INTL Font strategy, like all strategies, is bitwise-configured. You can control the font strategy object as follows:
 
 **Example:** to disable font processing for DynamicFont and
 DynamicFontSize, which will slightly improve the font strategy
 performance:
 
-<table>
-<tbody>
-<tr>
-<td><p>*-- Set Font localization on</p>
-<p>oINTL.SetConfig( BITSET( oINTL.GetConfig(), 1 ) ) &amp;&amp; Set 2^1 "ON"</p>
-<p>*-- Get a handle on the font strategy:</p>
-<p>oFont= _SCREEN.oINTL.GetStrategy("Font")</p>
-<p>*-- We want Font and FontSize and to disable DynamicFont</p>
-<p>*-- and DynamicFontSize</p>
-<p>oFont.SetConfig( 1)</p></td>
-</tr>
-</tbody>
-</table>
+```
+*-- Set Font localization on
+oINTL.SetConfig( BITSET( oINTL.GetConfig(), 1 ) ) &amp;&amp; Set 2^1 "ON"
+*-- Get a handle on the font strategy:
+oFont= _SCREEN.oINTL.GetStrategy("Font")
+*-- We want Font and FontSize and to disable DynamicFont
+*-- and DynamicFontSize
+oFont.SetConfig( 1)
+```
 
 ## How to Localize Data Sources
 
@@ -4546,12 +4542,12 @@ user can move sequentially through tips, invoke help, etc.
 
 ## Localizing Smart
 
-| **Your code may already be dependent on interface strings.**                         | A "Yes/No?" dialog will say "Oui/Non?" in French or "Ja/Nein?" in German. If your code is dependent on dialog interface strings, then programming in multi-locale situations can become problematic.                                                                   |
-| ------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Yet using interface strings in code is natural and makes for better readability.** | Consider the following pseudo-code. It has good readability because the lcAction memory variable contains plain-language tokens that helps the reader identify what is happening. Using plain-language interface items in code is inherently natural and maintainable. |
+**Your code may already be dependent on interface strings!** A "Yes/No?" dialog will say "Oui/Non?" in French or "Ja/Nein?" in German. If your code is dependent on dialog interface strings, then programming in multi-locale situations can become problematic.
 
+**Yet using interface strings in code is natural and makes for better readability.** Consider the following pseudo-code. It has good readability because the lcAction memory variable contains plain-language tokens that helps the reader identify what is happening. Using plain-language interface items in code is inherently natural and maintainable.
+
+```
 lcAction= MyDialog( "Ask User Something")
-
 DO CASE
 
 CASE lcAction = "Retry"
@@ -4563,10 +4559,9 @@ CASE lcActions = "Cancel"
 ...
 
 ENDCASE
+```
 
-|                                                                                                            |                                                                                                                                                                                                                                                                                                                              |
-| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **MsgSvc has the ability to return original-language strings even if the message is in another language.** | Depending on how you construct the code, localizing something like this can bring on a lot of unnecessary complexity. If you think about it, in a perfect world, **none of the code above merits translation\!** Sure, the logic contains English text, but why not put all the localization within the MyDialog() function? |
+**MsgSvc has the ability to return original-language strings even if the message is in another language.** Depending on how you construct the code, localizing something like this can bring on a lot of unnecessary complexity. If you think about it, in a perfect world, **none of the code above merits translation\!** Sure, the logic contains English text, but why not put all the localization within the `MyDialog()` function?
 
 # INTLTool
 
