@@ -622,18 +622,18 @@ Configuring individual strategies is easy. Simply get a reference to the strateg
 <p>4</p>
 <p>8</p>
 <p>16</p></td>
-<td><p>BoundColumn</p>
-<p>ControlSource</p>
-<p>RowSource</p>
-<p>RecordSource</p>
-<p>InputMask</p></td>
+<td><p>`BoundColumn`</p>
+<p>`ControlSource`</p>
+<p>`RowSource`</p>
+<p>`RecordSource`</p>
+<p>`InputMask`</p></td>
 </tr>
 <tr>
 <td>Font</td>
 <td><p>1 (Default)</p>
 <p>2 (Default)</p></td>
-<td><p>Font and FontSize</p>
-<p>DynamicFont and DynamicFontSize</p></td>
+<td><p>`Font` and `FontSize`</p>
+<p>`DynamicFont` and `DynamicFontSize`</p></td>
 </tr>
 <tr>
 <td>Picture</td>
@@ -641,10 +641,10 @@ Configuring individual strategies is easy. Simply get a reference to the strateg
 <p>2</p>
 <p>4 (Default)</p>
 <p>8</p></td>
-<td><p>Picture</p>
-<p>DownPicture</p>
-<p>Icon</p>
-<p>DragIcon</p></td>
+<td><p>`Picture`</p>
+<p>`DownPicture`</p>
+<p>`Icon`</p>
+<p>`DragIcon`</p></td>
 </tr>
 <tr>
 <td>RightToLeft</td>
@@ -657,23 +657,23 @@ Configuring individual strategies is easy. Simply get a reference to the strateg
 <p>2 (Default)</p>
 <p>4 (Default)</p></td>
 <td><p>Caption</p>
-<p>ToolTipText</p>
-<p>StatusBarText</p></td>
+<p>`ToolTipText`</p>
+<p>`StatusBarText`</p></td>
 </tr>
 </tbody>
 </table>
 
-Configuration integers for the ::SetConfig() method for the various INTL
+Configuration integers for the `::SetConfig()` method for the various INTL
 classes.
 
 To get a handle on a loaded strategy, use the ::GetStrategy() method.
-Thereafter, use the handle's SetConfig() method to configure the
+Thereafter, use the handle's `SetConfig()` method to configure the
 strategy.
 
 **Example: create an INTL object that localizes strings but not
 Tooltips**
 
-Use the oINTL.GetStrategy() method to get an object reference, then use its SetConfig() method to configure it.
+Use the `oINTL.GetStrategy()` method to get an object reference, then use its `SetConfig()` method to configure it.
 
 ```
 *-- create an INTL object
@@ -775,16 +775,12 @@ Strings can be localized by providing translations in `strings.dbf`.
 
 **Example:** to disable font processing for the ToolTipText property:
 
-<table>
-<tbody>
-<tr>
-<td><p>*-- Get a handle on the string strategy:</p>
-<p>oFont= _SCREEN.oINTL.GetStrategy("String")</p>
-<p>*-- We want Caption (1) and StatusbarText (4) only</p>
-<p>oFont.SetConfig( 5)</p></td>
-</tr>
-</tbody>
-</table>
+```
+*-- Get a handle on the string strategy:
+oFont= _SCREEN.oINTL.GetStrategy("String")
+*-- We want Caption (1) and StatusbarText (4) only
+oFont.SetConfig( 5)
+```
 
 ## How to Localize Fonts
 
@@ -820,21 +816,25 @@ The following table lists the configuration bits for the INTL object to load the
 <td>CINTLFont</td>
 <td><p>1 (Default)</p>
 <p>2 (Default)</p></td>
-<td><p>Font and FontSize</p>
-<p>DynamicFont and DynamicFontSize</p></td>
+<td><p><code>Font</code> and <code>FontSize</code></p>
+<p><code>DynamicFont</code> and <code>DynamicFontSize</code></p></td>
 </tr>
 </tbody>
 </table>
 
 Activate the font strategy as follows:
 
+```
 *-- cINTLFont is the Font strategy class.
 _SCREEN.oINTL.SetStrategy( "Font", "cINTLFont")
+```
 
 Another more cryptic way to load the Font strategy is:
 
+```
 *-- Set configuration bit 2^1 "ON"
 _SCREEN.oINTL.SetConfig(BITSET(oINTL.GetConfig(),1))
+```
 
 So there are two ways to do it.
 
