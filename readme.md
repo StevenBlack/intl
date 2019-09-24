@@ -1,272 +1,12 @@
 ## Steven Black's INTL Toolkit for Visual FoxPro
 
 
-### Contents
-
-[1](#acknowledgments)
-
-[1](#thanks-to-these-fine-folks)
-
-[2](#copyright-and-author-notices)
-
-[3](#license-for-the-intl-toolkit)
-
-[6](#introduction-to-intl)
-
-[6](#overview)
-
-[6](#which-version-of-vfp)
-
-[6](#known-problems)
-
-[7](#on-the-influence-of-design-patterns)
-
-[9](#installing-intl)
-
-[9](#installation-step-by-step)
-
-[9](#upgrading-from-a-prior-version-of-intl)
-
-[11](#intl-how-to...)
-
-[11](#how-to-correctly-place-your-intl-files)
-
-[11](#how-to-instantiate-an-intl-object)
-
-[12](#how-to-localize-forms)
-
-[12](#how-to-get-automatic-form-localization)
-
-[12](#how-to-localize-menus)
-
-[13](#how-to-change-the-current-language)
-
-[13](#how-to-swap-languages-on-the-fly)
-
-[14](#how-to-work-with-locales)
-
-[15](#how-to-demo-your-app-in-swahili-today)
-
-[16](#how-to-configure-your-main-intl-object)
-
-[16](#how-to-configure-strategies)
-
-[18](#how-to-localize-strings)
-
-[19](#how-to-localize-fonts)
-
-[20](#how-to-localize-data-sources)
-
-[21](#how-to-localize-pictures)
-
-[22](#how-to-localize-currencies)
-
-[24](#how-to-localize-for-right-to-left-writing-systems)
-
-[25](#how-to-subclass-an-existing-strategy)
-
-[25](#how-to-create-your-own-generic-strategy)
-
-[26](#how-to-make-intl-ignore-an-object)
-
-[26](#how-to-make-intl-treat-an-object-differently)
-
-[26](#how-to-substitute-your-own-strategies)
-
-[26](#how-to-batch-update-strings.dbf)
-
-[26](#how-to-localize-reports)
-
-[27](#details-of-how-intl-works)
-
-[27](#details-of-how-msgsvc-works)
-
-[28](#how-to-distribute-intl-files)
-
-[29](#toolkit-file-descriptions)
-
-[31](#__RefHeading___Toc179783153)
-
-[31](#overview-of-the-intl-class-library)
-
-[32](#class-intl)
-
-[37](#class-cintlabstract)
-
-[42](#class-cintlcurrency)
-
-[44](#class-cintldata)
-
-[45](#class-cintlfont)
-
-[46](#class-cintlmemento)
-
-[54](#class-cintlpicture)
-
-[55](#class-cintlrighttoleft)
-
-[56](#class-cintlstrategy)
-
-[60](#class-cintlstring)
-
-[65](#localizing-vfp-menus)
-
-[65](#using-genmenux-to-invoke-intl)
-
-[68](#intl-config.fpw-menu-statements)
-
-[69](#intl-menu-memory-variables)
-
-[69](#two-very-useful-genmenux-comment-directives)
-
-[71](#message-services)
-
-[71](#introduction)
-
-[71](#up-and-running)
-
-[72](#msgsvc-dialog-return-values)
-
-[72](#fields-in-msgsvc.dbf)
-
-[78](#msgsvc-examples)
-
-[83](#localizing-smart)
-
-[85](#intltool)
-
-[85](#iterators-and-visitors)
-
-[85](#updating-strings.dbf-based-on-a-.pjx)
-
-[86](#updating-strings.dbf-based-on-a-.scx)
-
-[86](#updating-strings.dbf-based-on-a-.vcx)
-
-[87](#updating-strings.dbf-based-on-a-.mnx)
-
-[87](#updating-strings.dbf-based-on-a-.frx)
-
-[88](#transforming-reports-based-on-a-.pjx)
-
-[88](#transforming-reports-based-on-a-.frx)
-
-[89](#intl-iterator-classes)
-
-[92](#class-intlvisitor)
-
-[95](#extend-intl)
-
-[95](#creating-and-using-hooks)
-
-[99](#vfps-international-features)
-
-[99](#introduction-1)
-
-[100](#a-survey-of-vfps-international-features)
-
-[133](#international-issues)
-
-[133](#background-1)
-
-[136](#localization-factors-to-consider)
-
-[141](#sources-of-cultural-difference)
-
-[149](#choosing-enabling-strategies)
-
-[152](#checklist-for-international-issues)
-
-[155](#using-genmenux)
-
-[155](#introduction-2)
-
-[155](#genmenux-directives)
-
-[166](#timing-of-genmenux-drivers-and-directives)
-
-[167](#checklist-for-genmenux)
-
-[167](#the-mnx-structure)
-
-[171](#glossary-of-terms)
-
-[173](#index)
-
-# Acknowledgments
-
-## Thanks to these fine folks\!
-
-I want to thank the following individuals and organizations for lending
-their time, expertise, and perseverance to help me create this software.
-I owe them a great deal.
-
-First and foremost, once again, to **Susie Hamberger** for her love,
-patience, and understanding. You all should be so lucky.
-
-Thanks also to **José Constant** (Belgium) for vigilant work during beta
-testing; **Markus Egger**(Austria) for many great ideas; **Bob Grommes,
-Drew Speedie** (USA) and **Mark Giesen** (Holland) for finding many
-“gotchas” and for providing elegant solutions that I am more than
-happy to include in the INTL codebase; **Günter Huber** (Austria) for
-his help in my understanding FoxPro’s international features; **Ken
-Levy** (USA<span class="smallcaps">)</span> the author and creator of
-GENSCRNX., and **Andrew Ross MacNeill** (Canada) for creating and
-refining GENMENUX; **Shai Mittleman** (USA) for ideas and insight into
-new features; **Alan Schwartz, Chick Bornheim, Andy Neil, Dale
-Kiefling** and all the other excellent people in Northern California
-including **Les Pinter** and **John Thornton.**
-
-Finally, to **Larry MacDonald** and **Hélène Michaud**
-(<span class="smallcaps">north sails</span>), **Jim Mayer**
-(<span class="smallcaps">unhcr,</span> Geneva), **Rainer Becker**
-(<span class="smallcaps">isys gmbh,</span> Frankfurt Germany) and
-**Chuck Melton** (<span class="smallcaps">melton technologies,</span>
-Winston-Salem <span class="smallcaps">nc usa</span>), **Brian Thomas**
-(<span class="smallcaps">the international red cross</span>, Geneva),
-**Alan Griver** (<span class="smallcaps">flash creative
-management</span>), **Daniel Gramunt**
-(<span class="smallcaps">nokia,</span> Lausanne), **Scott Plantz**
-(<span class="smallcaps">emedicine.com</span>) and many others, all of
-whom have, over the years, provided me with interesting and rewarding
-international opportunities.
-
-I am immensely blessed. Thank you all.
-
-Steven M. Black
-February 2006
-
-# Copyright and Author Notices
-
-
-### GENMENUX
-
-**Andrew Ross MacNeill**
-Ottawa ON Canada
-
-Copyright: None (Public domain)
-
-All source code and documentation contained in
-`genmenux`.zip has been placed into the
-public domain. You may use, modify, copy, distribute, and demonstrate
-any source code, example programs, or documentation contained in
-GENMENUX.ZIP freely without copyright protection. All files contained in
-GENMENUX.ZIP are provided “as is” without warranty of any kind. In no
-event shall its authors, contributors, or distributors be liable for any
-damages.
-
-Comments/Suggestions/Problems/Questions: Please ask: Andrew Ross
-MacNeill andrew@aksel.co
 
 ![](./media/image2.wmf)
 
-#
-
 # Introduction to INTL
 
-## Overview
-
-***INTL makes short work of creating multilingual software in VFP.***  Steven Black’s INTL Toolkit for Visual FoxPro gives you the ability to create multilingual Visual FoxPro applications while minimizing the hassles of creating multi-version software.
+***INTL makes short work of creating multilingual software in VFP.***  It gives you the ability to create multilingual Visual FoxPro applications while minimizing the hassles of creating multi-version software.
 
 This document serves to describe the following things:
 
@@ -276,42 +16,25 @@ This document serves to describe the following things:
   - Visual FoxPro’s international features, and
   - other issues germane to spanning locales with your applications.
 
-
-## On the Influence of Design Patterns
-
-**If you need more information on the class architectures used in INTL, these books are great resources.**  The component designs in INTL for Visual FoxPro are dramatically influenced by a design catalog titled *Design Patterns* by Gamma et al, Addison-Wesley, **ISBN 0-201-63361-2**. The overall architecture of INTL comes from the `hook and template` patterns best described in *Design Patterns for Object-Oriented Software* by Wolfgang Pree, Addison-Wesley, **ISBN 0-201-42294-8**.
-
-If you are interested in object-oriented design, I most highly recommend
-these two books.
-
 # Installing INTL
-
-## Installation Step-By-Step
 
 First, put the INTL files into a clean new directory.
 
 Then,
 
-<table>
-<tbody>
-<tr>
-<td><strong>Deploy files.</strong></td>
-<td>Manually place files relative to your project as described in How to Correctly Place Your INTL Files on page 13.</td>
-</tr>
-<tr>
-<td><strong>Modify CONFIG.FPW.</strong></td>
-<td>For menus, add the two lines to CONFIG.FPW as explained in How to Localize Menus on page 14.</td>
-</tr>
-<tr>
-<td><strong>Seed your Form class definition.</strong></td>
-<td>For now, probably forever, invoke INTL in forms with a Form::Init() statement that calls the INTL object. See How to Get Automatic Form Localization on page 14.</td>
-</tr>
-<tr>
-<td><strong>If you need localization, instantiate an INTL object.</strong></td>
-<td>Now when localization is required, create and configure an INTL object as described in How to Instantiate an INTL Object on page 13.</td>
-</tr>
-</tbody>
-</table>
+<dl>
+<dt>Deploy files.</dt>
+<dd>Manually place files relative to your project as described in How to Correctly Place Your INTL Files on page 13.</dd>
+
+<dt>Modify CONFIG.FPW.</dt>
+<dd>For menus, add the two lines to CONFIG.FPW as explained in How to Localize Menus on page 14.</dd>
+
+<dt>Seed your Form class definition.</dt>
+<dd>For now, probably forever, invoke INTL in forms with a Form::Init() statement that calls the INTL object. See How to Get Automatic Form Localization on page 14.</dd>
+
+<dt>If you need localization, instantiate an INTL object.</dt>
+<dd>Now when localization is required, create and configure an INTL object as described in How to Instantiate an INTL Object on page 13.</dd>
+</dl>
 
 
 # INTL: How to...
@@ -9223,104 +8946,7 @@ byte. By definition, a SBCS can have a maximum of 256 characters.
 
 </div>
 
-# Index
-
-A**ADDENDUM.TXT** 6, 29AdornMemento() 39AERROR() 101, 111, 120AFIELDS()
-101aLang() 39, 52APPEND FROM 102APPEND MEMO 102APPEND PROCEDURES
-102aStrat() 32, 39, 46–47, 46–47, 46–47, 46–47AT() 39, 47, 52, 103,
-124AT\_C() 103**ATC()** 103, 124ATCC() 103ATCLINE() 103ATLINE() 103,
-124BBoundColumn 16, 20BROWSE 103, 108, 111, 141CCaption 15, 17–18, 24,
-60, 63, 92, 108, 120, 124cCurrencyStrategy 32cDataStrategy 32–33CDOW()
-103, 144, 146cFontStrategy 32CHR() 92, 104, 128CHRTRANC()
-104cINTLCurrency 18–20, 21, 22, 24–25, 31–32, 42–43, 48, 51–52,
-97cINTLData 18–20, 21, 22, 24, 31–32, 44, 60cINTLFont 18–20, 21, 22, 24,
-31–32, 45, 59–63cINTLPicture 18–20, 21, 22, 24, 31, 32, 54,
-60cINTLRightToLeft 18–20, 21, 22, 24, 55cINTLString 18, 19–20, 21, 22,
-24–25, 31, 33, 52CMONTH() 104, 144, 146Code page 100–106, 111–12, 118,
-121, 126, 128, 139COMPILE 104, 126, 134, 137–39, 150, 164–65Compile-time
-134, 137–39, 150, 164–65**CONFIG.FPW** 9, 12, 68, 105, 127,
-129Configuration 12, 16–18, 19, 20, 21, 25, 27, 31, 35, 45–47, 49,
-51–52, 56, 60, 63, 95, 105, 127–29ControlSource 16, 20COPY MEMO
-104COPY PROCEDURES 105COPY STRUCTURE 104COPY TO 105**CPCONVERT()** 101,
-105CPCURRENT() 102, 105, 126CPDBF() 106cPictureStrategy 32CPZERO
-106CREATE CURSOR 106CREATE TABLE 106CreateStrategy() 39,
-61CreateStrategyTable() 39, 61–62, 61–62cStringStrategy 33, 52CTOD()
-106, 159CTOT() 107cType 37, 44, 108Currencies 22–23, 32, 71, 137,
-146Currency 14, 16, 22–24, 25, 32, 36–37, 41–43, 46, 48–51, 57, 97, 107,
-126–29, 146DDATE() 108, 112, 125, 159, 164–65DATETIME() 108**DBC**
-102DBCS 103–4DBGETPROP() 108DEFINE BAR 109DEFINE MENU 109DEFINE PAD
-109DEFINE POPUP 109, 159DEFINE WINDOW 109, 164DefOLELCID 109–10,
-123Dialogs 29, 71–72, 75, 79, 100, 116, 122, 141–42DMY() 110DownPicture
-16, 21DragIcon 16, 21DTOC() 110DTOS() 111DTOT() 111DynamicFont 16,
-19DynamicFontSize 16, 19EEDIT 111Enabling 133, 135, 141, 144,
-147–51ERROR 111Error Messages 74, 101, 111, 122EUROPEAN.MEM
-130Execute() 33, 35–37, 36, 39, 62EXPORT TO 111FFar Eastern Writing
-Systems 145FDATE() 112Fonts 16, 19, 25, 32, 45, 50, 71, 76, 112FontSize
-16, 19Form Sizes 144, 153GGenerate-time 68, 134–35, 149GENMENUX 1–6,
-11–12, 29, 65–68, 155, 159, 166–67, 169GetAlias() 33, 39, 56–58,
-56–58, 56–58, 56–58, 90GetConversion() 42, 39, 42GETCP() 100,
-112GETDIR() 113GetExplicit() 39, 47–49, 47–49GETEXPR TO 114GETFILE()
-100, 115GETFONT() 115–16GetHook() 37, 40, 49, 51, 95GetLanguage() 39,
-47–49, 47–49, 47–49, 57–59GetLogicalParent() 40–41, 40–41,
-40–41GETPICT() 116GETPRINTER() 116–17GetStrategy() 17–18, 19, 20, 21,
-48–49, 48–49, 48–49, 48–49, 48–49, 39, 48–49, 48–49, 48–49, 48–49,
-48–49, 97GetTable() 34, 39, 61GetType() 37, 41GetUpdateMode() 34, 39,
-57–59, 57–59, 57–59, 57–59, 57–59GetVersion() 41Globalization 133,
-138–39HHOUR() 117II.PRG 28–29, 67Icon 16, 21, 76, 78, 109, 147Icons
-21, 32, 54, 137, 147, 153Idioms 144Ignore an Object 26IMESTATUS()
-118IMPORT FROM 118INDEX ON 118, 125, 130InputMask 16Installation 9,
-140INTL.HLP 29INTL.PRG 11–12, 28–29, 68, 85–87INTL\_Abstract\_ID 37, 40,
-96**INTLTOOL** 15–16, 85–86, 29, 85–86, 88INTLTOOL.PRG 29IsINTLClass()
-40IsValidLanguage() 39LLEFTC() 119LEN() 13, 119LENC() 119LIKE()
-119LIKEC() 119**Link-time** 134–35, 137–39, 150Locales 6, 14, 19, 20,
-21, 23, 32, 44, 100–102, 104, 109, 122, 131, 133, 135, 140, 146,
-152*Localization* 12–13, 12–13, 12–13, 18, 19–22, 24, 28, 31, 33–35,
-46–48, 51, 52, 56–57, 60, 66–69, 83–85, 100, 103, 109–11, 116–17,
-120–22, 123–25, 130–32, 133–42, 146, 148, 151–52LOCFILE() 100,
-119–20LoopOut() 39MMDY() 120Menus 9, 12, 15, 65–67, 109, 123, 141–42,
-153, 157, 161, 163–65, 169Middle Eastern Writing Systems 145MODIFY
-COMMAND 121MODIFY FILE 121MODIFY QUERY 122Mov() 39, 49MSGSVC() 27–28,
-71–74, 76, 78–81, 100, 121MSGSVC.DBF 9, 11, 28–29, 67, 71–72, 78,
-82MSGSVC.PRG 28–29, 67, 71NName 12, 26, 32–40, 42–43, 46–48, 50–52,
-56–57, 60, 62, 76, 78, 90, 92, 103–4, 115–16, 120, 124, 140, 146,
-160–63, 166–68NOHOT() 29NOHOT.PRG 28–29Numeric Values 146OObjArray()
-33, 36, 39OEMTOANSI() 122oHook 37–39, 46, 95–96OLELCID 123oLogicalParent
-37OpenStrategy() 39, 57, 58PParsing 132, 144Performance 19, 28, 38, 56,
-139, 149**Phrasebook** 134–35, 149Pitch() 39Pop() 15, 39, 109, 147,
-157–64, 166–68**PRINTSTATUS()** 130PRMBAR() 123PRMPAD()
-123**Program-time** 134–35, 138PROMPT() 123, 163Push() 39, 72–74, 78,
-161, 164RRAT() 39, 47, 52, 124RATC() 124RATLINE() 124RecordSource 16,
-20REINDEX 117, 159Relational Integrity 100, 125Release() 25, 39–41, 91,
-97, 139, 160RI builder 125RIGHT() 125RIGHTC() 125**RightToLeft** 14,
-16–17, 24, 55Right-To-Left 24RowSource 16, 20Run-time 66–67, 71,
-134–35, 137–39, 144, 149, 152, 160SScale Factors 137Separators 146SET
-ANSI 107SET AUTOSAVE 107SET BLOCKSIZE 107SET CARRY 107SET CENTURY 107,
-110–12, 120, 129, 132SET COLLATE 107, 117–18, 118, 125, 130SET CONFIRM
-107**SET CPCOMPILE** 104, 126SET CPDIALOG 102, 126SET CURRENCY 14, 126,
-129, 146SET DATABASE 107SET DATASESSION 126SET DATE 14, 106–8, 110–12,
-126, 129, 132, 146SET DECIMALS 107, 127, 129SET DELETED 107SET
-DELIMITERS 107SET EXACT 107SET EXCLUSIVE 107SET FDOW 127SET FDOW TO
-127SET FIELDS 107SET FIXED 107SET FWEEK 127SET HELP 127SET HOURS 107,
-108, 117, 129, 132SET LOCK 107SET MARK 14, 106–8, 110–11, 128, 129SET
-MEMOWIDTH 107SET MULTILOCKS 107SET NEAR 107SET NOCPTRANS 128SET NULL
-107SET PATH 11, 67SET POINT 14, 107, 128–29, 146SET REPROCESS 107SET
-SAFETY 107SET SECONDS 108SET SEPARATOR 14, 107, 128–29, 146SET
-SYSFORMATS 107, 128–29SET TALK 107SetAlias() 34, 39, 58**SetConfig()**
-16–18, 19–26, 39, 45, 49–50, 51–52, 60, 63SetConversion() 14, 23, 36,
-39, 42–43SetDefaults() 39, 50, 52, 53, 56, 60SetExplicit() 39,
-96SetHook() 35, 37, 39–41, 40, 49, 50, 95, 97SetLanguage() 12–16, 24,
-39, 51–52, 51–52, 51–52, 67SetLocale() 14, 16, 23, 24, 51–52, 39, 42–43,
-51–52, 51–52, 51–52, 57SetRightToLeft 14SetTable() 58, 39,
-58SetUpdateMode() 39Situational Factors 137, 151StatusBarText 17–18, 60,
-63**Strategy** 14, 16–18, 19–26, 32–37, 41, 44–48, 51–63, 95, 97, 139,
-149–50STRCONV() 129String Expansion 141–42STRINGS.DBF 9, 11, 13, 15, 18,
-19, 20, 21, 26, 85–87, 28–29, 34, 44–45, 54, 56, 58, 62, 67–69, 74, 80,
-85–87, 92STUFFC() 129SUBSTRC() 131**support** 13, 41, 58, 63, 122, 152,
-166SYS(3005) 110, 123, 131SYS(3006) 131Ttaxes 136–37, 148ToolTips 17,
-131ToolTipText 15, 17–18, 63Transliteration 145TTOC() 132UUNICODE
-129UpdateResource() 40, 62VVERSION() 6, 14, 23, 36, 39, 41–42,
-132Visible 37, 71, 149, 168WWAIT WINDOW 71–75, 78, 132, 163, 165WEEK()
-132Western Writing Systems 145**Writing Systems** 14, 24, 55, 145
+----
 
 1.  Keep in mind all major word processing programs bundle two different
     English dictionaries in their North American releases.
@@ -9328,3 +8954,78 @@ SYSFORMATS 107, 128–29SET TALK 107SetAlias() 34, 39, 58**SetConfig()**
 2.  Cultural retrofits are more common because, before going
     international, an application must usually prove its worth in a
     local setting.
+    
+# Acknowledgments
+
+## On the Influence of Design Patterns
+
+**If you need more information on the class architectures used in INTL, these books are great resources.**  The component designs in INTL for Visual FoxPro are dramatically influenced by a design catalog titled *Design Patterns* by Gamma et al, Addison-Wesley, **ISBN 0-201-63361-2**. The overall architecture of INTL comes from the `hook and template` patterns best described in *Design Patterns for Object-Oriented Software* by Wolfgang Pree, Addison-Wesley, **ISBN 0-201-42294-8**.
+
+If you are interested in object-oriented design, I most highly recommend
+these two books.
+
+
+## Thanks to these fine folks\!
+
+I want to thank the following individuals and organizations for lending
+their time, expertise, and perseverance to help me create this software.
+I owe them a great deal.
+
+First and foremost, once again, to **Susie Hamberger** for her love,
+patience, and understanding. You all should be so lucky.
+
+Thanks also to **José Constant** (Belgium) for vigilant work during beta
+testing; **Markus Egger**(Austria) for many great ideas; **Bob Grommes,
+Drew Speedie** (USA) and **Mark Giesen** (Holland) for finding many
+“gotchas” and for providing elegant solutions that I am more than
+happy to include in the INTL codebase; **Günter Huber** (Austria) for
+his help in my understanding FoxPro’s international features; **Ken
+Levy** (USA<span class="smallcaps">)</span> the author and creator of
+GENSCRNX., and **Andrew Ross MacNeill** (Canada) for creating and
+refining GENMENUX; **Shai Mittleman** (USA) for ideas and insight into
+new features; **Alan Schwartz, Chick Bornheim, Andy Neil, Dale
+Kiefling** and all the other excellent people in Northern California
+including **Les Pinter** and **John Thornton.**
+
+Finally, to **Larry MacDonald** and **Hélène Michaud**
+(<span class="smallcaps">north sails</span>), **Jim Mayer**
+(<span class="smallcaps">unhcr,</span> Geneva), **Rainer Becker**
+(<span class="smallcaps">isys gmbh,</span> Frankfurt Germany) and
+**Chuck Melton** (<span class="smallcaps">melton technologies,</span>
+Winston-Salem <span class="smallcaps">nc usa</span>), **Brian Thomas**
+(<span class="smallcaps">the international red cross</span>, Geneva),
+**Alan Griver** (<span class="smallcaps">flash creative
+management</span>), **Daniel Gramunt**
+(<span class="smallcaps">nokia,</span> Lausanne), **Scott Plantz**
+(<span class="smallcaps">emedicine.com</span>) and many others, all of
+whom have, over the years, provided me with interesting and rewarding
+international opportunities.
+
+I am immensely blessed. Thank you all.
+
+Steven M. Black
+February 2006
+
+# Copyright and Author Notices
+
+
+### GENMENUX
+
+**Andrew Ross MacNeill**
+Ottawa ON Canada
+
+Copyright: None (Public domain)
+
+All source code and documentation contained in
+`genmenux`.zip has been placed into the
+public domain. You may use, modify, copy, distribute, and demonstrate
+any source code, example programs, or documentation contained in
+GENMENUX.ZIP freely without copyright protection. All files contained in
+GENMENUX.ZIP are provided “as is” without warranty of any kind. In no
+event shall its authors, contributors, or distributors be liable for any
+damages.
+
+Comments/Suggestions/Problems/Questions: Please ask: Andrew Ross
+MacNeill andrew@aksel.co
+
+
