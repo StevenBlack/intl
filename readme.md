@@ -1,10 +1,5 @@
-## Steven Black's INTL Toolkit for Visual FoxPro
+# Steven Black's INTL Toolkit for Visual FoxPro
 
-
-
-![](./media/image2.wmf)
-
-# Introduction to INTL
 
 ***INTL makes short work of creating multilingual software in VFP.***  It gives you the ability to create multilingual Visual FoxPro applications while minimizing the hassles of creating multi-version software.
 
@@ -236,48 +231,34 @@ Here’s what you need to do to localize your application this morning for a mul
 
 The basic steps are:
 
-<table>
-<thead>
-<tr class="header">
-<th><strong>Install INTL and seed the Init() method of your form base classes.</strong></th>
-<th>Follow the steps in the section titled Installing INTL on page 11. Make sure you review all the steps. Especially important are the steps titled How to Instantiate an INTL Object on page 13, How to Get Automatic Form Localization on page 14, and How to Localize Menus on page 14.</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Modify the structure of `strings.dbf` and add one field for each language you need.</strong></td>
-<td><ul>
-<li><blockquote>
-<p>Copy the `strings.dbf` table that comes with INTL and put it in your project root directory.</p>
-</blockquote></li>
-<li><blockquote>
-<p>ZAP the `strings.dbf` table that you just placed in your project root.</p>
-</blockquote></li>
-<li><blockquote>
-<p>`MODIFY STRUCTURE` of `strings.dbf` and add a new column called "cSwahili" with a length of 120. Note that the "c" in "cSwahili" is required.</p>
-</blockquote></li>
-</ul></td>
-</tr>
-<tr>
-<td><strong>Make your application create an INTL object.</strong></td>
-<td>Early in your application, instantiate an INTL object just as described in How to Instantiate an INTL Object on page 13. Displaying in a different language is now just a matter of using its SetLanguage() method.</td>
-</tr>
-<tr>
-<td><strong>Do a “Build All”.</strong></td>
+
+<dl>
+<dt>Install INTL and seed the Init() method of your form base classes.</dt>
+<dd>Follow the steps in the section titled Installing INTL on page 11. Make sure you review all the steps. Especially important are the steps titled How to Instantiate an INTL Object on page 13, How to Get Automatic Form Localization on page 14, and How to Localize Menus on page 14.</dd>
+
+<dt>Modify the structure of `strings.dbf` and add one field for each language you need.</dt>
+<dd>
+<li>Copy the `strings.dbf` table that comes with INTL and put it in your project root directory.</li>
+<li>ZAP the `strings.dbf` table that you just placed in your project root.</li>
+<li>`MODIFY STRUCTURE` of `strings.dbf` and add a new column called "cSwahili" with a length of 120. Note that the "c" in "cSwahili" is required.</li>
+</dd>
+
+<dt>Make your application create an INTL object.</dt>
+<dd>Early in your application, instantiate an INTL object just as described in How to Instantiate an INTL Object on page 13. Displaying in a different language is now just a matter of using its SetLanguage() method.</dd>
+
+<dt>Do a “Build All”.</dt>
 <td>Open your project, select "Build", and build an App or Exe, being sure to select "Recompile All Files". Go to lunch.</td>
-</tr>
-<tr>
-<td><strong>To automatically load `strings.dbf`, either run your app or use the INTLTool utility.</strong></td>
-<td>There are two ways to populate the `strings.dbf` table with your project's interface strings. The first way is to simply run your program. As objects are instantiated, INTL will append the strings (like Caption, Tooltiptext, etc.) into the strings table. A better way is to run the INTLTool update program. See INTLTool on page 85.</td>
-</tr>
-<tr>
-<td><strong>Input the translations in the `strings.dbf` table.</strong></td>
-<td><p>In the cSwahili column, type-in Swahili translations, complete with hot-keys and shortcut-keys as required.</p>
-<p><strong>Note:</strong> you can get a "quick-and-dirty" translation for testing and internal demos by simply doing:</p>
-<p>REPLACE ALL cSwahili with "**"+TRIM(cOriginal)+"**" FOR cOriginal &lt;&gt; "(("</p></td>
-</tr>
-</tbody>
-</table>
+
+<dt>To automatically load `strings.dbf`, either run your app or use the INTLTool utility.</dt>
+<dd>There are two ways to populate the `strings.dbf` table with your project's interface strings. The first way is to simply run your program. As objects are instantiated, INTL will append the strings (like Caption, Tooltiptext, etc.) into the strings table. A better way is to run the INTLTool update program. See INTLTool on page 85.</dd>
+
+<dt>Input the translations in the `strings.dbf` table.</dt>
+<dd>In the cSwahili column, type-in Swahili translations, complete with hot-keys and shortcut-keys as required.
+Note: you can get a "quick-and-dirty" translation for testing and internal demos by simply doing:
+REPLACE ALL cSwahili with "**"+TRIM(cOriginal)+"**" FOR cOriginal &lt;&gt; "(("</dd>
+</dd>
+</dl>
+
 
 ## How to Configure Your Main INTL Object
 
@@ -345,11 +326,11 @@ Configuring individual strategies is easy. Simply get a reference to the strateg
 <p>4</p>
 <p>8</p>
 <p>16</p></td>
-<td><p>`BoundColumn`</p>
-<p>`ControlSource`</p>
-<p>`RowSource`</p>
-<p>`RecordSource`</p>
-<p>`InputMask`</p></td>
+<td><p><code>BoundColumn</code></p>
+<p><code>ControlSource</code></p>
+<p><code>RowSource</code></p>
+<p><code>RecordSource</code></p>
+<p><code>InputMask</code></p></td>
 </tr>
 <tr>
 <td>Font</td>
@@ -364,10 +345,10 @@ Configuring individual strategies is easy. Simply get a reference to the strateg
 <p>2</p>
 <p>4 (Default)</p>
 <p>8</p></td>
-<td><p>`Picture`</p>
-<p>`DownPicture`</p>
-<p>`Icon`</p>
-<p>`DragIcon`</p></td>
+<td><p><code>Picture</code></p>
+<p><code>DownPicture</code></p>
+<p><code>Icon</code></p>
+<p><code>DragIcon</code></p></td>
 </tr>
 <tr>
 <td>RightToLeft</td>
@@ -379,9 +360,9 @@ Configuring individual strategies is easy. Simply get a reference to the strateg
 <td><p>1 (Default)</p>
 <p>2 (Default)</p>
 <p>4 (Default)</p></td>
-<td><p>Caption</p>
-<p>`ToolTipText`</p>
-<p>`StatusBarText`</p></td>
+<td><p><code>Caption</code></p>
+<p><code>ToolTipText</code></p>
+<p><code>StatusBarText</code></p></td>
 </tr>
 </tbody>
 </table>
@@ -492,9 +473,9 @@ Strings can be localized by providing translations in `strings.dbf`.
 | Yes       | Oui     |
 | No        | Non     |
 
-|                                                                |                                                                                                                              |
-| -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| **Configure the String Strategy with its SetConfig() method.** | The INTL String strategy, like all strategies, is bitwise-configured. You can control the string strategy object as follows: |
+**Configure the String Strategy with its SetConfig() method.**
+
+The INTL String strategy, like all strategies, is bitwise-configured. You can control the string strategy object as follows:
 
 **Example:** to disable font processing for the ToolTipText property:
 
@@ -859,16 +840,13 @@ oINTL.Localize(_SCREEN.ActiveForm)
 
 ## How to Localize for Right-To-Left Writing Systems
 
-<table>
-<tbody>
-<tr>
-<td><strong>INTL will automatically make your form objects display from right to left.</strong></td>
-<td><p>INTL enables you to display objects from right-to-left, which is required by Middle-Eastern writing systems. To do this, INTL reverses the location of objects within containers along the vertical centerline of the container. INTL also modifies the alignment property of checkboxes and option groups.</p>
-<p>INTL does not change the orientation of caption text. To change the orientation of caption text, you must be using a Middle-Eastern localization of Windows.</p>
-<p>The result is forms are reversed; if they were read from left-to-right now they read from right-to-left, and vice-versa.</p></td>
-</tr>
-</tbody>
-</table>
+INTL will automatically make your form objects display from right to left.
+
+INTL enables you to display objects from right-to-left, which is required by Middle-Eastern writing systems. To do this, INTL reverses the location of objects within containers along the vertical centerline of the container. INTL also modifies the alignment property of checkboxes and option groups.
+
+INTL does not change the orientation of caption text. To change the orientation of caption text, you must be using a Middle-Eastern localization of Windows.
+
+The result is forms are reversed; if they were read from left-to-right now they read from right-to-left, and vice-versa.
 
 Recall that INTL strategies are bitwise-configured according to the
 following table:
@@ -902,73 +880,58 @@ following table:
 
 Activate the currency strategy as follows:
 
-<table>
-<tbody>
-<tr>
-<td><p><strong>Use oINTL.SetConfig() or oINTL.SetStrategy() to load the Currency strategy.</strong></p></td>
-<td><p>OINTL= _SCREEN.oINTL</p>
-<p>oINTL.SetStratrgy( "RightToLeft", "cINTLRightToLeft")</p>
-<p>An alternate (and more cryptic) way is to use INTL's SetConfig() method to make INTL invoke the Font strategy of a given class, as follows:</p>
-<p>OINTL= _SCREEN.oINTL<br />
+Use oINTL.SetConfig() or oINTL.SetStrategy() to load the Currency strategy.
+
+```
+OINTL= _SCREEN.oINTL
+oINTL.SetStratrgy( "RightToLeft", "cINTLRightToLeft")
+An alternate (and more cryptic) way is to use INTL's SetConfig() metto make INTL invoke the Font strategy of a given class, as follows:</p>
+OINTL= _SCREEN.oINTL<b
 *-- Set bit 2^5 "ON"</p>
-<p>oINTL.SetConfig( BITSET( oINTL.GetConfig(), 5 ) )</p></td>
-</tr>
-</tbody>
-</table>
+oINTL.SetConfig( BITSET( oINTL.GetConfig(), 5 ) )
+```
 
 So there are two ways to do it.
 
-<table>
-<thead>
-<tr class="header">
-<th><strong>The RightToLeft strategy is the only strategy that actually rearranges objects in containers.</strong></th>
-<th><p>The INTL toolkit right-to-left strategy is a little different from other strategies in four important respects:</p>
+The RightToLeft strategy is the only strategy that actually rearranges objects in containers.
+
+The INTL toolkit right-to-left strategy is a little different from other strategies in four important respects:
+
+
 <ul>
-<li><blockquote>
-<p>The right-to-left writing direction is <em>locale</em>-specific <em>and</em> language-specific.</p>
-</blockquote></li>
-<li><blockquote>
-<p>Class cINTLRightToLeft does not use class cINTLString services.</p>
-</blockquote></li>
-<li><blockquote>
-<p>Class cINTLRightToLeft reverses the location of objects within containers along the container's vertical axis. What was on the left ends up on the right, and vice versa. Also the alignment property of Checkboxes and Optiongroups is reversed, as is the sequences of Pages in Pageframes and Columns in grids.</p>
-</blockquote></li>
-<li><blockquote>
-<p>If you develop in a right-to-left writing system, you can use a cINTLRightToLeft strategy to write from left-to-right.</p>
-</blockquote></li>
-</ul></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Let's configure INTL for a right-to-left language. The cleanest way to do this is with a subclass of the INTL::SetLanguage() method. Alternately, you could also do it with the SetLocale() method. Either way, the implementation is the same.</td>
-</tr>
-<tr>
-<td><p><strong>In this example, we use SetLanguage() to configure for the RightToLeft transformation.</strong></p>
-<p><strong>Note: for clarity we've omitted configuring for the Font strategy, which we would probably need to do. See</strong> <strong>How to Localize Fonts on P.21</strong></p></td>
-<td><p>DEFINE CLASS MidEastINTL AS INTL</p>
-<p>FUNCTION SetLanguage( tcLanguage)</p>
-<p>LOCAL llRetVal</p>
-<p>LlRetVal= INTL::SetLanguage( tcLanguage)</p>
-<p>*-- The right-to-left strategy is configured</p>
-<p>*-- with the fifth INTL configuration bit.</p>
-<p>IF tcLanguage= "Hebrew" OR ;</p>
-<p>TcLanguage= "Arabic"</p>
-<p>this.SetConfig( BITSET( this.GetConfig(), 5 ))</p>
-<p>ELSE</p>
-<p>this.SetConfig( BITCLEAR( this.GetConfig(), 5 ))</p>
-<p>ENDIF</p>
-<p>RETURN llRetVal</p>
-<p>ENDDEFINE</p></td>
-</tr>
-</tbody>
-</table>
+<li><p>The right-to-left writing direction is <em>locale</em>-specific <em>and</em> language-specific.</p></li>
+<li><p>Class cINTLRightToLeft does not use class cINTLString services.</p></li>
+<li>
+<p>Class cINTLRightToLeft reverses the location of objects within containers along the container's vertical axis. What was on the left ends up on the right, and vice versa. Also the alignment property of Checkboxes and Optiongroups is reversed, as is the sequences of Pages in Pageframes and Columns in grids.</li>
+<li><p>If you develop in a right-to-left writing system, you can use a cINTLRightToLeft strategy to write from left-to-right.</p></li>
+</ul>
+
+Let's configure INTL for a right-to-left language. The cleanest way to do this is with a subclass of the INTL::SetLanguage() method. Alternately, you could also do it with the SetLocale() method. Either way, the implementation is the same.
+
+In this example, we use `SetLanguage()` to configure for the RightToLeft transformation.
+
+<p><strong>Note: for clarity we've omitted configuring for the Font strategy, which we would probably need to do. See</strong> <strong>How to Localize Fonts on P.21</strong></p>
+
+```
+DEFINE CLASS MidEastINTL AS INTL
+  FUNCTION SetLanguage( tcLanguage)
+    LOCAL llRetVal
+    LlRetVal= INTL::SetLanguage( tcLanguage)
+    *-- The right-to-left strategy is configured
+    *-- with the fifth INTL configuration bit.
+    IF tcLanguage= "Hebrew" OR ;
+      TcLanguage= "Arabic"
+      this.SetConfig( BITSET( this.GetConfig(), 5 ))
+    ELSE
+      this.SetConfig( BITCLEAR( this.GetConfig(), 5 ))
+    ENDIF
+    RETURN llRetVal
+ENDDEFINE
+```
 
 ## How to Subclass an Existing Strategy
 
-|                                                   |                                                                                                                                                                                                                                             |
-| ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Need different behavior? Consider a subclass.** | You may encounter situations where you need to do thing differently. Instead of changing the INTL source code (which will create difficulties when merging future releases) consider subclassing an existing strategy for desired behavior. |
+**Need different behavior? Consider a subclass.**  You may encounter situations where you need to do thing differently. Instead of changing the INTL source code (which will create difficulties when merging future releases) consider subclassing an existing strategy for desired behavior.
 
 In the diagram below, we've created two subclasses, one from the
 cINTLString class and one from the cINTLCurrency class. The class
@@ -979,11 +942,11 @@ New classes added to the INTL class hierarchy.
 To use your subclasses instead of those that ship with INTL, call the
 setstrategy()method as follows:
 
+```
 *-- Assuming _SCREEN.oINTL is already Instantiated
-
 _SCREEN.oINTL.SetStrategy("String", "cMyString")
-
 _SCREEN.oINTL.SetStrategy("Currency", "cMyCurrency")
+```
 
 ## How to Create Your Own Generic Strategy
 
@@ -1023,9 +986,10 @@ If you wish to substitute your own strategies in subsequent strategy
 instantiations, use the SetStrategyClass() method to assign a new
 strategy class to an existing strategy alias.
 
+```
 *-- Permanently install cMyStringStrategy for the string strategy.
-
 _SCREEN.oINTL.SetStrategyClass("String", "cMyStringStrategy")
+```
 
 ## How to Batch-Update `strings.dbf`
 
@@ -8954,7 +8918,7 @@ byte. By definition, a SBCS can have a maximum of 256 characters.
 2.  Cultural retrofits are more common because, before going
     international, an application must usually prove its worth in a
     local setting.
-    
+
 # Acknowledgments
 
 ## On the Influence of Design Patterns
