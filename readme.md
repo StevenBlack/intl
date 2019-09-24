@@ -19,16 +19,16 @@ Then,
 
 <dl>
 <dt>Deploy files.</dt>
-<dd>Manually place files relative to your project as described in How to Correctly Place Your INTL Files on page 13.</dd>
+<dd>Manually place files relative to your project as described in How to [Correctly Place Your INTL Files](#how-to-correctly-place-your-intl-files).</dd>
 
 <dt>Modify CONFIG.FPW.</dt>
-<dd>For menus, add the two lines to CONFIG.FPW as explained in How to Localize Menus on page 14.</dd>
+<dd>For menus, add the two lines to CONFIG.FPW as explained in [How to Localize Menus](#how-to-localize-menus).</dd>
 
 <dt>Seed your Form class definition.</dt>
-<dd>For now, probably forever, invoke INTL in forms with a Form::Init() statement that calls the INTL object. See How to Get Automatic Form Localization on page 14.</dd>
+<dd>For now, probably forever, invoke INTL in forms with a Form::Init() statement that calls the INTL object. See [How to Get Automatic Form Localization](#how-to-get-automatic-form-localization).</dd>
 
 <dt>If you need localization, instantiate an INTL object.</dt>
-<dd>Now when localization is required, create and configure an INTL object as described in How to Instantiate an INTL Object on page 13.</dd>
+<dd>Now when localization is required, create and configure an INTL object as described in [How to Instantiate an INTL Object](#how-to-instantiate-an-intl-object).</dd>
 </dl>
 
 
