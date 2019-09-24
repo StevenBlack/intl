@@ -5,11 +5,11 @@
 
 This document serves to describe the following things:
 
-  - The INTL Toolkit for Visual FoxPro,
-  - GENMENUX,
-  - non-linguistic and strategic issues in international development,
-  - Visual FoxPro’s international features, and
-  - other issues germane to spanning locales with your applications.
+* The INTL Toolkit for Visual FoxPro,
+* GENMENUX,
+* non-linguistic and strategic issues in international development,
+* Visual FoxPro’s international features, and
+* other issues germane to spanning locales with your applications.
 
 # Installing INTL
 
@@ -17,19 +17,13 @@ First, put the INTL files into a clean new directory.
 
 Then,
 
-<dl>
-<dt>Deploy files.</dt>
-<dd>Manually place files relative to your project as described in How to [Correctly Place Your INTL Files](#how-to-correctly-place-your-intl-files).</dd>
+* **Deploy files:** Manually place files relative to your project as described in How to [Correctly Place Your INTL Files](#how-to-correctly-place-your-intl-files).
 
-<dt>Modify CONFIG.FPW.</dt>
-<dd>For menus, add the two lines to CONFIG.FPW as explained in [How to Localize Menus](#how-to-localize-menus).</dd>
+* **Modify CONFIG.FPW:** For menus, add the two lines to CONFIG.FPW as explained in [How to Localize Menus](#how-to-localize-menus).
 
-<dt>Seed your Form class definition.</dt>
-<dd>For now, probably forever, invoke INTL in forms with a Form::Init() statement that calls the INTL object. See [How to Get Automatic Form Localization](#how-to-get-automatic-form-localization).</dd>
+* **Seed your Form class definition:** For now, probably forever, invoke INTL in forms with a Form::Init() statement that calls the INTL object. See [How to Get Automatic Form Localization](#how-to-get-automatic-form-localization).
 
-<dt>If you need localization, instantiate an INTL object.</dt>
-<dd>Now when localization is required, create and configure an INTL object as described in [How to Instantiate an INTL Object](#how-to-instantiate-an-intl-object).</dd>
-</dl>
+* If you need localization, **instantiate an INTL object:** Now when localization is required, create and configure an INTL object as described in [How to Instantiate an INTL Object](#how-to-instantiate-an-intl-object).
 
 
 # INTL: How to...
