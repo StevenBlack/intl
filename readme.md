@@ -1,6 +1,5 @@
 # Steven Black's INTL Toolkit for Visual FoxPro
 
-
 ***INTL makes short work of creating multilingual software in VFP.***  It gives you the ability to create multilingual Visual FoxPro applications while minimizing the hassles of creating multi-version software.
 
 This document serves to describe the following things:
@@ -69,9 +68,9 @@ Forms (and any other container) are localized by passing its reference to the `o
 *-- Configure oINTL to another language
 _SCREEN.oINTL.SetLanguage( "French")
 *-- Instantiate a form. If the form calls INTL in its INIT()
-*-- method, then the form appears in French….
+*-- method, then the form appears in French....
 DO FORM MyForm Name MyForm
-*-- ….or you can localize the form on the fly.
+*-- ....or you can localize the form on the fly.
 _SCREEN.oINTL.Localize( MyForm)
 </pre>
 
@@ -1222,7 +1221,7 @@ in your application.
 
 ### Class INTL Exposed Methods
 
-#### INTL::Execute()
+#### `INTL::Execute()`
 
 Localizes a numeric, a string, an object, or array of objects. In the
 case of objects and array of objects, the execute function passes each
@@ -1261,7 +1260,7 @@ object in turn to all the active localization strategies.
 </tbody>
 </table>
 
-#### INTL::GetAlias()
+#### `INTL::GetAlias()`
 
 <table>
 <thead>
@@ -1301,7 +1300,7 @@ object in turn to all the active localization strategies.
 </tbody>
 </table>
 
-#### INTL::GetTable()
+#### `INTL::GetTable()`
 
 Returns the name of the resource table associated with the string
 strategy.
@@ -1340,7 +1339,7 @@ strategy.
 </tbody>
 </table>
 
-#### INTL::GetUpdateMode()
+#### `INTL::GetUpdateMode()`
 
 Returns the setting for the update mode of the current string strategy.
 
@@ -1379,7 +1378,7 @@ Returns the setting for the update mode of the current string strategy.
 
 ####
 
-#### INTL::I()
+#### `INTL::I()`
 
 The I() function is an all-purpose localization method.
 
@@ -1418,7 +1417,7 @@ The I() function is an all-purpose localization method.
 </tbody>
 </table>
 
-#### INTL::Init()
+#### `INTL::Init()`
 
 When creating a master INTL object, you may pass 0, 1, 2 or 3 parameters
 of type "C", "N", or "O" in any sequence. A character parameter is
@@ -1453,7 +1452,7 @@ Type "O": an object to traverse and localize.</td>
 </tbody>
 </table>
 
-#### INTL::LoadStrategies()
+#### `INTL::LoadStrategies()`
 
 Loads an array with the strategy objects as implied by
 INTL::GetConfig(). Unless you create your own custom mechanisms, you
@@ -1490,7 +1489,7 @@ invoke it when necessary.
 </tbody>
 </table>
 
-#### INTL::Localize()
+#### `INTL::Localize()`
 
 Localizes an VFP structure and optionally also sets the locale
 characteristics of the main INTL object.
@@ -1524,7 +1523,7 @@ characteristics of the main INTL object.
 </tbody>
 </table>
 
-#### INTL::ObjArray()
+#### `INTL::ObjArray()`
 
 The INTL::ObjArray method fills an array with object references for an
 object and all the contents of that object.
@@ -1559,7 +1558,7 @@ object and all the contents of that object.
 </tbody>
 </table>
 
-#### INTL::SetConversion()
+#### `INTL::SetConversion()`
 
 Method that allows direct access to the currency strategy if it’s
 loaded.
@@ -1742,7 +1741,7 @@ will message or delegate to an object attached to the ohook reference.
 
 ### Class `cINTLAbstract` Exposed Methods
 
-#### `cINTLAbstract::GetHook()`
+#### ``cINTLAbstract::GetHook()``
 
 Returns an object reference to the hook of the object.
 
@@ -1754,7 +1753,7 @@ Returns an object reference to the hook of the object.
 | **Remarks** | GetHook returns an object reference (if a hook is defined) or .NULL. if not. |
 | **See Also** | **`cINTLMemento::SetHook()`** |
 
-#### `cINTLAbstract::GetLogicalParent()`
+#### ``cINTLAbstract::GetLogicalParent()``
 
 Returns the name of the INTL object’s logical parent.
 
@@ -1766,7 +1765,7 @@ Returns the name of the INTL object’s logical parent.
 | **Remarks** | Returns the name of the INTL object’s logical parent if one has been defined, or .NULL. otherwise. |
 | **See Also** | **`cINTLAbstract::SetLogicalParent()`** |
 
-#### `cINTLAbstract::IsINTLClass()`
+#### ``cINTLAbstract::IsINTLClass()``
 
 Returns true if a reference is an object belonging to the INTL class.
 
@@ -1779,7 +1778,7 @@ Returns true if a reference is an object belonging to the INTL class.
 
 ####
 
-#### `cINTLAbstract::Release()`
+#### ``cINTLAbstract::Release()``
 
 Explicitly releases an INTL object.
 
@@ -1789,7 +1788,7 @@ Explicitly releases an INTL object.
 | **Arguments** | None. |
 | **Remarks** | Releases the current INTL object. Provided for your own benefit if for some reason you need to cleanly release INTL objects. This method is not explicitly called anywhere in INTL. |
 
-#### `cINTLAbstract::SetLogicalParent()`
+#### ``cINTLAbstract::SetLogicalParent()``
 
 This access method sets the pointer to the object’s logical parent.
 
@@ -1801,7 +1800,7 @@ This access method sets the pointer to the object’s logical parent.
 | **Remarks** | The logical parent reference is automatically assigned by the SetHook() method. INTL classes do not use the logical parent back-pointer reference. Included here for compatibility with some object-oriented error handlers my customers use. |
 | **See Also** | **`cINTLAbstract::GetLogicalParent()`** |
 
-#### `cINTLAbstract::GetType()`
+#### ``cINTLAbstract::GetType()``
 
 Returns the type of INTL object this is.
 
@@ -1810,7 +1809,7 @@ Returns the type of INTL object this is.
 | **Return** | A string, the object type, such as “INTL”, “String”, “Font”, “Currency”, and so on. |
 | **Remarks** | When you subclass a strategy, don’t change its type property unless you also change its basic function. |
 
-#### `cINTLAbstract::GetVersion()`
+#### ``cINTLAbstract::GetVersion()``
 
 Returns the version stamp for your INTL for Visual FoxPro software.
 
@@ -1977,7 +1976,7 @@ Here are the exposed properties of class cINTLFont.
 
 Here are the exposed methods of class cINTLFont.
 
-#### cINTLFont::SetConfig()
+#### `cINTLFont::SetConfig()`
 
 <table>
 <thead>
@@ -2033,7 +2032,7 @@ The object name.
 | ----- | ----- |
 | **Default** | "`cINTLMemento`" |
 
-#### `cINTLMemento`::aStrategies\[…\]
+#### `cINTLMemento`::aStrategies[...]
 
 The array collection of strategy object references.
 
@@ -2093,7 +2092,7 @@ An explicit object reference to the string strategy.
 
 ### Class `cINTLMemento` Exposed Methods
 
-#### `cINTLMemento::aStrat()`
+#### ``cINTLMemento::aStrat()``
 
 Fills an array with the strategy engines found in the current INTL
 object.
@@ -2142,7 +2141,7 @@ object.
 </tbody>
 </table>
 
-#### `cINTLMemento::GetConfig()`
+#### ``cINTLMemento::GetConfig()``
 
 Returns an integer encoding the object’s configuration.
 
@@ -2174,7 +2173,7 @@ Returns an integer encoding the object’s configuration.
 </tbody>
 </table>
 
-#### `cINTLMemento::GetLanguage()`
+#### ``cINTLMemento::GetLanguage()``
 
 Returns the localization language to be used by the INTL when localizing
 objects.
@@ -2207,7 +2206,7 @@ objects.
 </tbody>
 </table>
 
-#### `cINTLMemento::GetExplicit()`
+#### ``cINTLMemento::GetExplicit()``
 
 Returns true if explicit localization is enabled.
 
@@ -2239,7 +2238,7 @@ Returns true if explicit localization is enabled.
 </tbody>
 </table>
 
-#### `cINTLMemento::GetLanguage()`
+#### ``cINTLMemento::GetLanguage()``
 
 Returns the localization language to be used by the INTL when localizing
 objects.
@@ -2271,7 +2270,7 @@ objects.
 </tbody>
 </table>
 
-#### `cINTLMemento::GetLocale()`
+#### ``cINTLMemento::GetLocale()``
 
 Returns the value of the INTL object locale property.
 
@@ -2303,30 +2302,30 @@ Returns the value of the INTL object locale property.
 </tbody>
 </table>
 
-#### `cINTLMemento::GetStrategy()`
+#### ``cINTLMemento::GetStrategy()``
 
 Returns an object reference to a strategy object.
 
-| **Syntax** | oINTL.GetStrategy(\[cStrategy\]) |
+| **Syntax** | oINTL.GetStrategy([cStrategy]) |
 | ----- | ----- |
 | **Return** | An object reference to a given strategy. |
 | **Arguments** | cStrategy: a strategy name, the default being "String". Other valid names for native strategies include "Currency", "Data", or "Font". |
-| **Example** | oINTL.GetStrategy("Currency"\] |
+| **Example** | oINTL.GetStrategy("Currency"] |
 | **Remarks** | The strategy must be loaded for GetStrategy to return a reference. |
 | **See Also** | |
 
-#### `cINTLMemento::GetStrategyClass()`
+#### ``cINTLMemento::GetStrategyClass()``
 
 Returns the class used for subsequent strategy object instantiations.
 
-| **Syntax** | oINTL.GetStrategyClass( \[cStrategy\]) |
+| **Syntax** | oINTL.GetStrategyClass( [cStrategy]) |
 | ----- | ----- |
 | **Return** | A strategy class name. |
 | **Arguments** | cStrategy: a strategy name. Valid names for native strategies include “String”, "Currency", "Data", “Picture” and "Font". |
 | **Example** | oINTL.GetStrategyClass("Currency") && “cINTLCurrency” |
 | **See Also** | |
 
-#### `cINTLMemento::Mov()`
+#### ``cINTLMemento::Mov()``
 
 Move selected properties of this object to the object specified.
 
@@ -2369,7 +2368,7 @@ Move selected properties of this object to the object specified.
 </tbody>
 </table>
 
-#### `cINTLMemento::Pitch()`
+#### ``cINTLMemento::Pitch()``
 
 Removes the internal configuration of an INTL object off a stack.
 
@@ -2405,7 +2404,7 @@ Removes the internal configuration of an INTL object off a stack.
 </tbody>
 </table>
 
-#### `cINTLMemento::Pop()`
+#### ``cINTLMemento::Pop()``
 
 Pops the internal configuration of an INTL object off the stack.
 
@@ -2445,7 +2444,7 @@ Pops the internal configuration of an INTL object off the stack.
 </tbody>
 </table>
 
-#### `cINTLMemento::Push()`
+#### ``cINTLMemento::Push()``
 
 Stores the internal configuration of an INTL object on a stack.
 
@@ -2484,7 +2483,7 @@ Stores the internal configuration of an INTL object on a stack.
 </tbody>
 </table>
 
-#### `cINTLMemento::SetConfig()`
+#### ``cINTLMemento::SetConfig()``
 
 Sets the configuration of an INTL object. You can configure INTL to
 selectively localize strings, fonts, datasources, graphical elements,
@@ -2523,7 +2522,7 @@ your interface.
 </tbody>
 </table>
 
-#### `cINTLMemento::SetDefaults()`
+#### ``cINTLMemento::SetDefaults()``
 
 Sets the operational properties of INTL objects to their defaults.
 
@@ -2535,7 +2534,7 @@ Sets the operational properties of INTL objects to their defaults.
 | **Remarks** | The default configuration is set 'at the factory' and cannot be changed programmatically. |
 | **See Also** | **`cINTLMemento::SetConfig()`** |
 
-#### `cINTLMemento::SetExplicit()`
+#### ``cINTLMemento::SetExplicit()``
 
 Sets the INTL object into Explicit mode.
 
@@ -2567,7 +2566,7 @@ Sets the INTL object into Explicit mode.
 </tbody>
 </table>
 
-#### `cINTLMemento::SetHook()`
+#### ``cINTLMemento::SetHook()``
 
 Sets the hook reference pointer.
 
@@ -2602,7 +2601,7 @@ _SCREEN.AddObject( "oINTL", "INTL")</p>
 </tbody>
 </table>
 
-#### `cINTLMemento::SetLanguage()`
+#### ``cINTLMemento::SetLanguage()``
 
 Sets the language for subsequent localization.
 
@@ -2634,7 +2633,7 @@ Sets the language for subsequent localization.
 </tbody>
 </table>
 
-#### `cINTLMemento::SetLocale()`
+#### ``cINTLMemento::SetLocale()``
 
 Set the INTL locale.
 
@@ -2666,7 +2665,7 @@ Set the INTL locale.
 </tbody>
 </table>
 
-#### `cINTLMemento::SetStrategy()`
+#### ``cINTLMemento::SetStrategy()``
 
 Loads a strategy.
 
@@ -2705,7 +2704,7 @@ Loads a strategy.
 
 ####
 
-#### `cINTLMemento::SetStrategyClass()`
+#### ``cINTLMemento::SetStrategyClass()``
 
 Sets the class name that is to be used for subsequent strategy object
 instantiations.
@@ -2840,7 +2839,7 @@ references to an INTL object in members named oINTL.
 <tbody>
 <tr>
 <td><strong>See Also</strong></td>
-<td><strong>`cINTLMemento`::aStrategies[…]</strong><br />
+<td><strong>`cINTLMemento`::aStrategies[...]</strong><br />
 `cINTLMemento::GetStrategy()`<br />
 `cINTLMemento::SetStrategy()`<br />
 `cINTLMemento::GetConfig()`<br />
@@ -2863,7 +2862,7 @@ Stores the configuration integer for this particular object.
 <tbody>
 <tr>
 <td><strong>See Also</strong></td>
-<td><strong>`cINTLMemento`::aStrategies[…]</strong><br />
+<td><strong>`cINTLMemento`::aStrategies[...]</strong><br />
 `cINTLMemento::GetConfig()`<br />
 `cINTLMemento::SetConfig()`</td>
 </tr>
@@ -2939,7 +2938,7 @@ open.
 </tr>
 <tr>
 <td><strong>See Also</strong></td>
-<td><strong>`cINTLMemento`::aStrategies[…]</strong><br />
+<td><strong>`cINTLMemento`::aStrategies[...]</strong><br />
 `cINTLMemento::GetStrategy()`<br />
 `cINTLMemento::SetStrategy()`</td>
 </tr>
@@ -2969,7 +2968,7 @@ The default configuration integer.
 
 ### Class cINTLStrategy Exposed Methods
 
-#### cINTLStrategy::GetAlias()
+#### `cINTLStrategy::GetAlias()`
 
 Returns the alias of the resource table used by this strategy.
 
@@ -3009,7 +3008,7 @@ Returns the alias of the resource table used by this strategy.
 </tbody>
 </table>
 
-#### cINTLStrategy::GetTable()
+#### `cINTLStrategy::GetTable()`
 
 Returns the name of the strategy object’s resource table.
 
@@ -3048,7 +3047,7 @@ Returns the name of the strategy object’s resource table.
 </tbody>
 </table>
 
-#### cINTLStrategy::GetUpdateMode()
+#### `cINTLStrategy::GetUpdateMode()`
 
 Returns the setting for the update mode of the current strategy.
 
@@ -3084,7 +3083,7 @@ Returns the setting for the update mode of the current strategy.
 </tbody>
 </table>
 
-#### cINTLStrategy::I()
+#### `cINTLStrategy::I()`
 
 Handles localization tasks of this particular strategy.
 
@@ -3093,11 +3092,11 @@ Handles localization tasks of this particular strategy.
 | **Return** | Typically the localization of expr1 according to `cINTLMemento`::GetLanguage() or `cINTLMemento::SetLocale()`. |
 | **Arguments** | Varies according to what's required by the strategy subclass instance. Typically expr1 is a string, a number, or a file name to localize. Expr2 is usually an additional qualifier. For example, in a custom currency strategy, expr2 might be used to pass a valuation date. |
 
-#### cINTLStrategy::OpenStrategy()
+#### `cINTLStrategy::OpenStrategy()`
 
 Open the strategy object’s resource table.
 
-| **Syntax** | oINTL.OpenStrategy( \[cFileName \[,cOptions\]\]) |
+| **Syntax** | oINTL.OpenStrategy( [cFileName [,cOptions]]) |
 | ----- | ----- |
 | **Return** | Logical true if successful, false otherwise. |
 | **Arguments** | cFileName: the name of the table to open as a resource file. This defaults to what’s returned by GetTable(). |
@@ -3105,7 +3104,7 @@ Open the strategy object’s resource table.
 
 ####
 
-#### cINTLStrategy::SetAlias()
+#### `cINTLStrategy::SetAlias()`
 
 Sets a new value for the alias of the strategy object’s resource table.
 
@@ -3117,7 +3116,7 @@ Sets a new value for the alias of the strategy object’s resource table.
 | **Remarks** | Some strategies may not use resource tables. |
 | **See Also** | **cINTLStrategy::GetAlias** |
 
-#### cINTLStrategy::SetTable()
+#### `cINTLStrategy::SetTable()`
 
 Sets the name of the strategy object’s resource table.
 
@@ -3129,7 +3128,7 @@ Sets the name of the strategy object’s resource table.
 | **Remarks** | Some strategies may not use resource tables. |
 | **See Also** | **cINTLStrategy::GetTable** |
 
-#### cINTLStrategy::SetUpdateMode()
+#### `cINTLStrategy::SetUpdateMode()`
 
 Controls the resource updating behavior of this strategy.
 
@@ -3310,7 +3309,7 @@ Stores the default configuration integer for this strategy.
 
 ### Class cINTLString Exposed Methods
 
-#### cINTLString::Alang()
+#### `cINTLString::Alang()`
 
 Fills an array with the languages supported by the resources of the
 string strategy object.
@@ -3347,7 +3346,7 @@ string strategy object.
 </tbody>
 </table>
 
-#### cINTLString::CreateStrategyTable()
+#### `cINTLString::CreateStrategyTable()`
 
 Creates the resource table used by this strategy object.
 
@@ -3388,7 +3387,7 @@ LOCAL oX, lcFile</p>
 </tbody>
 </table>
 
-#### cINTLString::CreateStrategyCDX()
+#### `cINTLString::CreateStrategyCDX()`
 
 Create or recreate the index belonging to the strategy object’s resource
 table.
@@ -3432,7 +3431,7 @@ LOCAL oX, lcFile</p>
 
 ####
 
-#### cINTLString::Execute()
+#### `cINTLString::Execute()`
 
 Iterates through a VFP structure, localizing strings.
 
@@ -3441,7 +3440,7 @@ Iterates through a VFP structure, localizing strings.
 | **Return** | Logical true if successful, false otherwise. |
 | **Arguments** | aStructure: an array of object references, or oObject: a (container) object reference. |
 
-#### cINTLString::IsInResource()
+#### `cINTLString::IsInResource()`
 
 Returns logical true if the passed string is in the resource table.
 
@@ -3452,7 +3451,7 @@ Returns logical true if the passed string is in the resource table.
 | **Example** | oINTL.IsInResource( “Cancel”) && True, probably |
 | **Remarks** | Does not indicate if the resource is localized in the resource table. |
 
-#### cINTLString::IsValidLanguage()
+#### `cINTLString::IsValidLanguage()`
 
 Returns logical true if the passed language is supported by the string
 strategy object.
@@ -3493,7 +3492,7 @@ strategy object.
 </tbody>
 </table>
 
-#### cINTLString::ResourceInsert()
+#### `cINTLString::ResourceInsert()`
 
 Inserts an item into the resource table.
 
@@ -3532,7 +3531,7 @@ cINTLString::UpdateResource</td>
 
 ####
 
-#### cINTLString::SetConfig()
+#### `cINTLString::SetConfig()`
 
 Sets the configuration of the string strategy object.
 
@@ -3571,7 +3570,7 @@ Sets the configuration of the string strategy object.
 </tbody>
 </table>
 
-#### cINTLString::UpdateResource()
+#### `cINTLString::UpdateResource()`
 
 This method updates the resource file with the passed argument.
 
@@ -4472,7 +4471,7 @@ The figure below shows a diagram of the cINTLIterator class.
 
 ### Class INTLIterator Exposed Methods
 
-#### INTLIterator::Accept()
+#### `INTLIterator::Accept()`
 
 Accepts a visitor object and launches the visitor's VISIT() method using
 THIS as an argument, which gives the visitor a handle to access this
@@ -4509,7 +4508,7 @@ iterator's services.
 
 ####
 
-#### INTLIterator::Close()
+#### `INTLIterator::Close()`
 
 Closes the table being used by this iterator.
 
@@ -4538,7 +4537,7 @@ Closes the table being used by this iterator.
 </tbody>
 </table>
 
-#### INTLIterator::First()
+#### `INTLIterator::First()`
 
 Moves the iterator index to the first item in the structure.
 
@@ -4546,7 +4545,7 @@ Moves the iterator index to the first item in the structure.
 | ------ | ----- |
 | Return | Logical true if successful, false if otherwise. |
 
-#### INTLIterator::GetAlias()
+#### `INTLIterator::GetAlias()`
 
 Returns the alias of the structure being iterated.
 
@@ -4554,7 +4553,7 @@ Returns the alias of the structure being iterated.
 | ------ | ----- |
 | Return | The alias of the structure being iterated. |
 
-#### INTLIterator::GetCurrent()
+#### `INTLIterator::GetCurrent()`
 
 Returns the current item as defined by each iterator. Unless otherwise
 specified, this function returns .NULL. For the cProjectIterator class,
@@ -4565,7 +4564,7 @@ current project record.
 | ------ | ----- |
 | Return | Usually .NULL. unless otherwise specified by the class definition. |
 
-#### INTLIterator::GetStructure()
+#### `INTLIterator::GetStructure()`
 
 Returns the name of the structure being iterated.
 
@@ -4573,7 +4572,7 @@ Returns the name of the structure being iterated.
 | ------ | ----- |
 | Return | The name of the table being iterated. |
 
-#### INTLIterator::Last()
+#### `INTLIterator::Last()`
 
 Navigates the iterator index to the last item in the structure.
 
@@ -4581,7 +4580,7 @@ Navigates the iterator index to the last item in the structure.
 | ------ | ----- |
 | Return | Logical true if successful, false if otherwise. |
 
-#### INTLIterator::Next()
+#### `INTLIterator::Next()`
 
 Navigates the iterator index to the next item in the structure.
 
@@ -4591,7 +4590,7 @@ Navigates the iterator index to the next item in the structure.
 
 ####
 
-#### INTLIterator::Open()
+#### `INTLIterator::Open()`
 
 Opens the table associated with this iterator.
 
@@ -4599,7 +4598,7 @@ Opens the table associated with this iterator.
 | ------ | ----- |
 | Return | Logical true if successful, false if otherwise. |
 
-#### INTLIterator::Prior()
+#### `INTLIterator::Prior()`
 
 Moves the iterator to the prior record in the structure.
 
@@ -4617,7 +4616,7 @@ Open().
 | ------ | ----- |
 | Syntax | oIterator.ProgrammaticChange() |
 
-#### INTLIterator::Release()
+#### `INTLIterator::Release()`
 
 Releases the iterator object.
 
@@ -4636,7 +4635,7 @@ Here is a diagram of the INTL Visitor class.
 
 ### Class INTLVisitor Exposed Methods
 
-#### INTLVisitor::Destroy()
+#### `INTLVisitor::Destroy()`
 
 Releases the visitor object.
 
@@ -4644,7 +4643,7 @@ Releases the visitor object.
 | ------ | ----- |
 | Return | Logical true if successful, false otherwise. |
 
-#### INTLVisitor::PropSrch()
+#### `INTLVisitor::PropSrch()`
 
 Returns a property from the properties memo fields in the structure.
 
@@ -4675,7 +4674,7 @@ Returns a property from the properties memo fields in the structure.
 </tbody>
 </table>
 
-#### INTLVisitor::VisitCode()
+#### `INTLVisitor::VisitCode()`
 
 Visit a code file, such as a .PRG, .H, .MPR.
 
@@ -4711,16 +4710,16 @@ Visit a code file, such as a .PRG, .H, .MPR.
 
 ####
 
-#### INTLVisitor::GetCurrentSourceId()
+#### `INTLVisitor::GetCurrentSourceId()`
 
 Returns the name of the source file currently being visited.
 
-| **Syntax** | oVisitor.GetCurrentSourceID( \[oIterator\]) |
+| **Syntax** | oVisitor.GetCurrentSourceID( [oIterator]) |
 | ----- | ----- |
 | **Return** | Character name of the source file currently being visited. |
 | **Arguments** | toIterator: object reference to an iterator, the default being the iterator currently being visited. |
 
-#### INTLVisitor::VisitExpression()
+#### `INTLVisitor::VisitExpression()`
 
 The code to execute on expressions.
 
@@ -4730,7 +4729,7 @@ The code to execute on expressions.
 | **Arguments** | cExpression: the expression to be processed. |
 | **See Also** | **INTLVisitor::VisitString()** |
 
-#### INTLVisitor::VisitSCXRecord()
+#### `INTLVisitor::VisitSCXRecord()`
 
 The code to execute on form records.
 
@@ -4758,7 +4757,7 @@ INTLVisitor::VisitString()</td>
 </tbody>
 </table>
 
-#### INTLVisitor::VisitMNXRecord()
+#### `INTLVisitor::VisitMNXRecord()`
 
 The code to execute on menu records.
 
@@ -4786,7 +4785,7 @@ INTLVisitor::VisitString()</td>
 </tbody>
 </table>
 
-#### INTLVisitor::VisitMetaTable()
+#### `INTLVisitor::VisitMetaTable()`
 
 The code to execute on Visual FoxPro tables.
 
@@ -4815,7 +4814,7 @@ INTLVisitor::VisitSCXRecord()</td>
 </tbody>
 </table>
 
-#### INTLVisitor::VisitPJX()
+#### `INTLVisitor::VisitPJX()`
 
 The code to execute on project tables.
 
@@ -4848,7 +4847,7 @@ INTLVisitor::VisitString()</td>
 </tbody>
 </table>
 
-#### INTLVisitor::VisitFRXRecord()
+#### `INTLVisitor::VisitFRXRecord()`
 
 The code to execute on report tables.
 
@@ -4876,7 +4875,7 @@ INTLVisitor::VisitString()</td>
 </tbody>
 </table>
 
-#### INTLVisitor::VisitString()
+#### `INTLVisitor::VisitString()`
 
 The code to execute on character strings.
 
@@ -4920,15 +4919,15 @@ designed to do one of three things with it:
 <tr>
 <td><strong>Hooks can drastically alter how INTL messages are processed.</strong></td>
 <td><ul>
-<li><blockquote>
+<li>
 <p><strong>Broadcast</strong>: broadcasting to a hook means that the hook method is invoked before the code in the called method is executed.</p>
-</blockquote></li>
-<li><blockquote>
+</li>
+<li>
 <p><strong>Defer</strong>: deferring to a hook means that the hook method is invoked, and if the return value from the hook is .NULL, then the code in the called method is executed.</p>
-</blockquote></li>
-<li><blockquote>
+</li>
+<li>
 <p><strong>Ignore</strong>: some methods don't call hooks at all.</p>
-</blockquote></li>
+</li>
 </ul></td>
 </tr>
 </tbody>
@@ -4943,19 +4942,23 @@ designed to do one of three things with it:
 <p><strong>Broadcast hooks don't care about the hook's return value.</strong></p></td>
 <td><p>Broadcast hooks permit you to augment the behavior of methods without changing the source code. By simply attaching a hook, you can attach code to methods and this code will be invoked automatically before the regular method code executes.</p>
 <p>Broadcast hooks in INTL are invoked from methods with code like the following:</p>
-<p>#DEFINE INTL_HOOK_TEST ! ISNULL( this.oHook) AND ;<br />
-TYPE( "this.oHook.INTL_Abstract_ID")&lt;&gt; "U"</p>
-<p>*====================================</p>
-<p>*-- `cINTLMemento`::SetExplicit( l)</p>
-<p>*====================================</p>
-<p>* Set the Explicit mode.</p>
-<p>*</p>
-<p>FUNCTION SetExplicit( tlSetting)</p>
-<p>*-- Broadcast first to the hooks</p>
-<p>IF INTL_HOOK_TEST</p>
-<p>this.oHook.SetExplicit( @tlSetting)</p>
-<p>ENDIF</p>
-<p>*&lt;&lt; Rest of the method code below&gt;&gt;</p></td>
+<p>
+<pre>
+#DEFINE INTL_HOOK_TEST ! ISNULL( this.oHook) AND ;
+TYPE( "this.oHook.INTL_Abstract_ID")&lt;&gt; "U"
+*====================================
+*-- `cINTLMemento`::SetExplicit( l)
+*====================================
+* Set the Explicit mode.
+*
+FUNCTION SetExplicit(   tlSetting)
+*-- Broadcast first to the hooks
+IF INTL_HOOK_TEST
+this.oHook.SetExplicit( @tlSetting)
+ENDIF
+* << Rest of the method code below >>
+</pre>
+</td>
 </tr>
 </tbody>
 </table>
@@ -5018,22 +5021,19 @@ Instantiating the hook involves connecting an instance of the hook to
 the hooked object. In our example, we want to hook the currency
 strategy, thus
 
+```
 *-- 1) Get a temporary handle on the currency strategy
-
 oX = _SCREEN.oINTL.GetStrategy("Currency")
-
 *-- 2) Hook It
-
 oX.SetHook(CREATEOBJECT("MyCurrencyHook"))
-
 *-- 3) For safety, release the temporary handle.
-
 oX =.NULL.
+```
 
 If you need to restore the hooked to its unhooked state, do as follows:
-
+```
 oX = ox.SetHook(.NULL.)
-
+```
 # VFP's International Features
 
 ## Introduction
@@ -5058,9 +5058,9 @@ themes found herein:
 <tr class ="header">
 <th><strong>The language of operating system services will vary with the localized language of the OS.</strong></th>
 <th><ul>
-<li><blockquote>
+<li>
 <p><strong><em>Some services come from the operating system</em>,</strong> so the language of display varies with the localization of the operating system. For example, if your German client is running a US version of Windows, then vfp's MESSAGEBOX() function will display English button captions (OK - Cancel) and there is nothing you can do about it (other than use INTL's MsgSvc() function, of course).</p>
-</blockquote></li>
+</li>
 </ul></th>
 </tr>
 </thead>
@@ -5068,25 +5068,25 @@ themes found herein:
 <tr>
 <td><strong>The language of native VFP services will vary with the localized language of VFP.</strong></td>
 <td><ul>
-<li><blockquote>
+<li>
 <p><em><strong>Some services come from Visual FoxPro</strong></em>, so their display language varies with the localized version of vfp. For example, dialogs like GETFILE() and LOCFILE() are vfp dialogs and, aside from parameters you can pass, these dialogs will appear in English on English versions of vfp.</p>
-</blockquote></li>
+</li>
 </ul></td>
 </tr>
 <tr>
 <td><strong>The language of some things in VFP cannot be controlled.</strong></td>
 <td><ul>
-<li><blockquote>
+<li>
 <p><em><strong>Some vfp services aren't designed for multi-locale use</strong></em>, like the Relational Integrity (ri) builder. The ri builder is dependent on FoxPro functions that return character strings that vary with the localized version of FoxPro.</p>
-</blockquote></li>
+</li>
 </ul></td>
 </tr>
 <tr>
 <td><strong>The language of third-party services cannot be predicted without experimentation.</strong></td>
 <td><ul>
-<li><blockquote>
+<li>
 <p><em><strong>Some services come from third-parties</strong></em>, and their localization usually cannot be predicted unless you experiment. Things like ole custom controls, for example, may or may not be internationally enabled, and may require separate versions (if available) for different locales.</p>
-</blockquote></li>
+</li>
 </ul></td>
 </tr>
 </tbody>
@@ -5102,15 +5102,15 @@ that follow.
 <tr>
 <td><strong>These "AS nCodePage" elements recur in many of the topics below, and they are listed here just once. Keep these factors in mind.</strong></td>
 <td><ul>
-<li><blockquote>
+<li>
 <p>Wherever you see nCodePage in a command description, you can use GETCP()to display the Code Page dialog box, allowing you to specify a code page for the imported table or file.</p>
-</blockquote></li>
-<li><blockquote>
+</li>
+<li>
 <p>In general, in cases where a nCodePage argument is permitted, and a value of 0 is assigned, no code page translation will take place.</p>
-</blockquote></li>
-<li><blockquote>
+</li>
+<li>
 <p>If the specified value for nCodePage isn't supported, vfp generates error 1914, with message "Code page number is invalid.".</p>
-</blockquote></li>
+</li>
 </ul></td>
 </tr>
 </tbody>
@@ -5118,7 +5118,7 @@ that follow.
 
 ###
 
-### AERROR()
+### `AERROR()`
 
 Creates an array of information about the most recent vfp, ole, or odbc
 error.
@@ -5148,28 +5148,28 @@ error.
 </tbody>
 </table>
 
-### AFIELDS(ArrayName \[, nWorkArea | cTableAlias\])
+### `AFIELDS(ArrayName [, nWorkArea | cTableAlias])`
 
 AFIELDS() places structural information about the current table into an
 array.
 
-**Internationalization Gotcha:** ArrayName\[6\] contains logical true if
+**Internationalization Gotcha:** ArrayName[6] contains logical true if
 code page translation is **not** allowed. Think of this as a NOCPTRANS
 flag for the field.
 
-**Internationalization Gotcha:** ArrayName\[8\] contains the field
+**Internationalization Gotcha:** ArrayName[8] contains the field
 validation text, which will probably need to be localized.
 
 **Internationalization Tip:** you can set the field validation text with
 DBSETPROP(cTableAlias,"Field","RuleText", cRuleText).
 
-**Internationalization Gotcha:** ArrayName\[11\] contains the table
+**Internationalization Gotcha:** ArrayName[11] contains the table
 validation text, which will probably need to be localized.
 
 **Internationalization Tip:** you can control the table validation text
 with DBSETPROP(cTableAlias,"Table","RuleText", cRuleText).
 
-### ANSITOEM()
+### `ANSITOEM()`
 
 <table>
 <tbody>
@@ -5181,7 +5181,7 @@ with DBSETPROP(cTableAlias,"Table","RuleText", cRuleText).
 </tbody>
 </table>
 
-### APPEND FROM ... AS nCodePage
+### `APPEND FROM ... AS nCodePage`
 
 <table>
 <tbody>
@@ -5210,7 +5210,7 @@ If you omit AS nCodePage, two things can happen:
     as it copies the data, automatically converts the data to the code
     page of the currently selected table.
 
-### APPEND MEMO ... AS nCodePage
+### `APPEND MEMO ... AS nCodePage`
 
 APPEND MEMO copies the contents of a disk file to a memo field.
 
@@ -5224,7 +5224,7 @@ APPEND MEMO copies the contents of a disk file to a memo field.
 </tbody>
 </table>
 
-### APPEND PROCEDURES ... AS nCodePage
+### `APPEND PROCEDURES ... AS nCodePage`
 
 APPEND PROCEDURES appends stored procedures in a text file to the stored
 procedures snippet of the current database.
@@ -5239,7 +5239,7 @@ automatically converts the contents of the text file to the current vfp
 code page. The current vfp code page can be determined with CPCURRENT(
 ).
 
-### AT\_C(cSearchExpression, cExpressionSearched \[, nOccurrence\])
+### `AT\_C(cSearchExpression, cExpressionSearched [, nOccurrence])`
 
 <table>
 <tbody>
@@ -5251,7 +5251,7 @@ code page. The current vfp code page can be determined with CPCURRENT(
 </tbody>
 </table>
 
-### ATCC(cSearchExp, cExpSearched \[, nOccurrence\])
+### `ATCC(cSearchExp, cExpSearched [, nOccurrence])`
 
 <table>
 <tbody>
@@ -5263,7 +5263,7 @@ code page. The current vfp code page can be determined with CPCURRENT(
 </tbody>
 </table>
 
-### ATCLINE(cSearchExpression, cExpressionSearched)
+### `ATCLINE(cSearchExpression, cExpressionSearched)`
 
 <table>
 <tbody>
@@ -5275,7 +5275,7 @@ code page. The current vfp code page can be determined with CPCURRENT(
 </tbody>
 </table>
 
-### ATLINE(cSearchExpression, cExpressionSearched)
+### `ATLINE(cSearchExpression, cExpressionSearched)`
 
 <table>
 <tbody>
@@ -5287,13 +5287,13 @@ code page. The current vfp code page can be determined with CPCURRENT(
 </tbody>
 </table>
 
-### BROWSE
+### `BROWSE`
 
 | | |
 | ----- | ----- |
 | **BROWSE without NOMENU leads to an unlocalizable "Table" menu pad.** | **Internationalization Gotcha:** when using BROWSE without a NOMENU clause, VFP places a "Table" menu pad on the system menu containing a number of bars (with captions like "Properties", "Font", "Go to record", etc). The display language of this pad and its bars is a function of VFP's localization language. In international applications that use BROWSE, make sure you make it a BROWSE...NOMENU and, if required, invoke your own supporting menu. |
 
-### CDOW(dExpression | tExpression)
+### `CDOW(dExpression | tExpression)`
 
 <table>
 <tbody>
@@ -5305,7 +5305,7 @@ code page. The current vfp code page can be determined with CPCURRENT(
 </tbody>
 </table>
 
-### CHR()
+### `CHR()`
 
 <table>
 <tbody>
@@ -5317,7 +5317,7 @@ code page. The current vfp code page can be determined with CPCURRENT(
 </tbody>
 </table>
 
-### CHRTRANC(cSearched, cSearchFor, cReplacement)
+### `CHRTRANC(cSearched, cSearchFor, cReplacement)`
 
 <table>
 <tbody>
@@ -5329,7 +5329,7 @@ code page. The current vfp code page can be determined with CPCURRENT(
 </tbody>
 </table>
 
-### CMONTH(dExpression | tExpression)
+### `CMONTH(dExpression | tExpression)`
 
 <table>
 <tbody>
@@ -5341,7 +5341,7 @@ code page. The current vfp code page can be determined with CPCURRENT(
 </tbody>
 </table>
 
-### COMPILE ... AS nCodePage
+### `COMPILE ... AS nCodePage`
 
 <table>
 <tbody>
@@ -5353,7 +5353,7 @@ code page. The current vfp code page can be determined with CPCURRENT(
 </tbody>
 </table>
 
-### COPY MEMO ... AS nCodePage
+### `COPY MEMO ... AS nCodePage`
 
 <table>
 <tbody>
@@ -5365,7 +5365,7 @@ code page. The current vfp code page can be determined with CPCURRENT(
 </tbody>
 </table>
 
-### COPY STRUCTURE EXTENDED
+### `COPY STRUCTURE EXTENDED`
 
 <table>
 <tbody>
@@ -5380,7 +5380,7 @@ TABLE_ERR M Table validation text</p></td>
 </tbody>
 </table>
 
-### COPY TO ... AS nCodePage
+### `COPY TO ... AS nCodePage`
 
 COPY TO creates a new file from the contents of the currently selected
 table.
@@ -5393,7 +5393,7 @@ the newly created table or file with the code page you specify. If you
 omit AS nCodePage, the newly created table or file is converted to the
 current vfp code page.
 
-### COPY PROCEDURES ... AS nCodePage
+### `COPY PROCEDURES ... AS nCodePage`
 
 COPY PROCEDURES copies stored procedures in the current database to a
 text file.
@@ -5403,7 +5403,7 @@ for the text file to which the stored procedures are copied. vfp copies
 the stored procedures and, as it does so, automatically converts the
 stored procedures to the code page you specify.
 
-### CPCONVERT(nCurrentCodePage, nNewCodePage, cExpression)
+### `CPCONVERT(nCurrentCodePage, nNewCodePage, cExpression)`
 
 <table>
 <tbody>
@@ -5415,7 +5415,7 @@ stored procedures to the code page you specify.
 </tbody>
 </table>
 
-### CPCURRENT(\[1 | 2\])
+### `CPCURRENT([1 | 2])`
 
 <table>
 <tbody>
@@ -5445,7 +5445,7 @@ CPCURRENT(2) always returns the underlying operating system code page,
 regardless of your configuration CODEPAGE setting. For example, if
 you're running Windows, CPCURRENT(2) returns the MS-DOS code page.
 
-### CPDBF(\[nWorkArea | cTableAlias\])
+### `CPDBF([nWorkArea | cTableAlias])`
 
 <table>
 <tbody>
@@ -5457,7 +5457,7 @@ you're running Windows, CPCURRENT(2) returns the MS-DOS code page.
 </tbody>
 </table>
 
-### CPZERO( cFilename\[, codepage\_number\]\]
+### CPZERO( cFilename[, codepage\_number]]
 
 | | |
 | ----- | ----- |
@@ -5472,7 +5472,7 @@ To correct the code page, use CPZERO.
 | ----- | ----- |
 | **CPZERO.PRG won't fix a corrupted table.** | It is worth noting that CPZERO won't fix a file with data corruption resulting from prior automatic code page translation. |
 
-### CREATE CURSOR ... NOCPTRANS
+### `CREATE CURSOR ... NOCPTRANS`
 
 CREATE CURSOR - SQL creates a temporary table. The NOCPTRANS argument,
 which applies when specifying field-level attributes, prevents
@@ -5482,7 +5482,7 @@ translation to a different code page for character and memo fields.
 another code page is anticipated. Note that this is more likely if a
 subset of the temporary table is saved to disk.
 
-### CREATE TABLE ... NOCPTRANS
+### `CREATE TABLE ... NOCPTRANS`
 
 CREATE TABLE - SQL creates a table.
 
@@ -5490,7 +5490,7 @@ CREATE TABLE - SQL creates a table.
 prevents translation to a different code page for its character and memo
 fields.
 
-### CTOD(cExpression)
+### `CTOD(cExpression)`
 
 <table>
 <thead>
@@ -5508,7 +5508,7 @@ fields.
 </tbody>
 </table>
 
-### CTOT(cExpression)
+### `CTOT(cExpression)`
 
 <table>
 <thead>
@@ -5611,14 +5611,14 @@ fields.
 
 These SET commands are scoped to the datasession.
 
-### DATE()
+### `DATE()`
 
 DATE() returns the current system date.
 
 **Internationalization Gotcha**: the date is formatted according to SET
 DATE, SET MARK, and SET CENTURY.
 
-### DATETIME()
+### `DATETIME()`
 
 DATETIME()returns the current date and time as a DateTime value.
 
@@ -5628,7 +5628,7 @@ MARK, SET CENTURY, SET HOURS, and SET SECONDS. The format is also
 dependent on the settings in the International option in the Windows
 Control Panel.
 
-### DBGETPROP(cName, cType, cProperty)
+### `DBGETPROP(cName, cType, cProperty)`
 
 DBGETPROP() returns a property for the current database, fields, named
 connections, tables, or views in the current database.
@@ -5662,7 +5662,7 @@ Here are localizable elements for views:
 
 ###
 
-### DEFINE BAR
+### `DEFINE BAR`
 
 DEFINE BAR creates a menu item on a menu created with DEFINE POPUP.
 
@@ -5672,7 +5672,7 @@ localize situations. DEFINE BAR has three internationally sensitive
 clauses: PROMPT (what the bar displays), FONT (which could vary with
 locale) and MESSAGE (the status bar message).
 
-### DEFINE MENU
+### `DEFINE MENU`
 
 DEFINE MENU creates a menu bar.
 
@@ -5681,7 +5681,7 @@ coded" and difficult to localize situations. DEFINE MENU has two
 internationally sensitive clauses: the FONT (which could vary with
 locale) and MESSAGE (the status bar message).
 
-### DEFINE PAD
+### `DEFINE PAD`
 
 DEFINE PAD creates a menu title (pad) on a menu bar.
 
@@ -5690,7 +5690,7 @@ coded" and difficult to localize situations. DEFINE MENU has two
 internationally sensitive clauses: the FONT (which could vary with
 locale) and MESSAGE (the status bar message).
 
-### DEFINE POPUP
+### `DEFINE POPUP`
 
 DEFINE POPUP creates a menu.
 
@@ -5701,7 +5701,7 @@ locale); MESSAGE (the status bar message); FOOTER (the text at the
 bottom of the popup); PROMPT FIELD (which may bring in unlocalized text
 from a table); and TITLE (on the top border of the menu).
 
-### DEFINE WINDOW
+### `DEFINE WINDOW`
 
 DEFINE WINDOW creates and specifies the characteristics of a window.
 
@@ -5711,7 +5711,7 @@ following internationally sensitive clauses: the TITLE of the window;
 its FONT (which might need to vary with locale); and the ICON file
 (which may not be appropriate for all locales).
 
-### DefOLELCID Property
+### `DefOLELCID` Property
 
 The DefOLELCID property applies to Form and _SCREEN objects, and
 specifies the default ole Locale ID for a Form or the main vfp window.
@@ -5748,7 +5748,7 @@ interface, which ole controls display, and not the language of the ole
 automation commands. The ole automation command language is affected
 only by the Global LocaleID, set with SYS(3005).
 
-### DMY(dExpression | tExpression)
+### `DMY(dExpression | tExpression)`
 
 DMY() returns a character expression in day-month-year sequence, for
 example "26 June 1996".
@@ -5757,14 +5757,14 @@ example "26 June 1996".
 varies with vfp's localized language. DMY()respects the setting of SET
 CENTURY.
 
-### DTOC(dExpression | tExpression \[, 1\])
+### `DTOC(dExpression | tExpression [, 1])`
 
 DTOC() returns a Character-type Date from a Date or DateTime expression.
 
 **Internationalization Gotcha**: the date format is determined by SET
 CENTURY and SET DATE and SET MARK.
 
-### DTOS(dExpression | tExpression)
+### `DTOS(dExpression | tExpression)`
 
 <table>
 <tbody>
@@ -5776,20 +5776,20 @@ CENTURY and SET DATE and SET MARK.
 </tbody>
 </table>
 
-### DTOT(dDateExpression)
+### `DTOT(dDateExpression)`
 
 DTOT() returns a DateTime value from a Date expression.
 
 **Internationalization Gotcha**: the format of the returned value
 depends on the current SET DATE and SET MARK settings.
 
-### EDIT
+### `EDIT`
 
 | | |
 | ----- | ----- |
 | **EDIT without NOMENU leads to an unlocalizable "Table" menu pad.** | **Internationalization Gotcha:** when using EDIT without a NOMENU clause, vfp places a "Table" menu pad on the system menu containing a number of bars (with captions like "Properties", "Font", "Go to record", etc). The display language of this pad and its bars is a function of vfp's localization language. In international applications that use BROWSE, make sure you make it a EDIT...NOMENU and, if required, invoke your own supporting menu. |
 
-### ERROR
+### `ERROR`
 
 The ERROR command generates a vfp error.
 
@@ -5805,7 +5805,7 @@ command is pre-empted by whatever action is specified by ON ERROR.
 | ----- | ----- |
 | **VFP error messages are in VFP's localized language.** | **Internationalization Gotcha:** error messages which, in the absence of error handling, adorn vfp's error dialog boxes and as available with MESSAGE() and AERROR(), are in the language of vfp's localization. |
 
-### EXPORT TO ... AS nCodePage
+### `EXPORT TO ... AS nCodePage`
 
 EXPORT TO copies data from a vfp table to a file in a different format.
 
@@ -5820,7 +5820,7 @@ vfp marks the newly created file with the code page of the table from
 which the data is copied. If nCodePage is 0, no code page conversion
 occurs and the new file is not marked with a code page.
 
-### FDATE(cFileName)
+### `FDATE(cFileName)`
 
 FDATE() is a low level file function that returns the last modification
 date for a file.
@@ -5847,7 +5847,7 @@ thing to worry about.
 **Internationalization Gotcha**: the form's Close box is localized in
 the language of VFP localization. This otherwise cannot be controlled.
 
-### GETCP(\[nCodePage\] \[, cDialogCaption\] \[, cDialogTitle\])
+### `GETCP([nCodePage] [, cDialogCaption] [, cDialogTitle])`
 
 GETCP() prompts for a code page by displaying the Code Page dialog box,
 and then returns the number of the code page chosen.
@@ -5857,7 +5857,7 @@ cannot control the language displayed in this dialog — it comes from
 within vfp and you will need a localized version of vfp for this dialog
 to display properly in an alternate language.
 
-### GETDIR(\[cDirectory \[, cDialogCaption\]\])
+### `GETDIR([cDirectory [, cDialogCaption]])`
 
 GETDIR() displays the Select Directory dialog box from which a directory
 or folder can be chosen.
@@ -5867,17 +5867,17 @@ displayed in this dialog — it comes from within vfp and you will need a
 localized version of vfp for this dialog to display properly in an
 alternate language.
 
-The line…
+The line...
 
 ?GETDIR("C:\\", "cDialogCaption")
 
-…makes this rather unlocalizable dialog.
+...makes this rather unlocalizable dialog.
 
 ![](./media/image28.wmf)
 
 The GETDIR() dialog
 
-### GETEXPR TO ...
+### `GETEXPR TO ...`
 
 **Internationalization Gotcha**: the vfp expression builder comes from
 vfp and you cannot control its display language. To get a localized
@@ -5887,8 +5887,7 @@ expression builder, you will need a localized version of vfp.
 
 The GETEXPR TO dialog.
 
-### GETFILE(\[cFileExtensions\] \[, cDialogCaption\] \[, cOpenButtonCaption\]
-\[, nButtonType\] \[, cCreatorType\])
+### `GETFILE([cFileExtensions] [, cDialogCaption] [, cOpenButtonCaption] [, nButtonType] [, cCreatorType])`
 
 GETFILE() displays the Open dialog box and returns the name of the file
 you chose.
@@ -5898,18 +5897,17 @@ cannot control the language displayed in this dialog — it comes from
 within vfp and you will need a localized version of vfp for this dialog
 to display properly in an alternate language.
 
-The line…
-
-?GETFILE(\[cFileExtensions\] ,\[cDialogCaption\],
-\[cOpenButtonCaption\],1)
-
-…produces this:
+The line...
+```
+?GETFILE([cFileExtensions] ,[cDialogCaption], [cOpenButtonCaption],1)
+```
+...produces this:
 
 ![](./media/image30.wmf)
 
-The GETFILE() dialog.
+The `GETFILE()` dialog.
 
-### GETFONT()
+### `GETFONT()`
 
 GETFONT() displays the Font dialog box and returns the name of the font
 you choose.
@@ -5922,7 +5920,7 @@ localization.
 
 The GETFONT() dialog.
 
-### GETPICT(\[cFileExt\] \[, cFileNameCaption\] \[, cOpenButtonCaption\])
+### `GETPICT([cFileExt] [, cFileNameCaption] [, cOpenButtonCaption])`
 
 GETPICT() displays the Open dialog box and returns the name of the
 picture file you chose.
@@ -5932,7 +5930,7 @@ cannot control the language displayed in this dialog — it comes from vfp
 and you will need a localized version of vfp for this dialog to display
 properly in an alternate language.
 
-### GETPRINTER()
+### `GETPRINTER()`
 
 GETPRINTER() displays the Windows Print Setup dialog box and returns the
 name of the printer you select.
@@ -5944,7 +5942,7 @@ system and the display language varies with its localization.
 
 The GETPRINTER() dialog.
 
-### HOUR(tExpression)
+### `HOUR(tExpression)`
 
 HOUR() returns the hour portion from a DateTime expression.
 
@@ -5952,7 +5950,7 @@ HOUR() returns the hour portion from a DateTime expression.
 on a 24 hour format, and is not affected by the current setting of SET
 HOURS.
 
-### IDXCOLLATE(\[cCDXFileName,\] nIndexNumber \[, nWorkArea | cTableAlias\])
+### `IDXCOLLATE([cCDXFileName,] nIndexNumber [, nWorkArea | cTableAlias])`
 
 IDXCOLLATE() returns the collation sequence for an index or index tag.
 
@@ -5965,7 +5963,7 @@ IDXCOLLATE() isn't required for the proper functioning of REINDEX,
 because the collation sequence information is present in existing
 indexes and index tags.
 
-### IMESTATUS(\[nExpression\])
+### `IMESTATUS([nExpression])`
 
 The Input Method Editor (IME) is a program that performs the conversion
 between keystrokes and ideographs or other characters, usually by
@@ -5990,7 +5988,7 @@ Return values for the IME status in the Korean locale:
 | 5 | Junja mode (double-byte). |
 | 6 | Hanja conversion mode. |
 
-### IMPORT FROM ... AS nCodePage
+### `IMPORT FROM ... AS nCodePage`
 
 IMPORT FROM imports data from an external file format to create a new
 Visual FoxPro table.
@@ -6008,7 +6006,7 @@ code page of the imported file, VFP automatically converts the data in
 the imported file from the data's code page to the current VFP code
 page.
 
-### INDEX ON
+### `INDEX ON`
 
 **Internationalization Gotcha:** a problem occurs when the collating
 sequence for an index is set to something other than MACHINE. In that
@@ -6019,7 +6017,7 @@ well as 3.0b. The only way around this problem is to SET COLLATE TO
 MACHINE before creating that particular tag. See SET COLLATE TO
 cSequenceName on page 125.
 
-### ISLEADBYTE(cExpression)
+### `ISLEADBYTE(cExpression)`
 
 ISLEADBYTE() returns logical true if the first byte of the first
 character in a character expression is a lead byte. ISLEADBYTE() lets
@@ -6027,27 +6025,27 @@ you determine if a character is a double-byte character. If the first
 byte of a character is a lead byte, the character is a double-byte
 character. Otherwise, the character is a single-byte character.
 
-### LEFTC(cExpression, nExpression)
+### `LEFTC(cExpression, nExpression)`
 
 LEFTC(), which is similar to LEFT(), returns a specified number of
 characters from a character expression containing any combination of
 single-byte and double-byte characters, starting with the left-most
 character.
 
-### LENC()
+### `LENC()`
 
 LENC(), which is similar to LEN(), returns the number of characters in a
 character expression or memo field containing any combination of
 single-byte and double-byte characters.
 
-### LIKEC()
+### `LIKEC()`
 
 LIKEC(), which is similar to LIKE(), determines if a character
 expression matches another character expression. The character
 expressions can contain any combination of single-byte and double-byte
 characters.
 
-### LIST ...
+### `LIST ...`
 
 **Internationalization Gotcha:** in the "old days" of FoxPro, the only
 way to get some sorts of information was to execute one of the LIST
@@ -6056,7 +6054,7 @@ think of a reason to do this in VFP, some reason may occur. If it does,
 you should know that the LIST commands will produce output containing
 text that localized according to the language of VFP.
 
-### LOCFILE(cFileName \[, cFileExt\] \[, cCaption\] \[, cCreatorType\])
+### `LOCFILE(cFileName [, cFileExt] [, cCaption] [, cCreatorType])`
 
 LOCFILE() locates a file on disk and returns the file name with its
 path.
@@ -6065,18 +6063,20 @@ path.
 no control over the captions in this dialog. LOCFILE() comes from vfp
 and its display language varies with vfp's localization language.
 
-For example, the line…
+For example, the line...
 
+```
 ?LOCFILE("cFileName", "cFileExtensions", "cDialogCaption")
+```
 
-…yields the following dialog under Windows NT 3.51. There are many
+...yields the following dialog under Windows NT 3.51. There are many
 interface strings on this dialog you can’t localize.
 
 > ![](./media/image33.wmf)
 
 The LOCFILE() dialog.
 
-### MDY(dExpression | tExpression)
+### `MDY(dExpression | tExpression)`
 
 MDY() returns a character expression in month-day-year sequence, for
 example "June 26 1996".
@@ -6085,14 +6085,14 @@ example "June 26 1996".
 varies with vfp's localized language. MDY()respects the setting of SET
 CENTURY.
 
-### MESSAGE()
+### `MESSAGE()`
 
 MESSAGE() returns the current error message as a character string.
 
 **Internationalization Gotcha**: the error message is in the localized
 language of VFP. Note that AERROR(2)returns the same value as MESSAGE().
 
-### MESSAGEBOX(cMsgText \[, nDialogType \[, cTitleBarText\]\])
+### `MESSAGEBOX(cMsgText [, nDialogType [, cTitleBarText]])`
 
 MESSAGEBOX() displays a user-defined dialog box.
 
@@ -6109,7 +6109,7 @@ and “No” button captions cannot be touched.
 
 A MESSAGEBOX() dialog.
 
-### MODIFY COMMAND ... AS nCodePage
+### `MODIFY COMMAND ... AS nCodePage`
 
 MODIFY COMMAND opens an editing window so you can modify or create a
 program file.
@@ -6121,7 +6121,7 @@ platform on which the program file was created. The file is saved in
 this code page unless you choose "Save As" from the File menu to save
 the file in a different code page.
 
-### MODIFY FILE ... AS nCodePage
+### `MODIFY FILE ... AS nCodePage`
 
 MODIFY FILE opens an editing window so you can modify or create a text
 file.
@@ -6133,7 +6133,7 @@ on which the text file was created. The file is saved in this code page
 unless you choose "Save As" from the File menu to save the file in a
 different code page.
 
-### MODIFY QUERY ... AS nCodePage
+### `MODIFY QUERY ... AS nCodePage`
 
 Opens the Query Designer so you can modify or create a query. The Query
 Designer is a vfp dialog whose display language varies according to the
@@ -6163,7 +6163,7 @@ thereafter interpreted by VFP.
 **Internationalization Gotcha**: the text of ODBC error messages come
 from VFP and will vary in language with the localized version of VFP.
 
-### OEMTOANSI(cExpression)
+### `OEMTOANSI(cExpression)`
 
 OEMTOANSI() converts each character of a character expression to the
 corresponding character in the ansi character set. This FoxPro command
@@ -6221,7 +6221,7 @@ Here is a list of OLE locale id's.
 | 1046 | Portuguese (Brazilian) |
 | 2070 | Portuguese (Standard) |
 
-### PEMSTATUS( oObject |cClass, cPEMName, nAttibute)
+### `PEMSTATUS( oObject |cClass, cPEMName, nAttibute)`
 
 The PEMSTATUS() function returns useful state information about a
 property, event or method. **Internationalization Gotcha:** using
@@ -6229,7 +6229,7 @@ nAttribute = 5, you can find out if this PEM is a "Property", "Event" or
 "Method". This language of this string varies with the localized version
 of VFP.
 
-### PRMBAR(), PRMPAD(), PROMPT()
+### `PRMBAR(), PRMPAD(), PROMPT()`
 
 <table>
 <tbody>
@@ -6241,7 +6241,7 @@ of VFP.
 </tbody>
 </table>
 
-### PRTINFO(nPrinterSetting \[, cPrinterName\])
+### `PRTINFO(nPrinterSetting [, cPrinterName])`
 
 <table>
 <tbody>
@@ -6253,7 +6253,7 @@ of VFP.
 </tbody>
 </table>
 
-### PUTFILE(\[cDialogCaption\] \[, cFileName\] \[, cFileExtensions\])
+### `PUTFILE([cDialogCaption] [, cFileName] [, cFileExtensions])`
 
 PUTFILE() invokes the Save As dialog box and returns the file name you
 specify.
@@ -6262,7 +6262,7 @@ specify.
 | ----- | ----- |
 | **Many PUTFILE() interface elements cannot be translated.** | **Internationalization Gotcha:** other than the dialog caption, you have no control over the captions in this dialog. PUTFILE() comes from vfp and it varies with its localization language. |
 
-For example, the following line…
+For example, the following line...
 
 ?PUTFILE("cCustomText" , "cFileName" , "Ext")
 
@@ -6272,7 +6272,7 @@ creates this dialog. We basically can’t localize this.
 
 The PUTFILE() dialog.
 
-### RATC(cSearchExpression, cExpressionSearched \[, nOccurrence\])
+### `RATC(cSearchExpression, cExpressionSearched [, nOccurrence])`
 
 RATC(), which is similar to RAT(), returns the numeric position of the
 last occurrence of a character expression or memo field within another
@@ -6280,7 +6280,7 @@ character expression or memo field. The character expressions or memo
 fields can contain any combination of single-byte and double-byte
 characters.
 
-### RATLINE(cSearchExpression, cExpressionSearched)
+### `RATLINE(cSearchExpression, cExpressionSearched)`
 
 RATLINE() returns the line number of the last occurrence of a character
 expression within another character expression or memo field, counting
@@ -6314,14 +6314,14 @@ instance is seen by VFP. Therefore, in your stored procedures, you can
 duplicate and enable the RIError(), RIDelete(), and RIUpdate()
 functions, and paste them subsequent to the generated code.
 
-### RIGHTC()
+### `RIGHTC()`
 
 RIGHTC(), which is similar to RIGHT(), returns the specified number of
 right-most characters from a character string. The character expressions
 or memo fields can consist of any combination of single-byte and
 double-byte characters.
 
-### SET COLLATE TO cSequenceName
+### `SET COLLATE TO cSequenceName`
 
 SET COLLATE specifies a collation sequence for character fields in
 subsequent indexing and sorting operations.
@@ -6344,7 +6344,7 @@ Note that when SET COLLATE TO is set to something other than “Machine”,
 each index character takes two bytes, effectively reducing the maximum
 index key length from 240 to 120. See INDEX ON on page 118.
 
-### SET CPCOMPILE TO \[nCodePage\]
+### `SET CPCOMPILE TO [nCodePage]`
 
 SET CPCOMPILE globally specifies the code page for compiled programs.
 
@@ -6354,7 +6354,7 @@ CPCURRENT() to determine the current code page. The AS clause in the
 COMPILE command to override the code page you specify with SET
 CPCOMPILE.
 
-### SET CPDIALOG ON |OFF
+### `SET CPDIALOG ON |OFF`
 
 <table>
 <tbody>
@@ -6366,7 +6366,7 @@ CPCOMPILE.
 </tbody>
 </table>
 
-### SET CURRENCY
+### `SET CURRENCY`
 
 SET CURRENCY defines the currency symbol and specifies its position in
 the display of numeric, currency, float and double expressions.
@@ -6378,11 +6378,11 @@ impossible in VFP 3.0 to use SET CURRENCY to display dollars in one form
 and Deutsch Marks simultaneously in another. This bug is fixed in VFP
 5.0.
 
-### SET DATASESSION
+### `SET DATASESSION`
 
 See DATASESSIONS on page 107.
 
-### SET DATE
+### `SET DATE`
 
 SET DATE specifies the format for the display of date and datetime
 expressions.
@@ -6403,7 +6403,7 @@ locale. VFP offers the following choices for SET DATE:
 | USA | mm-dd-yy |
 | YMD | yy/mm/dd |
 
-### SET DECIMALS TO \[nDecimalPlaces\]
+### `SET DECIMALS TO [nDecimalPlaces]`
 
 SET DECIMALS specifies the number of decimal places displayed in numeric
 expressions.
@@ -6414,7 +6414,7 @@ these countries, displaying decimal currency units is usually
 undesirable. In some situations you may be asked to round all currency
 amounts to the nearest ten, hundred, or even thousand units.
 
-### SET FDOW TO \[nExpression\]
+### `SET FDOW TO [nExpression]`
 
 Specifies the first day of the week.
 
@@ -6435,7 +6435,7 @@ If you omit nExpression, the first-day-of-the-week is reset to Sunday
 (1). The first-day-of-the-week can also be set with the Week Starts On
 list box in the International tab of the Options dialog.
 
-### SET FWEEK TO \[nExpression\]
+### `SET FWEEK TO [nExpression]`
 
 SET FWEEK specifies the requirements for the first-week-of-the-year.
 nExpression can be:
@@ -6451,7 +6451,7 @@ first week contains January 1st). The first-week-of-the-year can also be
 set with the First Week of Year list box in the International tab of the
 Options dialog.
 
-### SET HELP TO \[FileName\]
+### `SET HELP TO [FileName]`
 
 SET HELP TO specifies a Help file.
 
@@ -6460,7 +6460,7 @@ multilingual help. Use SET HELP TO to point to different help files as
 required. To specify a default startup Help file, use a HELP =
 configuration line in CONFIG.FPW.
 
-### SET MARK TO \[cDelimiter\]
+### `SET MARK TO [cDelimiter]`
 
 Specifies a delimiter to use in the display of date expressions.
 
@@ -6468,7 +6468,7 @@ Specifies a delimiter to use in the display of date expressions.
 month and year elements of a date expression. The date delimiter will
 vary from locale to locale.
 
-### SET NOCPTRANS TO \[Field1 \[, Field2 ...\]\]
+### `SET NOCPTRANS TO [Field1 [, Field2 ...]]`
 
 SET NOCPTRANS prevents translation to a different code page for selected
 fields in an open table.
@@ -6494,7 +6494,7 @@ translated. You can ensure that character and memo fields are not
 translated by omitting the CODEPAGE configuration item from your Visual
 FoxPro configuration file.
 
-### SET POINT TO \[cDecimalPointCharacter\]
+### `SET POINT TO [cDecimalPointCharacter]`
 
 SET POINT TO determines the decimal point character used in the display
 of numeric and currency expressions.
@@ -6503,7 +6503,7 @@ of numeric and currency expressions.
 | ----- | ----- |
 | **SET POINT never changes the decimal character in calculations.** | **Internationalization Gotcha**: throughout most of North America, the point character is ".", but in most countries of the world, the point character is ",". Note that to set the displayed decimal point to a different character, you must use a period as the decimal point in calculations. |
 
-### SET SEPARATOR TO \[cSeparatorCharacter\]
+### `SET SEPARATOR TO [cSeparatorCharacter]`
 
 SET SEPARATOR specifies the character that separates each group of three
 digits to the left of the decimal point.
@@ -6512,7 +6512,7 @@ digits to the left of the decimal point.
 separator character is ",", but in most countries of the world, the
 separator character is ".".
 
-### SET SYSFORMATS ON | OFF
+### `SET SYSFORMATS ON | OFF`
 
 SET SYSFORMATS specifies if vfp system settings are updated with the
 current Windows system settings.
@@ -6531,6 +6531,7 @@ settings of these SET commands. To use the Windows system settings when
 vfp is started, place the following line in your vfp CONFIG.FPW
 configuration file:
 
+```
 SYSFORMATS = ON
 SET CENTURY
 SET CURRENCY
@@ -6540,10 +6541,11 @@ SET HOURS
 SET MARK TO
 SET POINT
 SET SEPARATOR
+```
 
-SET SYSFORMATS is scoped to the current data session.
+`SET SYSFORMATS` is scoped to the current data session.
 
-### STRCONV(cExpression, nSetting)
+### `STRCONV(cExpression, nSetting)`
 
 <table>
 <thead>
@@ -6594,13 +6596,13 @@ n-byte systems.</strong></th>
 </tbody>
 </table>
 
-### STUFFC(cExpr, nStartRepl, nCharsReplaced, cReplaced)
+### `STUFFC(cExpr, nStartRepl, nCharsReplaced, cReplaced)`
 
 | | |
 | ----- | ----- |
 | **STUFFC() is like STUFF(), only it seamlessly handles double-byte characters.** | STUFFC(), which is similar to STUFF(), returns a character string created by replacing a specified number of characters in a character expression with another character expression. The character expressions can consist of any combination of single-byte and double-byte characters. |
 
-### SYS(13)
+### `SYS(13)`
 
 <table>
 <tbody>
@@ -6612,7 +6614,7 @@ n-byte systems.</strong></th>
 </tbody>
 </table>
 
-### SYS(15, cTranslationExpression, cTranslated)
+### `SYS(15, cTranslationExpression, cTranslated)`
 
 | | |
 | ----- | ----- |
@@ -6642,13 +6644,13 @@ users who must use accented characters. Since there are different
 versions of most vowels, indexing on fields containing accented
 characters doesn't preserve the expected alphabetical order.
 
-### SYS(20, cExpressionTransformed, nCharacters)
+### `SYS(20, cExpressionTransformed, nCharacters)`
 
 | | |
 | ----- | ----- |
 | **SYS(20) is ancient history too.** | SYS(20) transforms a character expression containing German text to a character string. Included for backward compatibility. Use SET COLLATE instead. |
 
-### SYS(1037)
+### `SYS(1037)`
 
 <table>
 <tbody>
@@ -6660,7 +6662,7 @@ characters doesn't preserve the expected alphabetical order.
 </tbody>
 </table>
 
-### SYS(2006)
+### `SYS(2006)`
 
 <table>
 <tbody>
@@ -6672,7 +6674,7 @@ characters doesn't preserve the expected alphabetical order.
 </tbody>
 </table>
 
-### SYS(2011)
+### `SYS(2011)`
 
 <table>
 <tbody>
@@ -6684,14 +6686,14 @@ characters doesn't preserve the expected alphabetical order.
 </tbody>
 </table>
 
-### SYS(3004)
+### `SYS(3004)`
 
 SYS(3004) returns the Locale ID used by ole automation and ole controls.
 
 **Internationalization Gotcha**: the Locale ID determines the language
 in which ole automation and ole controls exchange information.
 
-### SYS(3005, nLocaleID)
+### `SYS(3005, nLocaleID)`
 
 SYS(3005) sets the Locale ID, used by ole automation and ole controls.
 Here are the locales in vfp:
@@ -6708,11 +6710,11 @@ Here are the locales in vfp:
 | 1046 | Portuguese (Brazilian) |
 | 2070 | Portuguese (Standard) |
 
-### SYS(3006, nLanguageID)
+### `SYS(3006, nLanguageID)`
 
 SYS(3006) sets the Language ID and the Locale ID.
 
-### SUBSTRC(cExpression, nStartPosition \[, nCharactersReturned\])
+### `SUBSTRC(cExpression, nStartPosition [, nCharactersReturned])`
 
 | | |
 | ----- | ----- |
@@ -6724,13 +6726,13 @@ SYS(3006) sets the Language ID and the Locale ID.
 | ----- | ----- |
 | **ToolTips come from Windows, and there is no known way to change their font.** | ToolTips come from Windows, and there is no way that I know to control the Font from within Visual FoxPro. This means that apps running in Eastern Europe and oriental languages will display garbage in the tooltip window unless you are running on a localized version of windows. |
 
-### TTOC(tExpression \[, 1\])
+### `TTOC(tExpression [, 1])`
 
 TTOC() returns a Character value from a DateTime expression that
 respects SET HOURS, SET CENTURY and SET DATE so parsing this Character
 expression is not a good idea.
 
-### VERSION(), VERSION(3)
+### `VERSION(), VERSION(3)`
 
 <table>
 <thead>
@@ -6795,7 +6797,7 @@ time than required to localize the entire rest of the application.
 **Internationalization Gotcha**: there is no way to change the WAIT
 WINDOW display font.
 
-### WEEK(dExpr | tExpr \[, nFirstWeek\] \[, nFirstDayOfWeek\])
+### `WEEK(dExpr | tExpr [, nFirstWeek] [, nFirstDayOfWeek])`
 
 | | |
 | ----- | ----- |
@@ -6956,7 +6958,7 @@ adapting a Canadian VFP program for an American customer, or vice versa.
 One would think, given the common language and very similar culture,
 porting an application from Canada to America (or vice versa) is
 trivial. Well, the language is *not* common. The British form of English
-is used in Canada, while American English is the USA standard\[1\].
+is used in Canada, while American English is the USA standard[1].
 
 Lexicon variants are commonly complicated by non-cosmetic logical
 differences. Canadian strings like <span class ="smallcaps">"pst"</span>,
@@ -7056,7 +7058,7 @@ majority.
 There is a difference between starting a multi-cultural
 <span class ="smallcaps">app</span> from scratch, and retrofitting an
 existing application for other cultures. The retrofit is, not
-surprising, a far more common avenue\[2\]. It would be nice if we could
+surprising, a far more common avenue[2]. It would be nice if we could
 use the same system of internationalization for new and existing
 applications.
 
@@ -7882,27 +7884,27 @@ Since drivers do similar things but at different places, there is a
 description at the end of this document that explains the event
 sequencing.
 
-#### *:MNXDRV0 <file> (GENMENUX Directive)
+#### `*:MNXDRV0 <file> (GENMENUX Directive)`
 
 A driver that appends the driver to the GENMENU file. This allows a
 driver to include functions with the same names as normal GENMENU
 functions that provide additional functionality.
 
-#### *:MNXDRV1 <expC> (GENMENUX Directive)
+#### `*:MNXDRV1 <expC> (GENMENUX Directive)`
 
 Calls a driver before standard GENMENUX processing begins. At \_MNXDRV1,
 the menu MNX table is in the current workarea with the pointer
 positioned at the first record. The driver is *not* called for every
 record in the menu table. Called: Setup snippet, CONFIG.FP.
 
-#### *:MNXDRV2 <expC> (GENMENUX Directive)
+#### `*:MNXDRV2 <expC> (GENMENUX Directive)`
 
 Calls a GENMENUX driver after standard GENMENUX processing has begun.
 This driver can be considered a *line driver* i.e. it can be a one-line
 command. It is processed through each record of the menu file from
 within a SCAN statement. Called: Setup snippet, CONFIG.FP.
 
-#### *:MNXDRV3 <expC> (GENMENUX Directive)
+#### `*:MNXDRV3 <expC> (GENMENUX Directive)`
 
 Calls a GENMENUX driver after standard GENMENUX processing and menu
 re-ordering has been completed. This driver can be considered a line
@@ -7912,7 +7914,7 @@ NOT DELETE ANY RECORDS IN THE MNX file as your menu file will be
 corrupted. Use MNXDRV2 if you want to do that. Called: Setup snippet,
 CONFIG.FP.
 
-#### *:MNXDRV4 <expC> (GENMENUX Directive)
+#### `*:MNXDRV4 <expC> (GENMENUX Directive)`
 
 Calls a driver before the standard GenMenu is called. No SCAN statement
 propels this driver. When this driver is called, the menu MNX file is in
@@ -7920,7 +7922,7 @@ the current workarea with the pointer at the first record. The driver is
 *not* called for every record in the menu table. Called: Setup snippet,
 CONFIG.FP.
 
-#### *:MNXDRV5 <expC> (GENMENUX Directive)
+#### `*:MNXDRV5 <expC> (GENMENUX Directive)`
 
 Calls a GENMENUX driver that completely replaces the standard FoxPro
 GenMenu. This driver must be a complete driver in the sense that when it
@@ -7931,13 +7933,13 @@ directive is identical to the GENMENUX directive and will override the
 setting of the GENMENUX driver, if used. Called: Setup snippet,
 CONFIG.FP.
 
-#### *:MPRDRV1 <expC> (GENMENUX Directive)
+#### `*:MPRDRV1 <expC> (GENMENUX Directive)`
 
 Calls a GENMENUX driver that will update the MPR file within the
 temporary project file. When it starts, the just created MPR file is in
 the memo field named OBJECT. Called: Setup snippet, CONFIG.FP.
 
-#### *:MPRDRV2 <expC> (GENMENUX Directive)
+#### `*:MPRDRV2 <expC> (GENMENUX Directive)`
 
 Calls a GENMENUX driver that will update the MPR file within the
 temporary project file. When it starts, the just created MPR file is in
@@ -7945,14 +7947,14 @@ the memo field named OBJECT. The MPRDRV2 driver is called as the very
 last item in GENMENUX before the removal of the temporary project files.
 Called: Setup snippet, CONFIG.FP.
 
-#### *:AFTER <expC> |<expN> (GENMENUX Directive)
+#### `*:AFTER <expC> |<expN> (GENMENUX Directive)`
 
 A directive that allows you to identify where each PAD will be placed on
 a menu bar. You can use these clauses with Character expressions for
 menu pads or numeric expressions for menu bars. See also:
 *:BEFORE<span class ="underline">.</span>
 
-#### *:ARRAY <cArray> (GENMENUX Directive)
+#### `*:ARRAY <cArray> (GENMENUX Directive)`
 
 Adds a loop for a popup that allows the BARs of the popup to be defined
 based on the array <cArray>. If the Array is two dimensions, the ON
@@ -7960,13 +7962,13 @@ SELECT BAR statement calls the command identified in the second column
 of the array.
 Example: *:ARRAY a\_fldNames
 
-#### *:AUTOACT (GENMENUX Directive)
+#### `*:AUTOACT (GENMENUX Directive)`
 
 AUTOACT will automatically activate the menu in the cleanup snippet.
 This is useful if you use the MENUNAME directive and do not place the
 ACTIVATE MENU clause in your code.
 
-#### *:AUTOHOT (GENMENUX Directive)
+#### `*:AUTOHOT (GENMENUX Directive)`
 
 Automatically adds hot keys to menu pads (not bars) that have none
 assigned. This is useful if you sometimes forget to create hot keys for
@@ -7976,18 +7978,18 @@ the second letter, and so on. The CONFIG.FP argument can be either ON or
 OFF. When adding it to the Setup snippet, the argument is ignored. It is
 automatically turned on. Called: Setup snippet, CONFIG.FP.
 
-#### *:AUTOPOS (GENMENUX Directive)
+#### `*:AUTOPOS (GENMENUX Directive)`
 
 Allows the user to click on the line where the menu is to start. This
 results in a *:LINE directive being added to the Setup/Menu Procedure
 snippet.
 
-#### *:AUTORUN (GENMENUX Directive)
+#### `*:AUTORUN (GENMENUX Directive)`
 
 Automatically runs the generated MPR file once it has been generated.
 Ignored when building from a project. Called: Setup snippet, CONFIG.FP.
 
-#### *:BARHOT (GENMENUX Directive)
+#### `*:BARHOT (GENMENUX Directive)`
 
 BARHOT will create hot keys for all menu bar items in the same way
 AUTOHOT creates hot keys for Menu Pads. This directive can only be
@@ -7995,13 +7997,13 @@ called in the Comment snippet. However, if it is called at the top pad
 of a menu, all of the items in the submenu will be updated accordingly.
 Called: Setup/Menu Procedure Snippet Comment snippet, CONFIG.FP.
 
-#### *:BEFORE <expC> |<expN> (GENMENUX Directive)
+#### `*:BEFORE <expC> |<expN> (GENMENUX Directive)`
 
 A directive that allows you to identify where each PAD will be placed on
 a menu bar. You can use these clauses with Character expressions for
 menu pads or numeric expressions for menu bars. See also: *:AFTER.
 
-#### *:CASE <expL> (GENMENUX Directive)
+#### `*:CASE <expL> (GENMENUX Directive)`
 
 This directive places all menu definition statements matching logical
 condition in a CASE statement at the end of the menu definition. This is
@@ -8009,7 +8011,7 @@ useful for grouping *:IF <span class ="underline"> </span> statements,
 which would make menu processing run slightly faster. See also:
 *:REFPRG.
 
-#### *:COLOR <cColorPair><expC> (GENMENUX Directive)
+#### `*:COLOR <cColorPair><expC> (GENMENUX Directive)`
 
 Defines color pairs for an individual menu pad or item. Individual menu
 items can have different colors. Example: *:COLOR R/W,RB/B
@@ -8023,26 +8025,26 @@ Green, Baby Blue, Blue, Black, Violet, Yellow, Dark Gray
 Passing one of these clauses as a parameter to *:COLOR will tell
 GENMENUX to use the appropriate RGB setting for the menu bar.
 
-#### *:COLORSET <expC> (GENMENUX Directive)
+#### `*:COLORSET <expC> (GENMENUX Directive)`
 
 Defines a color scheme for an individual menu pad or item. Example:
 
 *:COLORSET 7
 
-#### *:DEFAULT (GENMENUX Directive)
+#### `*:DEFAULT (GENMENUX Directive)`
 
 Adds the statement SET SYSMENU SAVE to the cleanup code. This makes the
 menu the default (SET SYSMENU TO DEFAULT) after it has been created.
 Called: Setup snippet.
 
-#### *:DEFLIB <cLibrary> (GENMENUX Directive)
+#### `*:DEFLIB <cLibrary> (GENMENUX Directive)`
 
 Since every object must belong to a library, *:DEFLIB allows you to
 define the library for an entire menu. This is useful if you create a
 single menu that contains all of your library objects and want to place
 each object into a single library.
 
-#### *:DEFOBJ \[<cLibrary>.\]<cObject> (GENMENUX Directive)
+#### `*:DEFOBJ [<cLibrary>.]<cObject> (GENMENUX Directive)`
 
 To define a library object, place the *:DEFOBJ directive in the comment
 field for the menu pad, submenu or procedure to be defined. The object
@@ -8082,7 +8084,7 @@ This inserts a menu object into the FOXMNX table for the Reindex menu
 pad, identifying it as belonging to the File library and naming the
 object Reindex.
 
-#### *:DEFPOPIF <expC> (GENMENUX Directive)
+#### `*:DEFPOPIF <expC> (GENMENUX Directive)`
 
 Makes the DEFINE POPUP statement conditional on if it already exists.
 DEFINE POPUP is slow. This directive will place an IF...ENDIF statement
@@ -8091,29 +8093,29 @@ conditional, making the MPR run considerably faster. Example:
 
 *:DEFPOPIF options.
 
-#### *:DELETE (GENMENUX Directive)
+#### `*:DELETE (GENMENUX Directive)`
 
 Deletes the menu prompt during compilation so it doesn’t appear. This
 directive is useful for adding features at a later date and ensuring
 they don’t appear in the menu. Called: Comment snippet.
 
-#### *:DELOBJ (GENMENUX Directive)
+#### `*:DELOBJ (GENMENUX Directive)`
 
 Removes a menu item after GENMENUX has completed directive processing
 but BEFORE it reorders the menu.
 
-#### *:FOUNDATION <expC> (GENMENUX Directive)
+#### `*:FOUNDATION <expC> (GENMENUX Directive)`
 
 Places a READ VALID <cExpr> statement in the cleanup snippet to assist
 in the creation of a Foundation READ. If you do not provide an <expC>,
 the READ will automatically exit when the selected prompt is either
 "EXIT" or "QUIT".
 
-#### *:FOXMNX <cFileName> (GENMENUX Directive)
+#### `*:FOXMNX <cFileName> (GENMENUX Directive)`
 
 Specifies the GENMENUX library file.
 
-#### *:GENIF <expC> (GENMENUX Directive)
+#### `*:GENIF <expC> (GENMENUX Directive)`
 
 Allows menu items to be defined during MPR generation based on the
 condition defined in <expC>. If the condition specified in <expC> is
@@ -8124,19 +8126,19 @@ or BAR from the menu. Called: Comment snippet. Example:
 
 *:GENIF DATE()<CTOD("12/31/93")
 
-#### *:GENMENUX <expC> (GENMENUX Directive)
+#### `*:GENMENUX <expC> (GENMENUX Directive)`
 
 Define whats GENMENU.PRG program to use. This is helpful if you want to
 use a different menu generator for a particular menu. Called: Setup
 snippet, CONFIG.FP
 
-#### *:HIDE /m.\_HIDE (GENMENUX Directive)
+#### `*:HIDE /m.\_HIDE (GENMENUX Directive)`
 
 Hides the menu bar during the running of the MPR file and shows it at
 the end. This is useful if you use a lot of *:IF statements and don’t
 want the user to see a lot of menu activity.
 
-#### *:IF <expC> (GENMENUX Directive)
+#### `*:IF <expC> (GENMENUX Directive)`
 
 Menu items appear based on the condition defined in <expC>. This
 condition is evaluated at run-time, allowing menu items to completely
@@ -8160,22 +8162,22 @@ Example:
 
 *:IF chk\_sc("*PROMPT*","*ITEMNUM*")
 
-#### *:HIDE (GENMENUX Directive)
+#### `*:HIDE (GENMENUX Directive)`
 
 Hides the Menu while the MPR file is being run so menu pads won't
 distract the user.
 
-#### *:IGNORE (GENMENUX Directive)
+#### `*:IGNORE (GENMENUX Directive)`
 
 Ignores any GENMENUX directives for this menu prompt. Called: Comment
 snippet.
 
-#### *:INCLIB (GENMENUX Directive)
+#### `*:INCLIB (GENMENUX Directive)`
 
 Defines the default library for referencing library objects, place the
 *:INCLIB directive in the Setup or Menu Procedure snippet of the menu.
 
-#### *:INSOBJ <cLibrary>.<cObject> (GENMENUX Directive)
+#### `*:INSOBJ <cLibrary>.<cObject> (GENMENUX Directive)`
 
 References a library object and makes it replace a menu option in a
 menu. The object will be replaced by the object <cObject> from the
@@ -8183,7 +8185,7 @@ FOXMNX table belonging to the library specified by cLibrary. If cLibrary
 is not specified, then the library will be the one identified by the
 *:INCLIB directive.
 
-#### *:INSCX <cWinName> \[SAVE \[MODAL\]\] (GENMENUX Directive)
+#### `*:INSCX <cWinName> [SAVE [MODAL]] (GENMENUX Directive)`
 
 *:INSCX places a DO MENU.MPR in the SCX specified by cWinName. If there
 are no clauses, *:INSCX will place the statement at the bottom of the
@@ -8192,12 +8194,12 @@ POP MENU in the setup and cleanup code. If MODAL is also specified,
 INSCX places the DO command in the When clause for the screen and the
 POP MENU \_MSYSMENU command in the Deactivate snippet.
 
-#### *:LINE <expN> (GENMENUX Directive)
+#### `*:LINE <expN> (GENMENUX Directive)`
 
 Makes the Menu bar start at the row defined by <expN>. Called: Setup
 snippet.
 
-#### *:LOCATION <expC1>,<expC2> (GENMENUX Directive)
+#### `*:LOCATION <expC1>,<expC2> (GENMENUX Directive)`
 
 Updates the location of the menu based on <expC1>. <expC1> can
 either be REPLACE, APPEND, BEFORE, or AFTER (just like the Menu
@@ -8205,73 +8207,73 @@ options). If <expC1> is BEFORE or AFTER, <expC2> should contain
 either the system menu prompt or pad name that precedes or follows the
 menu.
 
-#### *:MENUNAME <expC> (GENMENUX Directive)
+#### `*:MENUNAME <expC> (GENMENUX Directive)`
 
 Renames the Menu bar from \_MSYSMENU to <expC>.
 
-#### *:MESSAGE <expC> (GENMENUX Directive)
+#### `*:MESSAGE <expC> (GENMENUX Directive)`
 
 Adds a message prompt as defined by <expC>. <expC> may be a function
 or string. If it is a string, it should be enclosed in quotes. In FoxPro
 for Windows, *:MESSAGE overrides what’s in the Message field. Called:
 Comment snippet.
 
-#### *:NOACT (GENMENUX Directive)
+#### `*:NOACT (GENMENUX Directive)`
 
 Removes the ACTIVATE MENU \_MSYSMENU statement from the generated MPR
 file.
 
-#### *:NOAUTO (GENMENUX Directive)
+#### `*:NOAUTO (GENMENUX Directive)`
 
 Removes the SET SYSMENU AUTOMATIC statement from the generated MPR file.
 Called: Setup snippet.
 
-#### *:NOBAR (GENMENUX Directive)
+#### `*:NOBAR (GENMENUX Directive)`
 
 Removes the BAR setting from MPR file allowing menus to be created that
 are only the length of the menu bar itself instead of extending across
 the screen. Called: Setup snippet.
 
-#### *:NOCOMMENT (GENMENUX Directive)
+#### `*:NOCOMMENT (GENMENUX Directive)`
 
 (Undocumented) Strips out all comments from the .MPR file.
 
-#### *:NOGEN (GENMENUX Directive)
+#### `*:NOGEN (GENMENUX Directive)`
 
 Directs GENMENUX to not generate the MPR file. Called: Setup snippet.
 
-#### *:NOMARGIN (GENMENUX Directive)
+#### `*:NOMARGIN (GENMENUX Directive)`
 
 Removes MARGIN setting from MPR file. Called: Setup snippet.
 
-#### *:NOSHADOW (GENMENUX Directive)
+#### `*:NOSHADOW (GENMENUX Directive)`
 
 Removes SHADOW setting from MPR file. Called: Setup snippet.
 
-#### *:NOXGEN (GENMENUX Directive)
+#### `*:NOXGEN (GENMENUX Directive)`
 
 Directs GENMENUX to ignore any GENMENUX directives and generate the MPR
 file as though GENMENUX was not present. Called: Setup snippet.
 
-#### *:NOXTHERM (GENMENUX Directive)
+#### `*:NOXTHERM (GENMENUX Directive)`
 
 Tells GENMENUX to use FoxPro's standard thermometer instead of the
 GENMENUX extended one. This is useful if you find the GENMENUX
 thermometer distracting.
 
-#### *:PADCOLOR <expC> (GENMENUX Directive)
+#### `*:PADCOLOR <expC> (GENMENUX Directive)`
 
 Changes the default Menu PAD color setting. Normally, GenMenu defaults
 to COLOR SCHEME 4. Using *:PADCOLOR, the default scheme can be changed
 to any particular setting. Called: Setup snippet.
 
-#### *:PADNAME <expC> (GENMENUX Directive)
+#### `*:PADNAME <expC> (GENMENUX Directive)`
 
 Ensures that the current pad’s name is <expC>. Example:
 
 *:PADNAME options
 
-#### *:PADPOS | POPPOS <nRow>,<nCol> (GENMENUX Directive)
+#### `*:PADPOS | POPPOS <nRow>,<nCol> (GENMENUX Directive)`
 
 Places the PAD or POPUP at the Row and Column specified by <nRow> and
 <nCol>. This is useful for moving your menu around the screen in
@@ -8279,13 +8281,13 @@ different locations for your various popups. *:POPPOS must occur within
 a submenu. Example: *:PADPOS 5,6 (This will position the pad at row 5,
 column 6.)
 
-#### *:POPCOLOR <expC> (GENMENUX Directive)
+#### `*:POPCOLOR <expC> (GENMENUX Directive)`
 
 Changes the default menu popup color setting. Normally, GenMenu defaults
 to COLOR SCHEME 3. Using *:POPCOLOR, the default scheme can be changed
 to any particular setting. Called: Setup snippet
 
-#### *:POPCOMMAND <expC> (GENMENUX Directive)
+#### `*:POPCOMMAND <expC> (GENMENUX Directive)`
 
 Identifies the action taken when a file or field has been chosen from a
 popup created with *:POPFILES or *:POPFIELDS. <expC> must be a valid
@@ -8297,7 +8299,7 @@ FoxPro function or command. Example:
 
 Called: Comment snippet.
 
-#### *:POPFIELDS <expC> (GENMENUX Directive)
+#### `*:POPFIELDS <expC> (GENMENUX Directive)`
 
 Creates menus of popups of fields in the current table. The popup shows
 the field <expC> for all records from the current table. In order to
@@ -8308,7 +8310,7 @@ use *:POPCOMMAND. Example:
 
 *:POPFIELDS "Client Name: "+name
 
-#### *:POPFILES <expC> (GENMENUX Directive)
+#### `*:POPFILES <expC> (GENMENUX Directive)`
 
 Creates menu popups of specific files. The popup will show all files
 matching the skeleton in <expC>. Use *:POPCOMMAND to trigger a
@@ -8322,7 +8324,7 @@ comment snippet. Example:
 
 *:POPFILES "*.DBF"
 
-#### *:POPPRECOMMAND <expC> (GENMENUX Directive)
+#### `*:POPPRECOMMAND <expC> (GENMENUX Directive)`
 
 Allows for a command or function to be called before a popup is defined.
 This only works with *:POPFILES or *:POPFIELD. This allows you to open
@@ -8331,21 +8333,21 @@ responsible for closing any opened tables. Example:
 
 *:POPPRECOMMAND = OPENFILE("CLIENTS")
 
-#### *:POPTITLE <expC> (GENMENUX Directive)
+#### `*:POPTITLE <expC> (GENMENUX Directive)`
 
 *:POPTITLE defines the popup with a title of <expC>. Handy if you
 need titles on any of your popups. Example:
 
 *:POPTITLE "Menu Options"
 
-#### *:REFPRG <file> (GENMENUX Directive)
+#### `*:REFPRG <file> (GENMENUX Directive)`
 
 This directive identifies a file that will be created when the menu is
 generated that contains the necessary code to refresh the menu bars and
 prompts that use the CASE statement. This cuts down having to recall the
 MPR file. See also: *:CASE.
 
-#### *:SELECTBAR (GENMENUX Directive)
+#### `*:SELECTBAR (GENMENUX Directive)`
 
 GenMenu uses ON BAR statement for activating popups. Using *:SELECTBAR
 will change the ON BAR statements to read ON SELECTION BAR which changes
@@ -8353,7 +8355,7 @@ the behaviour of activating menu popups. This works best when moving the
 popups in different locations on the screen. See ON BAR and ON SELECTION
 BAR in the FoxPro help file.
 
-#### *:SELECTPAD (GENMENUX Directive)
+#### `*:SELECTPAD (GENMENUX Directive)`
 
 GenMenu places ON PAD statements for activating popups. Using
 *:SELECTPAD will change the ON PAD statements to read ON SELECTION PAD
@@ -8361,24 +8363,24 @@ which changes the behaviour of activating menus. Works best when moving
 the menus to different locations on the screen. See ON PAD and ON
 SELECTION PAD in the FoxPro help file.
 
-#### *:SYSDEFAULT (GENMENUX Directive)
+#### `*:SYSDEFAULT (GENMENUX Directive)`
 
 Adds SET SYSMENU SAVE to the cleanup code. This makes the menu become
 the default (SET SYSMENU TO DEFAULT) after it has been created.
 
-#### *:SYSPOP (GENMENUX Directive)
+#### `*:SYSPOP (GENMENUX Directive)`
 
 Wraps the procedure statement with PUSH MENU \_MSYSMENU / SET SYSMENU
 OFF/POP MENU \_MSYSMENU. It can be defined in either the CONFIG.FP,
 Setup or Procedure snippets.
 
-#### *:VERTICAL <nStrtRow>,<nSkpRow> (GENMENUX Directive)
+#### `*:VERTICAL <nStrtRow>,<nSkpRow> (GENMENUX Directive)`
 
 *:VERTICAL causes the menu to be created vertically instead of
 horizontally. You specify the starting row with nStrtRow and define the
 number of rows between menu options using nSkipRow.
 
-#### *:WINDOW <expC1> \[CLAUSES \[<expC2>\]\] (GENMENUX Directive)
+#### `*:WINDOW <expC1> [CLAUSES [<expC2>]] (GENMENUX Directive)`
 
 Adds the argument IN WINDOW <expC1> to the menu definition. This
 allows you to create menus within windows. When using *:WINDOW, be sure
@@ -8397,7 +8399,7 @@ FROM 5,5 TO 12,50 ;
 
 COLOR SCHEME 6
 
-#### {{<exp>}} (GENMENUX Directive)
+#### `{{<exp>}} (GENMENUX Directive)`
 
 Text surrounded by double braces performs the EVALUATION of <expC> at
 compile-time and returns the value in string form. {{<expC>}} is
@@ -8412,7 +8414,7 @@ the following code would be placed in the .MPR:
 
 WAIT 'Version Date is 06/01/93' WINDOW
 
-#### {{&.<expC>}} (GENMENUX Directive)
+#### `{{&.<expC>}} (GENMENUX Directive)`
 
 Text surrounded by double braces with a &. immediately after the open
 braces performs the macro substitution of <expC> at compile-time and
@@ -8735,7 +8737,7 @@ indicates a change in phonetic value from the unmarked state.
 
 </div>
 
-##### Double-byte character set (DBCS)
+##### `Double-byte character set (DBCS)`
 
 <div class ="Definition">
 
@@ -8821,7 +8823,7 @@ program to provide cultural compatibility for the end user in a specific
 
 </div>
 
-##### Multi-byte character set (MBCS)
+##### `Multi-byte character set (MBCS)`
 
 <div class ="Definition">
 
@@ -8856,7 +8858,7 @@ When the finished program is actually executing.
 
 </div>
 
-##### Single-byte character set (SBCS)
+##### `Single-byte character set (SBCS)`
 
 <div class ="Definition">
 
