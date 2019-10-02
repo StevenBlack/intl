@@ -82,7 +82,7 @@ _SCREEN.oINTL.Localize( MyForm)
 To make your forms localize themselves automatically call the oINTL.Localize() method in your form class hierarchy. To do so, place the following code in the INIT() method of your form class definition. |
 
 ```
-*-- Don't forget to call the ParentClass\!
+*-- Don't forget to call the ParentClass!
 ParentClass::Init()
 
 IF TYPE("_SCREEN.oINTL") == "O"
@@ -98,15 +98,15 @@ Add these lines to CONFIG.FPW.
 
 ```
 *-- Configuring for INTL menus.
-_GENMENU=GENMENUX.PRG
-_MNXDRV2=INTL.PRG
+_GENMENU = GENMENUX.PRG
+_MNXDRV2 = INTL.PRG
 *-- End of configuration for INTL menus.
 ```
 
 Some of these changes require a VFP restart. To avoid restarting FoxPro at this time, issue the following command in the command window:
 
 ```
-_GENMENU=HOME()+”GENMENUX.PRG”
+_GENMENU = HOME()+”GENMENUX.PRG”
 ```
 
 This is all you need to change in your development environment to
@@ -142,11 +142,11 @@ To swap languages on the fly, which is always a success in a demo (do it even if
 ```
 _SCREEN.oINTL.SetLanguage("German") && Configure INTL for German
 
-FOR i=1 TO ALEN(_SCREEN.Forms) && Localize active forms
+FOR i = 1 TO ALEN(_SCREEN.Forms) && Localize active forms
   _SCREEN.oINTL.Localize( _SCREEN.Forms[i])
 ENDFOR
 
-DO MAIN.MPR && Refresh the menu too\!
+DO MAIN.MPR && Refresh the menu too!
 ```
 
 ## How to Work With Locales
@@ -380,7 +380,7 @@ _SCREEN.AddObject("oINTL", "INTL")
 _SCREEN.oINTL.SetConfig(3)
 *-- Configure Strings to NOT localize ToolTips
 LOCAL loTempHandle
-loTempHandle= _SCREEN.oINTL.GetStrategy("String")
+loTempHandle = _SCREEN.oINTL.GetStrategy("String")
 *-- For the string strategy, the configuration
 *-- for Caption and StatusBarText is 5
 loTempHandle.SetConfig( 1 + 4)
@@ -396,7 +396,7 @@ _SCREEN.AddObject("oINTL", "INTL")
 _SCREEN.oINTL.SetConfig(5)
 *-- now modify the data strategy from its default.
 LOCAL oTemp
-oTemp= _SCREEN.oINTL.GetStrategy("Data")
+oTemp = _SCREEN.oINTL.GetStrategy("Data")
 *-- Input masks only.
 oTemp.SetConfig( 16)
 ```
@@ -464,8 +464,8 @@ Strings can be localized by providing translations in `strings.dbf`.
 
 | cOriginal | cFrench |
 | --------- | ------- |
-| Yes       | Oui     |
-| No        | Non     |
+| Yes | Oui |
+| No | Non |
 
 **Configure the String Strategy with its SetConfig() method.**
 
@@ -475,7 +475,7 @@ The INTL String strategy, like all strategies, is bitwise-configured. You can co
 
 ```
 *-- Get a handle on the string strategy:
-oFont= _SCREEN.oINTL.GetStrategy("String")
+oFont = _SCREEN.oINTL.GetStrategy("String")
 *-- We want Caption (1) and StatusbarText (4) only
 oFont.SetConfig( 5)
 ```
@@ -539,10 +539,10 @@ So there are two ways to do it.
 Fonts can be localized by providing translations in `strings.dbf`. Font
 specifications are prefixed with the identifier “((Font))”, for example:
 
-| cOriginal              | cRussian                   |
-| ---------------------- | -------------------------- |
+| cOriginal | cRussian |
+| ----- | ----- |
 | ((Font))Courier New,10 | ((Font))Courier New Cyr,10 |
-| ((Font))Arial,16       | ((Font))Arial Cyr,16       |
+| ((Font))Arial,16 | ((Font))Arial Cyr,16 |
 
 **Configure the Font Strategy with its SetConfig() method.**
 
@@ -556,7 +556,7 @@ performance:
 *-- Set Font localization on
 oINTL.SetConfig( BITSET( oINTL.GetConfig(), 1 ) ) &amp;&amp; Set 2^1 "ON"
 *-- Get a handle on the font strategy:
-oFont= _SCREEN.oINTL.GetStrategy("Font")
+oFont = _SCREEN.oINTL.GetStrategy("Font")
 *-- We want Font and FontSize and to disable DynamicFont
 *-- and DynamicFontSize
 oFont.SetConfig( 1)
@@ -628,8 +628,8 @@ So there are two ways to do it.
 
 Data elements can be localized by providing translations in `strings.dbf`.  Data specifications are prefixed with the identifier “((Data))”, like for example:
 
-| cOriginal        | cRrussian            |
-| ---------------- | -------------------- |
+| cOriginal | cRrussian |
+| ----- | ----- |
 | ((Data))cEngDesc | ((Data))cRussianDesc |
 
 **Configure the Data Strategy with its SetConfig() method.**
@@ -643,7 +643,7 @@ The INTL data strategy, like all strategies, is bitwise-configured. You can cont
 *-- Set 2^2 "ON"
 oINTL.SetConfig( BITSET( oINTL.GetConfig(), 2) )
 *-- Get a handle on the data strategy:
-oData= _SCREEN.oINTL.GetStrategy("Data")
+oData = _SCREEN.oINTL.GetStrategy("Data")
 *-- We want ControlSource (2)
 *-- property localized.
 oPicture.SetConfig( 2)
@@ -712,9 +712,9 @@ Pictures can be localized by providing translations in `strings.dbf`.
 Picture specifications are prefixed with the identifier “((Picture))”,
 for example:
 
-| COriginal             | Crussian               |
-| --------------------- | ---------------------- |
-| ((Picture))Doctor.BMP | ((Picture))Doktor.BMP  |
+| COriginal | Crussian |
+| ----- | ----- |
+| ((Picture))Doctor.BMP | ((Picture))Doktor.BMP |
 | ((Picture))Friend.BMP | ((Picture))Comrade.BMP |
 
 **Configure the Picture Strategy with its SetConfig() method.**
@@ -728,9 +728,9 @@ The INTL picture strategy, like all strategies, is bitwise-configured. You can c
 *-- Set 2^3 "ON"
 oINTL.SetConfig( BITSET( oINTL.GetConfig(), 3 ) )
 *-- Get a handle on the font strategy:
-oPicture= _SCREEN.oINTL.GetStrategy("Picture")
+oPicture = _SCREEN.oINTL.GetStrategy("Picture")
 *-- We want Picture (1), DownPicture( 2) and Icon (4)
-*-- properties localized. 1+2+4= 7
+*-- properties localized. 1+2+4 = 7
 oPicture.SetConfig( 7)
 ```
 
@@ -747,7 +747,7 @@ following table.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th>Class (with default)</th>
 <th>Value</th>
 <th>Localization</th>
@@ -777,14 +777,14 @@ Activate the currency strategy as follows:
 Use `oINTL.SetConfig()` or `oINTL.SetStrategy()` to load the Currency strategy.
 
 ```
-OINTL= _SCREEN.oINTL
+OINTL = _SCREEN.oINTL
 oINTL.SetStratrgy( "Currency", "cINTLCurrency")
 ```
 
 An alternate (and more cryptic) way is to use INTL's SetConfig() method to make INTL invoke the Font strategy of a given class, as follows:
 
 ```
-OINTL= _SCREEN.oINTL
+OINTL = _SCREEN.oINTL
 *-- Set bit 2^4 "ON"
 oINTL.SetConfig( BITSET( oINTL.GetConfig(), 4 ) )
 ```
@@ -815,7 +815,7 @@ Let's configure INTL for the following currencies: Canadian dollar, Euro, and US
 Use `SetLocale()` to change the currency locale. Then localize as usual.
 
 ```
-oINTL= _SCREEN.oINTL
+oINTL = _SCREEN.oINTL
 
 *-- Load the currency strategy
 *-- Set 2^4 "ON"
@@ -847,7 +847,7 @@ following table:
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th>Class (with default)</th>
 <th>Value</th>
 <th>Localization</th>
@@ -877,10 +877,10 @@ Activate the currency strategy as follows:
 Use oINTL.SetConfig() or oINTL.SetStrategy() to load the Currency strategy.
 
 ```
-OINTL= _SCREEN.oINTL
+OINTL = _SCREEN.oINTL
 oINTL.SetStratrgy( "RightToLeft", "cINTLRightToLeft")
 An alternate (and more cryptic) way is to use INTL's SetConfig() metto make INTL invoke the Font strategy of a given class, as follows:</p>
-OINTL= _SCREEN.oINTL<b
+OINTL = _SCREEN.oINTL<b
 *-- Set bit 2^5 "ON"</p>
 oINTL.SetConfig( BITSET( oINTL.GetConfig(), 5 ) )
 ```
@@ -910,11 +910,11 @@ In this example, we use `SetLanguage()` to configure for the RightToLeft transfo
 DEFINE CLASS MidEastINTL AS INTL
   FUNCTION SetLanguage( tcLanguage)
     LOCAL llRetVal
-    LlRetVal= INTL::SetLanguage( tcLanguage)
+    LlRetVal = INTL::SetLanguage( tcLanguage)
     *-- The right-to-left strategy is configured
     *-- with the fifth INTL configuration bit.
-    IF tcLanguage= "Hebrew" OR ;
-      TcLanguage= "Arabic"
+    IF tcLanguage = "Hebrew" OR ;
+      TcLanguage = "Arabic"
       this.SetConfig( BITSET( this.GetConfig(), 5 ))
     ELSE
       this.SetConfig( BITCLEAR( this.GetConfig(), 5 ))
@@ -947,7 +947,7 @@ _SCREEN.oINTL.SetStrategy("Currency", "cMyCurrency")
 You can create your own strategies and use INTL to automatically invoke
 them. Just make your new strategy a subclass of the cINTLStrategy class
 (so you'll have the properties and methods INTL expects) and then run
-with it\!
+with it!
 
 Just as in the case of subclassing an existing strategy, use the
 SetStrategy() method to load your strategy into INTL.
@@ -1012,7 +1012,7 @@ If you plan to get *really* fancy with swapping languages on the fly, it
 will be helpful to know the following things:
 
   - After INTL localizes a form, it adds to the form an object named
-    oINTL of class cINTLMemento configured as INTL was configured. This
+    oINTL of class `cINTLMemento` configured as INTL was configured. This
     memento is a lightweight object that allows several INTL objects to
     peacefully co-exist because they can know that a particular Form is,
     at this moment, displaying in, say, Japanese.
@@ -1039,7 +1039,7 @@ For run time localization, you need to distribute the following files:
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th>File</th>
 <th>Notes</th>
 </tr>
@@ -1087,7 +1087,7 @@ Your INTL Files on page 13.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th>File</th>
 <th>Description</th>
 </tr>
@@ -1146,9 +1146,7 @@ STRINGS.CDX</td>
 
 ## Overview of the INTL Class Library
 
-|                                                               |                                                                                                                                                                                                                                      |
-| ------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **The INTL class hierarchy is based on class cINTLAbstract.** | The INTL class hierarchy is based on the cINTLAbstract class. cINTLAbstract serves to define the interface for the entire hierarchy. Wherever possible, adding rogue properties, events, and methods to subclasses has been avoided. |
+**The INTL class hierarchy is based on class `cINTLAbstract`.**  `cINTLAbstract` serves to define the interface for the entire hierarchy. Wherever possible, adding rogue properties, events, and methods to subclasses has been avoided.
 
 The figure below shows an OMT diagram of the INTL class hierarchy.
 
@@ -1159,9 +1157,9 @@ The INTL class hierarchy.
 In normal circumstances, the only objects you’ll probably use are of
 class INTL.
 
-|                                                |                                                                                                                                                                            |
-| ---------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Class cINTLMemento can be used as a token.** | cINTLMemento is a configuration token that INTL objects may use to store details of a specific localization. cINTLMemento includes access methods to protected properties. |
+| | |
+| ----- | ----- |
+| **Class `cINTLMemento` can be used as a token.** | `cINTLMemento` is a configuration token that INTL objects may use to store details of a specific localization. `cINTLMemento` includes access methods to protected properties. |
 
 INTL is the public interface and template methods for the localization
 process.
@@ -1183,44 +1181,44 @@ in your application.
 
 #### INTL::cCurrencyStrategy
 
-| **INTL allows you to localize currencies.** | A string specifying the name of the currency strategy class. |                                                                                                                                                                                                                  |
-| ------------------------------------------- | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|                                             | **Default**                                                  | "cINTLCurrency"                                                                                                                                                                                                  |
-|                                             | **Remarks**                                                  | You may subclass cINTLCurrency to suit your particular needs. You may then use the SetStrategy("Currency",cYourCurrencyClass) method to set this currency strategy property to something other than the default. |
-|                                             | **See Also**                                                 | **cINTLMemento::GetStrategy()**                                                                                                                                                                                  |
+| **INTL allows you to localize currencies.** | A string specifying the name of the currency strategy class. | |
+| ----- | ----- | ----- |
+| | **Default** | "cINTLCurrency" |
+| | **Remarks** | You may subclass cINTLCurrency to suit your particular needs. You may then use the SetStrategy("Currency",cYourCurrencyClass) method to set this currency strategy property to something other than the default. |
+| | **See Also** | **`cINTLMemento::GetStrategy()`** |
 
 #### INTL::cDataStrategy
 
-| **INTL allows different data sources for different locales.** | A string specifying the name of the data strategy class. |                                                                                                                                                                                              |
-| ------------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|                                                               | **Default**                                              | "cINTLData"                                                                                                                                                                                  |
-|                                                               | **Remarks**                                              | You may subclass cINTLData to suit your particular needs. You may use the SetStrategy("Data", cYourDataClass) method to set this data strategy property to something other than the default. |
-|                                                               | **See Also**                                             | **cINTLMemento::GetStrategy()**                                                                                                                                                              |
+| **INTL allows different data sources for different locales.** | A string specifying the name of the data strategy class. | |
+| ----- | ----- | ----- |
+| | **Default** | "cINTLData" |
+| | **Remarks** | You may subclass cINTLData to suit your particular needs. You may use the SetStrategy("Data", cYourDataClass) method to set this data strategy property to something other than the default. |
+| | **See Also** | **`cINTLMemento::GetStrategy()`** |
 
 #### INTL::cFontStrategy
 
-| **INTL allows the proper fonts to be substituted.** | A string specifying the name of the font strategy class. |                                                                                                                                                                                        |
-| --------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|                                                     | **Default**                                              | "cINTLFont"                                                                                                                                                                            |
-|                                                     | **Remarks**                                              | You may subclass cINTLFont to suit your particular needs. You may use the ::SetStrategy("Font", cYourFontClass) to set the font strategy property to something other than the default. |
-|                                                     | **See Also**                                             | **cINTLMemento::GetStrategy()**                                                                                                                                                        |
+| **INTL allows the proper fonts to be substituted.** | A string specifying the name of the font strategy class. | |
+| ----- | ----- | ----- |
+| | **Default** | "cINTLFont" |
+| | **Remarks** | You may subclass cINTLFont to suit your particular needs. You may use the ::SetStrategy("Font", cYourFontClass) to set the font strategy property to something other than the default. |
+| | **See Also** | **`cINTLMemento::GetStrategy()`** |
 
 #### INTL::cPictureStrategy
 
-| **INTL can localize pictures, icons, and images.** | A string specifying the name of the picture strategy class. |                                                                                                                                                                                                    |
-| -------------------------------------------------- | ----------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|                                                    | **Default**                                                 | "cINTLPicture"                                                                                                                                                                                     |
-|                                                    | **Remarks**                                                 | You may subclass cINTLPicture to suit your particular needs. You may use the ::SetStrategy("Picture", cYourPictureClass) to set the picture strategy property to something other than the default. |
-|                                                    | **See Also**                                                | **cINTLMemento::GetStrategy()**                                                                                                                                                                    |
+| **INTL can localize pictures, icons, and images.** | A string specifying the name of the picture strategy class. | |
+| ----- | ----- | ----- |
+| | **Default** | "cINTLPicture" |
+| | **Remarks** | You may subclass cINTLPicture to suit your particular needs. You may use the ::SetStrategy("Picture", cYourPictureClass) to set the picture strategy property to something other than the default. |
+| | **See Also** | **`cINTLMemento::GetStrategy()`** |
 
 #### INTL::cStringStrategy
 
-| **INTL localizes words and phrases.**                                                                       | A string specifying the name of the string strategy class. The string strategy class is responsible for localizing strings and phrases in the application, and also serves as a function repository for other strategy classes.                                                                                                                                                   |                                                                                                                                            |
-| ----------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-|                                                                                                             | **Default**                                                                                                                                                                                                                                                                                                                                                                       | "cINTLSting"                                                                                                                               |
-|                                                                                                             | **Remarks**                                                                                                                                                                                                                                                                                                                                                                       | You may subclass cINTLString to suit your particular needs. You may use the ::SetStrategy("String", cYourStringClass) to set the property. |
-|                                                                                                             | **See Also**                                                                                                                                                                                                                                                                                                                                                                      | **cINTLMemento::GetStrategy()**                                                                                                            |
-| **The cINTLString strategy class is by far the most useful, and it provides services to other strategies.** | **Note:** many strategies use string-based services that are provided by the active string strategy class. To reduce cohesion with a particular cStringStrategy class, many string methods that would normally belong in class cStringStrategy are found in class cINTLStrategy, the parent strategy class. Thus all strategies have some inherent string localization abilities. |                                                                                                                                            |
+| **INTL localizes words and phrases.** | A string specifying the name of the string strategy class. The string strategy class is responsible for localizing strings and phrases in the application, and also serves as a function repository for other strategy classes. | |
+| ----- | ----- | ----- |
+| | **Default** | "cINTLSting" |
+| | **Remarks** | You may subclass cINTLString to suit your particular needs. You may use the ::SetStrategy("String", cYourStringClass) to set the property. |
+| | **See Also** | **`cINTLMemento::GetStrategy()`** |
+| **The cINTLString strategy class is by far the most useful, and it provides services to other strategies.** | **Note:** many strategies use string-based services that are provided by the active string strategy class. To reduce cohesion with a particular cStringStrategy class, many string methods that would normally belong in class cStringStrategy are found in class cINTLStrategy, the parent strategy class. Thus all strategies have some inherent string localization abilities. | |
 
 ### Class INTL Exposed Methods
 
@@ -1232,7 +1230,7 @@ object in turn to all the active localization strategies.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Syntax</strong></th>
 <th>oINTL.Execute( @PassedObject)</th>
 </tr>
@@ -1250,8 +1248,8 @@ object in turn to all the active localization strategies.
 <td><strong>Example</strong></td>
 <td><p>DIMENSION laScratchArray[1]</p>
 <p>SET PROC TO INTL</p>
-<p>oINTL=CREATEOBJECT("INTL")</p>
-<p>oXX=CREATEOBJECT("Form")</p>
+<p>oINTL = CREATEOBJECT("INTL")</p>
+<p>oXX = CREATEOBJECT("Form")</p>
 <p>*-- Load the array with object references</p>
 <p>oINTL.ObjArray( oXX, @laScratchArray)</p>
 <p>oINTL.Execute( @laScratchArray)</p></td>
@@ -1267,7 +1265,7 @@ object in turn to all the active localization strategies.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Strategies may require resource files, which are referenced by alias.</strong></th>
 <th>Returns the alias of the resource table associated with the default localization strategy. Normally, the default strategy object is of class cINTLString.</th>
 <th></th>
@@ -1310,7 +1308,7 @@ strategy.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Syntax</strong></th>
 <th>oINTL.GetTable()</th>
 </tr>
@@ -1348,7 +1346,7 @@ Returns the setting for the update mode of the current string strategy.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Syntax</strong></th>
 <th>oINTL.&lt;StrategyObject&gt;.GetUpdateMode()</th>
 </tr>
@@ -1387,9 +1385,9 @@ The I() function is an all-purpose localization method.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Syntax</strong></th>
-<th>oINTL.I(cString|nAmount|oObject)</th>
+<th>oINTL.I(cString |nAmount |oObject)</th>
 </tr>
 </thead>
 <tbody>
@@ -1414,7 +1412,7 @@ The I() function is an all-purpose localization method.
 </tr>
 <tr>
 <td><strong>See Also</strong></td>
-<td><p><strong>cINTLMemento::SetLocale</strong></p>
+<td><p><strong>`cINTLMemento`::SetLocale</strong></p>
 <p>cINTLCurrency::GetConversion</p></td>
 </tr>
 </tbody>
@@ -1431,9 +1429,9 @@ parameters are used to initialize the state of INTL.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Syntax</strong></th>
-<th>oX=CREATE("INTL", [C|N|O], [C|N|O], [C|N|O])</th>
+<th>oX = CREATE("INTL", [C |N |O], [C |N |O], [C |N |O])</th>
 </tr>
 </thead>
 <tbody>
@@ -1450,7 +1448,7 @@ Type "O": an object to traverse and localize.</td>
 </tr>
 <tr>
 <td><strong>Example</strong></td>
-<td>oX=CREATE("INTL", "French", _SCREEN.Activeform)</td>
+<td>oX = CREATE("INTL", "French", _SCREEN.Activeform)</td>
 </tr>
 </tbody>
 </table>
@@ -1464,9 +1462,9 @@ invoke it when necessary.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Syntax</strong></th>
-<th><p>oX=CREATE("INTL")</p>
+<th><p>oX = CREATE("INTL")</p>
 <p>oX.LoadStrategies()</p></th>
 </tr>
 </thead>
@@ -1487,7 +1485,7 @@ invoke it when necessary.
 </tr>
 <tr>
 <td><strong>See Also</strong></td>
-<td><strong>cINTLMemento::SetHook</strong></td>
+<td><strong>`cINTLMemento`::SetHook</strong></td>
 </tr>
 </tbody>
 </table>
@@ -1499,7 +1497,7 @@ characteristics of the main INTL object.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Syntax</strong></th>
 <th>oINTL.Localize( [cLang | oObj][,cLang | oObj])</th>
 </tr>
@@ -1533,7 +1531,7 @@ object and all the contents of that object.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Syntax</strong></th>
 <th>INTL::ObjArray( oObject, @ArraName)</th>
 </tr>
@@ -1550,7 +1548,7 @@ object and all the contents of that object.
 <tr>
 <td><strong>Example</strong></td>
 <td><p>DIMENSION laScratch[1]</p>
-<p>Foo=CREATEOBJECT("Form")</p>
+<p>Foo = CREATEOBJECT("Form")</p>
 <p>Foo.AddObject("Bar", CommandButton)</p>
 <p>INTL::ObjArray( Foo, @laScratch) &amp;&amp; yields 2</p></td>
 </tr>
@@ -1568,7 +1566,7 @@ loaded.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Syntax</strong></th>
 <th>INTL:SetConversion( cLocale, nExchange, xOptional)</th>
 </tr>
@@ -1597,49 +1595,49 @@ loaded.
 </tbody>
 </table>
 
-## Class cINTLAbstract
+## Class `cINTLAbstract`
 
-|                                                                          |                                                                                                                                                                                                 |
-| ------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **The cINTLAbstract class is not designed to be directly instantiated.** | CINTLAbstract is the principal base class of the INTL class library. As its name implies, it is an abstract class, and its main purpose is to define the complete interface for all subclasses. |
+| | |
+| ----- | ----- |
+| **The `cINTLAbstract` class is not designed to be directly instantiated.** | `CINTLAbstract` is the principal base class of the INTL class library. As its name implies, it is an abstract class, and its main purpose is to define the complete interface for all subclasses. |
 
-### Class cINTLAbstract Protected Properties
+### Class `cINTLAbstract` Protected Properties
 
-#### cINTLAbstract::cType
+#### `cINTLAbstract`::cType
 
 String used to store the type of INTL class.
 
-| **Default**   | “Abstract”                                                                                    |
-| ------------- | --------------------------------------------------------------------------------------------- |
-| **Remarks**   | The cType is typically the type of strategy, such as “String”, “Font”, “Currency”, and so on. |
-| **See Also:** | **cINTLAbstract::GetType()**                                                                  |
+| **Default** | “Abstract” |
+| ----- | ----- |
+| **Remarks** | The cType is typically the type of strategy, such as “String”, “Font”, “Currency”, and so on. |
+| **See Also:** | **`cINTLAbstract::GetType()`** |
 
-#### cINTLAbstract::Visible
+#### `cINTLAbstract`::Visible
 
 Logical used to control this INTL objects visibility.
 
-| **Default** | Logical false.                                                             |
-| ----------- | -------------------------------------------------------------------------- |
+| **Default** | Logical false. |
+| ----- | ----- |
 | **Remarks** | There is no reason to make visible any member of the INTL class hierarchy. |
 
-### Class cINTLAbstract Exposed Properties
+### Class `cINTLAbstract` Exposed Properties
 
-#### cINTLAbstract::INTL\_Abstract\_ID
+#### `cINTLAbstract`::INTL\_Abstract\_ID
 
 Used by the INTL class for identification purposes.
 
-| **Default**  | "Visual INTL"                          |
-| ------------ | -------------------------------------- |
-| **Remarks**  | This property should never be changed. |
-| **See Also** | **cINTLAbstract::Name**                |
+| **Default** | "Visual INTL" |
+| ----- | ----- |
+| **Remarks** | This property should never be changed. |
+| **See Also** | **`cINTLAbstract`::Name** |
 
-#### cINTLAbstract::oLogicalParent
+#### `cINTLAbstract`::oLogicalParent
 
 Object reference to the logical parents of INTL objects.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Default</strong></th>
 <th>.NULL.</th>
 </tr>
@@ -1651,18 +1649,18 @@ Object reference to the logical parents of INTL objects.
 </tr>
 <tr>
 <td><strong>See Also</strong></td>
-<td><strong>cINTLAbstract::GetLogicalParent()</strong><br />
-cINTLAbstract::SetLogicalParent()<br />
-cINTLAbstract::GetHook()</td>
+<td><strong>`cINTLAbstract::GetLogicalParent()`</strong><br />
+`cINTLAbstract::SetLogicalParent()`<br />
+`cINTLAbstract::GetHook()`</td>
 </tr>
 </tbody>
 </table>
 
-#### cINTLAbstract::oHook
+#### `cINTLAbstract`::oHook
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Motivation</strong></th>
 <th>Object reference to the hook object.</th>
 </tr>
@@ -1678,164 +1676,162 @@ cINTLAbstract::GetHook()</td>
 </tr>
 <tr>
 <td><strong>See Also</strong></td>
-<td><strong>cINTLMemento::SetHook()</strong><br />
-cINTLAbstract::GetHook()</td>
+<td><strong>`cINTLMemento::SetHook()`</strong><br />
+`cINTLAbstract::GetHook()`</td>
 </tr>
 </tbody>
 </table>
 
-#### cINTLAbstract::Name
+#### `cINTLAbstract`::Name
 
 The name of this INTL object. Each class, including those you write
 yourself, should normally have a distinctive name.
 
-| **Default** | The name of the parent class.                                                                                             |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------- |
+| **Default** | The name of the parent class. |
+| ----- | ----- |
 | **Remarks** | Explicitly assigning a name property, as all INTL classes do, is a good way to increase object instantiation performance. |
 
-### Class cINTLAbstract Abstract Methods
+### Class `cINTLAbstract` Abstract Methods
 
-The following functions are declared in class cINTLAbstract but are in
+The following functions are declared in class `cINTLAbstract` but are in
 fact defined in subclasses. Hooked methods are those that, by default,
 will message or delegate to an object attached to the ohook reference.
 
-| Function                             | Remarks |
-| ------------------------------------ | ------- |
-| cINTLAbstract::aStrat()              | Hooked  |
-| cINTLAbstract::alang()               | Hooked  |
-| cINTLAbstract::CreateStrategyTable() | Hooked  |
-| cINTLAbstract::AdornMemento()        |         |
-| cINTLAbstract::CreateStrategy()      | Hooked  |
-| cINTLAbstract::Execute()             | Hooked  |
-| cINTLAbstract::GetConfig()           | Hooked  |
-| cINTLAbstract::GetConversion()       | Hooked  |
-| cINTLAbstract::GetStrategy()         | Hooked  |
-| cINTLAbstract::GetExplicit()         | Hooked  |
-| cINTLAbstract::GetLanguage()         | Hooked  |
-| cINTLAbstract::GetConfig()           | Hooked  |
-| cINTLAbstract::GetTable()            | Hooked  |
-| cINTLAbstract::GetAlias()            | Hooked  |
-| cINTLAbstract::GetUpdateMode()       | Hooked  |
-| cINTLAbstract::I()                   | Hooked  |
-| cINTLAbstract::Init()                |         |
-| cINTLAbstract::IsValidLanguage()     | Hooked  |
-| cINTLAbstract::LoadStrategies()      |         |
-| cINTLAbstract::Localize()            | Hooked  |
-| cINTLAbstract::LoopOut()             | Hooked  |
-| cINTLAbstract::Mov()                 |         |
-| cINTLAbstract::objArray()            |         |
-| cINTLAbstract::OpenStrategy()        | Hooked  |
-| cINTLAbstract::Pitch()               |         |
-| cINTLAbstract::Pop()                 |         |
-| cINTLAbstract::Push()                |         |
-| cINTLAbstract::Release()             |         |
-| cINTLAbstract::SetConfig()           | Hooked  |
-| cINTLAbstract::SetConversion()       | Hooked  |
-| cINTLAbstract::SetDefaults()         | Hooked  |
-| cINTLAbstract::SetExplicit()         | Hooked  |
-| cINTLAbstract::SetLanguage()         | Hooked  |
-| cINTLAbstract::SetLocale()           | Hooked  |
-| cINTLAbstract::SetHook()             | Hooked  |
-| cINTLAbstract::SetStrategy()         | Hooked  |
-| cINTLAbstract::SetAlias()            | Hooked  |
-| cINTLAbstract::SetTable()            | Hooked  |
-| cINTLAbstract::SetUpdateMode()       | Hooked  |
-| cINTLAbstract::UpdateResource()      | Hooked  |
+| Function | Remarks |
+| ----- | ------- |
+| `cINTLAbstract::aStrat()` | Hooked |
+| `cINTLAbstract::alang()` | Hooked |
+| `cINTLAbstract::CreateStrategyTable()` | Hooked |
+| `cINTLAbstract::AdornMemento()` | |
+| `cINTLAbstract::CreateStrategy()` | Hooked |
+| `cINTLAbstract::Execute()` | Hooked |
+| `cINTLAbstract::GetConfig()` | Hooked |
+| `cINTLAbstract::GetConversion()` | Hooked |
+| `cINTLAbstract::GetStrategy()` | Hooked |
+| `cINTLAbstract::GetExplicit()` | Hooked |
+| `cINTLAbstract::GetLanguage()` | Hooked |
+| `cINTLAbstract::GetConfig()` | Hooked |
+| `cINTLAbstract::GetTable()` | Hooked |
+| `cINTLAbstract::GetAlias()` | Hooked |
+| `cINTLAbstract::GetUpdateMode()` | Hooked |
+| `cINTLAbstract::I()` | Hooked |
+| `cINTLAbstract::Init()` | |
+| `cINTLAbstract::IsValidLanguage()` | Hooked |
+| `cINTLAbstract::LoadStrategies()` | |
+| `cINTLAbstract::Localize()` | Hooked |
+| `cINTLAbstract::LoopOut()` | Hooked |
+| `cINTLAbstract::Mov()` | |
+| `cINTLAbstract::objArray()` | |
+| `cINTLAbstract::OpenStrategy()` | Hooked |
+| `cINTLAbstract::Pitch()` | |
+| `cINTLAbstract::Pop()` | |
+| `cINTLAbstract::Push()` | |
+| `cINTLAbstract::Release()` | |
+| `cINTLAbstract::SetConfig()` | Hooked |
+| `cINTLAbstract::SetConversion()` | Hooked |
+| `cINTLAbstract::SetDefaults()` | Hooked |
+| `cINTLAbstract::SetExplicit()` | Hooked |
+| `cINTLAbstract::SetLanguage()` | Hooked |
+| `cINTLAbstract::SetLocale()` | Hooked |
+| `cINTLAbstract::SetHook()` | Hooked |
+| `cINTLAbstract::SetStrategy()` | Hooked |
+| `cINTLAbstract::SetAlias()` | Hooked |
+| `cINTLAbstract::SetTable()` | Hooked |
+| `cINTLAbstract::SetUpdateMode()` | Hooked |
+| `cINTLAbstract::UpdateResource()` | Hooked |
 
-### Class cINTLAbstract Exposed Methods
+### Class `cINTLAbstract` Exposed Methods
 
-#### cINTLAbstract::GetHook()
+#### `cINTLAbstract::GetHook()`
 
 Returns an object reference to the hook of the object.
 
-| **Syntax**    | this.GetHook()                                                               |
-| ------------- | ---------------------------------------------------------------------------- |
-| **Return**    | Hook object reference if the current object is hooked, .NULL. otherwise.     |
-| **Arguments** | None.                                                                        |
-| **Example**   | this.GetHook()                                                               |
-| **Remarks**   | GetHook returns an object reference (if a hook is defined) or .NULL. if not. |
-| **See Also**  | **cINTLMemento::SetHook()**                                                  |
+| **Syntax** | this.GetHook() |
+| ----- | ----- |
+| **Return** | Hook object reference if the current object is hooked, .NULL. otherwise. |
+| **Arguments** | None. |
+| **Example** | this.GetHook() |
+| **Remarks** | GetHook returns an object reference (if a hook is defined) or .NULL. if not. |
+| **See Also** | **`cINTLMemento::SetHook()`** |
 
-#### cINTLAbstract::GetLogicalParent()
+#### `cINTLAbstract::GetLogicalParent()`
 
 Returns the name of the INTL object’s logical parent.
 
-| **Syntax**    | this.GetLogicalParent()                                                                            |
-| ------------- | -------------------------------------------------------------------------------------------------- |
-| **Return**    | Hook object reference if the current object is hooked, .NULL. otherwise.                           |
-| **Arguments** | None.                                                                                              |
-| **Example**   | this.GetLogicalParent()                                                                            |
-| **Remarks**   | Returns the name of the INTL object’s logical parent if one has been defined, or .NULL. otherwise. |
-| **See Also**  | **cINTLAbstract::SetLogicalParent()**                                                              |
+| **Syntax** | this.GetLogicalParent() |
+| ----- | ----- |
+| **Return** | Hook object reference if the current object is hooked, .NULL. otherwise. |
+| **Arguments** | None. |
+| **Example** | this.GetLogicalParent() |
+| **Remarks** | Returns the name of the INTL object’s logical parent if one has been defined, or .NULL. otherwise. |
+| **See Also** | **`cINTLAbstract::SetLogicalParent()`** |
 
-#### cINTLAbstract::IsINTLClass()
+#### `cINTLAbstract::IsINTLClass()`
 
 Returns true if a reference is an object belonging to the INTL class.
 
-| **Syntax**    | this.IsINTLClass( Expression)                                                                                               |
-| ------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| **Return**    | Logical true if the object is a member of the INTL class.                                                                   |
-| **Arguments** | An expression that may or may not evaluate to type "O".                                                                     |
-| **Example**   | this.IsINTLClass( CREATE("ComboBox")) && Returns .F.                                                                        |
-| **Remarks**   | An expression is considered to be a member of the INTL class if it contains an exposed property named "INTL\_Abstract\_ID". |
+| **Syntax** | this.IsINTLClass( Expression) |
+| ----- | ----- |
+| **Return** | Logical true if the object is a member of the INTL class. |
+| **Arguments** | An expression that may or may not evaluate to type "O". |
+| **Example** | this.IsINTLClass( CREATE("ComboBox")) && Returns .F. |
+| **Remarks** | An expression is considered to be a member of the INTL class if it contains an exposed property named "INTL\_Abstract\_ID". |
 
 ####
 
-#### cINTLAbstract::Release()
+#### `cINTLAbstract::Release()`
 
 Explicitly releases an INTL object.
 
-| **Syntax**    | _SCREEN.oINTL.Release()                                                                                                                                                            |
-| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Return**    | Logical true always.                                                                                                                                                                |
-| **Arguments** | None.                                                                                                                                                                               |
-| **Remarks**   | Releases the current INTL object. Provided for your own benefit if for some reason you need to cleanly release INTL objects. This method is not explicitly called anywhere in INTL. |
+| **Syntax** | _SCREEN.oINTL.Release() |
+| ----- | ----- |
+| **Return** | Logical true always. |
+| **Arguments** | None. |
+| **Remarks** | Releases the current INTL object. Provided for your own benefit if for some reason you need to cleanly release INTL objects. This method is not explicitly called anywhere in INTL. |
 
-#### cINTLAbstract::SetLogicalParent()
+#### `cINTLAbstract::SetLogicalParent()`
 
 This access method sets the pointer to the object’s logical parent.
 
-| **Syntax**    | oINTL.SetLogicalParent( oObject)                                                                                                                                                                                                              |
-| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Return**    | Logical true if successful, false otherwise.                                                                                                                                                                                                  |
-| **Arguments** | oObject: an object reference.                                                                                                                                                                                                                 |
-| **Example**   | ?this.SetLogicalParent( _SCREEN.oINTL)                                                                                                                                                                                                       |
-| **Remarks**   | The logical parent reference is automatically assigned by the SetHook() method. INTL classes do not use the logical parent back-pointer reference. Included here for compatibility with some object-oriented error handlers my customers use. |
-| **See Also**  | **cINTLAbstract::GetLogicalParent()**                                                                                                                                                                                                         |
+| **Syntax** | oINTL.SetLogicalParent( oObject) |
+| ----- | ----- |
+| **Return** | Logical true if successful, false otherwise. |
+| **Arguments** | oObject: an object reference. |
+| **Example** | ?this.SetLogicalParent( _SCREEN.oINTL) |
+| **Remarks** | The logical parent reference is automatically assigned by the SetHook() method. INTL classes do not use the logical parent back-pointer reference. Included here for compatibility with some object-oriented error handlers my customers use. |
+| **See Also** | **`cINTLAbstract::GetLogicalParent()`** |
 
-#### cINTLAbstract::GetType()
+#### `cINTLAbstract::GetType()`
 
 Returns the type of INTL object this is.
 
-| **Syntax**  | oINTL.GetType( )                                                                                        |
-| ----------- | ------------------------------------------------------------------------------------------------------- |
-| **Return**  | A string, the object type, such as “INTL”, “String”, “Font”, “Currency”, and so on.                     |
+| **Syntax** | oINTL.GetType( ) |
+| ----- | ----- |
+| **Return** | A string, the object type, such as “INTL”, “String”, “Font”, “Currency”, and so on. |
 | **Remarks** | When you subclass a strategy, don’t change its type property unless you also change its basic function. |
 
-#### cINTLAbstract::GetVersion()
+#### `cINTLAbstract::GetVersion()`
 
 Returns the version stamp for your INTL for Visual FoxPro software.
 
-| **Syntax**  | oINTL.GetVersion( )                                                      |
-| ----------- | ------------------------------------------------------------------------ |
-| **Return**  | A 2-line version signature.                                              |
+| **Syntax** | oINTL.GetVersion( ) |
+| ----- | ----- |
+| **Return** | A 2-line version signature. |
 | **Remarks** | The version number may be important to resolve technical support issues. |
 
 ## Class cINTLCurrency
 
-|                                                                                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **You can subclass the cINTLCurrency class to adapt it to your multi-currency needs.** | The cINTLCurrency class is used to localize currency fields so you can, among other things, swap the locale on the fly and adjust currency values dynamically. The native cINTLCurrency class works rather simply with one constant exchange rate per currency. For more complex mechanisms, like those that use a lookup table to reckon currency conversions as a function of time, can be accommodated by subclassing the cINTLCurrency class. |
+**You can subclass the cINTLCurrency class to adapt it to your multi-currency needs.**  The cINTLCurrency class is used to localize currency fields so you can, among other things, swap the locale on the fly and adjust currency values dynamically. The native cINTLCurrency class works rather simply with one constant exchange rate per currency. For more complex mechanisms, like those that use a lookup table to reckon currency conversions as a function of time, can be accommodated by subclassing the cINTLCurrency class.
 
 ### Class cINTLCurrency Exposed Methods
 
-#### cINTLCurrency::GetConversion()
+#### `cINTLCurrency::GetConversion`
 
 Gets a currency conversion factor from memory.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Syntax</strong></th>
 <th>oINTL.GetConversion( cLocale)</th>
 </tr>
@@ -1865,13 +1861,13 @@ Gets a currency conversion factor from memory.
 </tbody>
 </table>
 
-#### cINTLCurrency::I()
+#### `cINTLCurrency::I`
 
 Localizes a numeric currency value.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Syntax</strong></th>
 <th>oINTL.I ( nValue)</th>
 </tr>
@@ -1903,13 +1899,13 @@ _SCREEN.oINTL.I(10.00) &amp;&amp; 13.2050</p></td>
 </tbody>
 </table>
 
-#### cINTLCurrency::SetConversion()
+#### `cINTLCurrency::SetConversion`
 
 Sets a currency exchange rate.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Syntax</strong></th>
 <th>oINTL.SetConversion( cLocale, nFactor)</th>
 </tr>
@@ -1973,8 +1969,8 @@ Here are the exposed properties of class cINTLFont.
 
 #### cINTLFont::nConfig
 
-| Default | 3                                                                           |
-| ------- | --------------------------------------------------------------------------- |
+| Default | 3 |
+| ------- | ----- |
 | Remarks | Stores the current configuration information for this font strategy object. |
 
 ### Class cINTLFont Exposed Methods
@@ -1985,7 +1981,7 @@ Here are the exposed methods of class cINTLFont.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Syntax</strong></th>
 <th>oINTL.oFontStrategy.SetConfig( nConfig)</th>
 </tr>
@@ -2017,94 +2013,94 @@ Here are the exposed methods of class cINTLFont.
 </tbody>
 </table>
 
-## Class cINTLMemento
+## Class `cINTLMemento`
 
 ![](./media/image13.png)
 
-|                                                                                   |                                                                                                                                                                                                                                        |
-| --------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **The cINTLMemento class is used to store status and configuration information.** | A cINTLMemento object encapsulates all the properties and access methods of INTL objects. This class serves as an INTL configuration token and also the superclass of all INTL master objects and their attached hooks and strategies. |
+| | |
+| ----- | ----- |
+| **The `cINTLMemento` class is used to store status and configuration information.** | A `cINTLMemento` object encapsulates all the properties and access methods of INTL objects. This class serves as an INTL configuration token and also the superclass of all INTL master objects and their attached hooks and strategies. |
 
-Thus all useful INTL objects are subclasses of cINTLMemento.
+Thus all useful INTL objects are subclasses of `cINTLMemento`.
 
-### Class cINTLMemento Exposed Properties
+### Class `cINTLMemento` Exposed Properties
 
-#### cINTLMemento::Name
+#### `cINTLMemento`::Name
 
 The object name.
 
-|             |                |
-| ----------- | -------------- |
-| **Default** | "cINTLMemento" |
+| | |
+| ----- | ----- |
+| **Default** | "`cINTLMemento`" |
 
-#### cINTLMemento::aStrategies\[…\]
+#### `cINTLMemento`::aStrategies\[…\]
 
 The array collection of strategy object references.
 
-|             |        |
-| ----------- | ------ |
+| | |
+| ----- | ------ |
 | **Default** | .NULL. |
 
-####  cINTLMemento::oCurrencyStrategy
+####  `cINTLMemento`::oCurrencyStrategy
 
 An explicit object reference to the string currency strategy.
 
-|             |        |
-| ----------- | ------ |
+| | |
+| ----- | ------ |
 | **Default** | .NULL. |
 
-####  cINTLMemento::oDataStrategy
+####  `cINTLMemento`::oDataStrategy
 
 An explicit object reference to the data strategy.
 
-|             |        |
-| ----------- | ------ |
+| | |
+| ----- | ------ |
 | **Default** | .NULL. |
 
-####  cINTLMemento::oFontStrategy
+####  `cINTLMemento`::oFontStrategy
 
 An explicit object reference to the font strategy.
 
-|             |        |
-| ----------- | ------ |
+| | |
+| ----- | ------ |
 | **Default** | .NULL. |
 
-#### cINTLMemento::oHook
+#### `cINTLMemento`::oHook
 
 Object reference to the hook object.
 
-|             |        |
-| ----------- | ------ |
+| | |
+| ----- | ------ |
 | **Default** | .NULL. |
 
-####  cINTLMemento::oPictureStrategy
+####  `cINTLMemento`::oPictureStrategy
 
 An explicit object reference to the image localization strategy.
 
-|             |        |
-| ----------- | ------ |
+| | |
+| ----- | ------ |
 | **Default** | .NULL. |
 
 ####
 
-#### cINTLMemento::oStringStrategy
+#### `cINTLMemento`::oStringStrategy
 
 An explicit object reference to the string strategy.
 
-|             |        |
-| ----------- | ------ |
+| | |
+| ----- | ------ |
 | **Default** | .NULL. |
 
-### Class cINTLMemento Exposed Methods
+### Class `cINTLMemento` Exposed Methods
 
-#### cINTLMemento::aStrat()
+#### `cINTLMemento::aStrat()`
 
 Fills an array with the strategy engines found in the current INTL
 object.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Syntax</strong></th>
 <th>oINTL.aStrat( @taArray [, nType])</th>
 </tr>
@@ -2146,13 +2142,13 @@ object.
 </tbody>
 </table>
 
-#### cINTLMemento::GetConfig()
+#### `cINTLMemento::GetConfig()`
 
 Returns an integer encoding the object’s configuration.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Syntax</strong></th>
 <th>oINTL.GetConfig()</th>
 </tr>
@@ -2173,19 +2169,19 @@ Returns an integer encoding the object’s configuration.
 </tr>
 <tr>
 <td><strong>See Also</strong></td>
-<td><strong>cINTLMemento::SetConfig()</strong></td>
+<td><strong>`cINTLMemento::SetConfig()`</strong></td>
 </tr>
 </tbody>
 </table>
 
-#### cINTLMemento::GetLanguage()
+#### `cINTLMemento::GetLanguage()`
 
 Returns the localization language to be used by the INTL when localizing
 objects.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Syntax</strong></th>
 <th>oINTL.GetLanguage()</th>
 </tr>
@@ -2206,18 +2202,18 @@ objects.
 </tr>
 <tr>
 <td><strong>See Also</strong></td>
-<td><strong>cINTLMemento::SetLanguage()</strong></td>
+<td><strong>`cINTLMemento::SetLanguage()`</strong></td>
 </tr>
 </tbody>
 </table>
 
-#### cINTLMemento::GetExplicit()
+#### `cINTLMemento::GetExplicit()`
 
 Returns true if explicit localization is enabled.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Syntax</strong></th>
 <th>oINTL.GetExplicit()</th>
 </tr>
@@ -2238,19 +2234,19 @@ Returns true if explicit localization is enabled.
 </tr>
 <tr>
 <td><strong>See Also</strong></td>
-<td><strong>cINTLMemento::SetExplicit()</strong></td>
+<td><strong>`cINTLMemento::SetExplicit()`</strong></td>
 </tr>
 </tbody>
 </table>
 
-#### cINTLMemento::GetLanguage()
+#### `cINTLMemento::GetLanguage()`
 
 Returns the localization language to be used by the INTL when localizing
 objects.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Syntax</strong></th>
 <th>oINTL.GetLanguage</th>
 </tr>
@@ -2275,13 +2271,13 @@ objects.
 </tbody>
 </table>
 
-#### cINTLMemento::GetLocale()
+#### `cINTLMemento::GetLocale()`
 
 Returns the value of the INTL object locale property.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Syntax</strong></th>
 <th>oINTL.GetLocale( @oPointer)</th>
 </tr>
@@ -2302,41 +2298,41 @@ Returns the value of the INTL object locale property.
 </tr>
 <tr>
 <td><strong>See Also</strong></td>
-<td><strong>cINTLMemento::SetLocale</strong></td>
+<td><strong>`cINTLMemento`::SetLocale</strong></td>
 </tr>
 </tbody>
 </table>
 
-#### cINTLMemento::GetStrategy()
+#### `cINTLMemento::GetStrategy()`
 
 Returns an object reference to a strategy object.
 
-| **Syntax**    | oINTL.GetStrategy(\[cStrategy\])                                                                                                       |
-| ------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| **Return**    | An object reference to a given strategy.                                                                                               |
+| **Syntax** | oINTL.GetStrategy(\[cStrategy\]) |
+| ----- | ----- |
+| **Return** | An object reference to a given strategy. |
 | **Arguments** | cStrategy: a strategy name, the default being "String". Other valid names for native strategies include "Currency", "Data", or "Font". |
-| **Example**   | oINTL.GetStrategy("Currency"\]                                                                                                         |
-| **Remarks**   | The strategy must be loaded for GetStrategy to return a reference.                                                                     |
-| **See Also**  |                                                                                                                                        |
+| **Example** | oINTL.GetStrategy("Currency"\] |
+| **Remarks** | The strategy must be loaded for GetStrategy to return a reference. |
+| **See Also** | |
 
-#### cINTLMemento::GetStrategyClass()
+#### `cINTLMemento::GetStrategyClass()`
 
 Returns the class used for subsequent strategy object instantiations.
 
-| **Syntax**    | oINTL.GetStrategyClass( \[cStrategy\])                                                                                    |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| **Return**    | A strategy class name.                                                                                                    |
+| **Syntax** | oINTL.GetStrategyClass( \[cStrategy\]) |
+| ----- | ----- |
+| **Return** | A strategy class name. |
 | **Arguments** | cStrategy: a strategy name. Valid names for native strategies include “String”, "Currency", "Data", “Picture” and "Font". |
-| **Example**   | oINTL.GetStrategyClass("Currency") && “cINTLCurrency”                                                                     |
-| **See Also**  |                                                                                                                           |
+| **Example** | oINTL.GetStrategyClass("Currency") && “cINTLCurrency” |
+| **See Also** | |
 
-#### cINTLMemento::Mov()
+#### `cINTLMemento::Mov()`
 
 Move selected properties of this object to the object specified.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Syntax</strong></th>
 <th>this.Mov( oObject)</th>
 </tr>
@@ -2352,7 +2348,7 @@ Move selected properties of this object to the object specified.
 </tr>
 <tr>
 <td><strong>Example</strong></td>
-<td><p>oX=CREATEOBJECT("INTL")</p>
+<td><p>oX = CREATEOBJECT("INTL")</p>
 <p>this.Mov( oX)</p></td>
 </tr>
 <tr>
@@ -2366,20 +2362,20 @@ Move selected properties of this object to the object specified.
 </tr>
 <tr>
 <td><strong>See Also</strong></td>
-<td><strong>cINTLMemento::Pitch()</strong><br />
-cINTLMemento::Pop()<br />
-cINTLMemento::Push()</td>
+<td><strong>`cINTLMemento::Pitch()`</strong><br />
+`cINTLMemento::Pop()`<br />
+`cINTLMemento::Push()`</td>
 </tr>
 </tbody>
 </table>
 
-#### cINTLMemento::Pitch()
+#### `cINTLMemento::Pitch()`
 
 Removes the internal configuration of an INTL object off a stack.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Syntax</strong></th>
 <th>oINTL.Pitch()</th>
 </tr>
@@ -2403,19 +2399,19 @@ Removes the internal configuration of an INTL object off a stack.
 </tr>
 <tr>
 <td><strong>See Also</strong></td>
-<td><strong>cINTLMemento::Pop()</strong><br />
-cINTLMemento::Push()</td>
+<td><strong>`cINTLMemento::Pop()`</strong><br />
+`cINTLMemento::Push()`</td>
 </tr>
 </tbody>
 </table>
 
-#### cINTLMemento::Pop()
+#### `cINTLMemento::Pop()`
 
 Pops the internal configuration of an INTL object off the stack.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Syntax</strong></th>
 <th>oINTL.Pop()</th>
 </tr>
@@ -2443,19 +2439,19 @@ Pops the internal configuration of an INTL object off the stack.
 </tr>
 <tr>
 <td><strong>See Also</strong></td>
-<td><strong>cINTLMemento::Pitch()</strong><br />
-cINTLMemento::Push()</td>
+<td><strong>`cINTLMemento::Pitch()`</strong><br />
+`cINTLMemento::Push()`</td>
 </tr>
 </tbody>
 </table>
 
-#### cINTLMemento::Push()
+#### `cINTLMemento::Push()`
 
 Stores the internal configuration of an INTL object on a stack.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Syntax</strong></th>
 <th>oINTL.Push()</th>
 </tr>
@@ -2482,13 +2478,13 @@ Stores the internal configuration of an INTL object on a stack.
 </tr>
 <tr>
 <td><strong>See Also</strong></td>
-<td><strong>cINTLMemento::Pitch()</strong><br />
-cINTLMemento::Pop()</td>
+<td><strong>`cINTLMemento::Pitch()`</strong><br />
+`cINTLMemento::Pop()`</td>
 </tr>
 </tbody>
 </table>
 
-#### cINTLMemento::SetConfig()
+#### `cINTLMemento::SetConfig()`
 
 Sets the configuration of an INTL object. You can configure INTL to
 selectively localize strings, fonts, datasources, graphical elements,
@@ -2497,7 +2493,7 @@ your interface.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Syntax</strong></th>
 <th>oINTL.SetConfig(nExpression)</th>
 </tr>
@@ -2522,30 +2518,30 @@ your interface.
 </tr>
 <tr>
 <td><strong>See Also</strong></td>
-<td><strong>cINTLMemento::GetConfig()</strong></td>
+<td><strong>`cINTLMemento::GetConfig()`</strong></td>
 </tr>
 </tbody>
 </table>
 
-#### cINTLMemento::SetDefaults()
+#### `cINTLMemento::SetDefaults()`
 
 Sets the operational properties of INTL objects to their defaults.
 
-| **Syntax**    | oINTL.SetDefaults()                                                                       |
-| ------------- | ----------------------------------------------------------------------------------------- |
-| **Return**    | Logical true if all operational properties were successfully reset to default.            |
-| **Arguments** | None.                                                                                     |
-| **Example**   | oINTL.SetDefaults()                                                                       |
-| **Remarks**   | The default configuration is set 'at the factory' and cannot be changed programmatically. |
-| **See Also**  | **cINTLMemento::SetConfig()**                                                             |
+| **Syntax** | oINTL.SetDefaults() |
+| ----- | ----- |
+| **Return** | Logical true if all operational properties were successfully reset to default. |
+| **Arguments** | None. |
+| **Example** | oINTL.SetDefaults() |
+| **Remarks** | The default configuration is set 'at the factory' and cannot be changed programmatically. |
+| **See Also** | **`cINTLMemento::SetConfig()`** |
 
-#### cINTLMemento::SetExplicit()
+#### `cINTLMemento::SetExplicit()`
 
 Sets the INTL object into Explicit mode.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Syntax</strong></th>
 <th>oINTL.SetExplicit( lSetting)</th>
 </tr>
@@ -2566,18 +2562,18 @@ Sets the INTL object into Explicit mode.
 </tr>
 <tr>
 <td><strong>See Also</strong></td>
-<td><strong>cINTLMemento::GetExplicit()</strong></td>
+<td><strong>`cINTLMemento::GetExplicit()`</strong></td>
 </tr>
 </tbody>
 </table>
 
-#### cINTLMemento::SetHook()
+#### `cINTLMemento::SetHook()`
 
 Sets the hook reference pointer.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Syntax</strong></th>
 <th>oINTL.SetHook( oRefenceObject )</th>
 </tr>
@@ -2601,18 +2597,18 @@ _SCREEN.AddObject( "oINTL", "INTL")</p>
 </tr>
 <tr>
 <td><strong>See Also</strong></td>
-<td><strong>cINTLAbstract::GetHook()</strong></td>
+<td><strong>`cINTLAbstract::GetHook()`</strong></td>
 </tr>
 </tbody>
 </table>
 
-#### cINTLMemento::SetLanguage()
+#### `cINTLMemento::SetLanguage()`
 
 Sets the language for subsequent localization.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Syntax</strong></th>
 <th>oINTL.SetLanguage( cLanguage)</th>
 </tr>
@@ -2633,18 +2629,18 @@ Sets the language for subsequent localization.
 </tr>
 <tr>
 <td><strong>See Also</strong></td>
-<td><strong>cINTLMemento::GetLanguage()</strong></td>
+<td><strong>`cINTLMemento::GetLanguage()`</strong></td>
 </tr>
 </tbody>
 </table>
 
-#### cINTLMemento::SetLocale()
+#### `cINTLMemento::SetLocale()`
 
 Set the INTL locale.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Syntax</strong></th>
 <th>oINTL.SetLocale( cLocalename)</th>
 </tr>
@@ -2665,20 +2661,20 @@ Set the INTL locale.
 </tr>
 <tr>
 <td><strong>See Also</strong></td>
-<td><strong>cINTLMemento::GetLocale()</strong></td>
+<td><strong>`cINTLMemento::GetLocale()`</strong></td>
 </tr>
 </tbody>
 </table>
 
-#### cINTLMemento::SetStrategy()
+#### `cINTLMemento::SetStrategy()`
 
 Loads a strategy.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Syntax</strong></th>
-<th>oINTL.SetStrategy(cStrategy, cClassName|oObject)</th>
+<th>oINTL.SetStrategy(cStrategy, cClassName |oObject)</th>
 </tr>
 </thead>
 <tbody>
@@ -2702,21 +2698,21 @@ Loads a strategy.
 </tr>
 <tr>
 <td><strong>See Also</strong></td>
-<td><strong>cINTLMemento::GetStrategy()</strong></td>
+<td><strong>`cINTLMemento::GetStrategy()`</strong></td>
 </tr>
 </tbody>
 </table>
 
 ####
 
-#### cINTLMemento::SetStrategyClass()
+#### `cINTLMemento::SetStrategyClass()`
 
 Sets the class name that is to be used for subsequent strategy object
 instantiations.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Syntax</strong></th>
 <th>oINTL.SetStrategyClass( cStrategy, cStrategyClass</th>
 </tr>
@@ -2737,20 +2733,20 @@ instantiations.
 </tr>
 <tr>
 <td><strong>See Also</strong></td>
-<td><strong>cINTLMemento::GetStrategyClass()</strong></td>
+<td><strong>`cINTLMemento::GetStrategyClass()`</strong></td>
 </tr>
 </tbody>
 </table>
 
-### Class cINTLMemento Protected Properties
+### Class `cINTLMemento` Protected Properties
 
-#### cINTLMemento::aStack
+#### `cINTLMemento`::aStack
 
 This array member stores the stack of INTL configuration properties.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Default</strong></th>
 <th>.NULL.</th>
 </tr>
@@ -2758,21 +2754,21 @@ This array member stores the stack of INTL configuration properties.
 <tbody>
 <tr>
 <td><strong>See Also</strong></td>
-<td><strong>cINTLMemento::Pitch()</strong><br />
-cINTLMemento::Pop()<br />
-cINTLMemento::Push()</td>
+<td><strong>`cINTLMemento::Pitch()`</strong><br />
+`cINTLMemento::Pop()`<br />
+`cINTLMemento::Push()`</td>
 </tr>
 </tbody>
 </table>
 
-#### cINTLMemento::cLang
+#### `cINTLMemento`::cLang
 
 Stores the current language configuration of this particular INTL
 object.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Default</strong></th>
 <th>"Original"</th>
 </tr>
@@ -2780,19 +2776,19 @@ object.
 <tbody>
 <tr>
 <td><strong>See Also</strong></td>
-<td><strong>cINTLMemento::GetLanguage()</strong><br />
-cINTLMemento::SetLanguage()</td>
+<td><strong>`cINTLMemento::GetLanguage()`</strong><br />
+`cINTLMemento::SetLanguage()`</td>
 </tr>
 </tbody>
 </table>
 
-#### cINTLMemento::cLocale
+#### `cINTLMemento`::cLocale
 
 Stores the current locale name of this particular INTL object.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Default</strong></th>
 <th>"Original"</th>
 </tr>
@@ -2800,19 +2796,19 @@ Stores the current locale name of this particular INTL object.
 <tbody>
 <tr>
 <td><strong>See Also</strong></td>
-<td><strong>cINTLMemento::GetLocale()</strong><br />
-cINTLMemento::SetLocale()</td>
+<td><strong>`cINTLMemento::GetLocale()`</strong><br />
+`cINTLMemento::SetLocale()`</td>
 </tr>
 </tbody>
 </table>
 
-#### cINTLMemento::cStringStrategy
+#### `cINTLMemento`::cStringStrategy
 
 Default class name for the string strategy.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Default</strong></th>
 <th>"cINTLString"</th>
 </tr>
@@ -2820,15 +2816,15 @@ Default class name for the string strategy.
 <tbody>
 <tr>
 <td><strong>See Also</strong></td>
-<td><strong>cINTLMemento::GetStrategy()</strong><br />
-cINTLMemento::SetDefaults()<br />
-cINTLMemento::SetStrategy()<br />
-cINTLMemento::aStrat()</td>
+<td><strong>`cINTLMemento::GetStrategy()`</strong><br />
+`cINTLMemento::SetDefaults()`<br />
+`cINTLMemento::SetStrategy()`<br />
+`cINTLMemento::aStrat()`</td>
 </tr>
 </tbody>
 </table>
 
-#### cINTLMemento::lExplicit
+#### `cINTLMemento`::lExplicit
 
 Logical true if the localization is explicit. Explicit localization
 localizes only objects containing "INTL" properties or have associated
@@ -2836,7 +2832,7 @@ references to an INTL object in members named oINTL.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Default</strong></th>
 <th>.F.</th>
 </tr>
@@ -2844,22 +2840,22 @@ references to an INTL object in members named oINTL.
 <tbody>
 <tr>
 <td><strong>See Also</strong></td>
-<td><strong>cINTLMemento::aStrategies[…]</strong><br />
-cINTLMemento::GetStrategy()<br />
-cINTLMemento::SetStrategy()<br />
-cINTLMemento::GetConfig()<br />
-cINTLMemento::SetConfig()</td>
+<td><strong>`cINTLMemento`::aStrategies[…]</strong><br />
+`cINTLMemento::GetStrategy()`<br />
+`cINTLMemento::SetStrategy()`<br />
+`cINTLMemento::GetConfig()`<br />
+`cINTLMemento::SetConfig()`</td>
 </tr>
 </tbody>
 </table>
 
-#### cINTLMemento::nConfig
+#### `cINTLMemento`::nConfig
 
 Stores the configuration integer for this particular object.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Default</strong></th>
 <th>1</th>
 </tr>
@@ -2867,18 +2863,18 @@ Stores the configuration integer for this particular object.
 <tbody>
 <tr>
 <td><strong>See Also</strong></td>
-<td><strong>cINTLMemento::aStrategies[…]</strong><br />
-cINTLMemento::GetConfig()<br />
-cINTLMemento::SetConfig()</td>
+<td><strong>`cINTLMemento`::aStrategies[…]</strong><br />
+`cINTLMemento::GetConfig()`<br />
+`cINTLMemento::SetConfig()`</td>
 </tr>
 </tbody>
 </table>
 
-#### cINTLMemento::nDefaultConfig
+#### `cINTLMemento`::nDefaultConfig
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Default</strong></th>
 <th>3 — meaning both FontName and DynamicFontName are localized.</th>
 </tr>
@@ -2890,17 +2886,17 @@ cINTLMemento::SetConfig()</td>
 </tr>
 <tr>
 <td><strong>See Also:</strong></td>
-<td><strong>cINTLMemento::GetConfig()</strong><br />
-cINTLMemento::SetConfig()<br />
-cINTLMemento::SetDefaults()</td>
+<td><strong>`cINTLMemento::GetConfig()`</strong><br />
+`cINTLMemento::SetConfig()`<br />
+`cINTLMemento::SetDefaults()`</td>
 </tr>
 </tbody>
 </table>
 
 ## Class cINTLPicture
 
-|                                                                 |                                                                                                                                                                                                                                                                                               |
-| --------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| | |
+| ----- | ----- |
 | **Use a cINTLPicture strategy to localize graphical elements.** | A cINTLPicture strategy object is used to localize the graphical elements of your applications, like bitmaps, icons, images and graphical mouse cursors. Picture translations are kept in `strings.dbf` and are prefixed with the characters “((Picture))”. For example: ((Picture))Working.BMP |
 
 ## Class cINTLRightToLeft
@@ -2931,7 +2927,7 @@ open.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Default</strong></th>
 <th>Logical false.</th>
 </tr>
@@ -2943,9 +2939,9 @@ open.
 </tr>
 <tr>
 <td><strong>See Also</strong></td>
-<td><strong>cINTLMemento::aStrategies[…]</strong><br />
-cINTLMemento::GetStrategy()<br />
-cINTLMemento::SetStrategy()</td>
+<td><strong>`cINTLMemento`::aStrategies[…]</strong><br />
+`cINTLMemento::GetStrategy()`<br />
+`cINTLMemento::SetStrategy()`</td>
 </tr>
 </tbody>
 </table>
@@ -2956,7 +2952,7 @@ The default configuration integer.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Default</strong></th>
 <th>1</th>
 </tr>
@@ -2964,9 +2960,9 @@ The default configuration integer.
 <tbody>
 <tr>
 <td><strong>See Also</strong></td>
-<td><strong>cINTLMemento::GetConfig</strong><br />
-cINTLMemento::SetConfig<br />
-cINTLMemento::SetDefaults</td>
+<td><strong>`cINTLMemento`::GetConfig</strong><br />
+`cINTLMemento`::SetConfig<br />
+`cINTLMemento`::SetDefaults</td>
 </tr>
 </tbody>
 </table>
@@ -2979,7 +2975,7 @@ Returns the alias of the resource table used by this strategy.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Syntax</strong></th>
 <th>_SCREEN.oINTL.GetAlias()</th>
 </tr>
@@ -3019,7 +3015,7 @@ Returns the name of the strategy object’s resource table.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Syntax</strong></th>
 <th>_SCREEN.oINTL.GetTable()</th>
 </tr>
@@ -3058,7 +3054,7 @@ Returns the setting for the update mode of the current strategy.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Syntax</strong></th>
 <th>oINTL.&lt;StrategyObject&gt;.GetUpdateMode()</th>
 </tr>
@@ -3092,20 +3088,20 @@ Returns the setting for the update mode of the current strategy.
 
 Handles localization tasks of this particular strategy.
 
-| **Syntax**    | cINTLStrategy.I(expr1, expr2)                                                                                                                                                                                                                                                 |
-| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Return**    | Typically the localization of expr1 according to cINTLMemento::GetLanguage() or cINTLMemento::SetLocale().                                                                                                                                                                    |
+| **Syntax** | cINTLStrategy.I(expr1, expr2) |
+| ----- | ----- |
+| **Return** | Typically the localization of expr1 according to `cINTLMemento`::GetLanguage() or `cINTLMemento::SetLocale()`. |
 | **Arguments** | Varies according to what's required by the strategy subclass instance. Typically expr1 is a string, a number, or a file name to localize. Expr2 is usually an additional qualifier. For example, in a custom currency strategy, expr2 might be used to pass a valuation date. |
 
 #### cINTLStrategy::OpenStrategy()
 
 Open the strategy object’s resource table.
 
-| **Syntax**    | oINTL.OpenStrategy( \[cFileName \[,cOptions\]\])                                                             |
-| ------------- | ------------------------------------------------------------------------------------------------------------ |
-| **Return**    | Logical true if successful, false otherwise.                                                                 |
+| **Syntax** | oINTL.OpenStrategy( \[cFileName \[,cOptions\]\]) |
+| ----- | ----- |
+| **Return** | Logical true if successful, false otherwise. |
 | **Arguments** | cFileName: the name of the table to open as a resource file. This defaults to what’s returned by GetTable(). |
-| **Remarks**   | Some strategies may not use resource tables.                                                                 |
+| **Remarks** | Some strategies may not use resource tables. |
 
 ####
 
@@ -3113,36 +3109,36 @@ Open the strategy object’s resource table.
 
 Sets a new value for the alias of the strategy object’s resource table.
 
-| **Syntax**    | oINTL.SetAlias( cAliasName)                  |
-| ------------- | -------------------------------------------- |
-| **Return**    | Logical true if successful, false otherwise. |
-| **Arguments** | cAlias: the alias of the resource table.     |
-| **Example**   | oINTL.SetAlias( "C:\\NEW\\Strings.DBF")      |
-| **Remarks**   | Some strategies may not use resource tables. |
-| **See Also**  | **cINTLStrategy::GetAlias**                  |
+| **Syntax** | oINTL.SetAlias( cAliasName) |
+| ----- | ----- |
+| **Return** | Logical true if successful, false otherwise. |
+| **Arguments** | cAlias: the alias of the resource table. |
+| **Example** | oINTL.SetAlias( "C:\\NEW\\Strings.DBF") |
+| **Remarks** | Some strategies may not use resource tables. |
+| **See Also** | **cINTLStrategy::GetAlias** |
 
 #### cINTLStrategy::SetTable()
 
 Sets the name of the strategy object’s resource table.
 
-| **Syntax**    | oINTL.SetTable( cFileName)                        |
-| ------------- | ------------------------------------------------- |
-| **Return**    | Logical true if successful, false otherwise.      |
+| **Syntax** | oINTL.SetTable( cFileName) |
+| ----- | ----- |
+| **Return** | Logical true if successful, false otherwise. |
 | **Arguments** | cFilename: the name of a strategy resource table. |
-| **Example**   | oINTL.SetTable("C:\\NEW\\Strings.DBF")            |
-| **Remarks**   | Some strategies may not use resource tables.      |
-| **See Also**  | **cINTLStrategy::GetTable**                       |
+| **Example** | oINTL.SetTable("C:\\NEW\\Strings.DBF") |
+| **Remarks** | Some strategies may not use resource tables. |
+| **See Also** | **cINTLStrategy::GetTable** |
 
 #### cINTLStrategy::SetUpdateMode()
 
 Controls the resource updating behavior of this strategy.
 
-| **Syntax**    | oINTL.SetUpdateMode( lOnOff)                                  |
-| ------------- | ------------------------------------------------------------- |
-| **Return**    | Logical true if successful, false otherwise.                  |
+| **Syntax** | oINTL.SetUpdateMode( lOnOff) |
+| ----- | ----- |
+| **Return** | Logical true if successful, false otherwise. |
 | **Arguments** | lOnOff: logical true to enable update mode, false to disable. |
-| **Remarks**   | Some strategies may not support automatic resource updating.  |
-| **See Also**  | **cINTLStrategy::GetUpdateMode**                              |
+| **Remarks** | Some strategies may not support automatic resource updating. |
+| **See Also** | **cINTLStrategy::GetUpdateMode** |
 
 ### Class cINTLStrategy Protected Properties
 
@@ -3152,7 +3148,7 @@ Stores the alias of the strategy object’s resource table.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Default</strong></th>
 <th>"Strings"</th>
 </tr>
@@ -3176,7 +3172,7 @@ Stores the resource table name to be used by the strategy object.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Default</strong></th>
 <th>"Strings.DBF"</th>
 </tr>
@@ -3202,7 +3198,7 @@ Logical true or false, controlling strategy resource updating.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Default</strong></th>
 <th>.T.</th>
 </tr>
@@ -3228,7 +3224,7 @@ updateable.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Default</strong></th>
 <th>.T.</th>
 </tr>
@@ -3268,8 +3264,8 @@ Here are the exposed properties of class cINTLString.
 
 Stores the name of the string object.
 
-|             |               |
-| ----------- | ------------- |
+| | |
+| ----- | ----- |
 | **Default** | "cINTLString" |
 
 ### Class cINTLString Protected Properties
@@ -3282,7 +3278,7 @@ Stores the current configuration integer for the string strategy.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Default</strong></th>
 <th>7</th>
 </tr>
@@ -3298,7 +3294,7 @@ Stores the current configuration integer for the string strategy.
 </tr>
 <tr>
 <td><strong>See Also</strong></td>
-<td><strong>cINTLMemento::GetConfig()</strong></td>
+<td><strong>`cINTLMemento::GetConfig()`</strong></td>
 </tr>
 </tbody>
 </table>
@@ -3307,10 +3303,10 @@ Stores the current configuration integer for the string strategy.
 
 Stores the default configuration integer for this strategy.
 
-| **Default**  | 7                                                                                                              |
-| ------------ | -------------------------------------------------------------------------------------------------------------- |
-| **Remarks**  | This integer is used in the SetDefaults() method, which is used to restore a strategy to its factory defaults. |
-| **See Also** | **cINTLMemento::SetDefaults**                                                                                  |
+| **Default** | 7 |
+| ----- | ----- |
+| **Remarks** | This integer is used in the SetDefaults() method, which is used to restore a strategy to its factory defaults. |
+| **See Also** | **`cINTLMemento`::SetDefaults** |
 
 ### Class cINTLString Exposed Methods
 
@@ -3321,7 +3317,7 @@ string strategy object.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Syntax</strong></th>
 <th>oINTL.Alang( @aArray)</th>
 </tr>
@@ -3357,7 +3353,7 @@ Creates the resource table used by this strategy object.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Syntax</strong></th>
 <th>oStringStrategy.CreateStrategyTable()</th>
 </tr>
@@ -3375,8 +3371,8 @@ Creates the resource table used by this strategy object.
 <td><strong>Example</strong></td>
 <td><p>_SCREEN.AddObject("oINTL", "INTL")<br />
 LOCAL oX, lcFile</p>
-<p>oX=_Screen.oINTL</p>
-<p>lcFile= oX.oStringStrategy.GetTable()</p>
+<p>oX = _Screen.oINTL</p>
+<p>lcFile = oX.oStringStrategy.GetTable()</p>
 <p>IF !ISNULL( cFile) OR ! FILE( lcFile)</p>
 <p>oX.oStringStrategy.CreateStrategyTable() &amp;&amp; here it is.</p>
 <p>ENDIF</p></td>
@@ -3399,7 +3395,7 @@ table.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Syntax</strong></th>
 <th>oStringStrategy.CreateStrategyCDX()</th>
 </tr>
@@ -3417,8 +3413,8 @@ table.
 <td><strong>Example</strong></td>
 <td><p>_SCREEN.AddObject("oINTL", "INTL")<br />
 LOCAL oX, lcFile</p>
-<p>oX=_Screen.oINTL</p>
-<p>lcFile= oX.oStringStrategy.GetTable()</p>
+<p>oX = _Screen.oINTL</p>
+<p>lcFile = oX.oStringStrategy.GetTable()</p>
 <p>IF !ISNULL( cFile) OR ! FILE( lcFile)</p>
 <p>oX.oStringStrategy.CreateStrategyCDX() &amp;&amp; here it is.</p>
 <p>ENDIF</p></td>
@@ -3440,21 +3436,21 @@ LOCAL oX, lcFile</p>
 
 Iterates through a VFP structure, localizing strings.
 
-| **Syntax**    | oINTL.oStringStrategy.Execute( aStructure|Object)                                      |
-| ------------- | -------------------------------------------------------------------------------------- |
-| **Return**    | Logical true if successful, false otherwise.                                           |
+| **Syntax** | oINTL.oStringStrategy.Execute( aStructure |Object) |
+| ----- | ----- |
+| **Return** | Logical true if successful, false otherwise. |
 | **Arguments** | aStructure: an array of object references, or oObject: a (container) object reference. |
 
 #### cINTLString::IsInResource()
 
 Returns logical true if the passed string is in the resource table.
 
-| **Syntax**    | oINTL.IsInResource( xTest)                                                   |
-| ------------- | ---------------------------------------------------------------------------- |
-| **Return**    | Logical true if the passed string is in the resource table, false otherwise. |
-| **Arguments** | xtest: the element to search in the resource table.                          |
-| **Example**   | oINTL.IsInResource( “Cancel”) && True, probably                              |
-| **Remarks**   | Does not indicate if the resource is localized in the resource table.        |
+| **Syntax** | oINTL.IsInResource( xTest) |
+| ----- | ----- |
+| **Return** | Logical true if the passed string is in the resource table, false otherwise. |
+| **Arguments** | xtest: the element to search in the resource table. |
+| **Example** | oINTL.IsInResource( “Cancel”) && True, probably |
+| **Remarks** | Does not indicate if the resource is localized in the resource table. |
 
 #### cINTLString::IsValidLanguage()
 
@@ -3463,7 +3459,7 @@ strategy object.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Syntax</strong></th>
 <th>oINTL.IsValidLanguage( cLanguage)</th>
 </tr>
@@ -3503,7 +3499,7 @@ Inserts an item into the resource table.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Syntax</strong></th>
 <th>oINTL.ResourceInsert( cString [,cOriginFile])</th>
 </tr>
@@ -3542,7 +3538,7 @@ Sets the configuration of the string strategy object.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Syntax</strong></th>
 <th>oINTL.oStringStrategy.SetConfig( nConfigInteger)</th>
 </tr>
@@ -3579,12 +3575,12 @@ Sets the configuration of the string strategy object.
 
 This method updates the resource file with the passed argument.
 
-| **Syntax**    | oINTL.UpdateResource( xArgument)                                                                                                                                                                 |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Return**    | Logical true always.                                                                                                                                                                             |
-| **Arguments** | xArgument: the value to insert into the resource table.                                                                                                                                          |
-| **Remarks**   | Note that the UpdateResource() method unconditionally inserts values into the resource table without regard for duplication or type checking. Some strategies may not support resource updating. |
-| **See Also**  | **cINTLStrategy::GetUpdateMode**                                                                                                                                                                 |
+| **Syntax** | oINTL.UpdateResource( xArgument) |
+| ----- | ----- |
+| **Return** | Logical true always. |
+| **Arguments** | xArgument: the value to insert into the resource table. |
+| **Remarks** | Note that the UpdateResource() method unconditionally inserts values into the resource table without regard for duplication or type checking. Some strategies may not support resource updating. |
+| **See Also** | **cINTLStrategy::GetUpdateMode** |
 
 # Localizing VFP Menus
 
@@ -3611,7 +3607,7 @@ In general terms, GENMENUX works as follows:
     drivers can add, edit or delete records in the temporary file.
 
 3.  The modified temporary file is processed by the standard FoxPro
-    GENMENU.PRG <span class="smallcaps">(</span>or any routine you
+    GENMENU.PRG <span class ="smallcaps">(</span>or any routine you
     specify) to generate a temporary source file (MPR), whose output is
     stored in a temporary memo field.
 
@@ -3642,18 +3638,18 @@ benefit from INTL at run-time.
     sure you have the correct CONFIG.FP file. In CONFIG.FP, add the
     following lines:
 
-\_GENMENU=\<PATH<span class="smallcaps">\>\\</span>GENMENUX.PRG
+\_GENMENU =<PATH<span class ="smallcaps">>\</span>GENMENUX.PRG
 
-\_MNXDRV2=INTL
+\_MNXDRV2 = INTL
 
   - For now, to avoid re-starting FoxPro, set the following system
     memory variables:
 
-\_GENMENU="\<PATH<span class="smallcaps">\>\\</span>GENMENUX.PRG"
+\_GENMENU ="<PATH<span class ="smallcaps">>\</span>GENMENUX.PRG"
 
   - Add I.PRG and MSGSVC.PRG to your project.
 
-  - Put STRINGS<span class="smallcaps">.DBF/FPT/CDX</span> and
+  - Put STRINGS<span class ="smallcaps">.DBF/FPT/CDX</span> and
     MSGSVC.DBF/FPT/CDX in your project root directory. Data files are
     opened automatically by INTL functions if they aren’t already
     opened. You may keep these tables where you wish, but you must
@@ -3679,7 +3675,7 @@ benefit from INTL at run-time.
 
 When you run your application, all the screen and menu strings will be
 automatically appended (as they are encountered) to the cOriginal field
-of `strings.dbf`<span class="smallcaps">.</span> Since no Spanish
+of `strings.dbf`<span class ="smallcaps">.</span> Since no Spanish
 translation entries exist yet, you will see the English (or cOriginal)
 phrases.
 
@@ -3688,7 +3684,7 @@ field into Spanish.
 
 ## INTL CONFIG.FPW Menu Statements
 
-The following <span class="smallcaps">CONFIG.FP</span> statements
+The following <span class ="smallcaps">CONFIG.FP</span> statements
 activate INTL behavior and control INTL processes.
 
 #### \_GENMENU
@@ -3696,22 +3692,22 @@ activate INTL behavior and control INTL processes.
 This is the native FoxPro statement to specify which menu generator
 program to use. We absolutely need this to be:
 
-\_GENMENU=\<expC PATH\\\>GENMENUX.PRG.
+\_GENMENU =<expC PATH\\>GENMENUX.PRG.
 
 #### \_INTLEXPLICIT
 
 Used to put INTL in "explicit" mode, whereby INTL will only localize
-objects containing \*:INTL EXPLICIT in the comment snippet. Useful for
+objects containing *:INTL EXPLICIT in the comment snippet. Useful for
 creating subtle same-language variants. Default is OFF.
 
-Example: \_INTLEXPLICIT=ON
+Example: \_INTLEXPLICIT = ON
 
 #### \_INTLLANG
 
 Used to specify the language of localization. There must be an
 equivalent "c" plus language field in the STRINGS table.
 
-Example: \_INTLLANG=French
+Example: \_INTLLANG = French
 
 ...assumes a cFrench field exists in the STRINGS table.
 
@@ -3724,73 +3720,73 @@ Controls the type of localization to be performed. The acceptable values
 are RUN and GENERATE. The default is RUN**.** One way to change this
 default is to change the appropriate \#DEFINE statement in INTL.PRG.
 
-Example: \_INTLTIMING=RUN
+Example: \_INTLTIMING = RUN
 
 This setting is overridden by the m.\_INTLTIMING build-time memory
 variable explained below.
 
-#### \_INTLUPDATE "OFF"|"ON"|\<Path\>
+#### \_INTLUPDATE "OFF" |"ON" |<Path>
 
 Controls whether the STRINGS table is refreshed at generate-time.
 Arguments are either OFF (the default), ON, or the path to `strings.dbf`,
 which acts as an implicit ON.
 
-Example: \_INTLUPDATE=C:\\MyProj\\
+Example: \_INTLUPDATE = C:\\MyProj\\
 
 #### \_MNXDRV2
 
 This instructs GENMENUX to process each menu record with the proper
 drivers. We use the second hook in GENMENUX for the INTL
-driver<span class="smallcaps">.</span>
+driver<span class ="smallcaps">.</span>
 
-Example: \_MNXDRV2=INTL
+Example: \_MNXDRV2 = INTL
 
-This is overridden by the \*:MNXDRV2 menu setup snippet directive.
+This is overridden by the *:MNXDRV2 menu setup snippet directive.
 
 ## INTL Menu Memory Variables
 
 The following memory variables will override the commands set in
-<span class="smallcaps">CONFIG.FP.</span>
+<span class ="smallcaps">CONFIG.FP.</span>
 
 #### m.\_GENMENU
 
-<span class="smallcaps">S</span>pecifies which menu generation program
+<span class ="smallcaps">S</span>pecifies which menu generation program
 to use.
 
-#### m.\_INTLEXPLICIT= "ON"|"OFF"
+#### m.\_INTLEXPLICIT = "ON" |"OFF"
 
 Used to put INTL in "explicit" mode, whereby INTL will only localize
-objects containing \*:INTL EXPLICIT in the comment snippet. Useful for
+objects containing *:INTL EXPLICIT in the comment snippet. Useful for
 creating subtle same-language variants. Default is "OFF".
 
-Example: m.\_INTLEXPLICIT="ON"
+Example: m.\_INTLEXPLICIT ="ON"
 
 #### m.\_INTLLANG
 
 Used to specify the language of localization. There must be an
 equivalent "c" plus language field in the STRINGS table. Example:
-m.\_INTLLANG="French" ...assumes a cFrench field exists in the STRINGS
+m.\_INTLLANG ="French" ...assumes a cFrench field exists in the STRINGS
 table.
 
-#### m.\_INTLUPDATE= "OFF"|"ON"|\<Path\>
+#### m.\_INTLUPDATE = "OFF" |"ON" |<Path>
 
 Controls whether the STRINGS table is refreshed at generate-time.
 Arguments are either OFF (the default), ON, or the path to `strings.dbf`,
 which acts as an implicit ON.
 
-Example: \_INTLUPDATE=C:\\MyProj\\
+Example: \_INTLUPDATE = C:\\MyProj\\
 
 ## Two Very Useful GENMENUX Comment Directives
 
 GENMENUX comes with a number of built-in directives. Two of them are of
 special interest in creating multilingual applications:
 
-#### \*:IF \<expC\>
+#### *:IF <expC>
 
 Placed in the comment snippet of an object, it will *bracket* the object
-with the specified <span class="smallcaps">if</span> statement.
+with the specified <span class ="smallcaps">if</span> statement.
 
-#### \*:DELETE
+#### *:DELETE
 
 Placed in the comment snippet of an object, this will suppress the
 object at generate time.
@@ -3801,7 +3797,7 @@ object at generate time.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Interface messages are fundamentally different than simple interface strings.</strong></th>
 <th><p>Because of their nature, dialog messages are different from other simple interface strings. Simple interface strings are short – typically a word, a phrase, or a sentence. Messages in dialogs can be long, multi-sentenced, and sometimes contain one or more variable components.</p>
 <p>Furthermore, dialogs are often used to get responses from users, and that triggers program branching. It’s important to get dialogs right because they are so visible, both to the user and to the developer mucking around in source code.</p></th>
@@ -3841,7 +3837,7 @@ To use MsgSvc(), you need:
     that MsgSvc() can find it (in the application’s root or in the VFP
     path).
 
-Call MsgSvc(\<expC\>) whenever you need to display a simple dialog, WAIT
+Call MsgSvc(<expC>) whenever you need to display a simple dialog, WAIT
 WINDOW, text block, or thermometer bar.
 
 ## MSGSVC() Dialog Return Values
@@ -3852,7 +3848,7 @@ list of the possible data types returned by MsgSvc() dialogs:
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th>cRetType</th>
 <th>MsgSvc() Returns</th>
 </tr>
@@ -3904,47 +3900,47 @@ key can be any string you like.
 For source readability reasons, I like the key to be representative of
 what the message delivers. For example:
 
-\=MsgSvc( "Printer Not Responding")
+\= MsgSvc( "Printer Not Responding")
 
 If a MsgSvc() call is made with an argument that doesn’t exist in the
 cKey field of MSGSVC.DBF, then MsgSvc() appends a new record to
-MSGSVC.DBF and displays a dialog with an \<OK\> push button having the
+MSGSVC.DBF and displays a dialog with an <OK> push button having the
 calling argument for a message.
 
 #### Field MsgSvc.cFunction
 
 The cFunction field controls the type of message generated by MSGSVC().
 
-| Cfunction   | Result                                                                                                                                                                                                |
-| ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Blank       | Produces a dialog with an \<ok\> push button.                                                                                                                                                         |
-| ARI         | Produces an \<abort\>\<retry\>\<ignore\> push button.                                                                                                                                                 |
-| NY          | Produces a dialog with \<no\>\<yes\> push buttons.                                                                                                                                                    |
-| NYC         | Produces a dialog with \<no\>\<yes\>\<cancel\> push buttons.                                                                                                                                          |
-| OC          | Produces an \<ok\>\<cancel\> push button dialog.                                                                                                                                                      |
-| Ok          | Produces a dialog with an \<ok\> push button.                                                                                                                                                         |
-| RC          | Produces a \<Retry\>\<Cancel\> dialog.                                                                                                                                                                |
-| TEXT        | Returns the message as a stream of text, useful for placing blocks of text on screen. Embedded carriage returns are expected, with the "|" character serving as an additional carriage return symbol. |
-| Tip         | Produces a "Tip-of-the-Day" dialog.                                                                                                                                                                   |
-| WAIT        | Produces a WAIT WINDOW dialog.                                                                                                                                                                        |
-| WAIT NOWAIT | Produces a WAIT WINDOW...NOWAIT dialog.                                                                                                                                                               |
-| Working     | Brings forth a modeless "Working" type of dialog that can be cleared with a parameterless MsgSvc() call.                                                                                              |
-| YN          | Produces a dialog with \<yes\>\<no\> push buttons.                                                                                                                                                    |
-| YNC         | Produces a dialog with \<yes\>\<no\>\<cancel\> push buttons.                                                                                                                                          |
+| Cfunction | Result |
+| ----- | ----- |
+| Blank | Produces a dialog with an <ok> push button. |
+| ARI | Produces an <abort> <retry> <ignore> push button. |
+| NY | Produces a dialog with <no> <yes> push buttons. |
+| NYC | Produces a dialog with <no> <yes> <cancel> push buttons. |
+| OC | Produces an <ok> <cancel> push button dialog. |
+| Ok | Produces a dialog with an <ok> push button. |
+| RC | Produces a <Retry> <Cancel> dialog. |
+| TEXT | Returns the message as a stream of text, useful for placing blocks of text on screen. Embedded carriage returns are expected, with the " |" character serving as an additional carriage return symbol. |
+| Tip | Produces a "Tip-of-the-Day" dialog. |
+| WAIT | Produces a WAIT WINDOW dialog. |
+| WAIT NOWAIT | Produces a WAIT WINDOW...NOWAIT dialog. |
+| Working | Brings forth a modeless "Working" type of dialog that can be cleared with a parameterless MsgSvc() call. |
+| YN | Produces a dialog with <yes><no> push buttons. |
+| YNC | Produces a dialog with <yes><no><cancel> push buttons. |
 
 ***Personalized Push Buttons*** may be created with semi-colon delimited
 syntax in the cFunction field. For example, the following field values
 will produce the dialog with the custom push button array shown below.
 
-\=MsgSvc( “Spock\!”)
+\= MsgSvc( “Spock!”)
 
-| Field      | Value                                   |
-| ---------- | --------------------------------------- |
-| CKEY       | “Spock\!”                               |
-| CFUNCTION  | "\\\<Phasers;\\\<Lasers;\\\<Run Away"   |
-| CTITLE     | "MSGSVC() Custom Button Example"        |
-| CORIGINAL  | "What do you want to do now, Mr Spock?" |
-| CGUIVISUAL | "Info.BMP"                              |
+| Field | Value |
+| ----- | ----- |
+| CKEY | “Spock!” |
+| CFUNCTION | "\\<Phasers;\\<Lasers;\\<Run Away" |
+| CTITLE | "MSGSVC() Custom Button Example" |
+| CORIGINAL | "What do you want to do now, Mr Spock?" |
+| CGUIVISUAL | "Info.BMP" |
 
 All the elements of the dialog are localized by the INTL Toolkit. So the
 title and push button text all get referenced to foreign-language
@@ -3953,7 +3949,7 @@ equivalents in the `strings.dbf` table.
 #### Field MsgSvc.cOriginal
 
 The text message, in the developer’s tongue, that you want to display.
-The "|" character can be used (as can hard-returns) to create line
+The " |" character can be used (as can hard-returns) to create line
 breaks.
 
 #### Field MsgSvc.cFrench, cGerman, cSpanish....
@@ -4005,7 +4001,7 @@ Examples of the syntax in this field are:
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th>cGUIVisual</th>
 <th>Result</th>
 </tr>
@@ -4092,13 +4088,13 @@ or WAIT NOWAIT, then a WAIT WINDOW or a WAIT WINDOW NOWAIT is created.
 By default, an empty cFunction field produces a single "OK" button. Here
 are the main items that created the dialog below:
 
-| Field      | Value                              |
-| ---------- | ---------------------------------- |
-| cKey       | Construction Zone                  |
-| cTitle     | (Blank)                            |
-| cFunction  | (Blank)                            |
-| cGUIVisual | WORK.BMP                           |
-| cOriginal  | Sorry\!|Feature Under Construction |
+| Field | Value |
+| ----- | ----- |
+| cKey | Construction Zone |
+| cTitle | (Blank) |
+| cFunction | (Blank) |
+| cGUIVisual | WORK.BMP |
+| cOriginal | Sorry! |Feature Under Construction |
 
 ![](./media/image19.wmf)
 
@@ -4106,19 +4102,19 @@ Note that since the cTitle field is blank, the title under FoxPro for
 Windows follows standard Microsoft application design guidelines,
 therefore the name of the application issuing the message—in this case I
 was running MsgSvc() from the command window. The blank cFunction field
-issues an \<OK\> push button by default.
+issues an <OK> push button by default.
 
 The icon is **always** **assumed to be 32x32 pixels in size.**
 
 ### A Simple Yes/No Dialog
 
-| Field      | Value                     |
-| ---------- | ------------------------- |
-| cKey       | Construction Zone         |
-| cTitle     | This is the Window        |
-| cFunction  | YN                        |
-| cGUIVisual | (Blank)                   |
-| cOriginal  | "Archive tagged message?" |
+| Field | Value |
+| ----- | ----- |
+| cKey | Construction Zone |
+| cTitle | This is the Window |
+| cFunction | YN |
+| cGUIVisual | (Blank) |
+| cOriginal | "Archive tagged message?" |
 
 Note the use of YN, a standard cFunction button specification.
 
@@ -4129,20 +4125,20 @@ Note the use of YN, a standard cFunction button specification.
 If the second passed parameter to MsgSvc() is type character, then
 string substitution will take place. Consider the following example:
 
-| Field     | Value                             |
-| --------- | --------------------------------- |
-| cKey      | Swap                              |
+| Field | Value |
+| --------- | ----- |
+| cKey | Swap |
 | cOriginal | Hello %C1%, how's your %C2% %C3%? |
 
 Calling this dialog as follows:
 
-\=MSGSVC( "Swap", "Bill\~lovely wife\~Chloe")
+\= MSGSVC( "Swap", "Bill\~lovely wife\~Chloe")
 
 yields the message "Hello Bill, how's your lovely wife Chloe?"
 
 Similarly,
 
-\=MSGSVC( "Swap", "Bob\~back")
+\= MSGSVC( "Swap", "Bob\~back")
 
 yields the message "Hello Bill, how's your back ?"
 
@@ -4154,49 +4150,49 @@ variables at runtime.
 If one of the MsgSvc() parameters is numeric, you’ll get a thermometer
 bar. The general call to MsgSvc() to create a thermometer is as follows:
 
-\=MSGSVC( \<expC\>, \<expN\>)
+\= MSGSVC( <expC>, <expN>)
 
-Where \<expC\> is the message to display in the dialog. The message
+Where <expC> is the message to display in the dialog. The message
 character expressions are automatically passed through the `strings.dbf`
 mechanism, so no need to localize the thermometer calls. The numeric
-\<expN\> (if between 0 and 99.99) triggers and configures a thermometer
+<expN> (if between 0 and 99.99) triggers and configures a thermometer
 bar.
 
 The first call to the thermometer bar produces a message on the first
 line of the window. Subsequent calls place new messages on the second
 line, which overwrites any message previously there.
 
-Calling the thermometer function with \<expN\> = 100 causes the window
+Calling the thermometer function with <expN> = 100 causes the window
 to be deactivated after a very brief period.
 
 For example, the following lines produce the sequence of thermometer
 bars:
 
-\=MSGSVC("A Process is happening", 10)
+\= MSGSVC("A Process is happening", 10)
 
 ![](./media/image21.wmf)
 
-\=MSGSVC("Step 1 is complete", 40)
+\= MSGSVC("Step 1 is complete", 40)
 
 ![](./media/image22.wmf)
 
-\=MSGSVC("We're almost done", 75)
+\= MSGSVC("We're almost done", 75)
 
 ![](./media/image23.wmf)
 
-\=MSGSVC("Done\!", 100)
+\= MSGSVC("Done!", 100)
 
   - Dialog disappears
 
 You can quickly create a thermometer bar with this simple call:
 
-\=MSGSVC( 30)
+\= MSGSVC( 30)
 
 ![](./media/image24.wmf)
 
 To get a more minimalist thermometer bar, try this:
 
-\=MSGSVC( 30, “NoButton NoText”)
+\= MSGSVC( 30, “NoButton NoText”)
 
 ![](./media/image25.wmf)
 
@@ -4213,7 +4209,7 @@ You can use MsgSvc() to create a Tip of the Day dialog. All the records
 in MsgSvc() having a cKey field value of "Tip" will automatically appear
 in the Tip of the Day dialog. Invoke Tip of the Day as follows:
 
-\=MSGSVC("Tip")
+\= MSGSVC("Tip")
 
 Tips are kept in MSGSVC.DBF with a cKey value of “Tip”. When the Tip of
 the Day dialog is invoked, a random tip is selected, and thereafter the
@@ -4228,7 +4224,7 @@ user can move sequentially through tips, invoke help, etc.
 **Yet using interface strings in code is natural and makes for better readability.** Consider the following pseudo-code. It has good readability because the lcAction memory variable contains plain-language tokens that helps the reader identify what is happening. Using plain-language interface items in code is inherently natural and maintainable.
 
 ```
-lcAction= MyDialog( "Ask User Something")
+lcAction = MyDialog( "Ask User Something")
 DO CASE
 
 CASE lcAction = "Retry"
@@ -4242,14 +4238,12 @@ CASE lcActions = "Cancel"
 ENDCASE
 ```
 
-**MsgSvc has the ability to return original-language strings even if the message is in another language.** Depending on how you construct the code, localizing something like this can bring on a lot of unnecessary complexity. If you think about it, in a perfect world, **none of the code above merits translation\!** Sure, the logic contains English text, but why not put all the localization within the `MyDialog()` function?
+**MsgSvc has the ability to return original-language strings even if the message is in another language.** Depending on how you construct the code, localizing something like this can bring on a lot of unnecessary complexity. If you think about it, in a perfect world, **none of the code above merits translation!** Sure, the logic contains English text, but why not put all the localization within the `MyDialog()` function?
 
 # INTLTool
 
 ## Iterators And Visitors
 
-|                                                                        |                                                                                                                                                                                                                                                                                                                       |
-| ---------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Iterators traverse structures, and Visitors control the iterators.** | This section describes INTL tools that are designed to make localization tasks a little easier. There are two classes of tools: the *iterator* class traverses VFP structures (like project, form and report tables); and the *visitor* class conducts operations on the structures being traversed by an *iterator*. |
 
 All the INTL tools work essentially the same way: VFP structures are
@@ -4259,7 +4253,7 @@ operations.
 
 I expect this set of tools to evolve considerably over time. Please
 check the help file and the website at
-[<span class="underline">http://www.steveblack.com</span>](http://www.steveblack.com/)
+[<span class ="underline">http://www.steveblack.com</span>](http://www.steveblack.com/)
 for the latest word on what iterator and visitor capabilities are
 included with your software.
 
@@ -4272,13 +4266,13 @@ SET PROC TO INTLTool
 
 *-- Create a project iterator
 
-oIterator= create( "CProjectIterator", cProjectFile)
+oIterator = create( "CProjectIterator", cProjectFile)
 
 *-- Create an object to "visit" a the project
 
 oVisitor = create( "cINTLUpdateVisitor")
 
-*-- Go\!
+*-- Go!
 
 oIterator.Accept( oVisitor)
 
@@ -4301,19 +4295,15 @@ object can be created.
 You can do a batch update of `strings.dbf` for all the interface strings
 in a single form with the following invocation:
 
+```
 SET PROC TO INTLTool
-
 *-- Create a form iterator
-
-oIterator= create( "CSCXIterator", cScxFile)
-
+oIterator = create( "CSCXIterator", cScxFile)
 *-- Create an object to "visit" a the form
-
 oVisitor = create( "cINTLUpdateVisitor")
-
-*-- Go\!
-
+*-- Go!
 oIterator.Accept( oVisitor)
+```
 
 In the code above, the following things happen:
 
@@ -4334,20 +4324,15 @@ object can be created.
 You can do a batch update of `strings.dbf` for all the interface strings
 in a single visual class library with the following invocation:
 
+```
 SET PROC TO INTLTools
-
 *-- Create a form iterator
-
-oIterator= create( "CVCXIterator", cVcxFile)
-
+oIterator = create( "CVCXIterator", cVcxFile)
 *-- Create an object to "visit" a the visual class library
-
 oVisitor = create( "cINTLUpdateVisitor")
-
-*-- Go\!
-
+*-- Go!
 oIterator.Accept( oVisitor)
-
+```
 In the code above, the following things happen:
 
 1.  A visual class library iterator is created.
@@ -4367,19 +4352,15 @@ object can be created.
 You can do a batch update of `strings.dbf` for all the interface strings
 in a single menu file with the following invocation:
 
+```
 SET PROC TO INTLTools
-
 *-- Create a menu table iterator
-
-oIterator= create( "CMNXIterator", cMnxFile)
-
+oIterator = create( "CMNXIterator", cMnxFile)
 *-- Create an object to "visit" a the menu
-
 oVisitor = create( "cINTLUpdateVisitor")
-
-*-- Go\!
-
+*-- Go!
 oIterator.Accept( oVisitor)
+```
 
 In the code above, the following things happen:
 
@@ -4404,13 +4385,13 @@ SET PROC TO INTLTools
 
 *-- Create a menu table iterator
 
-oIterator= create( "CFRXIterator", cFrxFile)
+oIterato = create( "CFRXIterator", cFrxFile)
 
 *-- Create an object to "visit" a the report
 
 oVisitor = create( "cINTLUpdateVisitor")
 
-*-- Go\!
+*-- Go!
 
 oIterator.Accept( oVisitor)
 
@@ -4441,12 +4422,12 @@ SET PROC TO Intltool
 
 *-- Create a project iterator
 
-oIterator=create("CProjectIterator",HOME()+
+oIterato = create("CProjectIterator",HOME()+
 "SAMPLES\\MAINSAMP\\Tastrade")
 
 *-- Create a report visitor
 
-oVisitor=createobject("cINTLReportTransformVisitor")
+oVisito = createobject("cINTLReportTransformVisitor")
 
 *-- Have the visitor visit the iterator
 
@@ -4459,19 +4440,15 @@ Transformation Visitor on a FRX Iterator, like in the following example:
 
 **Example:** enable a single .FRX named MyReport.FRX.
 
+```
 SET PROC TO Intltool
-
 *-- Create a project iterator
-
-oIterator=create("CFRXIterator", "MyReport.FRX")
-
+oIterator = create("CFRXIterator", "MyReport.FRX")
 *-- Create a report visitor
-
-oVisitor=createobject("cINTLReportTransformVisitor")
-
+oVisitor = createobject("cINTLReportTransformVisitor")
 *-- Have the visitor visit the iterator
-
 oIterator.Accept( oVisitor)
+```
 
 ## INTL Iterator Classes
 
@@ -4485,7 +4462,7 @@ pointer, and welcoming visitor classes that do most of the specialized
 (non-navigation) work.
 
 You can use this iterator class for a variety of uses unrelated to INTL.
-Create your own visitors to manage your VFP source— it's easy\!
+Create your own visitors to manage your VFP source— it's easy!
 
 ### Overview of the INTLIterator Class
 
@@ -4503,7 +4480,7 @@ iterator's services.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th>Syntax</th>
 <th>oIterator.Accept( oVisitor)</th>
 </tr>
@@ -4521,7 +4498,7 @@ iterator's services.
 <td>Example</td>
 <td><p>SET PROC TO INTLTools</p>
 <p>*-- Create a menu table iterator</p>
-<p>oIterator= create( "CFRXIterator", cProjectFile)</p>
+<p>oIterator = create( "CFRXIterator", cProjectFile)</p>
 <p>*-- Create an object to "visit" a the report</p>
 <p>oVisitor = create( "cINTLUpdateVisitor")</p>
 <p>*-- Go!</p>
@@ -4538,7 +4515,7 @@ Closes the table being used by this iterator.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th>Syntax</th>
 <th>oIterator.Close()</th>
 </tr>
@@ -4553,7 +4530,7 @@ Closes the table being used by this iterator.
 <td><p>SET PROC TO INTLTools</p>
 <p>*-- Create a menu table iterator. This opens</p>
 <p>*-- MYPROJECT.PJX as a table</p>
-<p>oIterator= create( "CFRXIterator", "MyProject.Pjx")</p>
+<p>oIterator = create( "CFRXIterator", "MyProject.Pjx")</p>
 <p>*--</p>
 <p>* Now, for some reason, close the MYPROJECT.PJX table</p>
 <p>oIterator.Close()</p></td>
@@ -4565,16 +4542,16 @@ Closes the table being used by this iterator.
 
 Moves the iterator index to the first item in the structure.
 
-| Syntax | oIterator.First()                               |
-| ------ | ----------------------------------------------- |
+| Syntax | oIterator.First() |
+| ------ | ----- |
 | Return | Logical true if successful, false if otherwise. |
 
 #### INTLIterator::GetAlias()
 
 Returns the alias of the structure being iterated.
 
-| Syntax | oIterator.GetAlias()                       |
-| ------ | ------------------------------------------ |
+| Syntax | oIterator.GetAlias() |
+| ------ | ----- |
 | Return | The alias of the structure being iterated. |
 
 #### INTLIterator::GetCurrent()
@@ -4584,32 +4561,32 @@ specified, this function returns .NULL. For the cProjectIterator class,
 the GetCurrent() method returns the full path and file name of the
 current project record.
 
-| Syntax | oIterator.GetCurrent()                                             |
-| ------ | ------------------------------------------------------------------ |
+| Syntax | oIterator.GetCurrent() |
+| ------ | ----- |
 | Return | Usually .NULL. unless otherwise specified by the class definition. |
 
 #### INTLIterator::GetStructure()
 
 Returns the name of the structure being iterated.
 
-| Syntax | oIterator.GetStructure()              |
-| ------ | ------------------------------------- |
+| Syntax | oIterator.GetStructure() |
+| ------ | ----- |
 | Return | The name of the table being iterated. |
 
 #### INTLIterator::Last()
 
 Navigates the iterator index to the last item in the structure.
 
-| Syntax | oIterator.Last()                                |
-| ------ | ----------------------------------------------- |
+| Syntax | oIterator.Last() |
+| ------ | ----- |
 | Return | Logical true if successful, false if otherwise. |
 
 #### INTLIterator::Next()
 
 Navigates the iterator index to the next item in the structure.
 
-| Syntax | oIterator.Next()                                |
-| ------ | ----------------------------------------------- |
+| Syntax | oIterator.Next() |
+| ------ | ----- |
 | Return | Logical true if successful, false if otherwise. |
 
 ####
@@ -4618,16 +4595,16 @@ Navigates the iterator index to the next item in the structure.
 
 Opens the table associated with this iterator.
 
-| Syntax | oIterator.Open()                                |
-| ------ | ----------------------------------------------- |
+| Syntax | oIterator.Open() |
+| ------ | ----- |
 | Return | Logical true if successful, false if otherwise. |
 
 #### INTLIterator::Prior()
 
 Moves the iterator to the prior record in the structure.
 
-| Syntax | oIterator.Prior()                               |
-| ------ | ----------------------------------------------- |
+| Syntax | oIterator.Prior() |
+| ------ | ----- |
 | Return | Logical true if successful, false if otherwise. |
 
 #### INTLIterator::ProgrammaticChange
@@ -4636,16 +4613,16 @@ The ProgrammaticChange() method is triggered after each navigation
 method. The navigation methods are First(), Last(), Next(), Prior(), and
 Open().
 
-|        |                                |
-| ------ | ------------------------------ |
+| | |
+| ------ | ----- |
 | Syntax | oIterator.ProgrammaticChange() |
 
 #### INTLIterator::Release()
 
 Releases the iterator object.
 
-| Syntax | oIterator.Release()                             |
-| ------ | ----------------------------------------------- |
+| Syntax | oIterator.Release() |
+| ------ | ----- |
 | Return | Logical true if successful, false if otherwise. |
 
 ## Class INTLVisitor
@@ -4663,8 +4640,8 @@ Here is a diagram of the INTL Visitor class.
 
 Releases the visitor object.
 
-| Syntax | oVisitor.Destroy()                           |
-| ------ | -------------------------------------------- |
+| Syntax | oVisitor.Destroy() |
+| ------ | ----- |
 | Return | Logical true if successful, false otherwise. |
 
 #### INTLVisitor::PropSrch()
@@ -4673,7 +4650,7 @@ Returns a property from the properties memo fields in the structure.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th>Syntax</th>
 <th>oVisitor.PropSrch( cMemo, cProperty[, nOccurence])</th>
 </tr>
@@ -4693,7 +4670,7 @@ Returns a property from the properties memo fields in the structure.
 <td>Example</td>
 <td><p>USE MyScx.Scx</p>
 <p>Skip 10 &amp;&amp; Go to some record</p>
-<p>lcCaption= oVisitor.PropSrch( Properties, "Caption")</p></td>
+<p>lcCaption = oVisitor.PropSrch( Properties, "Caption")</p></td>
 </tr>
 </tbody>
 </table>
@@ -4704,7 +4681,7 @@ Visit a code file, such as a .PRG, .H, .MPR.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Syntax</strong></th>
 <th>oVisitor.VisitCode( cFileName)</th>
 </tr>
@@ -4722,7 +4699,7 @@ Visit a code file, such as a .PRG, .H, .MPR.
 <td><strong>Example</strong></td>
 <td><p>*-- This will update `strings.dbf` with</p>
 <p>*-- parameters to I() calls in code.</p>
-<p>oVisitor=CREATE("INTLUpdateVisitor")</p>
+<p>oVisitor = CREATE("INTLUpdateVisitor")</p>
 <p>oVisitor.VisitCode( "Main.Prg")</p></td>
 </tr>
 <tr>
@@ -4738,20 +4715,20 @@ Visit a code file, such as a .PRG, .H, .MPR.
 
 Returns the name of the source file currently being visited.
 
-| **Syntax**    | oVisitor.GetCurrentSourceID( \[oIterator\])                                                          |
-| ------------- | ---------------------------------------------------------------------------------------------------- |
-| **Return**    | Character name of the source file currently being visited.                                           |
+| **Syntax** | oVisitor.GetCurrentSourceID( \[oIterator\]) |
+| ----- | ----- |
+| **Return** | Character name of the source file currently being visited. |
 | **Arguments** | toIterator: object reference to an iterator, the default being the iterator currently being visited. |
 
 #### INTLVisitor::VisitExpression()
 
 The code to execute on expressions.
 
-| **Syntax**    | oVisitor.VisitExpression( cExpression)       |
-| ------------- | -------------------------------------------- |
-| **Return**    | Logical true always.                         |
+| **Syntax** | oVisitor.VisitExpression( cExpression) |
+| ----- | ----- |
+| **Return** | Logical true always. |
 | **Arguments** | cExpression: the expression to be processed. |
-| **See Also**  | **INTLVisitor::VisitString()**               |
+| **See Also** | **INTLVisitor::VisitString()** |
 
 #### INTLVisitor::VisitSCXRecord()
 
@@ -4759,7 +4736,7 @@ The code to execute on form records.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Syntax</strong></th>
 <th>oVisitor.VisitSCXRecord( oIterator)</th>
 </tr>
@@ -4787,7 +4764,7 @@ The code to execute on menu records.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Syntax</strong></th>
 <th>oVisitor.VisitFRXRecord( oIterator)</th>
 </tr>
@@ -4815,7 +4792,7 @@ The code to execute on Visual FoxPro tables.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Syntax</strong></th>
 <th>oVisitor.VisitPJX( oIterator)</th>
 </tr>
@@ -4844,7 +4821,7 @@ The code to execute on project tables.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Syntax</strong></th>
 <th>oVisitor.VisitPJX( oIterator)</th>
 </tr>
@@ -4877,7 +4854,7 @@ The code to execute on report tables.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>Syntax</strong></th>
 <th>oVisitor.VisitFRXRecord( oIterator)</th>
 </tr>
@@ -4903,25 +4880,21 @@ INTLVisitor::VisitString()</td>
 
 The code to execute on character strings.
 
-| **Syntax**    | oVisitor.VisitString( cString)             |
-| ------------- | ------------------------------------------ |
-| **Return**    | Logical true always.                       |
+| **Syntax** | oVisitor.VisitString( cString) |
+| ----- | ----- |
+| **Return** | Logical true always. |
 | **Arguments** | cString: the character string to act upon. |
-| **Example**   | oVisitor.VisitString( "Postal Code")       |
+| **Example** | oVisitor.VisitString( "Postal Code") |
 
 # Extend INTL
 
 ## Creating and Using Hooks
 
-|                                                                        |                                                                                                                                                                                                                    |
-| ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **The cINTLAbstract class serves to define the INTL class interface.** | Class cINTLAbstract defines the INTL class interface and is provided to spawn convenient hook objects for any INTL class. Use subclasses of cINTLAbstract to hook INTL classes without changing their source code. |
+**The `cINTLAbstract` class serves to define the INTL class interface.** Class `cINTLAbstract` is provided to spawn convenient hook objects for any INTL class. Use subclasses of `cINTLAbstract` to hook INTL classes without changing their source code.
 
 ### What are Hooks?
 
-|                                                                                  |                                                                                                                                                                                                                                                                    |
-| -------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **All INTL classes have a oHook property that can point to other INTL objects.** | All INTL objects possess a oHook property. The oHook property is meant to hold either .NULL. or an object reference to another INTL object. You can set a hook property with the SetHook() method, and retrieve a hook object reference with the GetHook() method. |
+**All INTL classes have a oHook property that can point to other INTL objects.**  The `oHook` property is meant to hold either `.NULL.` or an object reference to another INTL object. You can set a hook property with the `SetHook()` method, and retrieve a hook object reference with the `GetHook()` method.
 
 The diagram below illustrates the default configuration for INTL. The
 INTL object is *hooked* with an object of the String strategy. This is
@@ -4931,7 +4904,9 @@ what gives INTL its default behavior.
 
 The reason why the line....
 
+```
 _SCREEN.oINTL.I("Yes")
+```
 
 ....returns "Oui" is not because the oINTL object knows translation,
 it's because the object oINTL.oHook points to an object of the class
@@ -4971,7 +4946,7 @@ designed to do one of three things with it:
 <p>#DEFINE INTL_HOOK_TEST ! ISNULL( this.oHook) AND ;<br />
 TYPE( "this.oHook.INTL_Abstract_ID")&lt;&gt; "U"</p>
 <p>*====================================</p>
-<p>*-- cINTLMemento::SetExplicit( l)</p>
+<p>*-- `cINTLMemento`::SetExplicit( l)</p>
 <p>*====================================</p>
 <p>* Set the Explicit mode.</p>
 <p>*</p>
@@ -5001,7 +4976,7 @@ TYPE( "this.oHook.INTL_Abstract_ID")&lt;&gt; "U"</p>
 <p>*-- Defer first to any hook</p>
 <p>IF INTL_HOOK_TEST</p>
 <p>LOCAL lxRetVal</p>
-<p>lxRetVal= this.oHook.I( @txPara1, @tcSpecialProc)</p>
+<p>lxRetVal = this.oHook.I( @txPara1, @tcSpecialProc)</p>
 <p>IF !ISNULL( lxRetVal)</p>
 <p>RETURN lxRetVal</p>
 <p>ENDIF</p>
@@ -5021,45 +4996,31 @@ do this without polluting my INTL Toolkit source?"***
 Answer: First, subclass the multi-currency class to create your own
 multi-currency lookup scheme, for example as follows:
 
+```
 DEFINE CLASS MyCurrencyHook AS cINTLCurrency
-
-\*====================================
-
-*-- MyCurrencyHook::I(\[c|n\])
-
-\*====================================
-
-\* My own currency conversion routine
-
+*====================================
+*-- MyCurrencyHook::I([c |n])
+*====================================
+* My own currency conversion routine
 FUNCTION I( txPara1)
-
 *-- Your code goes here. For now,
-
 *-- lets trivially assume you always want
-
 *-- to return a time-invariant conversion
-
 *-- rate of 1.25.
-
 IF TYPE( 'txPara')= "N"
-
-RETURN 1.25 \* txpara1
-
+  RETURN 1.25 * txpara1
 ELSE
-
-RETURN txPara1
-
+  RETURN txPara1
 ENDIF
-
 ENDDEFINE
-
+```
 Instantiating the hook involves connecting an instance of the hook to
 the hooked object. In our example, we want to hook the currency
 strategy, thus
 
 *-- 1) Get a temporary handle on the currency strategy
 
-oX= _SCREEN.oINTL.GetStrategy("Currency")
+oX = _SCREEN.oINTL.GetStrategy("Currency")
 
 *-- 2) Hook It
 
@@ -5067,20 +5028,20 @@ oX.SetHook(CREATEOBJECT("MyCurrencyHook"))
 
 *-- 3) For safety, release the temporary handle.
 
-oX=.NULL.
+oX =.NULL.
 
 If you need to restore the hooked to its unhooked state, do as follows:
 
-oX= ox.SetHook(.NULL.)
+oX = ox.SetHook(.NULL.)
 
 # VFP's International Features
 
 ## Introduction
 
-| **vfp has a number of international features and quirks.**                                          | Visual FoxPro has many international features and quirks, and it's important to understand most of them. This section focuses first on vfp-specific issues, and then later focuses on the more germane issues related to the storage, display and printing of international characters.                                                    |
-| --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Character Sets and Code Pages are important concepts in internationalization.**                   | If your application needs to address the international market, you need a thorough understanding of character sets and code pages. Only a developer creating an application for domestic consumption can get away without a knowledge of these terms.                                                                                      |
-| **People expect software to conform to local norms.**                                               | Gone are the days when the international market willingly lived within the limitations of North American software. Applications are increasingly expected to conform to the intricacies of the end-user's locale.                                                                                                                          |
+| **vfp has a number of international features and quirks.** | Visual FoxPro has many international features and quirks, and it's important to understand most of them. This section focuses first on vfp-specific issues, and then later focuses on the more germane issues related to the storage, display and printing of international characters. |
+| ----- | ----- |
+| **Character Sets and Code Pages are important concepts in internationalization.** | If your application needs to address the international market, you need a thorough understanding of character sets and code pages. Only a developer creating an application for domestic consumption can get away without a knowledge of these terms. |
+| **People expect software to conform to local norms.** | Gone are the days when the international market willingly lived within the limitations of North American software. Applications are increasingly expected to conform to the intricacies of the end-user's locale. |
 | **In the past, the big challenge was correct sorting and correctly displaying the local alphabet.** | European Fox developers have toiled for years to overcome the problems of creating multilingual software. The major challenge was to produce culturally correct sorting, and assuring that the correct characters appear in tables, on screen, and in reports. With Visual FoxPro, creating multilingual applications is easier than ever. |
 
 ## A Survey of VFP's International Features
@@ -5094,7 +5055,7 @@ themes found herein:
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>The language of operating system services will vary with the localized language of the OS.</strong></th>
 <th><ul>
 <li><blockquote>
@@ -5164,7 +5125,7 @@ error.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>VFP errors vary with the localization language of VFP.</strong></th>
 <th><p>When a vfp error occurs, ArrayName[2] contains the text of the error message, which is the same as the value returned by MESSAGE().</p>
 <p><strong>Internationalization Gotcha:</strong> this error message varies according to the localized version of vfp.</p></th>
@@ -5268,8 +5229,8 @@ APPEND MEMO copies the contents of a disk file to a memo field.
 APPEND PROCEDURES appends stored procedures in a text file to the stored
 procedures snippet of the current database.
 
-|                                                                                                              |                                                                                                                                                                                                                                                                                       |
-| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| | |
+| ----- | ----- |
 | **Specify the code page of the new data when appending DBC procedure code from other locales or platforms.** | **Internationalization Gotcha:** AS nCodePage specifies the code page of the text file from which the stored procedures are appended. vfp copies the contents of the text file and, as it does so, automatically converts the contents of the text file to the code page you specify. |
 
 If you omit AS nCodePage, vfp copies the contents of the text file from
@@ -5328,8 +5289,8 @@ code page. The current vfp code page can be determined with CPCURRENT(
 
 ### BROWSE
 
-|                                                                       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| --------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| | |
+| ----- | ----- |
 | **BROWSE without NOMENU leads to an unlocalizable "Table" menu pad.** | **Internationalization Gotcha:** when using BROWSE without a NOMENU clause, VFP places a "Table" menu pad on the system menu containing a number of bars (with captions like "Properties", "Font", "Go to record", etc). The display language of this pad and its bars is a function of VFP's localization language. In international applications that use BROWSE, make sure you make it a BROWSE...NOMENU and, if required, invoke your own supporting menu. |
 
 ### CDOW(dExpression | tExpression)
@@ -5471,7 +5432,7 @@ stored procedures to the code page you specify.
     previous versions of FoxPro, 0 is returned if the CODEPAGE
     configuration item isn't included in your configuration file.
 
-  - The code page number specified in the CODEPAGE= configuration item
+  - The code page number specified in the CODEPAGE = configuration item
     in CONFIG.FPW.
 
   - The current operating system code page if you have included the
@@ -5498,8 +5459,8 @@ you're running Windows, CPCURRENT(2) returns the MS-DOS code page.
 
 ### CPZERO( cFilename\[, codepage\_number\]\]
 
-|                                                      |                                                                                                                                                                                                                                                       |
-| ---------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| | |
+| ----- | ----- |
 | **Use CPZERO.PRG to change a table's code page id.** | Assuming you've installed tools, CPZERO.PRG can be found in your TOOLS\\CPZERO directory. CPZERO.PRG removes the code page mark from any file that has a table file structure. After removing the mark, CPZERO applies another mark that you specify. |
 
 **Internationalization Gotcha:** if tables do not have code page marks
@@ -5507,8 +5468,8 @@ when you open them, vfp prompts you for a code page. If you specify the
 wrong code page, however, the data in the files won't display properly.
 To correct the code page, use CPZERO.
 
-|                                             |                                                                                                                            |
-| ------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| | |
+| ----- | ----- |
 | **CPZERO.PRG won't fix a corrupted table.** | It is worth noting that CPZERO won't fix a file with data corruption resulting from prior automatic code page translation. |
 
 ### CREATE CURSOR ... NOCPTRANS
@@ -5533,7 +5494,7 @@ fields.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>IF your date format doesn't match SET DATE, no error is generated, and a blank date value ( / / ) results.</strong></th>
 <th><p>CTOD() converts a character expression to a date expression.</p>
 <p><strong>Internationalization Gotcha:</strong> remember that the format for the character expression must conform to the date format specified by SET DATE or by the "International" page of the Options dialog. So the command CTOD("9/24/96" ) works if SET DATE AMERICAN (month-day-year) but creates an empty date value ( / / ) if SET DATE BRITISH (day-month-year) or SET DATE JAPAN (year-month-day).</p></th>
@@ -5551,7 +5512,7 @@ fields.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>IF your date format doesn't match SET DATE, no error is generated, and a blank value ( / / : : AM ) results.</strong></th>
 <th><p>CTOT() returns a DateTime value from a character expression.</p>
 <p><strong>Internationalization Gotcha:</strong> remember that, like CTOD(), the format for the character expression must conform to the date format specified by SET DATE or by the "International" page of the Options dialog.</p>
@@ -5570,13 +5531,13 @@ fields.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><p><strong>Private datasessions are endowed with VFP default values that have nothing to do with your Regional Window's settings.</strong></p>
 <p><strong>Therefore for each new data session you must SET the appropriate values.</strong></p></th>
 <th><p>Some of VFP's SET commands, including most of those with international implications, are scoped to the current datasession.</p>
 <p><strong>Internationalization Gotcha:</strong> a problem arises when you create new datasessions: the new datasessions have VFP defaults, and these don't necessarily conform to the current SET settings or the current Windows international settings.</p>
 <p>This means that whenever a new private datasession is created, you must ensure that its SET settings are correct for the current locale.</p>
-<p>Here is a complete list of SET commands that are scoped to the datasession, with the ones in <strong><span class="underline">bold face</span></strong> indicating those that are locale-sensitive.</p></th>
+<p>Here is a complete list of SET commands that are scoped to the datasession, with the ones in <strong><span class ="underline">bold face</span></strong> indicating those that are locale-sensitive.</p></th>
 <th></th>
 <th></th>
 </tr>
@@ -5594,23 +5555,23 @@ fields.
 <td>SET CARRY</td>
 </tr>
 <tr>
-<td><strong><span class="underline">SET CENTURY</span></strong></td>
-<td><strong><span class="underline">SET COLLATE</span></strong></td>
+<td><strong><span class ="underline">SET CENTURY</span></strong></td>
+<td><strong><span class ="underline">SET COLLATE</span></strong></td>
 </tr>
 <tr>
-<td><strong><span class="underline">SET CONFIRM</span></strong></td>
-<td><strong><span class="underline">SET CURRENCY</span></strong></td>
+<td><strong><span class ="underline">SET CONFIRM</span></strong></td>
+<td><strong><span class ="underline">SET CURRENCY</span></strong></td>
 </tr>
 <tr>
-<td><strong><span class="underline">SET DATABASE</span></strong></td>
-<td><strong><span class="underline">SET DATE</span></strong></td>
+<td><strong><span class ="underline">SET DATABASE</span></strong></td>
+<td><strong><span class ="underline">SET DATE</span></strong></td>
 </tr>
 <tr>
-<td><strong><span class="underline">SET DECIMALS</span></strong></td>
+<td><strong><span class ="underline">SET DECIMALS</span></strong></td>
 <td>SET DELETED</td>
 </tr>
 <tr>
-<td><strong><span class="underline">SET DELIMITERS</span></strong></td>
+<td><strong><span class ="underline">SET DELIMITERS</span></strong></td>
 <td>SET EXACT</td>
 </tr>
 <tr>
@@ -5622,7 +5583,7 @@ fields.
 <td>SET LOCK</td>
 </tr>
 <tr>
-<td><strong><span class="underline">SET MARK TO</span></strong></td>
+<td><strong><span class ="underline">SET MARK TO</span></strong></td>
 <td>SET MEMOWIDTH</td>
 </tr>
 <tr>
@@ -5631,14 +5592,14 @@ fields.
 </tr>
 <tr>
 <td>SET NULL</td>
-<td><strong><span class="underline">SET POINT</span></strong></td>
+<td><strong><span class ="underline">SET POINT</span></strong></td>
 </tr>
 <tr>
 <td>SET REPROCESS</td>
-<td><strong><span class="underline">SET SAFETY</span></strong></td>
+<td><strong><span class ="underline">SET SAFETY</span></strong></td>
 </tr>
 <tr>
-<td><strong><span class="underline">SET SEPARATOR</span></strong></td>
+<td><strong><span class ="underline">SET SEPARATOR</span></strong></td>
 <td>SET SYSFORMATS</td>
 </tr>
 <tr>
@@ -5675,29 +5636,29 @@ connections, tables, or views in the current database.
 **Internationalization Gotcha:** here are localizable elements for table
 fields:
 
-| **cProperty** | **Type** | **Description**                        |
-| ------------- | -------- | -------------------------------------- |
-| Caption       | C        | The field caption (read-write).        |
-| RuleText      | C        | The field rule error text (read-only). |
+| **cProperty** | **Type** | **Description** |
+| ----- | -------- | ----- |
+| Caption | C | The field caption (read-write). |
+| RuleText | C | The field rule error text (read-only). |
 
 Here are localizable elements for views:
 
-| **cProperty** | **Type** | **Description**                         |
-| ------------- | -------- | --------------------------------------- |
-| Caption       | C        | The field caption (read-write).         |
-| RuleText      | C        | The field rule error text (read-write). |
+| **cProperty** | **Type** | **Description** |
+| ----- | -------- | ----- |
+| Caption | C | The field caption (read-write). |
+| RuleText | C | The field rule error text (read-write). |
 
 Here are localizable elements for table properties:
 
-| **cProperty** | **Type** | **Description**                      |
-| ------------- | -------- | ------------------------------------ |
-| RuleText      | C        | The row rule error text (read-only). |
+| **cProperty** | **Type** | **Description** |
+| ----- | -------- | ----- |
+| RuleText | C | The row rule error text (read-only). |
 
 Here are localizable elements for views:
 
-| **cProperty** | **Type** | **Description**                                                                                                      |
-| ------------- | -------- | -------------------------------------------------------------------------------------------------------------------- |
-| RuleText      | C        | The rule text expression displayed when an error occurs when data is edited in a Browse or Edit window (read-write). |
+| **cProperty** | **Type** | **Description** |
+| ----- | -------- | ----- |
+| RuleText | C | The rule text expression displayed when an error occurs when data is edited in a Browse or Edit window (read-write). |
 
 ###
 
@@ -5770,17 +5731,17 @@ window.
 
 Here is a listing of Locale Ids:
 
-| Locale ID | Language               |
-| --------- | ---------------------- |
-| 1029      | Czech                  |
-| 1031      | German                 |
-| 1033      | English (Default)      |
-| 1034      | Spanish                |
-| 1036      | French                 |
-| 1040      | Italian                |
-| 1045      | Polish                 |
-| 1046      | Portuguese (Brazilian) |
-| 2070      | Portuguese (Standard)  |
+| Locale ID | Language |
+| --------- | ----- |
+| 1029 | Czech |
+| 1031 | German |
+| 1033 | English (Default) |
+| 1034 | Spanish |
+| 1036 | French |
+| 1040 | Italian |
+| 1045 | Polish |
+| 1046 | Portuguese (Brazilian) |
+| 2070 | Portuguese (Standard) |
 
 Note**:** the DefOLELCID property only affects the language of the user
 interface, which ole controls display, and not the language of the ole
@@ -5824,8 +5785,8 @@ depends on the current SET DATE and SET MARK settings.
 
 ### EDIT
 
-|                                                                     |                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| ------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| | |
+| ----- | ----- |
 | **EDIT without NOMENU leads to an unlocalizable "Table" menu pad.** | **Internationalization Gotcha:** when using EDIT without a NOMENU clause, vfp places a "Table" menu pad on the system menu containing a number of bars (with captions like "Properties", "Font", "Go to record", etc). The display language of this pad and its bars is a function of vfp's localization language. In international applications that use BROWSE, make sure you make it a EDIT...NOMENU and, if required, invoke your own supporting menu. |
 
 ### ERROR
@@ -5840,8 +5801,8 @@ command is pre-empted by whatever action is specified by ON ERROR.
 
 ### Error Messages
 
-|                                                         |                                                                                                                                                                                                                  |
-| ------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| | |
+| ----- | ----- |
 | **VFP error messages are in VFP's localized language.** | **Internationalization Gotcha:** error messages which, in the absence of error handling, adorn vfp's error dialog boxes and as available with MESSAGE() and AERROR(), are in the language of vfp's localization. |
 
 ### EXPORT TO ... AS nCodePage
@@ -6013,21 +5974,21 @@ off or returns the current IME status.
 
 Return values for the IME status in the Japanese locale:
 
-| Return Value | IME Status                |
-| ------------ | ------------------------- |
-| 4            | Hiragana double-byte.     |
-| 5            | Katakana double-byte.     |
-| 6            | Katakana single-byte.     |
-| 7            | Alphanumeric double-byte. |
-| 8            | Alphanumeric single-byte. |
+| Return Value | IME Status |
+| ----- | ----- |
+| 4 | Hiragana double-byte. |
+| 5 | Katakana double-byte. |
+| 6 | Katakana single-byte. |
+| 7 | Alphanumeric double-byte. |
+| 8 | Alphanumeric single-byte. |
 
 Return values for the IME status in the Korean locale:
 
-| Return Value | IME Status                |
-| ------------ | ------------------------- |
-| 4            | Hangeul mode.             |
-| 5            | Junja mode (double-byte). |
-| 6            | Hanja conversion mode.    |
+| Return Value | IME Status |
+| ----- | ----- |
+| 4 | Hangeul mode. |
+| 5 | Junja mode (double-byte). |
+| 6 | Hanja conversion mode. |
 
 ### IMPORT FROM ... AS nCodePage
 
@@ -6135,8 +6096,8 @@ language of VFP. Note that AERROR(2)returns the same value as MESSAGE().
 
 MESSAGEBOX() displays a user-defined dialog box.
 
-|                                                              |                                                                                                                                                                                                                                                   |
-| ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| | |
+| ----- | ----- |
 | **You can’t directly localize the buttons in MESSAGEBOX().** | **Internationalization Gotcha**: this is essentially a Windows service, so the language of the buttons displayed by MESSAGEBOX() will be those of the Windows localization. For more flexible user-defined dialog boxes, consider using MsgSvc(). |
 
 For example, the following line yields the box below wherein the “Yes”
@@ -6248,23 +6209,23 @@ Global LocaleID, set with SYS(3005).
 
 Here is a list of OLE locale id's.
 
-| nLocaleID | Language               |
-| --------- | ---------------------- |
-| 1029      | Czech                  |
-| 1031      | German                 |
-| 1033      | English (Default)      |
-| 1034      | Spanish                |
-| 1036      | French                 |
-| 1040      | Italian                |
-| 1045      | Polish                 |
-| 1046      | Portuguese (Brazilian) |
-| 2070      | Portuguese (Standard)  |
+| nLocaleID | Language |
+| --------- | ----- |
+| 1029 | Czech |
+| 1031 | German |
+| 1033 | English (Default) |
+| 1034 | Spanish |
+| 1036 | French |
+| 1040 | Italian |
+| 1045 | Polish |
+| 1046 | Portuguese (Brazilian) |
+| 2070 | Portuguese (Standard) |
 
-### PEMSTATUS( oObject|cClass, cPEMName, nAttibute)
+### PEMSTATUS( oObject |cClass, cPEMName, nAttibute)
 
 The PEMSTATUS() function returns useful state information about a
 property, event or method. **Internationalization Gotcha:** using
-nAttribute=5, you can find out if this PEM is a "Property", "Event" or
+nAttribute = 5, you can find out if this PEM is a "Property", "Event" or
 "Method". This language of this string varies with the localized version
 of VFP.
 
@@ -6297,8 +6258,8 @@ of VFP.
 PUTFILE() invokes the Save As dialog box and returns the file name you
 specify.
 
-|                                                             |                                                                                                                                                                                              |
-| ----------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| | |
+| ----- | ----- |
 | **Many PUTFILE() interface elements cannot be translated.** | **Internationalization Gotcha:** other than the dialog caption, you have no control over the captions in this dialog. PUTFILE() comes from vfp and it varies with its localization language. |
 
 For example, the following line…
@@ -6339,7 +6300,7 @@ distribution. Here's a summary of the problems:
 **Update and Delete triggers** are problematic because procedures
 RIDelete and RIUpdate contain a test on (UPPER(SYS(2011))="RECORD
 LOCKED". This test will always return .F. if your application runs on a
-different localization of VFP\!
+different localization of VFP!
 
 As if that weren't enough, calls to the RIError function, which may
 result if things don't go quite as planned, contain hard-coded error
@@ -6367,17 +6328,17 @@ subsequent indexing and sorting operations.
 
 The following collation sequence options are available in vfp:
 
-| Options | Language                                                                                  |
-| ------- | ----------------------------------------------------------------------------------------- |
-| DUTCH   | Dutch                                                                                     |
+| Options | Language |
+| ------- | ----- |
+| DUTCH | Dutch |
 | GENERAL | English, French, German, Modern Spanish, Portuguese, and other Western European languages |
-| GERMAN  | German phone book order (DIN)                                                             |
-| ICELAND | Icelandic                                                                                 |
-| MACHINE | Machine (the default collation sequence for earlier FoxPro versions)                      |
-| NORDAN  | Norwegian, Danish                                                                         |
-| SPANISH | Traditional Spanish                                                                       |
-| SWEFIN  | Swedish, Finnish                                                                          |
-| UNIQWT  | Unique Weight                                                                             |
+| GERMAN | German phone book order (DIN) |
+| ICELAND | Icelandic |
+| MACHINE | Machine (the default collation sequence for earlier FoxPro versions) |
+| NORDAN | Norwegian, Danish |
+| SPANISH | Traditional Spanish |
+| SWEFIN | Swedish, Finnish |
+| UNIQWT | Unique Weight |
 
 Note that when SET COLLATE TO is set to something other than “Machine”,
 each index character takes two bytes, effectively reducing the maximum
@@ -6393,7 +6354,7 @@ CPCURRENT() to determine the current code page. The AS clause in the
 COMPILE command to override the code page you specify with SET
 CPCOMPILE.
 
-### SET CPDIALOG ON|OFF
+### SET CPDIALOG ON |OFF
 
 <table>
 <tbody>
@@ -6429,18 +6390,18 @@ expressions.
 **Internationalization Gotcha**: date formats vary from locale to
 locale. VFP offers the following choices for SET DATE:
 
-| Setting        | Format   |
-| -------------- | -------- |
-| AMERICAN       | mm/dd/yy |
-| ANSI           | yy.mm.dd |
+| Setting | Format |
+| ----- | -------- |
+| AMERICAN | mm/dd/yy |
+| ANSI | yy.mm.dd |
 | BRITISH/FRENCH | dd/mm/yy |
-| DMY            | dd/mm/yy |
-| GERMAN         | dd.mm.yy |
-| ITALIAN        | dd-mm-yy |
-| JAPAN          | yy/mm/dd |
-| MDY            | mm/dd/yy |
-| USA            | mm-dd-yy |
-| YMD            | yy/mm/dd |
+| DMY | dd/mm/yy |
+| GERMAN | dd.mm.yy |
+| ITALIAN | dd-mm-yy |
+| JAPAN | yy/mm/dd |
+| MDY | mm/dd/yy |
+| USA | mm-dd-yy |
+| YMD | yy/mm/dd |
 
 ### SET DECIMALS TO \[nDecimalPlaces\]
 
@@ -6461,14 +6422,14 @@ The values nExpression can assume and the corresponding first day of the
 week.
 
 | NExpression | Day of the week |
-| ----------- | --------------- |
-| 1           | Sunday          |
-| 2           | Monday          |
-| 3           | Tuesday         |
-| 4           | Wednesday       |
-| 5           | Thursday        |
-| 6           | Friday          |
-| 7           | Saturday        |
+| ----- | ----- |
+| 1 | Sunday |
+| 2 | Monday |
+| 3 | Tuesday |
+| 4 | Wednesday |
+| 5 | Thursday |
+| 6 | Friday |
+| 7 | Saturday |
 
 If you omit nExpression, the first-day-of-the-week is reset to Sunday
 (1). The first-day-of-the-week can also be set with the Week Starts On
@@ -6479,11 +6440,11 @@ list box in the International tab of the Options dialog.
 SET FWEEK specifies the requirements for the first-week-of-the-year.
 nExpression can be:
 
-| nExpression | First week requirement                                                |
-| ----------- | --------------------------------------------------------------------- |
-| 1           | (Default) The first week contains January 1st.                        |
-| 2           | The larger half (four days) of the first week is in the current year. |
-| 3           | The first week has seven days.                                        |
+| nExpression | First week requirement |
+| ----- | ----- |
+| 1 | (Default) The first week contains January 1st. |
+| 2 | The larger half (four days) of the first week is in the current year. |
+| 3 | The first week has seven days. |
 
 If you omit nExpression, the first-week-of-the-year is reset to 1 (the
 first week contains January 1st). The first-week-of-the-year can also be
@@ -6496,7 +6457,7 @@ SET HELP TO specifies a Help file.
 
 **Internationalization Tip:** multilingual applications need
 multilingual help. Use SET HELP TO to point to different help files as
-required. To specify a default startup Help file, use a HELP=
+required. To specify a default startup Help file, use a HELP =
 configuration line in CONFIG.FPW.
 
 ### SET MARK TO \[cDelimiter\]
@@ -6513,7 +6474,7 @@ SET NOCPTRANS prevents translation to a different code page for selected
 fields in an open table.
 
 Issue SET NOCPTRANS TO without a set of fields to return to the default
-translation (established by the CODEPAGE= configuration item) for all
+translation (established by the CODEPAGE = configuration item) for all
 character and memo fields in a table. Use SET("NOCPTRANS") to return the
 fields specified in the last SET NOCPTRANS command you issued. Use the
 CHR( ) function to ensure that individual characters don't get
@@ -6538,8 +6499,8 @@ FoxPro configuration file.
 SET POINT TO determines the decimal point character used in the display
 of numeric and currency expressions.
 
-|                                                                    |                                                                                                                                                                                                                                                                                                   |
-| ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| | |
+| ----- | ----- |
 | **SET POINT never changes the decimal character in calculations.** | **Internationalization Gotcha**: throughout most of North America, the point character is ".", but in most countries of the world, the point character is ",". Note that to set the displayed decimal point to a different character, you must use a period as the decimal point in calculations. |
 
 ### SET SEPARATOR TO \[cSeparatorCharacter\]
@@ -6586,7 +6547,7 @@ SET SYSFORMATS is scoped to the current data session.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>STRCONV() is used to go to transform strings among<br />
 n-byte systems.</strong></th>
 <th>STRCONV() converts a character expression to a different form. The following table lists the values of nSetting and the type of conversion performed:</th>
@@ -6635,8 +6596,8 @@ n-byte systems.</strong></th>
 
 ### STUFFC(cExpr, nStartRepl, nCharsReplaced, cReplaced)
 
-|                                                                                  |                                                                                                                                                                                                                                                                                          |
-| -------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| | |
+| ----- | ----- |
 | **STUFFC() is like STUFF(), only it seamlessly handles double-byte characters.** | STUFFC(), which is similar to STUFF(), returns a character string created by replacing a specified number of characters in a character expression with another character expression. The character expressions can consist of any combination of single-byte and double-byte characters. |
 
 ### SYS(13)
@@ -6653,8 +6614,8 @@ n-byte systems.</strong></th>
 
 ### SYS(15, cTranslationExpression, cTranslated)
 
-|                                 |                                                                                                                                     |
-| ------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| | |
+| ----- | ----- |
 | **SYS(15) is ancient history.** | Translates a second character string from the first character string. Included for backward compatibility; use SET COLLATE instead. |
 
 Included with vfp is a memory variable file called EUROPEAN.MEM that
@@ -6683,8 +6644,8 @@ characters doesn't preserve the expected alphabetical order.
 
 ### SYS(20, cExpressionTransformed, nCharacters)
 
-|                                     |                                                                                                                                                       |
-| ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| | |
+| ----- | ----- |
 | **SYS(20) is ancient history too.** | SYS(20) transforms a character expression containing German text to a character string. Included for backward compatibility. Use SET COLLATE instead. |
 
 ### SYS(1037)
@@ -6735,17 +6696,17 @@ in which ole automation and ole controls exchange information.
 SYS(3005) sets the Locale ID, used by ole automation and ole controls.
 Here are the locales in vfp:
 
-| nLocaleID | Language               |
-| --------- | ---------------------- |
-| 1029      | Czech                  |
-| 1031      | German                 |
-| 1033      | English (Default)      |
-| 1034      | Spanish                |
-| 1036      | French                 |
-| 1040      | Italian                |
-| 1045      | Polish                 |
-| 1046      | Portuguese (Brazilian) |
-| 2070      | Portuguese (Standard)  |
+| nLocaleID | Language |
+| --------- | ----- |
+| 1029 | Czech |
+| 1031 | German |
+| 1033 | English (Default) |
+| 1034 | Spanish |
+| 1036 | French |
+| 1040 | Italian |
+| 1045 | Polish |
+| 1046 | Portuguese (Brazilian) |
+| 2070 | Portuguese (Standard) |
 
 ### SYS(3006, nLanguageID)
 
@@ -6753,14 +6714,14 @@ SYS(3006) sets the Language ID and the Locale ID.
 
 ### SUBSTRC(cExpression, nStartPosition \[, nCharactersReturned\])
 
-|                                                                             |                                                                                                                                                                                                      |
-| --------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| | |
+| ----- | ----- |
 | **SUBSTRC() is like SUBSTR(), but handles double-byte characters as well.** | SUBSTRC()returns a character string from the given character expression or memo field. The character expression or memo field can contain any combination of single-byte and double-byte characters. |
 
 ### ToolTips
 
-|                                                                                 |                                                                                                                                                                                                                                                                                       |
-| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| | |
+| ----- | ----- |
 | **ToolTips come from Windows, and there is no known way to change their font.** | ToolTips come from Windows, and there is no way that I know to control the Font from within Visual FoxPro. This means that apps running in Eastern Europe and oriental languages will display garbage in the tooltip window unless you are running on a localized version of windows. |
 
 ### TTOC(tExpression \[, 1\])
@@ -6773,7 +6734,7 @@ expression is not a good idea.
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th><strong>The return value from VERSION() is localized by VFP. VERSION(3) is useful to determine the current vfp localization language.</strong></th>
 <th><p>VERSION() returns a character string containing the vfp version number you are using.</p>
 <p><strong>Internationalization Gotcha:</strong> This string is in the localization language of VFP.</p>
@@ -6836,8 +6797,8 @@ WINDOW display font.
 
 ### WEEK(dExpr | tExpr \[, nFirstWeek\] \[, nFirstDayOfWeek\])
 
-|                                                                                                 |                                                                                                                                                                                                                                                      |
-| ----------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| | |
+| ----- | ----- |
 | **You can make WEEK() respect the International settings by passing 0 for parameters 2 and 3.** | WEEK()returns a number representing the week-of-the-year from a Date or DateTime expression. Passing 0 for nFirstWeek or nFirstDayOfWeek causes WEEK() to fetch values from whatever is selected in the International tab in the Options dialog box. |
 
 # International Issues
@@ -6944,7 +6905,7 @@ Locale Block + Application Block = Localized Application
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th>Locale Block</th>
 <th>Application Block</th>
 </tr>
@@ -6972,12 +6933,12 @@ locale data.
 **Merging this concept with the sense of process timing conveyed in the
 previous section yields something as follows:**
 
-|                   | Locale Block                                                                                                                                                                                             | Application Block                                                                                                                                                                                                       |
-| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Program-Time**  | Cultural content added at program time by programmers who are presumably also linguists.                                                                                                                 | BIG. Essentially no Locale block other than maybe <span class="smallcaps">CONFIG.FP/w,</span> and setup metadata. One <span class="smallcaps">app/exe</span> for **all** locales.                                       |
-| **Generate-Time** | Cultural content added by automated means when generating source. Swapping from string / object / screen / menu libraries.                                                                               | One <span class="smallcaps">app/exe</span> for **each** locale.                                                                                                                                                         |
-| **Link-Time**     | Cultural content added by automated means when building the application. Swapping project records from compiled <span class="smallcaps">obj</span> libraries. Not inherently easy with native VFP tools. | One <span class="smallcaps">app/exe</span> for **each** locale.                                                                                                                                                         |
-| **Run-Time**      | Cultural content added by automated means (from phrasebook tables) when executing the application. Translation is essentially independent of the development team.                                       | One <span class="smallcaps">app/exe</span> for **all** locales, with one locale resource for each locale. <span class="smallcaps">app/exe</span> independent of locale block. Swapping from string / graphic resources. |
+| | Locale Block | Application Block |
+| ----- | ----- | ----- |
+| **Program-Time** | Cultural content added at program time by programmers who are presumably also linguists. | BIG. Essentially no Locale block other than maybe <span class ="smallcaps">CONFIG.FP/w,</span> and setup metadata. One <span class ="smallcaps">app/exe</span> for **all** locales. |
+| **Generate-Time** | Cultural content added by automated means when generating source. Swapping from string / object / screen / menu libraries. | One <span class ="smallcaps">app/exe</span> for **each** locale. |
+| **Link-Time** | Cultural content added by automated means when building the application. Swapping project records from compiled <span class ="smallcaps">obj</span> libraries. Not inherently easy with native VFP tools. | One <span class ="smallcaps">app/exe</span> for **each** locale. |
+| **Run-Time** | Cultural content added by automated means (from phrasebook tables) when executing the application. Translation is essentially independent of the development team. | One <span class ="smallcaps">app/exe</span> for **all** locales, with one locale resource for each locale. <span class ="smallcaps">app/exe</span> independent of locale block. Swapping from string / graphic resources. |
 
 Enabling techniques segmented by timing.
 
@@ -6998,8 +6959,8 @@ trivial. Well, the language is *not* common. The British form of English
 is used in Canada, while American English is the USA standard\[1\].
 
 Lexicon variants are commonly complicated by non-cosmetic logical
-differences. Canadian strings like <span class="smallcaps">"pst"</span>,
-"<span class="smallcaps">gst"</span>, "Postal Code", and "Province" are
+differences. Canadian strings like <span class ="smallcaps">"pst"</span>,
+"<span class ="smallcaps">gst"</span>, "Postal Code", and "Province" are
 unacceptable in the United States, as are the Canadian ways to calculate
 and validate them.
 
@@ -7007,7 +6968,7 @@ and validate them.
 
 How significant are cultural differences? Consider the United States and
 Canada. The United States and Canada share a common electrical plug
-(most countries don’t\!), they mostly speak the same language, they have
+(most countries don’t!), they mostly speak the same language, they have
 a common telephone country code, the same television broadcasting
 standards, mostly common accounting standards, and in many ways the same
 elements of culture. One might think, given their unparalleled
@@ -7093,7 +7054,7 @@ majority.
 ### Situational Factors
 
 There is a difference between starting a multi-cultural
-<span class="smallcaps">app</span> from scratch, and retrofitting an
+<span class ="smallcaps">app</span> from scratch, and retrofitting an
 existing application for other cultures. The retrofit is, not
 surprising, a far more common avenue\[2\]. It would be nice if we could
 use the same system of internationalization for new and existing
@@ -7109,7 +7070,7 @@ how.
 An international application designed from scratch usually needs a
 different internationalization approach than does a retrofit. It’s a
 different mind set. When starting a new
-application<span class="smallcaps">,</span> concern centers naturally on
+application<span class ="smallcaps">,</span> concern centers naturally on
 producing prototypes, making quick progress, and creating maintainable
 code. These things are all impeded by a parallel globalization process.
 
@@ -7391,7 +7352,7 @@ Similarly, do not assume that plural forms are formed with an “s” suffix
 as in English.
 
 Note the pitfalls of using results returned from VFP functions like
-cdow() and cmonth()<span class="smallcaps">.</span> These will return
+cdow() and cmonth()<span class ="smallcaps">.</span> These will return
 different results with different localizations of VFP.
 
 #### Idioms
@@ -7410,7 +7371,7 @@ might be able to get your European users to accept rather large footer
 areas, and your North American users to sacrifice one half inch of
 width. If you can achieve this, then your output routines can be
 standard. In any event, when you are first putting an
-<span class="smallcaps">app</span> together, be careful when in the
+<span class ="smallcaps">app</span> together, be careful when in the
 report writer to not make the page overly wide. Best to make page
 dimensions assignable at run-time.
 
@@ -7423,7 +7384,7 @@ common position, your target is only 1 by 3 inches in size. This affects
 the layout of addresses, and how closely other elements may be placed to
 address information.
 
-Don't assume things will line-up\!
+Don't assume things will line-up!
 
 Business law differs significantly from country to country, and this can
 affect forms design. Germany (in particular) requires a lot of
@@ -7439,7 +7400,7 @@ on the page.
 Transliteration is the distinction between upper and lower case
 characters. Not all languages transliterate like English. In English we
 take for granted the sort order corresponding to the
-<span class="smallcaps">ascii</span> code sequence. But in Spanish, the
+<span class ="smallcaps">ascii</span> code sequence. But in Spanish, the
 'ch' in "chico" is viewed as a single letter which should sort between
 'c' and 'd'. The 'ñ' character sorts between 'm' and 'n'. Some
 languages, like Hebrew, Arabic, and many Asian languages, have no
@@ -7447,7 +7408,7 @@ capital letters.
 
 The effect of transliteration can be bizarre. In German, the city Zürich
 is capitalized ZÜRICH, but in Swiss German, it's ZUERICH. In France, the
-word “école” is capitalized <span class="smallcaps">ÉCOLE,</span> but
+word “école” is capitalized <span class ="smallcaps">ÉCOLE,</span> but
 it's ECOLE in Quebec, probably due to decades of adaptive usage since
 the É symbol is rare on North American keyboards.
 
@@ -7712,7 +7673,7 @@ place.
 Try to make the enabling as transparent as possible. Little benefit
 accrues from creating a system that increases the complexity of
 development and maintenance. When in doubt,
-<span class="smallcaps">kiss</span>, keep it simple sir.
+<span class ="smallcaps">kiss</span>, keep it simple sir.
 
 ### Performance
 
@@ -7921,27 +7882,27 @@ Since drivers do similar things but at different places, there is a
 description at the end of this document that explains the event
 sequencing.
 
-#### \*:MNXDRV0 \<file\> (GENMENUX Directive)
+#### *:MNXDRV0 <file> (GENMENUX Directive)
 
 A driver that appends the driver to the GENMENU file. This allows a
 driver to include functions with the same names as normal GENMENU
 functions that provide additional functionality.
 
-#### \*:MNXDRV1 \<expC\> (GENMENUX Directive)
+#### *:MNXDRV1 <expC> (GENMENUX Directive)
 
 Calls a driver before standard GENMENUX processing begins. At \_MNXDRV1,
 the menu MNX table is in the current workarea with the pointer
 positioned at the first record. The driver is *not* called for every
 record in the menu table. Called: Setup snippet, CONFIG.FP.
 
-#### \*:MNXDRV2 \<expC\> (GENMENUX Directive)
+#### *:MNXDRV2 <expC> (GENMENUX Directive)
 
 Calls a GENMENUX driver after standard GENMENUX processing has begun.
 This driver can be considered a *line driver* i.e. it can be a one-line
 command. It is processed through each record of the menu file from
 within a SCAN statement. Called: Setup snippet, CONFIG.FP.
 
-#### \*:MNXDRV3 \<expC\> (GENMENUX Directive)
+#### *:MNXDRV3 <expC> (GENMENUX Directive)
 
 Calls a GENMENUX driver after standard GENMENUX processing and menu
 re-ordering has been completed. This driver can be considered a line
@@ -7951,7 +7912,7 @@ NOT DELETE ANY RECORDS IN THE MNX file as your menu file will be
 corrupted. Use MNXDRV2 if you want to do that. Called: Setup snippet,
 CONFIG.FP.
 
-#### \*:MNXDRV4 \<expC\> (GENMENUX Directive)
+#### *:MNXDRV4 <expC> (GENMENUX Directive)
 
 Calls a driver before the standard GenMenu is called. No SCAN statement
 propels this driver. When this driver is called, the menu MNX file is in
@@ -7959,7 +7920,7 @@ the current workarea with the pointer at the first record. The driver is
 *not* called for every record in the menu table. Called: Setup snippet,
 CONFIG.FP.
 
-#### \*:MNXDRV5 \<expC\> (GENMENUX Directive)
+#### *:MNXDRV5 <expC> (GENMENUX Directive)
 
 Calls a GENMENUX driver that completely replaces the standard FoxPro
 GenMenu. This driver must be a complete driver in the sense that when it
@@ -7970,13 +7931,13 @@ directive is identical to the GENMENUX directive and will override the
 setting of the GENMENUX driver, if used. Called: Setup snippet,
 CONFIG.FP.
 
-#### \*:MPRDRV1 \<expC\> (GENMENUX Directive)
+#### *:MPRDRV1 <expC> (GENMENUX Directive)
 
 Calls a GENMENUX driver that will update the MPR file within the
 temporary project file. When it starts, the just created MPR file is in
 the memo field named OBJECT. Called: Setup snippet, CONFIG.FP.
 
-#### \*:MPRDRV2 \<expC\> (GENMENUX Directive)
+#### *:MPRDRV2 <expC> (GENMENUX Directive)
 
 Calls a GENMENUX driver that will update the MPR file within the
 temporary project file. When it starts, the just created MPR file is in
@@ -7984,28 +7945,28 @@ the memo field named OBJECT. The MPRDRV2 driver is called as the very
 last item in GENMENUX before the removal of the temporary project files.
 Called: Setup snippet, CONFIG.FP.
 
-#### \*:AFTER \<expC\>|\<expN\> (GENMENUX Directive)
+#### *:AFTER <expC> |<expN> (GENMENUX Directive)
 
 A directive that allows you to identify where each PAD will be placed on
 a menu bar. You can use these clauses with Character expressions for
 menu pads or numeric expressions for menu bars. See also:
-\*:BEFORE<span class="underline">.</span>
+*:BEFORE<span class ="underline">.</span>
 
-#### \*:ARRAY \<cArray\> (GENMENUX Directive)
+#### *:ARRAY <cArray> (GENMENUX Directive)
 
 Adds a loop for a popup that allows the BARs of the popup to be defined
-based on the array \<cArray\>. If the Array is two dimensions, the ON
+based on the array <cArray>. If the Array is two dimensions, the ON
 SELECT BAR statement calls the command identified in the second column
 of the array.
-Example: \*:ARRAY a\_fldNames
+Example: *:ARRAY a\_fldNames
 
-#### \*:AUTOACT (GENMENUX Directive)
+#### *:AUTOACT (GENMENUX Directive)
 
 AUTOACT will automatically activate the menu in the cleanup snippet.
 This is useful if you use the MENUNAME directive and do not place the
 ACTIVATE MENU clause in your code.
 
-#### \*:AUTOHOT (GENMENUX Directive)
+#### *:AUTOHOT (GENMENUX Directive)
 
 Automatically adds hot keys to menu pads (not bars) that have none
 assigned. This is useful if you sometimes forget to create hot keys for
@@ -8015,18 +7976,18 @@ the second letter, and so on. The CONFIG.FP argument can be either ON or
 OFF. When adding it to the Setup snippet, the argument is ignored. It is
 automatically turned on. Called: Setup snippet, CONFIG.FP.
 
-#### \*:AUTOPOS (GENMENUX Directive)
+#### *:AUTOPOS (GENMENUX Directive)
 
 Allows the user to click on the line where the menu is to start. This
-results in a \*:LINE directive being added to the Setup/Menu Procedure
+results in a *:LINE directive being added to the Setup/Menu Procedure
 snippet.
 
-#### \*:AUTORUN (GENMENUX Directive)
+#### *:AUTORUN (GENMENUX Directive)
 
 Automatically runs the generated MPR file once it has been generated.
 Ignored when building from a project. Called: Setup snippet, CONFIG.FP.
 
-#### \*:BARHOT (GENMENUX Directive)
+#### *:BARHOT (GENMENUX Directive)
 
 BARHOT will create hot keys for all menu bar items in the same way
 AUTOHOT creates hot keys for Menu Pads. This directive can only be
@@ -8034,24 +7995,24 @@ called in the Comment snippet. However, if it is called at the top pad
 of a menu, all of the items in the submenu will be updated accordingly.
 Called: Setup/Menu Procedure Snippet Comment snippet, CONFIG.FP.
 
-#### \*:BEFORE \<expC\>|\<expN\> (GENMENUX Directive)
+#### *:BEFORE <expC> |<expN> (GENMENUX Directive)
 
 A directive that allows you to identify where each PAD will be placed on
 a menu bar. You can use these clauses with Character expressions for
-menu pads or numeric expressions for menu bars. See also: \*:AFTER.
+menu pads or numeric expressions for menu bars. See also: *:AFTER.
 
-#### \*:CASE \<expL\> (GENMENUX Directive)
+#### *:CASE <expL> (GENMENUX Directive)
 
 This directive places all menu definition statements matching logical
 condition in a CASE statement at the end of the menu definition. This is
-useful for grouping \*:IF <span class="underline"> </span> statements,
+useful for grouping *:IF <span class ="underline"> </span> statements,
 which would make menu processing run slightly faster. See also:
-\*:REFPRG.
+*:REFPRG.
 
-#### \*:COLOR \<cColorPair\>\<expC\> (GENMENUX Directive)
+#### *:COLOR <cColorPair><expC> (GENMENUX Directive)
 
 Defines color pairs for an individual menu pad or item. Individual menu
-items can have different colors. Example: \*:COLOR R/W,RB/B
+items can have different colors. Example: *:COLOR R/W,RB/B
 
 You can also use color keywords so you don't have to remember RGB
 settings for popular color settings. Available color settings are :
@@ -8059,55 +8020,55 @@ settings for popular color settings. Available color settings are :
 Red, Green, White, Grey, Maroon, Aqua, Royal Blue, Burgundy, Light
 Green, Baby Blue, Blue, Black, Violet, Yellow, Dark Gray
 
-Passing one of these clauses as a parameter to \*:COLOR will tell
+Passing one of these clauses as a parameter to *:COLOR will tell
 GENMENUX to use the appropriate RGB setting for the menu bar.
 
-#### \*:COLORSET \<expC\> (GENMENUX Directive)
+#### *:COLORSET <expC> (GENMENUX Directive)
 
 Defines a color scheme for an individual menu pad or item. Example:
 
-\*:COLORSET 7
+*:COLORSET 7
 
-#### \*:DEFAULT (GENMENUX Directive)
+#### *:DEFAULT (GENMENUX Directive)
 
 Adds the statement SET SYSMENU SAVE to the cleanup code. This makes the
 menu the default (SET SYSMENU TO DEFAULT) after it has been created.
 Called: Setup snippet.
 
-#### \*:DEFLIB \<cLibrary\> (GENMENUX Directive)
+#### *:DEFLIB <cLibrary> (GENMENUX Directive)
 
-Since every object must belong to a library, \*:DEFLIB allows you to
+Since every object must belong to a library, *:DEFLIB allows you to
 define the library for an entire menu. This is useful if you create a
 single menu that contains all of your library objects and want to place
 each object into a single library.
 
-#### \*:DEFOBJ \[\<cLibrary\>.\]\<cObject\> (GENMENUX Directive)
+#### *:DEFOBJ \[<cLibrary>.\]<cObject> (GENMENUX Directive)
 
-To define a library object, place the \*:DEFOBJ directive in the comment
+To define a library object, place the *:DEFOBJ directive in the comment
 field for the menu pad, submenu or procedure to be defined. The object
 will be inserted into the FOXMNX table belonging to the library
 specified by cLibrary. If cLibrary is not specified, then the library
-will be the one identified by the \*:DEFLIB directive. **Example of How
+will be the one identified by the *:DEFLIB directive. **Example of How
 to Define Library Objects**: in the CONFIG.FP, specify the template file
 with the command:
 
-\_FOXMNX='FOXMNX.DBF'
+\_FOXMNX ='FOXMNX.DBF'
 
 This identifies the FOXMNX table as the container for any libraries.
 
 In addition, specify the default library for any menu objects with the
 line:
 
-\_DEFLIB="TOOLS"
+\_DEFLIB ="TOOLS"
 
 Identifies any objects in the menu as belonging to the Tools library.
 
 On any menu pad, submenu, command or procedure that should be defined in
-the Library, add the \*:DEFOBJ directive in the Comment snippet. If the
+the Library, add the *:DEFOBJ directive in the Comment snippet. If the
 "About..." menu pad contains a procedure that is the same between
 different applications, add the following line to the Comment snippet:
 
-\*:DEFOBJ About
+*:DEFOBJ About
 
 This inserts a menu object into the FOXMNX table for the About menu pad,
 identifying it as belonging to the Tools library and naming the object
@@ -8115,333 +8076,333 @@ About. If the "File Reindex" menu pad contains a procedure that is the
 same between applications but you want to place it in the File library,
 add the following line to the Comment snippet:
 
-\*:DEFOBJ FILE.REINDEX
+*:DEFOBJ FILE.REINDEX
 
 This inserts a menu object into the FOXMNX table for the Reindex menu
 pad, identifying it as belonging to the File library and naming the
 object Reindex.
 
-#### \*:DEFPOPIF \<expC\> (GENMENUX Directive)
+#### *:DEFPOPIF <expC> (GENMENUX Directive)
 
 Makes the DEFINE POPUP statement conditional on if it already exists.
 DEFINE POPUP is slow. This directive will place an IF...ENDIF statement
-around the popup definition for \<expC\> so the definition is
+around the popup definition for <expC> so the definition is
 conditional, making the MPR run considerably faster. Example:
 
-\*:DEFPOPIF options.
+*:DEFPOPIF options.
 
-#### \*:DELETE (GENMENUX Directive)
+#### *:DELETE (GENMENUX Directive)
 
 Deletes the menu prompt during compilation so it doesn’t appear. This
 directive is useful for adding features at a later date and ensuring
 they don’t appear in the menu. Called: Comment snippet.
 
-#### \*:DELOBJ (GENMENUX Directive)
+#### *:DELOBJ (GENMENUX Directive)
 
 Removes a menu item after GENMENUX has completed directive processing
 but BEFORE it reorders the menu.
 
-#### \*:FOUNDATION \<expC\> (GENMENUX Directive)
+#### *:FOUNDATION <expC> (GENMENUX Directive)
 
-Places a READ VALID \<cExpr\> statement in the cleanup snippet to assist
-in the creation of a Foundation READ. If you do not provide an \<expC\>,
+Places a READ VALID <cExpr> statement in the cleanup snippet to assist
+in the creation of a Foundation READ. If you do not provide an <expC>,
 the READ will automatically exit when the selected prompt is either
 "EXIT" or "QUIT".
 
-#### \*:FOXMNX \<cFileName\> (GENMENUX Directive)
+#### *:FOXMNX <cFileName> (GENMENUX Directive)
 
 Specifies the GENMENUX library file.
 
-#### \*:GENIF \<expC\> (GENMENUX Directive)
+#### *:GENIF <expC> (GENMENUX Directive)
 
 Allows menu items to be defined during MPR generation based on the
-condition defined in \<expC\>. If the condition specified in \<expC\> is
+condition defined in <expC>. If the condition specified in <expC> is
 not met when the MPR file is being generated, GENMENUX removes the PAD
 or BAR from the menu. Called: Comment snippet. Example:
 
-\*:GENIF "DEV"$CURDIR()
+*:GENIF "DEV"$CURDIR()
 
-\*:GENIF DATE()\<CTOD("12/31/93")
+*:GENIF DATE()<CTOD("12/31/93")
 
-#### \*:GENMENUX \<expC\> (GENMENUX Directive)
+#### *:GENMENUX <expC> (GENMENUX Directive)
 
 Define whats GENMENU.PRG program to use. This is helpful if you want to
 use a different menu generator for a particular menu. Called: Setup
 snippet, CONFIG.FP
 
-#### \*:HIDE /m.\_HIDE (GENMENUX Directive)
+#### *:HIDE /m.\_HIDE (GENMENUX Directive)
 
 Hides the menu bar during the running of the MPR file and shows it at
-the end. This is useful if you use a lot of \*:IF statements and don’t
+the end. This is useful if you use a lot of *:IF statements and don’t
 want the user to see a lot of menu activity.
 
-#### \*:IF \<expC\> (GENMENUX Directive)
+#### *:IF <expC> (GENMENUX Directive)
 
-Menu items appear based on the condition defined in \<expC\>. This
+Menu items appear based on the condition defined in <expC>. This
 condition is evaluated at run-time, allowing menu items to completely
 disappear when not being used (as opposed to being grayed out). IF
 statements in the cleanup code RELEASE the menu pads that do not meet
-the condition specified. The \*:IF directive also supports keywords that
+the condition specified. The *:IF directive also supports keywords that
 allow you to use the values of the bar number, prompt or popup name.
 These keywords must be wrapped in quotes and stars in order to work
 properly. The valid keywords are:
 
-\*PROMPT\* Returns Prompt of Menu Object
-\*ITEMNUM\* Returns Item Number of Menu Object
-\*LEVEL\* Returns Level Name of Menu Object
-\*NAME\* Returns Pad Name of Menu Object
+*PROMPT* Returns Prompt of Menu Object
+*ITEMNUM* Returns Item Number of Menu Object
+*LEVEL* Returns Level Name of Menu Object
+*NAME* Returns Pad Name of Menu Object
 
 Example:
 
-\*:IF sec\_level='\*'
+*:IF sec\_level ='*'
 
-\*:IF FILE("CLIENTS.APP")
+*:IF FILE("CLIENTS.APP")
 
-\*:IF chk\_sc("\*PROMPT\*","\*ITEMNUM\*")
+*:IF chk\_sc("*PROMPT*","*ITEMNUM*")
 
-#### \*:HIDE (GENMENUX Directive)
+#### *:HIDE (GENMENUX Directive)
 
 Hides the Menu while the MPR file is being run so menu pads won't
 distract the user.
 
-#### \*:IGNORE (GENMENUX Directive)
+#### *:IGNORE (GENMENUX Directive)
 
 Ignores any GENMENUX directives for this menu prompt. Called: Comment
 snippet.
 
-#### \*:INCLIB (GENMENUX Directive)
+#### *:INCLIB (GENMENUX Directive)
 
 Defines the default library for referencing library objects, place the
-\*:INCLIB directive in the Setup or Menu Procedure snippet of the menu.
+*:INCLIB directive in the Setup or Menu Procedure snippet of the menu.
 
-#### \*:INSOBJ \<cLibrary\>.\<cObject\> (GENMENUX Directive)
+#### *:INSOBJ <cLibrary>.<cObject> (GENMENUX Directive)
 
 References a library object and makes it replace a menu option in a
-menu. The object will be replaced by the object \<cObject\> from the
+menu. The object will be replaced by the object <cObject> from the
 FOXMNX table belonging to the library specified by cLibrary. If cLibrary
 is not specified, then the library will be the one identified by the
-\*:INCLIB directive.
+*:INCLIB directive.
 
-#### \*:INSCX \<cWinName\> \[SAVE \[MODAL\]\] (GENMENUX Directive)
+#### *:INSCX <cWinName> \[SAVE \[MODAL\]\] (GENMENUX Directive)
 
-\*:INSCX places a DO MENU.MPR in the SCX specified by cWinName. If there
-are no clauses, \*:INSCX will place the statement at the bottom of the
-Screen Setup Code. If SAVE is specified, \*:INSCX places a PUSH MENU and
+*:INSCX places a DO MENU.MPR in the SCX specified by cWinName. If there
+are no clauses, *:INSCX will place the statement at the bottom of the
+Screen Setup Code. If SAVE is specified, *:INSCX places a PUSH MENU and
 POP MENU in the setup and cleanup code. If MODAL is also specified,
 INSCX places the DO command in the When clause for the screen and the
 POP MENU \_MSYSMENU command in the Deactivate snippet.
 
-#### \*:LINE \<expN\> (GENMENUX Directive)
+#### *:LINE <expN> (GENMENUX Directive)
 
-Makes the Menu bar start at the row defined by \<expN\>. Called: Setup
+Makes the Menu bar start at the row defined by <expN>. Called: Setup
 snippet.
 
-#### \*:LOCATION \<expC1\>,\<expC2\> (GENMENUX Directive)
+#### *:LOCATION <expC1>,<expC2> (GENMENUX Directive)
 
-Updates the location of the menu based on \<expC1\>. \<expC1\> can
+Updates the location of the menu based on <expC1>. <expC1> can
 either be REPLACE, APPEND, BEFORE, or AFTER (just like the Menu
-options). If \<expC1\> is BEFORE or AFTER, \<expC2\> should contain
+options). If <expC1> is BEFORE or AFTER, <expC2> should contain
 either the system menu prompt or pad name that precedes or follows the
 menu.
 
-#### \*:MENUNAME \<expC\> (GENMENUX Directive)
+#### *:MENUNAME <expC> (GENMENUX Directive)
 
-Renames the Menu bar from \_MSYSMENU to \<expC\>.
+Renames the Menu bar from \_MSYSMENU to <expC>.
 
-#### \*:MESSAGE \<expC\> (GENMENUX Directive)
+#### *:MESSAGE <expC> (GENMENUX Directive)
 
-Adds a message prompt as defined by \<expC\>. \<expC\> may be a function
+Adds a message prompt as defined by <expC>. <expC> may be a function
 or string. If it is a string, it should be enclosed in quotes. In FoxPro
-for Windows, \*:MESSAGE overrides what’s in the Message field. Called:
+for Windows, *:MESSAGE overrides what’s in the Message field. Called:
 Comment snippet.
 
-#### \*:NOACT (GENMENUX Directive)
+#### *:NOACT (GENMENUX Directive)
 
 Removes the ACTIVATE MENU \_MSYSMENU statement from the generated MPR
 file.
 
-#### \*:NOAUTO (GENMENUX Directive)
+#### *:NOAUTO (GENMENUX Directive)
 
 Removes the SET SYSMENU AUTOMATIC statement from the generated MPR file.
 Called: Setup snippet.
 
-#### \*:NOBAR (GENMENUX Directive)
+#### *:NOBAR (GENMENUX Directive)
 
 Removes the BAR setting from MPR file allowing menus to be created that
 are only the length of the menu bar itself instead of extending across
 the screen. Called: Setup snippet.
 
-#### \*:NOCOMMENT (GENMENUX Directive)
+#### *:NOCOMMENT (GENMENUX Directive)
 
 (Undocumented) Strips out all comments from the .MPR file.
 
-#### \*:NOGEN (GENMENUX Directive)
+#### *:NOGEN (GENMENUX Directive)
 
 Directs GENMENUX to not generate the MPR file. Called: Setup snippet.
 
-#### \*:NOMARGIN (GENMENUX Directive)
+#### *:NOMARGIN (GENMENUX Directive)
 
 Removes MARGIN setting from MPR file. Called: Setup snippet.
 
-#### \*:NOSHADOW (GENMENUX Directive)
+#### *:NOSHADOW (GENMENUX Directive)
 
 Removes SHADOW setting from MPR file. Called: Setup snippet.
 
-#### \*:NOXGEN (GENMENUX Directive)
+#### *:NOXGEN (GENMENUX Directive)
 
 Directs GENMENUX to ignore any GENMENUX directives and generate the MPR
 file as though GENMENUX was not present. Called: Setup snippet.
 
-#### \*:NOXTHERM (GENMENUX Directive)
+#### *:NOXTHERM (GENMENUX Directive)
 
 Tells GENMENUX to use FoxPro's standard thermometer instead of the
 GENMENUX extended one. This is useful if you find the GENMENUX
 thermometer distracting.
 
-#### \*:PADCOLOR \<expC\> (GENMENUX Directive)
+#### *:PADCOLOR <expC> (GENMENUX Directive)
 
 Changes the default Menu PAD color setting. Normally, GenMenu defaults
-to COLOR SCHEME 4. Using \*:PADCOLOR, the default scheme can be changed
+to COLOR SCHEME 4. Using *:PADCOLOR, the default scheme can be changed
 to any particular setting. Called: Setup snippet.
 
-#### \*:PADNAME \<expC\> (GENMENUX Directive)
+#### *:PADNAME <expC> (GENMENUX Directive)
 
-Ensures that the current pad’s name is \<expC\>. Example:
+Ensures that the current pad’s name is <expC>. Example:
 
-\*:PADNAME options
+*:PADNAME options
 
-#### \*:PADPOS | POPPOS \<nRow\>,\<nCol\> (GENMENUX Directive)
+#### *:PADPOS | POPPOS <nRow>,<nCol> (GENMENUX Directive)
 
-Places the PAD or POPUP at the Row and Column specified by \<nRow\> and
-\<nCol\>. This is useful for moving your menu around the screen in
-different locations for your various popups. \*:POPPOS must occur within
-a submenu. Example: \*:PADPOS 5,6 (This will position the pad at row 5,
+Places the PAD or POPUP at the Row and Column specified by <nRow> and
+<nCol>. This is useful for moving your menu around the screen in
+different locations for your various popups. *:POPPOS must occur within
+a submenu. Example: *:PADPOS 5,6 (This will position the pad at row 5,
 column 6.)
 
-#### \*:POPCOLOR \<expC\> (GENMENUX Directive)
+#### *:POPCOLOR <expC> (GENMENUX Directive)
 
 Changes the default menu popup color setting. Normally, GenMenu defaults
-to COLOR SCHEME 3. Using \*:POPCOLOR, the default scheme can be changed
+to COLOR SCHEME 3. Using *:POPCOLOR, the default scheme can be changed
 to any particular setting. Called: Setup snippet
 
-#### \*:POPCOMMAND \<expC\> (GENMENUX Directive)
+#### *:POPCOMMAND <expC> (GENMENUX Directive)
 
 Identifies the action taken when a file or field has been chosen from a
-popup created with \*:POPFILES or \*:POPFIELDS. \<expC\> must be a valid
+popup created with *:POPFILES or *:POPFIELDS. <expC> must be a valid
 FoxPro function or command. Example:
 
-\*:POPCOMMAND DO deaPop WITH PROMPT()
+*:POPCOMMAND DO deaPop WITH PROMPT()
 
-\*:POPCOMMAND WAIT WINDOW "You chose "+PROMPT()
+*:POPCOMMAND WAIT WINDOW "You chose "+PROMPT()
 
 Called: Comment snippet.
 
-#### \*:POPFIELDS \<expC\> (GENMENUX Directive)
+#### *:POPFIELDS <expC> (GENMENUX Directive)
 
 Creates menus of popups of fields in the current table. The popup shows
-the field \<expC\> for all records from the current table. In order to
+the field <expC> for all records from the current table. In order to
 have something happen when a file is selected from the popup, you must
-use \*:POPCOMMAND. Example:
+use *:POPCOMMAND. Example:
 
-\*:POPFIELDS name
+*:POPFIELDS name
 
-\*:POPFIELDS "Client Name: "+name
+*:POPFIELDS "Client Name: "+name
 
-#### \*:POPFILES \<expC\> (GENMENUX Directive)
+#### *:POPFILES <expC> (GENMENUX Directive)
 
 Creates menu popups of specific files. The popup will show all files
-matching the skeleton in \<expC\>. Use \*:POPCOMMAND to trigger a
+matching the skeleton in <expC>. Use *:POPCOMMAND to trigger a
 process upon selection. Place this directive in the comment snippet of
 the first menu bar where you want the popup to be. For example, if the
 popup is to appear under the File Open menu, add a submenu to the Open
-option and the first bar and add the \*:POPFILES directive to the
+option and the first bar and add the *:POPFILES directive to the
 comment snippet. Example:
 
-\*:POPFILES \*.PJX
+*:POPFILES *.PJX
 
-\*:POPFILES "\*.DBF"
+*:POPFILES "*.DBF"
 
-#### \*:POPPRECOMMAND \<expC\> (GENMENUX Directive)
+#### *:POPPRECOMMAND <expC> (GENMENUX Directive)
 
 Allows for a command or function to be called before a popup is defined.
-This only works with \*:POPFILES or \*:POPFIELD. This allows you to open
-up a table to use the \*:POPFIELD directive more easily. You are
+This only works with *:POPFILES or *:POPFIELD. This allows you to open
+up a table to use the *:POPFIELD directive more easily. You are
 responsible for closing any opened tables. Example:
 
-\*:POPPRECOMMAND =OPENFILE("CLIENTS")
+*:POPPRECOMMAND = OPENFILE("CLIENTS")
 
-#### \*:POPTITLE \<expC\> (GENMENUX Directive)
+#### *:POPTITLE <expC> (GENMENUX Directive)
 
-\*:POPTITLE defines the popup with a title of \<expC\>. Handy if you
+*:POPTITLE defines the popup with a title of <expC>. Handy if you
 need titles on any of your popups. Example:
 
-\*:POPTITLE "Menu Options"
+*:POPTITLE "Menu Options"
 
-#### \*:REFPRG \<file\> (GENMENUX Directive)
+#### *:REFPRG <file> (GENMENUX Directive)
 
 This directive identifies a file that will be created when the menu is
 generated that contains the necessary code to refresh the menu bars and
 prompts that use the CASE statement. This cuts down having to recall the
-MPR file. See also: \*:CASE.
+MPR file. See also: *:CASE.
 
-#### \*:SELECTBAR (GENMENUX Directive)
+#### *:SELECTBAR (GENMENUX Directive)
 
-GenMenu uses ON BAR statement for activating popups. Using \*:SELECTBAR
+GenMenu uses ON BAR statement for activating popups. Using *:SELECTBAR
 will change the ON BAR statements to read ON SELECTION BAR which changes
 the behaviour of activating menu popups. This works best when moving the
 popups in different locations on the screen. See ON BAR and ON SELECTION
 BAR in the FoxPro help file.
 
-#### \*:SELECTPAD (GENMENUX Directive)
+#### *:SELECTPAD (GENMENUX Directive)
 
 GenMenu places ON PAD statements for activating popups. Using
-\*:SELECTPAD will change the ON PAD statements to read ON SELECTION PAD
+*:SELECTPAD will change the ON PAD statements to read ON SELECTION PAD
 which changes the behaviour of activating menus. Works best when moving
 the menus to different locations on the screen. See ON PAD and ON
 SELECTION PAD in the FoxPro help file.
 
-#### \*:SYSDEFAULT (GENMENUX Directive)
+#### *:SYSDEFAULT (GENMENUX Directive)
 
 Adds SET SYSMENU SAVE to the cleanup code. This makes the menu become
 the default (SET SYSMENU TO DEFAULT) after it has been created.
 
-#### \*:SYSPOP (GENMENUX Directive)
+#### *:SYSPOP (GENMENUX Directive)
 
 Wraps the procedure statement with PUSH MENU \_MSYSMENU / SET SYSMENU
 OFF/POP MENU \_MSYSMENU. It can be defined in either the CONFIG.FP,
 Setup or Procedure snippets.
 
-#### \*:VERTICAL \<nStrtRow\>,\<nSkpRow\> (GENMENUX Directive)
+#### *:VERTICAL <nStrtRow>,<nSkpRow> (GENMENUX Directive)
 
-\*:VERTICAL causes the menu to be created vertically instead of
+*:VERTICAL causes the menu to be created vertically instead of
 horizontally. You specify the starting row with nStrtRow and define the
 number of rows between menu options using nSkipRow.
 
-#### \*:WINDOW \<expC1\> \[CLAUSES \[\<expC2\>\]\] (GENMENUX Directive)
+#### *:WINDOW <expC1> \[CLAUSES \[<expC2>\]\] (GENMENUX Directive)
 
-Adds the argument IN WINDOW \<expC1\> to the menu definition. This
-allows you to create menus within windows. When using \*:WINDOW, be sure
+Adds the argument IN WINDOW <expC1> to the menu definition. This
+allows you to create menus within windows. When using *:WINDOW, be sure
 to DEFINE the window before running the MPR file. If not, the MPR file
 uses the FoxPro desktop to place the menu. Use the CLAUSES command to
-automatically create a window named \<expC1\>. You may specify
-additional clauses for the DEFINE WINDOW statement in \<expC2\>. If you
-do not specify a FROM clause, \*:WINDOW will allow you to size and place
-it during compilation by displaying a Window on the screen. \*:WINDOW
+automatically create a window named <expC1>. You may specify
+additional clauses for the DEFINE WINDOW statement in <expC2>. If you
+do not specify a FROM clause, *:WINDOW will allow you to size and place
+it during compilation by displaying a Window on the screen. *:WINDOW
 works well under DOS to create MDI-style applications. You can simply
-add \*:WINDOW to your setup code and it works. Example:
+add *:WINDOW to your setup code and it works. Example:
 
-\*:WINDOW w\_temp CLAUSES ;
+*:WINDOW w\_temp CLAUSES ;
 
 FROM 5,5 TO 12,50 ;
 
 COLOR SCHEME 6
 
-#### {{\<exp\>}} (GENMENUX Directive)
+#### {{<exp>}} (GENMENUX Directive)
 
-Text surrounded by double braces performs the EVALUATION of \<expC\> at
-compile-time and returns the value in string form. {{\<expC\>}} is
-replaced with the string of EVALUATE(\<expC\>). \<expC\> can be any type
-(character, numeric, date, logical, etc.) and {{\<expC\>}} will always
+Text surrounded by double braces performs the EVALUATION of <expC> at
+compile-time and returns the value in string form. {{<expC>}} is
+replaced with the string of EVALUATE(<expC>). <expC> can be any type
+(character, numeric, date, logical, etc.) and {{<expC>}} will always
 return the result in character form. Example: if the following command
 was in the Setup snippet and assuming the current date was 06/01/93:
 
@@ -8451,12 +8412,12 @@ the following code would be placed in the .MPR:
 
 WAIT 'Version Date is 06/01/93' WINDOW
 
-#### {{&.\<expC\>}} (GENMENUX Directive)
+#### {{&.<expC>}} (GENMENUX Directive)
 
 Text surrounded by double braces with a &. immediately after the open
-braces performs the macro substitution of \<expC\> at compile-time and
-returns a null value in string form. {{\<expC\>}} is replaced with a
-null string. \<expC\> can be any FoxPro command that can be executed
+braces performs the macro substitution of <expC> at compile-time and
+returns a null value in string form. {{<expC>}} is replaced with a
+null string. <expC> can be any FoxPro command that can be executed
 within a macro substitution string. Example: if the following command
 was in the Setup snippet and assuming the current date was 06/01/93:
 
@@ -8505,7 +8466,7 @@ details when specific drivers are called:
 8.  Reorder menu pads that may have been deleted because of previous
     directives.
 
-9.  Generate \*:IF support by adding IF statement to CLEANUP code.
+9.  Generate *:IF support by adding IF statement to CLEANUP code.
 
 10. Run MNXDRV3 on each line of the MNX file.
 
@@ -8538,13 +8499,13 @@ details when specific drivers are called:
 
 19. Remove Temporary files.
 
-20. If \*:AUTORUN, run MPR file.
+20. If *:AUTORUN, run MPR file.
 
 ## Checklist for GENMENUX
 
 Are your CONFIG.FP files set so
 
-\_GENMENU=\<Path\\\>GENMENUX.PRG.?
+\_GENMENU =<Path\\>GENMENUX.PRG.?
 
 ## The MNX Structure
 
@@ -8581,7 +8542,7 @@ name for the options underneath the submenu.
 For example: the regular FoxPro sysmenu has 7 menu pads. Each of these
 menu pads is associated with two records in the mnx file. The first
 associated record identifies the Pad name ("\_msm\_file") and the prompt
-name for the menu pad ("\\\<File"). Since this record is to be shown on
+name for the menu pad ("\\<File"). Since this record is to be shown on
 the menu, the objtype field is 3. The second associated record
 identifies the submenu popup. The popup objtype field is 2. Since this
 information will not appear on the menu, the prompt field is left empty
@@ -8589,7 +8550,7 @@ but the name field contains the name of the popup (\_mfile).
 
 <table>
 <thead>
-<tr class="header">
+<tr class ="header">
 <th>Field Name</th>
 <th>Type</th>
 <th>Description</th>
@@ -8599,7 +8560,7 @@ but the name field contains the name of the popup (\_mfile).
 <tr>
 <td>OBJTYPE</td>
 <td>N-2</td>
-<td>Type of menu object. 1= first record of the mnx file, 2=popup definition, 3=menu item (visible on an actual menu item).</td>
+<td>Type of menu object. 1 = first record of the mnx file, 2 = popup definition, 3 = menu item (visible on an actual menu item).</td>
 </tr>
 <tr>
 <td>OBJCODE</td>
@@ -8615,7 +8576,7 @@ but the name field contains the name of the popup (\_mfile).
 <tr>
 <td>NAME</td>
 <td>M</td>
-<td>The name for a submenu (if objtype=2) or menu bar # (if objtype=3). For the top level system menu, this field is always _msysmenu. For submenus (objcode=77), this field is left empty.</td>
+<td>The name for a submenu (if objtype = 2) or menu bar # (if objtype = 3). For the top level system menu, this field is always _msysmenu. For submenus (objcode = 77), this field is left empty.</td>
 </tr>
 <tr>
 <td>PROMPT</td>
@@ -8635,7 +8596,7 @@ but the name field contains the name of the popup (\_mfile).
 <tr>
 <td>PROCTYPE</td>
 <td>N-1</td>
-<td>1=Procedure, 0=Expression. Defaults to 1 when a menu is first created.</td>
+<td>1 = Procedure, 0 = Expression. Defaults to 1 when a menu is first created.</td>
 </tr>
 <tr>
 <td>PROCEDURE</td>
@@ -8645,7 +8606,7 @@ but the name field contains the name of the popup (\_mfile).
 <tr>
 <td>SETUPTYPE</td>
 <td>N-1</td>
-<td>1=Procedure, 0=Expression. Always 1. This field is only filled in for the first record.</td>
+<td>1 = Procedure, 0 = Expression. Always 1. This field is only filled in for the first record.</td>
 </tr>
 <tr>
 <td>SETUP</td>
@@ -8655,7 +8616,7 @@ but the name field contains the name of the popup (\_mfile).
 <tr>
 <td>CLEANTYPE</td>
 <td>N-1</td>
-<td>1=Procedure, 0=Expression. Always 1. This field is only filled in for the first record.</td>
+<td>1 = Procedure, 0 = Expression. Always 1. This field is only filled in for the first record.</td>
 </tr>
 <tr>
 <td>CLEANUP</td>
@@ -8710,7 +8671,7 @@ but the name field contains the name of the popup (\_mfile).
 <tr>
 <td>LOCATION</td>
 <td>N-1</td>
-<td>Location of Menu. 0=Replace, 1=Append, 2=Before, 3=After. If Before or After, the pad name where the menu is placed is stored in the Name field.</td>
+<td>Location of Menu. 0 = Replace, 1 = Append, 2 = Before, 3 = After. If Before or After, the pad name where the menu is placed is stored in the Name field.</td>
 </tr>
 <tr>
 <td>SCHEME</td>
@@ -8737,7 +8698,7 @@ will corrupt the MNX file and the MPR file will be unusable.
 
 ##### Accelerator
 
-<div class="Definition">
+<div class ="Definition">
 
 An Alt+Key combination used to activate menus, menu items, and dialog
 items.
@@ -8746,7 +8707,7 @@ items.
 
 ##### Code page
 
-<div class="Definition">
+<div class ="Definition">
 
 An ordered set of characters in which a numeric index is associated with
 each character. Also known as "character set".
@@ -8755,7 +8716,7 @@ each character. Also known as "character set".
 
 ##### Compile-time
 
-<div class="Definition">
+<div class ="Definition">
 
 The raw source is transformed into a more machine-readable object
 format. Compiling can be initiated from the menu bar or with the VFP
@@ -8767,7 +8728,7 @@ memo fields in the project .PJX records.
 
 ##### Diacritic
 
-<div class="Definition">
+<div class ="Definition">
 
 Any mark placed over, under, or through a Latin-based character, usually
 indicates a change in phonetic value from the unmarked state.
@@ -8776,7 +8737,7 @@ indicates a change in phonetic value from the unmarked state.
 
 ##### Double-byte character set (DBCS)
 
-<div class="Definition">
+<div class ="Definition">
 
 A character set with some characters consisting of one byte and others
 consisting of two bytes.
@@ -8785,7 +8746,7 @@ consisting of two bytes.
 
 ##### Enabling
 
-<div class="Definition">
+<div class ="Definition">
 
 Enabling is to identify and separate the cultural dependencies from a
 program or application. Segmenting a package into culturally dependent
@@ -8797,7 +8758,7 @@ brought to market more quickly.
 
 ##### Generate-time
 
-<div class="Definition">
+<div class ="Definition">
 
 The time when power-tool metadata is converted to source code. VFP uses
 a template program, called GENMENU.PRG, to interpret the .MNX metadata
@@ -8809,7 +8770,7 @@ process; VFP interprets report and label metadata at run-time.
 
 ##### Globalization
 
-<div class="Definition">
+<div class ="Definition">
 
 Globalization is the process of making a product ready for the
 international market.
@@ -8818,7 +8779,7 @@ international market.
 
 ##### Link-time
 
-<div class="Definition">
+<div class ="Definition">
 
 Link-time is when all the object files are combined when creating an
 executable program, like an .APP or an .EXE file.
@@ -8827,7 +8788,7 @@ executable program, like an .APP or an .EXE file.
 
 ##### Locales
 
-<div class="Definition">
+<div class ="Definition">
 
 A *locale* describes the local conventions, culture, and language of a
 particular region. Typically each country represents a distinct locale
@@ -8838,7 +8799,7 @@ occupy separate regions.
 
 </div>
 
-<div class="Definition">
+<div class ="Definition">
 
 The term *locale* can have a wide interpretation. Linguistic difference
 is not the sole determinant of locale boundaries. In some situations
@@ -8852,7 +8813,7 @@ find locale-based differences.
 
 ##### Localization
 
-<div class="Definition">
+<div class ="Definition">
 
 *Localization* is the process of adding features and elements to the
 program to provide cultural compatibility for the end user in a specific
@@ -8862,7 +8823,7 @@ program to provide cultural compatibility for the end user in a specific
 
 ##### Multi-byte character set (MBCS)
 
-<div class="Definition">
+<div class ="Definition">
 
 A character set with some characters consisting of more than one byte.
 
@@ -8870,7 +8831,7 @@ A character set with some characters consisting of more than one byte.
 
 ##### Phrasebook
 
-<div class="Definition">
+<div class ="Definition">
 
 A concordance table containing individual text strings, in two or more
 languages, for the purpose of automated translation and substitution of
@@ -8880,7 +8841,7 @@ translated text into a program.
 
 ##### Program-time
 
-<div class="Definition">
+<div class ="Definition">
 
 When the developer is working with a text editor, or a power tool, from
 which raw source code is generated.
@@ -8889,7 +8850,7 @@ which raw source code is generated.
 
 ##### Run-time
 
-<div class="Definition">
+<div class ="Definition">
 
 When the finished program is actually executing.
 
@@ -8897,7 +8858,7 @@ When the finished program is actually executing.
 
 ##### Single-byte character set (SBCS)
 
-<div class="Definition">
+<div class ="Definition">
 
 A character encoding scheme wherein each character is represented by one
 byte. By definition, a SBCS can have a maximum of 256 characters.
@@ -8923,7 +8884,7 @@ If you are interested in object-oriented design, I most highly recommend
 these two books.
 
 
-## Thanks to these fine folks\!
+## Thanks to these fine folks!
 
 I want to thank the following individuals and organizations for lending
 their time, expertise, and perseverance to help me create this software.
@@ -8938,7 +8899,7 @@ Drew Speedie** (USA) and **Mark Giesen** (Holland) for finding many
 “gotchas” and for providing elegant solutions that I am more than
 happy to include in the INTL codebase; **Günter Huber** (Austria) for
 his help in my understanding FoxPro’s international features; **Ken
-Levy** (USA<span class="smallcaps">)</span> the author and creator of
+Levy** (USA<span class ="smallcaps">)</span> the author and creator of
 GENSCRNX., and **Andrew Ross MacNeill** (Canada) for creating and
 refining GENMENUX; **Shai Mittleman** (USA) for ideas and insight into
 new features; **Alan Schwartz, Chick Bornheim, Andy Neil, Dale
@@ -8946,16 +8907,16 @@ Kiefling** and all the other excellent people in Northern California
 including **Les Pinter** and **John Thornton.**
 
 Finally, to **Larry MacDonald** and **Hélène Michaud**
-(<span class="smallcaps">north sails</span>), **Jim Mayer**
-(<span class="smallcaps">unhcr,</span> Geneva), **Rainer Becker**
-(<span class="smallcaps">isys gmbh,</span> Frankfurt Germany) and
-**Chuck Melton** (<span class="smallcaps">melton technologies,</span>
-Winston-Salem <span class="smallcaps">nc usa</span>), **Brian Thomas**
-(<span class="smallcaps">the international red cross</span>, Geneva),
-**Alan Griver** (<span class="smallcaps">flash creative
+(<span class ="smallcaps">north sails</span>), **Jim Mayer**
+(<span class ="smallcaps">unhcr,</span> Geneva), **Rainer Becker**
+(<span class ="smallcaps">isys gmbh,</span> Frankfurt Germany) and
+**Chuck Melton** (<span class ="smallcaps">melton technologies,</span>
+Winston-Salem <span class ="smallcaps">nc usa</span>), **Brian Thomas**
+(<span class ="smallcaps">the international red cross</span>, Geneva),
+**Alan Griver** (<span class ="smallcaps">flash creative
 management</span>), **Daniel Gramunt**
-(<span class="smallcaps">nokia,</span> Lausanne), **Scott Plantz**
-(<span class="smallcaps">emedicine.com</span>) and many others, all of
+(<span class ="smallcaps">nokia,</span> Lausanne), **Scott Plantz**
+(<span class ="smallcaps">emedicine.com</span>) and many others, all of
 whom have, over the years, provided me with interesting and rewarding
 international opportunities.
 
