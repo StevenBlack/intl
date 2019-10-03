@@ -6249,16 +6249,20 @@ of VFP.
 
 ### `PUTFILE([cDialogCaption] [, cFileName] [, cFileExtensions])`
 
-PUTFILE() invokes the Save As dialog box and returns the file name you
+`PUTFILE()` invokes the Save As dialog box and returns the file name you
 specify.
 
-| | |
-| ----- | ----- |
-| **Many PUTFILE() interface elements cannot be translated.** | **Internationalization Gotcha:** other than the dialog caption, you have no control over the captions in this dialog. PUTFILE() comes from VFP and it varies with its localization language. |
+**Many `PUTFILE()` interface elements cannot be translated.**
+
+**Internationalization Gotcha:** other than the dialog caption, you have no control
+over the captions in this dialog. `PUTFILE()` comes from VFP and it varies with its
+localization language.
 
 For example, the following line...
 
+```
 ?PUTFILE("cCustomText" , "cFileName" , "Ext")
+```
 
 creates this dialog. We basically can’t localize this.
 
@@ -6268,7 +6272,7 @@ The PUTFILE() dialog.
 
 ### `RATC(cSearchExpression, cExpressionSearched [, nOccurrence])`
 
-RATC(), which is similar to RAT(), returns the numeric position of the
+`RATC()`, which is similar to RAT(), returns the numeric position of the
 last occurrence of a character expression or memo field within another
 character expression or memo field. The character expressions or memo
 fields can contain any combination of single-byte and double-byte
@@ -6276,7 +6280,7 @@ characters.
 
 ### `RATLINE(cSearchExpression, cExpressionSearched)`
 
-RATLINE() returns the line number of the last occurrence of a character
+`RATLINE()` returns the line number of the last occurrence of a character
 expression within another character expression or memo field, counting
 from the last line.
 
@@ -6299,6 +6303,7 @@ different localization of VFP!
 As if that weren't enough, calls to the RIError function, which may
 result if things don't go quite as planned, contain hard-coded error
 strings, like
+
 DO rierror with -1,"Delete restrict rule violated." and
 DO rierror with -1,"Insert restrict rule violated.".
 
@@ -6310,14 +6315,14 @@ functions, and paste them subsequent to the generated code.
 
 ### `RIGHTC()`
 
-RIGHTC(), which is similar to RIGHT(), returns the specified number of
+`RIGHTC()`, which is similar to RIGHT(), returns the specified number of
 right-most characters from a character string. The character expressions
 or memo fields can consist of any combination of single-byte and
 double-byte characters.
 
 ### `SET COLLATE TO cSequenceName`
 
-SET COLLATE specifies a collation sequence for character fields in
+`SET COLLATE` specifies a collation sequence for character fields in
 subsequent indexing and sorting operations.
 
 The following collation sequence options are available in VFP:
@@ -6334,9 +6339,9 @@ The following collation sequence options are available in VFP:
 | SWEFIN | Swedish, Finnish |
 | UNIQWT | Unique Weight |
 
-Note that when SET COLLATE TO is set to something other than “Machine”,
+Note that when `SET COLLATE TO` is set to something other than “Machine”,
 each index character takes two bytes, effectively reducing the maximum
-index key length from 240 to 120. See INDEX ON on page 118.
+index key length from 240 to 120. See `INDEX ON` on page 118.
 
 ### `SET CPCOMPILE TO [nCodePage]`
 
@@ -6350,15 +6355,14 @@ CPCOMPILE.
 
 ### `SET CPDIALOG ON |OFF`
 
-<table>
-<tbody>
-<tr>
-<td><strong>In your shipping app, make sure to SET CPDIALOG OFF.</strong></td>
-<td><p>SET CPDIALOG specifies whether the Code Page dialog box is displayed when a table is opened.</p>
-<p><strong>Internationalization Gotcha:</strong> SET CPDIALOG is useful only at design-time. In your completed application, be sure that SET CPDIALOG is OFF.</p></td>
-</tr>
-</tbody>
-</table>
+**In your shipping app, make sure to `SET CPDIALOG OFF`**.
+
+`SET CPDIALOG` specifies whether the Code Page dialog box is displayed when
+a table is opened.
+
+**Internationalization Gotcha:** `SET CPDIALOG` is useful only at design-time.
+In your completed application, be sure that `SET CPDIALOG` is `OFF`.
+
 
 ### `SET CURRENCY`
 
@@ -6549,7 +6553,7 @@ SET SEPARATOR
 `STRCONV()` converts a character expression to a different form. The following table
 lists the values of nSetting and the type of conversion performed:
 
-| nSetting | Conversion |
+| `nSetting` | Conversion |
 | --- | --- |
 | 1 | Converts single-byte characters in `cExpression` to double-byte characters. |
 | 2 | Converts double-byte characters in `cExpression` to single-byte characters. |
@@ -6586,7 +6590,7 @@ instead of `SYS(13)`.
 **`SYS(15)` is ancient history.**
 
 Translates a second character string from the first character string. Included
-for backward compatibility; use SET COLLATE instead.
+for backward compatibility; use `SET COLLATE` instead.
 
 Included with VFP is a memory variable file called EUROPEAN.MEM that
 contains sample translation characters. In FoxPro for MS-DOS and VFP,
