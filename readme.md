@@ -24,7 +24,6 @@ Then,
 
 * If you need localization, **instantiate an INTL object:** Now when localization is required, create and configure an INTL object as described in [How to Instantiate an INTL Object](#how-to-instantiate-an-intl-object).
 
-
 # INTL: How to...
 
 ## How to Correctly Place Your INTL Files
@@ -224,7 +223,6 @@ Here’s what you need to do to localize your application this morning for a mul
 
 The basic steps are:
 
-
 <dl>
 <dt>Install INTL and seed the Init() method of your form base classes.</dt>
 <dd>Follow the steps in the section titled Installing INTL on page 11. Make sure you review all the steps. Especially important are the steps titled How to Instantiate an INTL Object on page 13, How to Get Automatic Form Localization on page 14, and How to Localize Menus on page 14.</dd>
@@ -251,7 +249,6 @@ Note: you can get a "quick-and-dirty" translation for testing and internal demos
 REPLACE ALL cSwahili with "**"+TRIM(cOriginal)+"**" FOR cOriginal &lt;&gt; "(("</dd>
 </dd>
 </dl>
-
 
 ## How to Configure Your Main INTL Object
 
@@ -285,7 +282,6 @@ You configure INTL with a `_SCREEN.oINTL.SetConfig( n )` method, where `n` is a 
 </tr>
 </tbody>
 </table>
-
 
 **Example: create an INTL object that localizes strings and fonts**
 
@@ -648,7 +644,6 @@ oData = _SCREEN.oINTL.GetStrategy("Data")
 oPicture.SetConfig( 2)
 ```
 
-
 ## How to Localize Pictures
 
 **Images can be locale-specific.**  Some of the icons and images we use every day may not be appropriate in other locales. INTL provides a way to change the displayed images when we change locales.
@@ -889,7 +884,6 @@ So there are two ways to do it.
 The RightToLeft strategy is the only strategy that actually rearranges objects in containers.
 
 The INTL toolkit right-to-left strategy is a little different from other strategies in four important respects:
-
 
 <ul>
 <li><p>The right-to-left writing direction is <em>locale</em>-specific <em>and</em> language-specific.</p></li>
@@ -3606,7 +3600,7 @@ In general terms, GENMENUX works as follows:
     drivers can add, edit or delete records in the temporary file.
 
 3.  The modified temporary file is processed by the standard FoxPro
-    GENMENU.PRG <span class ="smallcaps">(</span>or any routine you
+    GENMENU.PRG (or any routine you
     specify) to generate a temporary source file (MPR), whose output is
     stored in a temporary memo field.
 
@@ -3637,18 +3631,18 @@ benefit from INTL at run-time.
     sure you have the correct CONFIG.FP file. In CONFIG.FP, add the
     following lines:
 
-\_GENMENU =<PATH<span class ="smallcaps">>\</span>GENMENUX.PRG
+\_GENMENU =<PATH>\GENMENUX.PRG
 
 \_MNXDRV2 = INTL
 
   - For now, to avoid re-starting FoxPro, set the following system
     memory variables:
 
-\_GENMENU ="<PATH<span class ="smallcaps">>\</span>GENMENUX.PRG"
+\_GENMENU ="<PATH>\GENMENUX.PRG"
 
   - Add I.PRG and MSGSVC.PRG to your project.
 
-  - Put STRINGS<span class ="smallcaps">.DBF/FPT/CDX</span> and
+  - Put STRINGS.DBF/FPT/CDX and
     MSGSVC.DBF/FPT/CDX in your project root directory. Data files are
     opened automatically by INTL functions if they aren’t already
     opened. You may keep these tables where you wish, but you must
@@ -3674,7 +3668,7 @@ benefit from INTL at run-time.
 
 When you run your application, all the screen and menu strings will be
 automatically appended (as they are encountered) to the cOriginal field
-of `strings.dbf`<span class ="smallcaps">.</span> Since no Spanish
+of `strings.dbf`. Since no Spanish
 translation entries exist yet, you will see the English (or cOriginal)
 phrases.
 
@@ -3683,7 +3677,7 @@ field into Spanish.
 
 ## INTL CONFIG.FPW Menu Statements
 
-The following <span class ="smallcaps">CONFIG.FP</span> statements
+The following CONFIG.FP statements
 activate INTL behavior and control INTL processes.
 
 #### \_GENMENU
@@ -3736,7 +3730,7 @@ Example: \_INTLUPDATE = C:\\MyProj\\
 
 This instructs GENMENUX to process each menu record with the proper
 drivers. We use the second hook in GENMENUX for the INTL
-driver<span class ="smallcaps">.</span>
+driver.
 
 Example: \_MNXDRV2 = INTL
 
@@ -3745,11 +3739,11 @@ This is overridden by the *:MNXDRV2 menu setup snippet directive.
 ## INTL Menu Memory Variables
 
 The following memory variables will override the commands set in
-<span class ="smallcaps">CONFIG.FP.</span>
+CONFIG.FP.
 
 #### m.\_GENMENU
 
-<span class ="smallcaps">S</span>pecifies which menu generation program
+Specifies which menu generation program
 to use.
 
 #### m.\_INTLEXPLICIT = "ON" |"OFF"
@@ -3783,7 +3777,7 @@ special interest in creating multilingual applications:
 #### *:IF <expC>
 
 Placed in the comment snippet of an object, it will *bracket* the object
-with the specified <span class ="smallcaps">if</span> statement.
+with the specified if statement.
 
 #### *:DELETE
 
@@ -5038,7 +5032,7 @@ oX = ox.SetHook(.NULL.)
 
 ## Introduction
 
-| **vfp has a number of international features and quirks.** | Visual FoxPro has many international features and quirks, and it's important to understand most of them. This section focuses first on vfp-specific issues, and then later focuses on the more germane issues related to the storage, display and printing of international characters. |
+| **VFP has a number of international features and quirks.** | Visual FoxPro has many international features and quirks, and it's important to understand most of them. This section focuses first on VFP-specific issues, and then later focuses on the more germane issues related to the storage, display and printing of international characters. |
 | ----- | ----- |
 | **Character Sets and Code Pages are important concepts in internationalization.** | If your application needs to address the international market, you need a thorough understanding of character sets and code pages. Only a developer creating an application for domestic consumption can get away without a knowledge of these terms. |
 | **People expect software to conform to local norms.** | Gone are the days when the international market willingly lived within the limitations of North American software. Applications are increasingly expected to conform to the intricacies of the end-user's locale. |
@@ -5048,7 +5042,7 @@ oX = ox.SetHook(.NULL.)
 
 ### Background
 
-This section is a compendium of vfp's international features and
+This section is a compendium of VFP's international features and
 dependencies. This is a long and detailed section, though fortunately
 many of the themes are recurring. Here is a short summary of the main
 themes found herein:
@@ -5059,7 +5053,7 @@ themes found herein:
 <th><strong>The language of operating system services will vary with the localized language of the OS.</strong></th>
 <th><ul>
 <li>
-<p><strong><em>Some services come from the operating system</em>,</strong> so the language of display varies with the localization of the operating system. For example, if your German client is running a US version of Windows, then vfp's MESSAGEBOX() function will display English button captions (OK - Cancel) and there is nothing you can do about it (other than use INTL's MsgSvc() function, of course).</p>
+<p><strong><em>Some services come from the operating system</em>,</strong> so the language of display varies with the localization of the operating system. For example, if your German client is running a US version of Windows, then VFP's MESSAGEBOX() function will display English button captions (OK - Cancel) and there is nothing you can do about it (other than use INTL's MsgSvc() function, of course).</p>
 </li>
 </ul></th>
 </tr>
@@ -5069,7 +5063,7 @@ themes found herein:
 <td><strong>The language of native VFP services will vary with the localized language of VFP.</strong></td>
 <td><ul>
 <li>
-<p><em><strong>Some services come from Visual FoxPro</strong></em>, so their display language varies with the localized version of vfp. For example, dialogs like GETFILE() and LOCFILE() are vfp dialogs and, aside from parameters you can pass, these dialogs will appear in English on English versions of vfp.</p>
+<p><em><strong>Some services come from Visual FoxPro</strong></em>, so their display language varies with the localized version of VFP. For example, dialogs like GETFILE() and LOCFILE() are VFP dialogs and, aside from parameters you can pass, these dialogs will appear in English on English versions of VFP.</p>
 </li>
 </ul></td>
 </tr>
@@ -5077,7 +5071,7 @@ themes found herein:
 <td><strong>The language of some things in VFP cannot be controlled.</strong></td>
 <td><ul>
 <li>
-<p><em><strong>Some vfp services aren't designed for multi-locale use</strong></em>, like the Relational Integrity (ri) builder. The ri builder is dependent on FoxPro functions that return character strings that vary with the localized version of FoxPro.</p>
+<p><em><strong>Some VFP services aren't designed for multi-locale use</strong></em>, like the Relational Integrity (ri) builder. The ri builder is dependent on FoxPro functions that return character strings that vary with the localized version of FoxPro.</p>
 </li>
 </ul></td>
 </tr>
@@ -5109,7 +5103,7 @@ that follow.
 <p>In general, in cases where a nCodePage argument is permitted, and a value of 0 is assigned, no code page translation will take place.</p>
 </li>
 <li>
-<p>If the specified value for nCodePage isn't supported, vfp generates error 1914, with message "Code page number is invalid.".</p>
+<p>If the specified value for nCodePage isn't supported, VFP generates error 1914, with message "Code page number is invalid.".</p>
 </li>
 </ul></td>
 </tr>
@@ -5120,27 +5114,27 @@ that follow.
 
 ### `AERROR()`
 
-Creates an array of information about the most recent vfp, ole, or odbc
+Creates an array of information about the most recent VFP, ole, or odbc
 error.
 
 <table>
 <thead>
 <tr class ="header">
 <th><strong>VFP errors vary with the localization language of VFP.</strong></th>
-<th><p>When a vfp error occurs, ArrayName[2] contains the text of the error message, which is the same as the value returned by MESSAGE().</p>
-<p><strong>Internationalization Gotcha:</strong> this error message varies according to the localized version of vfp.</p></th>
+<th><p>When a VFP error occurs, ArrayName[2] contains the text of the error message, which is the same as the value returned by MESSAGE().</p>
+<p><strong>Internationalization Gotcha:</strong> this error message varies according to the localized version of VFP.</p></th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><strong>ole error messages vary with the localization language of Windows.</strong></td>
-<td><p>When ole errors numbered 1427 or 1429 occur, then ArrayName[2] contains the text of the vfp error message ("OLE Idispatch exception code"), and ArrayName[3] contains the text of the ole error message.</p>
-<p><strong>Internationalization Gotcha:</strong> the vfp error message varies with the localization of vfp, and the ole error message usually varies with the localization of Windows.</p></td>
+<td><p>When ole errors numbered 1427 or 1429 occur, then ArrayName[2] contains the text of the VFP error message ("OLE Idispatch exception code"), and ArrayName[3] contains the text of the ole error message.</p>
+<p><strong>Internationalization Gotcha:</strong> the VFP error message varies with the localization of VFP, and the ole error message usually varies with the localization of Windows.</p></td>
 </tr>
 <tr>
 <td><strong>odbc error messages vary with the localized language of VFP.</strong></td>
-<td><p>Similarly, when an odbc error numbered 1526 occurs , then ArrayName[2] contains the text of the vfp error message ("Connectivity error:"), and ArrayName[3] contains the text of the odbc error message.</p>
-<p><strong>Internationalization Gotcha:</strong> both the vfp and ODBC error messages vary with the localization of vfp.</p></td>
+<td><p>Similarly, when an odbc error numbered 1526 occurs , then ArrayName[2] contains the text of the VFP error message ("Connectivity error:"), and ArrayName[3] contains the text of the odbc error message.</p>
+<p><strong>Internationalization Gotcha:</strong> both the VFP and ODBC error messages vary with the localization of VFP.</p></td>
 </tr>
 <tr>
 <td>Obviously, you'll want to avoid passing AERROR() messages to the user unless you are sure that their workstation has the correct localized versions of Windows and VFP.</td>
@@ -5175,7 +5169,7 @@ with DBSETPROP(cTableAlias,"Table","RuleText", cRuleText).
 <tbody>
 <tr>
 <td><strong>ANSITOOEM() is for backward compatibility and for conversions with DOS. Use CPCONVERT() instead.</strong></td>
-<td><p>ANSITOOEM() converts each character of a character expression to the corresponding character in the ms-dos (oem) character set. ANSITOOEM()is used to move data from vfp and FoxPro for Macintosh to FoxPro for ms-dos.</p>
+<td><p>ANSITOOEM() converts each character of a character expression to the corresponding character in the ms-dos (oem) character set. ANSITOOEM()is used to move data from VFP and FoxPro for Macintosh to FoxPro for ms-dos.</p>
 <p><strong>Internationalization Tip:</strong> this function is included for backward compatibility. Use CPCONVERT() instead.</p></td>
 </tr>
 </tbody>
@@ -5195,18 +5189,18 @@ with DBSETPROP(cTableAlias,"Table","RuleText", cRuleText).
 
 If you omit AS nCodePage, two things can happen:
 
-1.  If vfp cannot determine the code page of the source table or file,
-    vfp copies the contents of the source table or file and, as it
-    copies the data, automatically converts the data to the current vfp
+1.  If VFP cannot determine the code page of the source table or file,
+    VFP copies the contents of the source table or file and, as it
+    copies the data, automatically converts the data to the current VFP
     code page. If SET CPDIALOG is ON, the table in the currently
     selected work area is marked with a code page. If you're appending
     from a table not marked with a code page, the Code Page dialog is
     displayed, allowing you to choose the code page of the table from
-    which you're appending. The current vfp code page can be determined
+    which you're appending. The current VFP code page can be determined
     with CPCURRENT( ).
 
-2.  If vfp is able to determine the code page of the file being
-    appended, vfp copies the contents of the appended table or file and,
+2.  If VFP is able to determine the code page of the file being
+    appended, VFP copies the contents of the appended table or file and,
     as it copies the data, automatically converts the data to the code
     page of the currently selected table.
 
@@ -5219,7 +5213,7 @@ APPEND MEMO copies the contents of a disk file to a memo field.
 <tr>
 <td><strong>Specify the code page of the new data when appending memo field data from other locales or platforms.</strong></td>
 <td><p>AS nCodePage specifies the code page of the file copied to the memo field.</p>
-<p><strong>Internationalization Gotcha:</strong> vfp copies the contents of the text file and, as it copies the data to the memo field, automatically converts the data from the code page you specify to the code page of the table containing the memo field. If the table containing the memo field is not marked with a code page, vfp automatically converts the data from the code page you specify to the current vfp code page.</p></td>
+<p><strong>Internationalization Gotcha:</strong> VFP copies the contents of the text file and, as it copies the data to the memo field, automatically converts the data from the code page you specify to the code page of the table containing the memo field. If the table containing the memo field is not marked with a code page, VFP automatically converts the data from the code page you specify to the current VFP code page.</p></td>
 </tr>
 </tbody>
 </table>
@@ -5231,12 +5225,12 @@ procedures snippet of the current database.
 
 | | |
 | ----- | ----- |
-| **Specify the code page of the new data when appending DBC procedure code from other locales or platforms.** | **Internationalization Gotcha:** AS nCodePage specifies the code page of the text file from which the stored procedures are appended. vfp copies the contents of the text file and, as it does so, automatically converts the contents of the text file to the code page you specify. |
+| **Specify the code page of the new data when appending DBC procedure code from other locales or platforms.** | **Internationalization Gotcha:** AS nCodePage specifies the code page of the text file from which the stored procedures are appended. VFP copies the contents of the text file and, as it does so, automatically converts the contents of the text file to the code page you specify. |
 
-If you omit AS nCodePage, vfp copies the contents of the text file from
+If you omit AS nCodePage, VFP copies the contents of the text file from
 which the stored procedures are appended and, as it does so,
-automatically converts the contents of the text file to the current vfp
-code page. The current vfp code page can be determined with CPCURRENT(
+automatically converts the contents of the text file to the current VFP
+code page. The current VFP code page can be determined with CPCURRENT(
 ).
 
 ### `AT\_C(cSearchExpression, cExpressionSearched [, nOccurrence])`
@@ -5298,9 +5292,9 @@ code page. The current vfp code page can be determined with CPCURRENT(
 <table>
 <tbody>
 <tr>
-<td><strong>CDOW() is dependent on the vfp localization.</strong></td>
+<td><strong>CDOW() is dependent on the VFP localization.</strong></td>
 <td><p>CDOW()returns the day-of-the-week from a given date or datetime expression.</p>
-<p><strong>Internationalization Gotcha:</strong> the day name returned varies with the localization of vfp.</p></td>
+<p><strong>Internationalization Gotcha:</strong> the day name returned varies with the localization of VFP.</p></td>
 </tr>
 </tbody>
 </table>
@@ -5336,7 +5330,7 @@ code page. The current vfp code page can be determined with CPCURRENT(
 <tr>
 <td><strong>The text returned from CMONTH() varies with the localized version of VFP.</strong></td>
 <td><p>CMONTH()returns the name of the month from a given date or datetime expression.</p>
-<p><strong>Internationalization Gotcha:</strong> the language of the returned string comes from vfp, so you cannot independently control the language of what's returned.</p></td>
+<p><strong>Internationalization Gotcha:</strong> the language of the returned string comes from VFP, so you cannot independently control the language of what's returned.</p></td>
 </tr>
 </tbody>
 </table>
@@ -5360,7 +5354,7 @@ code page. The current vfp code page can be determined with CPCURRENT(
 <tr>
 <td><strong>Use AS &lt;code page&gt; to create a file-copy of a memo in another code page.</strong></td>
 <td><p>COPY MEMO copies the contents of the specified memo field in the current record to a file.</p>
-<p><strong>Internationalization Gotcha:</strong> AS nCodePage specifies the code page for the new file vfp copies the contents of the specified memo field and, as it copies the data, automatically converts the data to the code page you specify for the text file.</p></td>
+<p><strong>Internationalization Gotcha:</strong> AS nCodePage specifies the code page for the new file VFP copies the contents of the specified memo field and, as it copies the data, automatically converts the data to the code page you specify for the text file.</p></td>
 </tr>
 </tbody>
 </table>
@@ -5386,12 +5380,12 @@ COPY TO creates a new file from the contents of the currently selected
 table.
 
 **Internationalization Gotcha**: AS nCodePage specifies the code page
-for the new file. vfp copies the contents of the currently selected
+for the new file. VFP copies the contents of the currently selected
 table and, as it copies the data, automatically converts the data to the
-code page you specify for the new table or file. If possible, vfp marks
+code page you specify for the new table or file. If possible, VFP marks
 the newly created table or file with the code page you specify. If you
 omit AS nCodePage, the newly created table or file is converted to the
-current vfp code page.
+current VFP code page.
 
 ### `COPY PROCEDURES ... AS nCodePage`
 
@@ -5399,7 +5393,7 @@ COPY PROCEDURES copies stored procedures in the current database to a
 text file.
 
 **Internationalization Gotcha**: AS nCodePage specifies the code page
-for the text file to which the stored procedures are copied. vfp copies
+for the text file to which the stored procedures are copied. VFP copies
 the stored procedures and, as it does so, automatically converts the
 stored procedures to the code page you specify.
 
@@ -5421,13 +5415,13 @@ stored procedures to the code page you specify.
 <tbody>
 <tr>
 <td><strong>Use CPCURRENT() to reckon system code page information.</strong></td>
-<td><p>CPCURRENT() returns the code page setting (if any) in your vfp configuration file, or returns the current operating system code page.</p>
+<td><p>CPCURRENT() returns the code page setting (if any) in your VFP configuration file, or returns the current operating system code page.</p>
 <p><strong>Internationalization Gotcha:</strong> CPCURRENT() returns one of the following:</p></td>
 </tr>
 </tbody>
 </table>
 
-  - In vfp, the current operating system code page if the CODEPAGE
+  - In VFP, the current operating system code page if the CODEPAGE
     configuration item isn't included in your configuration file. In
     previous versions of FoxPro, 0 is returned if the CODEPAGE
     configuration item isn't included in your configuration file.
@@ -5438,7 +5432,7 @@ stored procedures to the code page you specify.
   - The current operating system code page if you have included the
     following line in your configuration file: CODEPAGE = AUTO
 
-In vfp, CPCURRENT(1) returns the Windows code page, regardless of your
+In VFP, CPCURRENT(1) returns the Windows code page, regardless of your
 configuration CODEPAGE setting.
 
 CPCURRENT(2) always returns the underlying operating system code page,
@@ -5464,7 +5458,7 @@ you're running Windows, CPCURRENT(2) returns the MS-DOS code page.
 | **Use CPZERO.PRG to change a table's code page id.** | Assuming you've installed tools, CPZERO.PRG can be found in your TOOLS\\CPZERO directory. CPZERO.PRG removes the code page mark from any file that has a table file structure. After removing the mark, CPZERO applies another mark that you specify. |
 
 **Internationalization Gotcha:** if tables do not have code page marks
-when you open them, vfp prompts you for a code page. If you specify the
+when you open them, VFP prompts you for a code page. If you specify the
 wrong code page, however, the data in the files won't display properly.
 To correct the code page, use CPZERO.
 
@@ -5714,11 +5708,11 @@ its FONT (which might need to vary with locale); and the ICON file
 ### `DefOLELCID` Property
 
 The DefOLELCID property applies to Form and _SCREEN objects, and
-specifies the default ole Locale ID for a Form or the main vfp window.
+specifies the default ole Locale ID for a Form or the main VFP window.
 
 **Internationalization Gotcha**: this default value determines the
 Locale ID for ole Bound controls and ole Container controls when they
-are placed on the form or the main vfp window.
+are placed on the form or the main VFP window.
 
 If the default ole Locale ID value for a Form or the main Visual FoxPro
 window is changed to a new value, then ole Bound controls and ole
@@ -5726,7 +5720,7 @@ Container controls placed thereon afterwards use the new value.
 
 If DefOLELCID is set to zero for a form or the main Visual FoxPro
 window, SYS(3004) determines the default Locale ID for ole Bound
-controls and ole Container controls placed on the Form or the main vfp
+controls and ole Container controls placed on the Form or the main VFP
 window.
 
 Here is a listing of Locale Ids:
@@ -5753,8 +5747,8 @@ only by the Global LocaleID, set with SYS(3005).
 DMY() returns a character expression in day-month-year sequence, for
 example "26 June 1996".
 
-**Internationalization Gotcha:** DMY() comes from vfp, and the language
-varies with vfp's localized language. DMY()respects the setting of SET
+**Internationalization Gotcha:** DMY() comes from VFP, and the language
+varies with VFP's localized language. DMY()respects the setting of SET
 CENTURY.
 
 ### `DTOC(dExpression | tExpression [, 1])`
@@ -5787,14 +5781,14 @@ depends on the current SET DATE and SET MARK settings.
 
 | | |
 | ----- | ----- |
-| **EDIT without NOMENU leads to an unlocalizable "Table" menu pad.** | **Internationalization Gotcha:** when using EDIT without a NOMENU clause, vfp places a "Table" menu pad on the system menu containing a number of bars (with captions like "Properties", "Font", "Go to record", etc). The display language of this pad and its bars is a function of vfp's localization language. In international applications that use BROWSE, make sure you make it a EDIT...NOMENU and, if required, invoke your own supporting menu. |
+| **EDIT without NOMENU leads to an unlocalizable "Table" menu pad.** | **Internationalization Gotcha:** when using EDIT without a NOMENU clause, VFP places a "Table" menu pad on the system menu containing a number of bars (with captions like "Properties", "Font", "Go to record", etc). The display language of this pad and its bars is a function of VFP's localization language. In international applications that use BROWSE, make sure you make it a EDIT...NOMENU and, if required, invoke your own supporting menu. |
 
 ### `ERROR`
 
-The ERROR command generates a vfp error.
+The ERROR command generates a VFP error.
 
 **Internationalization Gotcha:** if you issue an ERROR call with an
-error number, like this: ERROR 101, the message is in vfp's localized
+error number, like this: ERROR 101, the message is in VFP's localized
 language. You can always issue ERROR 101, "My localized Error Message"
 to adorn errors with your own error message. In any event, the ERROR
 command is pre-empted by whatever action is specified by ON ERROR.
@@ -5803,20 +5797,20 @@ command is pre-empted by whatever action is specified by ON ERROR.
 
 | | |
 | ----- | ----- |
-| **VFP error messages are in VFP's localized language.** | **Internationalization Gotcha:** error messages which, in the absence of error handling, adorn vfp's error dialog boxes and as available with MESSAGE() and AERROR(), are in the language of vfp's localization. |
+| **VFP error messages are in VFP's localized language.** | **Internationalization Gotcha:** error messages which, in the absence of error handling, adorn VFP's error dialog boxes and as available with MESSAGE() and AERROR(), are in the language of VFP's localization. |
 
 ### `EXPORT TO ... AS nCodePage`
 
-EXPORT TO copies data from a vfp table to a file in a different format.
+EXPORT TO copies data from a VFP table to a file in a different format.
 
 **Internationalization Gotcha:** AS nCodePage specifies the code page
-for the file EXPORT creates. vfp copies the contents of the currently
+for the file EXPORT creates. VFP copies the contents of the currently
 selected table and, as it copies the data, automatically converts the
-data to the code page you specify for the new file. If possible, vfp
+data to the code page you specify for the new file. If possible, VFP
 marks the newly created file with the code page you specify.
 
 If you omit AS nCodePage, no code page conversion occurs. If possible,
-vfp marks the newly created file with the code page of the table from
+VFP marks the newly created file with the code page of the table from
 which the data is copied. If nCodePage is 0, no code page conversion
 occurs and the new file is not marked with a code page.
 
@@ -5854,7 +5848,7 @@ and then returns the number of the code page chosen.
 
 **Internationalization Gotcha:** other than the parameters you pass, you
 cannot control the language displayed in this dialog — it comes from
-within vfp and you will need a localized version of vfp for this dialog
+within VFP and you will need a localized version of VFP for this dialog
 to display properly in an alternate language.
 
 ### `GETDIR([cDirectory [, cDialogCaption]])`
@@ -5863,8 +5857,8 @@ GETDIR() displays the Select Directory dialog box from which a directory
 or folder can be chosen.
 
 **Internationalization Gotcha:** you cannot control the language
-displayed in this dialog — it comes from within vfp and you will need a
-localized version of vfp for this dialog to display properly in an
+displayed in this dialog — it comes from within VFP and you will need a
+localized version of VFP for this dialog to display properly in an
 alternate language.
 
 The line...
@@ -5879,9 +5873,9 @@ The GETDIR() dialog
 
 ### `GETEXPR TO ...`
 
-**Internationalization Gotcha**: the vfp expression builder comes from
-vfp and you cannot control its display language. To get a localized
-expression builder, you will need a localized version of vfp.
+**Internationalization Gotcha**: the VFP expression builder comes from
+VFP and you cannot control its display language. To get a localized
+expression builder, you will need a localized version of VFP.
 
 ![](./media/image29.wmf)
 
@@ -5894,7 +5888,7 @@ you chose.
 
 **Internationalization Gotcha:** other than the parameters you pass, you
 cannot control the language displayed in this dialog — it comes from
-within vfp and you will need a localized version of vfp for this dialog
+within VFP and you will need a localized version of VFP for this dialog
 to display properly in an alternate language.
 
 The line...
@@ -5926,8 +5920,8 @@ GETPICT() displays the Open dialog box and returns the name of the
 picture file you chose.
 
 **Internationalization Gotcha:** other than the parameters you pass, you
-cannot control the language displayed in this dialog — it comes from vfp
-and you will need a localized version of vfp for this dialog to display
+cannot control the language displayed in this dialog — it comes from VFP
+and you will need a localized version of VFP for this dialog to display
 properly in an alternate language.
 
 ### `GETPRINTER()`
@@ -6060,8 +6054,8 @@ LOCFILE() locates a file on disk and returns the file name with its
 path.
 
 **Internationalization Gotcha:** other than the dialog caption, you have
-no control over the captions in this dialog. LOCFILE() comes from vfp
-and its display language varies with vfp's localization language.
+no control over the captions in this dialog. LOCFILE() comes from VFP
+and its display language varies with VFP's localization language.
 
 For example, the line...
 
@@ -6081,8 +6075,8 @@ The LOCFILE() dialog.
 MDY() returns a character expression in month-day-year sequence, for
 example "June 26 1996".
 
-**Internationalization Gotcha:** MDY() comes from vfp, and the language
-varies with vfp's localized language. MDY()respects the setting of SET
+**Internationalization Gotcha:** MDY() comes from VFP, and the language
+varies with VFP's localized language. MDY()respects the setting of SET
 CENTURY.
 
 ### `MESSAGE()`
@@ -6115,8 +6109,8 @@ MODIFY COMMAND opens an editing window so you can modify or create a
 program file.
 
 **Internationalization Gotcha:** AS nCodePage automatically converts
-accented characters in a program file created on another vfp platform.
-The numeric expression nCodePage specifies the code page of the vfp
+accented characters in a program file created on another VFP platform.
+The numeric expression nCodePage specifies the code page of the VFP
 platform on which the program file was created. The file is saved in
 this code page unless you choose "Save As" from the File menu to save
 the file in a different code page.
@@ -6127,8 +6121,8 @@ MODIFY FILE opens an editing window so you can modify or create a text
 file.
 
 **Internationalization Gotcha:** AS nCodePage automatically converts
-accented characters in a text file created on another vfp platform. The
-numeric expression nCodePage specifies the code page of the vfp platform
+accented characters in a text file created on another VFP platform. The
+numeric expression nCodePage specifies the code page of the VFP platform
 on which the text file was created. The file is saved in this code page
 unless you choose "Save As" from the File menu to save the file in a
 different code page.
@@ -6136,20 +6130,20 @@ different code page.
 ### `MODIFY QUERY ... AS nCodePage`
 
 Opens the Query Designer so you can modify or create a query. The Query
-Designer is a vfp dialog whose display language varies according to the
-localization of vfp.
+Designer is a VFP dialog whose display language varies according to the
+localization of VFP.
 
 **Internationalization Gotcha:** S nCodePage specifies the code page of
 the query. Include AS nCodePage if the query was created with a code
-page other than the current vfp code page. When the query is opened, vfp
-automatically converts the query to the current vfp code page.
+page other than the current VFP code page. When the query is opened, VFP
+automatically converts the query to the current VFP code page.
 
 The query is saved in its original code page when it is closed.
 
 If you omit the AS nCodePage clause or nCodePage is 0, the query is not
-converted to the current vfp code page.
+converted to the current VFP code page.
 
-In vfp, queries can be added to a project, and you can specify the
+In VFP, queries can be added to a project, and you can specify the
 query's code page from within the Project Container. The Project
 Container keeps track of the query's code page. However, if you use
 MODIFY QUERY to open a query outside of the Project Container, you
@@ -6260,7 +6254,7 @@ specify.
 
 | | |
 | ----- | ----- |
-| **Many PUTFILE() interface elements cannot be translated.** | **Internationalization Gotcha:** other than the dialog caption, you have no control over the captions in this dialog. PUTFILE() comes from vfp and it varies with its localization language. |
+| **Many PUTFILE() interface elements cannot be translated.** | **Internationalization Gotcha:** other than the dialog caption, you have no control over the captions in this dialog. PUTFILE() comes from VFP and it varies with its localization language. |
 
 For example, the following line...
 
@@ -6326,7 +6320,7 @@ double-byte characters.
 SET COLLATE specifies a collation sequence for character fields in
 subsequent indexing and sorting operations.
 
-The following collation sequence options are available in vfp:
+The following collation sequence options are available in VFP:
 
 | Options | Language |
 | ------- | ----- |
@@ -6380,15 +6374,15 @@ and Deutsch Marks simultaneously in another. This bug is fixed in VFP
 
 ### `SET DATASESSION`
 
-See DATASESSIONS on page 107.
+See `DATASESSIONS` on page 107.
 
 ### `SET DATE`
 
-SET DATE specifies the format for the display of date and datetime
+`SET DATE` specifies the format for the display of date and datetime
 expressions.
 
 **Internationalization Gotcha**: date formats vary from locale to
-locale. VFP offers the following choices for SET DATE:
+locale. VFP offers the following choices for `SET DATE`:
 
 | Setting | Format |
 | ----- | -------- |
@@ -6437,7 +6431,7 @@ list box in the International tab of the Options dialog.
 
 ### `SET FWEEK TO [nExpression]`
 
-SET FWEEK specifies the requirements for the first-week-of-the-year.
+`SET FWEEK` specifies the requirements for the first-week-of-the-year.
 nExpression can be:
 
 | nExpression | First week requirement |
@@ -6456,8 +6450,8 @@ Options dialog.
 SET HELP TO specifies a Help file.
 
 **Internationalization Tip:** multilingual applications need
-multilingual help. Use SET HELP TO to point to different help files as
-required. To specify a default startup Help file, use a HELP =
+multilingual help. Use `SET HELP` TO to point to different help files as
+required. To specify a default startup Help file, use a `HELP =`
 configuration line in CONFIG.FPW.
 
 ### `SET MARK TO [cDelimiter]`
@@ -6470,38 +6464,41 @@ vary from locale to locale.
 
 ### `SET NOCPTRANS TO [Field1 [, Field2 ...]]`
 
-SET NOCPTRANS prevents translation to a different code page for selected
+`SET NOCPTRANS` prevents translation to a different code page for selected
 fields in an open table.
 
-Issue SET NOCPTRANS TO without a set of fields to return to the default
-translation (established by the CODEPAGE = configuration item) for all
-character and memo fields in a table. Use SET("NOCPTRANS") to return the
-fields specified in the last SET NOCPTRANS command you issued. Use the
-CHR( ) function to ensure that individual characters don't get
+Issue `SET NOCPTRANS TO` without a set of fields to return to the default
+translation (established by the `CODEPAGE =` configuration item) for all
+character and memo fields in a table. Use `SET("NOCPTRANS")` to return the
+fields specified in the last `SET NOCPTRANS` command you issued. Use the
+`CHR()` function to ensure that individual characters don't get
 translated.
 
 Because Visual FoxPro can be configured to automatically translate
-character and memo fields into other code pages, the SET NOCPTRANS
+character and memo fields into other code pages, the `SET NOCPTRANS`
 command is available to prevent the automatic translation of fields
 containing binary data. For example, a memo field may contain a
 Microsoft Word document. When you access the Word document, you would
-like the document in its original, untranslated form. Use SET NOCPTRANS
+like the document in its original, untranslated form. Use `SET NOCPTRANS`
 to specify that the memo field not be translated.
 
-You don't need to use SET NOCPTRANS to access binary data if the
+You don't need to use `SET NOCPTRANS` to access binary data if the
 character or memo field containing the binary data has not been
 translated. You can ensure that character and memo fields are not
-translated by omitting the CODEPAGE configuration item from your Visual
-FoxPro configuration file.
+translated by omitting the `CODEPAGE=` configuration item from your VFP
+configuration file.
 
 ### `SET POINT TO [cDecimalPointCharacter]`
 
-SET POINT TO determines the decimal point character used in the display
+`SET POINT TO` determines the decimal point character used in the display
 of numeric and currency expressions.
 
-| | |
-| ----- | ----- |
-| **SET POINT never changes the decimal character in calculations.** | **Internationalization Gotcha**: throughout most of North America, the point character is ".", but in most countries of the world, the point character is ",". Note that to set the displayed decimal point to a different character, you must use a period as the decimal point in calculations. |
+**SET POINT never changes the decimal character in calculations.**
+
+**Internationalization Gotcha**: throughout most of North America, the point character
+is `"."`, but in most countries of the world, the point character is `","`. Note that to
+set the displayed decimal point to a different character, you must use a period as the
+decimal point in calculations.
 
 ### `SET SEPARATOR TO [cSeparatorCharacter]`
 
@@ -6509,26 +6506,26 @@ SET SEPARATOR specifies the character that separates each group of three
 digits to the left of the decimal point.
 
 **Internationalization Gotcha**: throughout most of North America, the
-separator character is ",", but in most countries of the world, the
-separator character is ".".
+separator character is `","`, but in most countries of the world, the
+separator character is `"."`.
 
 ### `SET SYSFORMATS ON | OFF`
 
-SET SYSFORMATS specifies if vfp system settings are updated with the
+`SET SYSFORMATS` specifies if VFP system settings are updated with the
 current Windows system settings.
 
-**Internationalization Gotcha:** by default the vfp system settings are
+**Internationalization Gotcha:** by default the VFP system settings are
 not updated when the Windows system settings are changed.
 
 The Windows system settings are specified in International option of the
-Windows Control Panel. When SET SYSFORMATS is ON, the following SET
+Windows Control Panel. When `SET SYSFORMATS` is `ON`, the following `SET`
 commands can be used to override the current system settings. However,
 changing the Windows system settings when SET SYSFORMATS is ON overrides
-these SET commands.
+these `SET` commands.
 
-When vfp is started, the Visual FoxPro system settings are the default
-settings of these SET commands. To use the Windows system settings when
-vfp is started, place the following line in your vfp CONFIG.FPW
+When VFP is started, the Visual FoxPro system settings are the default
+settings of these `SET` commands. To use the Windows system settings when
+VFP is started, place the following line in your VFP CONFIG.FPW
 configuration file:
 
 ```
@@ -6547,88 +6544,59 @@ SET SEPARATOR
 
 ### `STRCONV(cExpression, nSetting)`
 
-<table>
-<thead>
-<tr class ="header">
-<th><strong>STRCONV() is used to go to transform strings among<br />
-n-byte systems.</strong></th>
-<th>STRCONV() converts a character expression to a different form. The following table lists the values of nSetting and the type of conversion performed:</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>nSetting</td>
-<td>Conversion</td>
-</tr>
-<tr>
-<td>1</td>
-<td>Converts single-byte characters in cExpression to double-byte characters.</td>
-</tr>
-<tr>
-<td>2</td>
-<td>Converts double-byte characters in cExpression to single-byte characters.</td>
-</tr>
-<tr>
-<td>3</td>
-<td>Converts double-byte Hiragana characters in cExpression to double-byte Katakana characters.</td>
-</tr>
-<tr>
-<td>4</td>
-<td>Converts double-byte Katakana characters in cExpression to double-byte Hiragana characters.</td>
-</tr>
-<tr>
-<td>5</td>
-<td>Converts double-byte characters to UNICODE (wide characters).</td>
-</tr>
-<tr>
-<td>6</td>
-<td>Converts UNICODE (wide characters) to double-byte characters.</td>
-</tr>
-<tr>
-<td>7</td>
-<td>Converts cExpression to locale specific lowercase.</td>
-</tr>
-<tr>
-<td>8</td>
-<td>Converts cExpression to locale specific uppercase.</td>
-</tr>
-</tbody>
-</table>
+**`STRCONV()` is used to go to transform strings among n-byte systems.**
+
+`STRCONV()` converts a character expression to a different form. The following table
+lists the values of nSetting and the type of conversion performed:
+
+| nSetting | Conversion |
+| --- | --- |
+| 1 | Converts single-byte characters in `cExpression` to double-byte characters. |
+| 2 | Converts double-byte characters in `cExpression` to single-byte characters. |
+| 3 | Converts double-byte Hiragana characters in `cExpression` to double-byte Katakana characters. |
+| 4 | Converts double-byte Katakana characters in `cExpression` to double-byte Hiragana characters. |
+| 5 | Converts double-byte characters to UNICODE (wide characters). |
+| 6 | Converts UNICODE (wide characters) to double-byte characters. |
+| 7 | Converts `cExpression` to locale specific lowercase. |
+| 8 | Converts `cExpression` to locale specific uppercase. |
 
 ### `STUFFC(cExpr, nStartRepl, nCharsReplaced, cReplaced)`
 
-| | |
-| ----- | ----- |
-| **STUFFC() is like STUFF(), only it seamlessly handles double-byte characters.** | STUFFC(), which is similar to STUFF(), returns a character string created by replacing a specified number of characters in a character expression with another character expression. The character expressions can consist of any combination of single-byte and double-byte characters. |
+**`STUFFC()` is like `STUFF()`, only it seamlessly handles double-byte characters.**
+
+`STUFFC()`, which is similar to STUFF(), returns a character string created by replacing
+a specified number of characters in a character expression with another character expression.
+The character expressions can consist of any combination of single-byte and double-byte characters.
 
 ### `SYS(13)`
 
-<table>
-<tbody>
-<tr>
-<td><strong>Use PRINTSTATUS() instead of SYS(13).</strong></td>
-<td><p>SYS(13) returns the status of the printer.</p>
-<p><strong>Internationalization Gotcha:</strong> in English versions of vfp, this return value is "READY" or "OFFLINE". If the printer is connected to a COM port, SYS(13) returns READY if the printer returns "Clear To Send Data" or "Data Set Ready". This return value comes from vfp and varies with its localization language. Fortunately, we have a language-independent workaround: use PRINTSTATUS(), which returns .T. or .F., instead of SYS(13).</p></td>
-</tr>
-</tbody>
-</table>
+Use `PRINTSTATUS()` instead of `SYS(13)`.
+
+`SYS(13)` returns the status of the printer.
+
+**Internationalization Gotcha:** in English versions of VFP, this return value is
+`"READY"` or `"OFFLINE"`. If the printer is connected to a COM port, `SYS(13)` returns
+READY if the printer returns "Clear To Send Data" or "Data Set Ready". This return value
+comes from VFP and varies with its localization language. Fortunately, we have a
+language-independent workaround: use `PRINTSTATUS()`, which returns `.T.` or `.F.`,
+instead of `SYS(13)`.
 
 ### `SYS(15, cTranslationExpression, cTranslated)`
 
-| | |
-| ----- | ----- |
-| **`SYS(15)` is ancient history.** | Translates a second character string from the first character string. Included for backward compatibility; use SET COLLATE instead. |
+**`SYS(15)` is ancient history.**
 
-Included with vfp is a memory variable file called EUROPEAN.MEM that
-contains sample translation characters. In FoxPro for MS-DOS and vfp,
-EUROPEAN.MEM is located in the directory in which you install vfp. In
+Translates a second character string from the first character string. Included
+for backward compatibility; use SET COLLATE instead.
+
+Included with VFP is a memory variable file called EUROPEAN.MEM that
+contains sample translation characters. In FoxPro for MS-DOS and VFP,
+EUROPEAN.MEM is located in the directory in which you install VFP. In
 FoxPro for Macintosh, EUROPEAN.MEM is located in the Goodies:Misc
 folder.
 
 Stored in EUROPEAN.MEM is a character memory variable called EUROPEAN,
 for use with `SYS(15)` in FoxPro for MS-DOS. Another character memory
-variable, EUROANSI, is provided for use with `SYS(15)` in vfp and FoxPro
+variable, EUROANSI, is provided for use with `SYS(15)` in VFP and FoxPro
 for Macintosh. These memory variables can be used with `SYS(15)` to
 translate accented characters to the corresponding characters without
 the accents.
@@ -6637,7 +6605,9 @@ As an example, the following command can be used in FoxPro for MS-DOS to
 index a table on a field containing accented characters while preserving
 normal alphabetical order:
 
+```
 INDEX ON SYS(15, european, field) TO european
+```
 
 This function is primarily intended for the convenience of European
 users who must use accented characters. Since there are different
@@ -6646,45 +6616,37 @@ characters doesn't preserve the expected alphabetical order.
 
 ### `SYS(20, cExpressionTransformed, nCharacters)`
 
-| | |
-| ----- | ----- |
-| **`SYS(20)` is ancient history too.** | `SYS(20)` transforms a character expression containing German text to a character string. Included for backward compatibility. Use SET COLLATE instead. |
+**`SYS(20)` is ancient history too.**
+
+`SYS(20)` transforms a character expression containing German text to a
+character string. Included for backward compatibility. Use SET COLLATE instead.
 
 ### `SYS(1037)`
 
-<table>
-<tbody>
-<tr>
-<td><strong>The Print Setup language is determined by the OS.</strong></td>
-<td><p>`SYS(1037)` invokes the Print Setup dialog.</p>
-<p><strong>Internationalization Gotcha</strong>: this service comes from the operating system, and will thus be in its localized language.</p></td>
-</tr>
-</tbody>
-</table>
+**The Print Setup language is determined by the OS.**
+
+`SYS(1037)` invokes the Print Setup dialog.
+
+**Internationalization Gotcha:** this service comes from the operating system, and will
+thus be in its localized language.
 
 ### `SYS(2006)`
 
-<table>
-<tbody>
-<tr>
-<td><strong>The graphics card and monitor information comes from vfp.</strong></td>
-<td><p>`SYS(2006)` returns the type of graphics card and monitor you are using, as in "VGA/COLOR".</p>
-<p><strong>Internationalization Gotcha</strong>: this result is generated by vfp and can only be localized by using a localized version of vfp.</p></td>
-</tr>
-</tbody>
-</table>
+**The graphics card and monitor information comes from VFP.**
+
+`SYS(2006)` returns the type of graphics card and monitor you are using, as in `"VGA/COLOR"`.
+
+**Internationalization Gotcha:** this result is generated by VFP and can only be
+localized by using a localized version of VFP.
 
 ### `SYS(2011)`
 
-<table>
-<tbody>
-<tr>
-<td><strong>The lock status reported by `SYS(2011)` varies with vfp localization.</strong></td>
-<td><p>`SYS(2011)` returns the record or table lock status for the current work area without attempting to lock the table or record.</p>
-<p><strong>Internationalization Gotcha</strong>: the values returned ("Exclusive", "Record Unlocked", "Record Locked") come from vfp and vary with its localization.</p></td>
-</tr>
-</tbody>
-</table>
+**The lock status reported by `SYS(2011)` varies with VFP localization.**
+
+`SYS(2011)` returns the record or table lock status for the current work area without attempting
+to lock the table or record.
+
+**Internationalization Gotcha:** the values returned (`"Exclusive"`, `"Record Unlocked"`, `"Record Locked"`) come from VFP and vary with its localization.
 
 ### `SYS(3004)`
 
@@ -6695,8 +6657,8 @@ in which ole automation and ole controls exchange information.
 
 ### `SYS(3005, nLocaleID)`
 
-SYS(3005) sets the Locale ID, used by ole automation and ole controls.
-Here are the locales in vfp:
+`SYS(3005)` sets the Locale ID, used by ole automation and ole controls.
+Here are the locales in VFP:
 
 | nLocaleID | Language |
 | --------- | ----- |
@@ -6716,74 +6678,46 @@ Here are the locales in vfp:
 
 ### `SUBSTRC(cExpression, nStartPosition [, nCharactersReturned])`
 
-| | |
-| ----- | ----- |
-| **SUBSTRC() is like SUBSTR(), but handles double-byte characters as well.** | SUBSTRC()returns a character string from the given character expression or memo field. The character expression or memo field can contain any combination of single-byte and double-byte characters. |
+**SUBSTRC() is like SUBSTR(), but handles double-byte characters too.**
+
+`SUBSTRC()` returns a character string from the given character expression or memo field.
+The character expression or memo field can contain any combination of single-byte and
+double-byte characters.
 
 ### ToolTips
 
-| | |
-| ----- | ----- |
-| **ToolTips come from Windows, and there is no known way to change their font.** | ToolTips come from Windows, and there is no way that I know to control the Font from within Visual FoxPro. This means that apps running in Eastern Europe and oriental languages will display garbage in the tooltip window unless you are running on a localized version of windows. |
+**ToolTips come from Windows, and there is no known way to change their font.**
+
+ToolTips come from Windows, and there is no way that I know to control the Font from within
+Visual FoxPro. This means that apps running in Eastern Europe and oriental languages will
+display garbage in the tooltip window unless you are running on a localized version of windows.
 
 ### `TTOC(tExpression [, 1])`
 
-`TTOC()` returns a Character value from a DateTime expression that
-respects `SET HOURS`, `SET CENTURY` and `SET DATE` so parsing this Character
-expression is not a good idea.
+`TTOC()` returns a Character value from a DateTime expression that respects `SET HOURS`,
+`SET CENTURY` and `SET DATE` so parsing this Character expression is not a good idea.
 
 ### `VERSION(), VERSION(3)`
 
-<table>
-<thead>
-<tr class ="header">
-<th><strong>The return value from `VERSION()` is localized by VFP. `VERSION(3)` is useful to determine the current vfp localization language.</strong></th>
-<th><p>`VERSION()` returns a character string containing the vfp version number you are using.</p>
-<p><strong>Internationalization Gotcha:</strong> This string is in the localization language of VFP.</p>
-<p>`VERSION(3)` returns the localized vfp language, according to the following table:</p></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>`VERSION(3)`</td>
-<td>Language</td>
-</tr>
-<tr>
-<td>00</td>
-<td>English</td>
-</tr>
-<tr>
-<td>33</td>
-<td>French</td>
-</tr>
-<tr>
-<td>34</td>
-<td>Spanish</td>
-</tr>
-<tr>
-<td>39</td>
-<td>Italian</td>
-</tr>
-<tr>
-<td>42</td>
-<td>Czech</td>
-</tr>
-<tr>
-<td>48</td>
-<td>Polish</td>
-</tr>
-<tr>
-<td>49</td>
-<td>German</td>
-</tr>
-<tr>
-<td>55</td>
-<td>Portuguese</td>
-</tr>
-</tbody>
-</table>
+The return value from `VERSION()` is localized by VFP. `VERSION(3)` is useful to determine
+the current VFP localization language. `VERSION()` returns a character string containing
+the VFP version number you are using.
+
+**Internationalization Gotcha:** This string is in the localization language of VFP.
+
+`VERSION(3)` returns the localized VFP language, according to the following table:
+
+| `VERSION(3)` | Language |
+| ---- | ---- |
+| 00 | English |
+| 33 | French |
+| 34 | Spanish |
+| 39 | Italian |
+| 42 | Czech |
+| 48 | Polish |
+| 49 | German |
+| 55 | Portuguese |
+
 
 ### `WAIT WINDOW cExpression`
 
@@ -6799,9 +6733,11 @@ WINDOW` display font.
 
 ### `WEEK(dExpr | tExpr [, nFirstWeek] [, nFirstDayOfWeek])`
 
-| | |
-| ----- | ----- |
-| **You can make `WEEK()` respect the International settings by passing 0 for parameters 2 and 3.** | `WEEK()` returns a number representing the week-of-the-year from a Date or DateTime expression. Passing 0 for nFirstWeek or nFirstDayOfWeek causes `WEEK()` to fetch values from whatever is selected in the International tab in the Options dialog box. |
+**You can make `WEEK()` respect the International settings by passing 0 for parameters 2 and 3.**
+
+`WEEK()` returns a number representing the week-of-the-year from a Date or DateTime expression.
+Passing 0 for nFirstWeek or nFirstDayOfWeek causes `WEEK()` to fetch values from whatever is selected
+in the International tab in the Options dialog box. |
 
 # International Issues
 
@@ -6937,10 +6873,10 @@ previous section yields something as follows:**
 
 | | Locale Block | Application Block |
 | ----- | ----- | ----- |
-| **Program-Time** | Cultural content added at program time by programmers who are presumably also linguists. | BIG. Essentially no Locale block other than maybe <span class ="smallcaps">CONFIG.FP/w,</span> and setup metadata. One <span class ="smallcaps">app/exe</span> for **all** locales. |
-| **Generate-Time** | Cultural content added by automated means when generating source. Swapping from string / object / screen / menu libraries. | One <span class ="smallcaps">app/exe</span> for **each** locale. |
-| **Link-Time** | Cultural content added by automated means when building the application. Swapping project records from compiled <span class ="smallcaps">obj</span> libraries. Not inherently easy with native VFP tools. | One <span class ="smallcaps">app/exe</span> for **each** locale. |
-| **Run-Time** | Cultural content added by automated means (from phrasebook tables) when executing the application. Translation is essentially independent of the development team. | One <span class ="smallcaps">app/exe</span> for **all** locales, with one locale resource for each locale. <span class ="smallcaps">app/exe</span> independent of locale block. Swapping from string / graphic resources. |
+| **Program-Time** | Cultural content added at program time by programmers who are presumably also linguists. | BIG. Essentially no Locale block other than maybe CONFIG.FP/w, and setup metadata. One app/exe for **all** locales. |
+| **Generate-Time** | Cultural content added by automated means when generating source. Swapping from string / object / screen / menu libraries. | One app/exe for **each** locale. |
+| **Link-Time** | Cultural content added by automated means when building the application. Swapping project records from compiled obj libraries. Not inherently easy with native VFP tools. | One app/exe for **each** locale. |
+| **Run-Time** | Cultural content added by automated means (from phrasebook tables) when executing the application. Translation is essentially independent of the development team. | One app/exe for **all** locales, with one locale resource for each locale. app/exe independent of locale block. Swapping from string / graphic resources. |
 
 Enabling techniques segmented by timing.
 
@@ -6961,8 +6897,8 @@ trivial. Well, the language is *not* common. The British form of English
 is used in Canada, while American English is the USA standard[1].
 
 Lexicon variants are commonly complicated by non-cosmetic logical
-differences. Canadian strings like <span class ="smallcaps">"pst"</span>,
-"<span class ="smallcaps">gst"</span>, "Postal Code", and "Province" are
+differences. Canadian strings like "pst",
+"gst", "Postal Code", and "Province" are
 unacceptable in the United States, as are the Canadian ways to calculate
 and validate them.
 
@@ -7056,7 +6992,7 @@ majority.
 ### Situational Factors
 
 There is a difference between starting a multi-cultural
-<span class ="smallcaps">app</span> from scratch, and retrofitting an
+app from scratch, and retrofitting an
 existing application for other cultures. The retrofit is, not
 surprising, a far more common avenue[2]. It would be nice if we could
 use the same system of internationalization for new and existing
@@ -7072,7 +7008,7 @@ how.
 An international application designed from scratch usually needs a
 different internationalization approach than does a retrofit. It’s a
 different mind set. When starting a new
-application<span class ="smallcaps">,</span> concern centers naturally on
+application, concern centers naturally on
 producing prototypes, making quick progress, and creating maintainable
 code. These things are all impeded by a parallel globalization process.
 
@@ -7287,9 +7223,6 @@ increases the length of the text. This increase can be significant.
 Figure 2, adapted from a variety of data sources including the Microsoft
 Developers' Network CD, shows one recommendation for string allowances.
 
-> Recommended allowances to permit strings to lengthen when
-> translated.00
-
 For example, the German word for "restore" is "zurckspeichern" (114%
 longer) or "wiederherstellen" (128% longer). "Save" in French becomes
 "sauvegarder" (175% longer).
@@ -7354,7 +7287,7 @@ Similarly, do not assume that plural forms are formed with an “s” suffix
 as in English.
 
 Note the pitfalls of using results returned from VFP functions like
-cdow() and cmonth()<span class ="smallcaps">.</span> These will return
+cdow() and cmonth(). These will return
 different results with different localizations of VFP.
 
 #### Idioms
@@ -7373,7 +7306,7 @@ might be able to get your European users to accept rather large footer
 areas, and your North American users to sacrifice one half inch of
 width. If you can achieve this, then your output routines can be
 standard. In any event, when you are first putting an
-<span class ="smallcaps">app</span> together, be careful when in the
+app together, be careful when in the
 report writer to not make the page overly wide. Best to make page
 dimensions assignable at run-time.
 
@@ -7401,18 +7334,17 @@ on the page.
 
 Transliteration is the distinction between upper and lower case
 characters. Not all languages transliterate like English. In English we
-take for granted the sort order corresponding to the
-<span class ="smallcaps">ascii</span> code sequence. But in Spanish, the
-'ch' in "chico" is viewed as a single letter which should sort between
-'c' and 'd'. The 'ñ' character sorts between 'm' and 'n'. Some
+take for granted the sort order corresponding to the ASCII code sequence.
+But in Spanish, the 'ch' in "chico" is viewed as a single letter which should
+sort between 'c' and 'd'. The 'ñ' character sorts between 'm' and 'n'. Some
 languages, like Hebrew, Arabic, and many Asian languages, have no
 capital letters.
 
 The effect of transliteration can be bizarre. In German, the city Zürich
 is capitalized ZÜRICH, but in Swiss German, it's ZUERICH. In France, the
-word “école” is capitalized <span class ="smallcaps">ÉCOLE,</span> but
-it's ECOLE in Quebec, probably due to decades of adaptive usage since
-the É symbol is rare on North American keyboards.
+word “école” is capitalized ÉCOLE, but it's ECOLE in Quebec, perhaps due
+to decades of adaptive usage since the É symbol is rare on North American
+keyboards.
 
 #### Writing Systems
 
@@ -7675,7 +7607,7 @@ place.
 Try to make the enabling as transparent as possible. Little benefit
 accrues from creating a system that increases the complexity of
 development and maintenance. When in doubt,
-<span class ="smallcaps">kiss</span>, keep it simple sir.
+KISS, keep it simple sir.
 
 ### Performance
 
@@ -8885,7 +8817,6 @@ byte. By definition, a SBCS can have a maximum of 256 characters.
 If you are interested in object-oriented design, I most highly recommend
 these two books.
 
-
 ## Thanks to these fine folks!
 
 I want to thank the following individuals and organizations for lending
@@ -8901,7 +8832,7 @@ Drew Speedie** (USA) and **Mark Giesen** (Holland) for finding many
 “gotchas” and for providing elegant solutions that I am more than
 happy to include in the INTL codebase; **Günter Huber** (Austria) for
 his help in my understanding FoxPro’s international features; **Ken
-Levy** (USA<span class ="smallcaps">)</span> the author and creator of
+Levy** (USA) the author and creator of
 GENSCRNX., and **Andrew Ross MacNeill** (Canada) for creating and
 refining GENMENUX; **Shai Mittleman** (USA) for ideas and insight into
 new features; **Alan Schwartz, Chick Bornheim, Andy Neil, Dale
@@ -8909,16 +8840,16 @@ Kiefling** and all the other excellent people in Northern California
 including **Les Pinter** and **John Thornton.**
 
 Finally, to **Larry MacDonald** and **Hélène Michaud**
-(<span class ="smallcaps">north sails</span>), **Jim Mayer**
-(<span class ="smallcaps">unhcr,</span> Geneva), **Rainer Becker**
-(<span class ="smallcaps">isys gmbh,</span> Frankfurt Germany) and
-**Chuck Melton** (<span class ="smallcaps">melton technologies,</span>
-Winston-Salem <span class ="smallcaps">nc usa</span>), **Brian Thomas**
-(<span class ="smallcaps">the international red cross</span>, Geneva),
-**Alan Griver** (<span class ="smallcaps">flash creative
-management</span>), **Daniel Gramunt**
-(<span class ="smallcaps">nokia,</span> Lausanne), **Scott Plantz**
-(<span class ="smallcaps">emedicine.com</span>) and many others, all of
+(North Sails), **Jim Mayer**
+(UNHCR, Geneva), **Rainer Becker**
+(ISYS GMBH, Frankfurt Germany) and
+**Chuck Melton** (Melton Technologies,
+Winston-Salem NC, USA), **Brian Thomas**
+(The International Red Cross, Geneva),
+**Alan Griver** (<span class ="smallcaps">Flash Creative
+Management</span>), **Daniel Gramunt**
+(Nokia, Lausanne), **Scott Plantz**
+(emedicine.com) and many others, all of
 whom have, over the years, provided me with interesting and rewarding
 international opportunities.
 
@@ -8928,7 +8859,6 @@ Steven M. Black
 February 2006
 
 # Copyright and Author Notices
-
 
 ### GENMENUX
 
@@ -8948,5 +8878,4 @@ damages.
 
 Comments/Suggestions/Problems/Questions: Please ask: Andrew Ross
 MacNeill andrew@aksel.co
-
 
