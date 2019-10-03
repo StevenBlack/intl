@@ -1615,7 +1615,7 @@ Logical used to control this INTL objects visibility.
 
 ### Class `cINTLAbstract` Exposed Properties
 
-#### `cINTLAbstract`::INTL\_Abstract\_ID
+#### `cINTLAbstract`::INTL_Abstract_ID
 
 Used by the INTL class for identification purposes.
 
@@ -1768,7 +1768,7 @@ Returns true if a reference is an object belonging to the INTL class.
 | **Return** | Logical true if the object is a member of the INTL class. |
 | **Arguments** | An expression that may or may not evaluate to type "O". |
 | **Example** | this.IsINTLClass( CREATE("ComboBox")) && Returns .F. |
-| **Remarks** | An expression is considered to be a member of the INTL class if it contains an exposed property named "INTL\_Abstract\_ID". |
+| **Remarks** | An expression is considered to be a member of the INTL class if it contains an exposed property named "INTL_Abstract_ID". |
 
 ####
 
@@ -3631,14 +3631,14 @@ benefit from INTL at run-time.
     sure you have the correct CONFIG.FP file. In CONFIG.FP, add the
     following lines:
 
-\_GENMENU =<PATH>\GENMENUX.PRG
+_GENMENU =<PATH>\GENMENUX.PRG
 
-\_MNXDRV2 = INTL
+_MNXDRV2 = INTL
 
   - For now, to avoid re-starting FoxPro, set the following system
     memory variables:
 
-\_GENMENU ="<PATH>\GENMENUX.PRG"
+_GENMENU ="<PATH>\GENMENUX.PRG"
 
   - Add I.PRG and MSGSVC.PRG to your project.
 
@@ -3653,7 +3653,7 @@ benefit from INTL at run-time.
 
   - To set to another run-time language, add a new language field in the
     `strings.dbf` and MSGSVC.DBF tables, create a memory variable called
-    \_INTLLANG, and make it equal to the language you wish to run. For
+    _INTLLANG, and make it equal to the language you wish to run. For
     example, to create a Spanish version:
 
 <!-- end list -->
@@ -3680,59 +3680,59 @@ field into Spanish.
 The following CONFIG.FP statements
 activate INTL behavior and control INTL processes.
 
-#### \_GENMENU
+#### _GENMENU
 
 This is the native FoxPro statement to specify which menu generator
 program to use. We absolutely need this to be:
 
-\_GENMENU =<expC PATH\\>GENMENUX.PRG.
+_GENMENU =<expC PATH\\>GENMENUX.PRG.
 
-#### \_INTLEXPLICIT
+#### _INTLEXPLICIT
 
 Used to put INTL in "explicit" mode, whereby INTL will only localize
 objects containing *:INTL EXPLICIT in the comment snippet. Useful for
 creating subtle same-language variants. Default is OFF.
 
-Example: \_INTLEXPLICIT = ON
+Example: _INTLEXPLICIT = ON
 
-#### \_INTLLANG
+#### _INTLLANG
 
 Used to specify the language of localization. There must be an
 equivalent "c" plus language field in the STRINGS table.
 
-Example: \_INTLLANG = French
+Example: _INTLLANG = French
 
 ...assumes a cFrench field exists in the STRINGS table.
 
-This setting is overridden by the m.\_INTLLANG build-time memory
+This setting is overridden by the m._INTLLANG build-time memory
 variable explained below.
 
-#### \_INTLTIMING
+#### _INTLTIMING
 
 Controls the type of localization to be performed. The acceptable values
 are RUN and GENERATE. The default is RUN**.** One way to change this
 default is to change the appropriate \#DEFINE statement in INTL.PRG.
 
-Example: \_INTLTIMING = RUN
+Example: _INTLTIMING = RUN
 
-This setting is overridden by the m.\_INTLTIMING build-time memory
+This setting is overridden by the m._INTLTIMING build-time memory
 variable explained below.
 
-#### \_INTLUPDATE "OFF" |"ON" |<Path>
+#### _INTLUPDATE "OFF" |"ON" |<Path>
 
 Controls whether the STRINGS table is refreshed at generate-time.
 Arguments are either OFF (the default), ON, or the path to `strings.dbf`,
 which acts as an implicit ON.
 
-Example: \_INTLUPDATE = C:\\MyProj\\
+Example: _INTLUPDATE = C:\\MyProj\\
 
-#### \_MNXDRV2
+#### _MNXDRV2
 
 This instructs GENMENUX to process each menu record with the proper
 drivers. We use the second hook in GENMENUX for the INTL
 driver.
 
-Example: \_MNXDRV2 = INTL
+Example: _MNXDRV2 = INTL
 
 This is overridden by the *:MNXDRV2 menu setup snippet directive.
 
@@ -3741,33 +3741,33 @@ This is overridden by the *:MNXDRV2 menu setup snippet directive.
 The following memory variables will override the commands set in
 CONFIG.FP.
 
-#### m.\_GENMENU
+#### m._GENMENU
 
 Specifies which menu generation program
 to use.
 
-#### m.\_INTLEXPLICIT = "ON" |"OFF"
+#### m._INTLEXPLICIT = "ON" |"OFF"
 
 Used to put INTL in "explicit" mode, whereby INTL will only localize
 objects containing *:INTL EXPLICIT in the comment snippet. Useful for
 creating subtle same-language variants. Default is "OFF".
 
-Example: m.\_INTLEXPLICIT ="ON"
+Example: m._INTLEXPLICIT ="ON"
 
-#### m.\_INTLLANG
+#### m._INTLLANG
 
 Used to specify the language of localization. There must be an
 equivalent "c" plus language field in the STRINGS table. Example:
-m.\_INTLLANG ="French" ...assumes a cFrench field exists in the STRINGS
+m._INTLLANG ="French" ...assumes a cFrench field exists in the STRINGS
 table.
 
-#### m.\_INTLUPDATE = "OFF" |"ON" |<Path>
+#### m._INTLUPDATE = "OFF" |"ON" |<Path>
 
 Controls whether the STRINGS table is refreshed at generate-time.
 Arguments are either OFF (the default), ON, or the path to `strings.dbf`,
 which acts as an implicit ON.
 
-Example: \_INTLUPDATE = C:\\MyProj\\
+Example: _INTLUPDATE = C:\\MyProj\\
 
 ## Two Very Useful GENMENUX Comment Directives
 
@@ -5247,7 +5247,7 @@ code page. The current VFP code page can be determined with `CPCURRENT()`.
 
 ----
 
-### `AT\_C(cSearchExpression, cExpressionSearched [, nOccurrence])`
+### `AT_C(cSearchExpression, cExpressionSearched [, nOccurrence])`
 
 <table>
 <tbody>
@@ -5482,30 +5482,30 @@ you're running Windows, `CPCURRENT(2)` returns the MS-DOS code page.
 
 ### `CPDBF([nWorkArea | cTableAlias])`
 
-<table>
-<tbody>
-<tr>
-<td>**CPDBF() gives table code page information.**</td>
-<td><p>CPDBF()returns the code page of an open table.</p>
-<p>**Internationalization Gotcha**: don't assume that a table is marked with the correct code page, especially if it comes from another platform or another locale.</p></td>
-</tr>
-</tbody>
-</table>
+**`CPDBF()` gives table code page information.**
 
-### CPZERO( cFilename[, codepage\_number]]
+`CPDBF()` returns the code page of an open table.
 
-| | |
-| ----- | ----- |
-| **Use CPZERO.PRG to change a table's code page id.** | Assuming you've installed tools, CPZERO.PRG can be found in your TOOLS\\CPZERO directory. CPZERO.PRG removes the code page mark from any file that has a table file structure. After removing the mark, CPZERO applies another mark that you specify. |
+**Internationalization Gotcha**: don't assume that a table is marked with the correct code page,
+especially if it comes from another platform or another locale.
+
+---
+
+### CPZERO( cFilename[, codepage_number]]
+
+**Use `cpzero.prg` to change a table's code page id.**
+
+Assuming you've installed tools, `cpzero.prg` can be found in your `TOOLS\CPZERO` directory.
+`cpzero.prg` removes the code page mark from any file that has a table file structure. After
+removing the mark, `CPZERO()` applies another mark that you specify.
 
 **Internationalization Gotcha:** if tables do not have code page marks
 when you open them, VFP prompts you for a code page. If you specify the
 wrong code page, however, the data in the files won't display properly.
-To correct the code page, use CPZERO.
+To correct the code page, use `CPZERO()`.
 
-| | |
-| ----- | ----- |
-| **CPZERO.PRG won't fix a corrupted table.** | It is worth noting that CPZERO won't fix a file with data corruption resulting from prior automatic code page translation. |
+**`cpzero.prg` won't fix a corrupted table.**  It is worth noting that `CPZERO` won't fix a file with data corruption
+resulting from prior automatic code page translation. |
 
 ----
 
@@ -5525,7 +5525,7 @@ subset of the temporary table is saved to disk.
 
 CREATE TABLE - SQL creates a table.
 
-**Internationalization Gotcha**: the NOCPTRANS field-level argument
+**Internationalization Gotcha**: the `NOCPTRANS` field-level argument
 prevents translation to a different code page for its character and memo
 fields.
 
@@ -8061,7 +8061,7 @@ functions that provide additional functionality.
 
 #### `*:MNXDRV1 <expC> (GENMENUX Directive)`
 
-Calls a driver before standard GENMENUX processing begins. At \_MNXDRV1,
+Calls a driver before standard GENMENUX processing begins. At _MNXDRV1,
 the menu MNX table is in the current workarea with the pointer
 positioned at the first record. The driver is *not* called for every
 record in the menu table. Called: Setup snippet, CONFIG.FP.
@@ -8145,7 +8145,7 @@ Adds a loop for a popup that allows the BARs of the popup to be defined
 based on the array <cArray>. If the Array is two dimensions, the ON
 SELECT BAR statement calls the command identified in the second column
 of the array.
-Example: *:ARRAY a\_fldNames
+Example: *:ARRAY a_fldNames
 
 ----
 
@@ -8263,14 +8263,14 @@ will be the one identified by the *:DEFLIB directive. **Example of How
 to Define Library Objects**: in the CONFIG.FP, specify the template file
 with the command:
 
-\_FOXMNX ='FOXMNX.DBF'
+_FOXMNX ='FOXMNX.DBF'
 
 This identifies the FOXMNX table as the container for any libraries.
 
 In addition, specify the default library for any menu objects with the
 line:
 
-\_DEFLIB ="TOOLS"
+_DEFLIB ="TOOLS"
 
 Identifies any objects in the menu as belonging to the Tools library.
 
@@ -8357,7 +8357,7 @@ snippet, CONFIG.FP
 
 ----
 
-#### `*:HIDE /m.\_HIDE (GENMENUX Directive)`
+#### `*:HIDE /m._HIDE (GENMENUX Directive)`
 
 Hides the menu bar during the running of the MPR file and shows it at
 the end. This is useful if you use a lot of *:IF statements and don’t
@@ -8383,11 +8383,11 @@ properly. The valid keywords are:
 
 Example:
 
-*:IF sec\_level ='*'
+*:IF sec_level ='*'
 
 *:IF FILE("CLIENTS.APP")
 
-*:IF chk\_sc("*PROMPT*","*ITEMNUM*")
+*:IF chk_sc("*PROMPT*","*ITEMNUM*")
 
 ----
 
@@ -8429,7 +8429,7 @@ are no clauses, *:INSCX will place the statement at the bottom of the
 Screen Setup Code. If SAVE is specified, *:INSCX places a PUSH MENU and
 POP MENU in the setup and cleanup code. If MODAL is also specified,
 INSCX places the DO command in the When clause for the screen and the
-POP MENU \_MSYSMENU command in the Deactivate snippet.
+POP MENU _MSYSMENU command in the Deactivate snippet.
 
 ----
 
@@ -8452,7 +8452,7 @@ menu.
 
 #### `*:MENUNAME <expC> (GENMENUX Directive)`
 
-Renames the Menu bar from \_MSYSMENU to <expC>.
+Renames the Menu bar from _MSYSMENU to <expC>.
 
 ----
 
@@ -8467,7 +8467,7 @@ Comment snippet.
 
 #### `*:NOACT (GENMENUX Directive)`
 
-Removes the ACTIVATE MENU \_MSYSMENU statement from the generated MPR
+Removes the ACTIVATE MENU _MSYSMENU statement from the generated MPR
 file.
 
 ----
@@ -8660,8 +8660,8 @@ the default (SET SYSMENU TO DEFAULT) after it has been created.
 
 #### `*:SYSPOP (GENMENUX Directive)`
 
-Wraps the procedure statement with PUSH MENU \_MSYSMENU / SET SYSMENU
-OFF/POP MENU \_MSYSMENU. It can be defined in either the CONFIG.FP,
+Wraps the procedure statement with PUSH MENU _MSYSMENU / SET SYSMENU
+OFF/POP MENU _MSYSMENU. It can be defined in either the CONFIG.FP,
 Setup or Procedure snippets.
 
 ----
@@ -8687,7 +8687,7 @@ it during compilation by displaying a Window on the screen. *:WINDOW
 works well under DOS to create MDI-style applications. You can simply
 add *:WINDOW to your setup code and it works. Example:
 
-*:WINDOW w\_temp CLAUSES ;
+*:WINDOW w_temp CLAUSES ;
 
 FROM 5,5 TO 12,50 ;
 
@@ -8772,7 +8772,7 @@ details when specific drivers are called:
 
 11. Run MNXDRV4 on entire MNX file.
 
-12. Identify MNXDRV5 driver. If it doesn't exist, check for \_GENMENUX
+12. Identify MNXDRV5 driver. If it doesn't exist, check for _GENMENUX
     directive. Also identify future MPR drivers so you don't have to go
     back into the file later on.
 
@@ -8805,7 +8805,7 @@ details when specific drivers are called:
 
 Are your CONFIG.FP files set so
 
-\_GENMENU =<Path\\>GENMENUX.PRG.?
+_GENMENU =<Path\\>GENMENUX.PRG.?
 
 ## The MNX Structure
 
@@ -8841,12 +8841,12 @@ name for the options underneath the submenu.
 
 For example: the regular FoxPro sysmenu has 7 menu pads. Each of these
 menu pads is associated with two records in the mnx file. The first
-associated record identifies the Pad name ("\_msm\_file") and the prompt
+associated record identifies the Pad name ("_msm_file") and the prompt
 name for the menu pad ("\\<File"). Since this record is to be shown on
 the menu, the objtype field is 3. The second associated record
 identifies the submenu popup. The popup objtype field is 2. Since this
 information will not appear on the menu, the prompt field is left empty
-but the name field contains the name of the popup (\_mfile).
+but the name field contains the name of the popup (_mfile).
 
 <table>
 <thead>
