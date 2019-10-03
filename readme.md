@@ -5110,7 +5110,8 @@ that follow.
 </tbody>
 </table>
 
-###
+
+----
 
 ### `AERROR()`
 
@@ -5142,6 +5143,8 @@ error.
 </tbody>
 </table>
 
+----
+
 ### `AFIELDS(ArrayName [, nWorkArea | cTableAlias])`
 
 AFIELDS() places structural information about the current table into an
@@ -5163,6 +5166,9 @@ validation text, which will probably need to be localized.
 **Internationalization Tip:** you can control the table validation text
 with DBSETPROP(cTableAlias,"Table","RuleText", cRuleText).
 
+
+----
+
 ### `ANSITOEM()`
 
 <table>
@@ -5174,6 +5180,8 @@ with DBSETPROP(cTableAlias,"Table","RuleText", cRuleText).
 </tr>
 </tbody>
 </table>
+
+----
 
 ### `APPEND FROM ... AS nCodePage`
 
@@ -5204,6 +5212,8 @@ If you omit AS nCodePage, two things can happen:
     as it copies the data, automatically converts the data to the code
     page of the currently selected table.
 
+----
+
 ### `APPEND MEMO ... AS nCodePage`
 
 APPEND MEMO copies the contents of a disk file to a memo field.
@@ -5217,6 +5227,8 @@ APPEND MEMO copies the contents of a disk file to a memo field.
 </tr>
 </tbody>
 </table>
+
+----
 
 ### `APPEND PROCEDURES ... AS nCodePage`
 
@@ -5233,6 +5245,8 @@ automatically converts the contents of the text file to the current VFP
 code page. The current VFP code page can be determined with CPCURRENT(
 ).
 
+----
+
 ### `AT\_C(cSearchExpression, cExpressionSearched [, nOccurrence])`
 
 <table>
@@ -5244,6 +5258,8 @@ code page. The current VFP code page can be determined with CPCURRENT(
 </tr>
 </tbody>
 </table>
+
+----
 
 ### `ATCC(cSearchExp, cExpSearched [, nOccurrence])`
 
@@ -5257,6 +5273,8 @@ code page. The current VFP code page can be determined with CPCURRENT(
 </tbody>
 </table>
 
+----
+
 ### `ATCLINE(cSearchExpression, cExpressionSearched)`
 
 <table>
@@ -5268,6 +5286,8 @@ code page. The current VFP code page can be determined with CPCURRENT(
 </tr>
 </tbody>
 </table>
+
+----
 
 ### `ATLINE(cSearchExpression, cExpressionSearched)`
 
@@ -5281,11 +5301,15 @@ code page. The current VFP code page can be determined with CPCURRENT(
 </tbody>
 </table>
 
+----
+
 ### `BROWSE`
 
 | | |
 | ----- | ----- |
 | **BROWSE without NOMENU leads to an unlocalizable "Table" menu pad.** | **Internationalization Gotcha:** when using BROWSE without a NOMENU clause, VFP places a "Table" menu pad on the system menu containing a number of bars (with captions like "Properties", "Font", "Go to record", etc). The display language of this pad and its bars is a function of VFP's localization language. In international applications that use BROWSE, make sure you make it a BROWSE...NOMENU and, if required, invoke your own supporting menu. |
+
+----
 
 ### `CDOW(dExpression | tExpression)`
 
@@ -5299,6 +5323,8 @@ code page. The current VFP code page can be determined with CPCURRENT(
 </tbody>
 </table>
 
+----
+
 ### `CHR()`
 
 <table>
@@ -5310,6 +5336,8 @@ code page. The current VFP code page can be determined with CPCURRENT(
 </tr>
 </tbody>
 </table>
+
+----
 
 ### `CHRTRANC(cSearched, cSearchFor, cReplacement)`
 
@@ -5323,6 +5351,8 @@ code page. The current VFP code page can be determined with CPCURRENT(
 </tbody>
 </table>
 
+----
+
 ### `CMONTH(dExpression | tExpression)`
 
 <table>
@@ -5334,6 +5364,8 @@ code page. The current VFP code page can be determined with CPCURRENT(
 </tr>
 </tbody>
 </table>
+
+----
 
 ### `COMPILE ... AS nCodePage`
 
@@ -5347,6 +5379,8 @@ code page. The current VFP code page can be determined with CPCURRENT(
 </tbody>
 </table>
 
+----
+
 ### `COPY MEMO ... AS nCodePage`
 
 <table>
@@ -5358,6 +5392,8 @@ code page. The current VFP code page can be determined with CPCURRENT(
 </tr>
 </tbody>
 </table>
+
+----
 
 ### `COPY STRUCTURE EXTENDED`
 
@@ -5374,6 +5410,8 @@ TABLE_ERR M Table validation text</p></td>
 </tbody>
 </table>
 
+----
+
 ### `COPY TO ... AS nCodePage`
 
 COPY TO creates a new file from the contents of the currently selected
@@ -5387,6 +5425,8 @@ the newly created table or file with the code page you specify. If you
 omit AS nCodePage, the newly created table or file is converted to the
 current VFP code page.
 
+----
+
 ### `COPY PROCEDURES ... AS nCodePage`
 
 COPY PROCEDURES copies stored procedures in the current database to a
@@ -5396,6 +5436,8 @@ text file.
 for the text file to which the stored procedures are copied. VFP copies
 the stored procedures and, as it does so, automatically converts the
 stored procedures to the code page you specify.
+
+----
 
 ### `CPCONVERT(nCurrentCodePage, nNewCodePage, cExpression)`
 
@@ -5408,6 +5450,8 @@ stored procedures to the code page you specify.
 </tr>
 </tbody>
 </table>
+
+----
 
 ### `CPCURRENT([1 | 2])`
 
@@ -5439,6 +5483,8 @@ CPCURRENT(2) always returns the underlying operating system code page,
 regardless of your configuration CODEPAGE setting. For example, if
 you're running Windows, CPCURRENT(2) returns the MS-DOS code page.
 
+----
+
 ### `CPDBF([nWorkArea | cTableAlias])`
 
 <table>
@@ -5466,6 +5512,8 @@ To correct the code page, use CPZERO.
 | ----- | ----- |
 | **CPZERO.PRG won't fix a corrupted table.** | It is worth noting that CPZERO won't fix a file with data corruption resulting from prior automatic code page translation. |
 
+----
+
 ### `CREATE CURSOR ... NOCPTRANS`
 
 CREATE CURSOR - SQL creates a temporary table. The NOCPTRANS argument,
@@ -5476,6 +5524,8 @@ translation to a different code page for character and memo fields.
 another code page is anticipated. Note that this is more likely if a
 subset of the temporary table is saved to disk.
 
+----
+
 ### `CREATE TABLE ... NOCPTRANS`
 
 CREATE TABLE - SQL creates a table.
@@ -5483,6 +5533,8 @@ CREATE TABLE - SQL creates a table.
 **Internationalization Gotcha**: the NOCPTRANS field-level argument
 prevents translation to a different code page for its character and memo
 fields.
+
+----
 
 ### `CTOD(cExpression)`
 
@@ -5502,6 +5554,8 @@ fields.
 </tbody>
 </table>
 
+----
+
 ### `CTOT(cExpression)`
 
 <table>
@@ -5520,6 +5574,8 @@ fields.
 </tr>
 </tbody>
 </table>
+
+----
 
 ### DATASESSIONS
 
@@ -5605,12 +5661,16 @@ fields.
 
 These SET commands are scoped to the datasession.
 
+----
+
 ### `DATE()`
 
 DATE() returns the current system date.
 
 **Internationalization Gotcha**: the date is formatted according to SET
 DATE, SET MARK, and SET CENTURY.
+
+----
 
 ### `DATETIME()`
 
@@ -5621,6 +5681,8 @@ returned by DATETIME( ) depends on the current settings of SET DATE, SET
 MARK, SET CENTURY, SET HOURS, and SET SECONDS. The format is also
 dependent on the settings in the International option in the Windows
 Control Panel.
+
+----
 
 ### `DBGETPROP(cName, cType, cProperty)`
 
@@ -5656,6 +5718,8 @@ Here are localizable elements for views:
 
 ###
 
+----
+
 ### `DEFINE BAR`
 
 DEFINE BAR creates a menu item on a menu created with DEFINE POPUP.
@@ -5666,6 +5730,8 @@ localize situations. DEFINE BAR has three internationally sensitive
 clauses: PROMPT (what the bar displays), FONT (which could vary with
 locale) and MESSAGE (the status bar message).
 
+----
+
 ### `DEFINE MENU`
 
 DEFINE MENU creates a menu bar.
@@ -5675,6 +5741,8 @@ coded" and difficult to localize situations. DEFINE MENU has two
 internationally sensitive clauses: the FONT (which could vary with
 locale) and MESSAGE (the status bar message).
 
+----
+
 ### `DEFINE PAD`
 
 DEFINE PAD creates a menu title (pad) on a menu bar.
@@ -5683,6 +5751,8 @@ DEFINE PAD creates a menu title (pad) on a menu bar.
 coded" and difficult to localize situations. DEFINE MENU has two
 internationally sensitive clauses: the FONT (which could vary with
 locale) and MESSAGE (the status bar message).
+
+----
 
 ### `DEFINE POPUP`
 
@@ -5695,6 +5765,8 @@ locale); MESSAGE (the status bar message); FOOTER (the text at the
 bottom of the popup); PROMPT FIELD (which may bring in unlocalized text
 from a table); and TITLE (on the top border of the menu).
 
+----
+
 ### `DEFINE WINDOW`
 
 DEFINE WINDOW creates and specifies the characteristics of a window.
@@ -5704,6 +5776,8 @@ the source of localization difficulties. The DEFINE WINDOW may have the
 following internationally sensitive clauses: the TITLE of the window;
 its FONT (which might need to vary with locale); and the ICON file
 (which may not be appropriate for all locales).
+
+----
 
 ### `DefOLELCID` Property
 
@@ -5742,6 +5816,8 @@ interface, which ole controls display, and not the language of the ole
 automation commands. The ole automation command language is affected
 only by the Global LocaleID, set with SYS(3005).
 
+----
+
 ### `DMY(dExpression | tExpression)`
 
 DMY() returns a character expression in day-month-year sequence, for
@@ -5751,12 +5827,16 @@ example "26 June 1996".
 varies with VFP's localized language. DMY()respects the setting of SET
 CENTURY.
 
+----
+
 ### `DTOC(dExpression | tExpression [, 1])`
 
 DTOC() returns a Character-type Date from a Date or DateTime expression.
 
 **Internationalization Gotcha**: the date format is determined by SET
 CENTURY and SET DATE and SET MARK.
+
+----
 
 ### `DTOS(dExpression | tExpression)`
 
@@ -5770,6 +5850,8 @@ CENTURY and SET DATE and SET MARK.
 </tbody>
 </table>
 
+----
+
 ### `DTOT(dDateExpression)`
 
 DTOT() returns a DateTime value from a Date expression.
@@ -5777,11 +5859,15 @@ DTOT() returns a DateTime value from a Date expression.
 **Internationalization Gotcha**: the format of the returned value
 depends on the current SET DATE and SET MARK settings.
 
+----
+
 ### `EDIT`
 
 | | |
 | ----- | ----- |
 | **EDIT without NOMENU leads to an unlocalizable "Table" menu pad.** | **Internationalization Gotcha:** when using EDIT without a NOMENU clause, VFP places a "Table" menu pad on the system menu containing a number of bars (with captions like "Properties", "Font", "Go to record", etc). The display language of this pad and its bars is a function of VFP's localization language. In international applications that use BROWSE, make sure you make it a EDIT...NOMENU and, if required, invoke your own supporting menu. |
+
+----
 
 ### `ERROR`
 
@@ -5793,11 +5879,15 @@ language. You can always issue ERROR 101, "My localized Error Message"
 to adorn errors with your own error message. In any event, the ERROR
 command is pre-empted by whatever action is specified by ON ERROR.
 
+----
+
 ### Error Messages
 
-| | |
-| ----- | ----- |
-| **VFP error messages are in VFP's localized language.** | **Internationalization Gotcha:** error messages which, in the absence of error handling, adorn VFP's error dialog boxes and as available with MESSAGE() and AERROR(), are in the language of VFP's localization. |
+**VFP error messages are in VFP's localized language.**
+
+**Internationalization Gotcha:** error messages which, in the absence of error handling, adorn VFP's error dialog boxes and as available with MESSAGE() and AERROR(), are in the language of VFP's localization.
+
+----
 
 ### `EXPORT TO ... AS nCodePage`
 
@@ -5814,6 +5904,8 @@ VFP marks the newly created file with the code page of the table from
 which the data is copied. If nCodePage is 0, no code page conversion
 occurs and the new file is not marked with a code page.
 
+----
+
 ### `FDATE(cFileName)`
 
 FDATE() is a low level file function that returns the last modification
@@ -5821,6 +5913,8 @@ date for a file.
 
 **Internationalization Gotcha:** the result is in a format determined by
 the current settings of SET DATE, SET MARK, and SET CENTURY.
+
+----
 
 ### Fonts
 
@@ -5836,10 +5930,14 @@ versions of Windows on CD-ROM. The advantage of using native fonts is
 your customers probably have them already installed, and it's one less
 thing to worry about.
 
+----
+
 ### Forms
 
 **Internationalization Gotcha**: the form's Close box is localized in
 the language of VFP localization. This otherwise cannot be controlled.
+
+----
 
 ### `GETCP([nCodePage] [, cDialogCaption] [, cDialogTitle])`
 
@@ -5850,6 +5948,8 @@ and then returns the number of the code page chosen.
 cannot control the language displayed in this dialog — it comes from
 within VFP and you will need a localized version of VFP for this dialog
 to display properly in an alternate language.
+
+----
 
 ### `GETDIR([cDirectory [, cDialogCaption]])`
 
@@ -5871,6 +5971,8 @@ The line...
 
 The GETDIR() dialog
 
+----
+
 ### `GETEXPR TO ...`
 
 **Internationalization Gotcha**: the VFP expression builder comes from
@@ -5879,7 +5981,9 @@ expression builder, you will need a localized version of VFP.
 
 ![](./media/image29.wmf)
 
-The GETEXPR TO dialog.
+The `GETEXPR TO` dialog.
+
+----
 
 ### `GETFILE([cFileExtensions] [, cDialogCaption] [, cOpenButtonCaption] [, nButtonType] [, cCreatorType])`
 
@@ -5901,6 +6005,8 @@ The line...
 
 The `GETFILE()` dialog.
 
+----
+
 ### `GETFONT()`
 
 GETFONT() displays the Font dialog box and returns the name of the font
@@ -5914,6 +6020,8 @@ localization.
 
 The GETFONT() dialog.
 
+----
+
 ### `GETPICT([cFileExt] [, cFileNameCaption] [, cOpenButtonCaption])`
 
 GETPICT() displays the Open dialog box and returns the name of the
@@ -5923,6 +6031,8 @@ picture file you chose.
 cannot control the language displayed in this dialog — it comes from VFP
 and you will need a localized version of VFP for this dialog to display
 properly in an alternate language.
+
+----
 
 ### `GETPRINTER()`
 
@@ -5936,6 +6046,8 @@ system and the display language varies with its localization.
 
 The GETPRINTER() dialog.
 
+----
+
 ### `HOUR(tExpression)`
 
 HOUR() returns the hour portion from a DateTime expression.
@@ -5944,11 +6056,13 @@ HOUR() returns the hour portion from a DateTime expression.
 on a 24 hour format, and is not affected by the current setting of SET
 HOURS.
 
+----
+
 ### `IDXCOLLATE([cCDXFileName,] nIndexNumber [, nWorkArea | cTableAlias])`
 
 IDXCOLLATE() returns the collation sequence for an index or index tag.
 
-**Internationalization Gotcha:** IDXCOLLATE() can be used to return the
+**Internationalization Gotcha:** `IDXCOLLATE()` can be used to return the
 collation sequence for each tag in multiple-entry compound index files,
 allowing you to completely delete an index file and rebuild it
 correctly, using a series of SET COLLATE and INDEX commands.
@@ -5957,11 +6071,13 @@ IDXCOLLATE() isn't required for the proper functioning of REINDEX,
 because the collation sequence information is present in existing
 indexes and index tags.
 
+----
+
 ### `IMESTATUS([nExpression])`
 
 The Input Method Editor (IME) is a program that performs the conversion
 between keystrokes and ideographs or other characters, usually by
-user-guided dictionary lookup. IMESTATUS() turns the IME window on or
+user-guided dictionary lookup. `IMESTATUS()` turns the IME window on or
 off or returns the current IME status.
 
 Return values for the IME status in the Japanese locale:
@@ -5982,23 +6098,27 @@ Return values for the IME status in the Korean locale:
 | 5 | Junja mode (double-byte). |
 | 6 | Hanja conversion mode. |
 
+----
+
 ### `IMPORT FROM ... AS nCodePage`
 
-IMPORT FROM imports data from an external file format to create a new
+`IMPORT FROM` imports data from an external file format to create a new
 Visual FoxPro table.
 
-**Internationalization Gotcha:** AS nCodePage specifies the code page of
+**Internationalization Gotcha:** `AS nCodePage` specifies the code page of
 the imported file. Visual FoxPro copies the contents of the imported
 file and, as it copies the data, automatically converts the data to the
 current Visual FoxPro code page.
 
-If you omit AS nCodePage and VFP cannot determine the code page of the
+If you omit `AS nCodePage` and VFP cannot determine the code page of the
 imported file, VFP copies the contents of the imported file and, as it
 copies the data, automatically converts the data to the current Visual
-FoxPro code page. If you omit AS nCodePage and VFP can determine the
+FoxPro code page. If you omit `AS nCodePage` and VFP can determine the
 code page of the imported file, VFP automatically converts the data in
 the imported file from the data's code page to the current VFP code
 page.
+
+----
 
 ### `INDEX ON`
 
@@ -6006,38 +6126,47 @@ page.
 sequence for an index is set to something other than MACHINE. In that
 case, each character in the key uses two bytes. Since the maximum index
 key length is 240 characters, the longest key you can use is 120
-characters for non-MACHINE collate sequences. This is true in 3.0 as
-well as 3.0b. The only way around this problem is to SET COLLATE TO
-MACHINE before creating that particular tag. See SET COLLATE TO
-cSequenceName on page 125.
+characters for non-MACHINE collate sequences. The only way around this
+problem is to `SET COLLATE TO MACHINE` before creating that particular tag.
+See `SET COLLATE TO cSequenceName` on page 125.
+
+----
 
 ### `ISLEADBYTE(cExpression)`
 
-ISLEADBYTE() returns logical true if the first byte of the first
-character in a character expression is a lead byte. ISLEADBYTE() lets
+`ISLEADBYTE()` returns logical true if the first byte of the first
+character in a character expression is a lead byte. `ISLEADBYTE()` lets
 you determine if a character is a double-byte character. If the first
 byte of a character is a lead byte, the character is a double-byte
 character. Otherwise, the character is a single-byte character.
 
+----
+
 ### `LEFTC(cExpression, nExpression)`
 
-LEFTC(), which is similar to LEFT(), returns a specified number of
+`LEFTC()`, which is similar to `LEFT()`, returns a specified number of
 characters from a character expression containing any combination of
 single-byte and double-byte characters, starting with the left-most
 character.
 
+----
+
 ### `LENC()`
 
-LENC(), which is similar to LEN(), returns the number of characters in a
+`LENC()`, which is similar to `LEN()`, returns the number of characters in a
 character expression or memo field containing any combination of
 single-byte and double-byte characters.
 
+----
+
 ### `LIKEC()`
 
-LIKEC(), which is similar to LIKE(), determines if a character
+`LIKEC()`, which is similar to `LIKE()`, determines if a character
 expression matches another character expression. The character
 expressions can contain any combination of single-byte and double-byte
 characters.
+
+----
 
 ### `LIST ...`
 
@@ -6048,13 +6177,15 @@ think of a reason to do this in VFP, some reason may occur. If it does,
 you should know that the LIST commands will produce output containing
 text that localized according to the language of VFP.
 
+----
+
 ### `LOCFILE(cFileName [, cFileExt] [, cCaption] [, cCreatorType])`
 
 LOCFILE() locates a file on disk and returns the file name with its
 path.
 
 **Internationalization Gotcha:** other than the dialog caption, you have
-no control over the captions in this dialog. LOCFILE() comes from VFP
+no control over the captions in this dialog. `LOCFILE()` comes from VFP
 and its display language varies with VFP's localization language.
 
 For example, the line...
@@ -6070,14 +6201,18 @@ interface strings on this dialog you can’t localize.
 
 The LOCFILE() dialog.
 
+----
+
 ### `MDY(dExpression | tExpression)`
 
 MDY() returns a character expression in month-day-year sequence, for
 example "June 26 1996".
 
-**Internationalization Gotcha:** MDY() comes from VFP, and the language
-varies with VFP's localized language. MDY()respects the setting of SET
-CENTURY.
+**Internationalization Gotcha:** `MDY()` comes from VFP, and the language
+varies with VFP's localized language. `MDY()` respects the setting of `SET
+CENTURY`.
+
+----
 
 ### `MESSAGE()`
 
@@ -6086,27 +6221,35 @@ MESSAGE() returns the current error message as a character string.
 **Internationalization Gotcha**: the error message is in the localized
 language of VFP. Note that AERROR(2)returns the same value as MESSAGE().
 
+----
+
 ### `MESSAGEBOX(cMsgText [, nDialogType [, cTitleBarText]])`
 
-MESSAGEBOX() displays a user-defined dialog box.
+`MESSAGEBOX()` displays a user-defined dialog box.
 
-| | |
-| ----- | ----- |
-| **You can’t directly localize the buttons in MESSAGEBOX().** | **Internationalization Gotcha**: this is essentially a Windows service, so the language of the buttons displayed by MESSAGEBOX() will be those of the Windows localization. For more flexible user-defined dialog boxes, consider using MsgSvc(). |
+**You can’t directly localize the buttons in `MESSAGEBOX()`.**
+
+**Internationalization Gotcha**: this is essentially a Windows service, so the
+language of the buttons displayed by `MESSAGEBOX()` will be those of the Windows
+localization. For more flexible user-defined dialog boxes, consider using MsgSvc().
 
 For example, the following line yields the box below wherein the “Yes”
 and “No” button captions cannot be touched.
 
+```
 ?MESSAGEBOX("cMsgText" , 4, "cTitleBarText")
+```
 
 ![](./media/image34.wmf)
 
-A MESSAGEBOX() dialog.
+A `MESSAGEBOX()` dialog.
+
+----
 
 ### `MODIFY COMMAND ... AS nCodePage`
 
 MODIFY COMMAND opens an editing window so you can modify or create a
-program file.
+  program file.
 
 **Internationalization Gotcha:** AS nCodePage automatically converts
 accented characters in a program file created on another VFP platform.
@@ -6114,6 +6257,8 @@ The numeric expression nCodePage specifies the code page of the VFP
 platform on which the program file was created. The file is saved in
 this code page unless you choose "Save As" from the File menu to save
 the file in a different code page.
+
+----
 
 ### `MODIFY FILE ... AS nCodePage`
 
@@ -6126,6 +6271,8 @@ numeric expression nCodePage specifies the code page of the VFP platform
 on which the text file was created. The file is saved in this code page
 unless you choose "Save As" from the File menu to save the file in a
 different code page.
+
+----
 
 ### `MODIFY QUERY ... AS nCodePage`
 
@@ -6149,6 +6296,8 @@ Container keeps track of the query's code page. However, if you use
 MODIFY QUERY to open a query outside of the Project Container, you
 should include AS nCodePage to specify the query's code page.
 
+---
+
 ### ODBC Errors
 
 ODBC drivers generate ANSI SQL standard error codes, which are
@@ -6156,6 +6305,8 @@ thereafter interpreted by VFP.
 
 **Internationalization Gotcha**: the text of ODBC error messages come
 from VFP and will vary in language with the localized version of VFP.
+
+----
 
 ### `OEMTOANSI(cExpression)`
 
@@ -6165,12 +6316,16 @@ is really juts included for backward compatibility. OEMTOANSI() is used
 to move data from FoxPro for ms-dos to Visual FoxPro and FoxPro for
 Macintosh.
 
+----
+
 ### OLE Custom Controls
 
 OLE Custom Controls come from a variety of sources and, for the most
 part, you'll get a mixed-bag of results when you use OLE controls in
 international settings. Be sure to inquire about supported locales
 before you commit to deploy a particular OLE control.
+
+----
 
 ### OLE ERRORS
 
@@ -6180,6 +6335,8 @@ controls return integer error codes for which you need to intercept and
 localize their messages. Other OLE controls display native error
 dialogs, and there is little you can do if a particular control doesn't
 support the current locale.
+
+----
 
 ### OLELCID Property
 
@@ -6215,6 +6372,8 @@ Here is a list of OLE locale id's.
 | 1046 | Portuguese (Brazilian) |
 | 2070 | Portuguese (Standard) |
 
+----
+
 ### `PEMSTATUS( oObject |cClass, cPEMName, nAttibute)`
 
 The PEMSTATUS() function returns useful state information about a
@@ -6222,6 +6381,8 @@ property, event or method. **Internationalization Gotcha:** using
 nAttribute = 5, you can find out if this PEM is a "Property", "Event" or
 "Method". This language of this string varies with the localized version
 of VFP.
+
+----
 
 ### `PRMBAR(), PRMPAD(), PROMPT()`
 
@@ -6235,6 +6396,8 @@ of VFP.
 </tbody>
 </table>
 
+----
+
 ### `PRTINFO(nPrinterSetting [, cPrinterName])`
 
 <table>
@@ -6246,6 +6409,8 @@ of VFP.
 </tr>
 </tbody>
 </table>
+
+----
 
 ### `PUTFILE([cDialogCaption] [, cFileName] [, cFileExtensions])`
 
@@ -6270,6 +6435,8 @@ creates this dialog. We basically can’t localize this.
 
 The PUTFILE() dialog.
 
+----
+
 ### `RATC(cSearchExpression, cExpressionSearched [, nOccurrence])`
 
 `RATC()`, which is similar to RAT(), returns the numeric position of the
@@ -6277,6 +6444,8 @@ last occurrence of a character expression or memo field within another
 character expression or memo field. The character expressions or memo
 fields can contain any combination of single-byte and double-byte
 characters.
+
+----
 
 ### `RATLINE(cSearchExpression, cExpressionSearched)`
 
@@ -6286,6 +6455,8 @@ from the last line.
 
 **Internationalization Gotcha**: this function works in both single-byte
 and double-byte character sets.
+
+----
 
 ### RELATIONAL INTEGRITY BUILDER
 
@@ -6313,12 +6484,16 @@ instance is seen by VFP. Therefore, in your stored procedures, you can
 duplicate and enable the RIError(), RIDelete(), and RIUpdate()
 functions, and paste them subsequent to the generated code.
 
+----
+
 ### `RIGHTC()`
 
 `RIGHTC()`, which is similar to RIGHT(), returns the specified number of
 right-most characters from a character string. The character expressions
 or memo fields can consist of any combination of single-byte and
 double-byte characters.
+
+----
 
 ### `SET COLLATE TO cSequenceName`
 
@@ -6343,6 +6518,8 @@ Note that when `SET COLLATE TO` is set to something other than “Machine”,
 each index character takes two bytes, effectively reducing the maximum
 index key length from 240 to 120. See `INDEX ON` on page 118.
 
+----
+
 ### `SET CPCOMPILE TO [nCodePage]`
 
 SET CPCOMPILE globally specifies the code page for compiled programs.
@@ -6352,6 +6529,8 @@ reset the compilation code page to the current code page. Use
 CPCURRENT() to determine the current code page. The AS clause in the
 COMPILE command to override the code page you specify with SET
 CPCOMPILE.
+
+----
 
 ### `SET CPDIALOG ON |OFF`
 
@@ -6363,6 +6542,8 @@ a table is opened.
 **Internationalization Gotcha:** `SET CPDIALOG` is useful only at design-time.
 In your completed application, be sure that `SET CPDIALOG` is `OFF`.
 
+
+----
 
 ### `SET CURRENCY`
 
@@ -6376,9 +6557,13 @@ impossible in VFP 3.0 to use SET CURRENCY to display dollars in one form
 and Deutsch Marks simultaneously in another. This bug is fixed in VFP
 5.0.
 
+----
+
 ### `SET DATASESSION`
 
 See `DATASESSIONS` on page 107.
+
+----
 
 ### `SET DATE`
 
@@ -6401,6 +6586,8 @@ locale. VFP offers the following choices for `SET DATE`:
 | USA | mm-dd-yy |
 | YMD | yy/mm/dd |
 
+----
+
 ### `SET DECIMALS TO [nDecimalPlaces]`
 
 SET DECIMALS specifies the number of decimal places displayed in numeric
@@ -6411,6 +6598,8 @@ transforms in the order of *hundreds or thousands* to the US dollar. In
 these countries, displaying decimal currency units is usually
 undesirable. In some situations you may be asked to round all currency
 amounts to the nearest ten, hundred, or even thousand units.
+
+----
 
 ### `SET FDOW TO [nExpression]`
 
@@ -6433,6 +6622,8 @@ If you omit nExpression, the first-day-of-the-week is reset to Sunday
 (1). The first-day-of-the-week can also be set with the Week Starts On
 list box in the International tab of the Options dialog.
 
+----
+
 ### `SET FWEEK TO [nExpression]`
 
 `SET FWEEK` specifies the requirements for the first-week-of-the-year.
@@ -6449,6 +6640,8 @@ first week contains January 1st). The first-week-of-the-year can also be
 set with the First Week of Year list box in the International tab of the
 Options dialog.
 
+----
+
 ### `SET HELP TO [FileName]`
 
 SET HELP TO specifies a Help file.
@@ -6458,6 +6651,8 @@ multilingual help. Use `SET HELP` TO to point to different help files as
 required. To specify a default startup Help file, use a `HELP =`
 configuration line in CONFIG.FPW.
 
+----
+
 ### `SET MARK TO [cDelimiter]`
 
 Specifies a delimiter to use in the display of date expressions.
@@ -6465,6 +6660,8 @@ Specifies a delimiter to use in the display of date expressions.
 **Internationalization Gotcha**: the date delimiter separates the day,
 month and year elements of a date expression. The date delimiter will
 vary from locale to locale.
+
+----
 
 ### `SET NOCPTRANS TO [Field1 [, Field2 ...]]`
 
@@ -6492,6 +6689,8 @@ translated. You can ensure that character and memo fields are not
 translated by omitting the `CODEPAGE=` configuration item from your VFP
 configuration file.
 
+----
+
 ### `SET POINT TO [cDecimalPointCharacter]`
 
 `SET POINT TO` determines the decimal point character used in the display
@@ -6504,6 +6703,8 @@ is `"."`, but in most countries of the world, the point character is `","`. Note
 set the displayed decimal point to a different character, you must use a period as the
 decimal point in calculations.
 
+----
+
 ### `SET SEPARATOR TO [cSeparatorCharacter]`
 
 SET SEPARATOR specifies the character that separates each group of three
@@ -6512,6 +6713,8 @@ digits to the left of the decimal point.
 **Internationalization Gotcha**: throughout most of North America, the
 separator character is `","`, but in most countries of the world, the
 separator character is `"."`.
+
+----
 
 ### `SET SYSFORMATS ON | OFF`
 
@@ -6546,6 +6749,8 @@ SET SEPARATOR
 
 `SET SYSFORMATS` is scoped to the current data session.
 
+----
+
 ### `STRCONV(cExpression, nSetting)`
 
 **`STRCONV()` is used to go to transform strings among n-byte systems.**
@@ -6564,6 +6769,8 @@ lists the values of nSetting and the type of conversion performed:
 | 7 | Converts `cExpression` to locale specific lowercase. |
 | 8 | Converts `cExpression` to locale specific uppercase. |
 
+----
+
 ### `STUFFC(cExpr, nStartRepl, nCharsReplaced, cReplaced)`
 
 **`STUFFC()` is like `STUFF()`, only it seamlessly handles double-byte characters.**
@@ -6571,6 +6778,8 @@ lists the values of nSetting and the type of conversion performed:
 `STUFFC()`, which is similar to STUFF(), returns a character string created by replacing
 a specified number of characters in a character expression with another character expression.
 The character expressions can consist of any combination of single-byte and double-byte characters.
+
+----
 
 ### `SYS(13)`
 
@@ -6584,6 +6793,8 @@ READY if the printer returns "Clear To Send Data" or "Data Set Ready". This retu
 comes from VFP and varies with its localization language. Fortunately, we have a
 language-independent workaround: use `PRINTSTATUS()`, which returns `.T.` or `.F.`,
 instead of `SYS(13)`.
+
+----
 
 ### `SYS(15, cTranslationExpression, cTranslated)`
 
@@ -6618,12 +6829,16 @@ users who must use accented characters. Since there are different
 versions of most vowels, indexing on fields containing accented
 characters doesn't preserve the expected alphabetical order.
 
+----
+
 ### `SYS(20, cExpressionTransformed, nCharacters)`
 
 **`SYS(20)` is ancient history too.**
 
 `SYS(20)` transforms a character expression containing German text to a
 character string. Included for backward compatibility. Use SET COLLATE instead.
+
+----
 
 ### `SYS(1037)`
 
@@ -6634,6 +6849,8 @@ character string. Included for backward compatibility. Use SET COLLATE instead.
 **Internationalization Gotcha:** this service comes from the operating system, and will
 thus be in its localized language.
 
+----
+
 ### `SYS(2006)`
 
 **The graphics card and monitor information comes from VFP.**
@@ -6642,6 +6859,8 @@ thus be in its localized language.
 
 **Internationalization Gotcha:** this result is generated by VFP and can only be
 localized by using a localized version of VFP.
+
+----
 
 ### `SYS(2011)`
 
@@ -6652,12 +6871,16 @@ to lock the table or record.
 
 **Internationalization Gotcha:** the values returned (`"Exclusive"`, `"Record Unlocked"`, `"Record Locked"`) come from VFP and vary with its localization.
 
+----
+
 ### `SYS(3004)`
 
 `SYS(3004)` returns the Locale ID used by ole automation and ole controls.
 
 **Internationalization Gotcha**: the Locale ID determines the language
 in which ole automation and ole controls exchange information.
+
+----
 
 ### `SYS(3005, nLocaleID)`
 
@@ -6676,9 +6899,13 @@ Here are the locales in VFP:
 | 1046 | Portuguese (Brazilian) |
 | 2070 | Portuguese (Standard) |
 
+----
+
 ### `SYS(3006, nLanguageID)`
 
 `SYS(3006)` sets the Language ID and the Locale ID.
+
+----
 
 ### `SUBSTRC(cExpression, nStartPosition [, nCharactersReturned])`
 
@@ -6696,10 +6923,14 @@ ToolTips come from Windows, and there is no way that I know to control the Font 
 Visual FoxPro. This means that apps running in Eastern Europe and oriental languages will
 display garbage in the tooltip window unless you are running on a localized version of windows.
 
+----
+
 ### `TTOC(tExpression [, 1])`
 
 `TTOC()` returns a Character value from a DateTime expression that respects `SET HOURS`,
 `SET CENTURY` and `SET DATE` so parsing this Character expression is not a good idea.
+
+----
 
 ### `VERSION(), VERSION(3)`
 
@@ -6722,6 +6953,7 @@ the VFP version number you are using.
 | 49 | German |
 | 55 | Portuguese |
 
+----
 
 ### `WAIT WINDOW cExpression`
 
@@ -6734,6 +6966,8 @@ time than required to localize the entire rest of the application.
 
 **Internationalization Gotcha**: there is no way to change the `WAIT
 WINDOW` display font.
+
+----
 
 ### `WEEK(dExpr | tExpr [, nFirstWeek] [, nFirstDayOfWeek])`
 
@@ -7417,11 +7651,11 @@ handling all eventualities of symbol and symbol placement. The trickiest
 combination you will likely find is in Portugal, where the currency
 symbol is infixed, as in 3,012$99. You can accomplish this with:
 
+```
 SET CURRENCY TO ""
-
 SET POINT TO "$"
-
 SET SEPARATOR TO ","
+```
 
 Note that you'll need to swap the setting of SET POINT TO when you are
 not dealing with currency values. You can also trick things around with
@@ -7704,72 +7938,72 @@ users so that they can continue to be well-served.
 
 ### General issues
 
-  - Do you understand the importance of balance between maintaining the
-    installed base and serving new users in new locales?
+- Do you understand the importance of balance between maintaining the
+  installed base and serving new users in new locales?
 
-  - Is your functional analysis thorough enough to identify all the
-    cultural elements you are likely to encounter, and has the effort
-    required to overcome and program around these cultural problems been
-    estimated?
+- Is your functional analysis thorough enough to identify all the
+  cultural elements you are likely to encounter, and has the effort
+  required to overcome and program around these cultural problems been
+  estimated?
 
 ### Preparation Issues
 
-  - If the localization is a retrofit, has your application been
-    prepared to isolate the linguistic and cultural elements? Do as much
-    of the necessary reengineering as possible before you begin the
-    localization.
+- If the localization is a retrofit, has your application been
+  prepared to isolate the linguistic and cultural elements? Do as much
+  of the necessary reengineering as possible before you begin the
+  localization.
 
-  - Is expertise in the new language, and expertise in the application's
-    relationship to the new locale, readily available to answer
-    developers questions and, if necessary, help steer the localization
-    process?
+- Is expertise in the new language, and expertise in the application's
+  relationship to the new locale, readily available to answer
+  developers questions and, if necessary, help steer the localization
+  process?
 
-  - Do you know whether the hardware in the new locale can adequately
-    support a run-time localization?
+- Do you know whether the hardware in the new locale can adequately
+  support a run-time localization?
 
-  - Do you have a list of the non-linguistic cultural elements that will
-    need attention in the localization process?
+- Do you have a list of the non-linguistic cultural elements that will
+  need attention in the localization process?
 
-  - If your system handles accounting chores, do you have a good
-    understanding of the accounting practices used in the new locale?
+- If your system handles accounting chores, do you have a good
+  understanding of the accounting practices used in the new locale?
 
-  - Do you understand the locale-based differences in the application's
-    industry?
+- Do you understand the locale-based differences in the application's
+  industry?
 
-  - Do you have a list of the items and tools you will need to handle
-    contingencies when on-site?
+- Do you have a list of the items and tools you will need to handle
+  contingencies when on-site?
 
 ### Construction issues
 
-  - Are your source forms sufficiently uncluttered to allow for foreign
-    language string growth?
+- Are your source forms sufficiently uncluttered to allow for foreign
+  language string growth?
 
-  - Do source menus leave sufficient space for foreign language string
-    growth?
+- Do source menus leave sufficient space for foreign language string
+  growth?
 
-  - Have you tested the application over the foreign language version of
-    the operating system and identified all the linguistic OS
-    dependencies?
+- Have you tested the application over the foreign language version of
+  the operating system and identified all the linguistic OS
+  dependencies?
 
-  - Do you have a localized version of VFP?
+- Do you have a localized version of VFP?
 
-  - Does your application parse strings, or make assumptions about
-    language grammar and syntax? It shouldn’t.
+- Does your application parse strings, or make assumptions about
+  language grammar and syntax? It shouldn’t.
 
-  - Is your user interface free of jargon?
+- Is your user interface free of jargon?
 
-  - Can your output routines cope with different form sizes?
+- Can your output routines cope with different form sizes?
 
-  - Is the implementation of data structures flexible enough to allow
-    easy modification of field sizes and the number of decimals?
+- Is the implementation of data structures flexible enough to allow
+  easy modification of field sizes and the number of decimals?
 
-  - Does your application make assumptions about the format of date and
-    time strings, other than to provide for these to vary?
+- Does your application make assumptions about the format of date and
+  time strings, other than to provide for these to vary?
 
-  - Have you chosen icons and bitmaps carefully to eliminate those which
-    can be misinterpreted or those which contain text elements?
+- Have you chosen icons and bitmaps carefully to eliminate those which
+  can be misinterpreted or those which contain text elements?
 
-  - Have you minimized source code duplication?
+- Have you minimized source code duplication?
 
 # Using GENMENUX
 
@@ -7820,11 +8054,15 @@ Since drivers do similar things but at different places, there is a
 description at the end of this document that explains the event
 sequencing.
 
+----
+
 #### `*:MNXDRV0 <file> (GENMENUX Directive)`
 
 A driver that appends the driver to the GENMENU file. This allows a
 driver to include functions with the same names as normal GENMENU
 functions that provide additional functionality.
+
+----
 
 #### `*:MNXDRV1 <expC> (GENMENUX Directive)`
 
@@ -7833,12 +8071,16 @@ the menu MNX table is in the current workarea with the pointer
 positioned at the first record. The driver is *not* called for every
 record in the menu table. Called: Setup snippet, CONFIG.FP.
 
+----
+
 #### `*:MNXDRV2 <expC> (GENMENUX Directive)`
 
 Calls a GENMENUX driver after standard GENMENUX processing has begun.
 This driver can be considered a *line driver* i.e. it can be a one-line
 command. It is processed through each record of the menu file from
 within a SCAN statement. Called: Setup snippet, CONFIG.FP.
+
+----
 
 #### `*:MNXDRV3 <expC> (GENMENUX Directive)`
 
@@ -7850,6 +8092,8 @@ NOT DELETE ANY RECORDS IN THE MNX file as your menu file will be
 corrupted. Use MNXDRV2 if you want to do that. Called: Setup snippet,
 CONFIG.FP.
 
+----
+
 #### `*:MNXDRV4 <expC> (GENMENUX Directive)`
 
 Calls a driver before the standard GenMenu is called. No SCAN statement
@@ -7857,6 +8101,8 @@ propels this driver. When this driver is called, the menu MNX file is in
 the current workarea with the pointer at the first record. The driver is
 *not* called for every record in the menu table. Called: Setup snippet,
 CONFIG.FP.
+
+----
 
 #### `*:MNXDRV5 <expC> (GENMENUX Directive)`
 
@@ -7869,11 +8115,15 @@ directive is identical to the GENMENUX directive and will override the
 setting of the GENMENUX driver, if used. Called: Setup snippet,
 CONFIG.FP.
 
+----
+
 #### `*:MPRDRV1 <expC> (GENMENUX Directive)`
 
 Calls a GENMENUX driver that will update the MPR file within the
 temporary project file. When it starts, the just created MPR file is in
 the memo field named OBJECT. Called: Setup snippet, CONFIG.FP.
+
+----
 
 #### `*:MPRDRV2 <expC> (GENMENUX Directive)`
 
@@ -7883,12 +8133,16 @@ the memo field named OBJECT. The MPRDRV2 driver is called as the very
 last item in GENMENUX before the removal of the temporary project files.
 Called: Setup snippet, CONFIG.FP.
 
+----
+
 #### `*:AFTER <expC> |<expN> (GENMENUX Directive)`
 
 A directive that allows you to identify where each PAD will be placed on
 a menu bar. You can use these clauses with Character expressions for
 menu pads or numeric expressions for menu bars. See also:
 *:BEFORE<span class ="underline">.</span>
+
+----
 
 #### `*:ARRAY <cArray> (GENMENUX Directive)`
 
@@ -7898,11 +8152,15 @@ SELECT BAR statement calls the command identified in the second column
 of the array.
 Example: *:ARRAY a\_fldNames
 
+----
+
 #### `*:AUTOACT (GENMENUX Directive)`
 
 AUTOACT will automatically activate the menu in the cleanup snippet.
 This is useful if you use the MENUNAME directive and do not place the
 ACTIVATE MENU clause in your code.
+
+----
 
 #### `*:AUTOHOT (GENMENUX Directive)`
 
@@ -7914,16 +8172,22 @@ the second letter, and so on. The CONFIG.FP argument can be either ON or
 OFF. When adding it to the Setup snippet, the argument is ignored. It is
 automatically turned on. Called: Setup snippet, CONFIG.FP.
 
+----
+
 #### `*:AUTOPOS (GENMENUX Directive)`
 
 Allows the user to click on the line where the menu is to start. This
 results in a *:LINE directive being added to the Setup/Menu Procedure
 snippet.
 
+----
+
 #### `*:AUTORUN (GENMENUX Directive)`
 
 Automatically runs the generated MPR file once it has been generated.
 Ignored when building from a project. Called: Setup snippet, CONFIG.FP.
+
+----
 
 #### `*:BARHOT (GENMENUX Directive)`
 
@@ -7933,11 +8197,15 @@ called in the Comment snippet. However, if it is called at the top pad
 of a menu, all of the items in the submenu will be updated accordingly.
 Called: Setup/Menu Procedure Snippet Comment snippet, CONFIG.FP.
 
+----
+
 #### `*:BEFORE <expC> |<expN> (GENMENUX Directive)`
 
 A directive that allows you to identify where each PAD will be placed on
 a menu bar. You can use these clauses with Character expressions for
 menu pads or numeric expressions for menu bars. See also: *:AFTER.
+
+----
 
 #### `*:CASE <expL> (GENMENUX Directive)`
 
@@ -7946,6 +8214,8 @@ condition in a CASE statement at the end of the menu definition. This is
 useful for grouping *:IF <span class ="underline"> </span> statements,
 which would make menu processing run slightly faster. See also:
 *:REFPRG.
+
+----
 
 #### `*:COLOR <cColorPair><expC> (GENMENUX Directive)`
 
@@ -7961,11 +8231,15 @@ Green, Baby Blue, Blue, Black, Violet, Yellow, Dark Gray
 Passing one of these clauses as a parameter to *:COLOR will tell
 GENMENUX to use the appropriate RGB setting for the menu bar.
 
+----
+
 #### `*:COLORSET <expC> (GENMENUX Directive)`
 
 Defines a color scheme for an individual menu pad or item. Example:
 
 *:COLORSET 7
+
+----
 
 #### `*:DEFAULT (GENMENUX Directive)`
 
@@ -7973,12 +8247,16 @@ Adds the statement SET SYSMENU SAVE to the cleanup code. This makes the
 menu the default (SET SYSMENU TO DEFAULT) after it has been created.
 Called: Setup snippet.
 
+----
+
 #### `*:DEFLIB <cLibrary> (GENMENUX Directive)`
 
 Since every object must belong to a library, *:DEFLIB allows you to
 define the library for an entire menu. This is useful if you create a
 single menu that contains all of your library objects and want to place
 each object into a single library.
+
+----
 
 #### `*:DEFOBJ [<cLibrary>.]<cObject> (GENMENUX Directive)`
 
@@ -8020,6 +8298,8 @@ This inserts a menu object into the FOXMNX table for the Reindex menu
 pad, identifying it as belonging to the File library and naming the
 object Reindex.
 
+----
+
 #### `*:DEFPOPIF <expC> (GENMENUX Directive)`
 
 Makes the DEFINE POPUP statement conditional on if it already exists.
@@ -8029,16 +8309,22 @@ conditional, making the MPR run considerably faster. Example:
 
 *:DEFPOPIF options.
 
+----
+
 #### `*:DELETE (GENMENUX Directive)`
 
 Deletes the menu prompt during compilation so it doesn’t appear. This
 directive is useful for adding features at a later date and ensuring
 they don’t appear in the menu. Called: Comment snippet.
 
+----
+
 #### `*:DELOBJ (GENMENUX Directive)`
 
 Removes a menu item after GENMENUX has completed directive processing
 but BEFORE it reorders the menu.
+
+----
 
 #### `*:FOUNDATION <expC> (GENMENUX Directive)`
 
@@ -8047,9 +8333,13 @@ in the creation of a Foundation READ. If you do not provide an <expC>,
 the READ will automatically exit when the selected prompt is either
 "EXIT" or "QUIT".
 
+----
+
 #### `*:FOXMNX <cFileName> (GENMENUX Directive)`
 
 Specifies the GENMENUX library file.
+
+----
 
 #### `*:GENIF <expC> (GENMENUX Directive)`
 
@@ -8062,17 +8352,23 @@ or BAR from the menu. Called: Comment snippet. Example:
 
 *:GENIF DATE()<CTOD("12/31/93")
 
+----
+
 #### `*:GENMENUX <expC> (GENMENUX Directive)`
 
 Define whats GENMENU.PRG program to use. This is helpful if you want to
 use a different menu generator for a particular menu. Called: Setup
 snippet, CONFIG.FP
 
+----
+
 #### `*:HIDE /m.\_HIDE (GENMENUX Directive)`
 
 Hides the menu bar during the running of the MPR file and shows it at
 the end. This is useful if you use a lot of *:IF statements and don’t
 want the user to see a lot of menu activity.
+
+----
 
 #### `*:IF <expC> (GENMENUX Directive)`
 
@@ -8098,20 +8394,28 @@ Example:
 
 *:IF chk\_sc("*PROMPT*","*ITEMNUM*")
 
+----
+
 #### `*:HIDE (GENMENUX Directive)`
 
 Hides the Menu while the MPR file is being run so menu pads won't
 distract the user.
+
+----
 
 #### `*:IGNORE (GENMENUX Directive)`
 
 Ignores any GENMENUX directives for this menu prompt. Called: Comment
 snippet.
 
+----
+
 #### `*:INCLIB (GENMENUX Directive)`
 
 Defines the default library for referencing library objects, place the
 *:INCLIB directive in the Setup or Menu Procedure snippet of the menu.
+
+----
 
 #### `*:INSOBJ <cLibrary>.<cObject> (GENMENUX Directive)`
 
@@ -8120,6 +8424,8 @@ menu. The object will be replaced by the object <cObject> from the
 FOXMNX table belonging to the library specified by cLibrary. If cLibrary
 is not specified, then the library will be the one identified by the
 *:INCLIB directive.
+
+----
 
 #### `*:INSCX <cWinName> [SAVE [MODAL]] (GENMENUX Directive)`
 
@@ -8130,10 +8436,14 @@ POP MENU in the setup and cleanup code. If MODAL is also specified,
 INSCX places the DO command in the When clause for the screen and the
 POP MENU \_MSYSMENU command in the Deactivate snippet.
 
+----
+
 #### `*:LINE <expN> (GENMENUX Directive)`
 
 Makes the Menu bar start at the row defined by <expN>. Called: Setup
 snippet.
+
+----
 
 #### `*:LOCATION <expC1>,<expC2> (GENMENUX Directive)`
 
@@ -8143,9 +8453,13 @@ options). If <expC1> is BEFORE or AFTER, <expC2> should contain
 either the system menu prompt or pad name that precedes or follows the
 menu.
 
+----
+
 #### `*:MENUNAME <expC> (GENMENUX Directive)`
 
 Renames the Menu bar from \_MSYSMENU to <expC>.
+
+----
 
 #### `*:MESSAGE <expC> (GENMENUX Directive)`
 
@@ -8154,15 +8468,21 @@ or string. If it is a string, it should be enclosed in quotes. In FoxPro
 for Windows, *:MESSAGE overrides what’s in the Message field. Called:
 Comment snippet.
 
+----
+
 #### `*:NOACT (GENMENUX Directive)`
 
 Removes the ACTIVATE MENU \_MSYSMENU statement from the generated MPR
 file.
 
+----
+
 #### `*:NOAUTO (GENMENUX Directive)`
 
 Removes the SET SYSMENU AUTOMATIC statement from the generated MPR file.
 Called: Setup snippet.
+
+----
 
 #### `*:NOBAR (GENMENUX Directive)`
 
@@ -8170,26 +8490,38 @@ Removes the BAR setting from MPR file allowing menus to be created that
 are only the length of the menu bar itself instead of extending across
 the screen. Called: Setup snippet.
 
+----
+
 #### `*:NOCOMMENT (GENMENUX Directive)`
 
 (Undocumented) Strips out all comments from the .MPR file.
+
+----
 
 #### `*:NOGEN (GENMENUX Directive)`
 
 Directs GENMENUX to not generate the MPR file. Called: Setup snippet.
 
+----
+
 #### `*:NOMARGIN (GENMENUX Directive)`
 
 Removes MARGIN setting from MPR file. Called: Setup snippet.
+
+----
 
 #### `*:NOSHADOW (GENMENUX Directive)`
 
 Removes SHADOW setting from MPR file. Called: Setup snippet.
 
+----
+
 #### `*:NOXGEN (GENMENUX Directive)`
 
 Directs GENMENUX to ignore any GENMENUX directives and generate the MPR
 file as though GENMENUX was not present. Called: Setup snippet.
+
+----
 
 #### `*:NOXTHERM (GENMENUX Directive)`
 
@@ -8197,17 +8529,23 @@ Tells GENMENUX to use FoxPro's standard thermometer instead of the
 GENMENUX extended one. This is useful if you find the GENMENUX
 thermometer distracting.
 
+----
+
 #### `*:PADCOLOR <expC> (GENMENUX Directive)`
 
 Changes the default Menu PAD color setting. Normally, GenMenu defaults
 to COLOR SCHEME 4. Using *:PADCOLOR, the default scheme can be changed
 to any particular setting. Called: Setup snippet.
 
+----
+
 #### `*:PADNAME <expC> (GENMENUX Directive)`
 
 Ensures that the current pad’s name is <expC>. Example:
 
 *:PADNAME options
+
+----
 
 #### `*:PADPOS | POPPOS <nRow>,<nCol> (GENMENUX Directive)`
 
@@ -8217,11 +8555,15 @@ different locations for your various popups. *:POPPOS must occur within
 a submenu. Example: *:PADPOS 5,6 (This will position the pad at row 5,
 column 6.)
 
+----
+
 #### `*:POPCOLOR <expC> (GENMENUX Directive)`
 
 Changes the default menu popup color setting. Normally, GenMenu defaults
 to COLOR SCHEME 3. Using *:POPCOLOR, the default scheme can be changed
 to any particular setting. Called: Setup snippet
+
+----
 
 #### `*:POPCOMMAND <expC> (GENMENUX Directive)`
 
@@ -8235,6 +8577,8 @@ FoxPro function or command. Example:
 
 Called: Comment snippet.
 
+----
+
 #### `*:POPFIELDS <expC> (GENMENUX Directive)`
 
 Creates menus of popups of fields in the current table. The popup shows
@@ -8245,6 +8589,8 @@ use *:POPCOMMAND. Example:
 *:POPFIELDS name
 
 *:POPFIELDS "Client Name: "+name
+
+----
 
 #### `*:POPFILES <expC> (GENMENUX Directive)`
 
@@ -8260,6 +8606,8 @@ comment snippet. Example:
 
 *:POPFILES "*.DBF"
 
+----
+
 #### `*:POPPRECOMMAND <expC> (GENMENUX Directive)`
 
 Allows for a command or function to be called before a popup is defined.
@@ -8269,6 +8617,8 @@ responsible for closing any opened tables. Example:
 
 *:POPPRECOMMAND = OPENFILE("CLIENTS")
 
+----
+
 #### `*:POPTITLE <expC> (GENMENUX Directive)`
 
 *:POPTITLE defines the popup with a title of <expC>. Handy if you
@@ -8276,12 +8626,15 @@ need titles on any of your popups. Example:
 
 *:POPTITLE "Menu Options"
 
+-
 #### `*:REFPRG <file> (GENMENUX Directive)`
 
 This directive identifies a file that will be created when the menu is
 generated that contains the necessary code to refresh the menu bars and
 prompts that use the CASE statement. This cuts down having to recall the
 MPR file. See also: *:CASE.
+
+----
 
 #### `*:SELECTBAR (GENMENUX Directive)`
 
@@ -8291,6 +8644,8 @@ the behaviour of activating menu popups. This works best when moving the
 popups in different locations on the screen. See ON BAR and ON SELECTION
 BAR in the FoxPro help file.
 
+----
+
 #### `*:SELECTPAD (GENMENUX Directive)`
 
 GenMenu places ON PAD statements for activating popups. Using
@@ -8299,10 +8654,14 @@ which changes the behaviour of activating menus. Works best when moving
 the menus to different locations on the screen. See ON PAD and ON
 SELECTION PAD in the FoxPro help file.
 
+----
+
 #### `*:SYSDEFAULT (GENMENUX Directive)`
 
 Adds SET SYSMENU SAVE to the cleanup code. This makes the menu become
 the default (SET SYSMENU TO DEFAULT) after it has been created.
+
+----
 
 #### `*:SYSPOP (GENMENUX Directive)`
 
@@ -8310,11 +8669,15 @@ Wraps the procedure statement with PUSH MENU \_MSYSMENU / SET SYSMENU
 OFF/POP MENU \_MSYSMENU. It can be defined in either the CONFIG.FP,
 Setup or Procedure snippets.
 
+----
+
 #### `*:VERTICAL <nStrtRow>,<nSkpRow> (GENMENUX Directive)`
 
 *:VERTICAL causes the menu to be created vertically instead of
 horizontally. You specify the starting row with nStrtRow and define the
 number of rows between menu options using nSkipRow.
+
+----
 
 #### `*:WINDOW <expC1> [CLAUSES [<expC2>]] (GENMENUX Directive)`
 
@@ -8335,6 +8698,8 @@ FROM 5,5 TO 12,50 ;
 
 COLOR SCHEME 6
 
+----
+
 #### `{{<exp>}} (GENMENUX Directive)`
 
 Text surrounded by double braces performs the EVALUATION of <expC> at
@@ -8349,6 +8714,8 @@ WAIT 'Version Date is {{DATE()}}' WINDOW
 the following code would be placed in the .MPR:
 
 WAIT 'Version Date is 06/01/93' WINDOW
+
+----
 
 #### `{{&.<expC>}} (GENMENUX Directive)`
 
