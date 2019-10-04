@@ -5491,7 +5491,7 @@ especially if it comes from another platform or another locale.
 
 ---
 
-### CPZERO( cFilename[, codepage_number]]
+### `CPZERO( cFilename[, codepage_number])`
 
 **Use `cpzero.prg` to change a table's code page id.**
 
@@ -5533,21 +5533,19 @@ fields.
 
 ### `CTOD(cExpression)`
 
-<table>
-<thead>
-<tr class ="header">
-<th>**IF your date format doesn't match SET DATE, no error is generated, and a blank date value ( / / ) results.**</th>
-<th><p>CTOD() converts a character expression to a date expression.</p>
-<p>**Internationalization Gotcha:** remember that the format for the character expression must conform to the date format specified by SET DATE or by the "International" page of the Options dialog. So the command CTOD("9/24/96" ) works if SET DATE AMERICAN (month-day-year) but creates an empty date value ( / / ) if SET DATE BRITISH (day-month-year) or SET DATE JAPAN (year-month-day).</p></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Arguments passed to CTOD() are unaffected by SET MARK TO.**</td>
-<td>It is worth noting that CTOD() doesn't care about current date delimiters specified by SET MARK TO or by the "International" page of the Options dialog, so CTOD("9/24/96"), CTOD("9-24-96") and CTOD("9.24.96") all work equally well.</td>
-</tr>
-</tbody>
-</table>
+**IF your date format doesn't match `SET DATE`, no error is generated, and a blank date value (` / / `) results.**
+
+`CTOD()` converts a character expression to a date expression.
+
+**Internationalization Gotcha:** remember that the format for the character expression must conform to the
+date format specified by `SET DATE` or by the "International" page of the Options dialog. So the
+command `CTOD("9/24/96" )` works if `SET DATE AMERICAN` (month-day-year) but creates an empty date
+value (` / / `) if `SET DATE BRITISH` (day-month-year) or `SET DATE JAPAN` (year-month-day).</p></
+
+**Arguments passed to `CTOD()` are unaffected by `SET MARK TO`.** `CTOD()` doesn't care about current date
+delimiters specified by `SET MARK TO` or by the "International" page of the Options dialog,
+so `CTOD("9/24/96")`, `CTOD("9-24-96")` and `CTOD("9.24.96")`
+all work equally well.
 
 ----
 
