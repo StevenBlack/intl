@@ -5574,87 +5574,39 @@ all work equally well, as does `CTOT("9-24-96 11:00 pm")` and `CTOT("9.24.96 23:
 
 ### DATASESSIONS
 
-<table>
-<thead>
-<tr class ="header">
-<th><p>**Private datasessions are endowed with VFP default values that have nothing to do with your Regional Window's settings.**
-<p>**Therefore for each new data session you must SET the appropriate values.**</th>
-<th><p>Some of VFP's SET commands, including most of those with international implications, are scoped to the current datasession.
-<p>**Internationalization Gotcha:** a problem arises when you create new datasessions: the new datasessions have VFP defaults, and these don't necessarily conform to the current SET settings or the current Windows international settings.
-<p>This means that whenever a new private datasession is created, you must ensure that its SET settings are correct for the current locale.
-<p>Here is a complete list of SET commands that are scoped to the datasession, with the ones in **<span class ="underline">bold face</span>** indicating those that are locale-sensitive.</th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>DataSession-Scoped SET commands</td>
-</tr>
-<tr>
-<td>SET ANSI</td>
-<td>SET AUTOSAVE</td>
-</tr>
-<tr>
-<td>SET BLOCKSIZE</td>
-<td>SET CARRY</td>
-</tr>
-<tr>
-<td>**<span class ="underline">SET CENTURY</span>**</td>
-<td>**<span class ="underline">SET COLLATE</span>**</td>
-</tr>
-<tr>
-<td>**<span class ="underline">SET CONFIRM</span>**</td>
-<td>**<span class ="underline">SET CURRENCY</span>**</td>
-</tr>
-<tr>
-<td>**<span class ="underline">SET DATABASE</span>**</td>
-<td>**<span class ="underline">SET DATE</span>**</td>
-</tr>
-<tr>
-<td>**<span class ="underline">SET DECIMALS</span>**</td>
-<td>SET DELETED</td>
-</tr>
-<tr>
-<td>**<span class ="underline">SET DELIMITERS</span>**</td>
-<td>SET EXACT</td>
-</tr>
-<tr>
-<td>SET EXCLUSIVE</td>
-<td>SET FIELDS</td>
-</tr>
-<tr>
-<td>SET FIXED</td>
-<td>SET LOCK</td>
-</tr>
-<tr>
-<td>**<span class ="underline">SET MARK TO</span>**</td>
-<td>SET MEMOWIDTH</td>
-</tr>
-<tr>
-<td>SET MULTILOCKS</td>
-<td>SET NEAR</td>
-</tr>
-<tr>
-<td>SET NULL</td>
-<td>**<span class ="underline">SET POINT</span>**</td>
-</tr>
-<tr>
-<td>SET REPROCESS</td>
-<td>**<span class ="underline">SET SAFETY</span>**</td>
-</tr>
-<tr>
-<td>**<span class ="underline">SET SEPARATOR</span>**</td>
-<td>SET SYSFORMATS</td>
-</tr>
-<tr>
-<td>SET TALK</td>
-<td>SET UNIQUE</td>
-</tr>
-</tbody>
-</table>
+**Private datasessions are endowed with VFP default values that have nothing to do with your Regional Window's settings.**
+
+**Therefore for each new data session you must SET the appropriate values.**
+
+Some of VFP's SET commands, including most of those with international implications, are scoped to the current datasession.
+
+**Internationalization Gotcha:** a problem arises when you create new datasessions: the new datasessions have VFP
+defaults, and these don't necessarily conform to the current SET settings or the current Windows international settings.
+
+This means that whenever a new private datasession is created, you must ensure that its SET settings are correct for the current locale.
+Here is a complete list of SET commands that are scoped to the datasession. **`bold face`** commands are locale-sensitive.
+
+
+#### DataSession-Scoped SET commands
 
 These SET commands are scoped to the datasession.
+**`bold face`** commands are locale-sensitive.
+
+| `SET ANSI` | `SET AUTOSAVE` |
+| `SET BLOCKSIZE` | `SET CARRY` |
+| **`SET CENTURY`** | **`SET COLLATE`** |
+| **`SET CONFIRM`** | **`SET CURRENCY`** |
+| **`SET DATABASE`** | **`SET DATE` |
+| **`SET DECIMALS`** | `SET DELETED` |
+| **`SET DELIMITERS`** | `SET EXACT` |
+| `SET EXCLUSIVE` | `SET FIELDS` |
+| `SET FIXED` | `SET LOCK` |
+| **`SET MARK TO`** | `SET MEMOWIDTH` |
+| `SET MULTILOCKS` | `SET NEAR` |
+| `SET NULL` | **`SET POINT`** |
+| `SET REPROCESS` | **`SET SAFETY`** |
+| **`SET SEPARATOR`** | `SET SYSFORMATS` |
+| `SET TALK` | `SET UNIQUE` |
 
 ----
 
@@ -5687,29 +5639,29 @@ connections, tables, or views in the current database.
 **Internationalization Gotcha:** here are localizable elements for table
 fields:
 
-| **cProperty** | **Type** | **Description** |
+| **`cProperty`** | **Type** | **Description** |
 | ----- | -------- | ----- |
-| Caption | C | The field caption (read-write). |
-| RuleText | C | The field rule error text (read-only). |
+| `Caption` | `C` | The field caption (read-write). |
+| `RuleText` | `C` | The field rule error text (read-only). |
 
 Here are localizable elements for views:
 
-| **cProperty** | **Type** | **Description** |
+| **`cProperty`** | **Type** | **Description** |
 | ----- | -------- | ----- |
-| Caption | C | The field caption (read-write). |
-| RuleText | C | The field rule error text (read-write). |
+| `Caption` | `C` | The field caption (read-write). |
+| `RuleText` | `C` | The field rule error text (read-write). |
 
 Here are localizable elements for table properties:
 
-| **cProperty** | **Type** | **Description** |
+| **`cProperty`** | **Type** | **Description** |
 | ----- | -------- | ----- |
-| RuleText | C | The row rule error text (read-only). |
+| `RuleText` | `C` | The row rule error text (read-only). |
 
 Here are localizable elements for views:
 
-| **cProperty** | **Type** | **Description** |
+| **`cProperty`** | **Type** | **Description** |
 | ----- | -------- | ----- |
-| RuleText | C | The rule text expression displayed when an error occurs when data is edited in a Browse or Edit window (read-write). |
+| `RuleText` | `C` | The rule text expression displayed when an error occurs when data is edited in a Browse or Edit window (read-write). |
 
 ###
 
@@ -5776,7 +5728,7 @@ its `FONT` (which might need to vary with locale); and the `ICON` file
 
 ### `DefOLELCID` Property
 
-The DefOLELCID property applies to Form and _SCREEN objects, and
+The `DefOLELCID` property applies to Form and `_SCREEN` objects, and
 specifies the default ole Locale ID for a Form or the main VFP window.
 
 **Internationalization Gotcha**: this default value determines the
@@ -5787,8 +5739,8 @@ If the default ole Locale ID value for a Form or the main VFP
 window is changed to a new value, then ole Bound controls and ole
 Container controls placed thereon afterwards use the new value.
 
-If DefOLELCID is set to zero for a form or the main VFP
-window, SYS(3004) determines the default Locale ID for ole Bound
+If `DefOLELCID` is set to zero for a form or the main VFP
+window, `SYS(3004)` determines the default Locale ID for ole Bound
 controls and ole Container controls placed on the Form or the main VFP
 window.
 
@@ -5796,17 +5748,17 @@ Here is a listing of Locale Ids:
 
 | Locale ID | Language |
 | --------- | ----- |
-| 1029 | Czech |
-| 1031 | German |
-| 1033 | English (Default) |
-| 1034 | Spanish |
-| 1036 | French |
-| 1040 | Italian |
-| 1045 | Polish |
-| 1046 | Portuguese (Brazilian) |
-| 2070 | Portuguese (Standard) |
+| `1029` | Czech |
+| `1031` | German |
+| `1033` | English (Default) |
+| `1034` | Spanish |
+| `1036` | French |
+| `1040` | Italian |
+| `1045` | Polish |
+| `1046` | Portuguese (Brazilian) |
+| `2070` | Portuguese (Standard) |
 
-Note**:** the DefOLELCID property only affects the language of the user
+**Note:** the `DefOLELCID` property only affects the language of the user
 interface, which ole controls display, and not the language of the ole
 automation commands. The ole automation command language is affected
 only by the Global LocaleID, set with SYS(3005).
@@ -5815,8 +5767,8 @@ only by the Global LocaleID, set with SYS(3005).
 
 ### `DMY(dExpression | tExpression)`
 
-DMY() returns a character expression in day-month-year sequence, for
-example "26 June 1996".
+`DMY()` returns a character expression in day-month-year sequence, for
+example `"26 June 1996"`.
 
 **Internationalization Gotcha:** `DMY()` comes from VFP, and the language
 varies with VFP's localized language. `DMY()` respects the setting of
@@ -5826,10 +5778,9 @@ varies with VFP's localized language. `DMY()` respects the setting of
 
 ### `DTOC(dExpression | tExpression [, 1])`
 
-DTOC() returns a Character-type Date from a Date or DateTime expression.
+`DTOC()` returns a Character-type Date from a Date or DateTime expression.
 
-**Internationalization Gotcha**: the date format is determined by SET
-CENTURY and SET DATE and SET MARK.
+**Internationalization Gotcha**: the date format is determined by `SET CENTURY` and `SET DATE` and `SET MARK`.
 
 ----
 
@@ -5849,7 +5800,7 @@ CENTURY and SET DATE and SET MARK.
 
 ### `DTOT(dDateExpression)`
 
-DTOT() returns a DateTime value from a Date expression.
+`DTOT()` returns a DateTime value from a Date expression.
 
 **Internationalization Gotcha**: the format of the returned value
 depends on the current SET DATE and SET MARK settings.
@@ -5858,21 +5809,25 @@ depends on the current SET DATE and SET MARK settings.
 
 ### `EDIT`
 
-| | |
-| ----- | ----- |
-| **EDIT without NOMENU leads to an unlocalizable "Table" menu pad.** | **Internationalization Gotcha:** when using EDIT without a NOMENU clause, VFP places a "Table" menu pad on the system menu containing a number of bars (with captions like "Properties", "Font", "Go to record", etc). The display language of this pad and its bars is a function of VFP's localization language. In international applications that use BROWSE, make sure you make it a EDIT...NOMENU and, if required, invoke your own supporting menu. |
+**`EDIT` without `NOMENU` leads to an unlocalizable "Table" menu pad.**
+
+**Internationalization Gotcha:** when using `EDIT` without a `NOMENU` clause, VFP places a "Table"
+menu pad on the system menu containing a number of bars (with captions like `"Properties"`, `"Font"`,
+`"Go to record"`, etc). The display language of this pad and its bars is a function of VFP's
+localization language. In international applications that use `BROWSE`, make sure you make
+it a `EDIT...NOMENU` and, if required, invoke your own supporting menu. |
 
 ----
 
 ### `ERROR`
 
-The ERROR command generates a VFP error.
+The `ERROR` command generates a VFP error.
 
-**Internationalization Gotcha:** if you issue an ERROR call with an
-error number, like this: ERROR 101, the message is in VFP's localized
-language. You can always issue ERROR 101, "My localized Error Message"
-to adorn errors with your own error message. In any event, the ERROR
-command is pre-empted by whatever action is specified by ON ERROR.
+**Internationalization Gotcha:** if you issue an `ERROR` call with an
+error number, like this: `ERROR 101`, the message is in VFP's localized
+language. You can always issue `ERROR 101`, "My localized Error Message"
+to adorn errors with your own error message. In any event, the `ERROR`
+command is pre-empted by whatever action is specified by ON `ERROR`.
 
 ----
 
@@ -5880,13 +5835,14 @@ command is pre-empted by whatever action is specified by ON ERROR.
 
 **VFP error messages are in VFP's localized language.**
 
-**Internationalization Gotcha:** error messages which, in the absence of error handling, adorn VFP's error dialog boxes and as available with MESSAGE() and AERROR(), are in the language of VFP's localization.
+**Internationalization Gotcha:** error messages which, in the absence of error handling, adorn VFP's error dialog
+boxes and as available with `MESSAGE()` and `AERROR()`, are in the language of VFP's localization.
 
 ----
 
 ### `EXPORT TO ... AS nCodePage`
 
-EXPORT TO copies data from a VFP table to a file in a different format.
+`EXPORT TO` copies data from a VFP table to a file in a different format.
 
 **Internationalization Gotcha:** AS nCodePage specifies the code page
 for the file EXPORT creates. VFP copies the contents of the currently
@@ -5903,7 +5859,7 @@ occurs and the new file is not marked with a code page.
 
 ### `FDATE(cFileName)`
 
-FDATE() is a low level file function that returns the last modification
+`FDATE()` is a low level file function that returns the last modification
 date for a file.
 
 **Internationalization Gotcha:** the result is in a format determined by
@@ -5914,8 +5870,8 @@ the current settings of SET DATE, SET MARK, and SET CENTURY.
 ### Fonts
 
 **Internationalization Gotcha**: depending on the localization, Fonts
-may be an issue. For example, the "Arial" font in the Cyrillic languages
-is called "Arial Cyr". Of course, in some Asian languages, there is no
+may be an issue. For example, the `"Arial"` font in the Cyrillic languages
+is called `"Arial Cyr"`. Of course, in some Asian languages, there is no
 such thing as an Arial font.
 
 **Internationalization Tip**: the best place to find locale-specific
@@ -5964,7 +5920,7 @@ The line...
 
 ![](./media/image28.wmf)
 
-The GETDIR() dialog
+The `GETDIR()` dialog
 
 ----
 
@@ -6055,7 +6011,7 @@ on a 24 hour format, and is not affected by the current setting of
 
 ### `IDXCOLLATE([cCDXFileName,] nIndexNumber [, nWorkArea | cTableAlias])`
 
-IDXCOLLATE() returns the collation sequence for an index or index tag.
+`IDXCOLLATE()` returns the collation sequence for an index or index tag.
 
 **Internationalization Gotcha:** `IDXCOLLATE()` can be used to return the
 collation sequence for each tag in multiple-entry compound index files,
@@ -6079,19 +6035,19 @@ Return values for the IME status in the Japanese locale:
 
 | Return Value | IME Status |
 | ----- | ----- |
-| 4 | Hiragana double-byte. |
-| 5 | Katakana double-byte. |
-| 6 | Katakana single-byte. |
-| 7 | Alphanumeric double-byte. |
-| 8 | Alphanumeric single-byte. |
+| `4` | Hiragana double-byte. |
+| `5` | Katakana double-byte. |
+| `6` | Katakana single-byte. |
+| `7` | Alphanumeric double-byte. |
+| `8` | Alphanumeric single-byte. |
 
 Return values for the IME status in the Korean locale:
 
 | Return Value | IME Status |
 | ----- | ----- |
-| 4 | Hangeul mode. |
-| 5 | Junja mode (double-byte). |
-| 6 | Hanja conversion mode. |
+| `4` | Hangeul mode. |
+| `5` | Junja mode (double-byte). |
+| `6` | Hanja conversion mode. |
 
 ----
 
@@ -6166,17 +6122,17 @@ characters.
 ### `LIST ...`
 
 **Internationalization Gotcha:** in the "old days" of FoxPro, the only
-way to get some sorts of information was to execute one of the LIST
-commands TO FILE and thereafter parse the resulting text. While I can't
+way to get some sorts of information was to execute one of the `LIST`
+commands `TO FILE` and thereafter parse the resulting text. While I can't
 think of a reason to do this in VFP, some reason may occur. If it does,
-you should know that the LIST commands will produce output containing
+you should know that the `LIST` commands will produce output containing
 text that localized according to the language of VFP.
 
 ----
 
 ### `LOCFILE(cFileName [, cFileExt] [, cCaption] [, cCreatorType])`
 
-LOCFILE() locates a file on disk and returns the file name with its
+`LOCFILE()` locates a file on disk and returns the file name with its
 path.
 
 **Internationalization Gotcha:** other than the dialog caption, you have
@@ -6200,7 +6156,7 @@ The LOCFILE() dialog.
 
 ### `MDY(dExpression | tExpression)`
 
-MDY() returns a character expression in month-day-year sequence, for
+`MDY()` returns a character expression in month-day-year sequence, for
 example "June 26 1996".
 
 **Internationalization Gotcha:** `MDY()` comes from VFP, and the language
@@ -6211,10 +6167,10 @@ CENTURY`.
 
 ### `MESSAGE()`
 
-MESSAGE() returns the current error message as a character string.
+`MESSAGE()` returns the current error message as a character string.
 
 **Internationalization Gotcha**: the error message is in the localized
-language of VFP. Note that AERROR(2)returns the same value as MESSAGE().
+language of VFP. Note that `AERROR(2)` returns the same value as `MESSAGE()`.
 
 ----
 
@@ -6257,7 +6213,7 @@ the file in a different code page.
 
 ### `MODIFY FILE ... AS nCodePage`
 
-MODIFY FILE opens an editing window so you can modify or create a text
+`MODIFY FILE` opens an editing window so you can modify or create a text
 file.
 
 **Internationalization Gotcha:** AS nCodePage automatically converts
@@ -6333,39 +6289,39 @@ support the current locale.
 
 ----
 
-### OLELCID Property
+### `OLELCID` property
 
-The OLELCID property of OLE Bound Controls and OLE Container Controls
+The `OLELCID` property of OLE Bound Controls and OLE Container Controls
 returns their numeric OLE Locale. This property is always read-only.
 
-**Internationalization Gotcha**: the OLELCID value is determined by the
-value of the DefOLELCID property for the Form or the main VFP window
+**Internationalization Gotcha**: the `OLELCID` value is determined by the
+value of the `DefOLELCID` property for the Form or the main VFP window
 when the OLE Bound control or OLE Container control is instantiated.
 
-If the Form or the main VFP window's DefOLELCID property is
+If the Form or the main VFP window's `DefOLELCID` property is
 zero when the OLE Bound control or OLE Container control is placed on
 the Form or the main VFP window, the control uses the current
 VFP Locale ID as witnessed by SYS(3004). You can use the
-DefOLELCID property of Form objects to specify their Locale ID.
+`DefOLELCID` property of Form objects to specify their Locale ID.
 
-The OLELCID property only affects the language of the user interface,
+The `OLELCID` property only affects the language of the user interface,
 which OLE controls display, and not the language of the OLE automation
 commands. The OLE automation command language is affected only by the
 Global LocaleID, set with SYS(3005).
 
 Here is a list of OLE locale id's.
 
-| nLocaleID | Language |
+| `nLocaleID` | Language |
 | --------- | ----- |
-| 1029 | Czech |
-| 1031 | German |
-| 1033 | English (Default) |
-| 1034 | Spanish |
-| 1036 | French |
-| 1040 | Italian |
-| 1045 | Polish |
-| 1046 | Portuguese (Brazilian) |
-| 2070 | Portuguese (Standard) |
+| `1029` | Czech |
+| `1031` | German |
+| `1033` | English (Default) |
+| `1034` | Spanish |
+| `1036` | French |
+| `1040` | Italian |
+| `1045` | Polish |
+| `1046` | Portuguese (Brazilian) |
+| `2070` | Portuguese (Standard) |
 
 ----
 
@@ -9249,4 +9205,3 @@ damages.
 
 Comments/Suggestions/Problems/Questions: Please ask: Andrew Ross
 MacNeill andrew@aksel.co
-
