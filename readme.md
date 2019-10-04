@@ -5592,12 +5592,13 @@ Here is a complete list of SET commands that are scoped to the datasession. **`b
 These SET commands are scoped to the datasession.
 **`bold face`** commands are locale-sensitive.
 
+|   |   |
 | ----- | -------- |
 | `SET ANSI` | `SET AUTOSAVE` |
 | `SET BLOCKSIZE` | `SET CARRY` |
 | **`SET CENTURY`** | **`SET COLLATE`** |
 | **`SET CONFIRM`** | **`SET CURRENCY`** |
-| **`SET DATABASE`** | **`SET DATE` |
+| **`SET DATABASE`** | **`SET DATE`** |
 | **`SET DECIMALS`** | `SET DELETED` |
 | **`SET DELIMITERS`** | `SET EXACT` |
 | `SET EXCLUSIVE` | `SET FIELDS` |
