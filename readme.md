@@ -1057,7 +1057,7 @@ parameters are used to initialize the state of INTL.
 
 |  |  |
 | --- | --- |
-| **Syntax** | `oX = CREATE("INTL", [C |N |O], [C |N |O], [C |N |O])` |
+| **Syntax** | `oX = CREATE("INTL", [C \| N \| O], [C \| N \| O], [C \| N \| O])` |
 | **Return** | Logical true always. |
 | **Arguments** | You may pass one of each of the following:<br>Type "C": the language to set.<br>Type "N": an INTL configuration integer.<br>Type "O": an object to traverse and localize. |
 | **Example** | `oX = CREATE("INTL", "French", _SCREEN.Activeform)` |
@@ -1092,9 +1092,9 @@ characteristics of the main INTL object.
 
 |  |  |
 | --- | --- |
-| **Syntax** | `oINTL.Localize( [cLang | oObj][,cLang | oObj])` |
+| **Syntax** | `oINTL.Localize( [cLang \| oObj][,cLang \| oObj])` |
 | **Return** | Logical true if successful, false if otherwise. |
-| **Arguments** | `cLang`: the language to localize the object.<br>`Oobj`: the object to localize. Default is `THISFORM`. |
+| **Arguments** | `cLang`: the language to localize the object.<br>`oObj`: the object to localize. Default is `THISFORM`. |
 | **See Also** | `INTL::Execute()` |
 
 **Example**
