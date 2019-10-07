@@ -262,7 +262,7 @@ You configure INTL with a `_SCREEN.oINTL.SetConfig( n )` method, where `n` is a 
 
 | Value | Configuration Meaning |
 | --- | --- |
-| 1 (Default)<br>2<br>4<br>8<br>16<br>32 | Load the String strategy<br>Load the Font strategy<br>Load the Data strategy<br>Load the Picture strategy<br>Load the Currency strategy<br>Load the RightToLeft strategy |
+| 1 (Default)<br>`2`<br>`4`<br>`8`<br>`16`<br>32 | Load the String strategy<br>Load the Font strategy<br>Load the Data strategy<br>Load the Picture strategy<br>Load the Currency strategy<br>Load the RightToLeft strategy |
 
 **Example: create an INTL object that localizes strings and fonts**
 
@@ -282,16 +282,17 @@ Strategies are bitwise configured.
 
 Configuring individual strategies is easy. Simply get a reference to the strategy, then configure it. Here are the configuration meanings for each configurable strategy.
 
-
 | Strategy | Value | Localization |
 | --- | --- | --- |
-| Data | 1 (Default)<br>2<br>4<br>8<br>16 | `BoundColumn`<br>`ControlSource`<br>`RowSource`<br>`RecordSource`<br>`InputMask`
+| Data | 1 (Default)<br>`2`<br>`4`<br>`8`<br>`16` | `BoundColumn`<br>`ControlSource`<br>`RowSource`<br>`RecordSource`<br>`InputMask`
 | Font | 1 (Default)
 <br>2 (Default) | `Font` and `FontSize`
 <p>`DynamicFont` and `DynamicFontSize` |
-| Picture | 1 (Default)<br>2<br>4 (Default)<br>8 | <code>Picture</code><br><code>DownPicture</code><br><code>Icon</code><br><code>DragIcon</code> |
+| Picture | 1 (Default)<br>`2`<br>4 (Default)<br>`8` | <code>Picture</code><br><code>DownPicture</code><br><code>Icon</code><br><code>DragIcon</code> |
 | RightToLeft | 1 (Default) | All objects reversed within their respective containers |
-| Strings | 1 (Default)<br>2 (Default)<br>4 (Default) | <p><code>Caption</code><br><code>ToolTipText</code><br><code>StatusBarText</code> |
+| Strings | 1 (Default)<br>2 (Default)<br>4 (Default)
+
+<code>Caption</code><br><code>ToolTipText</code><br><code>StatusBarText</code> |
 
 Configuration integers for the `::SetConfig()` method for the various INTL
 classes.
@@ -341,11 +342,12 @@ INTL loads only the string strategy by default.
 
 The following table lists the configuration bits for INTL. These configuration bits decide which strategy is loaded. By default, only the String strategy is loaded, which is to say that strings are automatically localized by INTL by default.
 
-
 | Class | Configuration bits | Localization |
 | --- | --- | --- |
-| INTL | **1 (Default)**<br>4<br>2<br>8<br>16<br>32 | **cINTLString strategy loaded**<br>cINTLFont strategy loaded<br>cINTLData strategy loaded<br>cINTLPicture strategy loaded<br>cINTLCurrency strategy loaded<br>cINTLRightToLeft strategy loaded |
-| CINTLString | 1 (Default)<br>2 (Default)<br>3 (Default) | <p>Caption<br>ToolTipText<br>StatusBarText |
+| INTL | **1 (Default)**<br>`4`<br>`2`<br>`8`<br>`16`<br>32 | **`cINTLString` strategy loaded**<br>`cINTLFont` strategy loaded<br>`cINTLData` strategy loaded<br>`cINTLPicture` strategy loaded<br>cINTLCurrency strategy loaded<br>`cINTLRightToLeft` strategy loaded |
+| CINTLString | 1 (Default)<br>2 (Default)<br>3 (Default)
+
+Caption<br>ToolTipText<br>StatusBarText |
 
 Activate the string strategy as follows:
 
@@ -394,7 +396,7 @@ The following table lists the configuration bits for the INTL object to load the
 
 | Class | Configuration bits | Localization |
 | --- | --- | --- |
-| INTL | 1 (Default)<br>**2**<br>4<br>8<br>16<br>32 | cINTLString strategy loaded<br>**cINTLFont strategy loaded**<br>cINTLData strategy loaded<br>cINTLPicture strategy loaded<br>cINTLCurrency strategy loaded<br>cINTLRightToLeft strategy loaded |
+| INTL | 1 (Default)<br>**`2`**<br>`4`<br>`8`<br>`16`<br>32 | `cINTLString` strategy loaded<br>**`cINTLFont` strategy loaded**<br>`cINTLData` strategy loaded<br>`cINTLPicture` strategy loaded<br>cINTLCurrency strategy loaded<br>`cINTLRightToLeft` strategy loaded |
 | CINTLFont | 1 (Default)<br>2 (Default) | `Font` and `FontSize<`<br>`DynamicFont` and `DynamicFontSize` |
 
 Activate the font strategy as follows:
@@ -449,11 +451,10 @@ The Data strategy works just like the other strategies.
 
 The following table lists the configuration bits for the INTL object to load the Picture strategy, and the configuration integers to configure the Picture strategy.
 
-
 | Class | Configuration bits | Localization |
 | --- | --- | --- |
-| INTL | 1 (Default)<br>2<br>**4**<br>8<br>16<br>32 | cINTLString strategy loaded<br>cINTLFont strategy loaded<br>**cINTLData strategy loaded**<br>cINTLPicture strategy loaded<br>cINTLCurrency strategy loaded<br>cINTLRightToLeft strategy loaded |
-| CINTLData | 1 (Default)<br>2<br>4<br>8<br>16 | BoundColumn<br>ControlSource<br>RowSource<br>RecordSource<br>InpuMask |
+| INTL | `1` (Default)<br>`2`<br>**`4`**<br>`8`<br>`16`<br>`32` | `cINTLString` strategy loaded<br>`cINTLFont` strategy loaded<br>**`cINTLData` strategy loaded**<br>`cINTLPicture` strategy loaded<br>cINTLCurrency strategy loaded<br>`cINTLRightToLeft` strategy loaded |
+| CINTLData | 1 (Default)<br>`2`<br>`4`<br>`8`<br>`16` | BoundColumn<br>ControlSource<br>RowSource<br>RecordSource<br>InpuMask |
 
 Activate the data strategy as follows:
 
@@ -500,11 +501,10 @@ oPicture.SetConfig( 2)
 
 **The Picture strategy works just like the other strategies.** The following table lists the configuration bits for the INTL object to load the Picture strategy, and the configuration integers to configure the Picture strategy.
 
-
 | Class | Configuration bits | Localization |
 | --- | --- | --- |
-| INTL | 1 (Default)<br>2<br>4<br>**8**<br>16<br>32 | cINTLString strategy loaded<br>cINTLFont strategy loaded<br>cINTLData strategy loaded<br>**cINTLPicture strategy loaded**<br>cINTLCurrency strategy loaded<br>cINTLRightToLeft strategy loaded |
-| CINTLPicture | 1 (Default)<br>2<br>4 (Default)<br>8 | Picture<br>DownPicture<br>Icon<br>DragIcon |
+| INTL | 1 (Default)<br>`2`<br>`4`<br>**`8`**<br>`16`<br>32 | `cINTLString` strategy loaded<br>`cINTLFont` strategy loaded<br>`cINTLData` strategy loaded<br>**`cINTLPicture` strategy loaded**<br>cINTLCurrency strategy loaded<br>`cINTLRightToLeft` strategy loaded |
+| cINTLPicture | `1` (Default)<br>`2`<br>`4` (Default)<br>`8` | `Picture`<br>`DownPicture`<br>`Icon`<br>`DragIcon` |
 
 
 Activate the picture strategy as follows:
@@ -529,8 +529,8 @@ for example:
 
 | coriginal | crussian |
 | ----- | ----- |
-| ((Picture))Doctor.BMP | ((Picture))Doktor.BMP |
-| ((Picture))Friend.BMP | ((Picture))Comrade.BMP |
+| `((Picture))Doctor.BMP` | `((Picture))Doktor.BMP` |
+| `((Picture))Friend.BMP` | `((Picture))Comrade.BMP` |
 
 **Configure the Picture Strategy with its SetConfig() method.**
 
@@ -562,7 +562,7 @@ following table.
 
 | Class (with default) | Value | Localization
 | --- | --- | --- |
-| INTL (1) | 1 (Default)<br>2<br>4<br>8<br>**16**<br>32 | cINTLString strategy loaded<br>cINTLFont strategy loaded<br>cINTLData strategy loaded<br>cINTLPicture strategy loaded<br>**cINTLCurrency strategy loaded**<br>cINTLRightToLeft strategy loaded |
+| INTL (1) | 1 (Default)<br>`2`<br>`4`<br>`8`<br>**`16`**<br>`32` | `cINTLString` strategy loaded<br>`cINTLFont` strategy loaded<br>`cINTLData` strategy loaded<br>`cINTLPicture` strategy loaded<br>**`cINTLCurrency` strategy loaded**<br>`cINTLRightToLeft` strategy loaded |
 
 Activate the currency strategy as follows:
 
@@ -637,7 +637,7 @@ following table:
 
 | Class (with default) | Value | Localization
 | --- | --- | --- |
-|  INTL (1) | 1 (Default)<br>2<br>4<br>8<br>16<br>**32** | cINTLString strategy loaded<br>cINTLFont strategy loaded<br>cINTLData strategy loaded<br>cINTLPicture strategy loaded<br>cINTLCurrency strategy loaded<br>**cINTLRightToLeft strategy loaded** |
+|  INTL (1) | 1 (Default)<br>`2`<br>`4`<br>`8`<br>`16`<br>**`32`** | `cINTLString` strategy loaded<br>`cINTLFont` strategy loaded<br>`cINTLData` strategy loaded<br>`cINTLPicture` strategy loaded<br>cINTLCurrency strategy loaded<br>**`cINTLRightToLeft` strategy loaded** |
 
 
 Activate the currency strategy as follows:
@@ -660,11 +660,11 @@ The RightToLeft strategy is the only strategy that actually rearranges objects i
 The INTL toolkit right-to-left strategy is a little different from other strategies in four important respects:
 
 <ul>
-<li><p>The right-to-left writing direction is <em>locale</em>-specific <em>and</em> language-specific.</li>
+<li><p>The right-to-left writing direction is *locale*-specific *and* language-specific.</li>
 <li><p>Class cINTLRightToLeft does not use class cINTLString services.</li>
 <li>
 <p>Class cINTLRightToLeft reverses the location of objects within containers along the container's vertical axis. What was on the left ends up on the right, and vice versa. Also the alignment property of Checkboxes and Optiongroups is reversed, as is the sequences of Pages in Pageframes and Columns in grids.</li>
-<li><p>If you develop in a right-to-left writing system, you can use a cINTLRightToLeft strategy to write from left-to-right.</li>
+<li><p>If you develop in a right-to-left writing system, you can use a `cINTLRightToLeft` strategy to write from left-to-right.</li>
 </ul>
 
 Let's configure INTL for a right-to-left language. The cleanest way to do this is with a subclass of the INTL::SetLanguage() method. Alternately, you could also do it with the SetLocale() method. Either way, the implementation is the same.
@@ -934,7 +934,7 @@ A string specifying the name of the string strategy class. The string strategy c
 | **Default** | "cINTLSting" |
 | **Remarks** | You may subclass cINTLString to suit your particular needs. You may use the ::SetStrategy("String", cYourStringClass) to set the property. |
 | **See Also** | **`cINTLMemento::GetStrategy()`** |
-| **The cINTLString strategy class is by far the most useful, and it provides services to other strategies.** | **Note:** many strategies use string-based services that are provided by the active string strategy class. To reduce cohesion with a particular cStringStrategy class, many string methods that would normally belong in class cStringStrategy are found in class cINTLStrategy, the parent strategy class. Thus all strategies have some inherent string localization abilities. | |
+| **The `cINTLString` strategy class is by far the most useful, and it provides services to other strategies.** | **Note:** many strategies use string-based services that are provided by the active string strategy class. To reduce cohesion with a particular cStringStrategy class, many string methods that would normally belong in class cStringStrategy are found in class cINTLStrategy, the parent strategy class. Thus all strategies have some inherent string localization abilities. | |
 
 ### Class INTL Exposed Methods
 
@@ -975,7 +975,7 @@ Returns the alias of the resource table associated with the default localization
 | **Syntax** | oINTL.GetAlias() |
 | **Return** | The character value of the string strategy table alias. |
 | **Arguments** | None. |
-| **Remarks** | The GetAlias() method is a <em>hookable</em> method, meaning that if an object of class INTL has an attached hook object, then GetAlias() defers to the method of the hook object. Since by default objects of class INTL are hooked with an object of the cINTLStringStrategy class, invoking oINTL.GetAlias() is the equivalent of invoking oINTL.oStringStrategy.getAlias(). |
+| **Remarks** | The GetAlias() method is a *hookable* method, meaning that if an object of class INTL has an attached hook object, then GetAlias() defers to the method of the hook object. Since by default objects of class INTL are hooked with an object of the cINTLStringStrategy class, invoking oINTL.GetAlias() is the equivalent of invoking oINTL.oStringStrategy.getAlias(). |
 
 **Example**
 ```
@@ -996,7 +996,7 @@ strategy.
 | **Syntax** | oINTL.GetTable()
 | **Return** | The character value of the string strategy table name. |
 | **Arguments** | None. |
-| **Remarks** | The GetTable() method is a <em>hookable</em> method, meaning that if an object of class INTL has an attached hook object, then GetTable() defers to the method of the hook object. Since by default objects of class INTL are hooked with an object of the cINTLStringStrategy class, invoking oINTL.GetTable() is equivalent to invoking oINTL.oStringStrategy.GetTable(). |
+| **Remarks** | The GetTable() method is a *hookable* method, meaning that if an object of class INTL has an attached hook object, then GetTable() defers to the method of the hook object. Since by default objects of class INTL are hooked with an object of the cINTLStringStrategy class, invoking oINTL.GetTable() is equivalent to invoking oINTL.oStringStrategy.GetTable(). |
 | **See Also** | **`cINTLStrategy::SetTable()`** |
 
 **Example**
@@ -1018,7 +1018,7 @@ Returns the setting for the update mode of the current string strategy.
 | **Return** | Logical true if update mode is currently "On", false otherwise. |
 | **Arguments** | None. |
 | **See Also** | **`cINTLStrategy::SetUpdateMode`** |
-| **Remarks** | If GetUpdateMode() is logical true then, for some strategies, this cause INTL resource files to be self-maintained. For example, the native string strategy will add new strings to `strings.dbf` as they are encountered if the string strategy's update mode is set to true.<br><br>The GetUpdateMode() method is a <em>hookable</em> method, meaning that if an object of class INTL has an attached hook object, then GetUpdateMode() defers to the method of the hook object. Since by default objects of class INTL are hooked with an object of the cINTLStringStrategy class, invoking oINTL.GetUpdateMode() is equivalent to invoking oINTL.oStringStrategy.GetUpdateMode(). |
+| **Remarks** | If GetUpdateMode() is logical true then, for some strategies, this cause INTL resource files to be self-maintained. For example, the native string strategy will add new strings to `strings.dbf` as they are encountered if the string strategy's update mode is set to true.<br><br>The GetUpdateMode() method is a *hookable* method, meaning that if an object of class INTL has an attached hook object, then GetUpdateMode() defers to the method of the hook object. Since by default objects of class INTL are hooked with an object of the cINTLStringStrategy class, invoking oINTL.GetUpdateMode() is equivalent to invoking oINTL.oStringStrategy.GetUpdateMode(). |
 
 ```
 **Example**
@@ -1035,8 +1035,10 @@ The I() function is an all-purpose localization method.
 | --- | --- |
 | **Syntax** | oINTL.I(cString |nAmount |oObject) |
 | **Return** | Localized value of cString or nAmount. |
-| **Arguments** | <p>cString: a string to localize. The string could be an interface item, a font name and size, a data source, or a file name.<br>nAount: an amount to localize.<br>oObject: an object (or a container of objects) to traverse. |
-| **Remarks** | The INTL::I() method is a <em>hookable</em> method, meaning that if an object of class INTL has an attached hook object, then INTL.I() defers to the hook object. Since by default objects of class INTL are hooked with an object of the `cINTLStringStrategy` class, invoking `oINTL.I()` is equivalent to invoking `oINTL.oStringStrategy.I()`. |
+| **Arguments**
+
+cString: a string to localize. The string could be an interface item, a font name and size, a data source, or a file name.<br>nAount: an amount to localize.<br>oObject: an object (or a container of objects) to traverse. |
+| **Remarks** | The INTL::I() method is a *hookable* method, meaning that if an object of class INTL has an attached hook object, then INTL.I() defers to the hook object. Since by default objects of class INTL are hooked with an object of the `cINTLStringStrategy` class, invoking `oINTL.I()` is equivalent to invoking `oINTL.oStringStrategy.I()`. |
 | **See Also** | **`cINTLMemento::SetLocale`**<br>`cINTLCurrency::GetConversion()` |
 
 **Example**
@@ -1070,7 +1072,9 @@ INTL::GetConfig(). Unless you create your own custom mechanisms, you
 wouldn't normally call the LoadStrategies()method since INTL classes
 invoke it when necessary.
 
-| **Syntax** | <p>oX = CREATE("INTL")
+| **Syntax**
+
+oX = CREATE("INTL")
 <p>oX.LoadStrategies()
 | --- | --- |
 | **Return** | True if successful, false otherwise. |
@@ -1357,15 +1361,15 @@ Gets a currency conversion factor from memory.
 | --- | --- |
 | **Return** | A numeric conversion factor. |
 | **Arguments** | cLocale: the name of the local to fetch. |
-| **Example** | <p>_SCREEN.AddObject( "oINTL", "INTL")
+| **Example**
+
+_SCREEN.AddObject( "oINTL", "INTL")
 <p>_SCREEN.oINTL.SetConversion("Canada", 1.3205)
 <p>_SCREEN.oINTL.GetConversion() && 1.0000
 <p>_SCREEN.oINTL.GetConversion("Canada") && 1.3205
 <p>_SCREEN.oINTL.SetLocale("Canada")
 <p>_SCREEN.oINTL.GetConversion() && 1.3205 |
-| **See Also** | **cINTLCurrency::SetConversion** |
-</tbody>
-</table>
+| **See Also** | **cINTLCurrency::SetConversion**
 
 ----
 #### `cINTLCurrency::I`
@@ -1376,7 +1380,9 @@ Localizes a numeric currency value.
 | --- | --- |
 | **Return** | A numeric conversion factor. |
 | **Arguments** | nValue: the original currency value. |
-| **Example** | <p>_SCREEN.AddObject( "oINTL", "INTL")
+| **Example**
+
+_SCREEN.AddObject( "oINTL", "INTL")
 <p>_SCREEN.oINTL.SetConversion("Canada", 1.3205)
 <p>_SCREEN.oINTL.GetConversion() && 1.0000
 <p>_SCREEN.oINTL.I(10.00) && 10.0000
@@ -1384,9 +1390,7 @@ Localizes a numeric currency value.
 <p>_SCREEN.oINTL.SetLocale("Canada)
 <p>_SCREEN.oINTL.GetConversion() && 1.3205<br>
 _SCREEN.oINTL.I(10.00) && 13.2050 |
-| **See Also** | **cINTLCurrency::GetConversion** |
-</tbody>
-</table>
+| **See Also** | **cINTLCurrency::GetConversion**
 
 ----
 #### `cINTLCurrency::SetConversion`
@@ -1397,35 +1401,35 @@ Sets a currency exchange rate.
 | --- | --- |
 | **Return** | A numeric conversion factor. |
 | **Arguments** | cLocale: the name of the local to fetch. |
-| **Example** | <p>_SCREEN.AddObject( "oINTL", "INTL")
+| **Example**
+
+_SCREEN.AddObject( "oINTL", "INTL")
 <p>_SCREEN.oINTL.SetConversion("Canada", 1.3205)
 <p>_SCREEN.oINTL.GetConversion() && 1.0000
 <p>_SCREEN.oINTL.GetConversion("Canada") && 1.3205
 <p>_SCREEN.oINTL.SetLocale("Canada)
 <p>_SCREEN.oINTL.GetConversion() && 1.3205 |
-| **See Also** | **cINTLCurrency::GetConversion** |
-</tbody>
-</table>
+| **See Also** | **cINTLCurrency::GetConversion**
 
 ## Class cINTLData
 
 ![](./media/image11.png)
 
-<table>
-| **You can** **display different data in different locales.** | <p>Class cINTLData is a strategy used to localize the data sources in your applications. For example, cINTLData can be used to switch the display of data for different locales.
-<p>Data translations are kept in `strings.dbf` and are prefixed with the characters “((Data))”. For example: ((Data))Customer.cType |
-</tbody>
-</table>
+**You can** **display different data in different locales.**
+
+Class cINTLData is a strategy used to localize the data sources in your applications. For example, cINTLData can be used to switch the display of data for different locales.
+<p>Data translations are kept in `strings.dbf` and are prefixed with the characters “((Data))”. For example: ((Data))Customer.cType
+
+
 
 ## Class cINTLFont
 
 ![](./media/image12.png)
 
-<table>
-| **To display the characters of some languages, you may need to change fonts.** | <p>Class cINTLFont is a strategy used to localize the fonts in your applications. For example, cINTLFont can be used to switch from "Arial" to "Arial CE" or "Arial Cyr" for use in Eastern Europe and the former Soviet Union.
-<p>Font translations are kept in `strings.dbf` and are prefixed with the characters “((Font))”. For example: ((Font))Arial,10. |
-</tbody>
-</table>
+**To display the characters of some languages, you may need to change fonts.**
+
+Class cINTLFont is a strategy used to localize the fonts in your applications. For example, cINTLFont can be used to switch from "Arial" to "Arial CE" or "Arial Cyr" for use in Eastern Europe and the former Soviet Union.
+<p>Font translations are kept in `strings.dbf` and are prefixed with the characters “((Font))”. For example: ((Font))Arial,10.
 
 ### Class cINTLFont Exposed Properties
 
@@ -1448,7 +1452,9 @@ Here are the exposed methods of class cINTLFont.
 | --- | --- |
 | **Return** | Logical true if successful, false otherwise. |
 | **Arguments** | nConfig: a configuration integer. |
-| **Example** | <p>_SCREEN.AddObject( "oINTL", "INTL")
+| **Example**
+
+_SCREEN.AddObject( "oINTL", "INTL")
 <p>*-- Load the font strategy
 <p>* _SCREEN.oINTL.SetStrategy(“Font”) && works too
 <p>_SCREEN.oINTL.SetConfig(2) && for fonts
@@ -1456,9 +1462,9 @@ Here are the exposed methods of class cINTLFont.
 <p>_SCREEN.oINTL.oFontStrategy.SetConfig( 1 + 2 ) |
 | **Remarks** | The configuration components for cINTLFont are as follows:<br>
 [1] FontName &amp; Size<br>
-[2] DynamicFontName &amp; Size |
-</tbody>
-</table>
+[2] DynamicFontName &amp; Size
+
+
 
 ## Class `cINTLMemento`
 
@@ -1551,7 +1557,9 @@ object.
 | **Syntax** | oINTL.aStrat( @taArray [, nType])
 | --- | --- |
 | **Return** | The size or the array, 0 if nothing found. |
-| **Arguments** | <p>taArray: an array, always passed by reference.
+| **Arguments**
+
+taArray: an array, always passed by reference.
 <p>nType: the type of array desired<br>
 0 - Standard 1- D array of strategy names (Default)<br>
 1 - 2-dimension array of strategy names and object references<br>
@@ -1671,7 +1679,6 @@ Returns an object reference to a strategy object.
 | **Example** | `oINTL.GetStrategy("Currency")` |
 | **Remarks** | The strategy must be loaded for GetStrategy to return a reference. |
 
-
 ----
 #### `cINTLMemento::GetStrategyClass()`
 
@@ -1682,7 +1689,6 @@ Returns the class used for subsequent strategy object instantiations.
 | **Return** | A strategy class name. |
 | **Arguments** | `cStrategy`: a strategy name. Valid names for native strategies include “String”, "Currency", "Data", “Picture” and "Font". |
 | **Example** | `oINTL.GetStrategyClass("Currency") && “cINTLCurrency”` |
-
 
 ----
 #### `cINTLMemento::Mov()`
@@ -1873,7 +1879,6 @@ _SCREEN.AddObject( "oINTL", "INTL")
 _SCREEN.oINTL.SetLocale( "SPAIN")
 ```
 
-
 ----
 #### `cINTLMemento::SetStrategy()`
 
@@ -1969,9 +1974,9 @@ Stores the configuration integer for this particular object.
 
 ## Class cINTLPicture
 
-**Use a cINTLPicture strategy to localize graphical elements.**
+**Use a `cINTLPicture` strategy to localize graphical elements.**
 
-A cINTLPicture strategy object is used to localize the graphical elements of your applications, like bitmaps, icons,
+A `cINTLPicture` strategy object is used to localize the graphical elements of your applications, like bitmaps, icons,
 images and graphical mouse cursors. Picture translations are kept in `strings.dbf` and are prefixed with the characters
 `“((Picture))”`. For example: `((Picture))Working.BMP`.
 
@@ -1982,7 +1987,7 @@ images and graphical mouse cursors. Picture translations are kept in `strings.db
 A `cINTLRightTiLeft` strategy object is used to reverse a form's objects so the form reads from right to left or vice versa.
 This is useful if you are localizing to or from Middle-Eastern writing systems like Hebrew or Arabic.
 
-Note that the cINTLRightToLeft strategy only rearranges controls, and does not actually reverse the direction
+Note that the `cINTLRightToLeft` strategy only rearranges controls, and does not actually reverse the direction
 of the displayed text. To change the direction of the displayed text, you must be using a Middle-Eastern version
 of Windows and the RightToLeft properties of the form objects must be logical true.
 
@@ -2144,9 +2149,7 @@ Stores the alias of the strategy object’s resource table.
 | **Default** | "Strings"
 | --- | --- |
 | **Remarks** | Some strategies don’t use resource tables. |
-| **See Also** | **`cINTLStrategy::cTable`**<br>`cINTLStrategy::GetAlias` |
-</tbody>
-</table>
+| **See Also** | **`cINTLStrategy::cTable`**<br>`cINTLStrategy::GetAlias`
 
 #### cINTLStrategy::cTable
 
@@ -2596,16 +2599,18 @@ object at generate time.
 
 ## Introduction
 
-| **Interface messages are fundamentally different than simple interface strings.** | <p>Because of their nature, dialog messages are different from other simple interface strings. Simple interface strings are short – typically a word, a phrase, or a sentence. Messages in dialogs can be long, multi-sentenced, and sometimes contain one or more variable components.
+| **Interface messages are fundamentally different than simple interface strings.**
+
+Because of their nature, dialog messages are different from other simple interface strings. Simple interface strings are short – typically a word, a phrase, or a sentence. Messages in dialogs can be long, multi-sentenced, and sometimes contain one or more variable components.
 <p>Furthermore, dialogs are often used to get responses from users, and that triggers program branching. It’s important to get dialogs right because they are so visible, both to the user and to the developer mucking around in source code.
 | --- | --- |
-| **INTL includes MSGSVC.PRG and MSGSVC.DBF that provide message services.** | <p>For maximum flexibility, I recommend that strings and messages be handled by separate mechanism. Thus INTL for Visual FoxPro comes with two related objects. The INTL object, stored at _SCREEN.oINTL, handles strings, fonts, currencies, and so on. The message services object called oMsgSvc, stored at _SCREEN.oMsgSvc, handles dialog services.
+| **INTL includes MSGSVC.PRG and MSGSVC.DBF that provide message services.**
+
+For maximum flexibility, I recommend that strings and messages be handled by separate mechanism. Thus INTL for Visual FoxPro comes with two related objects. The INTL object, stored at _SCREEN.oINTL, handles strings, fonts, currencies, and so on. The message services object called oMsgSvc, stored at _SCREEN.oMsgSvc, handles dialog services.
 <p>The source for message services is found in MSGSVC.PRG. The message services are personified by the MsgSvc() function, which uses the MSGSVC.DBF table to store message resources. |
 | **MsgSvc() is a flexible run-time function for messaging.** | MsgSvc() provides run-time multilingual and cross platform messaging in VFP. It serves to launch many sorts of messages, dialogs, and text services. |
-| **MsgSvc() is table-based, and encapsulates all the multilingual behavior of messages.** | MsgSvc() is table-based and works only as a run-time mechanism. Like I(), it will append new records in the message phrase book (called MSGSVC.DBF) if required. It can return the user's choice as text in the <em>original</em> language of the developer, or return as a number, or return a logical value. You choose. |
-| **MsgSvc() is centralized message handling. Regardless of INTL, it makes sense to use it.** | MsgSvc() is powerful. All my user-dialogs now route through it, even for applications that aren’t multi-lingual or cross-platform. The main advantage of a clearing-house for messaging is the ability to control all messages from a single point. If you have existing applications, a one-time pass through the source to route dialogs through MsgSvc() pays good dividends. Do it. |
-</tbody>
-</table>
+| **MsgSvc() is table-based, and encapsulates all the multilingual behavior of messages.** | MsgSvc() is table-based and works only as a run-time mechanism. Like I(), it will append new records in the message phrase book (called MSGSVC.DBF) if required. It can return the user's choice as text in the *original* language of the developer, or return as a number, or return a logical value. You choose. |
+| **MsgSvc() is centralized message handling. Regardless of INTL, it makes sense to use it.** | MsgSvc() is powerful. All my user-dialogs now route through it, even for applications that aren’t multi-lingual or cross-platform. The main advantage of a clearing-house for messaging is the ability to control all messages from a single point. If you have existing applications, a one-time pass through the source to route dialogs through MsgSvc() pays good dividends. Do it.
 
 ## Up And Running
 
@@ -2632,9 +2637,11 @@ list of the possible data types returned by MsgSvc() dialogs:
 | cRetType | MsgSvc() Returns
 | --- | --- |
 | **O** | MsgSvc() automatically returns an object reference for all modeless dialogs. |
-| **C** | The string of the button prompt selected by the user, if any, <em>in the developer’s language</em>, no matter the language of execution. This will be the null string in the event of a dialog timeout or if the escape key is pressed. |
+| **C** | The string of the button prompt selected by the user, if any, *in the developer’s language*, no matter the language of execution. This will be the null string in the event of a dialog timeout or if the escape key is pressed. |
 | **L** | TRUE if the first button was selected, false otherwise. |
-| **M** | <p>Compatibility with MESSAGEBOX(), namely
+| **M**
+
+Compatibility with MESSAGEBOX(), namely
 <p>0 - Button selected is incompatible with MESSAGEBOX()
 <p>1 - OK
 <p>2 - Cancel
@@ -2643,9 +2650,7 @@ list of the possible data types returned by MsgSvc() dialogs:
 <p>5 - Ignore
 <p>6 - Yes
 <p>7 - No |
-| **N** | The number of the button selected, 1 for the first button, 2 for the second, and so on. Returns 0 if no button was selected; for example, if the dialog times out, or if releasing the dialog is the result of the Esc key. |
-</tbody>
-</table>
+| **N** | The number of the button selected, 1 for the first button, 2 for the second, and so on. Returns 0 if no button was selected; for example, if the dialog times out, or if releasing the dialog is the result of the Esc key.
 
 **MSGSVC() return data types.**
 
@@ -2767,9 +2772,7 @@ Examples of the syntax in this field are:
 | <p>WindowsFile~MacFile
 <p>*-- Note the “~” | Note the tilde "~" separating the two file specifications. What’s before the tilde is the Windows file spec, what’s after is for the Macintosh. |
 | <p>~MacFilename
-<p>*-- Note the “~” | This signifies no Windows icon, and a Macintosh icon. Again, the tilde "~" symbol delimits the two platforms. |
-</tbody>
-</table>
+<p>*-- Note the “~” | This signifies no Windows icon, and a Macintosh icon. Again, the tilde "~" symbol delimits the two platforms.
 
 #### Field MsgSvc.COBJECT
 
@@ -3230,15 +3233,15 @@ iterator's services.
 | --- | --- |
 | Return | Whatever the visitor chooses to return from its VISIT() method. |
 | Arguments | oVisitor: an object possessing a Visit() method which will initiate the specialized task. |
-| Example | <p>SET PROC TO INTLTools
+| Example
+
+SET PROC TO INTLTools
 <p>*-- Create a menu table iterator
 <p>oIterator = create( "CFRXIterator", cProjectFile)
 <p>*-- Create an object to "visit" a the report
 <p>oVisitor = create( "cINTLUpdateVisitor")
 <p>*-- Go!
-<p>oIterator.Accept( oVisitor) |
-</tbody>
-</table>
+<p>oIterator.Accept( oVisitor)
 
 ----
 #### `INTLIterator::Close()`
@@ -3248,15 +3251,15 @@ Closes the table being used by this iterator.
 | Syntax | oIterator.Close()
 | --- | --- |
 | Return | Logical true if successful, false if otherwise. |
-| Example | <p>SET PROC TO INTLTools
+| Example
+
+SET PROC TO INTLTools
 <p>*-- Create a menu table iterator. This opens
 <p>*-- MYPROJECT.PJX as a table
 <p>oIterator = create( "CFRXIterator", "MyProject.Pjx")
 <p>*--
 <p>* Now, for some reason, close the MYPROJECT.PJX table
-<p>oIterator.Close() |
-</tbody>
-</table>
+<p>oIterator.Close()
 
 ----
 #### `INTLIterator::First()`
@@ -3380,14 +3383,16 @@ Returns a property from the properties memo fields in the structure.
 | Syntax | oVisitor.PropSrch( cMemo, cProperty[, nOccurence])
 | --- | --- |
 | Return | The property setting if found, CHR(0) otherwise. |
-| Arguments | <p>cMemo: the name of the memo field or a memory variable containing the memo text string.
+| Arguments
+
+cMemo: the name of the memo field or a memory variable containing the memo text string.
 <p>CProperty: the property to search for.
 <p>nOccurence: the occurrence number for the property in the memo field. |
-| Example | <p>USE MyScx.Scx
+| Example
+
+USE MyScx.Scx
 <p>Skip 10 && Go to some record
-<p>lcCaption = oVisitor.PropSrch( Properties, "Caption") |
-</tbody>
-</table>
+<p>lcCaption = oVisitor.PropSrch( Properties, "Caption")
 
 ----
 #### `INTLVisitor::VisitCode()`
@@ -3533,7 +3538,9 @@ designed to do one of three things with it:
 
 **Broadcast hooks will be executed before the standard method code is invoked.**
 
-**Broadcast hooks don't care about the hook's return value.** | <p>Broadcast hooks permit you to augment the behavior of methods without changing the source code. By simply attaching a hook, you can attach code to methods and this code will be invoked automatically before the regular method code executes.
+**Broadcast hooks don't care about the hook's return value.**
+
+Broadcast hooks permit you to augment the behavior of methods without changing the source code. By simply attaching a hook, you can attach code to methods and this code will be invoked automatically before the regular method code executes.
 
 Broadcast hooks in INTL are invoked from methods with code like the following:
 
@@ -3627,11 +3634,13 @@ oX = ox.SetHook(.NULL.)
 
 ## Introduction
 
-| **VFP has a number of international features and quirks.** | VFP has many international features and quirks, and it's important to understand most of them. This section focuses first on VFP-specific issues, and then later focuses on the more germane issues related to the storage, display and printing of international characters. |
-| ----- | ----- |
-| **Character Sets and Code Pages are important concepts in internationalization.** | If your application needs to address the international market, you need a thorough understanding of character sets and code pages. Only a developer creating an application for domestic consumption can get away without a knowledge of these terms. |
-| **People expect software to conform to local norms.** | Gone are the days when the international market willingly lived within the limitations of North American software. Applications are increasingly expected to conform to the intricacies of the end-user's locale. |
-| **In the past, the big challenge was correct sorting and correctly displaying the local alphabet.** | European Fox developers have toiled for years to overcome the problems of creating multilingual software. The major challenge was to produce culturally correct sorting, and assuring that the correct characters appear in tables, on screen, and in reports. With VFP, creating multilingual applications is easier than ever. |
+**VFP has a number of international features and quirks.**  VFP has many international features and quirks, and it's important to understand most of them. This section focuses first on VFP-specific issues, and then later focuses on the more germane issues related to the storage, display and printing of international characters.
+
+**Character Sets and Code Pages are important concepts in internationalization.**  If your application needs to address the international market, you need a thorough understanding of character sets and code pages. Only a developer creating an application for domestic consumption can get away without a knowledge of these terms.
+
+**People expect software to conform to local norms.**  Gone are the days when the international market willingly lived within the limitations of North American software. Applications are increasingly expected to conform to the intricacies of the end-user's locale.
+
+**In the past, the big challenge was correct sorting and correctly displaying the local alphabet.** European Fox developers have toiled for years to overcome the problems of creating multilingual software. The major challenge was to produce culturally correct sorting, and assuring that the correct characters appear in tables, on screen, and in reports. With VFP, creating multilingual applications is easier than ever.
 
 ## A Survey of VFP's International Features
 
@@ -3642,49 +3651,33 @@ dependencies. This is a long and detailed section, though fortunately
 many of the themes are recurring. Here is a short summary of the main
 themes found herein:
 
-| **The language of operating system services will vary with the localized language of the OS.** | <ul>
-<li>
-<p>**<em>Some services come from the operating system</em>,** so the language of display varies with the localization of the operating system. For example, if your German client is running a US version of Windows, then VFP's MESSAGEBOX() function will display English button captions (OK - Cancel) and there is nothing you can do about it (other than use INTL's MsgSvc() function, of course).
-</li>
-</ul>
-| --- | --- |
-| **The language of native VFP services will vary with the localized language of VFP.** | <ul>
-<li>
-<p><em>**Some services come from VFP**</em>, so their display language varies with the localized version of VFP. For example, dialogs like GETFILE() and LOCFILE() are VFP dialogs and, aside from parameters you can pass, these dialogs will appear in English on English versions of VFP.
-</li>
-</ul> |
-| **The language of some things in VFP cannot be controlled.** | <ul>
-<li>
-<p><em>**Some VFP services aren't designed for multi-locale use**</em>, like the Relational Integrity (ri) builder. The ri builder is dependent on FoxPro functions that return character strings that vary with the localized version of FoxPro.
-</li>
-</ul> |
-| **The language of third-party services cannot be predicted without experimentation.** | <ul>
-<li>
-<p><em>**Some services come from third-parties**</em>, and their localization usually cannot be predicted unless you experiment. Things like ole custom controls, for example, may or may not be internationally enabled, and may require separate versions (if available) for different locales.
-</li>
-</ul> |
-</tbody>
-</table>
+**The language of operating system services will vary with the localized language of the OS.**
+
+* ***Some services come from the operating system*,** so the language of display varies with the localization of the operating system. For example, if your German client is running a US version of Windows, then VFP's `MESSAGEBOX()` function will display English button captions (OK - Cancel) and there is nothing you can do about it (other than use INTL's `MsgSvc()` function, of course).
+
+
+**The language of native VFP services will vary with the localized language of VFP.**
+
+* ***Some services come from VFP***, so their display language varies with the localized version of VFP. For example, dialogs like GETFILE() and LOCFILE() are VFP dialogs and, aside from parameters you can pass, these dialogs will appear in English on English versions of VFP.
+
+**The language of some things in VFP cannot be controlled.**
+
+* ***Some VFP services aren't designed for multi-locale use***, like the Relational Integrity (ri) builder. The ri builder is dependent on FoxPro functions that return character strings that vary with the localized version of FoxPro.
+
+* **The language of third-party services cannot be predicted without experimentation.**
+
+* ***Some services come from third-parties***, and their localization usually cannot be predicted unless you experiment. Things like ole custom controls, for example, may or may not be internationally enabled, and may require separate versions (if available) for different locales.
 
 ### A Recurring Theme
 
 Here are a few things to keep in mind. These apply to many of the topics
 that follow.
 
-<table>
-| **These "AS nCodePage" elements recur in many of the topics below, and they are listed here just once. Keep these factors in mind.** | <ul>
-<li>
-<p>Wherever you see nCodePage in a command description, you can use GETCP()to display the Code Page dialog box, allowing you to specify a code page for the imported table or file.
-</li>
-<li>
-<p>In general, in cases where a nCodePage argument is permitted, and a value of 0 is assigned, no code page translation will take place.
-</li>
-<li>
-<p>If the specified value for nCodePage isn't supported, VFP generates error 1914, with message "Code page number is invalid.".
-</li>
-</ul> |
-</tbody>
-</table>
+**These "`AS nCodePage`" elements recur in many of the topics below, and they are listed here just once. Keep these factors in mind.** | <ul>
+
+* Wherever you see `nCodePage` in a command description, you can use `GETCP()` to display the Code Page dialog box, allowing you to specify a code page for the imported table or file.
+* In general, in cases where a nCodePage argument is permitted, and a value of 0 is assigned, no code page translation will take place.
+* If the specified value for nCodePage isn't supported, VFP generates `error 1914`, with message "`Code page number is invalid`.".
 
 ----
 
@@ -3693,59 +3686,65 @@ that follow.
 Creates an array of information about the most recent VFP, ole, or odbc
 error.
 
-| **VFP errors vary with the localization language of VFP.** | <p>When a VFP error occurs, ArrayName[2] contains the text of the error message, which is the same as the value returned by MESSAGE().
-<p>**Internationalization Gotcha:** this error message varies according to the localized version of VFP.
-| --- | --- |
-| **ole error messages vary with the localization language of Windows.** | <p>When ole errors numbered 1427 or 1429 occur, then ArrayName[2] contains the text of the VFP error message ("OLE Idispatch exception code"), and ArrayName[3] contains the text of the ole error message.
-<p>**Internationalization Gotcha:** the VFP error message varies with the localization of VFP, and the ole error message usually varies with the localization of Windows. |
-| **odbc error messages vary with the localized language of VFP.** | <p>Similarly, when an odbc error numbered 1526 occurs , then ArrayName[2] contains the text of the VFP error message ("Connectivity error:"), and ArrayName[3] contains the text of the odbc error message.
-<p>**Internationalization Gotcha:** both the VFP and ODBC error messages vary with the localization of VFP. |
-| Obviously, you'll want to avoid passing AERROR() messages to the user unless you are sure that their workstation has the correct localized versions of Windows and VFP. |
-</tbody>
-</table>
+| **VFP errors vary with the localization language of VFP.**
+
+When a VFP error occurs, ArrayName[2] contains the text of the error message, which is the same as the value returned by MESSAGE().
+
+**Internationalization Gotcha:** this error message varies according to the localized version of VFP.
+
+When ole errors numbered 1427 or 1429 occur, then ArrayName[2] contains the text of the VFP error message ("OLE Idispatch exception code"), and ArrayName[3] contains the text of the ole error message.
+
+**Internationalization Gotcha:** the VFP error message varies with the localization of VFP, and the ole error message usually varies with the localization of Windows.
+
+Similarly, when an odbc error numbered 1526 occurs , then ArrayName[2] contains the text of the VFP error message ("Connectivity error:"), and ArrayName[3] contains the text of the odbc error message.
+
+**Internationalization Gotcha:** both the VFP and ODBC error messages vary with the localization of VFP.
+
+Obviously, you'll want to avoid passing AERROR() messages to the user unless you are sure that their workstation has the correct localized versions of Windows and VFP.
 
 ----
 
 ### `AFIELDS(ArrayName [, nWorkArea | cTableAlias])`
 
-AFIELDS() places structural information about the current table into an
+AFIELDS()` places structural information about the current table into an
 array.
 
-**Internationalization Gotcha:** ArrayName[6] contains logical true if
-code page translation is **not** allowed. Think of this as a NOCPTRANS
+**Internationalization Gotcha:** `ArrayName[6]` contains logical true if
+code page translation is **not** allowed. Think of this as a `NOCPTRANS`
 flag for the field.
 
-**Internationalization Gotcha:** ArrayName[8] contains the field
+**Internationalization Gotcha:** `ArrayName[8]` contains the field
 validation text, which will probably need to be localized.
 
 **Internationalization Tip:** you can set the field validation text with
-DBSETPROP(cTableAlias,"Field","RuleText", cRuleText).
+`DBSETPROP(cTableAlias,"Field","RuleText", cRuleText)`.
 
-**Internationalization Gotcha:** ArrayName[11] contains the table
+**Internationalization Gotcha:** `ArrayName[11]` contains the table
 validation text, which will probably need to be localized.
 
 **Internationalization Tip:** you can control the table validation text
-with DBSETPROP(cTableAlias,"Table","RuleText", cRuleText).
+with `DBSETPROP(cTableAlias,"Table","RuleText", cRuleText)`.
 
 ----
 
 ### `ANSITOEM()`
 
-<table>
-| **ANSITOOEM() is for backward compatibility and for conversions with DOS. Use CPCONVERT() instead.** | <p>ANSITOOEM() converts each character of a character expression to the corresponding character in the ms-dos (oem) character set. ANSITOOEM()is used to move data from VFP and FoxPro for Macintosh to FoxPro for ms-dos.
-<p>**Internationalization Tip:** this function is included for backward compatibility. Use CPCONVERT() instead. |
-</tbody>
-</table>
+**`ANSITOOEM()` is for backward compatibility and for conversions with DOS. Use CPCONVERT() instead.**
+
+`ANSITOOEM()` converts each character of a character expression to the corresponding character in the ms-dos (oem) character set. `ANSITOOEM()` is used to move data from VFP and FoxPro for Macintosh to FoxPro for ms-dos.
+
+**Internationalization Tip** this function is included for backward compatibility. Use CPCONVERT() instead. |
 
 ----
 
 ### `APPEND FROM ... AS nCodePage`
 
-<table>
-| **Specify the code page of the new data when appending table data from other locales or platforms.** | <p>APPEND FROM adds records to the end of the currently selected table from another file.
-<p>**Internationalization Gotcha:** the optional AS nCodePage argument specifies the code page <em>**of the source table or file**</em>. As VFP appends the data, it automatically converts the data to the code page of the current table. |
-</tbody>
-</table>
+**Specify the code page of the new data when appending table data from other locales or platforms.**
+
+`APPEND FROM` adds records to the end of the currently selected table from another file.
+
+**Internationalization Gotcha:** the optional `AS nCodePage` argument specifies the code page ***of the source table or file***. As VFP appends the data, it automatically converts the data to the code page of the current table.
+
 
 If you omit `AS nCodePage`, two things can happen:
 
@@ -3783,7 +3782,7 @@ converts the data from the code page you specify to the current VFP code page.
 
 ### `APPEND PROCEDURES ... AS nCodePage`
 
-APPEND PROCEDURES appends stored procedures in a text file to the stored
+`APPEND PROCEDURES` appends stored procedures in a text file to the stored
 procedures snippet of the current database.
 
 **Specify the code page of the new data when appending DBC procedure code from other locales or platforms.**
@@ -3801,99 +3800,99 @@ code page. The current VFP code page can be determined with `CPCURRENT()`.
 
 ### `AT_C(cSearchExpression, cExpressionSearched [, nOccurrence])`
 
-<table>
-| **AT_C() is similar to AT(), but works with single- and double-byte characters.** | <p>AT_C(), which is similar to AT(), returns the beginning numeric position of the first occurrence of a character expression or memo field within another character expression or memo field, counting from the left-most character. The character expression or memo field can contain any combination of single-byte and double-byte characters.
-<p>**Internationalization Tip:** to enable your application for DBCS, always use AT_C() wherever you would use AT(). |
-</tbody>
-</table>
+**`AT_C()` is similar to `AT()`, but works with single- and double-byte characters.**
+
+`AT_C()`, which is similar to `AT()`, returns the beginning numeric position of the first occurrence of a character expression or memo field within another character expression or memo field, counting from the left-most character. The character expression or memo field can contain any combination of single-byte and double-byte characters.
+
+**Internationalization Tip** to enable your application for DBCS, always use `AT_C()` wherever you would use `AT()`. |
 
 ----
 
 ### `ATCC(cSearchExp, cExpSearched [, nOccurrence])`
 
-<table>
-| **ATCC() is like ATC(), and works with single- and double-byte characters.** | <p>ATCC(), which is similar to ATC(), returns the beginning numeric position of the first occurrence of a character expression or memo field within another character expression or memo field, without regard for the case of these two expressions. The character expression or memo field can contain any combination of single-byte and double-byte characters.
-<p>**Internationalization Tip:** to enable your application for DBCS, always use ATCC() wherever you would use ATC(). |
-</tbody>
-</table>
+**`ATCC()` is like `ATC()`, and works with single- and double-byte characters.**
+
+`ATCC()`, which is similar to `ATC()`, returns the beginning numeric position of the first occurrence of a character expression or memo field within another character expression or memo field, without regard for the case of these two expressions. The character expression or memo field can contain any combination of single-byte and double-byte characters.
+
+**Internationalization Tip** to enable your application for DBCS, always use `ATCC()` wherever you would use `ATC()`. |
 
 ----
 
 ### `ATCLINE(cSearchExpression, cExpressionSearched)`
 
-<table>
-| **There is no ATCLINEC() function in VFP as one might expect.** | <p>ATCLINE() returns the line number of the first occurrence of a character expression or memo field within another character expression or memo field, without regard for the case (upper or lower) of the characters in either expression.
-<p>**Internationalization Tip:** ATCLINE()works with both single-byte and double-byte character sets. |
-</tbody>
-</table>
+**There is no `ATCLINEC()` function in VFP as one might expect.**
+
+`ATCLINE()` returns the line number of the first occurrence of a character expression or memo field within another character expression or memo field, without regard for the case (upper or lower) of the characters in either expression.
+
+**Internationalization Tip** `ATCLINE()` works with both single-byte and double-byte character sets.
 
 ----
 
 ### `ATLINE(cSearchExpression, cExpressionSearched)`
 
-<table>
-| **There is no ATLINEC() function in VFP as one might expect since ATLINE() is already double-byte enabled..** | <p>ATLINE() returns the line number of the first occurrence of a character expression or memo within another character expression or memo.
-<p>**Internationalization Tip:** ATLINE()works with both single-byte and double-byte character sets. |
-</tbody>
-</table>
+**There is no `ATLINEC()` function in VFP as one might expect since `ATLINE()` is already double-byte enabled..**
+
+`ATLINE()` returns the line number of the first occurrence of a character expression or memo within another character expression or memo.
+
+**Internationalization Tip** `ATLINE()` works with both single-byte and double-byte character sets.
 
 ----
 
 ### `BROWSE`
 
-| | |
-| ----- | ----- |
-| **BROWSE without NOMENU leads to an unlocalizable "Table" menu pad.** | **Internationalization Gotcha:** when using BROWSE without a NOMENU clause, VFP places a "Table" menu pad on the system menu containing a number of bars (with captions like "Properties", "Font", "Go to record", etc). The display language of this pad and its bars is a function of VFP's localization language. In international applications that use BROWSE, make sure you make it a BROWSE...NOMENU and, if required, invoke your own supporting menu. |
+**`BROWSE` without `NOMENU` leads to an unlocalizable "Table" menu pad.**
+
+**Internationalization Gotcha:** when using `BROWSE` without a `NOMENU` clause, VFP places a "Table" menu pad on the system menu containing a number of bars (with captions like "Properties", "Font", "Go to record", etc). The display language of this pad and its bars is a function of VFP's localization language. In international applications that use `BROWSE`, make sure you make it a `BROWSE...NOMENU` and, if required, invoke your own supporting menu.
 
 ----
 
 ### `CDOW(dExpression | tExpression)`
 
-<table>
-| **CDOW() is dependent on the VFP localization.** | <p>CDOW() returns the day-of-the-week from a given date or datetime expression.
-<p>**Internationalization Gotcha:** the day name returned varies with the localization of VFP. |
-</tbody>
-</table>
+**`CDOW()` is dependent on the VFP localization.**
+
+`CDOW()` returns the day-of-the-week from a given date or datetime expression.
+
+**Internationalization Gotcha:** the day name returned varies with the localization of VFP.
 
 ----
 
 ### `CHR()`
 
-<table>
-| **Using CHR(n) instead of the character itself is a good way to prevent code page translation.** | <p>CHR() returns the character associated with the specified numeric ANSI code.
-<p>**Internationalization Tip:** you can use CHR() to prevent VFP's automatic code page translation. This is useful for program files which are not marked with code pages ID's. This may save you from disaster if you omit the AS nCodePage argument found in many VFP commands. |
-</tbody>
-</table>
+**Using CHR(n) instead of the character itself is a good way to prevent code page translation.**
+
+`CHR()` returns the character associated with the specified numeric ANSI code.
+
+**Internationalization Tip** you can use `CHR()` to prevent VFP's automatic code page translation. This is useful for program files which are not marked with code pages ID's. This may save you from disaster if you omit the AS nCodePage argument found in many VFP commands.
 
 ----
 
 ### `CHRTRANC(cSearched, cSearchFor, cReplacement)`
 
-<table>
-| **CHRTRANC() is like CHRTRAN() and works with single- and double-byte characters.** | <p>CHRTRANC(), which is similar to CHRTRAN(), replaces each character in a character expression that matches a character in a second character expression with the corresponding character in a third character expression. As you might expect, CHRTRANC()adjusts for single-byte and double-byte characters automatically.
-<p>**Internationalization Tip:** to enable your application for DBCS, always use CHRTRANC()wherever you might use CHRTRAN(). |
-</tbody>
-</table>
+**`CHRTRANC()` is like `CHRTRAN()` and works with single- and double-byte characters.**
+
+`CHRTRANC()`, which is similar to `CHRTRAN()`, replaces each character in a character expression that matches a character in a second character expression with the corresponding character in a third character expression. As you might expect, `CHRTRANC()` adjusts for single-byte and double-byte characters automatically.
+
+**Internationalization Tip:** to enable your application for DBCS, always use `CHRTRANC()` wherever you might use `CHRTRAN()`.
 
 ----
 
 ### `CMONTH(dExpression | tExpression)`
 
-<table>
-| **The text returned from CMONTH() varies with the localized version of VFP.** | <p>CMONTH() returns the name of the month from a given date or datetime expression.
-<p>**Internationalization Gotcha:** the language of the returned string comes from VFP, so you cannot independently control the language of what's returned. |
-</tbody>
-</table>
+**The text returned from `CMONTH()` varies with the localized version of VFP.**
+
+`CMONTH()` returns the name of the month from a given date or datetime expression.
+
+**Internationalization Gotcha:** the language of the returned string comes from VFP, so you cannot independently control the language of what's returned.
 
 ----
 
 ### `COMPILE ... AS nCodePage`
 
-<table>
-| **Use COMPILE...AS or SET CPCOMPILE to compile source files originating from other locales or platforms.** | <p>COMPILE compiles one or more source files.
-<p>**Internationalization Gotcha**: the optional AS nCodePage specifies the code page for which the program is compiled. The code page you specify with AS nCodePage overrides the global compilation code page specified with SET CPCOMPILE. |
-</tbody>
-</table>
+**Use `COMPILE...AS` or `SET CPCOMPILE` to compile source files originating from other locales or platforms.**
+
+`COMPILE` compiles one or more source files.
+
+**Internationalization Gotcha**: the optional `AS nCodePage` specifies the code page for which the program is compiled. The code page you specify with `AS nCodePage` overrides the global compilation code page specified with `SET CPCOMPILE`. |
 
 ----
 
@@ -3911,14 +3910,14 @@ code page you specify for the text file.
 
 ### `COPY STRUCTURE EXTENDED`
 
-<table>
-| **COPY STRUCTURE EXTENDED exports NOCPTRANS information, and data that may need to be localized.** | <p>COPY STRUCTURE EXTENDED creates a new table with fields containing the structure of the currently selected table.
-<p>**Internationalization Gotcha**: this new table will contain the following notable fields which have internationalization implications:<br>
-FIELD_NOCP L Code page translation not allowed (character and memo fields only)<br>
-FIELD_ERR M Field validation text<br>
-TABLE_ERR M Table validation text |
-</tbody>
-</table>
+**`COPY STRUCTURE EXTENDED` exports `NOCPTRANS` information, and data that may need to be localized.**
+
+`COPY STRUCTURE EXTENDED` creates a new table with fields containing the structure of the currently selected table.
+
+**Internationalization Gotcha**: this new table will contain the following notable fields which have internationalization implications:
+* `FIELD_NOCP` — `L` Code page translation not allowed (character and memo fields only)<br>
+* `FIELD_ERR` — `M` Field validation text
+* `TABLE_ERR` — `M` Table validation text
 
 ----
 
@@ -3932,7 +3931,7 @@ for the new file. VFP copies the contents of the currently selected
 table and, as it copies the data, automatically converts the data to the
 code page you specify for the new table or file. If possible, VFP marks
 the newly created table or file with the code page you specify. If you
-omit AS nCodePage, the newly created table or file is converted to the
+omit `AS nCodePage`, the newly created table or file is converted to the
 current VFP code page.
 
 ----
@@ -3951,19 +3950,21 @@ stored procedures to the code page you specify.
 
 ### `CPCONVERT(nCurrentCodePage, nNewCodePage, cExpression)`
 
-<table>
-| **CPCONVERT() is used to transform character or memo data.** | <p>CPCONVERT() converts character or memo fields or character expressions to another code page.
-<p>**Internationalization Gotcha**: don't forget to use CPCONVERT() when moving strings from one platform or locale to another. |
-</tbody>
-</table>
+**`CPCONVERT()` is used to transform character or memo data.**
+
+`CPCONVERT()` converts character or memo fields or character expressions to another code page.
+
+**Internationalization Gotcha**: don't forget to use `CPCONVERT()` when moving strings from one platform or locale to another.
 
 ----
 
 ### `CPCURRENT([1 | 2])`
 
-<table>
-| **Use CPCURRENT() to reckon system code page information.** | <p>CPCURRENT() returns the code page setting (if any) in your VFP configuration file, or returns the current operating system code page.
-<p>**Internationalization Gotcha:** CPCURRENT() returns one of the following:
+**Use CPCURRENT() to reckon system code page information.**
+
+CPCURRENT() returns the code page setting (if any) in your VFP configuration file, or returns the current operating system code page.
+
+**Internationalization Gotcha:** CPCURRENT() returns one of the following:
 
 - In VFP, the current operating system code page if the CODEPAGE
   configuration item isn't included in your configuration file. In
@@ -4290,11 +4291,10 @@ varies with VFP's localized language. `DMY()` respects the setting of
 
 ### `DTOS(dExpression | tExpression)`
 
-<table>
-| **DTOS() is unaffected by SET CENTURY.** | <p>DTOS() returns a character-string date in a yyyymmdd format from a specified Date or DateTime expression.
-<p>**Internationalization Gotcha**: this function is not affected by SET CENTURY. |
-</tbody>
-</table>
+**DTOS() is unaffected by SET CENTURY.**
+
+DTOS() returns a character-string date in a yyyymmdd format from a specified Date or DateTime expression.
+<p>**Internationalization Gotcha**: this function is not affected by SET CENTURY.
 
 ----
 
@@ -4837,21 +4837,21 @@ of VFP.
 
 ### `PRMBAR(), PRMPAD(), PROMPT()`
 
-<table>
-| **Menu text varies with locale.** | <p>PRMBAR(), PRMPAD() PROMPT() return text from menus.
-<p>**Internationalization Gotcha:** avoid using these functions in international applications because menu text will vary with the language of localization. |
-</tbody>
-</table>
+**Menu text varies with locale.**
+
+PRMBAR(), PRMPAD() PROMPT() return text from menus.
+
+**Internationalization Gotcha:** avoid using these functions in international applications because menu text will vary with the language of localization.
 
 ----
 
 ### `PRTINFO(nPrinterSetting [, cPrinterName])`
 
-<table>
-| **Printer settings vary from locale to locale.** | <p>PRTINFO() returns the specified printer setting.
-<p>**Internationalization Gotcha:** your application should anticipate a wide variety of return values because most of them will vary from locale to locale. |
-</tbody>
-</table>
+**Printer settings vary from locale to locale.**
+
+PRTINFO() returns the specified printer setting.
+
+**Internationalization Gotcha:** your application should anticipate a wide variety of return values because most of them will vary from locale to locale.
 
 ----
 
@@ -5191,14 +5191,14 @@ lists the values of nSetting and the type of conversion performed:
 
 | `nSetting` | Conversion |
 | --- | --- |
-| 1 | Converts single-byte characters in `cExpression` to double-byte characters. |
-| 2 | Converts double-byte characters in `cExpression` to single-byte characters. |
-| 3 | Converts double-byte Hiragana characters in `cExpression` to double-byte Katakana characters. |
-| 4 | Converts double-byte Katakana characters in `cExpression` to double-byte Hiragana characters. |
-| 5 | Converts double-byte characters to UNICODE (wide characters). |
-| 6 | Converts UNICODE (wide characters) to double-byte characters. |
-| 7 | Converts `cExpression` to locale specific lowercase. |
-| 8 | Converts `cExpression` to locale specific uppercase. |
+| `1` | Converts single-byte characters in `cExpression` to double-byte characters. |
+| `2` | Converts double-byte characters in `cExpression` to single-byte characters. |
+| `3` | Converts double-byte Hiragana characters in `cExpression` to double-byte Katakana characters. |
+| `4` | Converts double-byte Katakana characters in `cExpression` to double-byte Hiragana characters. |
+| `5` | Converts double-byte characters to UNICODE (wide characters). |
+| `6` | Converts UNICODE (wide characters) to double-byte characters. |
+| `7` | Converts `cExpression` to locale specific lowercase. |
+| `8` | Converts `cExpression` to locale specific uppercase. |
 
 ----
 
@@ -5318,17 +5318,17 @@ in which ole automation and ole controls exchange information.
 `SYS(3005)` sets the Locale ID, used by ole automation and ole controls.
 Here are the locales in VFP:
 
-| nLocaleID | Language |
+| `nLocaleID` | Language |
 | --------- | ----- |
-| 1029 | Czech |
-| 1031 | German |
-| 1033 | English (Default) |
-| 1034 | Spanish |
-| 1036 | French |
-| 1040 | Italian |
-| 1045 | Polish |
-| 1046 | Portuguese (Brazilian) |
-| 2070 | Portuguese (Standard) |
+| `1029` | Czech |
+| `1031` | German |
+| `1033` | English (Default) |
+| `1034` | Spanish |
+| `1036` | French |
+| `1040` | Italian |
+| `1045` | Polish |
+| `1046` | Portuguese (Brazilian) |
+| `2070` | Portuguese (Standard) |
 
 ----
 
@@ -5375,14 +5375,14 @@ the VFP version number you are using.
 
 | `VERSION(3)` | Language |
 | ---- | ---- |
-| 00 | English |
-| 33 | French |
-| 34 | Spanish |
-| 39 | Italian |
-| 42 | Czech |
-| 48 | Polish |
-| 49 | German |
-| 55 | Portuguese |
+| `00` | English |
+| `33` | French |
+| `34` | Spanish |
+| `39` | Italian |
+| `42` | Czech |
+| `48` | Polish |
+| `49` | German |
+| `55` | Portuguese |
 
 ----
 
@@ -5512,18 +5512,7 @@ Locale Block + Application Block = Localized Application
 
 | Locale Block | Application Block
 | --- | --- |
-| <p>Graphics
-<p>Lookup tables
-<p>Validation
-<p>Help
-<p>Documentation | <p>Application code
-<p>Processes graphics
-<p>Invokes lookups
-<p>Hooks for validation
-<p>Manages languages
-<p>Spans platforms |
-</tbody>
-</table>
+| Graphics<br>Lookup tables<br>Validation<br>Help<br>Documentation | Application code<br>Processes graphics<br>Invokes lookups<br>Hooks for validation<br>Manages languages<br>Spans platforms |
 
 The idea being that, to create new version, you only tinker with the
 locale data.
@@ -7345,7 +7334,9 @@ but the name field contains the name of the popup (_mfile).
 | Field Name | Type | Description
 | --- | --- |
 | OBJTYPE | N-2 | Type of menu object. 1 = first record of the mnx file, 2 = popup definition, 3 = menu item (visible on an actual menu item). |
-| OBJCODE | N-2 | <p>Type of menu item where objtype is 3.
+| OBJCODE | N-2
+
+Type of menu item where objtype is 3.
 <p>77 - Submenu item<br>
 80 - Procedure<br>
 67 - Command<br>
@@ -7372,9 +7363,7 @@ but the name field contains the name of the popup (_mfile).
 | ITEMNUM | C-3 | The Item Number of each menu pad item in a particular menu popup. The highest number for a particular popup should be equal to the numitems field for the same popup. |
 | COMMENT | M | The Comment snippet. |
 | LOCATION | N-1 | Location of Menu. 0 = Replace, 1 = Append, 2 = Before, 3 = After. If Before or After, the pad name where the menu is placed is stored in the Name field. |
-| SCHEME | N-2 | Color scheme for the menu bar and popup. It is not used for specific menu bars. The top level (_msysmenu) submenu record receives a default of Scheme 3, while submenus beneath use Scheme 4. |
-</tbody>
-</table>
+| SCHEME | N-2 | Color scheme for the menu bar and popup. It is not used for specific menu bars. The top level (_msysmenu) submenu record receives a default of Scheme 3, while submenus beneath use Scheme 4.
 
 ### Technical Note - Reordering Menus
 
