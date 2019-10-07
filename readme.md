@@ -1075,7 +1075,7 @@ invoke it when necessary.
 | **Syntax** | `oX = CREATE("INTL")`<br>`oX.LoadStrategies()` |
 | **Return** | True if successful, false otherwise. |
 | **Arguments** | None. |
-| **See Also** | **`cINTLMemento`::SetHook** |
+| **See Also** | **`cINTLMemento::SetHook** |`
 
 **Example**
 ```
@@ -1153,7 +1153,7 @@ main purpose is to define the complete interface for all subclasses.
 
 ### Class `cINTLAbstract` Protected Properties
 
-#### `cINTLAbstract`::cType
+#### `cINTLAbstract::cType`
 
 String used to store the type of INTL class.
 
@@ -1164,7 +1164,7 @@ String used to store the type of INTL class.
 | **See Also:** | **`cINTLAbstract::GetType()`** |
 
 ----
-#### `cINTLAbstract`::Visible
+#### `cINTLAbstract::Visible`
 
 Logical used to control this INTL objects visibility.
 
@@ -1175,7 +1175,7 @@ Logical used to control this INTL objects visibility.
 
 ### Class `cINTLAbstract` Exposed Properties
 
-#### `cINTLAbstract`::INTL_Abstract_ID
+#### `cINTLAbstract::INTL_Abstract_ID`
 
 Used by the INTL class for identification purposes.
 
@@ -1186,7 +1186,7 @@ Used by the INTL class for identification purposes.
 | **See Also** | **`cINTLAbstract::Name`** |
 
 ----
-#### `cINTLAbstract`::oLogicalParent
+#### `cINTLAbstract::oLogicalParent`
 
 Object reference to the logical parents of INTL objects.
 
@@ -1197,7 +1197,7 @@ Object reference to the logical parents of INTL objects.
 | **See Also** | **`cINTLAbstract::GetLogicalParent()`**<br>`cINTLAbstract::SetLogicalParent()`<br>`cINTLAbstract::GetHook()` |
 
 ----
-#### `cINTLAbstract`::oHook
+#### `cINTLAbstract::oHook`
 
 
 |  |  |
@@ -1208,7 +1208,7 @@ Object reference to the logical parents of INTL objects.
 | **See Also** | **`cINTLMemento::SetHook()`**<br>`cINTLAbstract::GetHook()` |
 
 ----
-#### `cINTLAbstract`::Name
+#### `cINTLAbstract::Name`
 
 The name of this INTL object. Each class, including those you write
 yourself, should normally have a distinctive name.
@@ -1365,7 +1365,7 @@ Returns the version stamp for your INTL for Visual FoxPro software.
 ### Class cINTLCurrency Exposed Methods
 
 ----
-#### `cINTLCurrency::GetConversion`
+#### `cINTLCurrency::GetConversion()`
 
 Gets a currency conversion factor from memory.
 
@@ -1387,7 +1387,7 @@ _SCREEN.oINTL.GetConversion() && 1.3205 |
 ```
 
 ----
-#### `cINTLCurrency::I`
+#### `cINTLCurrency::I()`
 
 Localizes a numeric currency value.
 
@@ -1411,7 +1411,7 @@ _SCREEN.oINTL.I(10.00) && 13.2050 |
 ```
 
 ----
-#### `cINTLCurrency::SetConversion`
+#### `cINTLCurrency::SetConversion()`
 
 Sets a currency exchange rate.
 
@@ -1505,7 +1505,7 @@ Thus all useful INTL objects are subclasses of `cINTLMemento`.
 ### Class `cINTLMemento` Exposed Properties
 
 ----
-#### `cINTLMemento`::Name
+#### `cINTLMemento::Name`
 
 The object name.
 
@@ -1514,7 +1514,7 @@ The object name.
 | **Default** | "`cINTLMemento`" |
 
 ----
-#### `cINTLMemento`::aStrategies[...]
+#### `cINTLMemento::aStrategies[...]`
 
 The array collection of strategy object references.
 
@@ -1522,7 +1522,7 @@ The array collection of strategy object references.
 | ----- | ------ |
 | **Default** | `.NULL.` |
 
-####  `cINTLMemento`::oCurrencyStrategy
+####  `cINTLMemento::oCurrencyStrategy`
 
 An explicit object reference to the string currency strategy.
 
@@ -1530,7 +1530,7 @@ An explicit object reference to the string currency strategy.
 | ----- | ------ |
 | **Default** | `.NULL.` |
 
-####  `cINTLMemento`::oDataStrategy
+####  `cINTLMemento::oDataStrategy`
 
 An explicit object reference to the data strategy.
 
@@ -1538,7 +1538,7 @@ An explicit object reference to the data strategy.
 | ----- | ------ |
 | **Default** | `.NULL.` |
 
-####  `cINTLMemento`::oFontStrategy
+####  `cINTLMemento::oFontStrategy`
 
 An explicit object reference to the font strategy.
 
@@ -1547,7 +1547,7 @@ An explicit object reference to the font strategy.
 | **Default** | `.NULL.` |
 
 ----
-#### `cINTLMemento`::oHook
+#### `cINTLMemento::oHook`
 
 Object reference to the hook object.
 
@@ -1555,7 +1555,7 @@ Object reference to the hook object.
 | ----- | ------ |
 | **Default** | `.NULL.` |
 
-####  `cINTLMemento`::oPictureStrategy
+####  `cINTLMemento::oPictureStrategy`
 
 An explicit object reference to the image localization strategy.
 
@@ -1564,7 +1564,7 @@ An explicit object reference to the image localization strategy.
 | **Default** | `.NULL.` |
 
 ----
-#### `cINTLMemento`::oStringStrategy
+#### `cINTLMemento::oStringStrategy`
 
 An explicit object reference to the string strategy.
 
@@ -1691,7 +1691,7 @@ Returns the value of the INTL object locale property.
 | **Syntax** | `oINTL.GetLocale( @oPointer )` |
 | **Return** | Name of the current locale. |
 | **Arguments** | None. |
-| **See Also** | **`cINTLMemento`::SetLocale** |
+| **See Also** | **`cINTLMemento::SetLocale** |`
 
 **Example**
 ```
@@ -1954,7 +1954,7 @@ instantiations.
 ### Class `cINTLMemento` Protected Properties
 
 ----
-#### `cINTLMemento`::aStack
+#### `cINTLMemento::aStack`
 
 This array member stores the stack of INTL configuration properties.
 
@@ -1964,7 +1964,7 @@ This array member stores the stack of INTL configuration properties.
 | **See Also** | **`cINTLMemento::Pitch()`**<br>`cINTLMemento::Pop()`<br>`cINTLMemento::Push()` |
 
 ----
-#### `cINTLMemento`::cLang
+#### `cINTLMemento::cLang`
 
 Stores the current language configuration of this particular INTL
 object.
@@ -1975,7 +1975,7 @@ object.
 | **See Also** | **`cINTLMemento::GetLanguage()`**<br>`cINTLMemento::SetLanguage()` |
 
 ----
-#### `cINTLMemento`::cLocale
+#### `cINTLMemento::cLocale`
 
 Stores the current locale name of this particular INTL object.
 
@@ -1985,7 +1985,7 @@ Stores the current locale name of this particular INTL object.
 | **See Also** | **`cINTLMemento::GetLocale()`**<br>`cINTLMemento::SetLocale()` |
 
 ----
-#### `cINTLMemento`::cStringStrategy
+#### `cINTLMemento::cStringStrategy()`
 
 Default class name for the string strategy.
 
@@ -1995,7 +1995,7 @@ Default class name for the string strategy.
 | **See Also** | **`cINTLMemento::GetStrategy()`**<br>`cINTLMemento::SetDefaults()`<br>`cINTLMemento::SetStrategy()`<br>`cINTLMemento::aStrat()` |
 
 ----
-#### `cINTLMemento`::lExplicit
+#### `cINTLMemento::lExplicit`
 
 Logical true if the localization is explicit. Explicit localization
 localizes only objects containing "INTL" properties or have associated
@@ -2004,20 +2004,20 @@ references to an INTL object in members named oINTL.
 |  |  |
 | --- | --- |
 | **Default** | .F.
-| **See Also** | **`cINTLMemento`::aStrategies[...]**<br>`cINTLMemento::GetStrategy()`<br>`cINTLMemento::SetStrategy()`<br>`cINTLMemento::GetConfig()`<br>`cINTLMemento::SetConfig()` |
+| **See Also** | **`cINTLMemento::aStrategies[...]**<br>`cINTLMemento::GetStrategy()`<br>`cINTLMemento::SetStrategy()`<br>`cINTLMemento::GetConfig()`<br>`cINTLMemento::SetConfig()` |`
 
 ----
-#### `cINTLMemento`::nConfig
+#### `cINTLMemento::nConfig`
 
 Stores the configuration integer for this particular object.
 
 |  |  |
 | --- | --- |
 | **Default** | 1
-| **See Also** | **`cINTLMemento`::aStrategies[...]**<br>`cINTLMemento::GetConfig()`<br>`cINTLMemento::SetConfig()` |
+| **See Also** | **`cINTLMemento::aStrategies[...]**<br>`cINTLMemento::GetConfig()`<br>`cINTLMemento::SetConfig()` |`
 
 ----
-#### `cINTLMemento`::nDefaultConfig
+#### `cINTLMemento::nDefaultConfig`
 
 
 |  |  |
@@ -2054,7 +2054,7 @@ localization subclasses.
 
 ### Class cINTLStrategy Exposed Properties
 
-#### cINTLStrategy::lStrategyOpen
+#### `cINTLStrategy::lStrategyOpen`
 
 Logical true if, at last indication, the strategy resource files were
 open.
@@ -2063,16 +2063,16 @@ open.
 | --- | --- |
 | **Default** | Logical false. |
 | **Remarks** | This property is set to logical true when the strategy resource table is open, though there is no guarantee that the table won’t be closed. Used purely for performance reasons. |
-| **See Also** | **`cINTLMemento`::aStrategies[...]**<br>`cINTLMemento::GetStrategy()`<br>`cINTLMemento::SetStrategy()` |
+| **See Also** | **`cINTLMemento::aStrategies[...]**<br>`cINTLMemento::GetStrategy()`<br>`cINTLMemento::SetStrategy()` |`
 
-#### cINTLStrategy::nDefaultConfig
+#### `cINTLStrategy::nDefaultConfig`
 
 The default configuration integer.
 
 |  |  |
 | --- | --- |
 | **Default** | `1` |
-| **See Also** | **`cINTLMemento`::GetConfig**<br>`cINTLMemento::SetConfig`<br>`cINTLMemento::SetDefaults` |
+| **See Also** | **`cINTLMemento::GetConfig**<br>`cINTLMemento::SetConfig`<br>`cINTLMemento::SetDefaults` |`
 
 ### Class cINTLStrategy Exposed Methods
 
@@ -2148,7 +2148,7 @@ Handles localization tasks of this particular strategy.
 |  |  |
 | --- | --- |
 | **Syntax** | `cINTLStrategy.I(expr1, expr2)` |
-| **Return** | Typically the localization of expr1 according to `cINTLMemento`::GetLanguage() or `cINTLMemento::SetLocale()`. |
+| **Return** | Typically the localization of expr1 according to `cINTLMemento::GetLanguage() or `cINTLMemento::SetLocale()`. |`
 | **Arguments** | Varies according to what's required by the strategy subclass instance. Typically `expr1` is a string, a number, or a file name to localize. `Expr2` is usually an additional qualifier. For example, in a custom currency strategy, `expr2` might be used to pass a valuation date. |
 
 ----
@@ -2260,11 +2260,11 @@ In addition, by default, a `cINTLString` object is attached to the primary
 hook for the INTL object. Therefore, many calls to the INTL object are
 automatically passed through to the string strategy.
 
-### Class cINTLString Exposed Properties
+### Class `cINTLString` Exposed Properties
 
 Here are the exposed properties of class cINTLString.
 
-#### cINTLString::Name
+#### `cINTLString::Name`
 
 Stores the name of the string object.
 
@@ -2272,11 +2272,11 @@ Stores the name of the string object.
 | ----- | ----- |
 | **Default** | "cINTLString" |
 
-### Class cINTLString Protected Properties
+### Class `cINTLString` Protected Properties
 
 Here are the protected properties of class cINTLString.
 
-#### cINTLString::nConfig
+#### `cINTLString::nConfig`
 
 Stores the current configuration integer for the string strategy.
 
@@ -2285,7 +2285,7 @@ Stores the current configuration integer for the string strategy.
 | **Remarks** | Use SetConfig() and GetConfig() to change the configuration integer.<br>The string strategy is bitwise configured with the following values:<br>[`1`] Caption<br>[`2`] Tooltip<br>[`4`] Statusbartext |
 | **See Also** | **`cINTLMemento::GetConfig()`** |
 
-#### cINTLString::nDefaultConfig
+#### `cINTLString::nDefaultConfig`
 
 Stores the default configuration integer for this strategy.
 
@@ -2294,7 +2294,7 @@ Stores the default configuration integer for this strategy.
 | **Remarks** | This integer is used in the SetDefaults() method, which is used to restore a strategy to its factory defaults. |
 | **See Also** | **`cINTLMemento::SetDefaults`** |
 
-### Class cINTLString Exposed Methods
+### Class `cINTLString` Exposed Methods
 
 ----
 #### `cINTLString::Alang()`
@@ -3646,7 +3646,7 @@ Broadcast hooks in INTL are invoked from methods with code like the following:
 #DEFINE INTL_HOOK_TEST ! ISNULL( this.oHook) AND ;
 TYPE( "this.oHook.INTL_Abstract_ID")&lt;&gt; "U"
 *====================================
-*-- `cINTLMemento`::SetExplicit( l)
+*-- `cINTLMemento::SetExplicit( l)`
 *====================================
 * Set the Explicit mode.
 *
