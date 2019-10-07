@@ -879,8 +879,9 @@ in your application.
 
 A string specifying the name of the currency strategy class.
 
-| **Default** | "cINTLCurrency" |
+| | |
 | ----- | ----- |
+| **Default** | "cINTLCurrency" |
 | **Remarks** | You may subclass cINTLCurrency to suit your particular needs. You may then use the SetStrategy("Currency",cYourCurrencyClass) method to set this currency strategy property to something other than the default. |
 | **See Also** | **`cINTLMemento::GetStrategy()`** |
 
@@ -889,9 +890,9 @@ A string specifying the name of the currency strategy class.
 
 **INTL allows different data sources for different locales.**  A string specifying the name of the data strategy class.
 
-
-| **Default** | "cINTLData" |
+| | |
 | ----- | ----- |
+| **Default** | "cINTLData" |
 | **Remarks** | You may subclass cINTLData to suit your particular needs. You may use the SetStrategy("Data", cYourDataClass) method to set this data strategy property to something other than the default. |
 | **See Also** | **`cINTLMemento::GetStrategy()`** |
 
@@ -902,8 +903,9 @@ A string specifying the name of the currency strategy class.
 
 A string specifying the name of the font strategy class.
 
-| **Default** | "cINTLFont" |
+| | |
 | ----- | ----- |
+| **Default** | "cINTLFont" |
 | **Remarks** | You may subclass cINTLFont to suit your particular needs. You may use the ::SetStrategy("Font", cYourFontClass) to set the font strategy property to something other than the default. |
 | **See Also** | **`cINTLMemento::GetStrategy()`** |
 
@@ -914,6 +916,7 @@ A string specifying the name of the font strategy class.
 
 A string specifying the name of the picture strategy class.
 
+| | |
 | ----- | ----- |
 | **Default** | "cINTLPicture" |
 | **Remarks** | You may subclass cINTLPicture to suit your particular needs. You may use the ::SetStrategy("Picture", cYourPictureClass) to set the picture strategy property to something other than the default. |
@@ -926,8 +929,9 @@ A string specifying the name of the picture strategy class.
 
 A string specifying the name of the string strategy class. The string strategy class is responsible for localizing strings and phrases in the application, and also serves as a function repository for other strategy classes.
 
-| | **Default** | "cINTLSting" |
+| | |
 | ----- | ----- |
+| **Default** | "cINTLSting" |
 | **Remarks** | You may subclass cINTLString to suit your particular needs. You may use the ::SetStrategy("String", cYourStringClass) to set the property. |
 | **See Also** | **`cINTLMemento::GetStrategy()`** |
 | **The cINTLString strategy class is by far the most useful, and it provides services to other strategies.** | **Note:** many strategies use string-based services that are provided by the active string strategy class. To reduce cohesion with a particular cStringStrategy class, many string methods that would normally belong in class cStringStrategy are found in class cINTLStrategy, the parent strategy class. Thus all strategies have some inherent string localization abilities. | |
@@ -941,8 +945,9 @@ Localizes a numeric, a string, an object, or array of objects. In the
 case of objects and array of objects, the execute function passes each
 object in turn to all the active localization strategies.
 
-| **Syntax** | oINTL.Execute( @PassedObject) |
+| | |
 | --- | --- |
+| **Syntax** | `oINTL.Execute( @PassedObject)` |
 | **Return** | Nothing |
 | **Arguments** | PassedObject: Can be of type numeric, string, or object. It can also be an array of object references. |
 | **See Also** | **INTL::ObjArray()** |
@@ -961,7 +966,11 @@ oINTL.Execute( @laScratchArray)
 ----
 #### `INTL::GetAlias()`
 
-| **Strategies may require resource files, which are referenced by alias.** | Returns the alias of the resource table associated with the default localization strategy. Normally, the default strategy object is of class cINTLString. |
+| **Strategies may require resource files, which are referenced by alias.**
+
+Returns the alias of the resource table associated with the default localization strategy. Normally, the default strategy object is of class cINTLString.
+
+| | |
 | --- | --- |
 | **Syntax** | oINTL.GetAlias() |
 | **Return** | The character value of the string strategy table alias. |
@@ -982,8 +991,9 @@ _SCREEN.oINTL.GetAlias() |
 Returns the name of the resource table associated with the string
 strategy.
 
-| **Syntax** | oINTL.GetTable()
+| | |
 | --- | --- |
+| **Syntax** | oINTL.GetTable()
 | **Return** | The character value of the string strategy table name. |
 | **Arguments** | None. |
 | **Remarks** | The GetTable() method is a <em>hookable</em> method, meaning that if an object of class INTL has an attached hook object, then GetTable() defers to the method of the hook object. Since by default objects of class INTL are hooked with an object of the cINTLStringStrategy class, invoking oINTL.GetTable() is equivalent to invoking oINTL.oStringStrategy.GetTable(). |
@@ -1002,8 +1012,9 @@ _SCREEN.oINTL.GetTable() |
 
 Returns the setting for the update mode of the current string strategy.
 
-| **Syntax** | oINTL.&lt;StrategyObject&gt;.GetUpdateMode()
+| | |
 | --- | --- |
+| **Syntax** | oINTL.&lt;StrategyObject&gt;.GetUpdateMode()
 | **Return** | Logical true if update mode is currently "On", false otherwise. |
 | **Arguments** | None. |
 | **See Also** | **`cINTLStrategy::SetUpdateMode`** |
@@ -1020,8 +1031,9 @@ _SCREEN.oINTL. GetUpdateMode() |
 
 The I() function is an all-purpose localization method.
 
-| **Syntax** | oINTL.I(cString |nAmount |oObject)
+| | |
 | --- | --- |
+| **Syntax** | oINTL.I(cString |nAmount |oObject)
 | **Return** | Localized value of cString or nAmount. |
 | **Arguments** | <p>cString: a string to localize. The string could be an interface item, a font name and size, a data source, or a file name.<br>nAount: an amount to localize.<br>oObject: an object (or a container of objects) to traverse. |
 | **Remarks** | The INTL::I() method is a <em>hookable</em> method, meaning that if an object of class INTL has an attached hook object, then INTL.I() defers to the hook object. Since by default objects of class INTL are hooked with an object of the `cINTLStringStrategy` class, invoking `oINTL.I()` is equivalent to invoking `oINTL.oStringStrategy.I()`. |
