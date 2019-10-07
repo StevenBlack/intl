@@ -1033,7 +1033,7 @@ The I() function is an all-purpose localization method.
 
 | | |
 | --- | --- |
-| **Syntax** | oINTL.I(cString |nAmount |oObject)
+| **Syntax** | oINTL.I(cString |nAmount |oObject) |
 | **Return** | Localized value of cString or nAmount. |
 | **Arguments** | <p>cString: a string to localize. The string could be an interface item, a font name and size, a data source, or a file name.<br>nAount: an amount to localize.<br>oObject: an object (or a container of objects) to traverse. |
 | **Remarks** | The INTL::I() method is a <em>hookable</em> method, meaning that if an object of class INTL has an attached hook object, then INTL.I() defers to the hook object. Since by default objects of class INTL are hooked with an object of the `cINTLStringStrategy` class, invoking `oINTL.I()` is equivalent to invoking `oINTL.oStringStrategy.I()`. |
@@ -1055,8 +1055,9 @@ configuration integer, and an object parameter is assumed to be
 something to localize. Note that the language and configuration
 parameters are used to initialize the state of INTL.
 
-| **Syntax** | `oX = CREATE("INTL", [C |N |O], [C |N |O], [C |N |O])`
+| | |
 | --- | --- |
+| **Syntax** | `oX = CREATE("INTL", [C |N |O], [C |N |O], [C |N |O])` |
 | **Return** | Logical true always. |
 | **Arguments** | You may pass one of each of the following:<br>Type "C": the language to set.<br>Type "N": an INTL configuration integer.<br>Type "O": an object to traverse and localize. |
 | **Example** | `oX = CREATE("INTL", "French", _SCREEN.Activeform)` |
