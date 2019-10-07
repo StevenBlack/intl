@@ -1029,15 +1029,13 @@ _SCREEN.oINTL. GetUpdateMode() |
 ----
 #### `INTL::I()`
 
-The I() function is an all-purpose localization method.
+The `I()` function is an all-purpose localization method.
 
 |  |  |
 | --- | --- |
-| **Syntax** | `oINTL.I(cString |nAmount |oObject)` |
-| **Return** | Localized value of cString or nAmount. |
-| **Arguments**
-
-cString: a string to localize. The string could be an interface item, a font name and size, a data source, or a file name.<br>nAount: an amount to localize.<br>oObject: an object (or a container of objects) to traverse. |
+| **Syntax** | `oINTL.I(cString \| nAmount \| oObject)` |
+| **Return** | Localized value of `cString` or `nAmount` or `oObject`. |
+| **Argumemnts:** | `cString`: a string to localize. The string could be an interface item, a font name and size, a data source, or a file name.<br>`nAount`: an amount to localize.<br>`oObject`: an object (or a container of objects) to traverse. |
 | **Remarks** | The INTL::I() method is a *hookable* method, meaning that if an object of class INTL has an attached hook object, then INTL.I() defers to the hook object. Since by default objects of class INTL are hooked with an object of the `cINTLStringStrategy` class, invoking `oINTL.I()` is equivalent to invoking `oINTL.oStringStrategy.I()`. |
 | **See Also** | **`cINTLMemento::SetLocale`**<br>`cINTLCurrency::GetConversion()` |
 
