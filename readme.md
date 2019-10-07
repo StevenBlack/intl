@@ -1014,14 +1014,14 @@ Returns the setting for the update mode of the current string strategy.
 
 |  |  |
 | --- | --- |
-| **Syntax** | oINTL.&lt;StrategyObject&gt;.GetUpdateMode()
+| **Syntax** | `oINTL.<StrategyObject>.GetUpdateMode()` |
 | **Return** | Logical true if update mode is currently "On", false otherwise. |
 | **Arguments** | None. |
 | **See Also** | **`cINTLStrategy::SetUpdateMode`** |
 | **Remarks** | If GetUpdateMode() is logical true then, for some strategies, this cause INTL resource files to be self-maintained. For example, the native string strategy will add new strings to `strings.dbf` as they are encountered if the string strategy's update mode is set to true.<br><br>The GetUpdateMode() method is a *hookable* method, meaning that if an object of class INTL has an attached hook object, then GetUpdateMode() defers to the method of the hook object. Since by default objects of class INTL are hooked with an object of the cINTLStringStrategy class, invoking oINTL.GetUpdateMode() is equivalent to invoking oINTL.oStringStrategy.GetUpdateMode(). |
 
-```
 **Example**
+```
 _SCREEN.AddObject( "oINTL", "INTL")
 _SCREEN.oINTL. GetUpdateMode() |
 ```
@@ -1033,7 +1033,7 @@ The I() function is an all-purpose localization method.
 
 |  |  |
 | --- | --- |
-| **Syntax** | oINTL.I(cString |nAmount |oObject) |
+| **Syntax** | `oINTL.I(cString |nAmount |oObject)` |
 | **Return** | Localized value of cString or nAmount. |
 | **Arguments**
 
@@ -1074,7 +1074,7 @@ invoke it when necessary.
 
 |  |  |
 | --- | --- |
-| **Syntax** | `oX = CREATE("INTL")`<br>`oX.LoadStrategies()`
+| **Syntax** | `oX = CREATE("INTL")`<br>`oX.LoadStrategies()` |
 | **Return** | True if successful, false otherwise. |
 | **Arguments** | None. |
 | **See Also** | **`cINTLMemento`::SetHook** |
@@ -1094,7 +1094,7 @@ characteristics of the main INTL object.
 
 |  |  |
 | --- | --- |
-| **Syntax** | oINTL.Localize( [cLang | oObj][,cLang | oObj])
+| **Syntax** | `oINTL.Localize( [cLang | oObj][,cLang | oObj])` |
 | **Return** | Logical true if successful, false if otherwise. |
 | **Arguments** | `cLang`: the language to localize the object.<br>`Oobj`: the object to localize. Default is `THISFORM`. |
 | **See Also** | `INTL::Execute()` |
@@ -1113,7 +1113,7 @@ object and all the contents of that object.
 
 |  |  |
 | --- | --- |
-| **Syntax** | INTL::ObjArray( oObject, @ArraName)
+| **Syntax** | `INTL::ObjArray( oObject, @ArraName)` |
 | **Return** | The dimension of the array. |
 | **Arguments** | oObject: can be any object but most usually some sort of container, such as a FormSet or a Form. |
 | **Remarks** | The object passed for the argument occupies the first item in the array. |
@@ -1134,7 +1134,7 @@ loaded.
 
 |  |  |
 | --- | --- |
-| **Syntax** | INTL:SetConversion( cLocale, nExchange, xOptional)
+| **Syntax** | `INTL:SetConversion( cLocale, nExchange, xOptional)` |
 | **Return** | Logical true if successful, false otherwise. |
 | **Arguments** | `cLocale`: the name of a locale.<br>`Nexchange`: the exchange rate for the locale.<br>`XOptional`: an optional parameter you can use in subclasses/ |
 | **Remarks** | If the currency strategy isn’t loaded, `.NULL.` is returned. |
@@ -1194,7 +1194,7 @@ Object reference to the logical parents of INTL objects.
 
 |  |  |
 | --- | --- |
-| **Default** | .NULL.
+| **Default** | `.NULL.` |
 | **Remarks** | This property is useful for callbacks and for error handling. The logical parent property is automatically set by the SetHook() method. |
 | **See Also** | **`cINTLAbstract::GetLogicalParent()`**<br>`cINTLAbstract::SetLogicalParent()`<br>`cINTLAbstract::GetHook()` |
 
@@ -1204,8 +1204,8 @@ Object reference to the logical parents of INTL objects.
 
 |  |  |
 | --- | --- |
-| **Motivation** | Object reference to the hook object.
-| **Default** | .NULL. |
+| **Motivation** | Object reference to the hook object. |
+| **Default** | `.NULL.` |
 | **Remarks** | This property is used to hold hook objects. |
 | **See Also** | **`cINTLMemento::SetHook()`**<br>`cINTLAbstract::GetHook()` |
 
