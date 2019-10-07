@@ -261,25 +261,18 @@ Use the `SetConfig( n )` method to configure your main INTL object.
 You configure INTL with a `_SCREEN.oINTL.SetConfig( n )` method, where `n` is a bitwise integer value with the following interpretation:
 
 <table>
-<tbody>
-<tr>
-<td>Value</td>
-<td>Configuration Meaning</td>
-</tr>
-<tr>
-<td><p>1 (Default)
+| Value | Configuration Meaning |
+| <p>1 (Default)
 <p>2
 <p>4
 <p>8
 <p>16
-<p>32</td>
-<td><p>Load the String strategy
+<p>32 | <p>Load the String strategy
 <p>Load the Font strategy
 <p>Load the Data strategy
 <p>Load the Picture strategy
 <p>Load the Currency strategy
-<p>Load the RightToLeft strategy</td>
-</tr>
+<p>Load the RightToLeft strategy |
 </tbody>
 </table>
 
@@ -302,57 +295,32 @@ Strategies are bitwise configured.
 Configuring individual strategies is easy. Simply get a reference to the strategy, then configure it. Here are the configuration meanings for each configurable strategy.
 
 <table>
-<tbody>
-<tr>
-<td>Strategy</td>
-<td>Value</td>
-<td>Localization</td>
-</tr>
-<tr>
-<td>Data</td>
-<td><p>1 (Default)
+| Strategy | Value | Localization |
+| Data | <p>1 (Default)
 <p>2
 <p>4
 <p>8
-<p>16</td>
-<td><p><code>BoundColumn</code>
+<p>16 | <p><code>BoundColumn</code>
 <p><code>ControlSource</code>
 <p><code>RowSource</code>
 <p><code>RecordSource</code>
-<p><code>InputMask</code></td>
-</tr>
-<tr>
-<td>Font</td>
-<td><p>1 (Default)
-<p>2 (Default)</td>
-<td><p>`Font` and `FontSize`
-<p>`DynamicFont` and `DynamicFontSize`</td>
-</tr>
-<tr>
-<td>Picture</td>
-<td><p>1 (Default)
+<p><code>InputMask</code> |
+| Font | <p>1 (Default)
+<p>2 (Default) | <p>`Font` and `FontSize`
+<p>`DynamicFont` and `DynamicFontSize` |
+| Picture | <p>1 (Default)
 <p>2
 <p>4 (Default)
-<p>8</td>
-<td><p><code>Picture</code>
+<p>8 | <p><code>Picture</code>
 <p><code>DownPicture</code>
 <p><code>Icon</code>
-<p><code>DragIcon</code></td>
-</tr>
-<tr>
-<td>RightToLeft</td>
-<td>1 (Default)</td>
-<td>All objects reversed within their respective containers</td>
-</tr>
-<tr>
-<td>Strings</td>
-<td><p>1 (Default)
+<p><code>DragIcon</code> |
+| RightToLeft | 1 (Default) | All objects reversed within their respective containers |
+| Strings | <p>1 (Default)
 <p>2 (Default)
-<p>4 (Default)</td>
-<td><p><code>Caption</code>
+<p>4 (Default) | <p><code>Caption</code>
 <p><code>ToolTipText</code>
-<p><code>StatusBarText</code></td>
-</tr>
+<p><code>StatusBarText</code> |
 </tbody>
 </table>
 
@@ -405,36 +373,23 @@ INTL loads only the string strategy by default.
 The following table lists the configuration bits for INTL. These configuration bits decide which strategy is loaded. By default, only the String strategy is loaded, which is to say that strings are automatically localized by INTL by default.
 
 <table>
-<tbody>
-<tr>
-<td>Class</td>
-<td>Configuration bits</td>
-<td>Localization</td>
-</tr>
-<tr>
-<td>INTL</td>
-<td><p>**1 (Default)**
+| Class | Configuration bits | Localization |
+| INTL | <p>**1 (Default)**
 <p>2
 <p>4
 <p>8
 <p>16
-<p>32</td>
-<td><p>**cINTLString strategy loaded**
+<p>32 | <p>**cINTLString strategy loaded**
 <p>cINTLFont strategy loaded
 <p>cINTLData strategy loaded
 <p>cINTLPicture strategy loaded
 <p>cINTLCurrency strategy loaded
-<p>cINTLRightToLeft strategy loaded</td>
-</tr>
-<tr>
-<td>CINTLString</td>
-<td><p>1 (Default)
+<p>cINTLRightToLeft strategy loaded |
+| CINTLString | <p>1 (Default)
 <p>2 (Default)
-<p>3 (Default)</td>
-<td><p>Caption
+<p>3 (Default) | <p>Caption
 <p>ToolTipText
-<p>StatusBarText</td>
-</tr>
+<p>StatusBarText |
 </tbody>
 </table>
 
@@ -484,34 +439,21 @@ Fonts like Arial, Times New Roman, MS Sans Serif might not be suitable in some l
 The following table lists the configuration bits for the INTL object to load the Font strategy, and the configuration integers to configure the Font strategy.
 
 <table>
-<tbody>
-<tr>
-<td>Class</td>
-<td>Configuration bits</td>
-<td>Localization</td>
-</tr>
-<tr>
-<td>INTL</td>
-<td><p>1 (Default)
+| Class | Configuration bits | Localization |
+| INTL | <p>1 (Default)
 <p>**2**
 <p>4
 <p>8
 <p>16
-<p>32</td>
-<td><p>cINTLString strategy loaded
+<p>32 | <p>cINTLString strategy loaded
 <p>**cINTLFont strategy loaded**
 <p>cINTLData strategy loaded
 <p>cINTLPicture strategy loaded
 <p>cINTLCurrency strategy loaded
-<p>cINTLRightToLeft strategy loaded</td>
-</tr>
-<tr>
-<td>CINTLFont</td>
-<td><p>1 (Default)
-<p>2 (Default)</td>
-<td><p><code>Font</code> and <code>FontSize</code>
-<p><code>DynamicFont</code> and <code>DynamicFontSize</code></td>
-</tr>
+<p>cINTLRightToLeft strategy loaded |
+| CINTLFont | <p>1 (Default)
+<p>2 (Default) | <p><code>Font</code> and <code>FontSize</code>
+<p><code>DynamicFont</code> and <code>DynamicFontSize</code> |
 </tbody>
 </table>
 
@@ -568,40 +510,27 @@ The Data strategy works just like the other strategies.
 The following table lists the configuration bits for the INTL object to load the Picture strategy, and the configuration integers to configure the Picture strategy.
 
 <table>
-<tbody>
-<tr>
-<td>Class</td>
-<td>Configuration bits</td>
-<td>Localization</td>
-</tr>
-<tr>
-<td>INTL</td>
-<td><p>1 (Default)
+| Class | Configuration bits | Localization |
+| INTL | <p>1 (Default)
 <p>2
 <p>**4**
 <p>8
 <p>16
-<p>32</td>
-<td><p>cINTLString strategy loaded
+<p>32 | <p>cINTLString strategy loaded
 <p>cINTLFont strategy loaded
 <p>**cINTLData strategy loaded**
 <p>cINTLPicture strategy loaded
 <p>cINTLCurrency strategy loaded
-<p>cINTLRightToLeft strategy loaded</td>
-</tr>
-<tr>
-<td>CINTLData</td>
-<td><p>1 (Default)
+<p>cINTLRightToLeft strategy loaded |
+| CINTLData | <p>1 (Default)
 <p>2
 <p>4
 <p>8
-<p>16</td>
-<td><p>BoundColumn
+<p>16 | <p>BoundColumn
 <p>ControlSource
 <p>RowSource
 <p>RecordSource
-<p>InpuMask</td>
-</tr>
+<p>InpuMask |
 </tbody>
 </table>
 
@@ -651,38 +580,25 @@ oPicture.SetConfig( 2)
 **The Picture strategy works just like the other strategies.** The following table lists the configuration bits for the INTL object to load the Picture strategy, and the configuration integers to configure the Picture strategy.
 
 <table>
-<tbody>
-<tr>
-<td>Class</td>
-<td>Configuration bits</td>
-<td>Localization</td>
-</tr>
-<tr>
-<td>INTL</td>
-<td><p>1 (Default)
+| Class | Configuration bits | Localization |
+| INTL | <p>1 (Default)
 <p>2
 <p>4
 <p>**8**
 <p>16
-<p>32</td>
-<td><p>cINTLString strategy loaded
+<p>32 | <p>cINTLString strategy loaded
 <p>cINTLFont strategy loaded
 <p>cINTLData strategy loaded
 <p>**cINTLPicture strategy loaded**
 <p>cINTLCurrency strategy loaded
-<p>cINTLRightToLeft strategy loaded</td>
-</tr>
-<tr>
-<td>CINTLPicture</td>
-<td><p>1 (Default)
+<p>cINTLRightToLeft strategy loaded |
+| CINTLPicture | <p>1 (Default)
 <p>2
 <p>4 (Default)
-<p>8</td>
-<td><p>Picture
+<p>8 | <p>Picture
 <p>DownPicture
 <p>Icon
-<p>DragIcon</td>
-</tr>
+<p>DragIcon |
 </tbody>
 </table>
 
@@ -739,30 +655,19 @@ At the heart of it all, the INTL Currency strategy works only on fields having a
 Recall that INTL strategies are bitwise-configured according to the
 following table.
 
-<table>
-<thead>
-<tr class ="header">
-<th>Class (with default)</th>
-<th>Value</th>
-<th>Localization</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>INTL (1)</td>
-<td><p>1 (Default)
+| Class (with default) | Value | Localization
+| --- | --- |
+| INTL (1) | <p>1 (Default)
 <p>2
 <p>4
 <p>8
 <p>**16**
-<p>32</td>
-<td><p>cINTLString strategy loaded
+<p>32 | <p>cINTLString strategy loaded
 <p>cINTLFont strategy loaded
 <p>cINTLData strategy loaded
 <p>cINTLPicture strategy loaded
 <p>**cINTLCurrency strategy loaded**
-<p>cINTLRightToLeft strategy loaded</td>
-</tr>
+<p>cINTLRightToLeft strategy loaded |
 </tbody>
 </table>
 
@@ -839,30 +744,19 @@ The result is forms are reversed; if they were read from left-to-right now they 
 Recall that INTL strategies are bitwise-configured according to the
 following table:
 
-<table>
-<thead>
-<tr class ="header">
-<th>Class (with default)</th>
-<th>Value</th>
-<th>Localization</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td> INTL (1)</td>
-<td><p>1 (Default)
+| Class (with default) | Value | Localization
+| --- | --- |
+|  INTL (1) | <p>1 (Default)
 <p>2
 <p>4
 <p>8
 <p>16
-<p>**32**</td>
-<td><p>cINTLString strategy loaded
+<p>**32** | <p>cINTLString strategy loaded
 <p>cINTLFont strategy loaded
 <p>cINTLData strategy loaded
 <p>cINTLPicture strategy loaded
 <p>cINTLCurrency strategy loaded
-<p>**cINTLRightToLeft strategy loaded**</td>
-</tr>
+<p>**cINTLRightToLeft strategy loaded** |
 </tbody>
 </table>
 
@@ -1030,42 +924,18 @@ settings and use its services.
 
 For run time localization, you need to distribute the following files:
 
-<table>
-<thead>
-<tr class ="header">
-<th>File</th>
-<th>Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>I.PRG</td>
-<td>For best performance, place this function in your first SET PROCEDURE file.</td>
-</tr>
-<tr>
-<td>INTL.PRG</td>
-<td>For best performance, SET PROCEDURE TO INTL Additive.</td>
-</tr>
-<tr>
-<td>MSGSVC.DBF<br />
-MSGSVC.FPT<br />
-MSGSVC.CDX</td>
-<td>If you use MsgSvc() you will need to distribute these files.</td>
-</tr>
-<tr>
-<td>MSGSVC.PRG</td>
-<td>The message services library.</td>
-</tr>
-<tr>
-<td>NOHOT.PRG</td>
-<td>For best performance, place this function in your first SET PROCEDURE file.</td>
-</tr>
-<tr>
-<td>STRINGS.DBF<br />
-STRINGS.FPT<br />
-STRINGS.CDX</td>
-<td>You’ll need to distribute these too.</td>
-</tr>
+| File | Notes
+| --- | --- |
+| I.PRG | For best performance, place this function in your first SET PROCEDURE file. |
+| INTL.PRG | For best performance, SET PROCEDURE TO INTL Additive. |
+| MSGSVC.DBF<br>
+MSGSVC.FPT<br>
+MSGSVC.CDX | If you use MsgSvc() you will need to distribute these files. |
+| MSGSVC.PRG | The message services library. |
+| NOHOT.PRG | For best performance, place this function in your first SET PROCEDURE file. |
+| STRINGS.DBF<br>
+STRINGS.FPT<br>
+STRINGS.CDX | You’ll need to distribute these too. |
 </tbody>
 </table>
 
@@ -1078,64 +948,19 @@ Here's a description of the files used by INTL. To reckon where these
 can be best placed relative to your project, see How to Correctly Place
 Your INTL Files on page 13.
 
-<table>
-<thead>
-<tr class ="header">
-<th>File</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ADDENDUM.TXT</td>
-<td>Late breaking news that may or may not be included in the documentation or the help file.</td>
-</tr>
-<tr>
-<td>GENMENUX.ZIP</td>
-<td>An archive of the latest available GENMENUX program by Andrew Ross MacNeill.</td>
-</tr>
-<tr>
-<td>I.PRG</td>
-<td>A stand-alone function that serves as a shortcut to the _SCREEN.oINTL.I() method.</td>
-</tr>
-<tr>
-<td>INTL.HLP</td>
-<td>A 32-bit Windows help application for INTL, suitable for Windows 95 and Windows NT.</td>
-</tr>
-<tr>
-<td>INTL16.HLP</td>
-<td>A 16-bit Windows help application for INTL, suitable for Windows 3.1 and Windows 3.11.</td>
-</tr>
-<tr>
-<td>INTL.PRG</td>
-<td>The core code for the classes and utilities in the INTL toolkit.</td>
-</tr>
-<tr>
-<td>INTLTOOL.PRG</td>
-<td>Developer’s utilities to do batch operations on project files and other VFP structures. Do not distribute this file with your applications.</td>
-</tr>
-<tr>
-<td>MSGSVC.DBF<br />
-MSGSVC.FPT<br />
-MSGSVC.CDX</td>
-<td>Table and supporting files containing messages for dialogs, wait windows, thermometer bars and text blocks.</td>
-</tr>
-<tr>
-<td>MSGSVC.PRG</td>
-<td>The message services library.</td>
-</tr>
-<tr>
-<td>NOHOT.PRG</td>
-<td>NOHOT() strips hot key characters from FoxPro prompt expressions. It is a one-line function that you should cut and paste as a procedure somewhere in your application’s invocation stack.</td>
-</tr>
-<tr>
-<td>STRINGS.DBF<br />
-STRINGS.FPT<br />
-STRINGS.CDX</td>
-<td>Table and supporting files containing translated phrases.</td>
-</tr>
-</tbody>
-</table>
+| File | Description
+| --- | --- |
+| ADDENDUM.TXT | Late breaking news that may or may not be included in the documentation or the help file. |
+| GENMENUX.ZIP | An archive of the latest available GENMENUX program by Andrew Ross MacNeill. |
+| I.PRG | A stand-alone function that serves as a shortcut to the _SCREEN.oINTL.I() method. |
+| INTL.HLP | A 32-bit Windows help application for INTL, suitable for Windows 95 and Windows NT. |
+| INTL16.HLP | A 16-bit Windows help application for INTL, suitable for Windows 3.1 and Windows 3.11. |
+| INTL.PRG | The core code for the classes and utilities in the INTL toolkit. |
+| INTLTOOL.PRG | Developer’s utilities to do batch operations on project files and other VFP structures. Do not distribute this file with your applications. |
+| MSGSVC.DBF<br>MSGSVC.FPT<br>MSGSVC.CDX | Table and supporting files containing messages for dialogs, wait windows, thermometer bars and text blocks. |
+| MSGSVC.PRG | The message services library. |
+| NOHOT.PRG | NOHOT() strips hot key characters from FoxPro prompt expressions. It is a one-line function that you should cut and paste as a procedure somewhere in your application’s invocation stack. |
+| STRINGS.DBF<br>STRINGS.FPT<br>STRINGS.CDX | Table and supporting files containing translated phrases. |
 
 ## Overview of the INTL Class Library
 
@@ -1150,18 +975,16 @@ The INTL class hierarchy.
 In normal circumstances, the only objects you’ll probably use are of
 class INTL.
 
-| | |
-| ----- | ----- |
-| **Class `cINTLMemento` can be used as a token.** | `cINTLMemento` is a configuration token that INTL objects may use to store details of a specific localization. `cINTLMemento` includes access methods to protected properties. |
+**Class `cINTLMemento` can be used as a token.**
+
+`cINTLMemento` is a configuration token that INTL objects may use to store details of a specific localization. `cINTLMemento` includes access methods to protected properties.
 
 INTL is the public interface and template methods for the localization
 process.
 
 cINTLStrategy is the Parentclass of various localization engines.
 
-cINTLString**,** cINTLCurrency**,** cINTLFont**,** cINTLMeasures,
-cINTLPicture, and cINTLData are classes of specific strategic
-implementations.
+**`cINTLString`**, **`cINTLCurrency`**, **`cINTLFont`**, **`cINTLMeasures`**, **`cINTLPicture`**, and **`cINTLData`** are classes of specific strategic implementations.
 
 ## Class INTL
 
@@ -1206,8 +1029,8 @@ in your application.
 
 #### INTL::cStringStrategy
 
-| **INTL localizes words and phrases.** | A string specifying the name of the string strategy class. The string strategy class is responsible for localizing strings and phrases in the application, and also serves as a function repository for other strategy classes. | |
-| ----- | ----- | ----- |
+| **INTL localizes words and phrases.** | A string specifying the name of the string strategy class. The string strategy class is responsible for localizing strings and phrases in the application, and also serves as a function repository for other strategy classes. |
+| ----- | ----- |
 | | **Default** | "cINTLSting" |
 | | **Remarks** | You may subclass cINTLString to suit your particular needs. You may use the ::SetStrategy("String", cYourStringClass) to set the property. |
 | | **See Also** | **`cINTLMemento::GetStrategy()`** |
@@ -1221,195 +1044,93 @@ Localizes a numeric, a string, an object, or array of objects. In the
 case of objects and array of objects, the execute function passes each
 object in turn to all the active localization strategies.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Syntax**</th>
-<th>oINTL.Execute( @PassedObject)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Return**</td>
-<td>Nothing</td>
-</tr>
-<tr>
-<td>**Arguments**</td>
-<td>PassedObject: Can be of type numeric, string, or object. It can also be an array of object references.</td>
-</tr>
-<tr>
-<td>**Example**</td>
-<td><p>DIMENSION laScratchArray[1]
-<p>SET PROC TO INTL
-<p>oINTL = CREATEOBJECT("INTL")
-<p>oXX = CREATEOBJECT("Form")
-<p>*-- Load the array with object references
-<p>oINTL.ObjArray( oXX, @laScratchArray)
-<p>oINTL.Execute( @laScratchArray)</td>
-</tr>
-<tr>
-<td>**See Also**</td>
-<td>**INTL::ObjArray()**</td>
-</tr>
-</tbody>
-</table>
+| **Syntax** | oINTL.Execute( @PassedObject)
+| --- | --- |
+| **Return** | Nothing |
+| **Arguments** | PassedObject: Can be of type numeric, string, or object. It can also be an array of object references. |
+| **See Also** | **INTL::ObjArray()** |
+
+**Example**
+```
+DIMENSION laScratchArray[1]
+SET PROC TO INTL
+oINTL = CREATEOBJECT("INTL")
+oXX = CREATEOBJECT("Form")
+*-- Load the array with object references
+oINTL.ObjArray( oXX, @laScratchArray)
+oINTL.Execute( @laScratchArray)
+```
 
 #### `INTL::GetAlias()`
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Strategies may require resource files, which are referenced by alias.**</th>
-<th>Returns the alias of the resource table associated with the default localization strategy. Normally, the default strategy object is of class cINTLString.</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Syntax**</td>
-<td>oINTL.GetAlias()</td>
-</tr>
-<tr>
-<td>**Return**</td>
-<td>The character value of the string strategy table alias.</td>
-</tr>
-<tr>
-<td>**Arguments**</td>
-<td>None.</td>
-</tr>
-<tr>
-<td>**Example**</td>
-<td><p>_SCREEN.AddObject( "oINTL", "INTL")
-<p>*-- The following two are equivalent
-<p>_SCREEN.oINTL.oStringStrategy.GetAlias()
-<p>_SCREEN.oINTL.GetAlias()</td>
-</tr>
-<tr>
-<td>**Remarks**</td>
-<td>The GetAlias() method is a <em>hookable</em> method, meaning that if an object of class INTL has an attached hook object, then GetAlias() defers to the method of the hook object. Since by default objects of class INTL are hooked with an object of the cINTLStringStrategy class, invoking oINTL.GetAlias() is the equivalent of invoking oINTL.oStringStrategy.getAlias().</td>
-</tr>
-<tr>
-<td>**See Also**</td>
-</tr>
-</tbody>
-</table>
+| **Strategies may require resource files, which are referenced by alias.** | Returns the alias of the resource table associated with the default localization strategy. Normally, the default strategy object is of class cINTLString. |
+| --- | --- |
+| **Syntax** | oINTL.GetAlias() |
+| **Return** | The character value of the string strategy table alias. |
+| **Arguments** | None. |
+| **Remarks** | The GetAlias() method is a <em>hookable</em> method, meaning that if an object of class INTL has an attached hook object, then GetAlias() defers to the method of the hook object. Since by default objects of class INTL are hooked with an object of the cINTLStringStrategy class, invoking oINTL.GetAlias() is the equivalent of invoking oINTL.oStringStrategy.getAlias(). |
+
+**Example**
+```
+_SCREEN.AddObject( "oINTL", "INTL")
+*-- The following two are equivalent
+_SCREEN.oINTL.oStringStrategy.GetAlias()
+_SCREEN.oINTL.GetAlias() |
+```
 
 #### `INTL::GetTable()`
 
 Returns the name of the resource table associated with the string
 strategy.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Syntax**</th>
-<th>oINTL.GetTable()</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Return**</td>
-<td>The character value of the string strategy table name.</td>
-</tr>
-<tr>
-<td>**Arguments**</td>
-<td>None.</td>
-</tr>
-<tr>
-<td>**Example**</td>
-<td><p>_SCREEN.AddObject( "oINTL", "INTL")
-<p>*-- The following two are equivalent
-<p>_SCREEN.oINTL.oStringStrategy.GetTable()
-<p>_SCREEN.oINTL.GetTable()</td>
-</tr>
-<tr>
-<td>**Remarks**</td>
-<td>The GetTable() method is a <em>hookable</em> method, meaning that if an object of class INTL has an attached hook object, then GetTable() defers to the method of the hook object. Since by default objects of class INTL are hooked with an object of the cINTLStringStrategy class, invoking oINTL.GetTable() is equivalent to invoking oINTL.oStringStrategy.GetTable().</td>
-</tr>
-<tr>
-<td>**See Also**</td>
-<td>**cINTLStrategy::SetTable()**</td>
-</tr>
-</tbody>
-</table>
+| **Syntax** | oINTL.GetTable()
+| --- | --- |
+| **Return** | The character value of the string strategy table name. |
+| **Arguments** | None. |
+| **Remarks** | The GetTable() method is a <em>hookable</em> method, meaning that if an object of class INTL has an attached hook object, then GetTable() defers to the method of the hook object. Since by default objects of class INTL are hooked with an object of the cINTLStringStrategy class, invoking oINTL.GetTable() is equivalent to invoking oINTL.oStringStrategy.GetTable(). |
+| **See Also** | **`cINTLStrategy::SetTable()`** |
+
+**Example**
+```
+_SCREEN.AddObject( "oINTL", "INTL")
+*-- The following two are equivalent
+_SCREEN.oINTL.oStringStrategy.GetTable()
+_SCREEN.oINTL.GetTable() |
+```
 
 #### `INTL::GetUpdateMode()`
 
 Returns the setting for the update mode of the current string strategy.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Syntax**</th>
-<th>oINTL.&lt;StrategyObject&gt;.GetUpdateMode()</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Return**</td>
-<td>Logical true if update mode is currently "On", false otherwise.</td>
-</tr>
-<tr>
-<td>**Arguments**</td>
-<td>None.</td>
-</tr>
-<tr>
-<td>**Example**</td>
-<td><p>_SCREEN.AddObject( "oINTL", "INTL")
-<p>_SCREEN.oINTL. GetUpdateMode()</td>
-</tr>
-<tr>
-<td>**Remarks**</td>
-<td><p>If GetUpdateMode() is logical true then, for some strategies, this cause INTL resource files to be self-maintained. For example, the native string strategy will add new strings to `strings.dbf` as they are encountered if the string strategy's update mode is set to true.
-<p>The GetUpdateMode() method is a <em>hookable</em> method, meaning that if an object of class INTL has an attached hook object, then GetUpdateMode() defers to the method of the hook object. Since by default objects of class INTL are hooked with an object of the cINTLStringStrategy class, invoking oINTL.GetUpdateMode() is equivalent to invoking oINTL.oStringStrategy.GetUpdateMode().</td>
-</tr>
-<tr>
-<td>**See Also**</td>
-<td>**cINTLStrategy::SetUpdateMode**</td>
-</tr>
-</tbody>
-</table>
+| **Syntax** | oINTL.&lt;StrategyObject&gt;.GetUpdateMode()
+| --- | --- |
+| **Return** | Logical true if update mode is currently "On", false otherwise. |
+| **Arguments** | None. |
+| **See Also** | **`cINTLStrategy::SetUpdateMode`** |
+| **Remarks** | If GetUpdateMode() is logical true then, for some strategies, this cause INTL resource files to be self-maintained. For example, the native string strategy will add new strings to `strings.dbf` as they are encountered if the string strategy's update mode is set to true.<br><br>The GetUpdateMode() method is a <em>hookable</em> method, meaning that if an object of class INTL has an attached hook object, then GetUpdateMode() defers to the method of the hook object. Since by default objects of class INTL are hooked with an object of the cINTLStringStrategy class, invoking oINTL.GetUpdateMode() is equivalent to invoking oINTL.oStringStrategy.GetUpdateMode(). |
 
-####
+```
+**Example**
+_SCREEN.AddObject( "oINTL", "INTL")
+_SCREEN.oINTL. GetUpdateMode() |
+```
 
 #### `INTL::I()`
 
 The I() function is an all-purpose localization method.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Syntax**</th>
-<th>oINTL.I(cString |nAmount |oObject)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Return**</td>
-<td>Localized value of cString or nAmount.</td>
-</tr>
-<tr>
-<td>**Arguments**</td>
-<td><p>cString: a string to localize. The string could be an interface item, a font name and size, a data source, or a file name.
-<p>nAount: an amount to localize.
-<p>oObject: an object (or a container of objects) to traverse.</td>
-</tr>
-<tr>
-<td>**Example**</td>
-<td><p>this.I("Hello World")
-<p>this.I( nSalary)</td>
-</tr>
-<tr>
-<td>**Remarks**</td>
-<td>The INTL::I() method is a <em>hookable</em> method, meaning that if an object of class INTL has an attached hook object, then INTL.I() defers to the hook object. Since by default objects of class INTL are hooked with an object of the cINTLStringStrategy class, invoking oINTL.I() is equivalent to invoking oINTL.oStringStrategy.I().</td>
-</tr>
-<tr>
-<td>**See Also**</td>
-<td><p>**`cINTLMemento`::SetLocale**
-<p>cINTLCurrency::GetConversion</td>
-</tr>
-</tbody>
-</table>
+| **Syntax** | oINTL.I(cString |nAmount |oObject)
+| --- | --- |
+| **Return** | Localized value of cString or nAmount. |
+| **Arguments** | <p>cString: a string to localize. The string could be an interface item, a font name and size, a data source, or a file name.<br>nAount: an amount to localize.<br>oObject: an object (or a container of objects) to traverse. |
+| **Remarks** | The INTL::I() method is a <em>hookable</em> method, meaning that if an object of class INTL has an attached hook object, then INTL.I() defers to the hook object. Since by default objects of class INTL are hooked with an object of the `cINTLStringStrategy` class, invoking `oINTL.I()` is equivalent to invoking `oINTL.oStringStrategy.I()`. |
+| **See Also** | **`cINTLMemento::SetLocale`**<br>`cINTLCurrency::GetConversion()` |
+
+**Example**
+```
+this.I("Hello World")
+this.I( nSalary)
+```
 
 #### `INTL::Init()`
 
@@ -1420,31 +1141,11 @@ configuration integer, and an object parameter is assumed to be
 something to localize. Note that the language and configuration
 parameters are used to initialize the state of INTL.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Syntax**</th>
-<th>oX = CREATE("INTL", [C |N |O], [C |N |O], [C |N |O])</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Return**</td>
-<td>Logical true always.</td>
-</tr>
-<tr>
-<td>**Arguments**</td>
-<td>You may pass one of each of the following:<br />
-Type "C": the language to set.<br />
-Type "N": an INTL configuration integer.<br />
-Type "O": an object to traverse and localize.</td>
-</tr>
-<tr>
-<td>**Example**</td>
-<td>oX = CREATE("INTL", "French", _SCREEN.Activeform)</td>
-</tr>
-</tbody>
-</table>
+| **Syntax** | `oX = CREATE("INTL", [C |N |O], [C |N |O], [C |N |O])`
+| --- | --- |
+| **Return** | Logical true always. |
+| **Arguments** | You may pass one of each of the following:<br>Type "C": the language to set.<br>Type "N": an INTL configuration integer.<br>Type "O": an object to traverse and localize. |
+| **Example** | `oX = CREATE("INTL", "French", _SCREEN.Activeform)` |
 
 #### `INTL::LoadStrategies()`
 
@@ -1453,146 +1154,81 @@ INTL::GetConfig(). Unless you create your own custom mechanisms, you
 wouldn't normally call the LoadStrategies()method since INTL classes
 invoke it when necessary.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Syntax**</th>
-<th><p>oX = CREATE("INTL")
-<p>oX.LoadStrategies()</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Return**</td>
-<td>True if successful, false otherwise.</td>
-</tr>
-<tr>
-<td>**Arguments**</td>
-<td>None.</td>
-</tr>
-<tr>
-<td>**Example**</td>
-<td><p>*-- For some reason, refresh the strategies loaded
-<p>*-- by the screen INTL object.
-<p>_SCREEN.oINTL.LoadStrategies()</td>
-</tr>
-<tr>
-<td>**See Also**</td>
-<td>**`cINTLMemento`::SetHook**</td>
-</tr>
-</tbody>
-</table>
+| **Syntax** | <p>oX = CREATE("INTL")
+<p>oX.LoadStrategies()
+| --- | --- |
+| **Return** | True if successful, false otherwise. |
+| **Arguments** | None. |
+| **See Also** | **`cINTLMemento`::SetHook** |
+
+**Example**
+```
+*-- For some reason, refresh the strategies loaded
+*-- by the screen INTL object.
+_SCREEN.oINTL.LoadStrategies() |
+```
 
 #### `INTL::Localize()`
 
 Localizes an VFP structure and optionally also sets the locale
 characteristics of the main INTL object.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Syntax**</th>
-<th>oINTL.Localize( [cLang | oObj][,cLang | oObj])</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Return**</td>
-<td>Logical true if successful, false if otherwise.</td>
-</tr>
-<tr>
-<td>**Arguments**</td>
-<td><p>cLang: the language to localize the object.
-<p>Oobj: the object to localize. Default is THISFORM.</td>
-</tr>
-<tr>
-<td>**Example**</td>
-<td><p>_SCREEN.AddObject( "oINTL", "INTL")
-<p>_SCREEN.oINTL.Localize( "German", THIS)</td>
-</tr>
-<tr>
-<td>**See Also**</td>
-<td>INTL::Execute</td>
-</tr>
-</tbody>
-</table>
+| **Syntax** | oINTL.Localize( [cLang | oObj][,cLang | oObj])
+| --- | --- |
+| **Return** | Logical true if successful, false if otherwise. |
+| **Arguments** | `cLang`: the language to localize the object.<br>`Oobj`: the object to localize. Default is `THISFORM`. |
+| **See Also** | `INTL::Execute()` |
+
+**Example**
+```
+_SCREEN.AddObject( "oINTL", "INTL")
+_SCREEN.oINTL.Localize( "German", THIS) |
+```
 
 #### `INTL::ObjArray()`
 
-The INTL::ObjArray method fills an array with object references for an
+The `INTL::ObjArray()` method fills an array with object references for an
 object and all the contents of that object.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Syntax**</th>
-<th>INTL::ObjArray( oObject, @ArraName)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Return**</td>
-<td>The dimension of the array.</td>
-</tr>
-<tr>
-<td>**Arguments**</td>
-<td>oObject: can be any object but most usually some sort of container, such as a FormSet or a Form.</td>
-</tr>
-<tr>
-<td>**Example**</td>
-<td><p>DIMENSION laScratch[1]
-<p>Foo = CREATEOBJECT("Form")
-<p>Foo.AddObject("Bar", CommandButton)
-<p>INTL::ObjArray( Foo, @laScratch) &amp;&amp; yields 2</td>
-</tr>
-<tr>
-<td>**Remarks**</td>
-<td>The object passed for the argument occupies the first item in the array.</td>
-</tr>
-</tbody>
-</table>
+| **Syntax** | INTL::ObjArray( oObject, @ArraName)
+| --- | --- |
+| **Return** | The dimension of the array. |
+| **Arguments** | oObject: can be any object but most usually some sort of container, such as a FormSet or a Form. |
+| **Remarks** | The object passed for the argument occupies the first item in the array. |
+
+**Example**
+
+```
+DIMENSION laScratch[1]
+Foo = CREATEOBJECT("Form")
+Foo.AddObject("Bar", CommandButton)
+INTL::ObjArray( Foo, @laScratch) &amp;&amp; yields 2
+```
 
 #### `INTL::SetConversion()`
 
 Method that allows direct access to the currency strategy if it’s
 loaded.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Syntax**</th>
-<th>INTL:SetConversion( cLocale, nExchange, xOptional)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Return**</td>
-<td>Logical true if successful, false otherwise.</td>
-</tr>
-<tr>
-<td>**Arguments**</td>
-<td><p>cLocale: the name of a locale.
-<p>Nexchange: the exchange rate for the locale.
-<p>XOptional: an optional parameter you can use in subclasses/</td>
-</tr>
-<tr>
-<td>**Example**</td>
-<td><p>_SCREEN.oINTL.SetStrategy(“Currency”)
-<p>*-- Talk directly to the currency strategy
-<p>_SCREEN.oINTL.SetConversion(“ USA”, 1.35)</td>
-</tr>
-<tr>
-<td>**Remarks**</td>
-<td>If the currency strategy isn’t loaded, .NULL. is returned.</td>
-</tr>
-</tbody>
-</table>
+| **Syntax** | INTL:SetConversion( cLocale, nExchange, xOptional)
+| --- | --- |
+| **Return** | Logical true if successful, false otherwise. |
+| **Arguments** | `cLocale`: the name of a locale.<br>`Nexchange`: the exchange rate for the locale.<br>`XOptional`: an optional parameter you can use in subclasses/ |
+| **Remarks** | If the currency strategy isn’t loaded, `.NULL.` is returned. |
+
+| **Example**
+```
+_SCREEN.oINTL.SetStrategy(“Currency”)
+*-- Talk directly to the currency strategy
+_SCREEN.oINTL.SetConversion(“ USA”, 1.35)
+```
 
 ## Class `cINTLAbstract`
 
-| | |
-| ----- | ----- |
-| **The `cINTLAbstract` class is not designed to be directly instantiated.** | `CINTLAbstract` is the principal base class of the INTL class library. As its name implies, it is an abstract class, and its main purpose is to define the complete interface for all subclasses. |
+**The `cINTLAbstract` class is not designed to be directly instantiated.**
+
+`CINTLAbstract` is the principal base class of the INTL class library. As its name implies, it is an abstract class, and its
+main purpose is to define the complete interface for all subclasses.
 
 ### Class `cINTLAbstract` Protected Properties
 
@@ -1622,58 +1258,24 @@ Used by the INTL class for identification purposes.
 | **Default** | "Visual INTL" |
 | ----- | ----- |
 | **Remarks** | This property should never be changed. |
-| **See Also** | **`cINTLAbstract`::Name** |
+| **See Also** | **`cINTLAbstract::Name`** |
 
 #### `cINTLAbstract`::oLogicalParent
 
 Object reference to the logical parents of INTL objects.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Default**</th>
-<th>.NULL.</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Remarks**</td>
-<td>This property is useful for callbacks and for error handling. The logical parent property is automatically set by the SetHook() method.</td>
-</tr>
-<tr>
-<td>**See Also**</td>
-<td>**`cINTLAbstract::GetLogicalParent()`**<br />
-`cINTLAbstract::SetLogicalParent()`<br />
-`cINTLAbstract::GetHook()`</td>
-</tr>
-</tbody>
-</table>
+| **Default** | .NULL.
+| --- | --- |
+| **Remarks** | This property is useful for callbacks and for error handling. The logical parent property is automatically set by the SetHook() method. |
+| **See Also** | **`cINTLAbstract::GetLogicalParent()`**<br>`cINTLAbstract::SetLogicalParent()`<br>`cINTLAbstract::GetHook()` |
 
 #### `cINTLAbstract`::oHook
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Motivation**</th>
-<th>Object reference to the hook object.</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Default**</td>
-<td>.NULL.</td>
-</tr>
-<tr>
-<td>**Remarks**</td>
-<td>This property is used to hold hook objects.</td>
-</tr>
-<tr>
-<td>**See Also**</td>
-<td>**`cINTLMemento::SetHook()`**<br />
-`cINTLAbstract::GetHook()`</td>
-</tr>
-</tbody>
-</table>
+| **Motivation** | Object reference to the hook object.
+| --- | --- |
+| **Default** | .NULL. |
+| **Remarks** | This property is used to hold hook objects. |
+| **See Also** | **`cINTLMemento::SetHook()`**<br>`cINTLAbstract::GetHook()` |
 
 #### `cINTLAbstract`::Name
 
@@ -1739,44 +1341,42 @@ will message or delegate to an object attached to the ohook reference.
 
 Returns an object reference to the hook of the object.
 
-| **Syntax** | this.GetHook() |
+| **Syntax** | `this.GetHook()` |
 | ----- | ----- |
-| **Return** | Hook object reference if the current object is hooked, .NULL. otherwise. |
+| **Return** | Hook object reference if the current object is hooked, `.NULL.` otherwise. |
 | **Arguments** | None. |
 | **Example** | this.GetHook() |
-| **Remarks** | GetHook returns an object reference (if a hook is defined) or .NULL. if not. |
+| **Remarks** | GetHook returns an object reference (if a hook is defined) or `.NULL.` if not. |
 | **See Also** | **`cINTLMemento::SetHook()`** |
 
 #### ``cINTLAbstract::GetLogicalParent()``
 
 Returns the name of the INTL object’s logical parent.
 
-| **Syntax** | this.GetLogicalParent() |
+| **Syntax** | `this.GetLogicalParent()` |
 | ----- | ----- |
-| **Return** | Hook object reference if the current object is hooked, .NULL. otherwise. |
+| **Return** | Hook object reference if the current object is hooked, `.NULL.` otherwise. |
 | **Arguments** | None. |
-| **Example** | this.GetLogicalParent() |
-| **Remarks** | Returns the name of the INTL object’s logical parent if one has been defined, or .NULL. otherwise. |
+| **Example** | `this.GetLogicalParent()` |
+| **Remarks** | Returns the name of the INTL object’s logical parent if one has been defined, or `.NULL.` otherwise. |
 | **See Also** | **`cINTLAbstract::SetLogicalParent()`** |
 
 #### ``cINTLAbstract::IsINTLClass()``
 
 Returns true if a reference is an object belonging to the INTL class.
 
-| **Syntax** | this.IsINTLClass( Expression) |
+| **Syntax** | `this.IsINTLClass( Expression)` |
 | ----- | ----- |
 | **Return** | Logical true if the object is a member of the INTL class. |
 | **Arguments** | An expression that may or may not evaluate to type "O". |
-| **Example** | this.IsINTLClass( CREATE("ComboBox")) && Returns .F. |
+| **Example** | `this.IsINTLClass( CREATE("ComboBox")) && Returns .F.`|
 | **Remarks** | An expression is considered to be a member of the INTL class if it contains an exposed property named "INTL_Abstract_ID". |
-
-####
 
 #### ``cINTLAbstract::Release()``
 
 Explicitly releases an INTL object.
 
-| **Syntax** | _SCREEN.oINTL.Release() |
+| **Syntax** | `_SCREEN.oINTL.Release()` |
 | ----- | ----- |
 | **Return** | Logical true always. |
 | **Arguments** | None. |
@@ -1786,7 +1386,7 @@ Explicitly releases an INTL object.
 
 This access method sets the pointer to the object’s logical parent.
 
-| **Syntax** | oINTL.SetLogicalParent( oObject) |
+| **Syntax** | `oINTL.SetLogicalParent( oObject)` |
 | ----- | ----- |
 | **Return** | Logical true if successful, false otherwise. |
 | **Arguments** | oObject: an object reference. |
@@ -1798,7 +1398,7 @@ This access method sets the pointer to the object’s logical parent.
 
 Returns the type of INTL object this is.
 
-| **Syntax** | oINTL.GetType() |
+| **Syntax** | `oINTL.GetType()` |
 | ----- | ----- |
 | **Return** | A string, the object type, such as “INTL”, “String”, “Font”, “Currency”, and so on. |
 | **Remarks** | When you subclass a strategy, don’t change its type property unless you also change its basic function. |
@@ -1807,7 +1407,7 @@ Returns the type of INTL object this is.
 
 Returns the version stamp for your INTL for Visual FoxPro software.
 
-| **Syntax** | oINTL.GetVersion() |
+| **Syntax** | `oINTL.GetVersion()` |
 | ----- | ----- |
 | **Return** | A 2-line version signature. |
 | **Remarks** | The version number may be important to resolve technical support issues. |
@@ -1822,35 +1422,17 @@ Returns the version stamp for your INTL for Visual FoxPro software.
 
 Gets a currency conversion factor from memory.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Syntax**</th>
-<th>oINTL.GetConversion( cLocale)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Return**</td>
-<td>A numeric conversion factor.</td>
-</tr>
-<tr>
-<td>**Arguments**</td>
-<td>cLocale: the name of the local to fetch.</td>
-</tr>
-<tr>
-<td>**Example**</td>
-<td><p>_SCREEN.AddObject( "oINTL", "INTL")
+| **Syntax** | oINTL.GetConversion( cLocale)
+| --- | --- |
+| **Return** | A numeric conversion factor. |
+| **Arguments** | cLocale: the name of the local to fetch. |
+| **Example** | <p>_SCREEN.AddObject( "oINTL", "INTL")
 <p>_SCREEN.oINTL.SetConversion("Canada", 1.3205)
 <p>_SCREEN.oINTL.GetConversion() &amp;&amp; 1.0000
 <p>_SCREEN.oINTL.GetConversion("Canada") &amp;&amp; 1.3205
 <p>_SCREEN.oINTL.SetLocale("Canada")
-<p>_SCREEN.oINTL.GetConversion() &amp;&amp; 1.3205</td>
-</tr>
-<tr>
-<td>**See Also**</td>
-<td>**cINTLCurrency::SetConversion**</td>
-</tr>
+<p>_SCREEN.oINTL.GetConversion() &amp;&amp; 1.3205 |
+| **See Also** | **cINTLCurrency::SetConversion** |
 </tbody>
 </table>
 
@@ -1858,37 +1440,19 @@ Gets a currency conversion factor from memory.
 
 Localizes a numeric currency value.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Syntax**</th>
-<th>oINTL.I ( nValue)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Return**</td>
-<td>A numeric conversion factor.</td>
-</tr>
-<tr>
-<td>**Arguments**</td>
-<td>nValue: the original currency value.</td>
-</tr>
-<tr>
-<td>**Example**</td>
-<td><p>_SCREEN.AddObject( "oINTL", "INTL")
+| **Syntax** | oINTL.I ( nValue)
+| --- | --- |
+| **Return** | A numeric conversion factor. |
+| **Arguments** | nValue: the original currency value. |
+| **Example** | <p>_SCREEN.AddObject( "oINTL", "INTL")
 <p>_SCREEN.oINTL.SetConversion("Canada", 1.3205)
 <p>_SCREEN.oINTL.GetConversion() &amp;&amp; 1.0000
 <p>_SCREEN.oINTL.I(10.00) &amp;&amp; 10.0000
 <p>_SCREEN.oINTL.GetConversion("Canada") &amp;&amp; 1.3205
 <p>_SCREEN.oINTL.SetLocale("Canada)
-<p>_SCREEN.oINTL.GetConversion() &amp;&amp; 1.3205<br />
-_SCREEN.oINTL.I(10.00) &amp;&amp; 13.2050</td>
-</tr>
-<tr>
-<td>**See Also**</td>
-<td>**cINTLCurrency::GetConversion**</td>
-</tr>
+<p>_SCREEN.oINTL.GetConversion() &amp;&amp; 1.3205<br>
+_SCREEN.oINTL.I(10.00) &amp;&amp; 13.2050 |
+| **See Also** | **cINTLCurrency::GetConversion** |
 </tbody>
 </table>
 
@@ -1896,35 +1460,17 @@ _SCREEN.oINTL.I(10.00) &amp;&amp; 13.2050</td>
 
 Sets a currency exchange rate.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Syntax**</th>
-<th>oINTL.SetConversion( cLocale, nFactor)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Return**</td>
-<td>A numeric conversion factor.</td>
-</tr>
-<tr>
-<td>**Arguments**</td>
-<td>cLocale: the name of the local to fetch.</td>
-</tr>
-<tr>
-<td>**Example**</td>
-<td><p>_SCREEN.AddObject( "oINTL", "INTL")
+| **Syntax** | oINTL.SetConversion( cLocale, nFactor)
+| --- | --- |
+| **Return** | A numeric conversion factor. |
+| **Arguments** | cLocale: the name of the local to fetch. |
+| **Example** | <p>_SCREEN.AddObject( "oINTL", "INTL")
 <p>_SCREEN.oINTL.SetConversion("Canada", 1.3205)
 <p>_SCREEN.oINTL.GetConversion() &amp;&amp; 1.0000
 <p>_SCREEN.oINTL.GetConversion("Canada") &amp;&amp; 1.3205
 <p>_SCREEN.oINTL.SetLocale("Canada)
-<p>_SCREEN.oINTL.GetConversion() &amp;&amp; 1.3205</td>
-</tr>
-<tr>
-<td>**See Also**</td>
-<td>**cINTLCurrency::GetConversion**</td>
-</tr>
+<p>_SCREEN.oINTL.GetConversion() &amp;&amp; 1.3205 |
+| **See Also** | **cINTLCurrency::GetConversion** |
 </tbody>
 </table>
 
@@ -1933,12 +1479,8 @@ Sets a currency exchange rate.
 ![](./media/image11.png)
 
 <table>
-<tbody>
-<tr>
-<td>**You can** **display different data in different locales.**</td>
-<td><p>Class cINTLData is a strategy used to localize the data sources in your applications. For example, cINTLData can be used to switch the display of data for different locales.
-<p>Data translations are kept in `strings.dbf` and are prefixed with the characters “((Data))”. For example: ((Data))Customer.cType</td>
-</tr>
+| **You can** **display different data in different locales.** | <p>Class cINTLData is a strategy used to localize the data sources in your applications. For example, cINTLData can be used to switch the display of data for different locales.
+<p>Data translations are kept in `strings.dbf` and are prefixed with the characters “((Data))”. For example: ((Data))Customer.cType |
 </tbody>
 </table>
 
@@ -1947,12 +1489,8 @@ Sets a currency exchange rate.
 ![](./media/image12.png)
 
 <table>
-<tbody>
-<tr>
-<td>**To display the characters of some languages, you may need to change fonts.**</td>
-<td><p>Class cINTLFont is a strategy used to localize the fonts in your applications. For example, cINTLFont can be used to switch from "Arial" to "Arial CE" or "Arial Cyr" for use in Eastern Europe and the former Soviet Union.
-<p>Font translations are kept in `strings.dbf` and are prefixed with the characters “((Font))”. For example: ((Font))Arial,10.</td>
-</tr>
+| **To display the characters of some languages, you may need to change fonts.** | <p>Class cINTLFont is a strategy used to localize the fonts in your applications. For example, cINTLFont can be used to switch from "Arial" to "Arial CE" or "Arial Cyr" for use in Eastern Europe and the former Soviet Union.
+<p>Font translations are kept in `strings.dbf` and are prefixed with the characters “((Font))”. For example: ((Font))Arial,10. |
 </tbody>
 </table>
 
@@ -1972,37 +1510,19 @@ Here are the exposed methods of class cINTLFont.
 
 #### `cINTLFont::SetConfig()`
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Syntax**</th>
-<th>oINTL.oFontStrategy.SetConfig( nConfig)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Return**</td>
-<td>Logical true if successful, false otherwise.</td>
-</tr>
-<tr>
-<td>**Arguments**</td>
-<td>nConfig: a configuration integer.</td>
-</tr>
-<tr>
-<td>**Example**</td>
-<td><p>_SCREEN.AddObject( "oINTL", "INTL")
+| **Syntax** | oINTL.oFontStrategy.SetConfig( nConfig)
+| --- | --- |
+| **Return** | Logical true if successful, false otherwise. |
+| **Arguments** | nConfig: a configuration integer. |
+| **Example** | <p>_SCREEN.AddObject( "oINTL", "INTL")
 <p>*-- Load the font strategy
 <p>* _SCREEN.oINTL.SetStrategy(“Font”) &amp;&amp; works too
 <p>_SCREEN.oINTL.SetConfig(2) &amp;&amp; for fonts
 <p>*-- Comfigure the font object for all
-<p>_SCREEN.oINTL.oFontStrategy.SetConfig( 1 + 2 )</td>
-</tr>
-<tr>
-<td>**Remarks**</td>
-<td>The configuration components for cINTLFont are as follows:<br />
-[1] FontName &amp; Size<br />
-[2] DynamicFontName &amp; Size</td>
-</tr>
+<p>_SCREEN.oINTL.oFontStrategy.SetConfig( 1 + 2 ) |
+| **Remarks** | The configuration components for cINTLFont are as follows:<br>
+[1] FontName &amp; Size<br>
+[2] DynamicFontName &amp; Size |
 </tbody>
 </table>
 
@@ -2032,7 +1552,7 @@ The array collection of strategy object references.
 
 | | |
 | ----- | ------ |
-| **Default** | .NULL. |
+| **Default** | `.NULL.` |
 
 ####  `cINTLMemento`::oCurrencyStrategy
 
@@ -2040,7 +1560,7 @@ An explicit object reference to the string currency strategy.
 
 | | |
 | ----- | ------ |
-| **Default** | .NULL. |
+| **Default** | `.NULL.` |
 
 ####  `cINTLMemento`::oDataStrategy
 
@@ -2048,7 +1568,7 @@ An explicit object reference to the data strategy.
 
 | | |
 | ----- | ------ |
-| **Default** | .NULL. |
+| **Default** | `.NULL.` |
 
 ####  `cINTLMemento`::oFontStrategy
 
@@ -2056,7 +1576,7 @@ An explicit object reference to the font strategy.
 
 | | |
 | ----- | ------ |
-| **Default** | .NULL. |
+| **Default** | `.NULL.` |
 
 #### `cINTLMemento`::oHook
 
@@ -2064,7 +1584,7 @@ Object reference to the hook object.
 
 | | |
 | ----- | ------ |
-| **Default** | .NULL. |
+| **Default** | `.NULL.` |
 
 ####  `cINTLMemento`::oPictureStrategy
 
@@ -2072,9 +1592,8 @@ An explicit object reference to the image localization strategy.
 
 | | |
 | ----- | ------ |
-| **Default** | .NULL. |
+| **Default** | `.NULL.` |
 
-####
 
 #### `cINTLMemento`::oStringStrategy
 
@@ -2082,7 +1601,7 @@ An explicit object reference to the string strategy.
 
 | | |
 | ----- | ------ |
-| **Default** | .NULL. |
+| **Default** | `.NULL.` |
 
 ### Class `cINTLMemento` Exposed Methods
 
@@ -2091,29 +1610,15 @@ An explicit object reference to the string strategy.
 Fills an array with the strategy engines found in the current INTL
 object.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Syntax**</th>
-<th>oINTL.aStrat( @taArray [, nType])</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Return**</td>
-<td>The size or the array, 0 if nothing found.</td>
-</tr>
-<tr>
-<td>**Arguments**</td>
-<td><p>taArray: an array, always passed by reference.
-<p>nType: the type of array desired<br />
-0 - Standard 1- D array of strategy names (Default)<br />
-1 - 2-dimension array of strategy names and object references<br />
-2 - 2-dimension array of strategy names and configuration integers</td>
-</tr>
-<tr>
-<td>**Example**</td>
-<td><p>DIMENSION MyStrategyArray[1]
+| **Syntax** | oINTL.aStrat( @taArray [, nType])
+| --- | --- |
+| **Return** | The size or the array, 0 if nothing found. |
+| **Arguments** | <p>taArray: an array, always passed by reference.
+<p>nType: the type of array desired<br>
+0 - Standard 1- D array of strategy names (Default)<br>
+1 - 2-dimension array of strategy names and object references<br>
+2 - 2-dimension array of strategy names and configuration integers |
+| **Example** | <p>DIMENSION MyStrategyArray[1]
 <p>_SCREEN.oINTL.SetStrategy(“Font”)
 <p>?_SCREEN.oINTL.aStrat( @MyStrategyArray) &amp;&amp; 2
 <p>?MyStrategyArray[1] &amp;&amp; "String"
@@ -2122,16 +1627,9 @@ object.
 <p>?MyStrategyArray[1,1] &amp;&amp; "String"
 <p>?MyStrategyArray[1,2] &amp;&amp; 1
 <p>?MyStrategyArray[2,1] &amp;&amp; "Font"
-<p>?MyStrategyArray[2,2] &amp;&amp; 3</td>
-</tr>
-<tr>
-<td>**Remarks**</td>
-<td>The array must be passed by reference. Like all other FoxPro array functions, the passed array is automatically redimensioned.</td>
-</tr>
-<tr>
-<td>**See Also**</td>
-<td>**cINTLString::Alang**</td>
-</tr>
+<p>?MyStrategyArray[2,2] &amp;&amp; 3 |
+| **Remarks** | The array must be passed by reference. Like all other FoxPro array functions, the passed array is automatically redimensioned. |
+| **See Also** | **cINTLString::Alang** |
 </tbody>
 </table>
 
@@ -2139,31 +1637,13 @@ object.
 
 Returns an integer encoding the object’s configuration.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Syntax**</th>
-<th>oINTL.GetConfig()</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Return**</td>
-<td>Integer.</td>
-</tr>
-<tr>
-<td>**Arguments**</td>
-<td>None.</td>
-</tr>
-<tr>
-<td>**Example**</td>
-<td><p>_SCREEN.AddObject( "oINTL", "INTL")
-<p>? _SCREEN.oINTL.GetConfig() &amp;&amp; Returns 1</td>
-</tr>
-<tr>
-<td>**See Also**</td>
-<td>**`cINTLMemento::SetConfig()`**</td>
-</tr>
+| **Syntax** | oINTL.GetConfig()
+| --- | --- |
+| **Return** | Integer. |
+| **Arguments** | None. |
+| **Example** | <p>_SCREEN.AddObject( "oINTL", "INTL")
+<p>? _SCREEN.oINTL.GetConfig() &amp;&amp; Returns 1 |
+| **See Also** | **`cINTLMemento::SetConfig()`** |
 </tbody>
 </table>
 
@@ -2172,31 +1652,13 @@ Returns an integer encoding the object’s configuration.
 Returns the localization language to be used by the INTL when localizing
 objects.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Syntax**</th>
-<th>oINTL.GetLanguage()</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Return**</td>
-<td>Character string containing the name of a language.</td>
-</tr>
-<tr>
-<td>**Arguments**</td>
-<td>None.</td>
-</tr>
-<tr>
-<td>**Example**</td>
-<td><p>_SCREEN.AddObject( "oINTL", "INTL")
-<p>_SCREEN.oINTL.GetLanguage() &amp;&amp; Returns "Original"</td>
-</tr>
-<tr>
-<td>**See Also**</td>
-<td>**`cINTLMemento::SetLanguage()`**</td>
-</tr>
+| **Syntax** | oINTL.GetLanguage()
+| --- | --- |
+| **Return** | Character string containing the name of a language. |
+| **Arguments** | None. |
+| **Example** | <p>_SCREEN.AddObject( "oINTL", "INTL")
+<p>_SCREEN.oINTL.GetLanguage() &amp;&amp; Returns "Original" |
+| **See Also** | **`cINTLMemento::SetLanguage()`** |
 </tbody>
 </table>
 
@@ -2204,31 +1666,13 @@ objects.
 
 Returns true if explicit localization is enabled.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Syntax**</th>
-<th>oINTL.GetExplicit()</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Return**</td>
-<td>Logical true if the INTL object is in explicit mode, false otherwise.</td>
-</tr>
-<tr>
-<td>**Arguments**</td>
-<td>None.</td>
-</tr>
-<tr>
-<td>**Example**</td>
-<td><p>_SCREEN.AddObject( "oINTL", "INTL")
-<p>? _SCREEN.oINTL.GetExplicit() &amp;&amp; Returns .F.</td>
-</tr>
-<tr>
-<td>**See Also**</td>
-<td>**`cINTLMemento::SetExplicit()`**</td>
-</tr>
+| **Syntax** | oINTL.GetExplicit()
+| --- | --- |
+| **Return** | Logical true if the INTL object is in explicit mode, false otherwise. |
+| **Arguments** | None. |
+| **Example** | <p>_SCREEN.AddObject( "oINTL", "INTL")
+<p>? _SCREEN.oINTL.GetExplicit() &amp;&amp; Returns .F. |
+| **See Also** | **`cINTLMemento::SetExplicit()`** |
 </tbody>
 </table>
 
@@ -2237,30 +1681,13 @@ Returns true if explicit localization is enabled.
 Returns the localization language to be used by the INTL when localizing
 objects.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Syntax**</th>
-<th>oINTL.GetLanguage</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Return**</td>
-<td>Character string containing the name of a language.</td>
-</tr>
-<tr>
-<td>**Arguments**</td>
-<td>None.</td>
-</tr>
-<tr>
-<td>**Example**</td>
-<td><p>_SCREEN.AddObject( "oINTL", "INTL")
-<p>_SCREEN.oINTL.GetLanguage() &amp;&amp; Returns "Original"</td>
-</tr>
-<tr>
-<td>**See Also**</td>
-</tr>
+| **Syntax** | oINTL.GetLanguage
+| --- | --- |
+| **Return** | Character string containing the name of a language. |
+| **Arguments** | None. |
+| **Example** | <p>_SCREEN.AddObject( "oINTL", "INTL")
+<p>_SCREEN.oINTL.GetLanguage() &amp;&amp; Returns "Original" |
+| **See Also** |
 </tbody>
 </table>
 
@@ -2268,31 +1695,13 @@ objects.
 
 Returns the value of the INTL object locale property.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Syntax**</th>
-<th>oINTL.GetLocale( @oPointer)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Return**</td>
-<td>Name of the current locale.</td>
-</tr>
-<tr>
-<td>**Arguments**</td>
-<td>None.</td>
-</tr>
-<tr>
-<td>**Example**</td>
-<td><p>_SCREEN.AddObject( "oINTL", "INTL")
-<p>_SCREEN.oINTL.GetLocale() &amp;&amp; Returns “Defaut”</td>
-</tr>
-<tr>
-<td>**See Also**</td>
-<td>**`cINTLMemento`::SetLocale**</td>
-</tr>
+| **Syntax** | oINTL.GetLocale( @oPointer)
+| --- | --- |
+| **Return** | Name of the current locale. |
+| **Arguments** | None. |
+| **Example** | <p>_SCREEN.AddObject( "oINTL", "INTL")
+<p>_SCREEN.oINTL.GetLocale() &amp;&amp; Returns “Defaut” |
+| **See Also** | **`cINTLMemento`::SetLocale** |
 </tbody>
 </table>
 
@@ -2300,7 +1709,7 @@ Returns the value of the INTL object locale property.
 
 Returns an object reference to a strategy object.
 
-| **Syntax** | oINTL.GetStrategy([cStrategy]) |
+| **Syntax** | `oINTL.GetStrategy([cStrategy])` |
 | ----- | ----- |
 | **Return** | An object reference to a given strategy. |
 | **Arguments** | cStrategy: a strategy name, the default being "String". Other valid names for native strategies include "Currency", "Data", or "Font". |
@@ -2312,7 +1721,7 @@ Returns an object reference to a strategy object.
 
 Returns the class used for subsequent strategy object instantiations.
 
-| **Syntax** | oINTL.GetStrategyClass( [cStrategy]) |
+| **Syntax** | `oINTL.GetStrategyClass( [cStrategy])` |
 | ----- | ----- |
 | **Return** | A strategy class name. |
 | **Arguments** | cStrategy: a strategy name. Valid names for native strategies include “String”, "Currency", "Data", “Picture” and "Font". |
@@ -2323,42 +1732,21 @@ Returns the class used for subsequent strategy object instantiations.
 
 Move selected properties of this object to the object specified.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Syntax**</th>
-<th>this.Mov( oObject)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Return**</td>
-<td>True</td>
-</tr>
-<tr>
-<td>**Arguments**</td>
-<td>oObject: the INTL class object to configure.</td>
-</tr>
-<tr>
-<td>**Example**</td>
-<td><p>oX = CREATEOBJECT("INTL")
-<p>this.Mov( oX)</td>
-</tr>
-<tr>
-<td>**Remarks**</td>
-<td><p>You wouldn't normally use this function. The example above is equivalent to performing:
+| **Syntax** | this.Mov( oObject)
+| --- | --- |
+| **Return** | True |
+| **Arguments** | oObject: the INTL class object to configure. |
+| **Example** | <p>oX = CREATEOBJECT("INTL")
+<p>this.Mov( oX) |
+| **Remarks** | <p>You wouldn't normally use this function. The example above is equivalent to performing:
 <p>oX.SetLanguage( this.GetLanguage())
 <p>oX.SetConfig( this.GetConfig() )
 <p>oX.SetExplicit( this.GetExplicit())
 <p>oX.SetLocale( this.GetLocale() )
-<p>ox.SetHook( this.GetHook() )</td>
-</tr>
-<tr>
-<td>**See Also**</td>
-<td>**`cINTLMemento::Pitch()`**<br />
-`cINTLMemento::Pop()`<br />
-`cINTLMemento::Push()`</td>
-</tr>
+<p>ox.SetHook( this.GetHook() ) |
+| **See Also** | **`cINTLMemento::Pitch()`**<br>
+`cINTLMemento::Pop()`<br>
+`cINTLMemento::Push()` |
 </tbody>
 </table>
 
@@ -2366,35 +1754,14 @@ Move selected properties of this object to the object specified.
 
 Removes the internal configuration of an INTL object off a stack.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Syntax**</th>
-<th>oINTL.Pitch()</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Return**</td>
-<td>Logical true if there was something on stack to pitch.</td>
-</tr>
-<tr>
-<td>**Arguments**</td>
-<td>None.</td>
-</tr>
-<tr>
-<td>**Example**</td>
-<td>oINTL.Pitch()</td>
-</tr>
-<tr>
-<td>**Remarks**</td>
-<td>You wouldn't normally use this function unless you have a reason to save and restore INTL’s state.</td>
-</tr>
-<tr>
-<td>**See Also**</td>
-<td>**`cINTLMemento::Pop()`**<br />
-`cINTLMemento::Push()`</td>
-</tr>
+| **Syntax** | oINTL.Pitch()
+| --- | --- |
+| **Return** | Logical true if there was something on stack to pitch. |
+| **Arguments** | None. |
+| **Example** | oINTL.Pitch() |
+| **Remarks** | You wouldn't normally use this function unless you have a reason to save and restore INTL’s state. |
+| **See Also** | **`cINTLMemento::Pop()`**<br>
+`cINTLMemento::Push()` |
 </tbody>
 </table>
 
@@ -2402,39 +1769,18 @@ Removes the internal configuration of an INTL object off a stack.
 
 Pops the internal configuration of an INTL object off the stack.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Syntax**</th>
-<th>oINTL.Pop()</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Return**</td>
-<td>Logical true if successful, false otherwise.</td>
-</tr>
-<tr>
-<td>**Arguments**</td>
-<td>None.</td>
-</tr>
-<tr>
-<td>**Example**</td>
-<td><p>_SCREEN.AddObject( "oINTL", "INTL")
+| **Syntax** | oINTL.Pop()
+| --- | --- |
+| **Return** | Logical true if successful, false otherwise. |
+| **Arguments** | None. |
+| **Example** | <p>_SCREEN.AddObject( "oINTL", "INTL")
 <p>*-- Store the current state
 <p>_SCREEN.oINTL.Push() &amp;&amp; Returns 1
 <p>_SCREEN.oINTL.Pop() &amp;&amp; Returns .T.
-<p>_SCREEN.oINTL.Pop() &amp;&amp; Returns .F.</td>
-</tr>
-<tr>
-<td>**Remarks**</td>
-<td>You wouldn't normally use this function unless you have a reason to save and restore INTL’s state.</td>
-</tr>
-<tr>
-<td>**See Also**</td>
-<td>**`cINTLMemento::Pitch()`**<br />
-`cINTLMemento::Push()`</td>
-</tr>
+<p>_SCREEN.oINTL.Pop() &amp;&amp; Returns .F. |
+| **Remarks** | You wouldn't normally use this function unless you have a reason to save and restore INTL’s state. |
+| **See Also** | **`cINTLMemento::Pitch()`**<br>
+`cINTLMemento::Push()` |
 </tbody>
 </table>
 
@@ -2442,38 +1788,17 @@ Pops the internal configuration of an INTL object off the stack.
 
 Stores the internal configuration of an INTL object on a stack.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Syntax**</th>
-<th>oINTL.Push()</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Return**</td>
-<td>The index in the stack where the configuration is stored.</td>
-</tr>
-<tr>
-<td>**Arguments**</td>
-<td>None.</td>
-</tr>
-<tr>
-<td>**Remarks**</td>
-<td>You wouldn't normally use this function unless you have a reason to save and restore INTL’s state.</td>
-</tr>
-<tr>
-<td>**Example**</td>
-<td><p>_SCREEN.AddObject( "oINTL", "INTL")
+| **Syntax** | oINTL.Push()
+| --- | --- |
+| **Return** | The index in the stack where the configuration is stored. |
+| **Arguments** | None. |
+| **Remarks** | You wouldn't normally use this function unless you have a reason to save and restore INTL’s state. |
+| **Example** | <p>_SCREEN.AddObject( "oINTL", "INTL")
 <p>*-- Store the current state
 <p>_SCREEN.oINTL.Push() &amp;&amp; Returns 1
-<p>_SCREEN.oINTL.Push() &amp;&amp; Returns 2</td>
-</tr>
-<tr>
-<td>**See Also**</td>
-<td>**`cINTLMemento::Pitch()`**<br />
-`cINTLMemento::Pop()`</td>
-</tr>
+<p>_SCREEN.oINTL.Push() &amp;&amp; Returns 2 |
+| **See Also** | **`cINTLMemento::Pitch()`**<br>
+`cINTLMemento::Pop()` |
 </tbody>
 </table>
 
@@ -2484,35 +1809,14 @@ selectively localize strings, fonts, datasources, graphical elements,
 and currency values. By default, INTL will just localize the strings in
 your interface.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Syntax**</th>
-<th>oINTL.SetConfig(nExpression)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Return**</td>
-<td>Logical true if successful, false otherwise.</td>
-</tr>
-<tr>
-<td>**Arguments**</td>
-<td>nExpression: a numeric configuration integer.</td>
-</tr>
-<tr>
-<td>**Example**</td>
-<td><p>*-- Load the string and font strategies
-<p>oINTL.SetConfig(3)</td>
-</tr>
-<tr>
-<td>**Remarks**</td>
-<td>Invoking SetConfig() automatically triggers a call to LoadStrategies() to refresh the object's loaded strategies.</td>
-</tr>
-<tr>
-<td>**See Also**</td>
-<td>**`cINTLMemento::GetConfig()`**</td>
-</tr>
+| **Syntax** | oINTL.SetConfig(nExpression)
+| --- | --- |
+| **Return** | Logical true if successful, false otherwise. |
+| **Arguments** | nExpression: a numeric configuration integer. |
+| **Example** | <p>*-- Load the string and font strategies
+<p>oINTL.SetConfig(3) |
+| **Remarks** | Invoking SetConfig() automatically triggers a call to LoadStrategies() to refresh the object's loaded strategies. |
+| **See Also** | **`cINTLMemento::GetConfig()`** |
 </tbody>
 </table>
 
@@ -2520,7 +1824,7 @@ your interface.
 
 Sets the operational properties of INTL objects to their defaults.
 
-| **Syntax** | oINTL.SetDefaults() |
+| **Syntax** | `oINTL.SetDefaults()` |
 | ----- | ----- |
 | **Return** | Logical true if all operational properties were successfully reset to default. |
 | **Arguments** | None. |
@@ -2532,31 +1836,13 @@ Sets the operational properties of INTL objects to their defaults.
 
 Sets the INTL object into Explicit mode.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Syntax**</th>
-<th>oINTL.SetExplicit( lSetting)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Return**</td>
-<td>Logical true if successful, false otherwise.</td>
-</tr>
-<tr>
-<td>**Arguments**</td>
-<td>lSetting: logical true to turn on Explicit mode, false to turn it off.</td>
-</tr>
-<tr>
-<td>**Example**</td>
-<td><p>_SCREEN.AddObject( "oINTL", "INTL")
-<p>_SCREEN.oINTL.SetExplicit()</td>
-</tr>
-<tr>
-<td>**See Also**</td>
-<td>**`cINTLMemento::GetExplicit()`**</td>
-</tr>
+| **Syntax** | oINTL.SetExplicit( lSetting)
+| --- | --- |
+| **Return** | Logical true if successful, false otherwise. |
+| **Arguments** | lSetting: logical true to turn on Explicit mode, false to turn it off. |
+| **Example** | <p>_SCREEN.AddObject( "oINTL", "INTL")
+<p>_SCREEN.oINTL.SetExplicit() |
+| **See Also** | **`cINTLMemento::GetExplicit()`** |
 </tbody>
 </table>
 
@@ -2564,34 +1850,16 @@ Sets the INTL object into Explicit mode.
 
 Sets the hook reference pointer.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Syntax**</th>
-<th>oINTL.SetHook( oRefenceObject )</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Return**</td>
-<td>Logical true if successful, false otherwise.</td>
-</tr>
-<tr>
-<td>**Arguments**</td>
-<td>oReferenceObject: the name of an object to act as reference. A null string nullifies the reference.</td>
-</tr>
-<tr>
-<td>**Example**</td>
-<td><p>*-- In this example, we substitute our own class<br />
-*-- for the INTL string class that normally serves<br />
-*-- as the main hook strategy.<br />
+| **Syntax** | oINTL.SetHook( oRefenceObject )
+| --- | --- |
+| **Return** | Logical true if successful, false otherwise. |
+| **Arguments** | oReferenceObject: the name of an object to act as reference. A null string nullifies the reference. |
+| **Example** | <p>*-- In this example, we substitute our own class<br>
+*-- for the INTL string class that normally serves<br>
+*-- as the main hook strategy.<br>
 _SCREEN.AddObject( "oINTL", "INTL")
-<p>_SCREEN.oINTL.SetHook( CREATE(“MyStringClass”)</td>
-</tr>
-<tr>
-<td>**See Also**</td>
-<td>**`cINTLAbstract::GetHook()`**</td>
-</tr>
+<p>_SCREEN.oINTL.SetHook( CREATE(“MyStringClass”) |
+| **See Also** | **`cINTLAbstract::GetHook()`** |
 </tbody>
 </table>
 
@@ -2599,31 +1867,13 @@ _SCREEN.AddObject( "oINTL", "INTL")
 
 Sets the language for subsequent localization.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Syntax**</th>
-<th>oINTL.SetLanguage( cLanguage)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Return**</td>
-<td>Logical true if successful, false otherwise.</td>
-</tr>
-<tr>
-<td>**Arguments**</td>
-<td>cLanguage: the language the INTL object will use in subsequent localizations.</td>
-</tr>
-<tr>
-<td>**Example**</td>
-<td><p>_SCREEN.AddObject( "oINTL", "INTL")
-<p>_SCREEN.oINTL.SetLanguage( "German")</td>
-</tr>
-<tr>
-<td>**See Also**</td>
-<td>**`cINTLMemento::GetLanguage()`**</td>
-</tr>
+| **Syntax** | oINTL.SetLanguage( cLanguage)
+| --- | --- |
+| **Return** | Logical true if successful, false otherwise. |
+| **Arguments** | cLanguage: the language the INTL object will use in subsequent localizations. |
+| **Example** | <p>_SCREEN.AddObject( "oINTL", "INTL")
+<p>_SCREEN.oINTL.SetLanguage( "German") |
+| **See Also** | **`cINTLMemento::GetLanguage()`** |
 </tbody>
 </table>
 
@@ -2631,31 +1881,13 @@ Sets the language for subsequent localization.
 
 Set the INTL locale.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Syntax**</th>
-<th>oINTL.SetLocale( cLocalename)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Return**</td>
-<td>Logical true if successful, false otherwise.</td>
-</tr>
-<tr>
-<td>**Arguments**</td>
-<td>cLocalename, the alias of a locale.</td>
-</tr>
-<tr>
-<td>**Example**</td>
-<td><p>_SCREEN.AddObject( "oINTL", "INTL")
-<p>_SCREEN.oINTL.SetLocale( "SPAIN")</td>
-</tr>
-<tr>
-<td>**See Also**</td>
-<td>**`cINTLMemento::GetLocale()`**</td>
-</tr>
+| **Syntax** | oINTL.SetLocale( cLocalename)
+| --- | --- |
+| **Return** | Logical true if successful, false otherwise. |
+| **Arguments** | cLocalename, the alias of a locale. |
+| **Example** | <p>_SCREEN.AddObject( "oINTL", "INTL")
+<p>_SCREEN.oINTL.SetLocale( "SPAIN") |
+| **See Also** | **`cINTLMemento::GetLocale()`** |
 </tbody>
 </table>
 
@@ -2663,71 +1895,31 @@ Set the INTL locale.
 
 Loads a strategy.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Syntax**</th>
-<th>oINTL.SetStrategy(cStrategy, cClassName |oObject)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Return**</td>
-<td>Logical true if successful, false otherwise.</td>
-</tr>
-<tr>
-<td>**Arguments**</td>
-<td><p>cStrategy: a strategy name. Valid names for native strategies include "String", "Currency", "Data", or "Font".
+| **Syntax** | oINTL.SetStrategy(cStrategy, cClassName |oObject)
+| --- | --- |
+| **Return** | Logical true if successful, false otherwise. |
+| **Arguments** | <p>cStrategy: a strategy name. Valid names for native strategies include "String", "Currency", "Data", or "Font".
 <p>cClass: the name of a strategy class.
-<p>oObject: a strategy object.</td>
-</tr>
-<tr>
-<td>**Example**</td>
-<td>oINTL.SetStrategy("Currency","cINTLCurrency")</td>
-</tr>
-<tr>
-<td>**Remarks**</td>
-<td>The cStrategy argument becomes the alias by which the strategy is named. If cStrategy is one of the native INTL aliases ("String", "Font", "Data", "Picture", or "Currency") then an automatic ::SetConfig() is executed. For example, if oINTL.GetConfig() returns 1, then after oINTL.SetStrategy("Currency", "cMyCurrency") it will report 17.</td>
-</tr>
-<tr>
-<td>**See Also**</td>
-<td>**`cINTLMemento::GetStrategy()`**</td>
-</tr>
+<p>oObject: a strategy object. |
+| **Example** | oINTL.SetStrategy("Currency","cINTLCurrency") |
+| **Remarks** | The cStrategy argument becomes the alias by which the strategy is named. If cStrategy is one of the native INTL aliases ("String", "Font", "Data", "Picture", or "Currency") then an automatic ::SetConfig() is executed. For example, if oINTL.GetConfig() returns 1, then after oINTL.SetStrategy("Currency", "cMyCurrency") it will report 17. |
+| **See Also** | **`cINTLMemento::GetStrategy()`** |
 </tbody>
 </table>
 
-####
 
 #### ``cINTLMemento::SetStrategyClass()``
 
 Sets the class name that is to be used for subsequent strategy object
 instantiations.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Syntax**</th>
-<th>oINTL.SetStrategyClass( cStrategy, cStrategyClass</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Return**</td>
-<td>Logical true if successful, false otherwise.</td>
-</tr>
-<tr>
-<td>**Arguments**</td>
-<td><p>cStrategy: a strategy name. Valid names for native strategies include “String”, "Currency", "Data", “Picture” and "Font".
-<p>CStrategyClass:the name of a class to associate with the strategy name.</td>
-</tr>
-<tr>
-<td>**Example**</td>
-<td>oINTL.SetStrategyClass("Currency", “MyCurrencyClass”)</td>
-</tr>
-<tr>
-<td>**See Also**</td>
-<td>**`cINTLMemento::GetStrategyClass()`**</td>
-</tr>
+| **Syntax** | oINTL.SetStrategyClass( cStrategy, cStrategyClass
+| --- | --- |
+| **Return** | Logical true if successful, false otherwise. |
+| **Arguments** | <p>cStrategy: a strategy name. Valid names for native strategies include “String”, "Currency", "Data", “Picture” and "Font".
+<p>CStrategyClass:the name of a class to associate with the strategy name. |
+| **Example** | oINTL.SetStrategyClass("Currency", “MyCurrencyClass”) |
+| **See Also** | **`cINTLMemento::GetStrategyClass()`** |
 </tbody>
 </table>
 
@@ -2737,20 +1929,11 @@ instantiations.
 
 This array member stores the stack of INTL configuration properties.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Default**</th>
-<th>.NULL.</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**See Also**</td>
-<td>**`cINTLMemento::Pitch()`**<br />
-`cINTLMemento::Pop()`<br />
-`cINTLMemento::Push()`</td>
-</tr>
+| **Default** | .NULL.
+| --- | --- |
+| **See Also** | **`cINTLMemento::Pitch()`**<br>
+`cINTLMemento::Pop()`<br>
+`cINTLMemento::Push()` |
 </tbody>
 </table>
 
@@ -2759,19 +1942,10 @@ This array member stores the stack of INTL configuration properties.
 Stores the current language configuration of this particular INTL
 object.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Default**</th>
-<th>"Original"</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**See Also**</td>
-<td>**`cINTLMemento::GetLanguage()`**<br />
-`cINTLMemento::SetLanguage()`</td>
-</tr>
+| **Default** | "Original"
+| --- | --- |
+| **See Also** | **`cINTLMemento::GetLanguage()`**<br>
+`cINTLMemento::SetLanguage()` |
 </tbody>
 </table>
 
@@ -2779,19 +1953,10 @@ object.
 
 Stores the current locale name of this particular INTL object.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Default**</th>
-<th>"Original"</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**See Also**</td>
-<td>**`cINTLMemento::GetLocale()`**<br />
-`cINTLMemento::SetLocale()`</td>
-</tr>
+| **Default** | "Original"
+| --- | --- |
+| **See Also** | **`cINTLMemento::GetLocale()`**<br>
+`cINTLMemento::SetLocale()` |
 </tbody>
 </table>
 
@@ -2799,21 +1964,12 @@ Stores the current locale name of this particular INTL object.
 
 Default class name for the string strategy.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Default**</th>
-<th>"cINTLString"</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**See Also**</td>
-<td>**`cINTLMemento::GetStrategy()`**<br />
-`cINTLMemento::SetDefaults()`<br />
-`cINTLMemento::SetStrategy()`<br />
-`cINTLMemento::aStrat()`</td>
-</tr>
+| **Default** | "cINTLString"
+| --- | --- |
+| **See Also** | **`cINTLMemento::GetStrategy()`**<br>
+`cINTLMemento::SetDefaults()`<br>
+`cINTLMemento::SetStrategy()`<br>
+`cINTLMemento::aStrat()` |
 </tbody>
 </table>
 
@@ -2823,86 +1979,44 @@ Logical true if the localization is explicit. Explicit localization
 localizes only objects containing "INTL" properties or have associated
 references to an INTL object in members named oINTL.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Default**</th>
-<th>.F.</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**See Also**</td>
-<td>**`cINTLMemento`::aStrategies[...]**<br />
-`cINTLMemento::GetStrategy()`<br />
-`cINTLMemento::SetStrategy()`<br />
-`cINTLMemento::GetConfig()`<br />
-`cINTLMemento::SetConfig()`</td>
-</tr>
-</tbody>
-</table>
+| **Default** | .F.
+| --- | --- |
+| **See Also** | **`cINTLMemento`::aStrategies[...]**<br>`cINTLMemento::GetStrategy()`<br>`cINTLMemento::SetStrategy()`<br>`cINTLMemento::GetConfig()`<br>`cINTLMemento::SetConfig()` |
 
 #### `cINTLMemento`::nConfig
 
 Stores the configuration integer for this particular object.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Default**</th>
-<th>1</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**See Also**</td>
-<td>**`cINTLMemento`::aStrategies[...]**<br />
-`cINTLMemento::GetConfig()`<br />
-`cINTLMemento::SetConfig()`</td>
-</tr>
-</tbody>
-</table>
+| **Default** | 1
+| --- | --- |
+| **See Also** | **`cINTLMemento`::aStrategies[...]**<br>`cINTLMemento::GetConfig()`<br>`cINTLMemento::SetConfig()` |
 
 #### `cINTLMemento`::nDefaultConfig
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Default**</th>
-<th>3 — meaning both FontName and DynamicFontName are localized.</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Remarks**</td>
-<td>Stores the default configuration for the strategy object.</td>
-</tr>
-<tr>
-<td>**See Also:**</td>
-<td>**`cINTLMemento::GetConfig()`**<br />
-`cINTLMemento::SetConfig()`<br />
-`cINTLMemento::SetDefaults()`</td>
-</tr>
-</tbody>
-</table>
+| **Default** | 3 — meaning both `FontName` and `DynamicFontName` properties are localized.
+| --- | --- |
+| **Remarks** | Stores the default configuration for the strategy object. |
+| **See Also:** | **`cINTLMemento::GetConfig()`**<br>`cINTLMemento::SetConfig()`<br>`cINTLMemento::SetDefaults()` |
 
 ## Class cINTLPicture
 
-| | |
-| ----- | ----- |
-| **Use a cINTLPicture strategy to localize graphical elements.** | A cINTLPicture strategy object is used to localize the graphical elements of your applications, like bitmaps, icons, images and graphical mouse cursors. Picture translations are kept in `strings.dbf` and are prefixed with the characters “((Picture))”. For example: ((Picture))Working.BMP |
+**Use a cINTLPicture strategy to localize graphical elements.**
+
+A cINTLPicture strategy object is used to localize the graphical elements of your applications, like bitmaps, icons,
+images and graphical mouse cursors. Picture translations are kept in `strings.dbf` and are prefixed with the characters
+`“((Picture))”`. For example: `((Picture))Working.BMP`.
+
 
 ## Class cINTLRightToLeft
 
-<table>
-<tbody>
-<tr>
-<td>**The cINTLRightToLeft strategy is useful for Middle-Eastern cultures.**</td>
-<td><p>A cINTLRightTiLeft strategy object is used to reverse a form's objects so the form reads from right to left or vice versa. This is useful if you are localizing to or from Middle-Eastern writing systems like Hebrew or Arabic.
-<p>Note that the cINTLRightToLeft strategy only rearranges controls, and does not actually reverse the direction of the displayed text. To change the direction of the displayed text, you must be using a Middle-Eastern version of Windows and the RightToLeft properties of the form objects must be logical true.</td>
-</tr>
-</tbody>
-</table>
+**The `cINTLRightToLeft` strategy is useful for Middle-Eastern cultures.**
+
+A `cINTLRightTiLeft` strategy object is used to reverse a form's objects so the form reads from right to left or vice versa.
+This is useful if you are localizing to or from Middle-Eastern writing systems like Hebrew or Arabic.
+
+Note that the cINTLRightToLeft strategy only rearranges controls, and does not actually reverse the direction
+of the displayed text. To change the direction of the displayed text, you must be using a Middle-Eastern version
+of Windows and the RightToLeft properties of the form objects must be logical true.
 
 ## Class cINTLStrategy
 
@@ -2918,47 +2032,18 @@ localization subclasses.
 Logical true if, at last indication, the strategy resource files were
 open.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Default**</th>
-<th>Logical false.</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Remarks**</td>
-<td>This property is set to logical true when the strategy resource table is open, though there is no guarantee that the table won’t be closed. Used purely for performance reasons.</td>
-</tr>
-<tr>
-<td>**See Also**</td>
-<td>**`cINTLMemento`::aStrategies[...]**<br />
-`cINTLMemento::GetStrategy()`<br />
-`cINTLMemento::SetStrategy()`</td>
-</tr>
-</tbody>
-</table>
+| **Default** | Logical false.
+| --- | --- |
+| **Remarks** | This property is set to logical true when the strategy resource table is open, though there is no guarantee that the table won’t be closed. Used purely for performance reasons. |
+| **See Also** | **`cINTLMemento`::aStrategies[...]**<br>`cINTLMemento::GetStrategy()`<br>`cINTLMemento::SetStrategy()` |
 
 #### cINTLStrategy::nDefaultConfig
 
 The default configuration integer.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Default**</th>
-<th>1</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**See Also**</td>
-<td>**`cINTLMemento`::GetConfig**<br />
-`cINTLMemento`::SetConfig<br />
-`cINTLMemento`::SetDefaults</td>
-</tr>
-</tbody>
-</table>
+| **Default** | 1
+| --- | --- |
+| **See Also** | **`cINTLMemento`::GetConfig**<br>`cINTLMemento::SetConfig`<br>`cINTLMemento::SetDefaults` |
 
 ### Class cINTLStrategy Exposed Methods
 
@@ -2966,172 +2051,114 @@ The default configuration integer.
 
 Returns the alias of the resource table used by this strategy.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Syntax**</th>
-<th>_SCREEN.oINTL.GetAlias()</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Return**</td>
-<td>The name of the alias for the strategy’s resource table (if there is one) or .NULL. (if there isn’t).</td>
-</tr>
-<tr>
-<td>**Arguments**</td>
-<td>None.</td>
-</tr>
-<tr>
-<td>**Example**</td>
-<td><p>_SCREEN.AddObject("oINTL","INTL")
-<p>ACTIVATE SCREEN
-<p>*-- Since INTL is hooked by the String strategy, the
-<p>*-- following two lines are equivalent
-<p>? _SCREEN.oINTL.GetAlias() &amp;&amp; Returns “Strings.DBF”
-<p>? _SCREEN.oINTL.oStringStrategy.GetAlias() &amp;&amp; Ditto</td>
-</tr>
-<tr>
-<td>**Remarks**</td>
-<td>Some strategies may not use resource tables. Note that ::GetAlias() returns the value of the strategy’s cAlias property, and does not indicate if the resource table actually exists.</td>
-</tr>
-<tr>
-<td>**See Also**</td>
-<td>**cINTLStrategy::GetTable()**</td>
-</tr>
-</tbody>
-</table>
+| **Syntax** | _SCREEN.oINTL.GetAlias()
+| --- | --- |
+| **Return** | The name of the alias for the strategy’s resource table (if there is one) or `.NULL.` (if there isn’t). |
+| **Arguments** | None. |
+| **Remarks** | Some strategies may not use resource tables. Note that ::GetAlias() returns the value of the strategy’s cAlias property, and does not indicate if the resource table actually exists. |
+| **See Also** | **`cINTLStrategy::GetTable()`** |
+
+**Example**
+```
+_SCREEN.AddObject("oINTL","INTL")
+ACTIVATE SCREEN
+*-- Since INTL is hooked by the String strategy, the
+*-- following two lines are equivalent
+? _SCREEN.oINTL.GetAlias() &amp;&amp; Returns “Strings.DBF”
+? _SCREEN.oINTL.oStringStrategy.GetAlias() &amp;&amp; Ditto
+```
 
 #### `cINTLStrategy::GetTable()`
 
 Returns the name of the strategy object’s resource table.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Syntax**</th>
-<th>_SCREEN.oINTL.GetTable()</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Return**</td>
-<td>The name of the strategy’s resource table (if there is one) or .NULL. (if there isn’t.)</td>
-</tr>
-<tr>
-<td>**Arguments**</td>
-<td>None.</td>
-</tr>
-<tr>
-<td>**Example**</td>
-<td><p>_SCREEN.AddObject("oINTL","INTL")
-<p>ACTIVATE SCREEN
-<p>*-- The following two lines are equivalent
-<p>? _SCREEN.oINTL.GetTable()
-<p>? _SCREEN.oINTL.oStringStrategy.GetTable()</td>
-</tr>
-<tr>
-<td>**Remarks**</td>
-<td>Some strategies may not use resource tables. Note that ::GetTable() returns the value of the strategy’s cTable property, and does not indicate if the resource table actually exists.</td>
-</tr>
-<tr>
-<td>**See Also**</td>
-<td>**cINTLStrategy::GetAlias()**</td>
-</tr>
-</tbody>
-</table>
+| **Syntax** | _SCREEN.oINTL.GetTable()
+| --- | --- |
+| **Return** | The name of the strategy’s resource table (if there is one) or `.NULL.` (if there isn’t.) |
+| **Arguments** | None. |
+| **Remarks** | Some strategies may not use resource tables. Note that ::GetTable() returns the value of the strategy’s cTable property, and does not indicate if the resource table actually exists. |
+| **See Also** | **`cINTLStrategy::GetAlias()`** |
+
+**Example**
+```
+_SCREEN.AddObject("oINTL","INTL")
+ACTIVATE SCREEN
+*-- The following two lines are equivalent
+? _SCREEN.oINTL.GetTable()
+? _SCREEN.oINTL.oStringStrategy.GetTable()
+```
 
 #### `cINTLStrategy::GetUpdateMode()`
 
 Returns the setting for the update mode of the current strategy.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Syntax**</th>
-<th>oINTL.&lt;StrategyObject&gt;.GetUpdateMode()</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Return**</td>
-<td>Logical true if so, false otherwise.</td>
-</tr>
-<tr>
-<td>**Arguments**</td>
-<td>None.</td>
-</tr>
-<tr>
-<td>**Example**</td>
-<td><p>_SCREEN.AddObject( "oINTL", "INTL")
-<p>_SCREEN.oINTL. GetUpdateMode()</td>
-</tr>
-<tr>
-<td>**Remarks**</td>
-<td>Strategies may possess the ability to automatically update or refresh their resource files. The update mode controls whether this feature is on or off.</td>
-</tr>
-<tr>
-<td>**See Also**</td>
-<td>**cINTLStrategy::SetUpdateMode()**</td>
-</tr>
-</tbody>
-</table>
+| **Syntax** | oINTL.&lt;StrategyObject&gt;.GetUpdateMode()
+| --- | --- |
+| **Return** | Logical true if so, false otherwise. |
+| **Arguments** | None. |
+| **Remarks** | Strategies may possess the ability to automatically update or refresh their resource files. The update mode controls whether this feature is on or off.
+| **See Also** | **`cINTLStrategy::SetUpdateMode()`** |
+
+**Example**
+```
+_SCREEN.AddObject( "oINTL", "INTL")
+_SCREEN.oINTL. GetUpdateMode()
+```
 
 #### `cINTLStrategy::I()`
 
 Handles localization tasks of this particular strategy.
 
-| **Syntax** | cINTLStrategy.I(expr1, expr2) |
+| **Syntax** | `cINTLStrategy.I(expr1, expr2)` |
 | ----- | ----- |
 | **Return** | Typically the localization of expr1 according to `cINTLMemento`::GetLanguage() or `cINTLMemento::SetLocale()`. |
-| **Arguments** | Varies according to what's required by the strategy subclass instance. Typically expr1 is a string, a number, or a file name to localize. Expr2 is usually an additional qualifier. For example, in a custom currency strategy, expr2 might be used to pass a valuation date. |
+| **Arguments** | Varies according to what's required by the strategy subclass instance. Typically `expr1` is a string, a number, or a file name to localize. `Expr2` is usually an additional qualifier. For example, in a custom currency strategy, `expr2` might be used to pass a valuation date. |
 
 #### `cINTLStrategy::OpenStrategy()`
 
 Open the strategy object’s resource table.
 
-| **Syntax** | oINTL.OpenStrategy( [cFileName [,cOptions]]) |
+| **Syntax** | `oINTL.OpenStrategy( [cFileName [,cOptions]])` |
 | ----- | ----- |
 | **Return** | Logical true if successful, false otherwise. |
 | **Arguments** | cFileName: the name of the table to open as a resource file. This defaults to what’s returned by GetTable(). |
 | **Remarks** | Some strategies may not use resource tables. |
 
-####
 
 #### `cINTLStrategy::SetAlias()`
 
 Sets a new value for the alias of the strategy object’s resource table.
 
-| **Syntax** | oINTL.SetAlias( cAliasName) |
+| **Syntax** | `oINTL.SetAlias( cAliasName)` |
 | ----- | ----- |
 | **Return** | Logical true if successful, false otherwise. |
 | **Arguments** | cAlias: the alias of the resource table. |
-| **Example** | oINTL.SetAlias( "C:\\NEW\\Strings.DBF") |
+| **Example** | `oINTL.SetAlias( "C:\\NEW\\Strings.DBF")` |
 | **Remarks** | Some strategies may not use resource tables. |
-| **See Also** | **cINTLStrategy::GetAlias** |
+| **See Also** | **`cINTLStrategy::GetAlias`** |
 
 #### `cINTLStrategy::SetTable()`
 
 Sets the name of the strategy object’s resource table.
 
-| **Syntax** | oINTL.SetTable( cFileName) |
+| **Syntax** | `oINTL.SetTable( cFileName)` |
 | ----- | ----- |
 | **Return** | Logical true if successful, false otherwise. |
 | **Arguments** | cFilename: the name of a strategy resource table. |
-| **Example** | oINTL.SetTable("C:\\NEW\\Strings.DBF") |
+| **Example** | `oINTL.SetTable("C:\\NEW\\Strings.DBF")` |
 | **Remarks** | Some strategies may not use resource tables. |
-| **See Also** | **cINTLStrategy::GetTable** |
+| **See Also** | **`cINTLStrategy::GetTable`** |
 
 #### `cINTLStrategy::SetUpdateMode()`
 
 Controls the resource updating behavior of this strategy.
 
-| **Syntax** | oINTL.SetUpdateMode( lOnOff) |
+| **Syntax** | `oINTL.SetUpdateMode( lOnOff)` |
 | ----- | ----- |
 | **Return** | Logical true if successful, false otherwise. |
 | **Arguments** | lOnOff: logical true to enable update mode, false to disable. |
 | **Remarks** | Some strategies may not support automatic resource updating. |
-| **See Also** | **cINTLStrategy::GetUpdateMode** |
+| **See Also** | **`cINTLStrategy::GetUpdateMode`** |
 
 ### Class cINTLStrategy Protected Properties
 
@@ -3139,23 +2166,10 @@ Controls the resource updating behavior of this strategy.
 
 Stores the alias of the strategy object’s resource table.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Default**</th>
-<th>"Strings"</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Remarks**</td>
-<td>Some strategies don’t use resource tables.</td>
-</tr>
-<tr>
-<td>**See Also**</td>
-<td>**cINTLStrategy::cTable**<br />
-cINTLStrategy::GetAlias</td>
-</tr>
+| **Default** | "Strings"
+| --- | --- |
+| **Remarks** | Some strategies don’t use resource tables. |
+| **See Also** | **`cINTLStrategy::cTable`**<br>`cINTLStrategy::GetAlias` |
 </tbody>
 </table>
 
@@ -3163,89 +2177,40 @@ cINTLStrategy::GetAlias</td>
 
 Stores the resource table name to be used by the strategy object.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Default**</th>
-<th>"Strings.DBF"</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Remarks**</td>
-<td>Some strategies don’t use resource tables.</td>
-</tr>
-<tr>
-<td>**See Also**</td>
-<td>**cINTLStrategy::cAlias**<br />
-cINTLStrategy::GetTable<br />
-cINTLStrategy::SetTable<br />
-cINTLStrategy::OpenStrategy</td>
-</tr>
-</tbody>
-</table>
+| **Default** | "Strings.DBF" |
+| === | === |
+| **Remarks** | Some strategies don’t use resource tables.
+| **See Also** | **`cINTLStrategy::cAlias`**<br>`cINTLStrategy::GetTable`<br>`cINTLStrategy::SetTable`<br>`cINTLStrategy::OpenStrategy` |
 
 #### cINTLStrategy::lUpdate
 
 Logical true or false, controlling strategy resource updating.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Default**</th>
-<th>.T.</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Remarks**</td>
-<td>If the lUpdate property is set to logical true, then INTL will automatically update the resource table as new resource values are encountered. Some strategies don’t use resource tables, and therefore cannot have an lUpdate property set to logical true.</td>
-</tr>
-<tr>
-<td> **See Also**</td>
-<td>**cINTLStrategy::GetUpdateMode**<br />
-cINTLStrategy::SetUpdateMode<br />
-cINTLString::UpdateResource</td>
-</tr>
-</tbody>
-</table>
+**Default** | .T. |
+| === | === |
+| **Remarks** | If the lUpdate property is set to logical true, then INTL will automatically update the resource table as new resource values are encountered. Some strategies don’t use resource tables, and therefore cannot have an lUpdate property set to logical true. |
+| **See Also** | **`cINTLStrategy::GetUpdateMode`**<br>`cINTLStrategy::SetUpdateMode`<br>`cINTLString::UpdateResource` |
 
 #### cINTLStrategy::lUpdateable
 
 Stores logical true or false depending if the strategy resource table is
 updateable.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Default**</th>
-<th>.T.</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Remarks**</td>
-<td>Some strategies don’t use resource tables, and are therefore not updateable.</td>
-</tr>
-<tr>
-<td>**See Also**</td>
-<td>**cINTLStrategy::GetUpdateMode**<br />
-cINTLStrategy::SetUpdateMode<br />
-cINTLString::UpdateResource</td>
-</tr>
-</tbody>
-</table>
+| **Default** | .T.
+| --- | --- |
+| **Remarks** | Some strategies don’t use resource tables, and are therefore not updateable. |
+| **See Also** | **`cINTLStrategy::GetUpdateMode`**<br>`cINTLStrategy::SetUpdateMode`<br>`cINTLString::UpdateResource` |
 
 ## Class cINTLString
 
 ![](./media/image17.png)
 
-The cINTLString class is the workhorse class in INTL that serves both as
+The `cINTLString` class is the workhorse class in INTL that serves both as
 the localization strategy for strings and as a service provider to other
-localization strategy classes like cINTLFont, cINTLData, and
-cINTLPicture.
+localization strategy classes like `cINTLFont`, `cINTLData`, and
+`cINTLPicture`.
 
-In addition, by default, a cINTLString object is attached to the primary
+In addition, by default, a `cINTLString` object is attached to the primary
 hook for the INTL object. Therefore, many calls to the INTL object are
 automatically passed through to the string strategy.
 
@@ -3269,28 +2234,10 @@ Here are the protected properties of class cINTLString.
 
 Stores the current configuration integer for the string strategy.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Default**</th>
-<th>7</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Remarks**</td>
-<td><p>Use SetConfig() and GetConfig() to change the configuration integer.
-<p>The string strategy is bitwise configured with the following values:<br />
-[1] Caption
-<p>[2] Tooltip<br />
-[4] Statusbartext</td>
-</tr>
-<tr>
-<td>**See Also**</td>
-<td>**`cINTLMemento::GetConfig()`**</td>
-</tr>
-</tbody>
-</table>
+| **Default** | 7 |
+| --- | --- |
+| **Remarks** | Use SetConfig() and GetConfig() to change the configuration integer.<br>The string strategy is bitwise configured with the following values:<br>[`1`] Caption<br>[`2`] Tooltip<br>[`4`] Statusbartext |
+| **See Also** | **`cINTLMemento::GetConfig()`** |
 
 #### cINTLString::nDefaultConfig
 
@@ -3299,7 +2246,7 @@ Stores the default configuration integer for this strategy.
 | **Default** | 7 |
 | ----- | ----- |
 | **Remarks** | This integer is used in the SetDefaults() method, which is used to restore a strategy to its factory defaults. |
-| **See Also** | **`cINTLMemento`::SetDefaults** |
+| **See Also** | **`cINTLMemento::SetDefaults`** |
 
 ### Class cINTLString Exposed Methods
 
@@ -3308,128 +2255,72 @@ Stores the default configuration integer for this strategy.
 Fills an array with the languages supported by the resources of the
 string strategy object.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Syntax**</th>
-<th>oINTL.Alang( @aArray)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Return**</td>
-<td>The number of rows in the array, 0 if nothing found.</td>
-</tr>
-<tr>
-<td>**Arguments**</td>
-<td>An array, passed by reference, to store the language collection.</td>
-</tr>
-<tr>
-<td>**Example**</td>
-<td><p>DIMENSION MyArray[1]
-<p>oINTL.ALang( @MyArray)</td>
-</tr>
-<tr>
-<td>**Remarks**</td>
-<td>The array must be passed by reference. Like all other FoxPro array functions, the array will be automatically redimensioned by this function. ALang() returns 0 if the strings table is missing. ALang() does not leave the strings table open if it was previously unopened.</td>
-</tr>
-<tr>
-<td>**See Also**</td>
-<td>**cINTLString::IsValidLanguage()**</td>
-</tr>
-</tbody>
-</table>
+| **Syntax** | oINTL.Alang( @aArray)
+| --- | --- |
+| **Return** | The number of rows in the array, 0 if nothing found. |
+| **Arguments** | An array, passed by reference, to store the language collection. |
+| **Remarks** | The array must be passed by reference. Like all other FoxPro array functions, the array will be automatically redimensioned by this function. ALang() returns 0 if the strings table is missing. ALang() does not leave the strings table open if it was previously unopened. |
+| **See Also** | **`cINTLString::IsValidLanguage()`** |
+
+**Example**
+```
+DIMENSION MyArray[1]
+oINTL.ALang( @MyArray)
+```
 
 #### `cINTLString::CreateStrategyTable()`
 
 Creates the resource table used by this strategy object.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Syntax**</th>
-<th>oStringStrategy.CreateStrategyTable()</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Return**</td>
-<td>Logical true if successful, false otherwise.</td>
-</tr>
-<tr>
-<td>**Arguments**</td>
-<td>None.</td>
-</tr>
-<tr>
-<td>**Example**</td>
-<td><p>_SCREEN.AddObject("oINTL", "INTL")<br />
+| **Syntax** | oStringStrategy.CreateStrategyTable()
+| --- | --- |
+| **Return** | Logical true if successful, false otherwise. |
+| **Arguments** | None. |
+| **Remarks** | Some strategies may not use resource tables. |
+| **See Also** | **`cINTLString::CreateStrategyTable()`** |
+
+**Example**
+```
+_SCREEN.AddObject("oINTL", "INTL")
 LOCAL oX, lcFile
-<p>oX = _Screen.oINTL
-<p>lcFile = oX.oStringStrategy.GetTable()
-<p>IF !ISNULL( cFile) OR ! FILE( lcFile)
-<p>oX.oStringStrategy.CreateStrategyTable() &amp;&amp; here it is.
-<p>ENDIF</td>
-</tr>
-<tr>
-<td>**Remarks**</td>
-<td>Some strategies may not use resource tables.</td>
-</tr>
-<tr>
-<td>**See Also**</td>
-<td>**cINTLString::CreateStrategyTable()**</td>
-</tr>
-</tbody>
-</table>
+oX = _Screen.oINTL
+lcFile = oX.oStringStrategy.GetTable()
+IF !ISNULL( cFile) OR ! FILE( lcFile)
+  oX.oStringStrategy.CreateStrategyTable() &amp;&amp; here it is.
+ENDIF
+```
+
+
 
 #### `cINTLString::CreateStrategyCDX()`
 
 Create or recreate the index belonging to the strategy object’s resource
 table.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Syntax**</th>
-<th>oStringStrategy.CreateStrategyCDX()</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Return**</td>
-<td>Logical true if successful, false otherwise.</td>
-</tr>
-<tr>
-<td>**Arguments**</td>
-<td>None.</td>
-</tr>
-<tr>
-<td>**Example**</td>
-<td><p>_SCREEN.AddObject("oINTL", "INTL")<br />
-LOCAL oX, lcFile
-<p>oX = _Screen.oINTL
-<p>lcFile = oX.oStringStrategy.GetTable()
-<p>IF !ISNULL( cFile) OR ! FILE( lcFile)
-<p>oX.oStringStrategy.CreateStrategyCDX() &amp;&amp; here it is.
-<p>ENDIF</td>
-</tr>
-<tr>
-<td>**Remarks**</td>
-<td>Some strategies may not use resource tables.</td>
-</tr>
-<tr>
-<td>**See Also**</td>
-<td>**cINTLString::CreateStrategyCDX()**</td>
-</tr>
-</tbody>
-</table>
+| **Syntax** | oStringStrategy.CreateStrategyCDX()
+| --- | --- |
+| **Return** | Logical true if successful, false otherwise. |
+| **Arguments** | None. |
+| **Remarks** | Some strategies may not use resource tables. |
+| **See Also** | **`cINTLString::CreateStrategyCDX()`** |
 
-####
+**Example**
+```
+_SCREEN.AddObject("oINTL", "INTL")
+LOCAL oX, lcFile
+oX = _Screen.oINTL
+lcFile = oX.oStringStrategy.GetTable()
+IF !ISNULL( cFile) OR ! FILE( lcFile)
+  oX.oStringStrategy.CreateStrategyCDX() &amp;&amp; here it is.
+ENDIF
+```
+
 
 #### `cINTLString::Execute()`
 
 Iterates through a VFP structure, localizing strings.
 
-| **Syntax** | oINTL.oStringStrategy.Execute( aStructure |Object) |
+| **Syntax** | `oINTL.oStringStrategy.Execute( aStructure |Object)` |
 | ----- | ----- |
 | **Return** | Logical true if successful, false otherwise. |
 | **Arguments** | aStructure: an array of object references, or oObject: a (container) object reference. |
@@ -3438,11 +2329,11 @@ Iterates through a VFP structure, localizing strings.
 
 Returns logical true if the passed string is in the resource table.
 
-| **Syntax** | oINTL.IsInResource( xTest) |
+| **Syntax** | `oINTL.IsInResource( xTest)` |
 | ----- | ----- |
 | **Return** | Logical true if the passed string is in the resource table, false otherwise. |
 | **Arguments** | xtest: the element to search in the resource table. |
-| **Example** | oINTL.IsInResource( “Cancel”) && True, probably |
+| **Example** | `oINTL.IsInResource( “Cancel”) && True, probably` |
 | **Remarks** | Does not indicate if the resource is localized in the resource table. |
 
 #### `cINTLString::IsValidLanguage()`
@@ -3450,130 +2341,67 @@ Returns logical true if the passed string is in the resource table.
 Returns logical true if the passed language is supported by the string
 strategy object.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Syntax**</th>
-<th>oINTL.IsValidLanguage( cLanguage)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Return**</td>
-<td>Logical true if the passed language is supported by the string strategy.</td>
-</tr>
-<tr>
-<td>**Arguments**</td>
-<td>cLanguage: a field name (minus the leading "c") in `strings.dbf`.</td>
-</tr>
-<tr>
-<td>**Example**</td>
-<td><p>_SCREEN.AddObject("oINTL", "INTL")
-<p>*-- The following two are equivalent
-<p>_SCREEN.oINTL.IsValidLanguage("Russian")
-<p>_SCREEN.oINTL.oStringStrategy.IsValidLanguage("Russian")</td>
-</tr>
-<tr>
-<td>**Remarks**</td>
-<td><p>cLanguage is a valid language if a corresponding field exists in the strategy’s resource table (normally `strings.dbf`). Note that the "c" field-name prefix should not be included in cLanguage. For example, if field cSpanish exists in `strings.dbf`, the following results can be expected:
-<p>oINTL.IsValidLanguage("Spanish") &amp;&amp; Returns .T.
-<p>oINTL.IsValidLanguage("cSpanish") &amp;&amp; Returns .F.</td>
-</tr>
-<tr>
-<td>**See Also**</td>
-<td>cINTLString::Alang</td>
-</tr>
-</tbody>
-</table>
+| **Syntax** | oINTL.IsValidLanguage( cLanguage)
+| --- | --- |
+| **Return** | Logical true if the passed language is supported by the string strategy. |
+| **Arguments** | cLanguage: a field name (minus the leading "c") in `strings.dbf`. |
+| **See Also** | `cINTLString::Alang` |
+
+**Example**
+```
+_SCREEN.AddObject("oINTL", "INTL")
+*-- The following two are equivalent
+_SCREEN.oINTL.IsValidLanguage("Russian")
+_SCREEN.oINTL.oStringStrategy.IsValidLanguage("Russian") |
+```
+
+**Remarks** cLanguage is a valid language if a corresponding field exists in the strategy’s resource table (normally `strings.dbf`). Note that the "c" field-name prefix should not be included in cLanguage. For example, if field cSpanish exists in `strings.dbf`, the following results can be expected:
+
+```
+oINTL.IsValidLanguage("Spanish") && Returns .T.
+oINTL.IsValidLanguage("cSpanish") && Returns .F. |
+```
 
 #### `cINTLString::ResourceInsert()`
 
 Inserts an item into the resource table.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Syntax**</th>
-<th>oINTL.ResourceInsert( cString [,cOriginFile])</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Return**</td>
-<td>Logical true if successful, false otherwise.</td>
-</tr>
-<tr>
-<td>**Arguments**</td>
-<td>cString: the item to insert into the resource file<br />
-cOriginalFile: string for the cWhere field.</td>
-</tr>
-<tr>
-<td>**Example**</td>
-<td>oINTL.ResourceInsert( "New", "MyPrg.PRG")</td>
-</tr>
-<tr>
-<td>**Remarks**</td>
-<td>This method inserts an item without regard to duplicates. Use the cINTLString::IsInResource() method to determine if the element is a duplicate.</td>
-</tr>
-<tr>
-<td>**See Also**</td>
-<td>cINTLString::IsInResource<br />
-cINTLString::UpdateResource</td>
-</tr>
-</tbody>
-</table>
+| **Syntax** | oINTL.ResourceInsert( cString [,cOriginFile])
+| --- | --- |
+| **Return** | Logical true if successful, false otherwise. |
+| **Arguments** | cString: the item to insert into the resource file<br>cOriginalFile: string for the cWhere field. |
+| **Example** | `oINTL.ResourceInsert( "New", "MyPrg.PRG")` |
+| **Remarks** | This method inserts an item without regard to duplicates. Use the `cINTLString::IsInResource()` method to determine if the element is a duplicate. |
+| **See Also** | `cINTLString::IsInResource`<br>`cINTLString::UpdateResource` |
 
-####
 
 #### `cINTLString::SetConfig()`
 
 Sets the configuration of the string strategy object.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Syntax**</th>
-<th>oINTL.oStringStrategy.SetConfig( nConfigInteger)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Return**</td>
-<td>Logical true if successful, false otherwise.</td>
-</tr>
-<tr>
-<td>**Arguments**</td>
-<td>nConfigInteger: a configuration integer that encodes the sum of configuration bytes. The configuration bytes are as follows:<br />
-1 Localize Caption properties.<br />
-2 Localize Tooltiptext properties.<br />
-4 Localize Statusbartext properties.</td>
-</tr>
-<tr>
-<td>**Example**</td>
-<td><p>_SCREEN.Addobject("oINTL","INTL")
-<p>_SCREEN.oINTL.oStringStrategy.SetConfig( 6)</td>
-</tr>
-<tr>
-<td>**Remarks**</td>
-<td>The default value for nConfigInteger is 7, meaning: localize the Caption, Tooltiptexts, and Statusbartext properties.</td>
-</tr>
-<tr>
-<td>**See Also**</td>
-<td>cINTLStrategy::GetConfig</td>
-</tr>
-</tbody>
-</table>
+| **Syntax** | oINTL.oStringStrategy.SetConfig( nConfigInteger)
+| --- | --- |
+| **Return** | Logical true if successful, false otherwise. |
+| **Arguments** | nConfigInteger: a configuration integer that encodes the sum of configuration bytes. The configuration bytes are as follows:<br>1 Localize Caption properties.<br>2 Localize Tooltiptext properties.<br>4 Localize Statusbartext properties. |
+| **Remarks** | The default value for nConfigInteger is `7`, meaning: localize the `Caption`, `Tooltiptexts`, and `Statusbartext` properties. |
+| **See Also** | `cINTLStrategy::GetConfig` |
+
+**Example**
+```
+_SCREEN.Addobject("oINTL","INTL")
+_SCREEN.oINTL.oStringStrategy.SetConfig( 6) |
+```
 
 #### `cINTLString::UpdateResource()`
 
 This method updates the resource file with the passed argument.
 
-| **Syntax** | oINTL.UpdateResource( xArgument) |
+| **Syntax** | `oINTL.UpdateResource( xArgument)` |
 | ----- | ----- |
 | **Return** | Logical true always. |
 | **Arguments** | xArgument: the value to insert into the resource table. |
 | **Remarks** | Note that the UpdateResource() method unconditionally inserts values into the resource table without regard for duplication or type checking. Some strategies may not support resource updating. |
-| **See Also** | **cINTLStrategy::GetUpdateMode** |
+| **See Also** | **`cINTLStrategy::GetUpdateMode`** |
 
 # Localizing VFP Menus
 
@@ -3788,32 +2616,14 @@ object at generate time.
 
 ## Introduction
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Interface messages are fundamentally different than simple interface strings.**</th>
-<th><p>Because of their nature, dialog messages are different from other simple interface strings. Simple interface strings are short – typically a word, a phrase, or a sentence. Messages in dialogs can be long, multi-sentenced, and sometimes contain one or more variable components.
-<p>Furthermore, dialogs are often used to get responses from users, and that triggers program branching. It’s important to get dialogs right because they are so visible, both to the user and to the developer mucking around in source code.</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**INTL includes MSGSVC.PRG and MSGSVC.DBF that provide message services.**</td>
-<td><p>For maximum flexibility, I recommend that strings and messages be handled by separate mechanism. Thus INTL for Visual FoxPro comes with two related objects. The INTL object, stored at _SCREEN.oINTL, handles strings, fonts, currencies, and so on. The message services object called oMsgSvc, stored at _SCREEN.oMsgSvc, handles dialog services.
-<p>The source for message services is found in MSGSVC.PRG. The message services are personified by the MsgSvc() function, which uses the MSGSVC.DBF table to store message resources.</td>
-</tr>
-<tr>
-<td>**MsgSvc() is a flexible run-time function for messaging.**</td>
-<td>MsgSvc() provides run-time multilingual and cross platform messaging in VFP. It serves to launch many sorts of messages, dialogs, and text services.</td>
-</tr>
-<tr>
-<td>**MsgSvc() is table-based, and encapsulates all the multilingual behavior of messages.**</td>
-<td>MsgSvc() is table-based and works only as a run-time mechanism. Like I(), it will append new records in the message phrase book (called MSGSVC.DBF) if required. It can return the user's choice as text in the <em>original</em> language of the developer, or return as a number, or return a logical value. You choose.</td>
-</tr>
-<tr>
-<td>**MsgSvc() is centralized message handling. Regardless of INTL, it makes sense to use it.**</td>
-<td>MsgSvc() is powerful. All my user-dialogs now route through it, even for applications that aren’t multi-lingual or cross-platform. The main advantage of a clearing-house for messaging is the ability to control all messages from a single point. If you have existing applications, a one-time pass through the source to route dialogs through MsgSvc() pays good dividends. Do it.</td>
-</tr>
+| **Interface messages are fundamentally different than simple interface strings.** | <p>Because of their nature, dialog messages are different from other simple interface strings. Simple interface strings are short – typically a word, a phrase, or a sentence. Messages in dialogs can be long, multi-sentenced, and sometimes contain one or more variable components.
+<p>Furthermore, dialogs are often used to get responses from users, and that triggers program branching. It’s important to get dialogs right because they are so visible, both to the user and to the developer mucking around in source code.
+| --- | --- |
+| **INTL includes MSGSVC.PRG and MSGSVC.DBF that provide message services.** | <p>For maximum flexibility, I recommend that strings and messages be handled by separate mechanism. Thus INTL for Visual FoxPro comes with two related objects. The INTL object, stored at _SCREEN.oINTL, handles strings, fonts, currencies, and so on. The message services object called oMsgSvc, stored at _SCREEN.oMsgSvc, handles dialog services.
+<p>The source for message services is found in MSGSVC.PRG. The message services are personified by the MsgSvc() function, which uses the MSGSVC.DBF table to store message resources. |
+| **MsgSvc() is a flexible run-time function for messaging.** | MsgSvc() provides run-time multilingual and cross platform messaging in VFP. It serves to launch many sorts of messages, dialogs, and text services. |
+| **MsgSvc() is table-based, and encapsulates all the multilingual behavior of messages.** | MsgSvc() is table-based and works only as a run-time mechanism. Like I(), it will append new records in the message phrase book (called MSGSVC.DBF) if required. It can return the user's choice as text in the <em>original</em> language of the developer, or return as a number, or return a logical value. You choose. |
+| **MsgSvc() is centralized message handling. Regardless of INTL, it makes sense to use it.** | MsgSvc() is powerful. All my user-dialogs now route through it, even for applications that aren’t multi-lingual or cross-platform. The main advantage of a clearing-house for messaging is the ability to control all messages from a single point. If you have existing applications, a one-time pass through the source to route dialogs through MsgSvc() pays good dividends. Do it. |
 </tbody>
 </table>
 
@@ -3839,29 +2649,12 @@ MsgSvc() can return a variety of data types, depending on type of dialog
 and the value in the cRetType field in the MSGSVC.DBF table. Here is a
 list of the possible data types returned by MsgSvc() dialogs:
 
-<table>
-<thead>
-<tr class ="header">
-<th>cRetType</th>
-<th>MsgSvc() Returns</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**O**</td>
-<td>MsgSvc() automatically returns an object reference for all modeless dialogs.</td>
-</tr>
-<tr>
-<td>**C**</td>
-<td>The string of the button prompt selected by the user, if any, <em>in the developer’s language</em>, no matter the language of execution. This will be the null string in the event of a dialog timeout or if the escape key is pressed.</td>
-</tr>
-<tr>
-<td>**L**</td>
-<td>TRUE if the first button was selected, false otherwise.</td>
-</tr>
-<tr>
-<td>**M**</td>
-<td><p>Compatibility with MESSAGEBOX(), namely
+| cRetType | MsgSvc() Returns
+| --- | --- |
+| **O** | MsgSvc() automatically returns an object reference for all modeless dialogs. |
+| **C** | The string of the button prompt selected by the user, if any, <em>in the developer’s language</em>, no matter the language of execution. This will be the null string in the event of a dialog timeout or if the escape key is pressed. |
+| **L** | TRUE if the first button was selected, false otherwise. |
+| **M** | <p>Compatibility with MESSAGEBOX(), namely
 <p>0 - Button selected is incompatible with MESSAGEBOX()
 <p>1 - OK
 <p>2 - Cancel
@@ -3869,12 +2662,8 @@ list of the possible data types returned by MsgSvc() dialogs:
 <p>4 - Retry
 <p>5 - Ignore
 <p>6 - Yes
-<p>7 - No</td>
-</tr>
-<tr>
-<td>**N**</td>
-<td>The number of the button selected, 1 for the first button, 2 for the second, and so on. Returns 0 if no button was selected; for example, if the dialog times out, or if releasing the dialog is the result of the Esc key.</td>
-</tr>
+<p>7 - No |
+| **N** | The number of the button selected, 1 for the first button, 2 for the second, and so on. Returns 0 if no button was selected; for example, if the dialog times out, or if releasing the dialog is the result of the Esc key. |
 </tbody>
 </table>
 
@@ -3992,28 +2781,13 @@ FoxPro.
 The name of the bitmap or icon file for display in the dialog box.
 Examples of the syntax in this field are:
 
-<table>
-<thead>
-<tr class ="header">
-<th>cGUIVisual</th>
-<th>Result</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>FileName</td>
-<td>Specifying a single file name makes both platforms use the same file.</td>
-</tr>
-<tr>
-<td><p>WindowsFile~MacFile
-<p>*-- Note the “~”</td>
-<td>Note the tilde "~" separating the two file specifications. What’s before the tilde is the Windows file spec, what’s after is for the Macintosh.</td>
-</tr>
-<tr>
-<td><p>~MacFilename
-<p>*-- Note the “~”</td>
-<td>This signifies no Windows icon, and a Macintosh icon. Again, the tilde "~" symbol delimits the two platforms.</td>
-</tr>
+| cGUIVisual | Result
+| --- | --- |
+| FileName | Specifying a single file name makes both platforms use the same file. |
+| <p>WindowsFile~MacFile
+<p>*-- Note the “~” | Note the tilde "~" separating the two file specifications. What’s before the tilde is the Windows file spec, what’s after is for the Macintosh. |
+| <p>~MacFilename
+<p>*-- Note the “~” | This signifies no Windows icon, and a Macintosh icon. Again, the tilde "~" symbol delimits the two platforms. |
 </tbody>
 </table>
 
@@ -4471,63 +3245,35 @@ Accepts a visitor object and launches the visitor's VISIT() method using
 THIS as an argument, which gives the visitor a handle to access this
 iterator's services.
 
-<table>
-<thead>
-<tr class ="header">
-<th>Syntax</th>
-<th>oIterator.Accept( oVisitor)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Return</td>
-<td>Whatever the visitor chooses to return from its VISIT() method.</td>
-</tr>
-<tr>
-<td>Arguments</td>
-<td>oVisitor: an object possessing a Visit() method which will initiate the specialized task.</td>
-</tr>
-<tr>
-<td>Example</td>
-<td><p>SET PROC TO INTLTools
+| Syntax | oIterator.Accept( oVisitor)
+| --- | --- |
+| Return | Whatever the visitor chooses to return from its VISIT() method. |
+| Arguments | oVisitor: an object possessing a Visit() method which will initiate the specialized task. |
+| Example | <p>SET PROC TO INTLTools
 <p>*-- Create a menu table iterator
 <p>oIterator = create( "CFRXIterator", cProjectFile)
 <p>*-- Create an object to "visit" a the report
 <p>oVisitor = create( "cINTLUpdateVisitor")
 <p>*-- Go!
-<p>oIterator.Accept( oVisitor)</td>
-</tr>
+<p>oIterator.Accept( oVisitor) |
 </tbody>
 </table>
 
-####
 
 #### `INTLIterator::Close()`
 
 Closes the table being used by this iterator.
 
-<table>
-<thead>
-<tr class ="header">
-<th>Syntax</th>
-<th>oIterator.Close()</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Return</td>
-<td>Logical true if successful, false if otherwise.</td>
-</tr>
-<tr>
-<td>Example</td>
-<td><p>SET PROC TO INTLTools
+| Syntax | oIterator.Close()
+| --- | --- |
+| Return | Logical true if successful, false if otherwise. |
+| Example | <p>SET PROC TO INTLTools
 <p>*-- Create a menu table iterator. This opens
 <p>*-- MYPROJECT.PJX as a table
 <p>oIterator = create( "CFRXIterator", "MyProject.Pjx")
 <p>*--
 <p>* Now, for some reason, close the MYPROJECT.PJX table
-<p>oIterator.Close()</td>
-</tr>
+<p>oIterator.Close() |
 </tbody>
 </table>
 
@@ -4550,13 +3296,13 @@ Returns the alias of the structure being iterated.
 #### `INTLIterator::GetCurrent()`
 
 Returns the current item as defined by each iterator. Unless otherwise
-specified, this function returns .NULL. For the cProjectIterator class,
+specified, this function returns `.NULL.` For the cProjectIterator class,
 the GetCurrent() method returns the full path and file name of the
 current project record.
 
 | Syntax | oIterator.GetCurrent() |
 | ------ | ----- |
-| Return | Usually .NULL. unless otherwise specified by the class definition. |
+| Return | Usually `.NULL.` unless otherwise specified by the class definition. |
 
 #### `INTLIterator::GetStructure()`
 
@@ -4582,7 +3328,6 @@ Navigates the iterator index to the next item in the structure.
 | ------ | ----- |
 | Return | Logical true if successful, false if otherwise. |
 
-####
 
 #### `INTLIterator::Open()`
 
@@ -4641,30 +3386,15 @@ Releases the visitor object.
 
 Returns a property from the properties memo fields in the structure.
 
-<table>
-<thead>
-<tr class ="header">
-<th>Syntax</th>
-<th>oVisitor.PropSrch( cMemo, cProperty[, nOccurence])</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Return</td>
-<td>The property setting if found, CHR(0) otherwise.</td>
-</tr>
-<tr>
-<td>Arguments</td>
-<td><p>cMemo: the name of the memo field or a memory variable containing the memo text string.
+| Syntax | oVisitor.PropSrch( cMemo, cProperty[, nOccurence])
+| --- | --- |
+| Return | The property setting if found, CHR(0) otherwise. |
+| Arguments | <p>cMemo: the name of the memo field or a memory variable containing the memo text string.
 <p>CProperty: the property to search for.
-<p>nOccurence: the occurrence number for the property in the memo field.</td>
-</tr>
-<tr>
-<td>Example</td>
-<td><p>USE MyScx.Scx
+<p>nOccurence: the occurrence number for the property in the memo field. |
+| Example | <p>USE MyScx.Scx
 <p>Skip 10 &amp;&amp; Go to some record
-<p>lcCaption = oVisitor.PropSrch( Properties, "Caption")</td>
-</tr>
+<p>lcCaption = oVisitor.PropSrch( Properties, "Caption") |
 </tbody>
 </table>
 
@@ -4672,43 +3402,25 @@ Returns a property from the properties memo fields in the structure.
 
 Visit a code file, such as a .PRG, .H, .MPR.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Syntax**</th>
-<th>oVisitor.VisitCode( cFileName)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Return**</td>
-<td>Logical true if successful, false otherwise.</td>
-</tr>
-<tr>
-<td>**Arguments**</td>
-<td>cFileName: the name of the code file to visit.</td>
-</tr>
-<tr>
-<td>**Example**</td>
-<td><p>*-- This will update `strings.dbf` with
-<p>*-- parameters to I() calls in code.
-<p>oVisitor = CREATE("INTLUpdateVisitor")
-<p>oVisitor.VisitCode( "Main.Prg")</td>
-</tr>
-<tr>
-<td>**See Also**</td>
-<td>**INTLVisitor::VisitString()**</td>
-</tr>
-</tbody>
-</table>
+| **Syntax** | oVisitor.VisitCode( cFileName)
+| --- | --- |
+| **Return** | Logical true if successful, false otherwise. |
+| **Arguments** | cFileName: the name of the code file to visit. |
+| **See Also** | **INTLVisitor::VisitString()** |
 
-####
+**Example**
+```
+*-- This will update `strings.dbf` with
+*-- parameters to I() calls in code.
+oVisitor = CREATE("INTLUpdateVisitor")
+oVisitor.VisitCode( "Main.Prg")
+```
 
 #### `INTLVisitor::GetCurrentSourceId()`
 
 Returns the name of the source file currently being visited.
 
-| **Syntax** | oVisitor.GetCurrentSourceID( [oIterator]) |
+| **Syntax** | `oVisitor.GetCurrentSourceID( [oIterator])` |
 | ----- | ----- |
 | **Return** | Character name of the source file currently being visited. |
 | **Arguments** | toIterator: object reference to an iterator, the default being the iterator currently being visited. |
@@ -4717,167 +3429,71 @@ Returns the name of the source file currently being visited.
 
 The code to execute on expressions.
 
-| **Syntax** | oVisitor.VisitExpression( cExpression) |
+| **Syntax** | `oVisitor.VisitExpression( cExpression)` |
 | ----- | ----- |
 | **Return** | Logical true always. |
 | **Arguments** | cExpression: the expression to be processed. |
-| **See Also** | **INTLVisitor::VisitString()** |
+| **See Also** | **`INTLVisitor::VisitString()`** |
 
 #### `INTLVisitor::VisitSCXRecord()`
 
 The code to execute on form records.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Syntax**</th>
-<th>oVisitor.VisitSCXRecord( oIterator)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Return**</td>
-<td>Logical true always.</td>
-</tr>
-<tr>
-<td>**Arguments**</td>
-<td>oIterator: the structure we are visiting.</td>
-</tr>
-<tr>
-<td>**See Also**</td>
-<td>**INTLVisitor::VisitExpression()**<br />
-INTLVisitor::VisitString()</td>
-</tr>
-</tbody>
-</table>
+| **Syntax** | oVisitor.VisitSCXRecord( oIterator)
+| --- | --- |
+| **Return** | Logical true always. |
+| **Arguments** | oIterator: the structure we are visiting. |
+| **See Also** | **`INTLVisitor::VisitExpression()`**<br>`INTLVisitor::VisitString()` |
 
 #### `INTLVisitor::VisitMNXRecord()`
 
 The code to execute on menu records.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Syntax**</th>
-<th>oVisitor.VisitFRXRecord( oIterator)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Return**</td>
-<td>Logical true always.</td>
-</tr>
-<tr>
-<td>**Arguments**</td>
-<td>oIterator: the structure we are visiting.</td>
-</tr>
-<tr>
-<td>**See Also**</td>
-<td>**INTLVisitor::VisitExpression()**<br />
-INTLVisitor::VisitString()</td>
-</tr>
-</tbody>
-</table>
+| **Syntax** | oVisitor.VisitFRXRecord( oIterator)
+| --- | --- |
+| **Return** | Logical true always. |
+| **Arguments** | oIterator: the structure we are visiting. |
+| **See Also** | **INTLVisitor::VisitExpression()**<br>INTLVisitor::VisitString() |
 
 #### `INTLVisitor::VisitMetaTable()`
 
 The code to execute on VFP tables.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Syntax**</th>
-<th>oVisitor.VisitPJX( oIterator)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Return**</td>
-<td>Logical true always.</td>
-</tr>
-<tr>
-<td>**Arguments**</td>
-<td>oIterator: the structure we are visiting.</td>
-</tr>
-<tr>
-<td>**See Also**</td>
-<td>**INTLVisitor::VisitFRXRecord()**<br />
-INTLVisitor::VisitMNXRecord()<br />
-INTLVisitor::VisitSCXRecord()</td>
-</tr>
-</tbody>
-</table>
+| **Syntax** | oVisitor.VisitPJX( oIterator)
+| --- | --- |
+| **Return** | Logical true always. |
+| **Arguments** | oIterator: the structure we are visiting. |
+| **See Also** | **`INTLVisitor::VisitFRXRecord()`**<br>`INTLVisitor::VisitMNXRecord()`<br>`INTLVisitor::VisitSCXRecord()` |
 
 #### `INTLVisitor::VisitPJX()`
 
 The code to execute on project tables.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Syntax**</th>
-<th>oVisitor.VisitPJX( oIterator)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Return**</td>
-<td>Logical true always.</td>
-</tr>
-<tr>
-<td>**Arguments**</td>
-<td>oIterator: the structure we are visiting.</td>
-</tr>
-<tr>
-<td>**See Also**</td>
-<td>**INTLVisitor::VisitCode()**<br />
-INTLVisitor::VisitExpression()<br />
-INTLVisitor::VisitFRXRecord()<br />
-INTLVisitor::VisitMetaTable()<br />
-INTLVisitor::VisitMNXRecord()<br />
-INTLVisitor::VisitSCXRecord()<br />
-INTLVisitor::VisitString()</td>
-</tr>
-</tbody>
-</table>
+| **Syntax** | oVisitor.VisitPJX( oIterator)
+| --- | --- |
+| **Return** | Logical true always. |
+| **Arguments** | `oIterator`: the structure we are visiting. |
+| **See Also** | **`INTLVisitor::VisitCode()`**<br>`INTLVisitor::VisitExpression()`<br>`INTLVisitor::VisitFRXRecord()`<br>`INTLVisitor::VisitMetaTable()`<br>`INTLVisitor::VisitMNXRecord()`<br>`INTLVisitor::VisitSCXRecord()`<br>`INTLVisitor::VisitString()` |
 
 #### `INTLVisitor::VisitFRXRecord()`
 
 The code to execute on report tables.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**Syntax**</th>
-<th>oVisitor.VisitFRXRecord( oIterator)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Return**</td>
-<td>Logical true always.</td>
-</tr>
-<tr>
-<td>**Arguments**</td>
-<td>oIterator: the structure we are visiting.</td>
-</tr>
-<tr>
-<td>**See Also**</td>
-<td>**INTLVisitor::VisitExpression()**<br />
-INTLVisitor::VisitString()</td>
-</tr>
-</tbody>
-</table>
+| **Syntax** | oVisitor.VisitFRXRecord( oIterator)
+| --- | --- |
+| **Return** | Logical true always. |
+| **Arguments** | `oIterator`: the structure we are visiting. |
+| **See Also** | **`INTLVisitor::VisitExpression()`**<br>`INTLVisitor::VisitString()` |
 
 #### `INTLVisitor::VisitString()`
 
 The code to execute on character strings.
 
-| **Syntax** | oVisitor.VisitString( cString) |
+| **Syntax** | `oVisitor.VisitString( cString)` |
 | ----- | ----- |
 | **Return** | Logical true always. |
-| **Arguments** | cString: the character string to act upon. |
-| **Example** | oVisitor.VisitString( "Postal Code") |
+| **Arguments** | `cString`: the character string to act upon. |
+| **Example** | `oVisitor.VisitString( "Postal Code")` |
 
 # Extend INTL
 
@@ -4908,36 +3524,20 @@ cINTLStringStrategy, and it knows how to translate strings like "Yes".
 If there is an object attached to the oHook property, INTL methods are
 designed to do one of three things with it:
 
-<table>
-<tbody>
-<tr>
-<td>**Hooks can drastically alter how INTL messages are processed.**</td>
-<td><ul>
-<li>
-<p>**Broadcast**: broadcasting to a hook means that the hook method is invoked before the code in the called method is executed.
-</li>
-<li>
-<p>**Defer**: deferring to a hook means that the hook method is invoked, and if the return value from the hook is .NULL, then the code in the called method is executed.
-</li>
-<li>
-<p>**Ignore**: some methods don't call hooks at all.
-</li>
-</ul></td>
-</tr>
-</tbody>
-</table>
+**Hooks can drastically alter how INTL messages are processed.**
+* **Broadcast**: broadcasting to a hook means that the hook method is invoked before the code in the called method is executed.
+* **Defer**: deferring to a hook means that the hook method is invoked, and if the return value from the hook is .NULL, then the code in the called method is executed.
+* **Ignore**: some methods don't call hooks at all.
 
 ### How Broadcast Hooks Work
 
-<table>
-<tbody>
-<tr>
-<td><p>**Broadcast hooks will be executed before the standard method code is invoked.**
-<p>**Broadcast hooks don't care about the hook's return value.**</td>
-<td><p>Broadcast hooks permit you to augment the behavior of methods without changing the source code. By simply attaching a hook, you can attach code to methods and this code will be invoked automatically before the regular method code executes.
-<p>Broadcast hooks in INTL are invoked from methods with code like the following:
-<p>
-<pre>
+**Broadcast hooks will be executed before the standard method code is invoked.**
+
+**Broadcast hooks don't care about the hook's return value.** | <p>Broadcast hooks permit you to augment the behavior of methods without changing the source code. By simply attaching a hook, you can attach code to methods and this code will be invoked automatically before the regular method code executes.
+
+Broadcast hooks in INTL are invoked from methods with code like the following:
+
+```
 #DEFINE INTL_HOOK_TEST ! ISNULL( this.oHook) AND ;
 TYPE( "this.oHook.INTL_Abstract_ID")&lt;&gt; "U"
 *====================================
@@ -4948,49 +3548,42 @@ TYPE( "this.oHook.INTL_Abstract_ID")&lt;&gt; "U"
 FUNCTION SetExplicit(   tlSetting)
 *-- Broadcast first to the hooks
 IF INTL_HOOK_TEST
-this.oHook.SetExplicit( @tlSetting)
+   this.oHook.SetExplicit( @tlSetting)
 ENDIF
 * << Rest of the method code below >>
-</pre>
-</td>
-</tr>
-</tbody>
-</table>
+```
 
 ### How Defer Hooks Work
 
-<table>
-<tbody>
-<tr>
-<td><p>**Like broadcast hooks, defer hooks are executed before the standard method code.**
-<p>**Defer hooks are such that the standard method code executes only if the return value from the hook is not .NULL.**</td>
-<td><p>Deferring hooks permit you to substitute the behavior of a method without changing the source code. If the hook returns .NULL, then the original method code executes as normal.
-<p>Defer hooks in INTL are invoked with code like the following:
-<p>*====================================
-<p>*-- cINTLStrategy::I( txpara1, tcSpecialProc)
-<p>*====================================
-<p>FUNCTION I( txpara1, tcSpecialProc)
-<p>*-- Defer first to any hook
-<p>IF INTL_HOOK_TEST
-<p>LOCAL lxRetVal
-<p>lxRetVal = this.oHook.I( @txPara1, @tcSpecialProc)
-<p>IF !ISNULL( lxRetVal)
-<p>RETURN lxRetVal
-<p>ENDIF
-<p>ENDIF
-<p>*&lt;&lt; Rest of the method code below&gt;&gt;</td>
-</tr>
-</tbody>
-</table>
+**Like broadcast hooks, defer hooks are executed before the standard method code.**
 
-###
+**Defer hooks are such that the standard method code executes only if the return value from the hook is not .NULL.**
+
+Deferring hooks permit you to substitute the behavior of a method without changing the source code. If the hook returns .NULL, then the original method code executes as normal.
+
+Defer hooks in INTL are invoked with code like the following:
+
+```
+*====================================
+*-- cINTLStrategy::I( txpara1, tcSpecialProc)
+*====================================
+FUNCTION I( txpara1, tcSpecialProc)
+*-- Defer first to any hook
+IF INTL_HOOK_TEST
+  LOCAL lxRetVal
+  lxRetVal = this.oHook.I( @txPara1, @tcSpecialProc)
+  IF !ISNULL( lxRetVal)
+    RETURN lxRetVal
+  ENDIF
+ENDIF
+<< Rest of the method code below >>
+```
 
 ### Hook Example
 
-***"I’d like to use my own scheme for INTL multi-currency.*** ***Can I
-do this without polluting my INTL Toolkit source?"***
+***"I’d like to use my own scheme for INTL multi-currency. Can I do this without polluting my INTL Toolkit source?"***
 
-Answer: First, subclass the multi-currency class to create your own
+**Answer**: First, subclass the multi-currency class to create your own
 multi-currency lookup scheme, for example as follows:
 
 ```
@@ -5011,6 +3604,7 @@ ELSE
 ENDIF
 ENDDEFINE
 ```
+
 Instantiating the hook involves connecting an instance of the hook to
 the hooked object. In our example, we want to hook the currency
 strategy, thus
@@ -5025,6 +3619,7 @@ oX =.NULL.
 ```
 
 If you need to restore the hooked to its unhooked state, do as follows:
+
 ```
 oX = ox.SetHook(.NULL.)
 ```
@@ -5047,42 +3642,27 @@ dependencies. This is a long and detailed section, though fortunately
 many of the themes are recurring. Here is a short summary of the main
 themes found herein:
 
-<table>
-<thead>
-<tr class ="header">
-<th>**The language of operating system services will vary with the localized language of the OS.**</th>
-<th><ul>
+| **The language of operating system services will vary with the localized language of the OS.** | <ul>
 <li>
 <p>**<em>Some services come from the operating system</em>,** so the language of display varies with the localization of the operating system. For example, if your German client is running a US version of Windows, then VFP's MESSAGEBOX() function will display English button captions (OK - Cancel) and there is nothing you can do about it (other than use INTL's MsgSvc() function, of course).
 </li>
-</ul></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**The language of native VFP services will vary with the localized language of VFP.**</td>
-<td><ul>
+</ul>
+| --- | --- |
+| **The language of native VFP services will vary with the localized language of VFP.** | <ul>
 <li>
 <p><em>**Some services come from VFP**</em>, so their display language varies with the localized version of VFP. For example, dialogs like GETFILE() and LOCFILE() are VFP dialogs and, aside from parameters you can pass, these dialogs will appear in English on English versions of VFP.
 </li>
-</ul></td>
-</tr>
-<tr>
-<td>**The language of some things in VFP cannot be controlled.**</td>
-<td><ul>
+</ul> |
+| **The language of some things in VFP cannot be controlled.** | <ul>
 <li>
 <p><em>**Some VFP services aren't designed for multi-locale use**</em>, like the Relational Integrity (ri) builder. The ri builder is dependent on FoxPro functions that return character strings that vary with the localized version of FoxPro.
 </li>
-</ul></td>
-</tr>
-<tr>
-<td>**The language of third-party services cannot be predicted without experimentation.**</td>
-<td><ul>
+</ul> |
+| **The language of third-party services cannot be predicted without experimentation.** | <ul>
 <li>
 <p><em>**Some services come from third-parties**</em>, and their localization usually cannot be predicted unless you experiment. Things like ole custom controls, for example, may or may not be internationally enabled, and may require separate versions (if available) for different locales.
 </li>
-</ul></td>
-</tr>
+</ul> |
 </tbody>
 </table>
 
@@ -5092,10 +3672,7 @@ Here are a few things to keep in mind. These apply to many of the topics
 that follow.
 
 <table>
-<tbody>
-<tr>
-<td>**These "AS nCodePage" elements recur in many of the topics below, and they are listed here just once. Keep these factors in mind.**</td>
-<td><ul>
+| **These "AS nCodePage" elements recur in many of the topics below, and they are listed here just once. Keep these factors in mind.** | <ul>
 <li>
 <p>Wherever you see nCodePage in a command description, you can use GETCP()to display the Code Page dialog box, allowing you to specify a code page for the imported table or file.
 </li>
@@ -5105,8 +3682,7 @@ that follow.
 <li>
 <p>If the specified value for nCodePage isn't supported, VFP generates error 1914, with message "Code page number is invalid.".
 </li>
-</ul></td>
-</tr>
+</ul> |
 </tbody>
 </table>
 
@@ -5118,28 +3694,14 @@ that follow.
 Creates an array of information about the most recent VFP, ole, or odbc
 error.
 
-<table>
-<thead>
-<tr class ="header">
-<th>**VFP errors vary with the localization language of VFP.**</th>
-<th><p>When a VFP error occurs, ArrayName[2] contains the text of the error message, which is the same as the value returned by MESSAGE().
-<p>**Internationalization Gotcha:** this error message varies according to the localized version of VFP.</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**ole error messages vary with the localization language of Windows.**</td>
-<td><p>When ole errors numbered 1427 or 1429 occur, then ArrayName[2] contains the text of the VFP error message ("OLE Idispatch exception code"), and ArrayName[3] contains the text of the ole error message.
-<p>**Internationalization Gotcha:** the VFP error message varies with the localization of VFP, and the ole error message usually varies with the localization of Windows.</td>
-</tr>
-<tr>
-<td>**odbc error messages vary with the localized language of VFP.**</td>
-<td><p>Similarly, when an odbc error numbered 1526 occurs , then ArrayName[2] contains the text of the VFP error message ("Connectivity error:"), and ArrayName[3] contains the text of the odbc error message.
-<p>**Internationalization Gotcha:** both the VFP and ODBC error messages vary with the localization of VFP.</td>
-</tr>
-<tr>
-<td>Obviously, you'll want to avoid passing AERROR() messages to the user unless you are sure that their workstation has the correct localized versions of Windows and VFP.</td>
-</tr>
+| **VFP errors vary with the localization language of VFP.** | <p>When a VFP error occurs, ArrayName[2] contains the text of the error message, which is the same as the value returned by MESSAGE().
+<p>**Internationalization Gotcha:** this error message varies according to the localized version of VFP.
+| --- | --- |
+| **ole error messages vary with the localization language of Windows.** | <p>When ole errors numbered 1427 or 1429 occur, then ArrayName[2] contains the text of the VFP error message ("OLE Idispatch exception code"), and ArrayName[3] contains the text of the ole error message.
+<p>**Internationalization Gotcha:** the VFP error message varies with the localization of VFP, and the ole error message usually varies with the localization of Windows. |
+| **odbc error messages vary with the localized language of VFP.** | <p>Similarly, when an odbc error numbered 1526 occurs , then ArrayName[2] contains the text of the VFP error message ("Connectivity error:"), and ArrayName[3] contains the text of the odbc error message.
+<p>**Internationalization Gotcha:** both the VFP and ODBC error messages vary with the localization of VFP. |
+| Obviously, you'll want to avoid passing AERROR() messages to the user unless you are sure that their workstation has the correct localized versions of Windows and VFP. |
 </tbody>
 </table>
 
@@ -5172,12 +3734,8 @@ with DBSETPROP(cTableAlias,"Table","RuleText", cRuleText).
 ### `ANSITOEM()`
 
 <table>
-<tbody>
-<tr>
-<td>**ANSITOOEM() is for backward compatibility and for conversions with DOS. Use CPCONVERT() instead.**</td>
-<td><p>ANSITOOEM() converts each character of a character expression to the corresponding character in the ms-dos (oem) character set. ANSITOOEM()is used to move data from VFP and FoxPro for Macintosh to FoxPro for ms-dos.
-<p>**Internationalization Tip:** this function is included for backward compatibility. Use CPCONVERT() instead.</td>
-</tr>
+| **ANSITOOEM() is for backward compatibility and for conversions with DOS. Use CPCONVERT() instead.** | <p>ANSITOOEM() converts each character of a character expression to the corresponding character in the ms-dos (oem) character set. ANSITOOEM()is used to move data from VFP and FoxPro for Macintosh to FoxPro for ms-dos.
+<p>**Internationalization Tip:** this function is included for backward compatibility. Use CPCONVERT() instead. |
 </tbody>
 </table>
 
@@ -5186,12 +3744,8 @@ with DBSETPROP(cTableAlias,"Table","RuleText", cRuleText).
 ### `APPEND FROM ... AS nCodePage`
 
 <table>
-<tbody>
-<tr>
-<td>**Specify the code page of the new data when appending table data from other locales or platforms.**</td>
-<td><p>APPEND FROM adds records to the end of the currently selected table from another file.
-<p>**Internationalization Gotcha:** the optional AS nCodePage argument specifies the code page <em>**of the source table or file**</em>. As VFP appends the data, it automatically converts the data to the code page of the current table.</td>
-</tr>
+| **Specify the code page of the new data when appending table data from other locales or platforms.** | <p>APPEND FROM adds records to the end of the currently selected table from another file.
+<p>**Internationalization Gotcha:** the optional AS nCodePage argument specifies the code page <em>**of the source table or file**</em>. As VFP appends the data, it automatically converts the data to the code page of the current table. |
 </tbody>
 </table>
 
@@ -5250,12 +3804,8 @@ code page. The current VFP code page can be determined with `CPCURRENT()`.
 ### `AT_C(cSearchExpression, cExpressionSearched [, nOccurrence])`
 
 <table>
-<tbody>
-<tr>
-<td>**AT_C() is similar to AT(), but works with single- and double-byte characters.**</td>
-<td><p>AT_C(), which is similar to AT(), returns the beginning numeric position of the first occurrence of a character expression or memo field within another character expression or memo field, counting from the left-most character. The character expression or memo field can contain any combination of single-byte and double-byte characters.
-<p>**Internationalization Tip:** to enable your application for DBCS, always use AT_C() wherever you would use AT().</td>
-</tr>
+| **AT_C() is similar to AT(), but works with single- and double-byte characters.** | <p>AT_C(), which is similar to AT(), returns the beginning numeric position of the first occurrence of a character expression or memo field within another character expression or memo field, counting from the left-most character. The character expression or memo field can contain any combination of single-byte and double-byte characters.
+<p>**Internationalization Tip:** to enable your application for DBCS, always use AT_C() wherever you would use AT(). |
 </tbody>
 </table>
 
@@ -5264,12 +3814,8 @@ code page. The current VFP code page can be determined with `CPCURRENT()`.
 ### `ATCC(cSearchExp, cExpSearched [, nOccurrence])`
 
 <table>
-<tbody>
-<tr>
-<td>**ATCC() is like ATC(), and works with single- and double-byte characters.**</td>
-<td><p>ATCC(), which is similar to ATC(), returns the beginning numeric position of the first occurrence of a character expression or memo field within another character expression or memo field, without regard for the case of these two expressions. The character expression or memo field can contain any combination of single-byte and double-byte characters.
-<p>**Internationalization Tip:** to enable your application for DBCS, always use ATCC() wherever you would use ATC().</td>
-</tr>
+| **ATCC() is like ATC(), and works with single- and double-byte characters.** | <p>ATCC(), which is similar to ATC(), returns the beginning numeric position of the first occurrence of a character expression or memo field within another character expression or memo field, without regard for the case of these two expressions. The character expression or memo field can contain any combination of single-byte and double-byte characters.
+<p>**Internationalization Tip:** to enable your application for DBCS, always use ATCC() wherever you would use ATC(). |
 </tbody>
 </table>
 
@@ -5278,12 +3824,8 @@ code page. The current VFP code page can be determined with `CPCURRENT()`.
 ### `ATCLINE(cSearchExpression, cExpressionSearched)`
 
 <table>
-<tbody>
-<tr>
-<td>**There is no ATCLINEC() function in VFP as one might expect.**</td>
-<td><p>ATCLINE() returns the line number of the first occurrence of a character expression or memo field within another character expression or memo field, without regard for the case (upper or lower) of the characters in either expression.
-<p>**Internationalization Tip:** ATCLINE()works with both single-byte and double-byte character sets.</td>
-</tr>
+| **There is no ATCLINEC() function in VFP as one might expect.** | <p>ATCLINE() returns the line number of the first occurrence of a character expression or memo field within another character expression or memo field, without regard for the case (upper or lower) of the characters in either expression.
+<p>**Internationalization Tip:** ATCLINE()works with both single-byte and double-byte character sets. |
 </tbody>
 </table>
 
@@ -5292,12 +3834,8 @@ code page. The current VFP code page can be determined with `CPCURRENT()`.
 ### `ATLINE(cSearchExpression, cExpressionSearched)`
 
 <table>
-<tbody>
-<tr>
-<td>**There is no ATLINEC() function in VFP as one might expect since ATLINE() is already double-byte enabled..**</td>
-<td><p>ATLINE() returns the line number of the first occurrence of a character expression or memo within another character expression or memo.
-<p>**Internationalization Tip:** ATLINE()works with both single-byte and double-byte character sets.</td>
-</tr>
+| **There is no ATLINEC() function in VFP as one might expect since ATLINE() is already double-byte enabled..** | <p>ATLINE() returns the line number of the first occurrence of a character expression or memo within another character expression or memo.
+<p>**Internationalization Tip:** ATLINE()works with both single-byte and double-byte character sets. |
 </tbody>
 </table>
 
@@ -5314,12 +3852,8 @@ code page. The current VFP code page can be determined with `CPCURRENT()`.
 ### `CDOW(dExpression | tExpression)`
 
 <table>
-<tbody>
-<tr>
-<td>**CDOW() is dependent on the VFP localization.**</td>
-<td><p>CDOW() returns the day-of-the-week from a given date or datetime expression.
-<p>**Internationalization Gotcha:** the day name returned varies with the localization of VFP.</td>
-</tr>
+| **CDOW() is dependent on the VFP localization.** | <p>CDOW() returns the day-of-the-week from a given date or datetime expression.
+<p>**Internationalization Gotcha:** the day name returned varies with the localization of VFP. |
 </tbody>
 </table>
 
@@ -5328,12 +3862,8 @@ code page. The current VFP code page can be determined with `CPCURRENT()`.
 ### `CHR()`
 
 <table>
-<tbody>
-<tr>
-<td>**Using CHR(n) instead of the character itself is a good way to prevent code page translation.**</td>
-<td><p>CHR() returns the character associated with the specified numeric ANSI code.
-<p>**Internationalization Tip:** you can use CHR() to prevent VFP's automatic code page translation. This is useful for program files which are not marked with code pages ID's. This may save you from disaster if you omit the AS nCodePage argument found in many VFP commands.</td>
-</tr>
+| **Using CHR(n) instead of the character itself is a good way to prevent code page translation.** | <p>CHR() returns the character associated with the specified numeric ANSI code.
+<p>**Internationalization Tip:** you can use CHR() to prevent VFP's automatic code page translation. This is useful for program files which are not marked with code pages ID's. This may save you from disaster if you omit the AS nCodePage argument found in many VFP commands. |
 </tbody>
 </table>
 
@@ -5342,12 +3872,8 @@ code page. The current VFP code page can be determined with `CPCURRENT()`.
 ### `CHRTRANC(cSearched, cSearchFor, cReplacement)`
 
 <table>
-<tbody>
-<tr>
-<td>**CHRTRANC() is like CHRTRAN() and works with single- and double-byte characters.**</td>
-<td><p>CHRTRANC(), which is similar to CHRTRAN(), replaces each character in a character expression that matches a character in a second character expression with the corresponding character in a third character expression. As you might expect, CHRTRANC()adjusts for single-byte and double-byte characters automatically.
-<p>**Internationalization Tip:** to enable your application for DBCS, always use CHRTRANC()wherever you might use CHRTRAN().</td>
-</tr>
+| **CHRTRANC() is like CHRTRAN() and works with single- and double-byte characters.** | <p>CHRTRANC(), which is similar to CHRTRAN(), replaces each character in a character expression that matches a character in a second character expression with the corresponding character in a third character expression. As you might expect, CHRTRANC()adjusts for single-byte and double-byte characters automatically.
+<p>**Internationalization Tip:** to enable your application for DBCS, always use CHRTRANC()wherever you might use CHRTRAN(). |
 </tbody>
 </table>
 
@@ -5356,12 +3882,8 @@ code page. The current VFP code page can be determined with `CPCURRENT()`.
 ### `CMONTH(dExpression | tExpression)`
 
 <table>
-<tbody>
-<tr>
-<td>**The text returned from CMONTH() varies with the localized version of VFP.**</td>
-<td><p>CMONTH() returns the name of the month from a given date or datetime expression.
-<p>**Internationalization Gotcha:** the language of the returned string comes from VFP, so you cannot independently control the language of what's returned.</td>
-</tr>
+| **The text returned from CMONTH() varies with the localized version of VFP.** | <p>CMONTH() returns the name of the month from a given date or datetime expression.
+<p>**Internationalization Gotcha:** the language of the returned string comes from VFP, so you cannot independently control the language of what's returned. |
 </tbody>
 </table>
 
@@ -5370,12 +3892,8 @@ code page. The current VFP code page can be determined with `CPCURRENT()`.
 ### `COMPILE ... AS nCodePage`
 
 <table>
-<tbody>
-<tr>
-<td>**Use COMPILE...AS or SET CPCOMPILE to compile source files originating from other locales or platforms.**</td>
-<td><p>COMPILE compiles one or more source files.
-<p>**Internationalization Gotcha**: the optional AS nCodePage specifies the code page for which the program is compiled. The code page you specify with AS nCodePage overrides the global compilation code page specified with SET CPCOMPILE.</td>
-</tr>
+| **Use COMPILE...AS or SET CPCOMPILE to compile source files originating from other locales or platforms.** | <p>COMPILE compiles one or more source files.
+<p>**Internationalization Gotcha**: the optional AS nCodePage specifies the code page for which the program is compiled. The code page you specify with AS nCodePage overrides the global compilation code page specified with SET CPCOMPILE. |
 </tbody>
 </table>
 
@@ -5396,15 +3914,11 @@ code page you specify for the text file.
 ### `COPY STRUCTURE EXTENDED`
 
 <table>
-<tbody>
-<tr>
-<td>**COPY STRUCTURE EXTENDED exports NOCPTRANS information, and data that may need to be localized.**</td>
-<td><p>COPY STRUCTURE EXTENDED creates a new table with fields containing the structure of the currently selected table.
-<p>**Internationalization Gotcha**: this new table will contain the following notable fields which have internationalization implications:<br />
-FIELD_NOCP L Code page translation not allowed (character and memo fields only)<br />
-FIELD_ERR M Field validation text<br />
-TABLE_ERR M Table validation text</td>
-</tr>
+| **COPY STRUCTURE EXTENDED exports NOCPTRANS information, and data that may need to be localized.** | <p>COPY STRUCTURE EXTENDED creates a new table with fields containing the structure of the currently selected table.
+<p>**Internationalization Gotcha**: this new table will contain the following notable fields which have internationalization implications:<br>
+FIELD_NOCP L Code page translation not allowed (character and memo fields only)<br>
+FIELD_ERR M Field validation text<br>
+TABLE_ERR M Table validation text |
 </tbody>
 </table>
 
@@ -5440,12 +3954,8 @@ stored procedures to the code page you specify.
 ### `CPCONVERT(nCurrentCodePage, nNewCodePage, cExpression)`
 
 <table>
-<tbody>
-<tr>
-<td>**CPCONVERT() is used to transform character or memo data.**</td>
-<td><p>CPCONVERT() converts character or memo fields or character expressions to another code page.
-<p>**Internationalization Gotcha**: don't forget to use CPCONVERT() when moving strings from one platform or locale to another.</td>
-</tr>
+| **CPCONVERT() is used to transform character or memo data.** | <p>CPCONVERT() converts character or memo fields or character expressions to another code page.
+<p>**Internationalization Gotcha**: don't forget to use CPCONVERT() when moving strings from one platform or locale to another. |
 </tbody>
 </table>
 
@@ -5454,10 +3964,7 @@ stored procedures to the code page you specify.
 ### `CPCURRENT([1 | 2])`
 
 <table>
-<tbody>
-<tr>
-<td>**Use CPCURRENT() to reckon system code page information.**</td>
-<td><p>CPCURRENT() returns the code page setting (if any) in your VFP configuration file, or returns the current operating system code page.
+| **Use CPCURRENT() to reckon system code page information.** | <p>CPCURRENT() returns the code page setting (if any) in your VFP configuration file, or returns the current operating system code page.
 <p>**Internationalization Gotcha:** CPCURRENT() returns one of the following:
 
 - In VFP, the current operating system code page if the CODEPAGE
@@ -5789,12 +4296,8 @@ varies with VFP's localized language. `DMY()` respects the setting of
 ### `DTOS(dExpression | tExpression)`
 
 <table>
-<tbody>
-<tr>
-<td>**DTOS() is unaffected by SET CENTURY.**</td>
-<td><p>DTOS() returns a character-string date in a yyyymmdd format from a specified Date or DateTime expression.
-<p>**Internationalization Gotcha**: this function is not affected by SET CENTURY.</td>
-</tr>
+| **DTOS() is unaffected by SET CENTURY.** | <p>DTOS() returns a character-string date in a yyyymmdd format from a specified Date or DateTime expression.
+<p>**Internationalization Gotcha**: this function is not affected by SET CENTURY. |
 </tbody>
 </table>
 
@@ -6340,12 +4843,8 @@ of VFP.
 ### `PRMBAR(), PRMPAD(), PROMPT()`
 
 <table>
-<tbody>
-<tr>
-<td>**Menu text varies with locale.**</td>
-<td><p>PRMBAR(), PRMPAD() PROMPT() return text from menus.
-<p>**Internationalization Gotcha:** avoid using these functions in international applications because menu text will vary with the language of localization.</td>
-</tr>
+| **Menu text varies with locale.** | <p>PRMBAR(), PRMPAD() PROMPT() return text from menus.
+<p>**Internationalization Gotcha:** avoid using these functions in international applications because menu text will vary with the language of localization. |
 </tbody>
 </table>
 
@@ -6354,12 +4853,8 @@ of VFP.
 ### `PRTINFO(nPrinterSetting [, cPrinterName])`
 
 <table>
-<tbody>
-<tr>
-<td>**Printer settings vary from locale to locale.**</td>
-<td><p>PRTINFO() returns the specified printer setting.
-<p>**Internationalization Gotcha:** your application should anticipate a wide variety of return values because most of them will vary from locale to locale.</td>
-</tr>
+| **Printer settings vary from locale to locale.** | <p>PRTINFO() returns the specified printer setting.
+<p>**Internationalization Gotcha:** your application should anticipate a wide variety of return values because most of them will vary from locale to locale. |
 </tbody>
 </table>
 
@@ -6418,7 +4913,7 @@ perspective, VFP's Relational Integrity (RI) builder leaves much to be
 desired. Here's a summary of the problems:
 
 **Update and Delete triggers** are problematic because procedures
-RIDelete and RIUpdate contain a test on `(UPPER(SYS(2011))="RECORD LOCKED"`. This test will always return .F. if your application runs on a
+RIDelete and RIUpdate contain a test on `(UPPER(SYS(2011))="RECORD LOCKED"`. This test will always return `.F.` if your application runs on a
 different localization of VFP!
 
 As if that weren't enough, calls to the RIError function, which may
@@ -6454,15 +4949,15 @@ The following collation sequence options are available in VFP:
 
 | Options | Language |
 | ------- | ----- |
-| DUTCH | Dutch |
-| GENERAL | English, French, German, Modern Spanish, Portuguese, and other Western European languages |
-| GERMAN | German phone book order (DIN) |
-| ICELAND | Icelandic |
-| MACHINE | Machine (the default collation sequence for earlier FoxPro versions) |
-| NORDAN | Norwegian, Danish |
-| SPANISH | Traditional Spanish |
-| SWEFIN | Swedish, Finnish |
-| UNIQWT | Unique Weight |
+| `DUTCH` | Dutch |
+| `GENERAL` | English, French, German, Modern Spanish, Portuguese, and other Western European languages |
+| `GERMAN` | German phone book order (DIN) |
+| `ICELAND` | Icelandic |
+| `MACHINE` | Machine (the default collation sequence for earlier FoxPro versions) |
+| `NORDAN` | Norwegian, Danish |
+| `SPANISH` | Traditional Spanish |
+| `SWEFIN` | Swedish, Finnish |
+| `UNIQWT` | Unique Weight |
 
 Note that when `SET COLLATE TO` is set to something other than “Machine”,
 each index character takes two bytes, effectively reducing the maximum
@@ -6517,16 +5012,16 @@ locale. VFP offers the following choices for `SET DATE`:
 
 | Setting | Format |
 | ----- | -------- |
-| AMERICAN | mm/dd/yy |
-| ANSI | yy.mm.dd |
-| BRITISH/FRENCH | dd/mm/yy |
-| DMY | dd/mm/yy |
-| GERMAN | dd.mm.yy |
-| ITALIAN | dd-mm-yy |
-| JAPAN | yy/mm/dd |
-| MDY | mm/dd/yy |
-| USA | mm-dd-yy |
-| YMD | yy/mm/dd |
+| `AMERICAN` | mm/dd/yy |
+| `ANSI` | yy.mm.dd |
+| `BRITISH`/`FRENCH` | dd/mm/yy |
+| `DMY` | dd/mm/yy |
+| `GERMAN` | dd.mm.yy |
+| `ITALIAN` | dd-mm-yy |
+| `JAPAN` | yy/mm/dd |
+| `MDY` | mm/dd/yy |
+| `USA` | mm-dd-yy |
+| `YMD` | yy/mm/dd |
 
 ----
 
@@ -7021,27 +5516,18 @@ itself can be represented as follows:
 
 Locale Block + Application Block = Localized Application
 
-<table>
-<thead>
-<tr class ="header">
-<th>Locale Block</th>
-<th>Application Block</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><p>Graphics
+| Locale Block | Application Block
+| --- | --- |
+| <p>Graphics
 <p>Lookup tables
 <p>Validation
 <p>Help
-<p>Documentation</td>
-<td><p>Application code
+<p>Documentation | <p>Application code
 <p>Processes graphics
 <p>Invokes lookups
 <p>Hooks for validation
 <p>Manages languages
-<p>Spans platforms</td>
-</tr>
+<p>Spans platforms |
 </tbody>
 </table>
 
@@ -8795,136 +7281,37 @@ identifies the submenu popup. The popup objtype field is 2. Since this
 information will not appear on the menu, the prompt field is left empty
 but the name field contains the name of the popup (_mfile).
 
-<table>
-<thead>
-<tr class ="header">
-<th>Field Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>OBJTYPE</td>
-<td>N-2</td>
-<td>Type of menu object. 1 = first record of the mnx file, 2 = popup definition, 3 = menu item (visible on an actual menu item).</td>
-</tr>
-<tr>
-<td>OBJCODE</td>
-<td>N-2</td>
-<td><p>Type of menu item where objtype is 3.
-<p>77 - Submenu item<br />
-80 - Procedure<br />
-67 - Command<br />
-78 - Bar<br />
-22 - First Menu Setup Record (FoxPro 2.5)<br />
-20 - First Menu Setup Record (FoxPro 2.0)</td>
-</tr>
-<tr>
-<td>NAME</td>
-<td>M</td>
-<td>The name for a submenu (if objtype = 2) or menu bar # (if objtype = 3). For the top level system menu, this field is always _msysmenu. For submenus (objcode = 77), this field is left empty.</td>
-</tr>
-<tr>
-<td>PROMPT</td>
-<td>M</td>
-<td>The prompt for all menu pad items.</td>
-</tr>
-<tr>
-<td>COMMAND</td>
-<td>M</td>
-<td>Command Statement.</td>
-</tr>
-<tr>
-<td>MESSAGE</td>
-<td>M</td>
-<td>The message field for menu pads, submenus and menu items. GENMENU.PRG in FoxPro for dos doesn't use this value.</td>
-</tr>
-<tr>
-<td>PROCTYPE</td>
-<td>N-1</td>
-<td>1 = Procedure, 0 = Expression. Defaults to 1 when a menu is first created.</td>
-</tr>
-<tr>
-<td>PROCEDURE</td>
-<td>M</td>
-<td>Procedure for menu pad items and general menu bar.</td>
-</tr>
-<tr>
-<td>SETUPTYPE</td>
-<td>N-1</td>
-<td>1 = Procedure, 0 = Expression. Always 1. This field is only filled in for the first record.</td>
-</tr>
-<tr>
-<td>SETUP</td>
-<td>M</td>
-<td>Menu Setup Code (first record of table only). For the remaining records in the mnx file, this field is kept empty.</td>
-</tr>
-<tr>
-<td>CLEANTYPE</td>
-<td>N-1</td>
-<td>1 = Procedure, 0 = Expression. Always 1. This field is only filled in for the first record.</td>
-</tr>
-<tr>
-<td>CLEANUP</td>
-<td>M</td>
-<td>Menu cleanup code (first record of table only).</td>
-</tr>
-<tr>
-<td>MARK</td>
-<td>C-1</td>
-<td>The Mark character for a menu pad.</td>
-</tr>
-<tr>
-<td>KEYNAME</td>
-<td>M</td>
-<td>The actual keystroke that is the shortcut key for the menu item.</td>
-</tr>
-<tr>
-<td>KEYLABEL</td>
-<td>M</td>
-<td>The label that displays beside the menu item to identify the shortcut held in the keyname field.</td>
-</tr>
-<tr>
-<td>SKIPFOR</td>
-<td>M</td>
-<td>The skipfor clause.</td>
-</tr>
-<tr>
-<td>NAMECHANGE</td>
-<td>L</td>
-<td>Identifies if the pad or menu name has changed.</td>
-</tr>
-<tr>
-<td>NUMITEMS</td>
-<td>N-2</td>
-<td>Number of items found in a submenu. Blank for all entries other than ones where the objtype is 2.</td>
-</tr>
-<tr>
-<td>LEVELNAME</td>
-<td>C-10</td>
-<td>Name of the popup that each menu item belongs to. For main system pads, this is always _msysmenu.</td>
-</tr>
-<tr>
-<td>ITEMNUM</td>
-<td>C-3</td>
-<td>The Item Number of each menu pad item in a particular menu popup. The highest number for a particular popup should be equal to the numitems field for the same popup.</td>
-</tr>
-<tr>
-<td>COMMENT</td>
-<td>M</td>
-<td>The Comment snippet.</td>
-</tr>
-<tr>
-<td>LOCATION</td>
-<td>N-1</td>
-<td>Location of Menu. 0 = Replace, 1 = Append, 2 = Before, 3 = After. If Before or After, the pad name where the menu is placed is stored in the Name field.</td>
-</tr>
-<tr>
-<td>SCHEME</td>
-<td>N-2</td>
-<td>Color scheme for the menu bar and popup. It is not used for specific menu bars. The top level (_msysmenu) submenu record receives a default of Scheme 3, while submenus beneath use Scheme 4.</td>
-</tr>
+| Field Name | Type | Description
+| --- | --- |
+| OBJTYPE | N-2 | Type of menu object. 1 = first record of the mnx file, 2 = popup definition, 3 = menu item (visible on an actual menu item). |
+| OBJCODE | N-2 | <p>Type of menu item where objtype is 3.
+<p>77 - Submenu item<br>
+80 - Procedure<br>
+67 - Command<br>
+78 - Bar<br>
+22 - First Menu Setup Record (FoxPro 2.5)<br>
+20 - First Menu Setup Record (FoxPro 2.0) |
+| NAME | M | The name for a submenu (if objtype = 2) or menu bar # (if objtype = 3). For the top level system menu, this field is always _msysmenu. For submenus (objcode = 77), this field is left empty. |
+| PROMPT | M | The prompt for all menu pad items. |
+| COMMAND | M | Command Statement. |
+| MESSAGE | M | The message field for menu pads, submenus and menu items. GENMENU.PRG in FoxPro for dos doesn't use this value. |
+| PROCTYPE | N-1 | 1 = Procedure, 0 = Expression. Defaults to 1 when a menu is first created. |
+| PROCEDURE | M | Procedure for menu pad items and general menu bar. |
+| SETUPTYPE | N-1 | 1 = Procedure, 0 = Expression. Always 1. This field is only filled in for the first record. |
+| SETUP | M | Menu Setup Code (first record of table only). For the remaining records in the mnx file, this field is kept empty. |
+| CLEANTYPE | N-1 | 1 = Procedure, 0 = Expression. Always 1. This field is only filled in for the first record. |
+| CLEANUP | M | Menu cleanup code (first record of table only). |
+| MARK | C-1 | The Mark character for a menu pad. |
+| KEYNAME | M | The actual keystroke that is the shortcut key for the menu item. |
+| KEYLABEL | M | The label that displays beside the menu item to identify the shortcut held in the keyname field. |
+| SKIPFOR | M | The skipfor clause. |
+| NAMECHANGE | L | Identifies if the pad or menu name has changed. |
+| NUMITEMS | N-2 | Number of items found in a submenu. Blank for all entries other than ones where the objtype is 2. |
+| LEVELNAME | C-10 | Name of the popup that each menu item belongs to. For main system pads, this is always _msysmenu. |
+| ITEMNUM | C-3 | The Item Number of each menu pad item in a particular menu popup. The highest number for a particular popup should be equal to the numitems field for the same popup. |
+| COMMENT | M | The Comment snippet. |
+| LOCATION | N-1 | Location of Menu. 0 = Replace, 1 = Append, 2 = Before, 3 = After. If Before or After, the pad name where the menu is placed is stored in the Name field. |
+| SCHEME | N-2 | Color scheme for the menu bar and popup. It is not used for specific menu bars. The top level (_msysmenu) submenu record receives a default of Scheme 3, while submenus beneath use Scheme 4. |
 </tbody>
 </table>
 
