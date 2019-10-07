@@ -344,7 +344,7 @@ The following table lists the configuration bits for INTL. These configuration b
 
 | Class | Configuration bits | Localization |
 | --- | --- | --- |
-| INTL | **1 (Default)**<br>`4`<br>`2`<br>`8`<br>`16`<br>32 | **`cINTLString` strategy loaded**<br>`cINTLFont` strategy loaded<br>`cINTLData` strategy loaded<br>`cINTLPicture` strategy loaded<br>cINTLCurrency strategy loaded<br>`cINTLRightToLeft` strategy loaded |
+| INTL | **1 (Default)**<br>`4`<br>`2`<br>`8`<br>`16`<br>32 | **`cINTLString` strategy loaded**<br>`cINTLFont` strategy loaded<br>`cINTLData` strategy loaded<br>`cINTLPicture` strategy loaded<br>`cINTLCurrency` strategy loaded<br>`cINTLRightToLeft` strategy loaded |
 | CINTLString | 1 (Default)<br>2 (Default)<br>3 (Default)
 
 Caption<br>ToolTipText<br>StatusBarText |
@@ -1072,11 +1072,9 @@ INTL::GetConfig(). Unless you create your own custom mechanisms, you
 wouldn't normally call the LoadStrategies()method since INTL classes
 invoke it when necessary.
 
-| **Syntax**
-
-oX = CREATE("INTL")
-<p>oX.LoadStrategies()
+| | |
 | --- | --- |
+| **Syntax** | `oX = CREATE("INTL")`<br>`oX.LoadStrategies()`
 | **Return** | True if successful, false otherwise. |
 | **Arguments** | None. |
 | **See Also** | **`cINTLMemento`::SetHook** |
@@ -1094,8 +1092,9 @@ _SCREEN.oINTL.LoadStrategies() |
 Localizes an VFP structure and optionally also sets the locale
 characteristics of the main INTL object.
 
-| **Syntax** | oINTL.Localize( [cLang | oObj][,cLang | oObj])
+| | |
 | --- | --- |
+| **Syntax** | oINTL.Localize( [cLang | oObj][,cLang | oObj])
 | **Return** | Logical true if successful, false if otherwise. |
 | **Arguments** | `cLang`: the language to localize the object.<br>`Oobj`: the object to localize. Default is `THISFORM`. |
 | **See Also** | `INTL::Execute()` |
@@ -1112,8 +1111,9 @@ _SCREEN.oINTL.Localize( "German", THIS) |
 The `INTL::ObjArray()` method fills an array with object references for an
 object and all the contents of that object.
 
-| **Syntax** | INTL::ObjArray( oObject, @ArraName)
+| | |
 | --- | --- |
+| **Syntax** | INTL::ObjArray( oObject, @ArraName)
 | **Return** | The dimension of the array. |
 | **Arguments** | oObject: can be any object but most usually some sort of container, such as a FormSet or a Form. |
 | **Remarks** | The object passed for the argument occupies the first item in the array. |
@@ -1133,8 +1133,9 @@ INTL::ObjArray( Foo, @laScratch) && yields 2
 Method that allows direct access to the currency strategy if it’s
 loaded.
 
-| **Syntax** | INTL:SetConversion( cLocale, nExchange, xOptional)
+| | |
 | --- | --- |
+| **Syntax** | INTL:SetConversion( cLocale, nExchange, xOptional)
 | **Return** | Logical true if successful, false otherwise. |
 | **Arguments** | `cLocale`: the name of a locale.<br>`Nexchange`: the exchange rate for the locale.<br>`XOptional`: an optional parameter you can use in subclasses/ |
 | **Remarks** | If the currency strategy isn’t loaded, `.NULL.` is returned. |
@@ -1159,8 +1160,9 @@ main purpose is to define the complete interface for all subclasses.
 
 String used to store the type of INTL class.
 
+| | |
+| --- | --- |
 | **Default** | “Abstract” |
-| ----- | ----- |
 | **Remarks** | The cType is typically the type of strategy, such as “String”, “Font”, “Currency”, and so on. |
 | **See Also:** | **`cINTLAbstract::GetType()`** |
 
@@ -1169,8 +1171,9 @@ String used to store the type of INTL class.
 
 Logical used to control this INTL objects visibility.
 
+| | |
+| --- | --- |
 | **Default** | Logical false. |
-| ----- | ----- |
 | **Remarks** | There is no reason to make visible any member of the INTL class hierarchy. |
 
 ### Class `cINTLAbstract` Exposed Properties
@@ -1179,8 +1182,9 @@ Logical used to control this INTL objects visibility.
 
 Used by the INTL class for identification purposes.
 
+| | |
+| --- | --- |
 | **Default** | "Visual INTL" |
-| ----- | ----- |
 | **Remarks** | This property should never be changed. |
 | **See Also** | **`cINTLAbstract::Name`** |
 
@@ -1189,16 +1193,18 @@ Used by the INTL class for identification purposes.
 
 Object reference to the logical parents of INTL objects.
 
-| **Default** | .NULL.
+| | |
 | --- | --- |
+| **Default** | .NULL.
 | **Remarks** | This property is useful for callbacks and for error handling. The logical parent property is automatically set by the SetHook() method. |
 | **See Also** | **`cINTLAbstract::GetLogicalParent()`**<br>`cINTLAbstract::SetLogicalParent()`<br>`cINTLAbstract::GetHook()` |
 
 ----
 #### `cINTLAbstract`::oHook
 
-| **Motivation** | Object reference to the hook object.
+| | |
 | --- | --- |
+| **Motivation** | Object reference to the hook object.
 | **Default** | .NULL. |
 | **Remarks** | This property is used to hold hook objects. |
 | **See Also** | **`cINTLMemento::SetHook()`**<br>`cINTLAbstract::GetHook()` |
@@ -1209,8 +1215,9 @@ Object reference to the logical parents of INTL objects.
 The name of this INTL object. Each class, including those you write
 yourself, should normally have a distinctive name.
 
+| | |
+| --- | --- |
 | **Default** | The name of the parent class. |
-| ----- | ----- |
 | **Remarks** | Explicitly assigning a name property, as all INTL classes do, is a good way to increase object instantiation performance. |
 
 ### Class `cINTLAbstract` Abstract Methods
@@ -1269,8 +1276,9 @@ will message or delegate to an object attached to the ohook reference.
 
 Returns an object reference to the hook of the object.
 
+| | |
+| --- | --- |
 | **Syntax** | `this.GetHook()` |
-| ----- | ----- |
 | **Return** | Hook object reference if the current object is hooked, `.NULL.` otherwise. |
 | **Arguments** | None. |
 | **Example** | this.GetHook() |
@@ -1282,8 +1290,9 @@ Returns an object reference to the hook of the object.
 
 Returns the name of the INTL object’s logical parent.
 
+| | |
+| --- | --- |
 | **Syntax** | `this.GetLogicalParent()` |
-| ----- | ----- |
 | **Return** | Hook object reference if the current object is hooked, `.NULL.` otherwise. |
 | **Arguments** | None. |
 | **Example** | `this.GetLogicalParent()` |
@@ -1295,8 +1304,9 @@ Returns the name of the INTL object’s logical parent.
 
 Returns true if a reference is an object belonging to the INTL class.
 
+| | |
+| --- | --- |
 | **Syntax** | `this.IsINTLClass( Expression)` |
-| ----- | ----- |
 | **Return** | Logical true if the object is a member of the INTL class. |
 | **Arguments** | An expression that may or may not evaluate to type "O". |
 | **Example** | `this.IsINTLClass( CREATE("ComboBox")) && Returns .F.`|
@@ -1307,8 +1317,9 @@ Returns true if a reference is an object belonging to the INTL class.
 
 Explicitly releases an INTL object.
 
+| | |
+| --- | --- |
 | **Syntax** | `_SCREEN.oINTL.Release()` |
-| ----- | ----- |
 | **Return** | Logical true always. |
 | **Arguments** | None. |
 | **Remarks** | Releases the current INTL object. Provided for your own benefit if for some reason you need to cleanly release INTL objects. This method is not explicitly called anywhere in INTL. |
@@ -1318,8 +1329,9 @@ Explicitly releases an INTL object.
 
 This access method sets the pointer to the object’s logical parent.
 
+| | |
+| --- | --- |
 | **Syntax** | `oINTL.SetLogicalParent( oObject)` |
-| ----- | ----- |
 | **Return** | Logical true if successful, false otherwise. |
 | **Arguments** | oObject: an object reference. |
 | **Example** | ?this.SetLogicalParent( _SCREEN.oINTL) |
@@ -1330,7 +1342,8 @@ This access method sets the pointer to the object’s logical parent.
 #### `cINTLAbstract::GetType()`
 
 Returns the type of INTL object this is.
-
+| | |
+| --- | --- |
 | **Syntax** | `oINTL.GetType()` |
 | ----- | ----- |
 | **Return** | A string, the object type, such as “INTL”, “String”, “Font”, “Currency”, and so on. |
@@ -1340,7 +1353,8 @@ Returns the type of INTL object this is.
 #### `cINTLAbstract::GetVersion()`
 
 Returns the version stamp for your INTL for Visual FoxPro software.
-
+| | |
+| --- | --- |
 | **Syntax** | `oINTL.GetVersion()` |
 | ----- | ----- |
 | **Return** | A 2-line version signature. |
@@ -1671,7 +1685,8 @@ _SCREEN.oINTL.GetLocale() && Returns “Defaut”
 #### `cINTLMemento::GetStrategy()`
 
 Returns an object reference to a strategy object.
-
+| | |
+| --- | --- |
 | **Syntax** | `oINTL.GetStrategy([cStrategy])` |
 | ----- | ----- |
 | **Return** | An object reference to a given strategy. |
@@ -1683,7 +1698,8 @@ Returns an object reference to a strategy object.
 #### `cINTLMemento::GetStrategyClass()`
 
 Returns the class used for subsequent strategy object instantiations.
-
+| | |
+| --- | --- |
 | **Syntax** | `oINTL.GetStrategyClass( [cStrategy])` |
 | ----- | ----- |
 | **Return** | A strategy class name. |
@@ -1799,7 +1815,8 @@ oINTL.SetConfig(3) |
 #### `cINTLMemento::SetDefaults()`
 
 Sets the operational properties of INTL objects to their defaults.
-
+| | |
+| --- | --- |
 | **Syntax** | `oINTL.SetDefaults()` |
 | ----- | ----- |
 | **Return** | Logical true if all operational properties were successfully reset to default. |
@@ -1812,7 +1829,8 @@ Sets the operational properties of INTL objects to their defaults.
 #### `cINTLMemento::SetExplicit()`
 
 Sets the INTL object into Explicit mode.
-
+| | |
+| --- | --- |
 | **Syntax** | `oINTL.SetExplicit( lSetting)` |
 | --- | --- |
 | **Return** | Logical true if successful, false otherwise. |
@@ -1883,7 +1901,8 @@ _SCREEN.oINTL.SetLocale( "SPAIN")
 #### `cINTLMemento::SetStrategy()`
 
 Loads a strategy.
-
+| | |
+| --- | --- |
 | **Syntax** | `oINTL.SetStrategy(cStrategy, cClassName | oObject)`
 | --- | --- |
 | **Return** | Logical true if successful, false otherwise. |
@@ -2085,7 +2104,8 @@ _SCREEN.oINTL. GetUpdateMode()
 #### `cINTLStrategy::I()`
 
 Handles localization tasks of this particular strategy.
-
+| | |
+| --- | --- |
 | **Syntax** | `cINTLStrategy.I(expr1, expr2)` |
 | ----- | ----- |
 | **Return** | Typically the localization of expr1 according to `cINTLMemento`::GetLanguage() or `cINTLMemento::SetLocale()`. |
@@ -2095,7 +2115,8 @@ Handles localization tasks of this particular strategy.
 #### `cINTLStrategy::OpenStrategy()`
 
 Open the strategy object’s resource table.
-
+| | |
+| --- | --- |
 | **Syntax** | `oINTL.OpenStrategy( [cFileName [,cOptions]])` |
 | ----- | ----- |
 | **Return** | Logical true if successful, false otherwise. |
@@ -2106,7 +2127,8 @@ Open the strategy object’s resource table.
 #### `cINTLStrategy::SetAlias()`
 
 Sets a new value for the alias of the strategy object’s resource table.
-
+| | |
+| --- | --- |
 | **Syntax** | `oINTL.SetAlias( cAliasName)` |
 | ----- | ----- |
 | **Return** | Logical true if successful, false otherwise. |
@@ -2119,7 +2141,8 @@ Sets a new value for the alias of the strategy object’s resource table.
 #### `cINTLStrategy::SetTable()`
 
 Sets the name of the strategy object’s resource table.
-
+| | |
+| --- | --- |
 | **Syntax** | `oINTL.SetTable( cFileName)` |
 | ----- | ----- |
 | **Return** | Logical true if successful, false otherwise. |
@@ -2132,7 +2155,8 @@ Sets the name of the strategy object’s resource table.
 #### `cINTLStrategy::SetUpdateMode()`
 
 Controls the resource updating behavior of this strategy.
-
+| | |
+| --- | --- |
 | **Syntax** | `oINTL.SetUpdateMode( lOnOff)` |
 | ----- | ----- |
 | **Return** | Logical true if successful, false otherwise. |
@@ -2298,7 +2322,8 @@ ENDIF
 #### `cINTLString::Execute()`
 
 Iterates through a VFP structure, localizing strings.
-
+| | |
+| --- | --- |
 | **Syntax** | `oINTL.oStringStrategy.Execute( aStructure |Object)` |
 | ----- | ----- |
 | **Return** | Logical true if successful, false otherwise. |
@@ -2308,7 +2333,8 @@ Iterates through a VFP structure, localizing strings.
 #### `cINTLString::IsInResource()`
 
 Returns logical true if the passed string is in the resource table.
-
+| | |
+| --- | --- |
 | **Syntax** | `oINTL.IsInResource( xTest)` |
 | ----- | ----- |
 | **Return** | Logical true if the passed string is in the resource table, false otherwise. |
@@ -2378,7 +2404,8 @@ _SCREEN.oINTL.oStringStrategy.SetConfig( 6) |
 #### `cINTLString::UpdateResource()`
 
 This method updates the resource file with the passed argument.
-
+| | |
+| --- | --- |
 | **Syntax** | `oINTL.UpdateResource( xArgument)` |
 | ----- | ----- |
 | **Return** | Logical true always. |
@@ -3131,19 +3158,15 @@ object can be created.
 You can do a batch update of `strings.dbf` for all the interface strings
 in a single report file with the following invocation:
 
+```
 SET PROC TO INTLTools
-
 *-- Create a menu table iterator
-
 oIterato = create( "CFRXIterator", cFrxFile)
-
 *-- Create an object to "visit" a the report
-
 oVisitor = create( "cINTLUpdateVisitor")
-
 *-- Go!
-
 oIterator.Accept( oVisitor)
+```
 
 In the code above, the following things happen:
 
@@ -3229,55 +3252,61 @@ Accepts a visitor object and launches the visitor's VISIT() method using
 THIS as an argument, which gives the visitor a handle to access this
 iterator's services.
 
-| Syntax | oIterator.Accept( oVisitor)
+| | |
 | --- | --- |
-| Return | Whatever the visitor chooses to return from its VISIT() method. |
-| Arguments | oVisitor: an object possessing a Visit() method which will initiate the specialized task. |
-| Example
+| **Syntax** | `oIterator.Accept( oVisitor)` |
+| **Returns** | Whatever the visitor chooses to return from its VISIT() method. |
+| Arguments | `oVisitor`. an object possessing a Visit() method which will initiate the specialized task. |
 
+**Example**
+```
 SET PROC TO INTLTools
-<p>*-- Create a menu table iterator
-<p>oIterator = create( "CFRXIterator", cProjectFile)
-<p>*-- Create an object to "visit" a the report
-<p>oVisitor = create( "cINTLUpdateVisitor")
-<p>*-- Go!
-<p>oIterator.Accept( oVisitor)
-
+*-- Create a menu table iterator
+oIterator = create( "CFRXIterator", cProjectFile)
+*-- Create an object to "visit" a the report
+oVisitor = create( "cINTLUpdateVisitor")
+*-- Go!
+oIterator.Accept( oVisitor)
+```
 ----
 #### `INTLIterator::Close()`
 
 Closes the table being used by this iterator.
 
-| Syntax | oIterator.Close()
+| | |
 | --- | --- |
-| Return | Logical true if successful, false if otherwise. |
-| Example
+| **Syntax** | `oIterator.Close()` |
+| **Returns** | Logical true if successful, false if otherwise. |
 
+**Example**
+```
 SET PROC TO INTLTools
-<p>*-- Create a menu table iterator. This opens
-<p>*-- MYPROJECT.PJX as a table
-<p>oIterator = create( "CFRXIterator", "MyProject.Pjx")
-<p>*--
-<p>* Now, for some reason, close the MYPROJECT.PJX table
-<p>oIterator.Close()
-
+*-- Create a menu table iterator. This opens
+*-- MYPROJECT.PJX as a table
+oIterator = create( "CFRXIterator", "MyProject.Pjx")
+*--
+* Now, for some reason, close the MYPROJECT.PJX table
+oIterator.Close()
+```
 ----
 #### `INTLIterator::First()`
 
 Moves the iterator index to the first item in the structure.
 
-| Syntax | oIterator.First() |
-| ------ | ----- |
-| Return | Logical true if successful, false if otherwise. |
+| | |
+| --- | --- |
+| **Syntax** | `oIterator.First()` |
+| **Returns** | Logical true if successful, false if otherwise. |
 
 ----
 #### `INTLIterator::GetAlias()`
 
 Returns the alias of the structure being iterated.
 
-| Syntax | oIterator.GetAlias() |
-| ------ | ----- |
-| Return | The alias of the structure being iterated. |
+| | |
+| --- | --- |
+| **Syntax** | `oIterator.GetAlias()` |
+| **Returns** | The alias of the structure being iterated. |
 
 ----
 #### `INTLIterator::GetCurrent()`
@@ -3287,54 +3316,60 @@ specified, this function returns `.NULL.` For the cProjectIterator class,
 the GetCurrent() method returns the full path and file name of the
 current project record.
 
-| Syntax | oIterator.GetCurrent() |
-| ------ | ----- |
-| Return | Usually `.NULL.` unless otherwise specified by the class definition. |
+| | |
+| --- | --- |
+| **Syntax** | `oIterator.GetCurrent()` |
+| **Returns** | Usually `.NULL.` unless otherwise specified by the class definition. |
 
 ----
 #### `INTLIterator::GetStructure()`
 
 Returns the name of the structure being iterated.
 
-| Syntax | oIterator.GetStructure() |
-| ------ | ----- |
-| Return | The name of the table being iterated. |
+| | |
+| --- | --- |
+| **Syntax** | `oIterator.GetStructure()` |
+| **Returns** | The name of the table being iterated. |
 
 ----
 #### `INTLIterator::Last()`
 
 Navigates the iterator index to the last item in the structure.
 
-| Syntax | oIterator.Last() |
-| ------ | ----- |
-| Return | Logical true if successful, false if otherwise. |
+| | |
+| --- | --- |
+| **Syntax** | `oIterator.Last()` |
+| **Returns** | Logical true if successful, false if otherwise. |
 
 ----
 #### `INTLIterator::Next()`
 
 Navigates the iterator index to the next item in the structure.
 
-| Syntax | oIterator.Next() |
-| ------ | ----- |
-| Return | Logical true if successful, false if otherwise. |
+| | |
+| --- | --- |
+| **Syntax** | `oIterator.Next()` |
+| **Returns** | Logical true if successful, false if otherwise. |
 
 ----
 #### `INTLIterator::Open()`
 
 Opens the table associated with this iterator.
 
-| Syntax | oIterator.Open() |
-| ------ | ----- |
-| Return | Logical true if successful, false if otherwise. |
+| | |
+| --- | --- |
+| **Syntax** | `oIterator.Open()` |
+| **Returns** | Logical true if successful, false if otherwise. |
 
 ----
 #### `INTLIterator::Prior()`
 
 Moves the iterator to the prior record in the structure.
 
-| Syntax | oIterator.Prior() |
-| ------ | ----- |
-| Return | Logical true if successful, false if otherwise. |
+| | |
+| --- | --- |
+| **Syntax** | `oIterator.Prior()` |
+| **Returns** | Logical true if successful, false if otherwise. |
 
 #### INTLIterator::ProgrammaticChange
 
@@ -3344,16 +3379,17 @@ Open().
 
 | | |
 | ------ | ----- |
-| Syntax | oIterator.ProgrammaticChange() |
+| **Syntax** | `oIterator.ProgrammaticChange()` |
 
 ----
 #### `INTLIterator::Release()`
 
 Releases the iterator object.
 
-| Syntax | oIterator.Release() |
-| ------ | ----- |
-| Return | Logical true if successful, false if otherwise. |
+| | |
+| --- | --- |
+| **Syntax** | `oIterator.Release()` |
+| **Returns** | Logical true if successful, false if otherwise. |
 
 ## Class INTLVisitor
 
@@ -3371,18 +3407,20 @@ Here is a diagram of the INTL Visitor class.
 
 Releases the visitor object.
 
-| Syntax | oVisitor.Destroy() |
-| ------ | ----- |
-| Return | Logical true if successful, false otherwise. |
+| | |
+| --- | --- |
+| **Syntax** | `oVisitor.Destroy()` |
+| **Returns** | Logical true if successful, false otherwise. |
 
 ----
 #### `INTLVisitor::PropSrch()`
 
 Returns a property from the properties memo fields in the structure.
 
-| Syntax | oVisitor.PropSrch( cMemo, cProperty[, nOccurence])
+| | |
 | --- | --- |
-| Return | The property setting if found, CHR(0) otherwise. |
+| **Syntax** | `oVisitor.PropSrch( cMemo, cProperty[, nOccurence] )` |
+| **Returns** | The property setting if found, CHR(0) otherwise. |
 | Arguments
 
 cMemo: the name of the memo field or a memory variable containing the memo text string.
@@ -3398,9 +3436,9 @@ USE MyScx.Scx
 #### `INTLVisitor::VisitCode()`
 
 Visit a code file, such as a .PRG, .H, .MPR.
-
-| **Syntax** | oVisitor.VisitCode( cFileName)
+| | |
 | --- | --- |
+| **Syntax** | `oVisitor.VisitCode( cFileName )` |
 | **Return** | Logical true if successful, false otherwise. |
 | **Arguments** | cFileName: the name of the code file to visit. |
 | **See Also** | **INTLVisitor::VisitString()** |
@@ -3417,9 +3455,9 @@ oVisitor.VisitCode( "Main.Prg")
 #### `INTLVisitor::GetCurrentSourceId()`
 
 Returns the name of the source file currently being visited.
-
-| **Syntax** | `oVisitor.GetCurrentSourceID( [oIterator])` |
-| ----- | ----- |
+| | |
+| --- | --- |
+| **Syntax** | `oVisitor.GetCurrentSourceID( [oIterator] )` |
 | **Return** | Character name of the source file currently being visited. |
 | **Arguments** | toIterator: object reference to an iterator, the default being the iterator currently being visited. |
 
@@ -3427,9 +3465,9 @@ Returns the name of the source file currently being visited.
 #### `INTLVisitor::VisitExpression()`
 
 The code to execute on expressions.
-
-| **Syntax** | `oVisitor.VisitExpression( cExpression)` |
-| ----- | ----- |
+| | |
+| --- | --- |
+| **Syntax** | `oVisitor.VisitExpression( cExpression )` |
 | **Return** | Logical true always. |
 | **Arguments** | cExpression: the expression to be processed. |
 | **See Also** | **`INTLVisitor::VisitString()`** |
@@ -3438,9 +3476,9 @@ The code to execute on expressions.
 #### `INTLVisitor::VisitSCXRecord()`
 
 The code to execute on form records.
-
-| **Syntax** | oVisitor.VisitSCXRecord( oIterator)
+| | |
 | --- | --- |
+| **Syntax** | `oVisitor.VisitSCXRecord( oIterator )` |
 | **Return** | Logical true always. |
 | **Arguments** | oIterator: the structure we are visiting. |
 | **See Also** | **`INTLVisitor::VisitExpression()`**<br>`INTLVisitor::VisitString()` |
@@ -3449,9 +3487,9 @@ The code to execute on form records.
 #### `INTLVisitor::VisitMNXRecord()`
 
 The code to execute on menu records.
-
-| **Syntax** | oVisitor.VisitFRXRecord( oIterator)
+| | |
 | --- | --- |
+| **Syntax** | `oVisitor.VisitFRXRecord( oIterator )` |
 | **Return** | Logical true always. |
 | **Arguments** | oIterator: the structure we are visiting. |
 | **See Also** | **INTLVisitor::VisitExpression()**<br>INTLVisitor::VisitString() |
@@ -3460,9 +3498,9 @@ The code to execute on menu records.
 #### `INTLVisitor::VisitMetaTable()`
 
 The code to execute on VFP tables.
-
-| **Syntax** | oVisitor.VisitPJX( oIterator)
+| | |
 | --- | --- |
+| **Syntax** | `oVisitor.VisitPJX( oIterator )` |
 | **Return** | Logical true always. |
 | **Arguments** | oIterator: the structure we are visiting. |
 | **See Also** | **`INTLVisitor::VisitFRXRecord()`**<br>`INTLVisitor::VisitMNXRecord()`<br>`INTLVisitor::VisitSCXRecord()` |
@@ -3471,9 +3509,9 @@ The code to execute on VFP tables.
 #### `INTLVisitor::VisitPJX()`
 
 The code to execute on project tables.
-
-| **Syntax** | oVisitor.VisitPJX( oIterator)
+| | |
 | --- | --- |
+| **Syntax** | `oVisitor.VisitPJX( oIterator )` |
 | **Return** | Logical true always. |
 | **Arguments** | `oIterator`: the structure we are visiting. |
 | **See Also** | **`INTLVisitor::VisitCode()`**<br>`INTLVisitor::VisitExpression()`<br>`INTLVisitor::VisitFRXRecord()`<br>`INTLVisitor::VisitMetaTable()`<br>`INTLVisitor::VisitMNXRecord()`<br>`INTLVisitor::VisitSCXRecord()`<br>`INTLVisitor::VisitString()` |
@@ -3482,9 +3520,9 @@ The code to execute on project tables.
 #### `INTLVisitor::VisitFRXRecord()`
 
 The code to execute on report tables.
-
-| **Syntax** | oVisitor.VisitFRXRecord( oIterator)
+| | |
 | --- | --- |
+| **Syntax** | `oVisitor.VisitFRXRecord( oIterator )` |
 | **Return** | Logical true always. |
 | **Arguments** | `oIterator`: the structure we are visiting. |
 | **See Also** | **`INTLVisitor::VisitExpression()`**<br>`INTLVisitor::VisitString()` |
@@ -3493,9 +3531,9 @@ The code to execute on report tables.
 #### `INTLVisitor::VisitString()`
 
 The code to execute on character strings.
-
-| **Syntax** | `oVisitor.VisitString( cString)` |
-| ----- | ----- |
+| | |
+| --- | --- |
+| **Syntax** | `oVisitor.VisitString( cString )` |
 | **Return** | Logical true always. |
 | **Arguments** | `cString`: the character string to act upon. |
 | **Example** | `oVisitor.VisitString( "Postal Code")` |
