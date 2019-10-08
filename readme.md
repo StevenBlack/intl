@@ -739,7 +739,7 @@ INTL ships with iterator and visitor classes designed to recur VFP
 structures and, among other things, load all the string interface
 elements into the `strings.dbf`.
 
-See Updating `strings.dbf` Based on a .PJX on page 85.
+See [Updating `strings.dbf` Based on a .PJX](#updating-stringsdbf-based-on-a-pjx).
 
 ## How to Localize Reports
 
@@ -752,7 +752,7 @@ transformation process turns your report labels into report expressions
 containing a call to INTL's I() function. For example, the report label
 "Name:" becomes expression I("Name:" ).
 
-See Transforming Reports Based on a .PJX on page 88.
+See [Transforming Reports Based on a .PJX](#transforming-reports-based-on-a-pjx).
 
 ## Details of How INTL Works
 
@@ -804,22 +804,20 @@ APP or EXE then they will, of course, be read-only.
 ## Toolkit File Descriptions
 
 Here's a description of the files used by INTL. To reckon where these
-can be best placed relative to your project, see How to Correctly Place
-Your INTL Files on page 13.
+can be best placed relative to your project, see How to [Correctly Place Your INTL Files](#how-to-correctly-place-your-intl-files).
 
 | File | Description
 | --- | --- |
 | ADDENDUM.TXT | Late breaking news that may or may not be included in the documentation or the help file. |
 | GENMENUX.ZIP | An archive of the latest available GENMENUX program by Andrew Ross MacNeill. |
-| I.PRG | A stand-alone function that serves as a shortcut to the _SCREEN.oINTL.I() method. |
+| I.PRG | A stand-alone function that serves as a shortcut to the `_SCREEN.oINTL.I()` method. |
 | INTL.HLP | A 32-bit Windows help application for INTL, suitable for Windows 95 and Windows NT. |
-| INTL16.HLP | A 16-bit Windows help application for INTL, suitable for Windows 3.1 and Windows 3.11. |
 | INTL.PRG | The core code for the classes and utilities in the INTL toolkit. |
 | INTLTOOL.PRG | Developer’s utilities to do batch operations on project files and other VFP structures. Do not distribute this file with your applications. |
-| MSGSVC.DBF<br>MSGSVC.FPT<br>MSGSVC.CDX | Table and supporting files containing messages for dialogs, wait windows, thermometer bars and text blocks. |
+| `MSGSVC.DBF`<br>`MSGSVC.FPT`<br>`MSGSVC.CDX` | Table and supporting files containing messages for dialogs, wait windows, thermometer bars and text blocks. |
 | MSGSVC.PRG | The message services library. |
-| NOHOT.PRG | NOHOT() strips hot key characters from FoxPro prompt expressions. It is a one-line function that you should cut and paste as a procedure somewhere in your application’s invocation stack. |
-| STRINGS.DBF<br>STRINGS.FPT<br>STRINGS.CDX | Table and supporting files containing translated phrases. |
+| NOHOT.PRG | `NOHOT()` strips hot key characters from FoxPro prompt expressions. It is a one-line function that you should cut and paste as a procedure somewhere in your application’s invocation stack. |
+| `STRINGS.DBF`<br>`STRINGS.FPT`<br>`STRINGS.CDX` | Table and supporting files containing translated phrases. |
 
 ## Overview of the INTL Class Library
 
@@ -4655,7 +4653,7 @@ case, each character in the key uses two bytes. Since the maximum index
 key length is 240 characters, the longest key you can use is 120
 characters for non-MACHINE collate sequences. The only way around this
 problem is to `SET COLLATE TO MACHINE` before creating that particular tag.
-See `SET COLLATE TO cSequenceName` on page 125.
+See [`SET COLLATE TO cSequenceName`](#set-collate-to-csequencename).
 
 ----
 
@@ -5032,7 +5030,7 @@ The following collation sequence options are available in VFP:
 
 Note that when `SET COLLATE TO` is set to something other than “Machine”,
 each index character takes two bytes, effectively reducing the maximum
-index key length from 240 to 120. See `INDEX ON` on page 118.
+index key length from 240 to 120. See [`INDEX ON`](#index-on).
 
 ----
 
@@ -5068,7 +5066,7 @@ the display of numeric, currency, float and double expressions.
 
 ### `SET DATASESSION`
 
-See `DATASESSIONS` on page 107.
+See [`DATASESSIONS`](#datasessions).
 
 ----
 
@@ -6210,7 +6208,7 @@ maintenance work, but it would definitely slow down the functions.
 ### Nonlinguistic Variation
 
 Non-linguistic cultural elements are significant barriers to overcome.
-For example, please see the discussion about handling taxes on page 136.
+For example, please see the discussion about [handling taxes](#take-taxes-for-example).
 To demonstrate, take the apparently simple task of adapting a VFP
 program to suit the whole English North American market. On the surface,
 quite easy.
