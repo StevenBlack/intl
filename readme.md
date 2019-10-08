@@ -16,13 +16,13 @@ First, put the INTL files into a clean new directory.
 
 Then,
 
-* **Deploy files:** Manually place files relative to your project as described in How to [Correctly Place Your INTL Files](#how-to-correctly-place-your-intl-files ).
+* **Deploy files:** Manually place files relative to your project as described in How to [Correctly Place Your INTL Files](#how-to-correctly-place-your-intl-files).
 
-* **Modify CONFIG.FPW:** For menus, add the two lines to CONFIG.FPW as explained in [How to Localize Menus](#how-to-localize-menus ).
+* **Modify CONFIG.FPW:** For menus, add the two lines to CONFIG.FPW as explained in [How to Localize Menus](#how-to-localize-menus).
 
-* **Seed your Form class definition:** For now, probably forever, invoke INTL in forms with a Form::Init() statement that calls the INTL object. See [How to Get Automatic Form Localization](#how-to-get-automatic-form-localization ).
+* **Seed your Form class definition:** For now, probably forever, invoke INTL in forms with a Form::Init() statement that calls the INTL object. See [How to Get Automatic Form Localization](#how-to-get-automatic-form-localization).
 
-* If you need localization, **instantiate an INTL object:** Now when localization is required, create and configure an INTL object as described in [How to Instantiate an INTL Object](#how-to-instantiate-an-intl-object ).
+* If you need localization, **instantiate an INTL object:** Now when localization is required, create and configure an INTL object as described in [How to Instantiate an INTL Object](#how-to-instantiate-an-intl-object).
 
 # INTL: How to...
 
@@ -237,11 +237,11 @@ Follow the steps in the section titled [Installing INTL](#installing-intl). Make
 
 **Do a “Build All”.** Open your project, select "Build", and build an App or Exe, being sure to select "Recompile All Files". Go to lunch.
 
-**To automatically load `strings.dbf`, either run your app or use the INTLTool utility.** There are two ways to populate the `strings.dbf` table with your project's interface strings. The first way is to simply run your program. As objects are instantiated, INTL will append the strings (like `Caption`, `Tooltiptext`, etc. ) into the strings table. A better way is to run the INTLTool update program. See [INTLTool](#intltool).
+**To automatically load `strings.dbf`, either run your app or use the INTLTool utility.** There are two ways to populate the `strings.dbf` table with your project's interface strings. The first way is to simply run your program. As objects are instantiated, INTL will append the strings (like `Caption`, `Tooltiptext`, etc.) into the strings table. A better way is to run the INTLTool update program. See [INTLTool](#intltool).
 
 **Input the translations in the `strings.dbf` table.** In the `cSwahili` column, type-in Swahili translations, complete with hot-keys and shortcut-keys as required.
 Note: you can get a "quick-and-dirty" translation for testing and internal demos by simply doing:
-`REPLACE ALL cSwahili with "**"+TRIM(cOriginal )+"**" FOR cOriginal <> "(("`
+`REPLACE ALL cSwahili with "**"+TRIM(cOriginal)+"**" FOR cOriginal <> "(("`
 
 
 ## How to Configure Your Main INTL Object
@@ -543,9 +543,9 @@ At the heart of it all, the INTL Currency strategy works only on fields having a
 
 Recall that INTL strategies are bitwise-configured according to the following table.
 
-| Class (with default ) | Value | Localization
+| Class (with default) | Value | Localization
 | --- | --- | --- |
-| INTL (1 ) | `1` (Default)<br>`2`<br>`4`<br>`8`<br>**`16`**<br>`32` | `cINTLString` strategy loaded<br>`cINTLFont` strategy loaded<br>`cINTLData` strategy loaded<br>`cINTLPicture` strategy loaded<br>**`cINTLCurrency` strategy loaded**<br>`cINTLRightToLeft` strategy loaded |
+| INTL (1) | `1` (Default)<br>`2`<br>`4`<br>`8`<br>**`16`**<br>`32` | `cINTLString` strategy loaded<br>`cINTLFont` strategy loaded<br>`cINTLData` strategy loaded<br>`cINTLPicture` strategy loaded<br>**`cINTLCurrency` strategy loaded**<br>`cINTLRightToLeft` strategy loaded |
 
 Activate the currency strategy as follows:
 
@@ -620,7 +620,7 @@ following table:
 
 | Class (with default) | Value | Localization
 | --- | --- | --- |
-|  INTL (1 ) | `1` (Default)<br>`2`<br>`4`<br>`8`<br>`16`<br>**`32`** | `cINTLString` strategy loaded<br>`cINTLFont` strategy loaded<br>`cINTLData` strategy loaded<br>`cINTLPicture` strategy loaded<br>`cINTLCurrency` strategy loaded<br>**`cINTLRightToLeft` strategy loaded** |
+|  INTL (1) | `1` (Default)<br>`2`<br>`4`<br>`8`<br>`16`<br>**`32`** | `cINTLString` strategy loaded<br>`cINTLFont` strategy loaded<br>`cINTLData` strategy loaded<br>`cINTLPicture` strategy loaded<br>`cINTLCurrency` strategy loaded<br>**`cINTLRightToLeft` strategy loaded** |
 
 
 Activate the currency strategy as follows:
@@ -673,7 +673,7 @@ ENDDEFINE
 
 ## How to Subclass an Existing Strategy
 
-**Need different behavior? Consider a subclass.**  You may encounter situations where you need to do thing differently. Instead of changing the INTL source code (which will create difficulties when merging future releases ) consider subclassing an existing strategy for desired behavior.
+**Need different behavior? Consider a subclass.**  You may encounter situations where you need to do thing differently. Instead of changing the INTL source code (which will create difficulties when merging future releases) consider subclassing an existing strategy for desired behavior.
 
 In the diagram below, we've created two subclasses, one from the
 `cINTLString` class and one from the `cINTLCurrency` class. The class
@@ -694,7 +694,7 @@ _SCREEN.oINTL.SetStrategy("Currency", "cMyCurrency" )
 
 You can create your own strategies and use INTL to automatically invoke
 them. Just make your new strategy a subclass of the cINTLStrategy class
-(so you'll have the properties and methods INTL expects ) and then run
+(so you'll have the properties and methods INTL expects) and then run
 with it!
 
 Just as in the case of subclassing an existing strategy, use the
@@ -730,7 +730,7 @@ strategy class to an existing strategy alias.
 
 ```
 *-- Permanently install cMyStringStrategy for the string strategy.
-_SCREEN.oINTL.SetStrategyClass("String", "cMyStringStrategy" )
+_SCREEN.oINTL.SetStrategyClass( "String", "cMyStringStrategy" )
 ```
 
 ## How to Batch-Update `strings.dbf`
@@ -750,7 +750,7 @@ before the .APP or .EXE is created.
 Localizing reports is something you really only need to do once. The
 transformation process turns your report labels into report expressions
 containing a call to INTL's I() function. For example, the report label
-"Name:" becomes expression I("Name:" ).
+"Name:" becomes expression I("Name:").
 
 See [Transforming Reports Based on a .PJX](#transforming-reports-based-on-a-pjx).
 
@@ -771,7 +771,7 @@ will be helpful to know the following things:
 
 If you need alternate behavior — for example if you need the second INTL
 object to completely override a memento from the first — then first
-localize the form back to original (which removes the Form.oINTL member )
+localize the form back to original (which removes the Form.oINTL member)
 and *then* localize to the new locale using the second INTL object.
 
 ## Details of How MsgSvc() Works
@@ -825,7 +825,7 @@ can be best placed relative to your project, see How to [Correctly Place Your IN
 
 The figure below shows an OMT diagram of the INTL class hierarchy.
 
-![](./media/image8.wmf )
+![](./media/image8.wmf)
 
 The INTL class hierarchy.
 
@@ -845,7 +845,7 @@ cINTLStrategy is the Parentclass of various localization engines.
 
 ## Class INTL
 
-![](./media/image9.wmf )
+![](./media/image9.wmf)
 
 The INTL class provides services to localize objects and other elements
 in your application.
@@ -861,7 +861,7 @@ A string specifying the name of the currency strategy class.
 |  |  |
 | ----- | ----- |
 | **Default** | "cINTLCurrency" |
-| **Remarks** | You may subclass cINTLCurrency to suit your particular needs. You may then use the SetStrategy("Currency",cYourCurrencyClass ) method to set this currency strategy property to something other than the default. |
+| **Remarks** | You may subclass cINTLCurrency to suit your particular needs. You may then use the `SetStrategy("Currency",cYourCurrencyClass)` method to set this currency strategy property to something other than the default. |
 | **See Also** | **`cINTLMemento::GetStrategy()`** |
 
 ----
@@ -872,7 +872,7 @@ A string specifying the name of the currency strategy class.
 |  |  |
 | ----- | ----- |
 | **Default** | "cINTLData" |
-| **Remarks** | You may subclass cINTLData to suit your particular needs. You may use the SetStrategy("Data", cYourDataClass ) method to set this data strategy property to something other than the default. |
+| **Remarks** | You may subclass cINTLData to suit your particular needs. You may use the `SetStrategy("Data", cYourDataClass)` method to set this data strategy property to something other than the default. |
 | **See Also** | **`cINTLMemento::GetStrategy()`** |
 
 ----
@@ -885,7 +885,7 @@ A string specifying the name of the font strategy class.
 |  |  |
 | ----- | ----- |
 | **Default** | "cINTLFont" |
-| **Remarks** | You may subclass cINTLFont to suit your particular needs. You may use the ::SetStrategy("Font", cYourFontClass ) to set the font strategy property to something other than the default. |
+| **Remarks** | You may subclass cINTLFont to suit your particular needs. You may use the `SetStrategy("Font", cYourFontClass)` to set the font strategy property to something other than the default. |
 | **See Also** | **`cINTLMemento::GetStrategy()`** |
 
 ----
@@ -911,7 +911,7 @@ A string specifying the name of the string strategy class. The string strategy c
 |  |  |
 | ----- | ----- |
 | **Default** | "cINTLSting" |
-| **Remarks** | You may subclass cINTLString to suit your particular needs. You may use the ::SetStrategy("String", cYourStringClass ) to set the property. |
+| **Remarks** | You may subclass cINTLString to suit your particular needs. You may use the `SetStrategy("String", cYourStringClass)` to set the property. |
 | **See Also** | **`cINTLMemento::GetStrategy()`** |
 | **The `cINTLString` strategy class is by far the most useful, and it provides services to other strategies.** | **Note:** many strategies use string-based services that are provided by the active string strategy class. To reduce cohesion with a particular cStringStrategy class, many string methods that would normally belong in class cStringStrategy are found in class cINTLStrategy, the parent strategy class. Thus all strategies have some inherent string localization abilities. | |
 
@@ -1014,7 +1014,7 @@ The `I()` function is an all-purpose localization method.
 | --- | --- |
 | **Syntax** | `oINTL.I(cString \| nAmount \| oObject )` |
 | **Return** | Localized value of `cString` or `nAmount` or `oObject`. |
-| **Argumemnts:** | `cString`: a string to localize. The string could be an interface item, a font name and size, a data source, or a file name.<br>`nAount`: an amount to localize.<br>`oObject`: an object (or a container of objects ) to traverse. |
+| **Argumemnts:** | `cString`: a string to localize. The string could be an interface item, a font name and size, a data source, or a file name.<br>`nAount`: an amount to localize.<br>`oObject`: an object (or a container of objects) to traverse. |
 | **Remarks** | The `INTL::I()` method is a *hookable* method, meaning that if an object of class INTL has an attached hook object, then `INTL.I()` defers to the hook object. Since by default objects of class INTL are hooked with an object of the `cINTLStringStrategy` class, invoking `oINTL.I()` is equivalent to invoking `oINTL.oStringStrategy.I()`. |
 | **See Also** | **`cINTLMemento::SetLocale`**<br>`cINTLCurrency::GetConversion()` |
 
@@ -1036,10 +1036,10 @@ parameters are used to initialize the state of INTL.
 
 |  |  |
 | --- | --- |
-| **Syntax** | `oX = CREATE("INTL", [C \| N \| O], [C \| N \| O], [C \| N \| O] )` |
+| **Syntax** | `oX = CREATE( "INTL", [C \| N \| O], [C \| N \| O], [C \| N \| O] )` |
 | **Return** | Logical true always. |
 | **Arguments** | You may pass one of each of the following:<br>Type "C": the language to set.<br>Type "N": an INTL configuration integer.<br>Type "O": an object to traverse and localize. |
-| **Example** | `oX = CREATE("INTL", "French", _SCREEN.Activeform )` |
+| **Example** | `oX = CREATE( "INTL", "French", _SCREEN.Activeform )` |
 
 ----
 #### `INTL::LoadStrategies()`
@@ -1051,7 +1051,7 @@ invoke it when necessary.
 
 |  |  |
 | --- | --- |
-| **Syntax** | `oX = CREATE("INTL" )`<br>`oX.LoadStrategies()` |
+| **Syntax** | `oX = CREATE( "INTL" )`<br>`oX.LoadStrategies()` |
 | **Return** | True if successful, false otherwise. |
 | **Arguments** | None. |
 | **See Also** | **`cINTLMemento::SetHook** |`
@@ -1098,7 +1098,7 @@ object and all the contents of that object.
 **Example**
 ```
 DIMENSION laScratch[1]
-Foo = CREATEOBJECT("Form" )
+Foo = CREATEOBJECT( "Form" )
 Foo.AddObject("Bar", CommandButton )
 INTL::ObjArray( Foo, @laScratch ) && yields 2
 ```
@@ -1259,7 +1259,7 @@ Returns an object reference to the hook of the object.
 | **Return** | Hook object reference if the current object is hooked, `.NULL.` otherwise. |
 | **Arguments** | None. |
 | **Example** | this.GetHook() |
-| **Remarks** | GetHook returns an object reference (if a hook is defined ) or `.NULL.` if not. |
+| **Remarks** | GetHook returns an object reference (if a hook is defined) or `.NULL.` if not. |
 | **See Also** | **`cINTLMemento::SetHook()`** |
 
 ----
@@ -1286,7 +1286,7 @@ Returns true if a reference is an object belonging to the INTL class.
 | **Syntax** | `this.IsINTLClass( Expression )` |
 | **Return** | Logical true if the object is a member of the INTL class. |
 | **Arguments** | An expression that may or may not evaluate to type "O". |
-| **Example** | `this.IsINTLClass( CREATE("ComboBox" )) && Returns .F.`|
+| **Example** | `this.IsINTLClass( CREATE( "ComboBox" )) && Returns .F.`|
 | **Remarks** | An expression is considered to be a member of the INTL class if it contains an exposed property named "INTL_Abstract_ID". |
 
 ----
@@ -1358,10 +1358,10 @@ Gets a currency conversion factor from memory.
 **Example**
 ```
 _SCREEN.AddObject( "oINTL", "INTL" )
-_SCREEN.oINTL.SetConversion("Canada", 1.3205 )
+_SCREEN.oINTL.SetConversion( "Canada", 1.3205 )
 _SCREEN.oINTL.GetConversion() && 1.0000
-_SCREEN.oINTL.GetConversion("Canada" ) && 1.3205
-_SCREEN.oINTL.SetLocale("Canada" )
+_SCREEN.oINTL.GetConversion( "Canada" ) && 1.3205
+_SCREEN.oINTL.SetLocale( "Canada" )
 _SCREEN.oINTL.GetConversion() && 1.3205 |
 ```
 
@@ -1380,13 +1380,13 @@ Localizes a numeric currency value.
 **Example**
 ```
 _SCREEN.AddObject( "oINTL", "INTL" )
-_SCREEN.oINTL.SetConversion("Canada", 1.3205 )
+_SCREEN.oINTL.SetConversion( "Canada", 1.3205 )
 _SCREEN.oINTL.GetConversion() && 1.0000
 _SCREEN.oINTL.I(10.00 ) && 10.0000
-_SCREEN.oINTL.GetConversion("Canada" ) && 1.3205
-_SCREEN.oINTL.SetLocale("Canada )
+_SCREEN.oINTL.GetConversion( "Canada" ) && 1.3205
+_SCREEN.oINTL.SetLocale( "Canada )
 _SCREEN.oINTL.GetConversion() && 1.3205<br>
-_SCREEN.oINTL.I(10.00 ) && 13.2050 |
+_SCREEN.oINTL.I( 10.00 ) && 13.2050 |
 ```
 
 ----
@@ -1405,32 +1405,34 @@ Sets a currency exchange rate.
 
 ```
 _SCREEN.AddObject( "oINTL", "INTL" )
-_SCREEN.oINTL.SetConversion("Canada", 1.3205 )
+_SCREEN.oINTL.SetConversion( "Canada", 1.3205 )
 _SCREEN.oINTL.GetConversion() && 1.0000
-_SCREEN.oINTL.GetConversion("Canada" ) && 1.3205
-_SCREEN.oINTL.SetLocale("Canada )
+_SCREEN.oINTL.GetConversion( "Canada" ) && 1.3205
+_SCREEN.oINTL.SetLocale( "Canada )
 _SCREEN.oINTL.GetConversion() && 1.3205 |
 ```
 
 ## Class cINTLData
 
-![](./media/image11.png )
+![](./media/image11.png)
 
 **You can** **display different data in different locales.**
 
 Class cINTLData is a strategy used to localize the data sources in your applications. For example, cINTLData can be used to switch the display of data for different locales.
-<p>Data translations are kept in `strings.dbf` and are prefixed with the characters “((Data ))”. For example: ((Data ))Customer.cType
+
+Data translations are kept in `strings.dbf` and are prefixed with the characters “`((Data ))`”. For example: `((Data))Customer.cType`
 
 
 
 ## Class cINTLFont
 
-![](./media/image12.png )
+![](./media/image12.png)
 
 **To display the characters of some languages, you may need to change fonts.**
 
 Class cINTLFont is a strategy used to localize the fonts in your applications. For example, cINTLFont can be used to switch from "Arial" to "Arial CE" or "Arial Cyr" for use in Eastern Europe and the former Soviet Union.
-<p>Font translations are kept in `strings.dbf` and are prefixed with the characters “((Font ))”. For example: ((Font ))Arial,10.
+
+Font translations are kept in `strings.dbf` and are prefixed with the characters “`((Font))`”. For example: `((Font))Arial,10`.
 
 ### Class cINTLFont Exposed Properties
 
@@ -1459,8 +1461,8 @@ Here are the exposed methods of class cINTLFont.
 ```
 _SCREEN.AddObject( "oINTL", "INTL" )
 *-- Load the font strategy
-* _SCREEN.oINTL.SetStrategy(“Font” ) && works too
-_SCREEN.oINTL.SetConfig(2 ) && for fonts
+* _SCREEN.oINTL.SetStrategy( “Font" ) && works too
+_SCREEN.oINTL.SetConfig( 2 ) && for fonts
 *-- Comfigure the font object for all
 _SCREEN.oINTL.oFontStrategy.SetConfig( 1 + 2 ) |
 ```
@@ -1473,7 +1475,7 @@ _SCREEN.oINTL.oFontStrategy.SetConfig( 1 + 2 ) |
 
 ## Class `cINTLMemento`
 
-![](./media/image13.png )
+![](./media/image13.png)
 
 |  |  |
 | ----- | ----- |
@@ -1576,7 +1578,7 @@ taArray: an array, always passed by reference.
 **Example**
 ```
 DIMENSION MyStrategyArray[1]
-_SCREEN.oINTL.SetStrategy(“Font” )
+_SCREEN.oINTL.SetStrategy( “Font” )
 ?_SCREEN.oINTL.aStrat( @MyStrategyArray ) && 2
 ?MyStrategyArray[1] && "String"
 ?MyStrategyArray[2] && "Font”
@@ -1685,10 +1687,10 @@ Returns an object reference to a strategy object.
 
 |  |  |
 | --- | --- |
-| **Syntax** | `oINTL.GetStrategy([cStrategy] )` |
+| **Syntax** | `oINTL.GetStrategy( [cStrategy] )` |
 | **Return** | An object reference to a given strategy. |
 | **Arguments** | `cStrategy`: a strategy name, the default being `"String"`. Other valid names for native strategies include `"Currency"`, `"Data"`, or `"Font"`. |
-| **Example** | `oINTL.GetStrategy("Currency" )` |
+| **Example** | `oINTL.GetStrategy( "Currency" )` |
 | **Remarks** | The strategy must be loaded for `GetStrategy()` to return a reference. |
 
 ----
@@ -1701,7 +1703,7 @@ Returns the class used for subsequent strategy object instantiations.
 | **Syntax** | `oINTL.GetStrategyClass( [cStrategy] )` |
 | **Return** | A strategy class name. |
 | **Arguments** | `cStrategy`: a strategy name. Valid names for native strategies include `“String”`, `"Currency"`, `"Data"`, `“Picture”`, and `"Font"`. |
-| **Example** | `oINTL.GetStrategyClass("Currency" ) && “cINTLCurrency”` |
+| **Example** | `oINTL.GetStrategyClass( "Currency" ) && “cINTLCurrency”` |
 
 ----
 #### `cINTLMemento::Mov()`
@@ -1718,7 +1720,7 @@ Move selected properties of this object to the object specified.
 **Example**
 
 ```
-oX = CREATEOBJECT("INTL" )
+oX = CREATEOBJECT( "INTL" )
 this.Mov( oX )
 ```
 
@@ -1801,16 +1803,16 @@ your interface.
 
 |  |  |
 | --- | --- |
-| **Syntax** | `oINTL.SetConfig(nExpression )`
+| **Syntax** | `oINTL.SetConfig( nExpression )`
 | **Return** | `.T.` if successful, `.F.` otherwise. |
-| **Arguments** | nExpression: a numeric configuration integer. |
+| **Arguments** | `nExpression`: a numeric configuration integer. |
 | **Remarks** | Invoking `SetConfig()` automatically triggers a call to `LoadStrategies()` to refresh the object's loaded strategies. |
 | **See Also** | **`cINTLMemento::GetConfig()`** |
 
 **Example**
 ```
 *-- Load the string and font strategies
-oINTL.SetConfig(3 ) |
+oINTL.SetConfig( 3 ) |
 ```
 
 ----
@@ -1863,7 +1865,7 @@ Sets the hook reference pointer.
 *-- for the INTL string class that normally serves
 *-- as the main hook strategy.
 _SCREEN.AddObject( "oINTL", "INTL" )
-_SCREEN.oINTL.SetHook( CREATE(“MyStringClass” )
+_SCREEN.oINTL.SetHook( CREATE( “MyStringClass” ))
 ```
 
 ----
@@ -1913,7 +1915,7 @@ Loads a strategy.
 | **Return** | `.T.` if successful, `.F.` otherwise. |
 | **Arguments** | `cStrategy`: a strategy name. Valid names for native strategies include "String", "Currency", "Data", or "Font".<br>`cClass`: the name of a strategy class.<br>`oObject`: a strategy object. |
 | **Example** | `oINTL.SetStrategy( "Currency","cINTLCurrency" )` |
-| **Remarks** | The cStrategy argument becomes the alias by which the strategy is named. If cStrategy is one of the native INTL aliases ("String", "Font", "Data", "Picture", or "Currency") then an automatic `::SetConfig()` is executed. For example, if `oINTL.GetConfig()` returns 1, then after `oINTL.SetStrategy("Currency", "cMyCurrency" )` it will report `17`. |
+| **Remarks** | The cStrategy argument becomes the alias by which the strategy is named. If cStrategy is one of the native INTL aliases ("String", "Font", "Data", "Picture", or "Currency") then an automatic `::SetConfig()` is executed. For example, if `oINTL.GetConfig()` returns 1, then after `oINTL.SetStrategy( "Currency", "cMyCurrency" )` it will report `17`. |
 | **See Also** | **`cINTLMemento::GetStrategy()`** |
 
 ----
@@ -2011,7 +2013,7 @@ Stores the configuration integer for this particular object.
 
 A `cINTLPicture` strategy object is used to localize the graphical elements of your applications, like bitmaps, icons,
 images and graphical mouse cursors. Picture translations are kept in `strings.dbf` and are prefixed with the characters
-`“((Picture ))”`. For example: `((Picture ))Working.BMP`.
+`“((Picture))”`. For example: `((Picture))Working.BMP`.
 
 ## Class cINTLRightToLeft
 
@@ -2026,7 +2028,7 @@ of Windows and the RightToLeft properties of the form objects must be logical tr
 
 ## Class cINTLStrategy
 
-![](./media/image16.png )
+![](./media/image16.png)
 
 The cINTLStrategy class serves as an abstract class for concrete
 localization subclasses.
@@ -2063,14 +2065,14 @@ Returns the alias of the resource table used by this strategy.
 |  |  |
 | --- | --- |
 | **Syntax** | `_SCREEN.oINTL.GetAlias()` |
-| **Return** | The name of the alias for the strategy’s resource table (if there is one ) or `.NULL.` (if there isn’t ). |
+| **Return** | The name of the alias for the strategy’s resource table (if there is one) or `.NULL.` (if there isn’t). |
 | **Arguments** | None. |
 | **Remarks** | Some strategies may not use resource tables. Note that ::GetAlias() returns the value of the strategy’s cAlias property, and does not indicate if the resource table actually exists. |
 | **See Also** | **`cINTLStrategy::GetTable()`** |
 
 **Example**
 ```
-_SCREEN.AddObject("oINTL","INTL" )
+_SCREEN.AddObject( "oINTL","INTL" )
 ACTIVATE SCREEN
 *-- Since INTL is hooked by the String strategy, the
 *-- following two lines are equivalent
@@ -2086,14 +2088,14 @@ Returns the name of the strategy object’s resource table.
 |  |  |
 | --- | --- |
 | **Syntax** | _SCREEN.oINTL.GetTable() |
-| **Return** | The name of the strategy’s resource table (if there is one ) or `.NULL.` (if there isn’t. ) |
+| **Return** | The name of the strategy’s resource table (if there is one) or `.NULL.` (if there isn’t.) |
 | **Arguments** | None. |
 | **Remarks** | Some strategies may not use resource tables. Note that ::GetTable() returns the value of the strategy’s cTable property, and does not indicate if the resource table actually exists. |
 | **See Also** | **`cINTLStrategy::GetAlias()`** |
 
 **Example**
 ```
-_SCREEN.AddObject("oINTL","INTL" )
+_SCREEN.AddObject( "oINTL","INTL" )
 ACTIVATE SCREEN
 *-- The following two lines are equivalent
 ? _SCREEN.oINTL.GetTable()
@@ -2166,9 +2168,9 @@ Sets the name of the strategy object’s resource table.
 | **Syntax** | `oINTL.SetTable( cFileName )` |
 | **Return** | `.T.` if successful, `.F.` otherwise. |
 | **Arguments** | `cFilename`: the name of a strategy resource table. |
-| **Example** | `oINTL.SetTable("C:\\NEW\\Strings.DBF" )` |
+| **Example** | `oINTL.SetTable( "C:\\NEW\\Strings.DBF" )` |
 | **Remarks** | Some strategies may not use resource tables. |
-| **See Also** | **`cINTLStrategy::GetTable`** |
+| **See Also** | **`cINTLStrategy::GetTable()`** |
 
 ----
 #### `cINTLStrategy::SetUpdateMode()`
@@ -2228,7 +2230,7 @@ updateable.
 
 ## class `cINTLString`
 
-![](./media/image17.png )
+![](./media/image17.png)
 
 The `cINTLString` class is the workhorse class in INTL that serves both as
 the localization strategy for strings and as a service provider to other
@@ -2309,7 +2311,7 @@ Creates the resource table used by this strategy object.
 
 **Example**
 ```
-_SCREEN.AddObject("oINTL", "INTL" )
+_SCREEN.AddObject( "oINTL", "INTL" )
 LOCAL oX, lcFile
 oX = _Screen.oINTL
 lcFile = oX.oStringStrategy.GetTable()
@@ -2334,7 +2336,7 @@ table.
 
 **Example**
 ```
-_SCREEN.AddObject("oINTL", "INTL" )
+_SCREEN.AddObject( "oINTL", "INTL" )
 LOCAL oX, lcFile
 oX = _Screen.oINTL
 lcFile = oX.oStringStrategy.GetTable()
@@ -2377,22 +2379,22 @@ strategy object.
 | --- | --- |
 | **Syntax** | `oINTL.IsValidLanguage( cLanguage )` |
 | **Return** | `.T.` if the passed language is supported by the string strategy. |
-| **Arguments** | `cLanguage`: a field name (minus the leading "c" ) in `strings.dbf`. |
+| **Arguments** | `cLanguage`: a field name (minus the leading "c") in `strings.dbf`. |
 | **See Also** | `cINTLString::Alang` |
 
 **Example**
 ```
-_SCREEN.AddObject("oINTL", "INTL" )
+_SCREEN.AddObject( "oINTL", "INTL" )
 *-- The following two are equivalent
-_SCREEN.oINTL.IsValidLanguage("Russian" )
-_SCREEN.oINTL.oStringStrategy.IsValidLanguage("Russian" ) |
+_SCREEN.oINTL.IsValidLanguage( "Russian" )
+_SCREEN.oINTL.oStringStrategy.IsValidLanguage( "Russian" ) |
 ```
 
-**Remarks** cLanguage is a valid language if a corresponding field exists in the strategy’s resource table (normally `strings.dbf` ). Note that the "c" field-name prefix should not be included in cLanguage. For example, if field cSpanish exists in `strings.dbf`, the following results can be expected:
+**Remarks** cLanguage is a valid language if a corresponding field exists in the strategy’s resource table (normally `strings.dbf`). Note that the "c" field-name prefix should not be included in cLanguage. For example, if field cSpanish exists in `strings.dbf`, the following results can be expected:
 
 ```
-oINTL.IsValidLanguage("Spanish" ) && Returns .T.
-oINTL.IsValidLanguage("cSpanish" ) && Returns .F. |
+oINTL.IsValidLanguage( "Spanish" ) && Returns .T.
+oINTL.IsValidLanguage( "cSpanish" ) && Returns .F. |
 ```
 
 ----
@@ -2424,7 +2426,7 @@ Sets the configuration of the string strategy object.
 
 **Example**
 ```
-_SCREEN.Addobject("oINTL","INTL" )
+_SCREEN.Addobject( "oINTL","INTL" )
 _SCREEN.oINTL.oStringStrategy.SetConfig( 6 ) |
 ```
 
@@ -2447,7 +2449,7 @@ This method updates the resource file with the passed argument.
 
 GENMENUX is a menu generator *shell*. It creates a custom environment
 from which it calls the regular FoxPro menu generator GENMENU.PRG (or a
-substitute generator of your choice ). GENMENUX is hassle-free and, once
+substitute generator of your choice). GENMENUX is hassle-free and, once
 installed, you might never think about it again. The following diagrams
 illustrate the relationship between GENMENU.PRG and GENMENUX.
 
@@ -2459,7 +2461,7 @@ GENMENUX. GENMENUX allows optional user-defined drivers like INTL.
 
 In general terms, GENMENUX works as follows:
 
-1.  GENMENUX copies the metadata (.MNX file ) to a temporary file.
+1.  GENMENUX copies the metadata (.MNX file) to a temporary file.
 
 2.  The temp file is processed for GENMENUX directives and, if desired,
     passed through user defined driver programs. The directives and
@@ -2467,7 +2469,7 @@ In general terms, GENMENUX works as follows:
 
 3.  The modified temporary file is processed by the standard FoxPro
     GENMENU.PRG (or any routine you
-    specify ) to generate a temporary source file (MPR ), whose output is
+    specify) to generate a temporary source file (MPR), whose output is
     stored in a temporary memo field.
 
 4.  GENMENUX processes the temporary source code memo. Here changes can
@@ -2493,7 +2495,7 @@ executing.
 Here, step by step, is what you need to make your VFP menus
 benefit from INTL at run-time.
 
-  - Before proceeding, do a quick query of FoxPro’s SYS(2019 )to make
+  - Before proceeding, do a quick query of FoxPro’s `SYS(2019)` to make
     sure you have the correct CONFIG.FP file. In CONFIG.FP, add the
     following lines:
 
@@ -2533,9 +2535,9 @@ _GENMENU ="<PATH>\GENMENUX.PRG"
 4.  Run the program.
 
 When you run your application, all the screen and menu strings will be
-automatically appended (as they are encountered ) to the cOriginal field
+automatically appended (as they are encountered) to the cOriginal field
 of `strings.dbf`. Since no Spanish
-translation entries exist yet, you will see the English (or cOriginal )
+translation entries exist yet, you will see the English (or cOriginal)
 phrases.
 
 The final step is to translate the literals in the STRINGS.cOriginal
@@ -2662,9 +2664,10 @@ Because of their nature, dialog messages are different from other simple interfa
 | **INTL includes MSGSVC.PRG and MSGSVC.DBF that provide message services.**
 
 For maximum flexibility, I recommend that strings and messages be handled by separate mechanism. Thus INTL for Visual FoxPro comes with two related objects. The INTL object, stored at _SCREEN.oINTL, handles strings, fonts, currencies, and so on. The message services object called oMsgSvc, stored at _SCREEN.oMsgSvc, handles dialog services.
-<p>The source for message services is found in MSGSVC.PRG. The message services are personified by the MsgSvc() function, which uses the MSGSVC.DBF table to store message resources. |
+
+The source for message services is found in MSGSVC.PRG. The message services are personified by the MsgSvc() function, which uses the MSGSVC.DBF table to store message resources. |
 | **MsgSvc() is a flexible run-time function for messaging.** | MsgSvc() provides run-time multilingual and cross platform messaging in VFP. It serves to launch many sorts of messages, dialogs, and text services. |
-| **MsgSvc() is table-based, and encapsulates all the multilingual behavior of messages.** | MsgSvc() is table-based and works only as a run-time mechanism. Like I(), it will append new records in the message phrase book (called MSGSVC.DBF ) if required. It can return the user's choice as text in the *original* language of the developer, or return as a number, or return a logical value. You choose. |
+| **MsgSvc() is table-based, and encapsulates all the multilingual behavior of messages.** | MsgSvc() is table-based and works only as a run-time mechanism. Like I(), it will append new records in the message phrase book (called `MSGSVC.DBF`) if required. It can return the user's choice as text in the *original* language of the developer, or return as a number, or return a logical value. You choose. |
 | **MsgSvc() is centralized message handling. Regardless of INTL, it makes sense to use it.** | MsgSvc() is powerful. All my user-dialogs now route through it, even for applications that aren’t multi-lingual or cross-platform. The main advantage of a clearing-house for messaging is the ability to control all messages from a single point. If you have existing applications, a one-time pass through the source to route dialogs through MsgSvc() pays good dividends. Do it.
 
 ## Up And Running
@@ -2678,9 +2681,9 @@ To use MsgSvc(), you need:
 
   - The MSGSVC.DBF table either opened by your application or placed so
     that MsgSvc() can find it (in the application’s root or in the VFP
-    path ).
+    path).
 
-Call MsgSvc(<expC> ) whenever you need to display a simple dialog, WAIT
+Call `MsgSvc(<expC>)` whenever you need to display a simple dialog, WAIT
 WINDOW, text block, or thermometer bar.
 
 ## MSGSVC() Dialog Return Values
@@ -2722,7 +2725,9 @@ key can be any string you like.
 For source readability reasons, I like the key to be representative of
 what the message delivers. For example:
 
-\= MsgSvc( "Printer Not Responding" )
+```
+= MsgSvc( "Printer Not Responding" )
+```
 
 If a MsgSvc() call is made with an argument that doesn’t exist in the
 cKey field of MSGSVC.DBF, then MsgSvc() appends a new record to
@@ -2754,11 +2759,13 @@ The cFunction field controls the type of message generated by MSGSVC().
 syntax in the cFunction field. For example, the following field values
 will produce the dialog with the custom push button array shown below.
 
-\= MsgSvc( “Spock!” )
+```
+MsgSvc( “Spock!” )
+```
 
 | Field | Value |
 | ----- | ----- |
-| CKEY | “Spock!” |
+| CKEY | `“Spock!”` |
 | CFUNCTION | "\\<Phasers;\\<Lasers;\\<Run Away" |
 | CTITLE | "MSGSVC() Custom Button Example" |
 | CORIGINAL | "What do you want to do now, Mr Spock?" |
@@ -2771,7 +2778,7 @@ equivalents in the `strings.dbf` table.
 #### Field MsgSvc.cOriginal
 
 The text message, in the developer’s tongue, that you want to display.
-The " |" character can be used (as can hard-returns ) to create line
+The " |" character can be used (as can hard-returns) to create line
 breaks.
 
 #### Field MsgSvc.cFrench, cGerman, cSpanish....
@@ -2874,7 +2881,7 @@ boxes.
 
 #### Field MsgSvc.cFont, nFontSize, cFontStyle
 
-These fields are still supported (for now ) but are no longer needed and
+These fields are still supported (for now) but are no longer needed and
 can be eliminated. If you are upgrading from a prior version of MSGSVC,
 please transfer the pertinent information to the cWinFont and cMacFont
 fields as appropriate.
@@ -2896,12 +2903,12 @@ are the main items that created the dialog below:
 | Field | Value |
 | ----- | ----- |
 | cKey | Construction Zone |
-| cTitle | (Blank ) |
-| cFunction | (Blank ) |
+| cTitle | (Blank) |
+| cFunction | (Blank) |
 | cGUIVisual | WORK.BMP |
 | cOriginal | Sorry! |Feature Under Construction |
 
-![](./media/image19.wmf )
+![](./media/image19.wmf)
 
 Note that since the cTitle field is blank, the title under FoxPro for
 Windows follows standard Microsoft application design guidelines,
@@ -2918,12 +2925,12 @@ The icon is **always** **assumed to be 32x32 pixels in size.**
 | cKey | Construction Zone |
 | cTitle | This is the Window |
 | cFunction | YN |
-| cGUIVisual | (Blank ) |
+| cGUIVisual | (Blank) |
 | cOriginal | "Archive tagged message?" |
 
 Note the use of YN, a standard cFunction button specification.
 
-![](./media/image20.wmf )
+![](./media/image20.wmf)
 
 ### Substituting Text
 
@@ -2937,13 +2944,13 @@ string substitution will take place. Consider the following example:
 
 Calling this dialog as follows:
 
-\= MSGSVC( "Swap", "Bill\~lovely wife\~Chloe" )
+\= MSGSVC( "Swap", "Bill\~lovely wife\~Chloe")
 
 yields the message "Hello Bill, how's your lovely wife Chloe?"
 
 Similarly,
 
-\= MSGSVC( "Swap", "Bob\~back" )
+\= MSGSVC( "Swap", "Bob\~back")
 
 yields the message "Hello Bill, how's your back ?"
 
@@ -2955,58 +2962,72 @@ variables at runtime.
 If one of the MsgSvc() parameters is numeric, you’ll get a thermometer
 bar. The general call to MsgSvc() to create a thermometer is as follows:
 
-\= MSGSVC( <expC>, <expN> )
+```
+MSGSVC( <expC>, <expN> )
+```
 
-Where <expC> is the message to display in the dialog. The message
+Where `<expC>` is the message to display in the dialog. The message
 character expressions are automatically passed through the `strings.dbf`
 mechanism, so no need to localize the thermometer calls. The numeric
-<expN> (if between 0 and 99.99 ) triggers and configures a thermometer
+`<expN>` (if between 0 and 99.99) triggers and configures a thermometer
 bar.
 
 The first call to the thermometer bar produces a message on the first
 line of the window. Subsequent calls place new messages on the second
 line, which overwrites any message previously there.
 
-Calling the thermometer function with <expN> = 100 causes the window
+Calling the thermometer function with `<expN> = 100` causes the window
 to be deactivated after a very brief period.
 
 For example, the following lines produce the sequence of thermometer
 bars:
 
-\= MSGSVC("A Process is happening", 10 )
+```
+MSGSVC( "A Process is happening", 10)
+```
 
-![](./media/image21.wmf )
+![](./media/image21.wmf)
 
-\= MSGSVC("Step 1 is complete", 40 )
+```
+MSGSVC( "Step 1 is complete", 40 )
+```
 
-![](./media/image22.wmf )
+![](./media/image22.wmf)
 
-\= MSGSVC("We're almost done", 75 )
+```
+MSGSVC( "We're almost done", 75 )
+```
 
-![](./media/image23.wmf )
+![](./media/image23.wmf)
 
-\= MSGSVC("Done!", 100 )
+```
+MSGSVC( "Done!", 100 )
+```
 
   - Dialog disappears
 
 You can quickly create a thermometer bar with this simple call:
 
-\= MSGSVC( 30 )
+```
+MSGSVC( 30 )
+```
 
-![](./media/image24.wmf )
+![](./media/image24.wmf)
 
 To get a more minimalist thermometer bar, try this:
 
-\= MSGSVC( 30, “NoButton NoText” )
+```
+MSGSVC( 30, “NoButton NoText” )
+```
 
-![](./media/image25.wmf )
+![](./media/image25.wmf)
 
 ### Text Blocks
 
 Sometimes you just need to translate blocks of text -- whole paragraphs
 for example. MSGSVC() handles this with the TEXT keyword in the
 cFunction field. MSGSVC() will behave like I() and return the message
-(or its translation ) as a character string.
+(or its translation) as a character string.
 
 ### Tip of the Day
 
@@ -3014,13 +3035,15 @@ You can use MsgSvc() to create a Tip of the Day dialog. All the records
 in MsgSvc() having a cKey field value of "Tip" will automatically appear
 in the Tip of the Day dialog. Invoke Tip of the Day as follows:
 
-\= MSGSVC("Tip" )
+```
+MSGSVC( "Tip" )
+```
 
 Tips are kept in MSGSVC.DBF with a cKey value of “Tip”. When the Tip of
 the Day dialog is invoked, a random tip is selected, and thereafter the
 user can move sequentially through tips, invoke help, etc.
 
-![](./media/image26.wmf )
+![](./media/image26.wmf)
 
 ## Localizing Smart
 
@@ -3049,7 +3072,7 @@ ENDCASE
 
 ## Iterators And Visitors
 
-| **Iterators traverse structures, and Visitors control the iterators.** | This section describes INTL tools that are designed to make localization tasks a little easier. There are two classes of tools: the *iterator* class traverses VFP structures (like project, form and report tables ); and the *visitor* class conducts operations on the structures being traversed by an *iterator*. |
+| **Iterators traverse structures, and Visitors control the iterators.** | This section describes INTL tools that are designed to make localization tasks a little easier. There are two classes of tools: the *iterator* class traverses VFP structures (like project, form and report tables); and the *visitor* class conducts operations on the structures being traversed by an *iterator*. |
 
 All the INTL tools work essentially the same way: VFP structures are
 traversed and operations are performed during the traversal. We use
@@ -3058,7 +3081,7 @@ operations.
 
 I expect this set of tools to evolve considerably over time. Please
 check the help file and the website at
-[<span class ="underline">http://www.steveblack.com</span>](http://www.steveblack.com/ )
+[http://www.steveblack.com](http://www.steveblack.com/)
 for the latest word on what iterator and visitor capabilities are
 included with your software.
 
@@ -3256,11 +3279,11 @@ oIterator.Accept( oVisitor )
 The iterator class hierarchy specializes in two things: traversing
 structures and allowing "visitor" classes to use iterator services to
 perform tasks. The structure could be a table such as a .DBF, a metadata
-file (.PJX, .SCX, .FRX, etc. ), or a source file. In and of itself, the
+file (.PJX, .SCX, .FRX, etc.), or a source file. In and of itself, the
 iterator does nothing except maintain a pointer in the structure and
 provide methods for opening and closing the structure, navigating the
 pointer, and welcoming visitor classes that do most of the specialized
-(non-navigation ) work.
+(non-navigation) work.
 
 You can use this iterator class for a variety of uses unrelated to INTL.
 Create your own visitors to manage your VFP source— it's easy!
@@ -3269,7 +3292,7 @@ Create your own visitors to manage your VFP source— it's easy!
 
 The figure below shows a diagram of the cINTLIterator class.
 
-![](./media/image5.wmf )
+![](./media/image5.wmf)
 
 ### Class INTLIterator Exposed Methods
 
@@ -3448,7 +3471,7 @@ Returns a property from the properties memo fields in the structure.
 |  |  |
 | --- | --- |
 | **Syntax** | `oVisitor.PropSrch( cMemo, cProperty[, nOccurence] )` |
-| **Returns** | The property setting if found, CHR(0 ) otherwise. |
+| **Returns** | The property setting if found, `CHR(0)` otherwise. |
 | Arguments
 
 cMemo: the name of the memo field or a memory variable containing the memo text string.
@@ -3589,12 +3612,12 @@ The diagram below illustrates the default configuration for INTL. The
 INTL object is *hooked* with an object of the String strategy. This is
 what gives INTL its default behavior.
 
-![](./media/image2.wmf )
+![](./media/image2.wmf)
 
 The reason why the line....
 
 ```
-_SCREEN.oINTL.I("Yes" )
+_SCREEN.oINTL.I( "Yes" )
 ```
 
 ....returns "Oui" is not because the oINTL object knows translation,
@@ -3671,7 +3694,7 @@ multi-currency lookup scheme, for example as follows:
 ```
 DEFINE CLASS MyCurrencyHook AS cINTLCurrency
 *====================================
-*-- MyCurrencyHook::I([c |n] )
+*-- MyCurrencyHook::I([c |n])
 *====================================
 * My own currency conversion routine
 FUNCTION I( txPara1 )
@@ -3692,18 +3715,18 @@ the hooked object. In our example, we want to hook the currency
 strategy, thus
 
 ```
-*-- 1 ) Get a temporary handle on the currency strategy
+*-- 1) Get a temporary handle on the currency strategy
 oX = _SCREEN.oINTL.GetStrategy("Currency" )
-*-- 2 ) Hook It
+*-- 2) Hook It
 oX.SetHook(CREATEOBJECT("MyCurrencyHook" ))
-*-- 3 ) For safety, release the temporary handle.
+*-- 3) For safety, release the temporary handle.
 oX =.NULL.
 ```
 
 If you need to restore the hooked to its unhooked state, do as follows:
 
 ```
-oX = ox.SetHook(.NULL. )
+oX = ox.SetHook( .NULL. )
 ```
 # VFP's International Features
 
@@ -3728,7 +3751,7 @@ themes found herein:
 
 **The language of operating system services will vary with the localized language of the OS.**
 
-* ***Some services come from the operating system*,** so the language of display varies with the localization of the operating system. For example, if your German client is running a US version of Windows, then VFP's `MESSAGEBOX()` function will display English button captions (OK - Cancel ) and there is nothing you can do about it (other than use INTL's `MsgSvc()` function, of course ).
+* ***Some services come from the operating system*,** so the language of display varies with the localization of the operating system. For example, if your German client is running a US version of Windows, then VFP's `MESSAGEBOX()` function will display English button captions (OK - Cancel) and there is nothing you can do about it (other than use INTL's `MsgSvc()` function, of course).
 
 **The language of native VFP services will vary with the localized language of VFP.**
 
@@ -3736,11 +3759,11 @@ themes found herein:
 
 **The language of some things in VFP cannot be controlled.**
 
-* ***Some VFP services aren't designed for multi-locale use***, like the Relational Integrity (ri ) builder. The ri builder is dependent on FoxPro functions that return character strings that vary with the localized version of FoxPro.
+* ***Some VFP services aren't designed for multi-locale use***, like the Relational Integrity (ri) builder. The ri builder is dependent on FoxPro functions that return character strings that vary with the localized version of FoxPro.
 
 * **The language of third-party services cannot be predicted without experimentation.**
 
-* ***Some services come from third-parties***, and their localization usually cannot be predicted unless you experiment. Things like ole custom controls, for example, may or may not be internationally enabled, and may require separate versions (if available ) for different locales.
+* ***Some services come from third-parties***, and their localization usually cannot be predicted unless you experiment. Things like ole custom controls, for example, may or may not be internationally enabled, and may require separate versions (if available) for different locales.
 
 ### A Recurring Theme
 
@@ -3766,11 +3789,11 @@ When a VFP error occurs, ArrayName[2] contains the text of the error message, wh
 
 **Internationalization Gotcha:** this error message varies according to the localized version of VFP.
 
-When ole errors numbered 1427 or 1429 occur, then ArrayName[2] contains the text of the VFP error message ("OLE Idispatch exception code" ), and ArrayName[3] contains the text of the ole error message.
+When ole errors numbered 1427 or 1429 occur, then ArrayName[2] contains the text of the VFP error message ("OLE Idispatch exception code"), and ArrayName[3] contains the text of the ole error message.
 
 **Internationalization Gotcha:** the VFP error message varies with the localization of VFP, and the ole error message usually varies with the localization of Windows.
 
-Similarly, when an odbc error numbered 1526 occurs , then ArrayName[2] contains the text of the VFP error message ("Connectivity error:" ), and ArrayName[3] contains the text of the odbc error message.
+Similarly, when an odbc error numbered 1526 occurs , then ArrayName[2] contains the text of the VFP error message ("Connectivity error:"), and ArrayName[3] contains the text of the odbc error message.
 
 **Internationalization Gotcha:** both the VFP and ODBC error messages vary with the localization of VFP.
 
@@ -3778,7 +3801,7 @@ Obviously, you'll want to avoid passing AERROR() messages to the user unless you
 
 ----
 
-### `AFIELDS(ArrayName [, nWorkArea | cTableAlias] )`
+### `AFIELDS( ArrayName [, nWorkArea | cTableAlias] )`
 
 AFIELDS()` places structural information about the current table into an
 array.
@@ -3791,13 +3814,13 @@ flag for the field.
 validation text, which will probably need to be localized.
 
 **Internationalization Tip:** you can set the field validation text with
-`DBSETPROP(cTableAlias,"Field","RuleText", cRuleText )`.
+`DBSETPROP( cTableAlias, "Field", "RuleText", cRuleText )`.
 
 **Internationalization Gotcha:** `ArrayName[11]` contains the table
 validation text, which will probably need to be localized.
 
 **Internationalization Tip:** you can control the table validation text
-with `DBSETPROP(cTableAlias,"Table","RuleText", cRuleText )`.
+with `DBSETPROP( cTableAlias,"Table","RuleText", cRuleText )`.
 
 ----
 
@@ -3805,7 +3828,7 @@ with `DBSETPROP(cTableAlias,"Table","RuleText", cRuleText )`.
 
 **`ANSITOOEM()` is for backward compatibility and for conversions with DOS. Use CPCONVERT() instead.**
 
-`ANSITOOEM()` converts each character of a character expression to the corresponding character in the ms-dos (oem ) character set. `ANSITOOEM()` is used to move data from VFP and FoxPro for Macintosh to FoxPro for ms-dos.
+`ANSITOOEM()` converts each character of a character expression to the corresponding character in the ms-dos (oem) character set. `ANSITOOEM()` is used to move data from VFP and FoxPro for Macintosh to FoxPro for ms-dos.
 
 **Internationalization Tip** this function is included for backward compatibility. Use CPCONVERT() instead. |
 
@@ -3872,7 +3895,7 @@ code page. The current VFP code page can be determined with `CPCURRENT()`.
 
 ----
 
-### `AT_C(cSearchExpression, cExpressionSearched [, nOccurrence] )`
+### `AT_C( cSearchExpression, cExpressionSearched [, nOccurrence] )`
 
 **`AT_C()` is similar to `AT()`, but works with single- and double-byte characters.**
 
@@ -3882,7 +3905,7 @@ code page. The current VFP code page can be determined with `CPCURRENT()`.
 
 ----
 
-### `ATCC(cSearchExp, cExpSearched [, nOccurrence] )`
+### `ATCC( cSearchExp, cExpSearched [, nOccurrence] )`
 
 **`ATCC()` is like `ATC()`, and works with single- and double-byte characters.**
 
@@ -3892,11 +3915,11 @@ code page. The current VFP code page can be determined with `CPCURRENT()`.
 
 ----
 
-### `ATCLINE(cSearchExpression, cExpressionSearched )`
+### `ATCLINE( cSearchExpression, cExpressionSearched )`
 
 **There is no `ATCLINEC()` function in VFP as one might expect.**
 
-`ATCLINE()` returns the line number of the first occurrence of a character expression or memo field within another character expression or memo field, without regard for the case (upper or lower ) of the characters in either expression.
+`ATCLINE()` returns the line number of the first occurrence of a character expression or memo field within another character expression or memo field, without regard for the case (upper or lower) of the characters in either expression.
 
 **Internationalization Tip** `ATCLINE()` works with both single-byte and double-byte character sets.
 
@@ -4492,7 +4515,7 @@ The line...
 
 ...makes this rather unlocalizable dialog.
 
-![](./media/image28.wmf )
+![](./media/image28.wmf)
 
 The `GETDIR()` dialog
 
@@ -4504,7 +4527,7 @@ The `GETDIR()` dialog
 VFP and you cannot control its display language. To get a localized
 expression builder, you will need a localized version of VFP.
 
-![](./media/image29.wmf )
+![](./media/image29.wmf)
 
 The `GETEXPR TO` dialog.
 
@@ -4526,7 +4549,7 @@ The line...
 ```
 ...produces this:
 
-![](./media/image30.wmf )
+![](./media/image30.wmf)
 
 The `GETFILE()` dialog.
 
@@ -4541,7 +4564,7 @@ you choose.
 comes from VFP and the language of the dialog varies with VFP's
 localization.
 
-> ![](./media/image31.wmf )
+> ![](./media/image31.wmf)
 
 The GETFONT() dialog.
 
@@ -4567,7 +4590,7 @@ name of the printer you select.
 **Internationalization Gotcha**: this dialog comes from the operating
 system and the display language varies with its localization.
 
-> ![](./media/image32.wmf )
+> ![](./media/image32.wmf)
 
 The GETPRINTER() dialog.
 
@@ -4722,7 +4745,7 @@ For example, the line...
 ...yields the following dialog under Windows NT 3.51. There are many
 interface strings on this dialog you can’t localize.
 
-> ![](./media/image33.wmf )
+> ![](./media/image33.wmf)
 
 The LOCFILE() dialog.
 
@@ -4765,7 +4788,7 @@ and “No” button captions cannot be touched.
 ?MESSAGEBOX("cMsgText" , 4, "cTitleBarText" )
 ```
 
-![](./media/image34.wmf )
+![](./media/image34.wmf)
 
 A `MESSAGEBOX()` dialog.
 
@@ -4948,7 +4971,7 @@ For example, the following line...
 
 creates this dialog. We basically can’t localize this.
 
-> ![](./media/image35.wmf )
+> ![](./media/image35.wmf)
 
 The PUTFILE() dialog.
 
@@ -5700,8 +5723,8 @@ cultural variants, for short.
 ### Scale Factors
 
 When a system is adapted for another culture, it is often to accommodate
-a minority of users. Here the 80-20 rule usually applies**:** a majority
-of users will be users of one (usually the original ) version.
+a minority of users. Here the 80-20 rule usually applies: a majority
+of users will be users of one (usually the original) version.
 
 Adaptation for culture can increase the complexity of development, and
 hamper future maintenance. This extra complexity comes mainly at the
@@ -5730,12 +5753,11 @@ how.
 
 An international application designed from scratch usually needs a
 different internationalization approach than does a retrofit. It’s a
-different mind set. When starting a new
-application, concern centers naturally on
+different mind set. When starting a new application, concern centers naturally on
 producing prototypes, making quick progress, and creating maintainable
 code. These things are all impeded by a parallel globalization process.
 
-A retrofit, when program workings (and perhaps an installed base )
+A retrofit, when program workings (and perhaps an installed base)
 pre-exists, the main concern is usually to inject new cultural content
 without damaging the underlying program or unduly affecting portability.
 
@@ -5791,7 +5813,7 @@ good opportunity to revisit the source code. This is either to the
 delight or dread of programmers. Herein lies a real dilemma: do you make
 use of this engineering opportunity, or do you just translate? This is
 an important question with no easy answers. It depends on (among other
-things ) the installed base, a sense of direction in version control
+things) the installed base, a sense of direction in version control
 strategy, the quality of the code, and whether some original developers
 are still around.
 
