@@ -1920,7 +1920,7 @@ Loads a strategy.
 
 |  |  |
 | --- | --- |
-| **Syntax** | `oINTL.SetStrategy( cStrategy, cClassName | oObject )` |
+| **Syntax** | `oINTL.SetStrategy( cStrategy, cClassName \| oObject )` |
 | **Return** | `.T.` if successful, `.F.` otherwise. |
 | **Arguments** | `cStrategy`: a strategy name. Valid names for native strategies include "String", "Currency", "Data", or "Font".<br>`cClass`: the name of a strategy class.<br>`oObject`: a strategy object. |
 | **Example** | `oINTL.SetStrategy( "Currency","cINTLCurrency" )` |
