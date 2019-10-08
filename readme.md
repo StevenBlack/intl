@@ -6553,14 +6553,14 @@ description at the end of this document that explains the event
 sequencing.
 
 ----
-#### `*:MNXDRV0 <file> (GENMENUX Directive )`
+#### `*:MNXDRV0 <file> (GENMENUX Directive)`
 
 A driver that appends the driver to the GENMENU file. This allows a
 driver to include functions with the same names as normal GENMENU
 functions that provide additional functionality.
 
 ----
-#### `*:MNXDRV1 <expC> (GENMENUX Directive )`
+#### `*:MNXDRV1 <expC> (GENMENUX Directive)`
 
 Calls a driver before standard GENMENUX processing begins. At _MNXDRV1,
 the menu MNX table is in the current workarea with the pointer
@@ -6568,7 +6568,7 @@ positioned at the first record. The driver is *not* called for every
 record in the menu table. Called: Setup snippet, CONFIG.FP.
 
 ----
-#### `*:MNXDRV2 <expC> (GENMENUX Directive )`
+#### `*:MNXDRV2 <expC> (GENMENUX Directive)`
 
 Calls a GENMENUX driver after standard GENMENUX processing has begun.
 This driver can be considered a *line driver* i.e. it can be a one-line
@@ -6576,7 +6576,7 @@ command. It is processed through each record of the menu file from
 within a SCAN statement. Called: Setup snippet, CONFIG.FP.
 
 ----
-#### `*:MNXDRV3 <expC> (GENMENUX Directive )`
+#### `*:MNXDRV3 <expC> (GENMENUX Directive)`
 
 Calls a GENMENUX driver after standard GENMENUX processing and menu
 re-ordering has been completed. This driver can be considered a line
@@ -6587,7 +6587,7 @@ corrupted. Use MNXDRV2 if you want to do that. Called: Setup snippet,
 CONFIG.FP.
 
 ----
-#### `*:MNXDRV4 <expC> (GENMENUX Directive )`
+#### `*:MNXDRV4 <expC> (GENMENUX Directive)`
 
 Calls a driver before the standard GenMenu is called. No SCAN statement
 propels this driver. When this driver is called, the menu MNX file is in
@@ -6596,7 +6596,7 @@ the current workarea with the pointer at the first record. The driver is
 CONFIG.FP.
 
 ----
-#### `*:MNXDRV5 <expC> (GENMENUX Directive )`
+#### `*:MNXDRV5 <expC> (GENMENUX Directive)`
 
 Calls a GENMENUX driver that completely replaces the standard FoxPro
 GenMenu. This driver must be a complete driver in the sense that when it
@@ -6608,14 +6608,14 @@ setting of the GENMENUX driver, if used. Called: Setup snippet,
 CONFIG.FP.
 
 ----
-#### `*:MPRDRV1 <expC> (GENMENUX Directive )`
+#### `*:MPRDRV1 <expC> (GENMENUX Directive)`
 
 Calls a GENMENUX driver that will update the MPR file within the
 temporary project file. When it starts, the just created MPR file is in
 the memo field named OBJECT. Called: Setup snippet, CONFIG.FP.
 
 ----
-#### `*:MPRDRV2 <expC> (GENMENUX Directive )`
+#### `*:MPRDRV2 <expC> (GENMENUX Directive)`
 
 Calls a GENMENUX driver that will update the MPR file within the
 temporary project file. When it starts, the just created MPR file is in
@@ -6624,7 +6624,7 @@ last item in GENMENUX before the removal of the temporary project files.
 Called: Setup snippet, CONFIG.FP.
 
 ----
-#### `*:AFTER <expC> |<expN> (GENMENUX Directive )`
+#### `*:AFTER <expC> |<expN> (GENMENUX Directive)`
 
 A directive that allows you to identify where each PAD will be placed on
 a menu bar. You can use these clauses with Character expressions for
@@ -6632,7 +6632,7 @@ menu pads or numeric expressions for menu bars. See also:
 `*:BEFORE`.
 
 ----
-#### `*:ARRAY <cArray> (GENMENUX Directive )`
+#### `*:ARRAY <cArray> (GENMENUX Directive)`
 
 Adds a loop for a popup that allows the BARs of the popup to be defined
 based on the array `<cArray>`. If the Array is two dimensions, the ON
@@ -6642,14 +6642,14 @@ of the array.
 Example: `*:ARRAY a_fldNames`
 
 ----
-#### `*:AUTOACT (GENMENUX Directive )`
+#### `*:AUTOACT (GENMENUX Directive)`
 
 AUTOACT will automatically activate the menu in the cleanup snippet.
 This is useful if you use the MENUNAME directive and do not place the
 ACTIVATE MENU clause in your code.
 
 ----
-#### `*:AUTOHOT (GENMENUX Directive )`
+#### `*:AUTOHOT (GENMENUX Directive)`
 
 Automatically adds hot keys to menu pads (not bars ) that have none
 assigned. This is useful if you sometimes forget to create hot keys for
@@ -6660,20 +6660,20 @@ OFF. When adding it to the Setup snippet, the argument is ignored. It is
 automatically turned on. Called: Setup snippet, CONFIG.FP.
 
 ----
-#### `*:AUTOPOS (GENMENUX Directive )`
+#### `*:AUTOPOS (GENMENUX Directive)`
 
 Allows the user to click on the line where the menu is to start. This
 results in a *:LINE directive being added to the Setup/Menu Procedure
 snippet.
 
 ----
-#### `*:AUTORUN (GENMENUX Directive )`
+#### `*:AUTORUN (GENMENUX Directive)`
 
 Automatically runs the generated MPR file once it has been generated.
 Ignored when building from a project. Called: Setup snippet, CONFIG.FP.
 
 ----
-#### `*:BARHOT (GENMENUX Directive )`
+#### `*:BARHOT (GENMENUX Directive)`
 
 BARHOT will create hot keys for all menu bar items in the same way
 AUTOHOT creates hot keys for Menu Pads. This directive can only be
@@ -6682,14 +6682,14 @@ of a menu, all of the items in the submenu will be updated accordingly.
 Called: Setup/Menu Procedure Snippet Comment snippet, CONFIG.FP.
 
 ----
-#### `*:BEFORE <expC> |<expN> (GENMENUX Directive )`
+#### `*:BEFORE <expC> |<expN> (GENMENUX Directive)`
 
 A directive that allows you to identify where each PAD will be placed on
 a menu bar. You can use these clauses with Character expressions for
 menu pads or numeric expressions for menu bars. See also: *:AFTER.
 
 ----
-#### `*:CASE <expL> (GENMENUX Directive )`
+#### `*:CASE <expL> (GENMENUX Directive)`
 
 This directive places all menu definition statements matching logical
 condition in a CASE statement at the end of the menu definition. This is
@@ -6698,7 +6698,7 @@ which would make menu processing run slightly faster. See also:
 `*:REFPRG`.
 
 ----
-#### `*:COLOR <cColorPair><expC> (GENMENUX Directive )`
+#### `*:COLOR <cColorPair><expC> (GENMENUX Directive)`
 
 Defines color pairs for an individual menu pad or item. Individual menu
 items can have different colors. Example: `*:COLOR R/W,RB/B`
@@ -6713,21 +6713,21 @@ Passing one of these clauses as a parameter to `*:COLOR` will tell
 GENMENUX to use the appropriate RGB setting for the menu bar.
 
 ----
-#### `*:COLORSET <expC> (GENMENUX Directive )`
+#### `*:COLORSET <expC> (GENMENUX Directive)`
 
 Defines a color scheme for an individual menu pad or item. Example:
 
 *:COLORSET 7
 
 ----
-#### `*:DEFAULT (GENMENUX Directive )`
+#### `*:DEFAULT (GENMENUX Directive)`
 
 Adds the statement SET SYSMENU SAVE to the cleanup code. This makes the
 menu the default (SET SYSMENU TO DEFAULT ) after it has been created.
 Called: Setup snippet.
 
 ----
-#### `*:DEFLIB <cLibrary> (GENMENUX Directive )`
+#### `*:DEFLIB <cLibrary> (GENMENUX Directive)`
 
 Since every object must belong to a library, *:DEFLIB allows you to
 define the library for an entire menu. This is useful if you create a
@@ -6735,7 +6735,7 @@ single menu that contains all of your library objects and want to place
 each object into a single library.
 
 ----
-#### `*:DEFOBJ [<cLibrary>.]<cObject> (GENMENUX Directive )`
+#### `*:DEFOBJ [<cLibrary>.]<cObject> (GENMENUX Directive)`
 
 To define a library object, place the *:DEFOBJ directive in the comment
 field for the menu pad, submenu or procedure to be defined. The object
@@ -6784,7 +6784,7 @@ pad, identifying it as belonging to the File library and naming the
 object Reindex.
 
 ----
-#### `*:DEFPOPIF <expC> (GENMENUX Directive )`
+#### `*:DEFPOPIF <expC> (GENMENUX Directive)`
 
 Makes the DEFINE POPUP statement conditional on if it already exists.
 DEFINE POPUP is slow. This directive will place an IF...ENDIF statement
@@ -6794,64 +6794,64 @@ conditional, making the MPR run considerably faster. Example:
 *:DEFPOPIF options.
 
 ----
-#### `*:DELETE (GENMENUX Directive )`
+#### `*:DELETE (GENMENUX Directive)`
 
 Deletes the menu prompt during compilation so it doesn’t appear. This
 directive is useful for adding features at a later date and ensuring
 they don’t appear in the menu. Called: Comment snippet.
 
 ----
-#### `*:DELOBJ (GENMENUX Directive )`
+#### `*:DELOBJ (GENMENUX Directive)`
 
 Removes a menu item after GENMENUX has completed directive processing
 but BEFORE it reorders the menu.
 
 ----
-#### `*:FOUNDATION <expC> (GENMENUX Directive )`
+#### `*:FOUNDATION <expC> (GENMENUX Directive)`
 
-Places a READ VALID <cExpr> statement in the cleanup snippet to assist
-in the creation of a Foundation READ. If you do not provide an <expC>,
+Places a `READ VALID <cExpr>` statement in the cleanup snippet to assist
+in the creation of a Foundation READ. If you do not provide an `<expC>`,
 the READ will automatically exit when the selected prompt is either
-"EXIT" or "QUIT".
+`"EXIT"` or `"QUIT"`.
 
 ----
-#### `*:FOXMNX <cFileName> (GENMENUX Directive )`
+#### `*:FOXMNX <cFileName> (GENMENUX Directive)`
 
 Specifies the GENMENUX library file.
 
 ----
-#### `*:GENIF <expC> (GENMENUX Directive )`
+#### `*:GENIF <expC> (GENMENUX Directive)`
 
 Allows menu items to be defined during MPR generation based on the
-condition defined in <expC>. If the condition specified in <expC> is
-not met when the MPR file is being generated, GENMENUX removes the PAD
-or BAR from the menu. Called: Comment snippet. Example:
+condition defined in `<expC>`. If the condition specified in `<expC>` is
+not met when the MPR file is being generated, GENMENUX removes the `PAD`
+or `BAR` from the menu. Called: Comment snippet. Example:
 
 *:GENIF "DEV"$CURDIR()
 
-*:GENIF DATE()<CTOD("12/31/93" )
+*:GENIF DATE()<CTOD("12/31/93")
 
 ----
-#### `*:GENMENUX <expC> (GENMENUX Directive )`
+#### `*:GENMENUX <expC> (GENMENUX Directive)`
 
 Define whats GENMENU.PRG program to use. This is helpful if you want to
 use a different menu generator for a particular menu. Called: Setup
 snippet, CONFIG.FP
 
 ----
-#### `*:HIDE /m._HIDE (GENMENUX Directive )`
+#### `*:HIDE /m._HIDE (GENMENUX Directive)`
 
 Hides the menu bar during the running of the MPR file and shows it at
 the end. This is useful if you use a lot of *:IF statements and don’t
 want the user to see a lot of menu activity.
 
 ----
-#### `*:IF <expC> (GENMENUX Directive )`
+#### `*:IF <expC> (GENMENUX Directive)`
 
-Menu items appear based on the condition defined in <expC>. This
+Menu items appear based on the condition defined in `<expC>`. This
 condition is evaluated at run-time, allowing menu items to completely
 disappear when not being used (as opposed to being grayed out ). IF
-statements in the cleanup code RELEASE the menu pads that do not meet
+statements in the cleanup code `RELEASE` the menu pads that do not meet
 the condition specified. The *:IF directive also supports keywords that
 allow you to use the values of the bar number, prompt or popup name.
 These keywords must be wrapped in quotes and stars in order to work
@@ -6876,34 +6876,34 @@ Example:
 ```
 
 ----
-#### `*:HIDE (GENMENUX Directive )`
+#### `*:HIDE (GENMENUX Directive)`
 
 Hides the Menu while the MPR file is being run so menu pads won't
 distract the user.
 
 ----
-#### `*:IGNORE (GENMENUX Directive )`
+#### `*:IGNORE (GENMENUX Directive)`
 
 Ignores any GENMENUX directives for this menu prompt. Called: Comment
 snippet.
 
 ----
-#### `*:INCLIB (GENMENUX Directive )`
+#### `*:INCLIB (GENMENUX Directive)`
 
 Defines the default library for referencing library objects, place the
 *:INCLIB directive in the Setup or Menu Procedure snippet of the menu.
 
 ----
-#### `*:INSOBJ <cLibrary>.<cObject> (GENMENUX Directive )`
+#### `*:INSOBJ <cLibrary>.<cObject> (GENMENUX Directive)`
 
 References a library object and makes it replace a menu option in a
 menu. The object will be replaced by the object <cObject> from the
 FOXMNX table belonging to the library specified by cLibrary. If cLibrary
 is not specified, then the library will be the one identified by the
-*:INCLIB directive.
+`*:INCLIB` directive.
 
 ----
-#### `*:INSCX <cWinName> [SAVE [MODAL]] (GENMENUX Directive )`
+#### `*:INSCX <cWinName> [SAVE [MODAL]] (GENMENUX Directive)`
 
 *:INSCX places a DO MENU.MPR in the SCX specified by cWinName. If there
 are no clauses, *:INSCX will place the statement at the bottom of the
@@ -6913,13 +6913,13 @@ INSCX places the DO command in the When clause for the screen and the
 POP MENU _MSYSMENU command in the Deactivate snippet.
 
 ----
-#### `*:LINE <expN> (GENMENUX Directive )`
+#### `*:LINE <expN> (GENMENUX Directive)`
 
 Makes the Menu bar start at the row defined by <expN>. Called: Setup
 snippet.
 
 ----
-#### `*:LOCATION <expC1>,<expC2> (GENMENUX Directive )`
+#### `*:LOCATION <expC1>,<expC2> (GENMENUX Directive)`
 
 Updates the location of the menu based on <expC1>. <expC1> can
 either be REPLACE, APPEND, BEFORE, or AFTER (just like the Menu
@@ -6928,12 +6928,12 @@ either the system menu prompt or pad name that precedes or follows the
 menu.
 
 ----
-#### `*:MENUNAME <expC> (GENMENUX Directive )`
+#### `*:MENUNAME <expC> (GENMENUX Directive)`
 
 Renames the Menu bar from _MSYSMENU to <expC>.
 
 ----
-#### `*:MESSAGE <expC> (GENMENUX Directive )`
+#### `*:MESSAGE <expC> (GENMENUX Directive)`
 
 Adds a message prompt as defined by <expC>. <expC> may be a function
 or string. If it is a string, it should be enclosed in quotes. In FoxPro
@@ -6941,73 +6941,73 @@ for Windows, *:MESSAGE overrides what’s in the Message field. Called:
 Comment snippet.
 
 ----
-#### `*:NOACT (GENMENUX Directive )`
+#### `*:NOACT (GENMENUX Directive)`
 
 Removes the ACTIVATE MENU _MSYSMENU statement from the generated MPR
 file.
 
 ----
-#### `*:NOAUTO (GENMENUX Directive )`
+#### `*:NOAUTO (GENMENUX Directive)`
 
 Removes the SET SYSMENU AUTOMATIC statement from the generated MPR file.
 Called: Setup snippet.
 
 ----
-#### `*:NOBAR (GENMENUX Directive )`
+#### `*:NOBAR (GENMENUX Directive)`
 
 Removes the BAR setting from MPR file allowing menus to be created that
 are only the length of the menu bar itself instead of extending across
 the screen. Called: Setup snippet.
 
 ----
-#### `*:NOCOMMENT (GENMENUX Directive )`
+#### `*:NOCOMMENT (GENMENUX Directive)`
 
 (Undocumented ) Strips out all comments from the .MPR file.
 
 ----
-#### `*:NOGEN (GENMENUX Directive )`
+#### `*:NOGEN (GENMENUX Directive)`
 
 Directs GENMENUX to not generate the MPR file. Called: Setup snippet.
 
 ----
-#### `*:NOMARGIN (GENMENUX Directive )`
+#### `*:NOMARGIN (GENMENUX Directive)`
 
 Removes MARGIN setting from MPR file. Called: Setup snippet.
 
 ----
-#### `*:NOSHADOW (GENMENUX Directive )`
+#### `*:NOSHADOW (GENMENUX Directive)`
 
 Removes SHADOW setting from MPR file. Called: Setup snippet.
 
 ----
-#### `*:NOXGEN (GENMENUX Directive )`
+#### `*:NOXGEN (GENMENUX Directive)`
 
 Directs GENMENUX to ignore any GENMENUX directives and generate the MPR
 file as though GENMENUX was not present. Called: Setup snippet.
 
 ----
-#### `*:NOXTHERM (GENMENUX Directive )`
+#### `*:NOXTHERM (GENMENUX Directive)`
 
 Tells GENMENUX to use FoxPro's standard thermometer instead of the
 GENMENUX extended one. This is useful if you find the GENMENUX
 thermometer distracting.
 
 ----
-#### `*:PADCOLOR <expC> (GENMENUX Directive )`
+#### `*:PADCOLOR <expC> (GENMENUX Directive)`
 
 Changes the default Menu PAD color setting. Normally, GenMenu defaults
 to COLOR SCHEME 4. Using *:PADCOLOR, the default scheme can be changed
 to any particular setting. Called: Setup snippet.
 
 ----
-#### `*:PADNAME <expC> (GENMENUX Directive )`
+#### `*:PADNAME <expC> (GENMENUX Directive)`
 
 Ensures that the current pad’s name is <expC>. Example:
 
 *:PADNAME options
 
 ----
-#### `*:PADPOS | POPPOS <nRow>,<nCol> (GENMENUX Directive )`
+#### `*:PADPOS | POPPOS <nRow>,<nCol> (GENMENUX Directive)`
 
 Places the PAD or POPUP at the Row and Column specified by <nRow> and
 <nCol>. This is useful for moving your menu around the screen in
@@ -7016,14 +7016,14 @@ a submenu. Example: *:PADPOS 5,6 (This will position the pad at row 5,
 column 6. )
 
 ----
-#### `*:POPCOLOR <expC> (GENMENUX Directive )`
+#### `*:POPCOLOR <expC> (GENMENUX Directive)`
 
 Changes the default menu popup color setting. Normally, GenMenu defaults
 to COLOR SCHEME 3. Using *:POPCOLOR, the default scheme can be changed
 to any particular setting. Called: Setup snippet
 
 ----
-#### `*:POPCOMMAND <expC> (GENMENUX Directive )`
+#### `*:POPCOMMAND <expC> (GENMENUX Directive)`
 
 Identifies the action taken when a file or field has been chosen from a
 popup created with *:POPFILES or *:POPFIELDS. <expC> must be a valid
@@ -7036,7 +7036,7 @@ FoxPro function or command. Example:
 Called: Comment snippet.
 
 ----
-#### `*:POPFIELDS <expC> (GENMENUX Directive )`
+#### `*:POPFIELDS <expC> (GENMENUX Directive)`
 
 Creates menus of popups of fields in the current table. The popup shows
 the field <expC> for all records from the current table. In order to
@@ -7048,7 +7048,7 @@ use *:POPCOMMAND. Example:
 *:POPFIELDS "Client Name: "+name
 
 ----
-#### `*:POPFILES <expC> (GENMENUX Directive )`
+#### `*:POPFILES <expC> (GENMENUX Directive)`
 
 Creates menu popups of specific files. The popup will show all files
 matching the skeleton in <expC>. Use *:POPCOMMAND to trigger a
@@ -7063,7 +7063,7 @@ comment snippet. Example:
 *:POPFILES "*.DBF"
 
 ----
-#### `*:POPPRECOMMAND <expC> (GENMENUX Directive )`
+#### `*:POPPRECOMMAND <expC> (GENMENUX Directive)`
 
 Allows for a command or function to be called before a popup is defined.
 This only works with *:POPFILES or *:POPFIELD. This allows you to open
@@ -7073,7 +7073,7 @@ responsible for closing any opened tables. Example:
 *:POPPRECOMMAND = OPENFILE("CLIENTS" )
 
 ----
-#### `*:POPTITLE <expC> (GENMENUX Directive )`
+#### `*:POPTITLE <expC> (GENMENUX Directive)`
 
 *:POPTITLE defines the popup with a title of <expC>. Handy if you
 need titles on any of your popups. Example:
@@ -7082,7 +7082,7 @@ need titles on any of your popups. Example:
 
 
 ----
-#### `*:REFPRG <file> (GENMENUX Directive )`
+#### `*:REFPRG <file> (GENMENUX Directive)`
 
 This directive identifies a file that will be created when the menu is
 generated that contains the necessary code to refresh the menu bars and
@@ -7090,7 +7090,7 @@ prompts that use the CASE statement. This cuts down having to recall the
 MPR file. See also: *:CASE.
 
 ----
-#### `*:SELECTBAR (GENMENUX Directive )`
+#### `*:SELECTBAR (GENMENUX Directive)`
 
 GenMenu uses ON BAR statement for activating popups. Using *:SELECTBAR
 will change the ON BAR statements to read ON SELECTION BAR which changes
@@ -7099,7 +7099,7 @@ popups in different locations on the screen. See ON BAR and ON SELECTION
 BAR in the FoxPro help file.
 
 ----
-#### `*:SELECTPAD (GENMENUX Directive )`
+#### `*:SELECTPAD (GENMENUX Directive)`
 
 GenMenu places ON PAD statements for activating popups. Using
 *:SELECTPAD will change the ON PAD statements to read ON SELECTION PAD
@@ -7108,27 +7108,27 @@ the menus to different locations on the screen. See ON PAD and ON
 SELECTION PAD in the FoxPro help file.
 
 ----
-#### `*:SYSDEFAULT (GENMENUX Directive )`
+#### `*:SYSDEFAULT (GENMENUX Directive)`
 
 Adds SET SYSMENU SAVE to the cleanup code. This makes the menu become
 the default (SET SYSMENU TO DEFAULT ) after it has been created.
 
 ----
-#### `*:SYSPOP (GENMENUX Directive )`
+#### `*:SYSPOP (GENMENUX Directive)`
 
 Wraps the procedure statement with PUSH MENU _MSYSMENU / SET SYSMENU
 OFF/POP MENU _MSYSMENU. It can be defined in either the CONFIG.FP,
 Setup or Procedure snippets.
 
 ----
-#### `*:VERTICAL <nStrtRow>,<nSkpRow> (GENMENUX Directive )`
+#### `*:VERTICAL <nStrtRow>,<nSkpRow> (GENMENUX Directive)`
 
 *:VERTICAL causes the menu to be created vertically instead of
 horizontally. You specify the starting row with nStrtRow and define the
 number of rows between menu options using nSkipRow.
 
 ----
-#### `*:WINDOW <expC1> [CLAUSES [<expC2>]] (GENMENUX Directive )`
+#### `*:WINDOW <expC1> [CLAUSES [<expC2>]] (GENMENUX Directive)`
 
 Adds the argument IN WINDOW <expC1> to the menu definition. This
 allows you to create menus within windows. When using *:WINDOW, be sure
@@ -7148,7 +7148,7 @@ FROM 5,5 TO 12,50 ;
 COLOR SCHEME 6
 
 ----
-#### `{{<exp>}} (GENMENUX Directive )`
+#### `{{<exp>}} (GENMENUX Directive)`
 
 Text surrounded by double braces performs the EVALUATION of <expC> at
 compile-time and returns the value in string form. {{<expC>}} is
@@ -7168,7 +7168,7 @@ WAIT 'Version Date is 06/01/93' WINDOW
 ```
 
 ----
-#### `{{&.<expC>}} (GENMENUX Directive )`
+#### `{{&.<expC>}} (GENMENUX Directive)`
 
 Text surrounded by double braces with a &. immediately after the open
 braces performs the macro substitution of <expC> at compile-time and
