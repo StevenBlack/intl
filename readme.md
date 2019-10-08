@@ -6129,7 +6129,7 @@ refer to the *Microsoft Developer Network CD*, in Number 5 (or later )
 for a document titled *International Handbook For Software Design.*
 
 In particular, bear in mind that locales may, depending on their writing
-system (among others ), may possess propriety video standards.
+system (among others), may possess propriety video standards.
 
 ### Numeric Values
 
@@ -6144,7 +6144,7 @@ display decimal Lira. In fact, you may wish to round any Lira values to
 the nearest 10, 50, or 100 for small amounts, and to the nearest 1,000
 or 10,000 for larger amounts.
 
-The VFP functions SET CURRENCY and SET CURRENCY TO do a good job of
+The VFP functions `SET CURRENCY` and `SET CURRENCY TO` do a good job of
 handling all eventualities of symbol and symbol placement. The trickiest
 combination you will likely find is in Portugal, where the currency
 symbol is infixed, as in 3,012$99. You can accomplish this with:
@@ -6155,29 +6155,29 @@ SET POINT TO "$"
 SET SEPARATOR TO ","
 ```
 
-Note that you'll need to swap the setting of SET POINT TO when you are
+Note that you'll need to swap the setting of `SET POINT TO` when you are
 not dealing with currency values. You can also trick things around with
-an appropriate PICTURE clause.
+an appropriate `PICTURE` clause.
 
 Don’t forget that, contrary to the example of the Italian Lira, some
 currencies may require three decimal places.
 
 #### Separators
 
-The VFP functions SET SEPARATOR and SET POINT do a marvelous job at
+The VFP functions `SET SEPARATOR` and `SET POINT` do a marvelous job at
 handling the differences in numeric formatting. Don't forget that in
 Europe and many parts of the world, the number 3,495 is almost equal to
 3½.
 
 ### Date and Time
 
-The date "6/11/1993" means June eleventh in North America, and November
-sixth in Europe. Fortunately, the VFP SET DATE command handles this
+The date `"6/11/1993"` means June eleventh in North America, and November
+sixth in Europe. Fortunately, the VFP `SET DATE` command handles this
 seamlessly. It does, however, affect any functions that parse characters
 into date strings.
 
 The North American version of VFP string-date functions, like
-CDOW(),CMONTH() return the name of the day or month as a string in
+`CDOW()`, `CMONTH()` return the name of the day or month as a string in
 proper noun format. International versions of VFP return these strings
 correctly in the language of localization, with capitalization as
 appropriate. "January" becomes "janvier" in the French version.
