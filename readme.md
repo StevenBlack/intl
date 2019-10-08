@@ -2600,7 +2600,7 @@ variable explained below.
 #### _INTLUPDATE "OFF" |"ON" |<Path>
 
 Controls whether the STRINGS table is refreshed at generate-time.
-Arguments are either OFF (the default ), ON, or the path to `strings.dbf`,
+Arguments are either OFF (the default), ON, or the path to `strings.dbf`,
 which acts as an implicit ON.
 
 Example: _INTLUPDATE = C:\\MyProj\\
@@ -2643,7 +2643,7 @@ table.
 #### m._INTLUPDATE = "OFF" |"ON" |<Path>
 
 Controls whether the STRINGS table is refreshed at generate-time.
-Arguments are either OFF (the default ), ON, or the path to `strings.dbf`,
+Arguments are either OFF (the default), ON, or the path to `strings.dbf`,
 which acts as an implicit ON.
 
 Example: _INTLUPDATE = C:\\MyProj\\
