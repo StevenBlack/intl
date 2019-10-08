@@ -262,7 +262,7 @@ You configure INTL with a `_SCREEN.oINTL.SetConfig( n )` method, where `n` is a 
 
 | Value | Configuration Meaning |
 | --- | --- |
-| 1 (Default )<br>`2`<br>`4`<br>`8`<br>`16`<br>32 | Load the String strategy<br>Load the Font strategy<br>Load the Data strategy<br>Load the Picture strategy<br>Load the Currency strategy<br>Load the RightToLeft strategy |
+| `1` (Default)<br>`2`<br>`4`<br>`8`<br>`16`<br>`32` | Load the String strategy<br>Load the Font strategy<br>Load the Data strategy<br>Load the Picture strategy<br>Load the Currency strategy<br>Load the RightToLeft strategy |
 
 **Example: create an INTL object that localizes strings and fonts**
 
@@ -284,20 +284,14 @@ Configuring individual strategies is easy. Simply get a reference to the strateg
 
 | Strategy | Value | Localization |
 | --- | --- | --- |
-| Data | 1 (Default )<br>`2`<br>`4`<br>`8`<br>`16` | `BoundColumn`<br>`ControlSource`<br>`RowSource`<br>`RecordSource`<br>`InputMask`
-| Font | 1 (Default )
-<br>2 (Default ) | `Font` and `FontSize`
-<p>`DynamicFont` and `DynamicFontSize` |
-| Picture | 1 (Default )<br>`2`<br>4 (Default )<br>`8` | <code>Picture</code><br><code>DownPicture</code><br><code>Icon</code><br><code>DragIcon</code> |
-| RightToLeft | 1 (Default ) | All objects reversed within their respective containers |
-| Strings | 1 (Default )<br>2 (Default )<br>4 (Default )
+| Data | `1` (Default)<br>`2`<br>`4`<br>`8`<br>`16` | `BoundColumn`<br>`ControlSource`<br>`RowSource`<br>`RecordSource`<br>`InputMask`
+| Font | `1` (Default)
+<br>`2` (Default) | `Font` and `FontSize`<br>`DynamicFont` and `DynamicFontSize` |
+| Picture | `1` (Default)<br>`2`<br>`4` (Default)<br>`8` |`Picture`<br>`DownPicture`<br>`Icon<br>`DragIcon`</code>` |
+| RightToLeft | `1` (Default) | All objects reversed within their respective containers |
+| Strings | `1` (Default)<br>`2` (Default)<br>4 (Default)| `Caption`<br>`ToolTipText`<br>`StatusBarText` |
 
-<code>Caption</code><br><code>ToolTipText</code><br><code>StatusBarText</code> |
-
-Configuration integers for the `::SetConfig()` method for the various INTL
-classes.
-
-To get a handle on a loaded strategy, use the ::GetStrategy() method.
+To get a handle on a loaded strategy, use the `GetStrategy()` method.
 Thereafter, use the handle's `SetConfig()` method to configure the
 strategy.
 
@@ -310,10 +304,10 @@ Use the `oINTL.GetStrategy()` method to get an object reference, then use its `S
 *-- create an INTL object
 _SCREEN.AddObject("oINTL", "INTL" )
 *-- Load the strings and font strategies.
-_SCREEN.oINTL.SetConfig(3 )
+_SCREEN.oINTL.SetConfig( 3 )
 *-- Configure Strings to NOT localize ToolTips
 LOCAL loTempHandle
-loTempHandle = _SCREEN.oINTL.GetStrategy("String" )
+loTempHandle = _SCREEN.oINTL.GetStrategy( "String" )
 *-- For the string strategy, the configuration
 *-- for Caption and StatusBarText is 5
 loTempHandle.SetConfig( 1 + 4 )
@@ -324,12 +318,12 @@ InputMasks.**
 
 ```
 *-- create an INTL object
-_SCREEN.AddObject("oINTL", "INTL" )
+_SCREEN.AddObject( "oINTL", "INTL" )
 *-- Load the strings and data strategies.
-_SCREEN.oINTL.SetConfig(5 )
+_SCREEN.oINTL.SetConfig( 5 )
 *-- now modify the data strategy from its default.
 LOCAL oTemp
-oTemp = _SCREEN.oINTL.GetStrategy("Data" )
+oTemp = _SCREEN.oINTL.GetStrategy( "Data" )
 *-- Input masks only.
 oTemp.SetConfig( 16 )
 ```
@@ -344,10 +338,8 @@ The following table lists the configuration bits for INTL. These configuration b
 
 | Class | Configuration bits | Localization |
 | --- | --- | --- |
-| INTL | **1 (Default )**<br>`4`<br>`2`<br>`8`<br>`16`<br>32 | **`cINTLString` strategy loaded**<br>`cINTLFont` strategy loaded<br>`cINTLData` strategy loaded<br>`cINTLPicture` strategy loaded<br>`cINTLCurrency` strategy loaded<br>`cINTLRightToLeft` strategy loaded |
-| CINTLString | 1 (Default )<br>2 (Default )<br>3 (Default )
-
-Caption<br>ToolTipText<br>StatusBarText |
+| INTL | **`1` (Default)**<br>`4`<br>`2`<br>`8`<br>`16`<br>32 | **`cINTLString` strategy loaded**<br>`cINTLFont` strategy loaded<br>`cINTLData` strategy loaded<br>`cINTLPicture` strategy loaded<br>`cINTLCurrency` strategy loaded<br>`cINTLRightToLeft` strategy loaded |
+| CINTLString | `1` (Default)<br>`2` (Default)<br>3 (Default) | `Caption`<br>`ToolTipText`<br>`StatusBarText` |
 
 Activate the string strategy as follows:
 
@@ -361,7 +353,7 @@ Another more cryptic way to load the String strategy is:
 
 ```
 -- Set configuration bit 2^0 "ON"
-_SCREEN.oINTL.SetConfig(BITSET(oINTL.GetConfig(),0 ))
+_SCREEN.oINTL.SetConfig( BITSET( oINTL.GetConfig(), 0 ))
 ```
 
 So there are two ways to do it.
@@ -370,8 +362,8 @@ Strings can be localized by providing translations in `strings.dbf`.
 
 | cOriginal | cFrench |
 | --------- | ------- |
-| Yes | Oui |
-| No | Non |
+| `Yes` | `Oui` |
+| `No` | `Non` |
 
 **Configure the String Strategy with its SetConfig() method.**
 
@@ -381,8 +373,8 @@ The INTL String strategy, like all strategies, is bitwise-configured. You can co
 
 ```
 *-- Get a handle on the string strategy:
-oFont = _SCREEN.oINTL.GetStrategy("String" )
-*-- We want Caption (1 ) and StatusbarText (4 ) only
+oFont = _SCREEN.oINTL.GetStrategy( "String" )
+*-- We want Caption( 1 ) and StatusbarText( 4 ) only
 oFont.SetConfig( 5 )
 ```
 
@@ -396,8 +388,8 @@ The following table lists the configuration bits for the INTL object to load the
 
 | Class | Configuration bits | Localization |
 | --- | --- | --- |
-| INTL | 1 (Default )<br>**`2`**<br>`4`<br>`8`<br>`16`<br>32 | `cINTLString` strategy loaded<br>**`cINTLFont` strategy loaded**<br>`cINTLData` strategy loaded<br>`cINTLPicture` strategy loaded<br>cINTLCurrency strategy loaded<br>`cINTLRightToLeft` strategy loaded |
-| CINTLFont | 1 (Default )<br>2 (Default ) | `Font` and `FontSize<`<br>`DynamicFont` and `DynamicFontSize` |
+| INTL | `1` (Default)<br>**`2`**<br>`4`<br>`8`<br>`16`<br>`32` | `cINTLString` strategy loaded<br>**`cINTLFont` strategy loaded**<br>`cINTLData` strategy loaded<br>`cINTLPicture` strategy loaded<br>cINTLCurrency strategy loaded<br>`cINTLRightToLeft` strategy loaded |
+| CINTLFont | `1` (Default)<br>`2` (Default) | `Font` and `FontSize<`<br>`DynamicFont` and `DynamicFontSize` |
 
 Activate the font strategy as follows:
 
@@ -420,8 +412,8 @@ specifications are prefixed with the identifier “((Font ))”, for example:
 
 | cOriginal | cRussian |
 | ----- | ----- |
-| `((Font ))Courier New,10` | `((Font ))Courier New Cyr,10` |
-| `((Font ))Arial,16` | `((Font ))Arial Cyr,16` |
+| `((Font))Courier New,10` | `((Font))Courier New Cyr,10` |
+| `((Font))Arial,16` | `((Font))Arial Cyr,16` |
 
 **Configure the Font Strategy with its `SetConfig()` method.**
 
@@ -453,8 +445,8 @@ The following table lists the configuration bits for the INTL object to load the
 
 | Class | Configuration bits | Localization |
 | --- | --- | --- |
-| INTL | `1` (Default )<br>`2`<br>**`4`**<br>`8`<br>`16`<br>`32` | `cINTLString` strategy loaded<br>`cINTLFont` strategy loaded<br>**`cINTLData` strategy loaded**<br>`cINTLPicture` strategy loaded<br>cINTLCurrency strategy loaded<br>`cINTLRightToLeft` strategy loaded |
-| CINTLData | 1 (Default )<br>`2`<br>`4`<br>`8`<br>`16` | BoundColumn<br>ControlSource<br>RowSource<br>RecordSource<br>InpuMask |
+| INTL | `1` (Default)<br>`2`<br>**`4`**<br>`8`<br>`16`<br>`32` | `cINTLString` strategy loaded<br>`cINTLFont` strategy loaded<br>**`cINTLData` strategy loaded**<br>`cINTLPicture` strategy loaded<br>cINTLCurrency strategy loaded<br>`cINTLRightToLeft` strategy loaded |
+| CINTLData | `1` (Default)<br>`2`<br>`4`<br>`8`<br>`16` | `BoundColumn`<br>`ControlSource`<br>`RowSource`<br>`RecordSource`<br>`InpuMask` |
 
 Activate the data strategy as follows:
 
@@ -476,7 +468,7 @@ Data elements can be localized by providing translations in `strings.dbf`.  Data
 
 | cOriginal | cRrussian |
 | ----- | ----- |
-| `((Data ))cEngDesc` | `((Data ))cRussianDesc` |
+| `((Data))cEngDesc` | `((Data))cRussianDesc` |
 
 **Configure the Data Strategy with its SetConfig() method.**
 
@@ -503,8 +495,8 @@ oPicture.SetConfig( 2 )
 
 | Class | Configuration bits | Localization |
 | --- | --- | --- |
-| INTL | 1 (Default )<br>`2`<br>`4`<br>**`8`**<br>`16`<br>32 | `cINTLString` strategy loaded<br>`cINTLFont` strategy loaded<br>`cINTLData` strategy loaded<br>**`cINTLPicture` strategy loaded**<br>cINTLCurrency strategy loaded<br>`cINTLRightToLeft` strategy loaded |
-| cINTLPicture | `1` (Default )<br>`2`<br>`4` (Default )<br>`8` | `Picture`<br>`DownPicture`<br>`Icon`<br>`DragIcon` |
+| INTL | `1` (Default)<br>`2`<br>`4`<br>**`8`**<br>`16`<br>32 | `cINTLString` strategy loaded<br>`cINTLFont` strategy loaded<br>`cINTLData` strategy loaded<br>**`cINTLPicture` strategy loaded**<br>cINTLCurrency strategy loaded<br>`cINTLRightToLeft` strategy loaded |
+|  `cINTLPicture` | `1` (Default)<br>`2`<br>`4` (Default)<br>`8` | `Picture`<br>`DownPicture`<br>`Icon`<br>`DragIcon` |
 
 
 Activate the picture strategy as follows:
@@ -527,10 +519,10 @@ Pictures can be localized by providing translations in `strings.dbf`.
 Picture specifications are prefixed with the identifier “((Picture ))”,
 for example:
 
-| coriginal | crussian |
+| `coriginal` | `crussian` |
 | ----- | ----- |
-| `((Picture ))Doctor.BMP` | `((Picture ))Doktor.BMP` |
-| `((Picture ))Friend.BMP` | `((Picture ))Comrade.BMP` |
+| `((Picture))Doctor.BMP` | `((Picture))Doktor.BMP` |
+| `((Picture))Friend.BMP` | `((Picture))Comrade.BMP` |
 
 **Configure the Picture Strategy with its SetConfig() method.**
 
@@ -562,7 +554,7 @@ following table.
 
 | Class (with default ) | Value | Localization
 | --- | --- | --- |
-| INTL (1 ) | 1 (Default )<br>`2`<br>`4`<br>`8`<br>**`16`**<br>`32` | `cINTLString` strategy loaded<br>`cINTLFont` strategy loaded<br>`cINTLData` strategy loaded<br>`cINTLPicture` strategy loaded<br>**`cINTLCurrency` strategy loaded**<br>`cINTLRightToLeft` strategy loaded |
+| INTL (1 ) | `1` (Default)<br>`2`<br>`4`<br>`8`<br>**`16`**<br>`32` | `cINTLString` strategy loaded<br>`cINTLFont` strategy loaded<br>`cINTLData` strategy loaded<br>`cINTLPicture` strategy loaded<br>**`cINTLCurrency` strategy loaded**<br>`cINTLRightToLeft` strategy loaded |
 
 Activate the currency strategy as follows:
 
@@ -587,14 +579,14 @@ The Curremcy strategy is not like the others. The INTL toolkit currency strategy
 
 * currencies are *locale*-specific, not language-specific.
 
-* class cINTLCurrency does not use class cINTLString services, and
+* class `cINTLCurrency` does not use class `cINTLString` services, and
 
-* class cINTLCurrency makes many input fields read-only when the data is in a converted state.
+* class `cINTLCurrency` makes many input fields read-only when the data is in a converted state.
 
 
 The default exchange rate for all currencies is 1.00.
 
-With the cINTLCurrency class that ships with INTL, you assign currency conversion factors to different currencies. By default the conversion factor used by the Currency strategy is 1.00.
+With the cINTLCurrency class that ships with INTL, you assign currency conversion factors to different currencies. By default the conversion factor used by the Currency strategy is `1.00`.
 
 If you need time-dependent currency conversions, you can subclass cINTLCurrency to do anything you need it to do, such as lookups.
 
@@ -635,14 +627,14 @@ The result is forms are reversed; if they were read from left-to-right now they 
 Recall that INTL strategies are bitwise-configured according to the
 following table:
 
-| Class (with default ) | Value | Localization
+| Class (with default) | Value | Localization
 | --- | --- | --- |
-|  INTL (1 ) | 1 (Default )<br>`2`<br>`4`<br>`8`<br>`16`<br>**`32`** | `cINTLString` strategy loaded<br>`cINTLFont` strategy loaded<br>`cINTLData` strategy loaded<br>`cINTLPicture` strategy loaded<br>cINTLCurrency strategy loaded<br>**`cINTLRightToLeft` strategy loaded** |
+|  INTL (1 ) | `1` (Default)<br>`2`<br>`4`<br>`8`<br>`16`<br>**`32`** | `cINTLString` strategy loaded<br>`cINTLFont` strategy loaded<br>`cINTLData` strategy loaded<br>`cINTLPicture` strategy loaded<br>cINTLCurrency strategy loaded<br>**`cINTLRightToLeft` strategy loaded** |
 
 
 Activate the currency strategy as follows:
 
-Use oINTL.SetConfig() or oINTL.SetStrategy() to load the Currency strategy.
+Use `oINTL.SetConfig()` or `oINTL.SetStrategy()` to load the Currency strategy.
 
 ```
 OINTL = _SCREEN.oINTL
@@ -659,19 +651,17 @@ The RightToLeft strategy is the only strategy that actually rearranges objects i
 
 The INTL toolkit right-to-left strategy is a little different from other strategies in four important respects:
 
-<ul>
-<li><p>The right-to-left writing direction is *locale*-specific *and* language-specific.</li>
-<li><p>Class cINTLRightToLeft does not use class cINTLString services.</li>
-<li>
-<p>Class cINTLRightToLeft reverses the location of objects within containers along the container's vertical axis. What was on the left ends up on the right, and vice versa. Also the alignment property of Checkboxes and Optiongroups is reversed, as is the sequences of Pages in Pageframes and Columns in grids.</li>
-<li><p>If you develop in a right-to-left writing system, you can use a `cINTLRightToLeft` strategy to write from left-to-right.</li>
-</ul>
+* The right-to-left writing direction is *locale*-specific *and* language-specific.
+* Class `cINTLRightToLeft` does not use class `cINTLString` services.
+* Class `cINTLRightToLeft` reverses the location of objects within containers along the container's vertical axis. What was on the left ends up on the right, and vice versa. Also the alignment property of Checkboxes and Optiongroups is reversed, as is the sequences of Pages in Pageframes and Columns in grids.
+* If you develop in a right-to-left writing system, you can use a `cINTLRightToLeft` strategy to write from left-to-right.
 
-Let's configure INTL for a right-to-left language. The cleanest way to do this is with a subclass of the INTL::SetLanguage() method. Alternately, you could also do it with the SetLocale() method. Either way, the implementation is the same.
+
+Let's configure INTL for a right-to-left language. The cleanest way to do this is with a subclass of the `INTL::SetLanguage()` method. Alternately, you could also do it with the SetLocale() method. Either way, the implementation is the same.
 
 In this example, we use `SetLanguage()` to configure for the RightToLeft transformation.
 
-<p>**Note: for clarity we've omitted configuring for the Font strategy, which we would probably need to do. See** **How to Localize Fonts on P.21**
+**Note: for clarity we've omitted configuring for the Font strategy, which we would probably need to do. See** **How to Localize Fonts on P.21**
 
 ```
 DEFINE CLASS MidEastINTL AS INTL
@@ -695,7 +685,7 @@ ENDDEFINE
 **Need different behavior? Consider a subclass.**  You may encounter situations where you need to do thing differently. Instead of changing the INTL source code (which will create difficulties when merging future releases ) consider subclassing an existing strategy for desired behavior.
 
 In the diagram below, we've created two subclasses, one from the
-cINTLString class and one from the cINTLCurrency class. The class
+`cINTLString` class and one from the cINTLCurrency class. The class
 hierarchy now looks like this:
 
 New classes added to the INTL class hierarchy.
@@ -968,14 +958,14 @@ oINTL.Execute( @laScratchArray )
 
 | **Strategies may require resource files, which are referenced by alias.**
 
-Returns the alias of the resource table associated with the default localization strategy. Normally, the default strategy object is of class cINTLString.
+Returns the alias of the resource table associated with the default localization strategy. Normally, the default strategy object is of class `cINTLString`.
 
 |  |  |
 | --- | --- |
-| **Syntax** | oINTL.GetAlias() |
+| **Syntax** | `oINTL.GetAlias()` |
 | **Return** | The character value of the string strategy table alias. |
 | **Arguments** | None. |
-| **Remarks** | The GetAlias() method is a *hookable* method, meaning that if an object of class INTL has an attached hook object, then GetAlias() defers to the method of the hook object. Since by default objects of class INTL are hooked with an object of the cINTLStringStrategy class, invoking oINTL.GetAlias() is the equivalent of invoking oINTL.oStringStrategy.getAlias(). |
+| **Remarks** | The `GetAlias()` method is a *hookable* method, meaning that if an object of class INTL has an attached hook object, then GetAlias() defers to the method of the hook object. Since by default objects of class INTL are hooked with an object of the `cINTLStringStrategy` class, invoking oINTL.GetAlias() is the equivalent of invoking oINTL.oStringStrategy.getAlias(). |
 
 **Example**
 ```
@@ -996,7 +986,7 @@ strategy.
 | **Syntax** | oINTL.GetTable()
 | **Return** | The character value of the string strategy table name. |
 | **Arguments** | None. |
-| **Remarks** | The GetTable() method is a *hookable* method, meaning that if an object of class INTL has an attached hook object, then GetTable() defers to the method of the hook object. Since by default objects of class INTL are hooked with an object of the cINTLStringStrategy class, invoking oINTL.GetTable() is equivalent to invoking oINTL.oStringStrategy.GetTable(). |
+| **Remarks** | The GetTable() method is a *hookable* method, meaning that if an object of class INTL has an attached hook object, then GetTable() defers to the method of the hook object. Since by default objects of class INTL are hooked with an object of the `cINTLStringStrategy` class, invoking `oINTL.GetTable()` is equivalent to invoking `oINTL.oStringStrategy.GetTable()`. |
 | **See Also** | **`cINTLStrategy::SetTable()`** |
 
 **Example**
@@ -1018,7 +1008,7 @@ Returns the setting for the update mode of the current string strategy.
 | **Return** | Logical true if update mode is currently "On", false otherwise. |
 | **Arguments** | None. |
 | **See Also** | **`cINTLStrategy::SetUpdateMode`** |
-| **Remarks** | If GetUpdateMode() is logical true then, for some strategies, this cause INTL resource files to be self-maintained. For example, the native string strategy will add new strings to `strings.dbf` as they are encountered if the string strategy's update mode is set to true.<br><br>The GetUpdateMode() method is a *hookable* method, meaning that if an object of class INTL has an attached hook object, then GetUpdateMode() defers to the method of the hook object. Since by default objects of class INTL are hooked with an object of the cINTLStringStrategy class, invoking oINTL.GetUpdateMode() is equivalent to invoking oINTL.oStringStrategy.GetUpdateMode(). |
+| **Remarks** | If GetUpdateMode() is logical true then, for some strategies, this cause INTL resource files to be self-maintained. For example, the native string strategy will add new strings to `strings.dbf` as they are encountered if the string strategy's update mode is set to true.<br><br>The `GetUpdateMode()` method is a *hookable* method, meaning that if an object of class INTL has an attached hook object, then GetUpdateMode() defers to the method of the hook object. Since by default objects of class INTL are hooked with an object of the `cINTLStringStrategy` class, invoking `oINTL.GetUpdateMode()` is equivalent to invoking `oINTL.oStringStrategy.GetUpdateMode()`. |
 
 **Example**
 ```
@@ -1036,7 +1026,7 @@ The `I()` function is an all-purpose localization method.
 | **Syntax** | `oINTL.I(cString \| nAmount \| oObject )` |
 | **Return** | Localized value of `cString` or `nAmount` or `oObject`. |
 | **Argumemnts:** | `cString`: a string to localize. The string could be an interface item, a font name and size, a data source, or a file name.<br>`nAount`: an amount to localize.<br>`oObject`: an object (or a container of objects ) to traverse. |
-| **Remarks** | The INTL::I() method is a *hookable* method, meaning that if an object of class INTL has an attached hook object, then INTL.I() defers to the hook object. Since by default objects of class INTL are hooked with an object of the `cINTLStringStrategy` class, invoking `oINTL.I()` is equivalent to invoking `oINTL.oStringStrategy.I()`. |
+| **Remarks** | The `INTL::I()` method is a *hookable* method, meaning that if an object of class INTL has an attached hook object, then `INTL.I()` defers to the hook object. Since by default objects of class INTL are hooked with an object of the `cINTLStringStrategy` class, invoking `oINTL.I()` is equivalent to invoking `oINTL.oStringStrategy.I()`. |
 | **See Also** | **`cINTLMemento::SetLocale`**<br>`cINTLCurrency::GetConversion()` |
 
 **Example**
@@ -1588,7 +1578,7 @@ object.
 
 taArray: an array, always passed by reference.
 <p>nType: the type of array desired<br>
-0 - Standard 1- D array of strategy names (Default )<br>
+0 - Standard 1- D array of strategy names (Default)<br>
 1 - 2-dimension array of strategy names and object references<br>
 2 - 2-dimension array of strategy names and configuration integers |
 | **Remarks** | The array must be passed by reference. Like all other FoxPro array functions, the passed array is automatically redimensioned. |
@@ -2247,7 +2237,7 @@ updateable.
 | **Remarks** | Some strategies don’t use resource tables, and are therefore not updateable. |
 | **See Also** | **`cINTLStrategy::GetUpdateMode`**<br>`cINTLStrategy::SetUpdateMode`<br>`cINTLString::UpdateResource` |
 
-## Class cINTLString
+## class `cINTLString`
 
 ![](./media/image17.png )
 
@@ -2262,7 +2252,7 @@ automatically passed through to the string strategy.
 
 ### Class `cINTLString` Exposed Properties
 
-Here are the exposed properties of class cINTLString.
+Here are the exposed properties of class `cINTLString`.
 
 #### `cINTLString::Name`
 
@@ -2274,7 +2264,7 @@ Stores the name of the string object.
 
 ### Class `cINTLString` Protected Properties
 
-Here are the protected properties of class cINTLString.
+Here are the protected properties of class `cINTLString`.
 
 #### `cINTLString::nConfig`
 
@@ -4352,7 +4342,7 @@ Here is a listing of Locale Ids:
 | --------- | ----- |
 | `1029` | Czech |
 | `1031` | German |
-| `1033` | English (Default ) |
+| `1033` | English (Default) |
 | `1034` | Spanish |
 | `1036` | French |
 | `1040` | Italian |
@@ -4912,7 +4902,7 @@ Here is a list of OLE locale id's.
 | --------- | ----- |
 | `1029` | Czech |
 | `1031` | German |
-| `1033` | English (Default ) |
+| `1033` | English (Default) |
 | `1034` | Spanish |
 | `1036` | French |
 | `1040` | Italian |
@@ -5159,7 +5149,7 @@ nExpression can be:
 
 | `nExpression` | First week requirement |
 | ----- | ----- |
-| `1` | (Default ) The first week contains January 1st. |
+| `1` | (Default) The first week contains January 1st. |
 | `2` | The larger half (four days ) of the first week is in the current year. |
 | `3` | The first week has seven days. |
 
@@ -5419,7 +5409,7 @@ Here are the locales in VFP:
 | --------- | ----- |
 | `1029` | Czech |
 | `1031` | German |
-| `1033` | English (Default ) |
+| `1033` | English (Default) |
 | `1034` | Spanish |
 | `1036` | French |
 | `1040` | Italian |
