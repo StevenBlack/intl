@@ -223,32 +223,26 @@ Here’s what you need to do to localize your application this morning for a mul
 
 The basic steps are:
 
-<dl>
-<dt>Install INTL and seed the `Init()` method of your form base classes.</dt>
-<dd>Follow the steps in the section titled Installing INTL on page 11. Make sure you review all the steps. Especially important are the steps titled [How to Instantiate an INTL Object](#how-to-instantiate-an-intl-object), [How to Get Automatic Form Localization](#how-to-get-automatic-form-localization), and [How to Localize Menus](#how-to-localize-menus).</dd>
+**Install INTL and seed the `Init()` method of your form base classes.**
+Follow the steps in the section titled [Installing INTL](#installing-intl). Make sure you review all the steps. Especially important are the steps titled [How to Instantiate an INTL Object](#how-to-instantiate-an-intl-object), [How to Get Automatic Form Localization](#how-to-get-automatic-form-localization), and [How to Localize Menus](#how-to-localize-menus).</dd>
 
-<dt>Modify the structure of <code>strings.dbf</code> and add one field for each language you need.</dt>
-<dd>
-<li>Copy the <code>strings.dbf</code> table that comes with INTL and put it in your project root directory.</li>
-<li><code>ZAP</code> the <code>strings.dbf</code> table that you just placed in your project root.</li>
-<li><code>MODIFY STRUCTURE</code> of <code>strings.dbf</code> and add a new column called "<code>cSwahili</code>" with a length of 120. Note that the "c" in "cSwahili" is required.</li>
-</dd>
+**Modify the structure of `strings.dbf` and add one field for each language you need.**
 
-<dt>Make your application create an INTL object.</dt>
-<dd>Early in your application, instantiate an INTL object just as described in How to [Instantiate an INTL Object](#how-to-instantiate-an-intl-object). Displaying in a different language is now just a matter of using its <code>SetLanguage()</code> method.</dd>
+* Copy the `strings.dbf` table that comes with INTL and put it in your project root directory.
+* `ZAP` the `strings.dbf` table that you just placed in your project root.
+* `MODIFY STRUCTURE` of `strings.dbf` and add a new column called "`cSwahili`" with a length of 120. Note that the "c" in "cSwahili" is required.
 
-<dt>Do a “Build All”.</dt>
-<td>Open your project, select "Build", and build an App or Exe, being sure to select "Recompile All Files". Go to lunch.</td>
 
-<dt>To automatically load <code>strings.dbf</code>, either run your app or use the INTLTool utility.</dt>
-<dd>There are two ways to populate the <code>strings.dbf</code> table with your project's interface strings. The first way is to simply run your program. As objects are instantiated, INTL will append the strings (like <code>Caption</code>, <code>Tooltiptext</code>, etc. ) into the strings table. A better way is to run the INTLTool update program. See [INTLTool](#intltool).</dd>
+**Make your application create an INTL object.**  Early in your application, instantiate an INTL object just as described in How to [Instantiate an INTL Object](#how-to-instantiate-an-intl-object). Displaying in a different language is now just a matter of using its `SetLanguage()` method.
 
-<dt>Input the translations in the <code>strings.dbf</code> table.</dt>
-<dd>In the <code>cSwahili</code> column, type-in Swahili translations, complete with hot-keys and shortcut-keys as required.
+**Do a “Build All”.** Open your project, select "Build", and build an App or Exe, being sure to select "Recompile All Files". Go to lunch.
+
+**To automatically load `strings.dbf`, either run your app or use the INTLTool utility.** There are two ways to populate the `strings.dbf` table with your project's interface strings. The first way is to simply run your program. As objects are instantiated, INTL will append the strings (like `Caption`, `Tooltiptext`, etc. ) into the strings table. A better way is to run the INTLTool update program. See [INTLTool](#intltool).
+
+**Input the translations in the `strings.dbf` table.** In the `cSwahili` column, type-in Swahili translations, complete with hot-keys and shortcut-keys as required.
 Note: you can get a "quick-and-dirty" translation for testing and internal demos by simply doing:
-<code>REPLACE ALL cSwahili with "**"+TRIM(cOriginal )+"**" FOR cOriginal <> "(("</code></dd>
-</dd>
-</dl>
+`REPLACE ALL cSwahili with "**"+TRIM(cOriginal )+"**" FOR cOriginal <> "(("`
+
 
 ## How to Configure Your Main INTL Object
 
@@ -285,20 +279,18 @@ Configuring individual strategies is easy. Simply get a reference to the strateg
 | Strategy | Value | Localization |
 | --- | --- | --- |
 | Data | `1` (Default)<br>`2`<br>`4`<br>`8`<br>`16` | `BoundColumn`<br>`ControlSource`<br>`RowSource`<br>`RecordSource`<br>`InputMask`
-| Font | `1` (Default)
-<br>`2` (Default) | `Font` and `FontSize`<br>`DynamicFont` and `DynamicFontSize` |
-| Picture | `1` (Default)<br>`2`<br>`4` (Default)<br>`8` |`Picture`<br>`DownPicture`<br>`Icon<br>`DragIcon`</code>` |
+| Font | `1` (Default)<br>`2` (Default) | `Font` and `FontSize`<br>`DynamicFont` and `DynamicFontSize` |
+| Picture | `1` (Default)<br>`2`<br>`4` (Default)<br>`8` |`Picture`<br>`DownPicture`<br>`Icon`<br>`DragIcon` |
 | RightToLeft | `1` (Default) | All objects reversed within their respective containers |
-| Strings | `1` (Default)<br>`2` (Default)<br>4 (Default)| `Caption`<br>`ToolTipText`<br>`StatusBarText` |
+| Strings | `1` (Default)<br>`2` (Default)<br>`4` (Default)| `Caption`<br>`ToolTipText`<br>`StatusBarText` |
 
-To get a handle on a loaded strategy, use the `GetStrategy()` method.
-Thereafter, use the handle's `SetConfig()` method to configure the
+To get a handle on a loaded strategy, use the `oINTL.GetStrategy()` method.
+Thereafter, use the handle's `oINTL.SetConfig()` method to configure the
 strategy.
 
-**Example: create an INTL object that localizes strings but not
-Tooltips**
+**Example: create an INTL object that localizes strings but not Tooltips**
 
-Use the `oINTL.GetStrategy()` method to get an object reference, then use its `SetConfig()` method to configure it.
+Use the `oINTL.GetStrategy()` method to get an object reference, then use its `oINTL.SetConfig()` method to configure it.
 
 ```
 *-- create an INTL object
@@ -338,8 +330,8 @@ The following table lists the configuration bits for INTL. These configuration b
 
 | Class | Configuration bits | Localization |
 | --- | --- | --- |
-| INTL | **`1` (Default)**<br>`4`<br>`2`<br>`8`<br>`16`<br>32 | **`cINTLString` strategy loaded**<br>`cINTLFont` strategy loaded<br>`cINTLData` strategy loaded<br>`cINTLPicture` strategy loaded<br>`cINTLCurrency` strategy loaded<br>`cINTLRightToLeft` strategy loaded |
-| CINTLString | `1` (Default)<br>`2` (Default)<br>3 (Default) | `Caption`<br>`ToolTipText`<br>`StatusBarText` |
+| INTL | **`1` (Default)**<br>`4`<br>`2`<br>`8`<br>`16`<br>`32` | **`cINTLString` strategy loaded**<br>`cINTLFont` strategy loaded<br>`cINTLData` strategy loaded<br>`cINTLPicture` strategy loaded<br>`cINTLCurrency` strategy loaded<br>`cINTLRightToLeft` strategy loaded |
+| CINTLString | `1` (Default)<br>`2` (Default)<br>`3` (Default) | `Caption`<br>`ToolTipText`<br>`StatusBarText` |
 
 Activate the string strategy as follows:
 
@@ -369,7 +361,7 @@ Strings can be localized by providing translations in `strings.dbf`.
 
 The INTL String strategy, like all strategies, is bitwise-configured. You can control the string strategy object as follows:
 
-**Example:** to disable font processing for the ToolTipText property:
+**Example:** to disable font processing for the `ToolTipText` property:
 
 ```
 *-- Get a handle on the string strategy:
@@ -388,8 +380,8 @@ The following table lists the configuration bits for the INTL object to load the
 
 | Class | Configuration bits | Localization |
 | --- | --- | --- |
-| INTL | `1` (Default)<br>**`2`**<br>`4`<br>`8`<br>`16`<br>`32` | `cINTLString` strategy loaded<br>**`cINTLFont` strategy loaded**<br>`cINTLData` strategy loaded<br>`cINTLPicture` strategy loaded<br>cINTLCurrency strategy loaded<br>`cINTLRightToLeft` strategy loaded |
-| CINTLFont | `1` (Default)<br>`2` (Default) | `Font` and `FontSize<`<br>`DynamicFont` and `DynamicFontSize` |
+| INTL | `1` (Default)<br>**`2`**<br>`4`<br>`8`<br>`16`<br>`32` | `cINTLString` strategy loaded<br>**`cINTLFont` strategy loaded**<br>`cINTLData` strategy loaded<br>`cINTLPicture` strategy loaded<br>`cINTLCurrency` strategy loaded<br>`cINTLRightToLeft` strategy loaded |
+| CINTLFont | `1` (Default)<br>`2` (Default) | `Font` and `FontSize`<br>`DynamicFont` and `DynamicFontSize` |
 
 Activate the font strategy as follows:
 
@@ -408,7 +400,7 @@ _SCREEN.oINTL.SetConfig(BITSET(oINTL.GetConfig(),1 ))
 So there are two ways to do it.
 
 Fonts can be localized by providing translations in `strings.dbf`. Font
-specifications are prefixed with the identifier “((Font ))”, for example:
+specifications are prefixed with the identifier “`((Font ))`”, for example:
 
 | cOriginal | cRussian |
 | ----- | ----- |
@@ -445,7 +437,7 @@ The following table lists the configuration bits for the INTL object to load the
 
 | Class | Configuration bits | Localization |
 | --- | --- | --- |
-| INTL | `1` (Default)<br>`2`<br>**`4`**<br>`8`<br>`16`<br>`32` | `cINTLString` strategy loaded<br>`cINTLFont` strategy loaded<br>**`cINTLData` strategy loaded**<br>`cINTLPicture` strategy loaded<br>cINTLCurrency strategy loaded<br>`cINTLRightToLeft` strategy loaded |
+| INTL | `1` (Default)<br>`2`<br>**`4`**<br>`8`<br>`16`<br>`32` | `cINTLString` strategy loaded<br>`cINTLFont` strategy loaded<br>**`cINTLData` strategy loaded**<br>`cINTLPicture` strategy loaded<br>`cINTLCurrency` strategy loaded<br>`cINTLRightToLeft` strategy loaded |
 | CINTLData | `1` (Default)<br>`2`<br>`4`<br>`8`<br>`16` | `BoundColumn`<br>`ControlSource`<br>`RowSource`<br>`RecordSource`<br>`InpuMask` |
 
 Activate the data strategy as follows:
@@ -464,13 +456,13 @@ _SCREEN.oINTL.SetConfig(BITSET(oINTL.GetConfig(),2 ))
 
 So there are two ways to do it.
 
-Data elements can be localized by providing translations in `strings.dbf`.  Data specifications are prefixed with the identifier “((Data ))”, like for example:
+Data elements can be localized by providing translations in `strings.dbf`.  Data specifications are prefixed with the identifier “`((Data))`”, like for example:
 
 | cOriginal | cRrussian |
 | ----- | ----- |
 | `((Data))cEngDesc` | `((Data))cRussianDesc` |
 
-**Configure the Data Strategy with its SetConfig() method.**
+**Configure the Data Strategy with its `SetConfig()` method.**
 
 The INTL data strategy, like all strategies, is bitwise-configured. You can control the picture strategy object as follows:
 
@@ -495,7 +487,7 @@ oPicture.SetConfig( 2 )
 
 | Class | Configuration bits | Localization |
 | --- | --- | --- |
-| INTL | `1` (Default)<br>`2`<br>`4`<br>**`8`**<br>`16`<br>32 | `cINTLString` strategy loaded<br>`cINTLFont` strategy loaded<br>`cINTLData` strategy loaded<br>**`cINTLPicture` strategy loaded**<br>cINTLCurrency strategy loaded<br>`cINTLRightToLeft` strategy loaded |
+| INTL | `1` (Default)<br>`2`<br>`4`<br>**`8`**<br>`16`<br>`32` | `cINTLString` strategy loaded<br>`cINTLFont` strategy loaded<br>`cINTLData` strategy loaded<br>**`cINTLPicture` strategy loaded**<br>`cINTLCurrency` strategy loaded<br>`cINTLRightToLeft` strategy loaded |
 |  `cINTLPicture` | `1` (Default)<br>`2`<br>`4` (Default)<br>`8` | `Picture`<br>`DownPicture`<br>`Icon`<br>`DragIcon` |
 
 
@@ -516,7 +508,7 @@ _SCREEN.oINTL.SetConfig(BITSET(oINTL.GetConfig(),3 ))
 So there are two ways to do it.
 
 Pictures can be localized by providing translations in `strings.dbf`.
-Picture specifications are prefixed with the identifier “((Picture ))”,
+Picture specifications are prefixed with the identifier “`((Picture))`”,
 for example:
 
 | `coriginal` | `crussian` |
@@ -545,12 +537,11 @@ oPicture.SetConfig( 7 )
 
 INTL provides a simple yet adaptable multi-currency capability.
 
-INTL enables you to endow your application with a simple multi-currency capability. This architecture is flexible, and by subclassing the cINTLCurrency class you can probably implement almost any multi-currency scheme you need.
+INTL enables you to endow your application with a simple multi-currency capability. This architecture is flexible, and by subclassing the `cINTLCurrency` class you can probably implement almost any multi-currency scheme you need.
 
 At the heart of it all, the INTL Currency strategy works only on fields having a format property of "$".
 
-Recall that INTL strategies are bitwise-configured according to the
-following table.
+Recall that INTL strategies are bitwise-configured according to the following table.
 
 | Class (with default ) | Value | Localization
 | --- | --- | --- |
@@ -565,7 +556,7 @@ OINTL = _SCREEN.oINTL
 oINTL.SetStratrgy( "Currency", "cINTLCurrency" )
 ```
 
-An alternate (and more cryptic ) way is to use INTL's SetConfig() method to make INTL invoke the Font strategy of a given class, as follows:
+An alternate (and more cryptic) way is to use INTL's `SetConfig()` method to make INTL invoke the Font strategy of a given class, as follows:
 
 ```
 OINTL = _SCREEN.oINTL
@@ -575,7 +566,7 @@ oINTL.SetConfig( BITSET( oINTL.GetConfig(), 4 ))
 
 So there are two ways to do it.
 
-The Curremcy strategy is not like the others. The INTL toolkit currency strategy is a little different from other strategies in three important respects:
+The Currency strategy is not like the others. The INTL toolkit currency strategy is a little different from other strategies in three important respects:
 
 * currencies are *locale*-specific, not language-specific.
 
@@ -584,9 +575,9 @@ The Curremcy strategy is not like the others. The INTL toolkit currency strategy
 * class `cINTLCurrency` makes many input fields read-only when the data is in a converted state.
 
 
-The default exchange rate for all currencies is 1.00.
+The default exchange rate for all currencies is `1.00`.
 
-With the cINTLCurrency class that ships with INTL, you assign currency conversion factors to different currencies. By default the conversion factor used by the Currency strategy is `1.00`.
+With the `cINTLCurrency` class that ships with INTL, you assign currency conversion factors to different currencies. By default the conversion factor used by the Currency strategy is `1.00`.
 
 If you need time-dependent currency conversions, you can subclass cINTLCurrency to do anything you need it to do, such as lookups.
 
@@ -629,7 +620,7 @@ following table:
 
 | Class (with default) | Value | Localization
 | --- | --- | --- |
-|  INTL (1 ) | `1` (Default)<br>`2`<br>`4`<br>`8`<br>`16`<br>**`32`** | `cINTLString` strategy loaded<br>`cINTLFont` strategy loaded<br>`cINTLData` strategy loaded<br>`cINTLPicture` strategy loaded<br>cINTLCurrency strategy loaded<br>**`cINTLRightToLeft` strategy loaded** |
+|  INTL (1 ) | `1` (Default)<br>`2`<br>`4`<br>`8`<br>`16`<br>**`32`** | `cINTLString` strategy loaded<br>`cINTLFont` strategy loaded<br>`cINTLData` strategy loaded<br>`cINTLPicture` strategy loaded<br>`cINTLCurrency` strategy loaded<br>**`cINTLRightToLeft` strategy loaded** |
 
 
 Activate the currency strategy as follows:
@@ -685,7 +676,7 @@ ENDDEFINE
 **Need different behavior? Consider a subclass.**  You may encounter situations where you need to do thing differently. Instead of changing the INTL source code (which will create difficulties when merging future releases ) consider subclassing an existing strategy for desired behavior.
 
 In the diagram below, we've created two subclasses, one from the
-`cINTLString` class and one from the cINTLCurrency class. The class
+`cINTLString` class and one from the `cINTLCurrency` class. The class
 hierarchy now looks like this:
 
 New classes added to the INTL class hierarchy.
@@ -1350,7 +1341,7 @@ Returns the version stamp for your INTL for Visual FoxPro software.
 
 ## Class cINTLCurrency
 
-**You can subclass the cINTLCurrency class to adapt it to your multi-currency needs.**  The cINTLCurrency class is used to localize currency fields so you can, among other things, swap the locale on the fly and adjust currency values dynamically. The native cINTLCurrency class works rather simply with one constant exchange rate per currency. For more complex mechanisms, like those that use a lookup table to reckon currency conversions as a function of time, can be accommodated by subclassing the cINTLCurrency class.
+**You can subclass the `cINTLCurrency` class to adapt it to your multi-currency needs.**  The `cINTLCurrency` class is used to localize currency fields so you can, among other things, swap the locale on the fly and adjust currency values dynamically. The native `cINTLCurrency` class works rather simply with one constant exchange rate per currency. For more complex mechanisms, like those that use a lookup table to reckon currency conversions as a function of time, can be accommodated by subclassing the `cINTLCurrency` class.
 
 ### Class cINTLCurrency Exposed Methods
 
