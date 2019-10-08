@@ -1815,7 +1815,7 @@ your interface.
 | **Syntax** | `oINTL.SetConfig(nExpression )`
 | **Return** | `.T.` if successful, `.F.` otherwise. |
 | **Arguments** | nExpression: a numeric configuration integer. |
-| **Remarks** | Invoking SetConfig() automatically triggers a call to LoadStrategies() to refresh the object's loaded strategies. |
+| **Remarks** | Invoking `SetConfig()` automatically triggers a call to `LoadStrategies()` to refresh the object's loaded strategies. |
 | **See Also** | **`cINTLMemento::GetConfig()`** |
 
 **Example**
@@ -1865,7 +1865,7 @@ Sets the hook reference pointer.
 | --- | --- |
 | **Syntax** | `oINTL.SetHook( oRefenceObject )`
 | **Return** | `.T.` if successful, `.F.` otherwise. |
-| **Arguments** | oReferenceObject: the name of an object to act as reference. A null string nullifies the reference. |
+| **Arguments** | `oReferenceObject`: the name of an object to act as reference. A null string nullifies the reference. |
 | **See Also** | **`cINTLAbstract::GetHook()`** |
 
 **Example**
@@ -1886,7 +1886,7 @@ Sets the language for subsequent localization.
 | --- | --- |
 | **Syntax** | `oINTL.SetLanguage( cLanguage )` |
 | **Return** | `.T.` if successful, `.F.` otherwise. |
-| **Arguments** | cLanguage: the language the INTL object will use in subsequent localizations. |
+| **Arguments** | `cLanguage`: the language the INTL object will use in subsequent localizations. |
 | **See Also** | **`cINTLMemento::GetLanguage()`** |
 
 **Example**
@@ -1904,7 +1904,7 @@ Set the INTL locale.
 | --- | --- |
 | **Syntax** | `oINTL.SetLocale( cLocalename )` |
 | **Return** | `.T.` if successful, `.F.` otherwise. |
-| **Arguments** | cLocalename, the alias of a locale. |
+| **Arguments** | `cLocalename`: the alias of a locale. |
 | **See Also** | **`cINTLMemento::GetLocale()`** |
 
 **Example**
@@ -1981,7 +1981,7 @@ Default class name for the string strategy.
 
 |  |  |
 | --- | --- |
-| **Default** | "cINTLString"
+| **Default** | "cINTLString" |
 | **See Also** | **`cINTLMemento::GetStrategy()`**<br>`cINTLMemento::SetDefaults()`<br>`cINTLMemento::SetStrategy()`<br>`cINTLMemento::aStrat()` |
 
 ----
@@ -1993,7 +1993,7 @@ references to an INTL object in members named oINTL.
 
 |  |  |
 | --- | --- |
-| **Default** | .F.
+| **Default** | `.F.` |
 | **See Also** | **`cINTLMemento::aStrategies[...]`**<br>`cINTLMemento::GetStrategy()`<br>`cINTLMemento::SetStrategy()`<br>`cINTLMemento::GetConfig()`<br>`cINTLMemento::SetConfig()` |`
 
 ----
@@ -2003,7 +2003,7 @@ Stores the configuration integer for this particular object.
 
 |  |  |
 | --- | --- |
-| **Default** | 1
+| **Default** | `1` |
 | **See Also** | **`cINTLMemento::aStrategies[...]`**<br>`cINTLMemento::GetConfig()`<br>`cINTLMemento::SetConfig()` |`
 
 ----
@@ -2012,7 +2012,7 @@ Stores the configuration integer for this particular object.
 
 |  |  |
 | --- | --- |
-| **Default** | 3 — meaning both `FontName` and `DynamicFontName` properties are localized.
+| **Default** | `3` — meaning both `FontName` and `DynamicFontName` properties are localized.
 | **Remarks** | Stores the default configuration for the strategy object. |
 | **See Also:** | **`cINTLMemento::GetConfig()`**<br>`cINTLMemento::SetConfig()`<br>`cINTLMemento::SetDefaults()` |
 
@@ -2062,7 +2062,7 @@ The default configuration integer.
 |  |  |
 | --- | --- |
 | **Default** | `1` |
-| **See Also** | **`cINTLMemento::GetConfig`**<br>`cINTLMemento::SetConfig`<br>`cINTLMemento::SetDefaults()` |`
+| **See Also** | **`cINTLMemento::GetConfig()`**<br>`cINTLMemento::SetConfig()`<br>`cINTLMemento::SetDefaults()` |`
 
 ### Class cINTLStrategy Exposed Methods
 
@@ -2118,7 +2118,7 @@ Returns the setting for the update mode of the current strategy.
 
 |  |  |
 | --- | --- |
-| **Syntax** | oINTL.&lt;StrategyObject&gt;.GetUpdateMode() |
+| **Syntax** | `oINTL.<StrategyObject>.GetUpdateMode()` |
 | **Return** | Logical true if so, false otherwise. |
 | **Arguments** | None. |
 | **Remarks** | Strategies may possess the ability to automatically update or refresh their resource files. The update mode controls whether this feature is on or off.
@@ -2150,7 +2150,7 @@ Open the strategy object’s resource table.
 | --- | --- |
 | **Syntax** | `oINTL.OpenStrategy( [cFileName [,cOptions]] )` |
 | **Return** | `.T.` if successful, `.F.` otherwise. |
-| **Arguments** | cFileName: the name of the table to open as a resource file. This defaults to what’s returned by GetTable(). |
+| **Arguments** | `cFileName`: the name of the table to open as a resource file. This defaults to what’s returned by `GetTable()`. |
 | **Remarks** | Some strategies may not use resource tables. |
 
 ----
@@ -2162,7 +2162,7 @@ Sets a new value for the alias of the strategy object’s resource table.
 | --- | --- |
 | **Syntax** | `oINTL.SetAlias( cAliasName )` |
 | **Return** | `.T.` if successful, `.F.` otherwise. |
-| **Arguments** | cAlias: the alias of the resource table. |
+| **Arguments** | `cAlias`: the alias of the resource table. |
 | **Example** | `oINTL.SetAlias( "C:\\NEW\\Strings.DBF" )` |
 | **Remarks** | Some strategies may not use resource tables. |
 | **See Also** | **`cINTLStrategy::GetAlias`** |
@@ -2176,7 +2176,7 @@ Sets the name of the strategy object’s resource table.
 | --- | --- |
 | **Syntax** | `oINTL.SetTable( cFileName )` |
 | **Return** | `.T.` if successful, `.F.` otherwise. |
-| **Arguments** | cFilename: the name of a strategy resource table. |
+| **Arguments** | `cFilename`: the name of a strategy resource table. |
 | **Example** | `oINTL.SetTable("C:\\NEW\\Strings.DBF" )` |
 | **Remarks** | Some strategies may not use resource tables. |
 | **See Also** | **`cINTLStrategy::GetTable`** |
@@ -2233,7 +2233,7 @@ updateable.
 
 |  |  |
 | --- | --- |
-| **Default** | .T. |
+| **Default** | `.T.` |
 | **Remarks** | Some strategies don’t use resource tables, and are therefore not updateable. |
 | **See Also** | **`cINTLStrategy::GetUpdateMode`**<br>`cINTLStrategy::SetUpdateMode`<br>`cINTLString::UpdateResource` |
 
@@ -2260,7 +2260,7 @@ Stores the name of the string object.
 
 |  |  |
 | ----- | ----- |
-| **Default** | "cINTLString" |
+| **Default** | `"cINTLString"` |
 
 ### Class `cINTLString` Protected Properties
 
@@ -2270,9 +2270,9 @@ Here are the protected properties of class `cINTLString`.
 
 Stores the current configuration integer for the string strategy.
 
-| **Default** | 7 |
+| **Default** | `7` |
 | --- | --- |
-| **Remarks** | Use SetConfig() and GetConfig() to change the configuration integer.<br>The string strategy is bitwise configured with the following values:<br>[`1`] Caption<br>[`2`] Tooltip<br>[`4`] Statusbartext |
+| **Remarks** | Use `SetConfig()` and `GetConfig()` to change the configuration integer.<br>The string strategy is bitwise configured with the following values:<br>[`1`] `Caption`<br>[`2`] `Tooltip`<br>[`4`] `Statusbartext` |
 | **See Also** | **`cINTLMemento::GetConfig()`** |
 
 #### `cINTLString::nDefaultConfig`
@@ -2292,7 +2292,7 @@ Stores the default configuration integer for this strategy.
 Fills an array with the languages supported by the resources of the
 string strategy object.
 
-| **Syntax** | oINTL.Alang( @aArray )
+| **Syntax** | `oINTL.Alang( @aArray )` |
 | --- | --- |
 | **Return** | The number of rows in the array, 0 if nothing found. |
 | **Arguments** | An array, passed by reference, to store the language collection. |
@@ -2375,8 +2375,8 @@ Returns logical true if the passed string is in the resource table.
 | --- | --- |
 | **Syntax** | `oINTL.IsInResource( xTest )` |
 | ----- | ----- |
-| **Return** | Logical true if the passed string is in the resource table, false otherwise. |
-| **Arguments** | xtest: the element to search in the resource table. |
+| **Return** | `.T.` if the passed string is in the resource table, `.F.` otherwise. |
+| **Arguments** | `xtest`: the element to search in the resource table. |
 | **Example** | `oINTL.IsInResource( “Cancel” ) && True, probably` |
 | **Remarks** | Does not indicate if the resource is localized in the resource table. |
 
@@ -2389,8 +2389,8 @@ strategy object.
 | | |
 | --- | --- |
 | **Syntax** | `oINTL.IsValidLanguage( cLanguage )` |
-| **Return** | Logical true if the passed language is supported by the string strategy. |
-| **Arguments** | cLanguage: a field name (minus the leading "c" ) in `strings.dbf`. |
+| **Return** | `.T.` if the passed language is supported by the string strategy. |
+| **Arguments** | `cLanguage`: a field name (minus the leading "c" ) in `strings.dbf`. |
 | **See Also** | `cINTLString::Alang` |
 
 **Example**
@@ -2417,7 +2417,7 @@ Inserts an item into the resource table.
 | --- | --- |
 | **Syntax** | oINTL.ResourceInsert( cString [,cOriginFile] )
 | **Return** | `.T.` if successful, `.F.` otherwise. |
-| **Arguments** | cString: the item to insert into the resource file<br>cOriginalFile: string for the cWhere field. |
+| **Arguments** | `cString`: the item to insert into the resource file<br>`cOriginalFile`: string for the cWhere field. |
 | **Example** | `oINTL.ResourceInsert( "New", "MyPrg.PRG" )` |
 | **Remarks** | This method inserts an item without regard to duplicates. Use the `cINTLString::IsInResource()` method to determine if the element is a duplicate. |
 | **See Also** | `cINTLString::IsInResource`<br>`cINTLString::UpdateResource` |
