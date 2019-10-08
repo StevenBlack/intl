@@ -2361,10 +2361,9 @@ Iterates through a VFP structure, localizing strings.
 
 |  |  |
 | --- | --- |
-| **Syntax** | `oINTL.oStringStrategy.Execute( aStructure |Object )` |
-| ----- | ----- |
+| **Syntax** | `oINTL.oStringStrategy.Execute( aStructure \| Object )` |
 | **Return** | `.T.` if successful, `.F.` otherwise. |
-| **Arguments** | aStructure: an array of object references, or oObject: a (container ) object reference. |
+| **Arguments** | `aStructure`: an array of object references, or `oObject`: a (container) object reference. |
 
 ----
 #### `cINTLString::IsInResource()`
@@ -2374,7 +2373,6 @@ Returns logical true if the passed string is in the resource table.
 |  |  |
 | --- | --- |
 | **Syntax** | `oINTL.IsInResource( xTest )` |
-| ----- | ----- |
 | **Return** | `.T.` if the passed string is in the resource table, `.F.` otherwise. |
 | **Arguments** | `xtest`: the element to search in the resource table. |
 | **Example** | `oINTL.IsInResource( “Cancel” ) && True, probably` |
@@ -2415,7 +2413,7 @@ Inserts an item into the resource table.
 
 | | |
 | --- | --- |
-| **Syntax** | oINTL.ResourceInsert( cString [,cOriginFile] )
+| **Syntax** | `oINTL.ResourceInsert( cString [,cOriginFile]` ) |
 | **Return** | `.T.` if successful, `.F.` otherwise. |
 | **Arguments** | `cString`: the item to insert into the resource file<br>`cOriginalFile`: string for the cWhere field. |
 | **Example** | `oINTL.ResourceInsert( "New", "MyPrg.PRG" )` |
@@ -2429,11 +2427,11 @@ Sets the configuration of the string strategy object.
 
 | | |
 | --- | --- |
-| **Syntax** | oINTL.oStringStrategy.SetConfig( nConfigInteger )
+| **Syntax** | `oINTL.oStringStrategy.SetConfig( nConfigInteger )` |
 | **Return** | `.T.` if successful, `.F.` otherwise. |
-| **Arguments** | nConfigInteger: a configuration integer that encodes the sum of configuration bytes. The configuration bytes are as follows:<br>1 Localize Caption properties.<br>2 Localize Tooltiptext properties.<br>4 Localize Statusbartext properties. |
-| **Remarks** | The default value for nConfigInteger is `7`, meaning: localize the `Caption`, `Tooltiptexts`, and `Statusbartext` properties. |
-| **See Also** | `cINTLStrategy::GetConfig` |
+| **Arguments** | `nConfigInteger`: a configuration integer that encodes the sum of configuration bytes. The configuration bytes are as follows:<br>1 Localize Caption properties.<br>2 Localize Tooltiptext properties.<br>4 Localize Statusbartext properties. |
+| **Remarks** | The default value for `nConfigInteger` is `7`, meaning: localize the `Caption`, `Tooltiptexts`, and `Statusbartext` properties. |
+| **See Also** | `cINTLStrategy::GetConfig()` |
 
 **Example**
 ```
@@ -2452,7 +2450,7 @@ This method updates the resource file with the passed argument.
 | **Return** | Logical true always. |
 | **Arguments** | xArgument: the value to insert into the resource table. |
 | **Remarks** | Note that the UpdateResource() method unconditionally inserts values into the resource table without regard for duplication or type checking. Some strategies may not support resource updating. |
-| **See Also** | **`cINTLStrategy::GetUpdateMode`** |
+| **See Also** | **`cINTLStrategy::GetUpdateMode()`** |
 
 # Localizing VFP Menus
 
