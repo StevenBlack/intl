@@ -3959,7 +3959,7 @@ code page. The current VFP code page can be determined with `CPCURRENT()`.
 
 `CHR()` returns the character associated with the specified numeric ANSI code.
 
-**Internationalization Tip** you can use `CHR()` to prevent VFP's automatic code page translation. This is useful for program files which are not marked with code pages ID's. This may save you from disaster if you omit the AS nCodePage argument found in many VFP commands.
+**Internationalization Tip** you can use `CHR()` to prevent VFP's automatic code page translation. This is useful for program files which are not marked with code pages ID's. This may save you from disaster if you omit the `AS nCodePage` argument found in many VFP commands.
 
 ----
 
@@ -4023,7 +4023,7 @@ code page you specify for the text file.
 COPY TO creates a new file from the contents of the currently selected
 table.
 
-**Internationalization Gotcha**: AS nCodePage specifies the code page
+**Internationalization Gotcha**: `AS nCodePage` specifies the code page
 for the new file. VFP copies the contents of the currently selected
 table and, as it copies the data, automatically converts the data to the
 code page you specify for the new table or file. If possible, VFP marks
@@ -4441,7 +4441,7 @@ boxes and as available with `MESSAGE()` and `AERROR()`, are in the language of V
 
 `EXPORT TO` copies data from a VFP table to a file in a different format.
 
-**Internationalization Gotcha:** AS nCodePage specifies the code page
+**Internationalization Gotcha:** `AS nCodePage` specifies the code page
 for the file EXPORT creates. VFP copies the contents of the currently
 selected table and, as it copies the data, automatically converts the
 data to the code page you specify for the new file. If possible, VFP
@@ -4796,10 +4796,10 @@ A `MESSAGEBOX()` dialog.
 
 ### `MODIFY COMMAND ... AS nCodePage`
 
-MODIFY COMMAND opens an editing window so you can modify or create a
-  program file.
+`MODIFY COMMAND` opens an editing window so you can modify or create a
+program file.
 
-**Internationalization Gotcha:** AS nCodePage automatically converts
+**Internationalization Gotcha:** `AS nCodePage` automatically converts
 accented characters in a program file created on another VFP platform.
 The numeric expression nCodePage specifies the code page of the VFP
 platform on which the program file was created. The file is saved in
@@ -4813,7 +4813,7 @@ the file in a different code page.
 `MODIFY FILE` opens an editing window so you can modify or create a text
 file.
 
-**Internationalization Gotcha:** AS nCodePage automatically converts
+**Internationalization Gotcha:** `AS nCodePage` automatically converts
 accented characters in a text file created on another VFP platform. The
 numeric expression nCodePage specifies the code page of the VFP platform
 on which the text file was created. The file is saved in this code page
@@ -4828,21 +4828,21 @@ Opens the Query Designer so you can modify or create a query. The Query
 Designer is a VFP dialog whose display language varies according to the
 localization of VFP.
 
-**Internationalization Gotcha:** S nCodePage specifies the code page of
-the query. Include AS nCodePage if the query was created with a code
+**Internationalization Gotcha:** `AS nCodePage` specifies the code page of
+the query. Include `AS nCodePage` if the query was created with a code
 page other than the current VFP code page. When the query is opened, VFP
 automatically converts the query to the current VFP code page.
 
 The query is saved in its original code page when it is closed.
 
-If you omit the AS nCodePage clause or nCodePage is 0, the query is not
+If you omit the `AS nCodePage` clause or `nCodePage` is 0, the query is not
 converted to the current VFP code page.
 
 In VFP, queries can be added to a project, and you can specify the
 query's code page from within the Project Container. The Project
 Container keeps track of the query's code page. However, if you use
-MODIFY QUERY to open a query outside of the Project Container, you
-should include AS nCodePage to specify the query's code page.
+`MODIFY QUERY` to open a query outside of the Project Container, you
+should include `AS nCodePage` to specify the query's code page.
 
 ---
 
@@ -4858,7 +4858,7 @@ from VFP and will vary in language with the localized version of VFP.
 
 ### `OEMTOANSI(cExpression)`
 
-OEMTOANSI() converts each character of a character expression to the
+`OEMTOANSI()` converts each character of a character expression to the
 corresponding character in the ansi character set. This FoxPro command
 is really juts included for backward compatibility. OEMTOANSI() is used
 to move data from FoxPro for ms-dos to VFP and FoxPro for
@@ -4924,10 +4924,12 @@ Here is a list of OLE locale id's.
 
 ### `PEMSTATUS( oObject |cClass, cPEMName, nAttibute)`
 
-The PEMSTATUS() function returns useful state information about a
-property, event or method. **Internationalization Gotcha:** using
-nAttribute = 5, you can find out if this PEM is a "Property", "Event" or
-"Method". This language of this string varies with the localized version
+The `PEMSTATUS()` function returns useful state information about a
+property, event or method.
+
+**Internationalization Gotcha:** using
+`nAttribute = 5`, you can find out if this PEM is a `"Property"`, `"Event"` or
+`"Method"`. This language of this string varies with the localized version
 of VFP.
 
 ----
@@ -4936,7 +4938,7 @@ of VFP.
 
 **Menu text varies with locale.**
 
-PRMBAR(), PRMPAD() PROMPT() return text from menus.
+`PRMBAR()`, `PRMPAD()`, `PROMPT()` return text from menus.
 
 **Internationalization Gotcha:** avoid using these functions in international applications because menu text will vary with the language of localization.
 
@@ -4946,7 +4948,7 @@ PRMBAR(), PRMPAD() PROMPT() return text from menus.
 
 **Printer settings vary from locale to locale.**
 
-PRTINFO() returns the specified printer setting.
+`PRTINFO()` returns the specified printer setting.
 
 **Internationalization Gotcha:** your application should anticipate a wide variety of return values because most of them will vary from locale to locale.
 
@@ -4971,7 +4973,7 @@ For example, the following line...
 
 creates this dialog. We basically can’t localize this.
 
-> ![](./media/image35.wmf)
+![](./media/image35.wmf)
 
 The PUTFILE() dialog.
 
@@ -5103,16 +5105,16 @@ locale. VFP offers the following choices for `SET DATE`:
 
 | Setting | Format |
 | ----- | -------- |
-| `AMERICAN` | mm/dd/yy |
-| `ANSI` | yy.mm.dd |
-| `BRITISH`/`FRENCH` | dd/mm/yy |
-| `DMY` | dd/mm/yy |
-| `GERMAN` | dd.mm.yy |
-| `ITALIAN` | dd-mm-yy |
-| `JAPAN` | yy/mm/dd |
-| `MDY` | mm/dd/yy |
-| `USA` | mm-dd-yy |
-| `YMD` | yy/mm/dd |
+| `AMERICAN` | `mm/dd/yy` |
+| `ANSI` | `yy.mm.dd` |
+| `BRITISH`/`FRENCH` | `dd/mm/yy` |
+| `DMY` | `dd/mm/yy` |
+| `GERMAN` | `dd.mm.yy` |
+| `ITALIAN` | `dd-mm-yy` |
+| `JAPAN` | `yy/mm/dd` |
+| `MDY` | `mm/dd/yy` |
+| `USA` | `mm-dd-yy` |
+| `YMD` | `yy/mm/dd` |
 
 ----
 
@@ -5255,7 +5257,7 @@ not updated when the Windows system settings are changed.
 The Windows system settings are specified in International option of the
 Windows Control Panel. When `SET SYSFORMATS ON`, the following `SET`
 commands can be used to override the current system settings. However,
-changing the Windows system settings when SET SYSFORMATS is ON overrides
+changing the Windows system settings when `SET SYSFORMATS ON` overrides
 these `SET` commands.
 
 When VFP is started, the VFP system settings are the default
@@ -5364,7 +5366,7 @@ characters doesn't preserve the expected alphabetical order.
 **`SYS(20)` is ancient history too.**
 
 `SYS(20)` transforms a character expression containing German text to a
-character string. Included for backward compatibility. Use SET COLLATE instead.
+character string. Included for backward compatibility. Use `SET COLLATE` instead.
 
 ----
 
