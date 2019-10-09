@@ -129,7 +129,6 @@ RETURN .NULL.
 
 ENDDEFINE
 
-
 *///////////////////////////////////
 * T A B L E I T E R A T O R
 *
@@ -361,7 +360,6 @@ RETURN
 
 ENDDEFINE
 
-
 *///////////////////////////////////
 * C P R O J E C T I T E R A T O R
 *
@@ -373,7 +371,6 @@ PROTECTED cProjectHomeDir
 cProjectHomeDir= ""
 cType          = "Project"
 cSuffix        = ".PJX"
-
 
 *====================================
 *-- cProjectIterator::Init( x)
@@ -433,7 +430,6 @@ This.cProjectHomeDir= AddBs( STRTRAN( ALLTRIM( tcPath), CHR(0)))
 RETURN
 
 ENDDEFINE
-
 
 *///////////////////////////////////
 * C S C X I T E R A T O R
@@ -831,9 +827,7 @@ IF " " $ lcFileName
 ENDIF
 
 IF !FILE( lcFileName)
-  WAIT WIND NOWAIT 'File ' + ;
-                   lcFileName + ;
-                   ' Not Found'
+  WAIT WIND NOWAIT 'File ' + lcFileName + ' Not Found'
 ENDIF
 
 lcOldAlias  = ALIAS()
@@ -1081,7 +1075,6 @@ DO WHILE .T.
         loEngine.Accept( THIS)
       ENDIF
 
-
     CASE lcExt == ".prg" OR ;
          lcExt == ".spr" OR ;
          lcExt == ".mpr" OR ;
@@ -1280,7 +1273,6 @@ IF m.plattype
 ENDIF
 RETURN m.filename
 
-
 *!*********************************************
 *!
 *!       Procedure: trimdelim
@@ -1313,7 +1305,6 @@ IF RIGHT( lcString,1)<> "\"
   lcString= lcString+ "\"
 ENDIF
 RETURN lcString
-
 
 *!*********************************************
 *!

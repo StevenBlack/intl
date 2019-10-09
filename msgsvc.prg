@@ -2,7 +2,7 @@
 *************************************************************************
 *                      INTL Toolkit Version
 *************************************************************************
-*  Version...........: 5.00.60 January 9 26 1997
+*  Version...........: 5.00.61 October 8, 2019
 *  Latest Version....: Check http://www.stevenblack.com
 *  Description.......: Central Square for Messages.
 *  Author............: Steven M. Black - email: steveb@stevenblack.com
@@ -17,15 +17,15 @@
 *)                     dups found elsewhere in INTL.
 *} Project...........: INTL
 *  Created...........: 09/22/93
-*  Copyright.........: (c) Steven Black Consulting, 1993-1997
+*  Copyright.........: ( c ) Steven Black Consulting, 1993-1997
 *)
 *] Dependencies......: Assumes that if MsgSvc.DBF is open, it is
 *]                     ORDER()'d properly
 *
 *  Calling Samples
-*          Typical...: =msgsvc( "Some Key Expression")
+*          Typical...: =msgsvc( "Some Key Expression" )
 *     String Swaps...: =msgvvc( "SomeKey", "Two~three~ain't bad"]
-*  Thermometer bar...: =msgsvc( "in-bar message", "Therm", 30)
+*  Thermometer bar...: =msgsvc( "in-bar message", "Therm", 30 )
 *
 *  Parameter List....: tcMessageKey
 *                      txVariable
@@ -36,11 +36,11 @@
 *  Major change list.: See at EOF()
 *
 *===========================================================
-*  ER List for VFP (no promises)
+*  ER List for VFP ( no promises )
 *            Add a MESSAGE capability to MSGSVC
-*            Parameter that sets the default button (ala MESSAGEBOX())?
+*            Parameter that sets the default button ( ala MESSAGEBOX())?
 *=============================================================
-#DEFINE ccCr_Lf         CHR( 13) + CHR( 10)
+#DEFINE ccCr_Lf         CHR( 13 ) + CHR( 10 )
 #DEFINE ccParseDelim    "~"
 #DEFINE FALSE           .F.
 #DEFINE TRUE            .T.
@@ -61,11 +61,10 @@
 *===============================================================
 LPARAMETERS txPara1, txPara2, txPara3
 
-IF TYPE("_Screen.oMsgSvc")="U"
-  _SCREEN.AddObject("oMsgSvc", "cMsgSvc")
+IF TYPE( "_Screen.oMsgSvc" ) = "U"
+  _SCREEN.AddObject( "oMsgSvc", "cMsgSvc" )
 ENDIF
-RETURN _Screen.oMsgSvc.MsgSvc(  txPara1, txPara2, txPara3)
-
+RETURN _Screen.oMsgSvc.MsgSvc(  txPara1, txPara2, txPara3 )
 
 *//////////////////////////////////////////////////////////////////////////////
 * CLASS....: c A b s t r a c t D i r e c t o r
@@ -78,20 +77,20 @@ RETURN _Screen.oMsgSvc.MsgSvc(  txPara1, txPara2, txPara3)
 *//////////////////////////////////////////////////////////////////////////////
 DEFINE CLASS cAbstractDirector AS Line
 
-  * DataSession     = 1   && Public
+  * DataSession = 1   && Public
   cDefaultBuilder = .NULL.
-  *-- Supported sorts of PROPER(message ID) and the dialog builder class
+  *-- Supported sorts of PROPER( message Id ) and the dialog builder class
   DIMENSION aBuilders[1,2]
-  aBuilders[1,1]= .NULL.
-  aBuilders[1,2]= "Unknown"
+  aBuilders[1,1] = .NULL.
+  aBuilders[1,2] = "Unknown"
 
  *====================================
  *-- cAbstractDirector::GetBuilder()
  *====================================
  * Retrieve items from the aBuilders array
  *
-  FUNCTION GetBuilder( tcFunction)
-    IF ISNULL( tcFunction)
+  FUNCTION GetBuilder( tcFunction )
+    IF ISNULL( tcFunction )
       RETURN .NULL.
     ENDIF
 
@@ -100,19 +99,19 @@ DEFINE CLASS cAbstractDirector AS Line
           lnHit, ;
           lcRetVal
 
-    lcRetVal= THIS.cDefaultBuilder
-    IF TYPE( "tcFunction") <> "C"
+    lcRetVal = this.cDefaultBuilder
+    IF TYPE( "tcFunction" ) <> "C"
       RETURN lcRetVal
     ENDIF
 
-    lcFunction= PROPER( ALLTRIM( TokenNum( tcFunction, 1)))
-    lnHit= ASCAN( THIS.aBuilders, lcFunction)
-    IF lnHit> 0
-      RETURN THIS.aBuilders[ lnHit+1]
+    lcFunction = PROPER( ALLTRIM( TokenNum( tcFunction, 1 )))
+    lnHit = ASCAN( this.aBuilders, lcFunction )
+    IF lnHit > 0
+      RETURN this.aBuilders[lnHit + 1]
     ELSE
-      lnHit= ASCAN( THIS.aBuilders, "Default")
-      IF lnHit> 0
-        RETURN THIS.aBuilders[ lnHit+1]
+      lnHit = ASCAN( this.aBuilders, "Default" )
+      IF lnHit > 0
+        RETURN this.aBuilders[lnHit + 1]
       ELSE
         RETURN lcRetVal
       ENDIF
@@ -123,34 +122,34 @@ DEFINE CLASS cAbstractDirector AS Line
  *====================================
  * Add items to the aBuilders array
  *
-  FUNCTION SetBuilder( tcId, tcClass)
+  FUNCTION SetBuilder( tcId, tcClass )
   LOCAL llRetVAal
 
-  IF ISNULL( tcId) OR ISNULL( tcClass)
+  IF ISNULL( tcId ) OR ISNULL( tcClass )
     RETURN .NULL.
   ENDIF
 
-  llRetVal= .F.
+  llRetVal = .F.
 
-  IF EMPTY( tcId) OR ;
-     EMPTY( tcClass) OR ;
-     TYPE( "tcId") <> "C" OR ;
-     TYPE( "tcClass") <> "C"
+  IF EMPTY( tcId ) OR ;
+     EMPTY( tcClass ) OR ;
+     TYPE( "tcId" ) <> "C" OR ;
+     TYPE( "tcClass" ) <> "C"
 
     RETURN llRetVal
   ENDIF
 
-  llRetVal= .T.
+  llRetVal = .T.
 
   LOCAL lnFound, lntemp
-  lnFound=ASCAN( THIS.aBuilders, tcId)
+  lnFound = ASCAN( this.aBuilders, tcId )
   IF lnFound > 0
-    THIS.aBuilders( lnFound+1)= ALLTRIM(tcClass)
+    this.aBuilders( lnFound + 1 ) = ALLTRIM( tcClass )
   ELSE
-    lnTemp= ALEN(aBuilders)
-    DIMENSION THIS.aBuilders[ lnTemp+ 2]
-    THIS.aBuilders[ lnTemp+ 1]= PROPER( tcId)
-    THIS.aBuilders[ lnTemp+ 2]= PROPER( tcClass)
+    lnTemp = ALEN( aBuilders )
+    DIMENSION this.aBuilders[lnTemp + 2]
+    this.aBuilders[lnTemp + 1] = PROPER( tcId )
+    this.aBuilders[lnTemp + 2] = PROPER( tcClass )
   ENDIF
   RETURN llRetVal
 
@@ -162,37 +161,37 @@ ENDDEFINE
 *//////////////////////////////////////////////////////////////////////////////
 DEFINE CLASS cMessageDirector AS cAbstractDirector
 
-  cDefaultBuilder= "cDialogBuilder"
+  cDefaultBuilder = "cDialogBuilder"
 
   *-- The name of the message resource file.
-  cTable= "MSGSVC.DBF"
+  cTable = "MSGSVC.DBF"
 
   *-- The alias of the message resource file
-  cAlias= "MsgSvc"
+  cAlias = "MsgSvc"
 
   *-- Global switch for optional icon animation on slower systems.
   *-- Set to .F. to disable all animation
-  lAnimateIcons= .T.
+  lAnimateIcons = .T.
   *-- Pointer to oINTL object.
-  oINTLPointer= .NULL.
+  oINTLPointer = .NULL.
 
   *-- The return value from the message or dialog we will build.
-  ReturnValue= ''
+  ReturnValue = ''
 
-  *-- Supported sorts of PROPER(message ID) and the dialog builder class
+  *-- Supported sorts of PROPER( message Id ) and the dialog builder class
   DIMENSION aBuilders[1,2]
-  aBuilders[1,1]= "Default"
-  aBuilders[1,2]= "cDialogBuilder"
+  aBuilders[1,1] = "Default"
+  aBuilders[1,2] = "cDialogBuilder"
 
   *-- Array of currently active dialogs.  Messages get put on this
   *-- stack so more than one message can be up at one time.
   DIMENSION aDialogs[1]
-  aDialogs[1]= .NULL.
+  aDialogs[1] = .NULL.
 
   *-- Abstract Methods of this class
-  FUNCTION FindIntl(o)
-  FUNCTION GetDialogHandle(c)
-  FUNCTION MsgSvc( x1, x2, x3)
+  FUNCTION FindIntl( o )
+  FUNCTION GetDialogHandle( c )
+  FUNCTION MsgSvc( x1, x2, x3 )
   FUNCTION OpenTable
   FUNCTION CloseTable
 
@@ -206,44 +205,43 @@ DEFINE CLASS cMessageDirector AS cAbstractDirector
 
     LOCAL lnOldArea, lcOldError, lnError
 
-    lnError= 0
-    lcOldError= ON("Error")
-    ON ERROR lnError=1
+    lnError = 0
+    lcOldError = ON( "Error" )
+    ON ERROR lnError = 1
 
-    lnOldArea = SELECT(0)
+    lnOldArea = SELECT( 0 )
 
-    IF ! USED( THIS.cAlias)
-      USE (THIS.cTable) IN 0 EXCLUSIVE
+    IF ! USED( this.cAlias )
+      USE ( this.cTable ) IN 0 EXCLUSIVE
     ELSE
-      SELECT ( THIS.cAlias)
+      SELECT ( this.cAlias )
     ENDIF
 
-    IF lnError= 0
+    IF lnError = 0
       DELETE TAG ALL
-      INDEX ON UPPER( cKey) TAG cKey
+      INDEX ON UPPER( cKey ) TAG cKey
     ENDIF
 
-    SELECT (lnOldArea)
+    SELECT ( lnOldArea )
     ON ERROR &lcOldError
 
-    RETURN lnError==0
-
+    RETURN lnError == 0
 
  *====================================
- *-- cAbstractDirector::GetDialogHandle(c)
+ *-- cAbstractDirector::GetDialogHandle( c )
  *====================================
  * Retrieve the LIFO dialog of a given tipe
  * from the dialog stack
  *
-  FUNCTION GetDialogHandle( tcType)
+  FUNCTION GetDialogHandle( tcType )
     LOCAL loRetVal, lnI
-    loRetVal= .NULL.
-    IF TYPE( "tcType")= "C"
-      FOR lnI= ALEN( THIS.aDialogs) TO 1 STEP -1
-        IF TYPE( "THIS.aDialogs[ lnI]") = "O" AND ;
-           ! ISNULL( THIS.aDialogs[ lnI])
-          IF UPPER( ALLTRIM( THIS.aDialogs[ lni].Type))== UPPER( ALLTRIM( tcType))
-            loRetVal= THIS.aDialogs[ lni]
+    loRetVal = .NULL.
+    IF TYPE( "tcType" ) = "C"
+      FOR lnI = ALEN( this.aDialogs ) TO 1 STEP -1
+        IF TYPE( "this.aDialogs[lnI]" ) = "O" AND ;
+           ! ISNULL( this.aDialogs[lnI] )
+          IF UPPER( ALLTRIM( this.aDialogs[lni].Type )) == UPPER( ALLTRIM( tcType ))
+            loRetVal = this.aDialogs[lni]
           ENDIF
         ENDIF
       ENDFOR
@@ -254,11 +252,11 @@ DEFINE CLASS cMessageDirector AS cAbstractDirector
  *-- cAbstractDirector::I()
  *====================================
  *
-  FUNCTION I( tcPassed)
-    IF TYPE( "tcPassed")= "C" AND ;
-       TYPE( "_SCREEN.oINTL")="O"
+  FUNCTION I( tcPassed )
+    IF TYPE( "tcPassed" ) = "C" AND ;
+       TYPE( "_SCREEN.oINTL" ) = "O"
 
-      RETURN _SCREEN.oINTL.I( tcPassed)
+      RETURN _SCREEN.oINTL.I( tcPassed )
     ELSE
       RETURN tcPassed
     ENDIF
@@ -268,17 +266,16 @@ DEFINE CLASS cMessageDirector AS cAbstractDirector
  *====================================
  *
   FUNCTION INIT
-    IF TYPE( "_SCREEN.oINTL")="O"
-      THIS.oINTLPointer= _SCREEN.oINTL
+    IF TYPE( "_SCREEN.oINTL" ) = "O"
+      this.oINTLPointer = _SCREEN.oINTL
     ELSE
-      THIS.oINTLPointer= THIS
+      this.oINTLPointer = this
     ENDIF
 
 ENDDEFINE
 
-
 *//////////////////////////////////////////////////////////////////////////////
-* CLASS....: c M s g S v c ( class cMessageDirector)
+* CLASS....: c M s g S v c ( class cMessageDirector )
 *          : Concrete implementation of the abstract message director.
 * Version..: March 31 1996
 *//////////////////////////////////////////////////////////////////////////////
@@ -287,78 +284,76 @@ DEFINE CLASS cMsgSvc AS cMessageDirector
   *-- Stock builder ID's and builders
   DIMENSION aBuilders[16,2]
 
-  aBuilders[1,1]= "Default"
-  aBuilders[1,2]= "cDialogBuilder"
+  aBuilders[1,1] = "Default"
+  aBuilders[1,2] = "cDialogBuilder"
 
-  aBuilders[2,1]= "Ok"
-  aBuilders[2,2]= "cDialogBuilder"
+  aBuilders[2,1] = "Ok"
+  aBuilders[2,2] = "cDialogBuilder"
 
-  aBuilders[3,1]= "Ync"
-  aBuilders[3,2]= "cDialogBuilder"
+  aBuilders[3,1] = "Ync"
+  aBuilders[3,2] = "cDialogBuilder"
 
-  aBuilders[4,1]= "Nyc"
-  aBuilders[4,2]= "cDialogBuilder"
+  aBuilders[4,1] = "Nyc"
+  aBuilders[4,2] = "cDialogBuilder"
 
-  aBuilders[5,1]= "Ari"
-  aBuilders[5,2]= "cDialogBuilder"
+  aBuilders[5,1] = "Ari"
+  aBuilders[5,2] = "cDialogBuilder"
 
-  aBuilders[6,1]= "Yn"
-  aBuilders[6,2]= "cDialogBuilder"
+  aBuilders[6,1] = "Yn"
+  aBuilders[6,2] = "cDialogBuilder"
 
-  aBuilders[7,1]= "Ny"
-  aBuilders[7,2]= "cDialogBuilder"
+  aBuilders[7,1] = "Ny"
+  aBuilders[7,2] = "cDialogBuilder"
 
-  aBuilders[8,1]= "Text"
-  aBuilders[8,2]= "cTextBuilder"
+  aBuilders[8,1] = "Text"
+  aBuilders[8,2] = "cTextBuilder"
 
-  aBuilders[9,1]= "Oc"
-  aBuilders[9,2]= "cDialogBuilder"
+  aBuilders[9,1] = "Oc"
+  aBuilders[9,2] = "cDialogBuilder"
 
-  aBuilders[10,1]= "Rc"
-  aBuilders[10,2]= "cDialogBuilder"
+  aBuilders[10,1] = "Rc"
+  aBuilders[10,2] = "cDialogBuilder"
 
-  aBuilders[11,1]= "Cancel"
-  aBuilders[11,2]= "cDialogBuilder"
+  aBuilders[11,1] = "Cancel"
+  aBuilders[11,2] = "cDialogBuilder"
 
-  aBuilders[12,1]= "Therm"
-  aBuilders[12,2]= "cThermBuilder"
+  aBuilders[12,1] = "Therm"
+  aBuilders[12,2] = "cThermBuilder"
 
-  aBuilders[13,1]= "Wait"
-  aBuilders[13,2]= "cWaitWindBuilder"
+  aBuilders[13,1] = "Wait"
+  aBuilders[13,2] = "cWaitWindBuilder"
 
-  aBuilders[14,1]= "Nowait"
-  aBuilders[14,2]= "cWaitWindBuilder"
+  aBuilders[14,1] = "Nowait"
+  aBuilders[14,2] = "cWaitWindBuilder"
 
-  aBuilders[15,1]= "Working"
-  aBuilders[15,2]= "cWorkingDialogBuilder"
+  aBuilders[15,1] = "Working"
+  aBuilders[15,2] = "cWorkingDialogBuilder"
 
-  aBuilders[16,1]= "Tip"
-  aBuilders[16,2]= "cTipBuilder"
-
-
+  aBuilders[16,1] = "Tip"
+  aBuilders[16,2] = "cTipBuilder"
 
  *====================================
  *-- cMsgSvc::MsgSvc
  *====================================
  * Workhorse function -- message "director"
  *
- * Interface notes (by type)
+ * Interface notes ( by type )
  *   CLL - Lookup in MsgSvc
  *
  *   CCL - Lookup with cookie substitution
  *
- *   CNL - Lookup [IF therm THEN setPercent(n)
+ *   CNL - Lookup [IF therm THEN setPercent( n )
  *
- *   NLL - IF EXIST( Therm) THEN LIFO therm update
- *         ELSE QuickTherm+update
+ *   NLL - IF EXIST( Therm ) THEN LIFO therm update
+ *         ELSE QuickTherm +update
  *
  *   NCL - IF EXIST( Therm )THEN LIFO therm/message update
- *         ELSE QuickTherm+update+message
+ *         ELSE QuickTherm +update +message
  *
- *   LLL - IF EXIST( Working) THEN LIFO Working.Release()
+ *   LLL - IF EXIST( Working ) THEN LIFO Working.Release()
  *
  *
-  FUNCTION MsgSvc( txPassed1, txPassed2, txPassed3)
+  FUNCTION MsgSvc( txPassed1, txPassed2, txPassed3 )
 
   LOCAL ;
     jcCounter, ;
@@ -386,38 +381,38 @@ DEFINE CLASS cMsgSvc AS cMessageDirector
     lxPassed2, ;
     lxPassed3
 
-    lxPassed1= txPassed1
-    lxPassed2= txPassed2
-    lxPassed3= txPassed3
+    lxPassed1 = txPassed1
+    lxPassed2 = txPassed2
+    lxPassed3 = txPassed3
 
-    loSetExact= CREATE("SetExact", "OFF")
+    loSetExact = CREATE( "SetExact", "OFF" )
 
     *-- Get a handle on the INTL object
-    THIS.oINTLPointer= THIS.FindINTL( THIS)
+    this.oINTLPointer = this.FindINTL( THIS )
 
     *-- Create a spec package to pass arround as a parameter
-    loSpecPackage= CREATE( "cPackage")
+    loSpecPackage = CREATE( "cPackage" )
 
     *-- Package the parameters
-    loParameterPackage= CREATE( "cPackage")
-    loSpecPackage.AddItem("Call parameters", loParameterPackage)
+    loParameterPackage = CREATE( "cPackage" )
+    loSpecPackage.AddItem( "Call parameters", loParameterPackage )
 
     *-- Place the call parameters in the package
-    FOR lnI= 1 TO 3
-      lcI=STR( lni,1)
-      loParameterPackage.AddItem( "Parameter"+lcI, lxPassed&lci.)
+    FOR lnI = 1 TO 3
+      lcI =STR( lni, 1 )
+      loParameterPackage.AddItem( "Parameter" + lcI, lxPassed&lci.)
     ENDFOR
 
     *-- loParameterPackage is already stored within loSpecPackage
     *-- so delete it now... it's no longer needed.
-    loParameterPackage=.NULL.
+    loParameterPackage = .NULL.
 
     *-- Add INTL to the spec package
-    loSpecPackage.AddItem("Intl", THIS.oINTLPointer)
+    loSpecPackage.AddItem( "Intl", this.oINTLPointer )
 
-    lcPTypes= TYPE("lxPassed1")+ ;
-              TYPE("lxPassed2")+ ;
-              TYPE("lxPassed3")
+    lcPTypes = TYPE( "lxPassed1" ) + ;
+              TYPE( "lxPassed2" ) + ;
+              TYPE( "lxPassed3" )
 
     *##########################################
     * Parameter pre-processing and dispatching
@@ -429,39 +424,39 @@ DEFINE CLASS cMsgSvc AS cMessageDirector
     *-- dealing with a thermometer.
     CASE "N" $ lcPTypes
       *-- Assume a thermometer
-      llTherm= .T.
+      llTherm = .T.
 
       *-- If the numeric value is non-zero, then update
       *-- an existing therm.
       LOCAL lcZeroPos
-      lcZeroPos= STR(AT("N", lcPTypes),1)
+      lcZeroPos = STR( AT( "N", lcPTypes ),1 )
 
       IF lxPassed&lcZeroPos > 0
         *-- Is there a therm on the stack? If so,
         *-- update it and we're done.
-        loDialog= THIS.GetDialogHandle("Therm")
-        IF ! ISNULL( loDialog)
+        loDialog = this.GetDialogHandle( "Therm" )
+        IF ! ISNULL( loDialog )
           LOCAL lni, lci, lxTest
           *-- Due to predicate dependency on nPercent,
           *-- process for percentage first
-          FOR lni= 1 to 3
-            lci= STR( lni,1)
-            lxtest= lxPassed&lci
-            IF TYPE( "lxtest")= "N"
-              loDialog.SetPercent( lxTest)
+          FOR lni = 1 to 3
+            lci = STR( lni,1 )
+            lxtest = lxPassed&lci
+            IF TYPE( "lxtest" ) = "N"
+              loDialog.SetPercent( lxTest )
               *-- ... which might kill loDialog...
               EXIT
             ENDIF
           ENDFOR
 
           *-- Process for Text next
-          IF ! ISNULL( loDialog)
-            FOR lni= 1 to 3
-              lci= STR( lni,1)
-              lxtest= lxPassed&lci
-              IF TYPE( "lxtest")= "C"
-                IF !(UPPER( lxTest)=="THERM")
-                  loDialog.Settext( THIS.I(lxTest))
+          IF ! ISNULL( loDialog )
+            FOR lni = 1 to 3
+              lci = STR( lni,1 )
+              lxtest = lxPassed&lci
+              IF TYPE( "lxtest" ) = "C"
+                IF !( UPPER( lxTest ) == "THERM" )
+                  loDialog.Settext( this.I( lxTest ))
                 ENDIF
               ENDIF
             ENDFOR
@@ -474,218 +469,217 @@ DEFINE CLASS cMsgSvc AS cMessageDirector
 
       *-- If we get here, then we're talking of
       *-- a new Dialog... Proceed as normal, except...
-      IF lcPTypes= "NLL"
-        lxPassed2= lxPassed1
-        lxPassed1= "Therm Default"
+      IF lcPTypes = "NLL"
+        lxPassed2 = lxPassed1
+        lxPassed1 = "Therm Default"
       ENDIF
 
       *-- Swap the order if the numeric is first
-      IF lcPTypes= "NC"
+      IF lcPTypes = "NC"
         LOCAL lx
-        lx= lxPassed2
-        lxPassed2= lxPassed1
-        lxPassed1= lx
+        lx = lxPassed2
+        lxPassed2 = lxPassed1
+        lxPassed1 = lx
       ENDIF
 
     *-- Embedded cookie swapping
-    CASE lcPTypes= "CC"
+    CASE lcPTypes = "CC"
       llSwap = .T.
 
-
-    CASE lcPTypes= "LLL"
+    CASE lcPTypes = "LLL"
       *-- Dismissing a Working message
-      loDialog= THIS.GetDialogHandle("Working")
-      IF ! ISNULL( loDialog)
+      loDialog = this.GetDialogHandle( "Working" )
+      IF ! ISNULL( loDialog )
          loDialog.Release( )
       ENDIF
       *-- A desired side effect, allowing msgsvc().
       *-- Open resource table.
-      RETURN THIS.OpenTable()
+      RETURN this.OpenTable()
 
     ENDCASE
     *###########################################
 
     *-- Open MsgSvc
-    IF ! THIS.OpenTable()
+    IF ! this.OpenTable()
       RETURN []
     ENDIF
 
     LOCAL lcOrig
-    lcOrig= lxPassed1
+    lcOrig = lxPassed1
 
     *-- Change to allow for Length
-    IF TYPE("lxPassed1")= "C"
-      lxPassed1= UPPER( LEFT( lxPassed1, 60))
+    IF TYPE( "lxPassed1" ) = "C"
+      lxPassed1 = UPPER( LEFT( lxPassed1, 60 ))
     ENDIF
 
     *-- Default return is blank string
-    jcRetVal= []
+    jcRetVal = []
 
     *-- Seek the cookie in the table
-    IF NOT SEEK( lxPassed1, [MsgSvc])
-      IF EMPTY( lxPassed2)
-        lxPassed2= []
+    IF NOT SEEK( lxPassed1, [MsgSvc] )
+      IF EMPTY( lxPassed2 )
+        lxPassed2 = []
       ENDIF
 
       IF ok2insert()
-        INSERT INTO msgsvc ( ckey, cfunction, coriginal) ;
+        INSERT INTO msgsvc ( ckey, cfunction, coriginal ) ;
             VALUES ( lcOrig, ;
-                     IIF(llTherm,"THERM","Ok"), ;
-                     lcOrig)
+                     IIF( llTherm,"THERM","Ok" ), ;
+                     lcOrig )
       ENDIF
     ENDIF
 
     *-- Get the appropriate language field
-    lcLangField= "Original"
-    IF TYPE( "THIS.oINTLPointer")="O" AND ;
-      THIS.oINTLPointer.Name <> THIS.Name
+    lcLangField = "Original"
+    IF TYPE( "this.oINTLPointer" ) = "O" AND ;
+      this.oINTLPointer.Name <> this.Name
 
       LOCAL lcTempLang, lcTestField
-      lcTempLang= THIS.oINTLPointer.GetLanguage()
-      lcTestField= THIS.cAlias+ ".c" +lcTempLang
+      lcTempLang = this.oINTLPointer.GetLanguage()
+      lcTestField = this.cAlias + ".c" + lcTempLang
 
-      IF TYPE( lcTestField) <> "U"
-        lcLangField= THIS.oINTLPointer.GetLanguage()
+      IF TYPE( lcTestField ) <> "U"
+        lcLangField = this.oINTLPointer.GetLanguage()
       ENDIF
     ENDIF
 
     *-- Scatter to an object
     LOCAL loMsgSpec, lcOldAlias
-    lcOldAlias=Alias()
+    lcOldAlias =Alias()
     SELECT MsgSvc
     SCATTER NAME loMsgSpec MEMO
 
-    loSpecPackage.AddItem( "Message spec", loMsgSpec)
+    loSpecPackage.AddItem( "Message spec", loMsgSpec )
 
-    IF ! EMPTY(lcOldAlias)
-      SELECT (lcOldAlias)
+    IF ! EMPTY( lcOldAlias )
+      SELECT ( lcOldAlias )
     ENDIF
 
-    *== Swap the language(s)
+    *== Swap the language( s )
     IF lcLangField<> "Original" AND ! EMPTY( loMsgSpec.c&lcLangField.)
-      loMsgSpec.cOriginal= loMsgSpec.c&lcLangField.
+      loMsgSpec.cOriginal = loMsgSpec.c&lcLangField.
     ENDIF
 
     *-- Cookie substitution
     IF llSwap
       DO CASE
-      CASE TYPE( [lxPassed2]) = [C]
+      CASE TYPE( [lxPassed2] ) = [C]
          LOCAL lcWorkPiece
-         lcWorkPiece= loMsgSpec.cOriginal
+         lcWorkPiece = loMsgSpec.cOriginal
          *-- We may have more than one string to swap-in
          jnNumToSwap = tokens( lxPassed2, ccParseDelim, .T.)
          FOR jnCounter = 1 TO jnNumToSwap
-           jcCounter = STR(jnCounter,1)
+           jcCounter = STR( jnCounter,1 )
            *-- What's our variable "word"?
            jcVariable = tokennum( lxPassed2, jnCounter, ccParseDelim, .T.)
-           *-- Accept n occurences of %C% and %Cn% for first (perhaps only) swap
+           *-- Accept n occurences of %C% and %Cn% for first ( perhaps only ) swap
            DO CASE
            *-- uppercase
-           CASE [%C]+jcCounter+[%] $ lcWorkPiece
+           CASE [%C]+jcCounter +[%] $ lcWorkPiece
              lcWorkPiece = STRTRANC( lcWorkPiece, ;
-                                    [%C]+jcCounter+[%], ;
-                                    jcvariable)
+                                    [%C] + jcCounter + [%], ;
+                                    jcvariable )
            *-- lowercase
-           CASE [%c]+jcCounter+[%] $ lcWorkPiece
+           CASE [%c]+jcCounter +[%] $ lcWorkPiece
              lcWorkPiece = STRTRANC( lcWorkPiece, ;
-                                    [%c]+jcCounter+[%], ;
-                                    jcvariable)
+                                    [%c] + jcCounter + [%], ;
+                                    jcvariable )
            *-- uppercase
-           CASE "%C%" $ UPPER(lcWorkPiece)
-             lcWorkPiece = STRTRANC( lcWorkPiece, [%C%], jcvariable, 1)
+           CASE "%C%" $ UPPER( lcWorkPiece )
+             lcWorkPiece = STRTRANC( lcWorkPiece, [%C%], jcvariable, 1 )
 
            *-- lowercase
-           CASE "%c%" $ UPPER(lcWorkPiece)
-             lcWorkPiece = STRTRANC( lcWorkPiece, [%c%], jcvariable, 1)
+           CASE "%c%" $ UPPER( lcWorkPiece )
+             lcWorkPiece = STRTRANC( lcWorkPiece, [%c%], jcvariable, 1 )
 
            ENDCASE
          ENDFOR
 
-         IF "%C" $ UPPER(lcWorkPiece)
+         IF "%C" $ UPPER( lcWorkPiece )
            *-- Here we've stripped all tokens except unfulfilled suffix ones.  Cleanup.
            FOR jnCounter = 1 TO 9
-             jcCounter = STR(jnCounter,1)
-            IF !"%C" $ UPPER(lcWorkPiece)
+             jcCounter = STR( jnCounter,1 )
+            IF !"%C" $ UPPER( lcWorkPiece )
               EXIT
             ENDIF
             DO CASE
              *-- uppercase
-             CASE [%C]+jcCounter+[%] $ lcWorkPiece
+             CASE [%C]+jcCounter +[%] $ lcWorkPiece
                lcWorkPiece = STRTRANC( lcWorkPiece, ;
-                                      [%C]+jcCounter+[%], '')
+                                      [%C] + jcCounter + [%], '')
              *-- lowercase
-             CASE [%c]+jcCounter+[%] $ lcWorkPiece
+             CASE [%c]+jcCounter +[%] $ lcWorkPiece
                lcWorkPiece = STRTRANC( lcWorkPiece, ;
-                                      [%c]+jcCounter+[%], '')
+                                      [%c] + jcCounter + [%], '')
              *-- uppercase
-             CASE "%C%" $ UPPER(lcWorkPiece)
+             CASE "%C%" $ UPPER( lcWorkPiece )
                lcWorkPiece = STRTRANC( lcWorkPiece, [%C%], '' )
 
              *-- lowercase
-             CASE "%c%" $ UPPER(lcWorkPiece)
+             CASE "%c%" $ UPPER( lcWorkPiece )
                lcWorkPiece = STRTRANC( lcWorkPiece, [%c%], '')
 
              ENDCASE
            ENDFOR
          ENDIF
-         loMsgSpec.cOriginal= lcWorkPiece
+         loMsgSpec.cOriginal = lcWorkPiece
 
-      CASE TYPE( [lxPassed2]) = [N]
-        loMsgSpec.cOriginal = STRTRAN( loMsgSpec.cOriginal, [%N%], ALLTRIM( STR( lxPassed2)))
-      CASE TYPE( [lxPassed2]) = [D]
-        loMsgSpec.cOriginal = STRTRAN( loMsgSpec.cOriginal, [%D%], DTOC( lxPassed2))
+      CASE TYPE( [lxPassed2] ) = [N]
+        loMsgSpec.cOriginal = STRTRAN( loMsgSpec.cOriginal, [%N%], ALLTRIM( STR( lxPassed2 )))
+      CASE TYPE( [lxPassed2] ) = [D]
+        loMsgSpec.cOriginal = STRTRAN( loMsgSpec.cOriginal, [%D%], DTOC( lxPassed2 ))
       ENDCASE
     ENDIF
 
-    *-- A pipe symbol is akin to CR+LF
-    loMsgSpec.cOriginal = STRTRAN( loMsgSpec.cOriginal, "|", ccCR_LF)
+    *-- A pipe symbol is akin to CR +LF
+    loMsgSpec.cOriginal = STRTRAN( loMsgSpec.cOriginal, "|", ccCR_LF )
 
     *-- Mangle the animation if globally required
-    IF !EMPTY(loMsgSpec.cGuiVisual) AND ;
-       ! THIS.lAnimateIcons  AND ;
-       ATC("Animate",loMsgSpec.cGuiVisual )> 0
+    IF !EMPTY( loMsgSpec.cGuiVisual ) AND ;
+       ! this.lAnimateIcons  AND ;
+       ATC( "Animate",loMsgSpec.cGuiVisual ) > 0
 
-       loMsgSpec.cGuiVisual= LEFT(loMsgSpec.cGuiVisual, ;
-                                  ATC("Animate",loMsgSpec.cGuiVisual )-1)
+       loMsgSpec.cGuiVisual = LEFT( loMsgSpec.cGuiVisual, ;
+                                  ATC( "Animate",loMsgSpec.cGuiVisual ) -1 )
     ENDIF
 
     *-- Pass Object to an appropriate builder
     LOCAL loMsg, lcBuilderName, lcBuilderCookie
 
-    loMsg= .NULL.
-    lcBuilderCookie= loMsgSpec.cFunction
+    loMsg = .NULL.
+    lcBuilderCookie = loMsgSpec.cFunction
 
     *-- Hook for TEXT values
-    IF UPPER( lcBuilderCookie)= "TEXT"
-      RETURN ALLTRIM( loMsgSpec.cOriginal)
+    IF UPPER( lcBuilderCookie ) = "TEXT"
+      RETURN ALLTRIM( loMsgSpec.cOriginal )
     ENDIF
 
-    lcBuilderName= THIS.GetBuilder( lcBuilderCookie)
-    loBuilder    = CREATE( lcBuilderName)
+    lcBuilderName = this.GetBuilder( lcBuilderCookie )
+    loBuilder = CREATE( lcBuilderName )
 
     ************!!!!!!!!!!!!*****************
-    loBuilder.Build( @loMsg, loSpecPackage)
+    loBuilder.Build( @loMsg, loSpecPackage )
     ************!!!!!!!!!!!!*****************
 
     *-- Place MessgeObject in aDialogs array
-    IF !ISNULL( loMsg) AND TYPE( "loMsg")= "O"
+    IF !ISNULL( loMsg ) AND TYPE( "loMsg" ) = "O"
       LOCAL lnThisDialog
-      IF ALEN( THIS.aDialogs)= 1 AND ISNULL( THIS.aDialogs[1])
-        lnThisDialog= 1
+      IF ALEN( this.aDialogs ) = 1 AND ISNULL( this.aDialogs[1] )
+        lnThisDialog = 1
       ELSE
-        DIMENSION THIS.aDialogs( ALEN( THIS.aDialogs)+ 1)
-        lnThisDialog= ALEN( THIS.aDialogs)
+        DIMENSION this.aDialogs( ALEN( this.aDialogs ) + 1 )
+        lnThisDialog = ALEN( this.aDialogs )
       ENDIF
-      THIS.aDialogs[ lnThisDialog]= loMsg
-      THIS.aDialogs[ lnThisDialog].oReturnPointer= THIS
+      this.aDialogs[lnThisDialog] = loMsg
+      this.aDialogs[lnThisDialog].oReturnPointer = this
 
-      IF EMPTY( MsgSvc.cRow + MsgSvc.cCol)
-        THIS.aDialogs[ lnThisDialog].AutoCenter= .T.
+      IF EMPTY( MsgSvc.cRow + MsgSvc.cCol )
+        this.aDialogs[lnThisDialog].AutoCenter = .T.
       ENDIF
       *-------------------------------------------------------------------
       *-- This next line of code brought here because SetFocus() is
       *-- triggering premature visibility in VFP 5
-      loBuilder.SetButtonFocus( THIS.aDialogs[ lnThisDialog], @loSpecPackage)
+      loBuilder.SetButtonFocus( this.aDialogs[lnThisDialog], @loSpecPackage )
       *----------------------------------------------------------------
 
       *-- Release unneeded object references
@@ -693,27 +687,27 @@ DEFINE CLASS cMsgSvc AS cMessageDirector
       RELEASE loMsgSpec
       loSpecPackage.Release()
 
-      THIS.aDialogs[ lnThisDialog].SHOW()
+      this.aDialogs[lnThisDialog].SHOW()
 
       *-- IF the dialog was modal, it's gone
       *-- so clean up the stack
       LOCAL lnMaxDialog
-      lnMaxDialog= ALEN( THIS.aDialogs)
-      DO WHILE lnMaxDialog > 1 AND ISNULL( THIS.aDialogs[ lnMaxDialog])
-        lnMaxDialog= lnMaxDialog-1
-        DIMENSION THIS.aDialogs[ lnMaxDialog]
+      lnMaxDialog = ALEN( this.aDialogs )
+      DO WHILE lnMaxDialog > 1 AND ISNULL( this.aDialogs[lnMaxDialog] )
+        lnMaxDialog = lnMaxDialog-1
+        DIMENSION this.aDialogs[lnMaxDialog]
       ENDDO
     ELSE
 
-      RETURN THIS.ReturnValue
+      RETURN this.ReturnValue
 
     ENDIF
 
-    RETURN IIF( lnThisDialog <= ALEN(THIS.aDialogs) AND ;
-                         ! ISNULL(THIS.aDialogs[lnThisDialog]) AND ;
-                         TYPE( "THIS.aDialogs[lnThisDialog]")="O"  , ;
-                THIS.aDialogs[lnThisDialog],;
-                THIS.ReturnValue)
+    RETURN IIF( lnThisDialog <= ALEN( this.aDialogs ) AND ;
+                         ! ISNULL( this.aDialogs[lnThisDialog] ) AND ;
+                         TYPE( "this.aDialogs[lnThisDialog]" ) = "O"  , ;
+                this.aDialogs[lnThisDialog],;
+                this.ReturnValue )
 
  *====================================
  *-- cMsgSvc::CloseTable
@@ -721,7 +715,7 @@ DEFINE CLASS cMsgSvc AS cMessageDirector
  * Close the class's resource table
  *
   FUNCTION CloseTable
-    USE IN (THIS.cAlias)
+    USE IN ( this.cAlias )
 
  *====================================
  *-- cMsgSvc::OpenTable
@@ -731,43 +725,43 @@ DEFINE CLASS cMsgSvc AS cMessageDirector
   FUNCTION OpenTable
 
     LOCAL lcOldError
-    lcOldError= ON( "Error")
-    ON ERROR lnError= -1
+    lcOldError = ON( "Error" )
+    ON ERROR lnError = -1
 
     *-- make sure the table's open
-    IF ! USED( THIS.cAlias)
-      USE LOCFILE( THIS.cTable, [DBF], [Where is ]+ THIS.cTable+[?] ) ORDER 1 IN 0
+    IF ! USED( this.cAlias )
+      USE LOCFILE( this.cTable, [DBF], [Where is ] + this.cTable + [?] ) ORDER 1 IN 0
     ENDIF
-    IF EMPTY( ORDER( THIS.cAlias))
-      SET ORDER TO TAG cKey IN (THIS.cAlias)
+    IF EMPTY( ORDER( this.cAlias ))
+      SET ORDER TO TAG cKey IN ( this.cAlias )
     ENDIF
 
     ON ERROR &lcOldError
 
-    RETURN USED( THIS.cAlias)
+    RETURN USED( this.cAlias )
 
  *====================================
- *-- cMsgSvc::FindINTL( loDefault)
+ *-- cMsgSvc::FindINTL( loDefault )
  *====================================
  * Locate INTL object
  *
-  FUNCTION FindINTL( loDefault)
+  FUNCTION FindINTL( loDefault )
     LOCAL loRetVal
-    loRetVal= .NULL.
+    loRetVal = .NULL.
     DO CASE
-    CASE ISNULL( loDefault)
+    CASE ISNULL( loDefault )
       * Do nothing
 
-    CASE TYPE( "_SCREEN.oINTL")="O" AND ;
-       ! ISNULL( _SCREEN.oINTL)
+    CASE TYPE( "_SCREEN.oINTL" ) = "O" AND ;
+       ! ISNULL( _SCREEN.oINTL )
 
-      loRetVal= _SCREEN.oINTL
+      loRetVal = _SCREEN.oINTL
 
     OTHERWISE
-      IF TYPE( "loDefault")= "O"
-        loRetVal= loDefault
+      IF TYPE( "loDefault" ) = "O"
+        loRetVal = loDefault
       ELSE
-        loRetVal= THIS
+        loRetVal = this
       ENDIF
 
     ENDCASE
@@ -777,17 +771,17 @@ DEFINE CLASS cMsgSvc AS cMessageDirector
 ENDDEFINE
 
 DEFINE CLASS SetExact AS Relation
-  cOldExact= .NULL.
+  cOldExact = .NULL.
 
-  FUNCTION Init( tcNew)
-    THIS.cOldExact= SET("Exact")
-    IF TYPE( "tcNew")= "C"
+  FUNCTION Init( tcNew )
+    this.cOldExact = SET( "Exact" )
+    IF TYPE( "tcNew" ) = "C"
       SET EXACT &tcNew
     ENDIF
 
   FUNCTION Destroy
     LOCAL lcString
-    lcString= THIS.cOldExact
+    lcString = this.cOldExact
     SET EXACT &lcString
 
 ENDDEFINE
@@ -801,14 +795,14 @@ ENDDEFINE
 *--   Passes it back to the director
 *//////////////////////////////////////////////////////////////////////////////
 DEFINE CLASS cAbstractBuilder AS Relation
-  Visible= .F.
+  Visible = .F.
 
  *====================================
- *-- cAbstractBuilder::Build( oo)
+ *-- cAbstractBuilder::Build( oo )
  *====================================
  * Define the interface...
  *
-  FUNCTION Build( to1, to2)
+  FUNCTION Build( to1, to2 )
     RETURN .NULL.
 
  *====================================
@@ -832,41 +826,39 @@ ENDDEFINE
 *//////////////////////////////////////////////////////////////////////////////
 DEFINE CLASS cAbstractMsgBuilder AS cAbstractBuilder
 
-
-  cFormClass  =  ""
-  cButtonClass=  ""
+  cFormClass =  ""
+  cButtonClass =  ""
   cImageClass =  ""
-  cTextClass  =  ""
-  cThermClass=   ""
+  cTextClass =  ""
+  cThermClass =   ""
   cTimerClass =  ""
 
+  cTitleProp =  "cTitle"
+  cErrorProp =  "cErrNo"
+  oINTLPointer = .NULL.
 
-  cTitleProp  =  "cTitle"
-  cErrorProp  =  "cErrNo"
-  oINTLPointer= .NULL.
+  lButtons = .F.
+  lText = .F.
+  lTitle = .T.
+  lImage = .T.
+  lArrange = .T.
+  lTimer = .T.
 
-  lButtons= .F.
-  lText   = .F.
-  lTitle  = .T.
-  lImage  = .T.
-  lArrange= .T.
-  lTimer  = .T.
-
-  FUNCTION AddButtons( toDialog, toSpecPackage)
-  FUNCTION AddImage( toDialog, toSpecPackage)
-  FUNCTION Addtext( toDialog, toSpecPackage)
-  FUNCTION AddTherm( toDialog, toSpecPackage)
-  FUNCTION AddTimer( toDialog, toSpecPackage)
-  FUNCTION AddTitle( toDialog, toSpecPackage)
-  FUNCTION Arrange( toDialogPackage)
-  FUNCTION Build( toDialog, toSpecPackage)
+  FUNCTION AddButtons( toDialog, toSpecPackage )
+  FUNCTION AddImage( toDialog, toSpecPackage )
+  FUNCTION Addtext( toDialog, toSpecPackage )
+  FUNCTION AddTherm( toDialog, toSpecPackage )
+  FUNCTION AddTimer( toDialog, toSpecPackage )
+  FUNCTION AddTitle( toDialog, toSpecPackage )
+  FUNCTION Arrange( toDialogPackage )
+  FUNCTION Build( toDialog, toSpecPackage )
 
  *====================================
- *-- cAbstractMsgBuilder::I( c)
+ *-- cAbstractMsgBuilder::I( c )
  *====================================
  * Default I() behavior
  *
-  FUNCTION I( tcPassed)
+  FUNCTION I( tcPassed )
     RETURN tcPassed
 
  *====================================
@@ -876,15 +868,14 @@ DEFINE CLASS cAbstractMsgBuilder AS cAbstractBuilder
  *
   FUNCTION INIT
     *-- Pointer the INTL object.
-    IF TYPE("_SCREEN.oINTL")= "O" AND ! ISNULL(_SCREEN.oINTL)
-      THIS.oINTLPointer= _SCREEN.oINTL
+    IF TYPE( "_SCREEN.oINTL" ) = "O" AND ! ISNULL( _SCREEN.oINTl )
+      this.oINTLPointer = _SCREEN.oINTL
     ELSE
-      THIS.oINTLPointer= THIS
+      this.oINTLPointer = this
     ENDIF
 
-  FUNCTION SetReturnType(toDialog, toSpecPackage)
+  FUNCTION SetReturnType( toDialog, toSpecPackage )
 ENDDEFINE
-
 
 *//////////////////////////////////////////////////////////////////////////////
 * CLASS....: c G e n e r i c M s g  B u i l d e r
@@ -893,156 +884,155 @@ ENDDEFINE
 *            Buttons are below text
 *//////////////////////////////////////////////////////////////////////////////
 DEFINE CLASS cGenericMsgBuilder AS cAbstractMsgBuilder
-  cFormClass  =  "cFrmMsgSvc"
-  cButtonClass=  "cCtrCommandButton"
+  cFormClass =  "cFrmMsgSvc"
+  cButtonClass =  "cCtrCommandButton"
   cImageClass =  "cImgMsgSvc"
-  cTextClass  =  "cEdtMsgSvc"
+  cTextClass =  "cEdtMsgSvc"
   cThermClass =  "cCtrTherm"
   cTimerClass =  "cTmrMsgSvc"
 
-  lButtons= .T.
-  lText   = .T.
+  lButtons = .T.
+  lText = .T.
 
  *====================================
- *-- cGenericMsgBuilder::Build(oo)
+ *-- cGenericMsgBuilder::Build( oo )
  *====================================
  *
-  FUNCTION Build( toDialog, toSpecPackage)
-    cAbstractMsgBuilder::Build( @toDialog, toSpecPackage)
+  FUNCTION Build( toDialog, toSpecPackage )
+    cAbstractMsgBuilder::Build( @toDialog, toSpecPackage )
     LOCAL loMessageSpec
-    loMessageSpec= toSpecPackage.GetItem("Message Spec")
-    loCallParameters = ToSpecPackage.GetItem("Call parameters")
+    loMessageSpec = toSpecPackage.GetItem( "Message Spec" )
+    loCallParameters = ToSpecPackage.GetItem( "Call parameters" )
 
     *-- Process special cases
     *-- Go through the call parameters, looking for special
     *-- Button and Text cookies
     LOCAL lni, lci, lxtest
 
-    FOR lni= 1 TO loCallParameters.ItemCount
-      lcI= STR( lni, 1)
-      lxTest= loCallParameters.GetItem( "Parameter"+lcI)
+    FOR lni = 1 TO loCallParameters.ItemCount
+      lcI = STR( lni, 1 )
+      lxTest = loCallParameters.GetItem( "Parameter"+lcI )
 
-      IF TYPE("lxTest")<> "C"
+      IF TYPE( "lxTest" ) <> "C"
         LOOP
       ELSE
-        lxTest= UPPER( STRTRAN(lxTest," "))
+        lxTest = UPPER( STRTRAN( lxTest," " ))
       ENDIF
       * Changed thanks to ARM
       IF .F.
         IF "NOBUTTON" $ lxTest
-          THIS.lButtons= .F.
+          this.lButtons = .F.
         ENDIF
 
         IF "NOTEXT" $ lxTest
-          THIS.lText= .F.
+          this.lText = .F.
         ENDIF
       ENDIF
       IF "NOBUTTON" $ lxTest ;
-          OR "NOBUTTON" $ UPPER( loMessageSpec.cFunction)
-        THIS.lButtons= .F.
+          OR "NOBUTTON" $ UPPER( loMessageSpec.cFunction )
+        this.lButtons = .F.
       ENDIF
 
       IF "NOTEXT" $ lxTest ;
-          OR "NOTEXT" $ UPPER( loMessageSpec.cFunction)
-        THIS.lText= .F.
+          OR "NOTEXT" $ UPPER( loMessageSpec.cFunction )
+        this.lText = .F.
       ENDIF
-
 
     ENDFOR
 
     *-- Create the dialog
-    toDialog=CREATE( THIS.cFormClass)
+    toDialog = CREATE( this.cFormClass )
 
     *-- Tile details
-    IF THIS.lTitle
-      THIS.AddTitle( @toDialog, @toSpecPackage)
+    IF this.lTitle
+      this.AddTitle( @toDialog, @toSpecPackage )
     ENDIF
 
     *-- Add an image
-    IF THIS.lImage
-      THIS.AddImage( @toDialog, @toSpecPackage)
+    IF this.lImage
+      this.AddImage( @toDialog, @toSpecPackage )
     ENDIF
 
     *-- Add text
-    IF THIS.lText
-      THIS.Addtext( @toDialog, @toSpecPackage)
+    IF this.lText
+      this.Addtext( @toDialog, @toSpecPackage )
     ENDIF
 
     *-- Thermometer
-    IF "THERM" $ UPPER( loMessageSpec.cFunction)
-      THIS.AddTherm( @toDialog, @toSpecPackage)
-      loMessageSpec.cFunction= LEFT(loMessageSpec.cFunction, MAX(0,ATC("Therm",loMessageSpec.cFunction)-1))
+    IF "THERM" $ UPPER( loMessageSpec.cFunction )
+      this.AddTherm( @toDialog, @toSpecPackage )
+      loMessageSpec.cFunction = LEFT( loMessageSpec.cFunction, MAX( 0,ATC( "Therm",loMessageSpec.cFunction ) - 1 ))
     ENDIF
 
     *-- Buttons
-    IF THIS.lButtons
-      THIS.AddButtons( @toDialog, @toSpecPackage)
+    IF this.lButtons
+      this.AddButtons( @toDialog, @toSpecPackage )
     ENDIF
 
     *-- Timer
-    IF THIS.lTimer
-      THIS.AddTimer( @toDialog, @toSpecPackage)
+    IF this.lTimer
+      this.AddTimer( @toDialog, @toSpecPackage )
     ENDIF
 
     *-- Return values
-    THIS.SetReturnType( @toDialog, @toSpecPackage)
+    this.SetReturnType( @toDialog, @toSpecPackage )
 
     *-- Position the dialog
-    THIS.PositionDialog( @toDialog, @toSpecPackage)
+    this.PositionDialog( @toDialog, @toSpecPackage )
 
     *-- Set the focus if required
     *? IN VFP 5.0a this causes a  visible screen resize! Commented out 3.20.97
     * Workaround: Moved to the director
-    *THIS.SetButtonFocus( @toDialog, @toSpecPackage)
+    *this.SetButtonFocus( @toDialog, @toSpecPackage )
 
  *====================================
- *-- cGenericMsgBuilder::Arrange(o)
+ *-- cGenericMsgBuilder::Arrange( o )
  *====================================
  *
-  FUNCTION Arrange( toDialog)
-  IF ISNULL( toDialog)
+  FUNCTION Arrange( toDialog )
+  IF ISNULL( toDialog )
     RETURN .NULL.
   ENDIF
   LOCAL lnI, lnOldMemoWidth, lnMaxWidth, lnMaxHeight, lnWidestLine, llDone
 
   *-- Position the graphic
-  IF TYPE("toDialog.oImage")= "O"
+  IF TYPE( "toDialog.oImage" ) = "O"
     WITH toDialog.oImage
       .Top = 7* toDialog.nVDBU
-      .Left= 7* toDialog.nHDBU
-      .Visible= .T.
+      .Left = 7* toDialog.nHDBU
+      .Visible = .T.
     ENDWITH
   ENDIF
 
   *-- Position the text
-  IF TYPE("toDialog.oText")= "O"
+  IF TYPE( "toDialog.oText" ) = "O"
     WITH toDialog.oText
       .Top = 7* toDialog.nVDBU
 
-      IF TYPE("toDialog.oImage")="O"
-        .Left= toDialog.oImage.Left+ toDialog.oImage.Width+ (4* toDialog.nHDBU)
+      IF TYPE( "toDialog.oImage" ) = "O"
+        .Left = toDialog.oImage.Left + toDialog.oImage.Width + ( 4* toDialog.nHDBU )
       ELSE
-        .Left= 7* toDialog.nHDBU
+        .Left = 7* toDialog.nHDBU
       ENDIF
 
       *-- Size the text portion
-      lnOldmemoWidth= SET("MemoWidth")
-      lnMaxWidth= toDialog.MaxWidth- (7* toDialog.nHDBU)- .Left
-      lnMinWidth= toDialog.MinWidth- (7* toDialog.nHDBU)- .Left
+      lnOldmemoWidth = SET( "MemoWidth" )
+      lnMaxWidth = toDialog.MaxWidth- ( 7* toDialog.nHDBU ) - .Left
+      lnMinWidth = toDialog.MinWidth- ( 7* toDialog.nHDBU ) - .Left
 
       * Pick a reasonable widest maximum first Memowidth
       * 8 is the minimum memowidth in 3.0/5.0
-      SET MEMOWIDTH TO MAX( 8, lnMaxWidth/ (FONTMETRIC( 6, .FontName, .FontSize)*0.85))
+      SET MEMOWIDTH TO MAX( 8, lnMaxWidth/ ( FONTMETRIC( 6, .FontName, .FontSize )*0.85 ))
 
       DO WHILE .T.
 
-        lnWidestLine= 0
+        lnWidestLine = 0
 
-        FOR lni= 1 TO MEMLINES( .Value)
-          lnWidestLine= MAX( lnWidestLine, ;
-                             TXTWIDTH( MLINE( .Value, lnI), ;
+        FOR lni = 1 TO MEMLINES( .Value )
+          lnWidestLine = MAX( lnWidestLine, ;
+                             TXTWIDTH( MLINE( .Value, lnI ), ;
                                        .FontName, ;
-                                       .FontSize)* FONTMETRIC(6, .FontName, .FontSize))
+                                       .FontSize )* FONTMETRIC( 6, .FontName, .FontSize ))
         ENDFOR
 
         IF lnWidestLine< lnMinWidth
@@ -1050,260 +1040,258 @@ DEFINE CLASS cGenericMsgBuilder AS cAbstractMsgBuilder
         ENDIF
 
         IF lnWidestLine> lnMaxWidth
-          lnScratch= MEMLINES( .Value)
-          DO WHILE MEMLINES( .Value)= lnScratch AND SET("MEMOWIDTH")> 80
-            SET MEMOWIDTH TO SET("MEMOWIDTH")- 1  && Slow
+          lnScratch = MEMLINES( .Value )
+          DO WHILE MEMLINES( .Value ) = lnScratch AND SET( "MEMOWIDTH" )> 80
+            SET MEMOWIDTH TO SET( "MEMOWIDTH" ) - 1  && Slow
           ENDDO
           LOOP
         ENDIF
         EXIT
       ENDDO
 
-      .Width = MAX( toDialog.MinWidth, lnWidestLine+ .Margin+ 3)
-      .Height= 18+ ( MAX( 2, MEMLINES( .VALUE))* (FONTMETRIC(1, .FontName, .FontSize)+ ;
-                                        FONTMETRIC(5, .FontName, .FontSize)))
+      .Width = MAX( toDialog.MinWidth, lnWidestLine + .Margin + 3 )
+      .Height = 18 + ( MAX( 2, MEMLINES( .VALUe ))* ( FONTMETRIC( 1, .FontName, .FontSize ) + ;
+                                        FONTMETRIC( 5, .FontName, .FontSize )))
 
       *-- A final pass to adjust for the case of a single line
-      IF MEMLINES( .VALUE)= 1
-        .TOP= .TOP + 6 * toDialog.nVDBU
+      IF MEMLINES( .VALUe ) = 1
+        .TOP = .TOP + 6 * toDialog.nVDBU
       ENDIF
-      .Visible= .T.
+      .Visible = .T.
       SET MEMOWIDTH to lnOldMemoWidth
     ENDWITH
   ENDIF
 
   *-- Position the therm bar
-  IF TYPE("toDialog.oTherm")= "O"
+  IF TYPE( "toDialog.oTherm" ) = "O"
     WITH toDialog.oTherm
-      .Top= (4* toDialog.nVDBU)  && margin before buttons
-      lnMaxHeight= 0
-      FOR lni= 1 TO toDialog.ControlCount
-        IF toDialog.Controls( lnI).Name= .Name
+      .Top = ( 4* toDialog.nVDBU )  && margin before buttons
+      lnMaxHeight = 0
+      FOR lni = 1 TO toDialog.ControlCount
+        IF toDialog.Controls( lnI ).Name = .Name
           LOOP
         ENDIF
-        lnMaxHeight= MAX( lnMaxHeight, toDialog.Controls( lnI).Top + toDialog.Controls( lnI).Height)
+        lnMaxHeight = MAX( lnMaxHeight, toDialog.Controls( lnI ).Top + toDialog.Controls( lnI ).Height )
       ENDFOR
-      .Top= .Top + lnMaxHeight
-      .Visible= .T.
+      .Top = .Top + lnMaxHeight
+      .Visible = .T.
     ENDWITH
   ENDIF
 
   *-- Position the buttons
-  IF TYPE("toDialog.oButtons")= "O"
+  IF TYPE( "toDialog.oButtons" ) = "O"
     WITH toDialog.oButtons
-      .Top= (4* toDialog.nVDBU)  && margin before buttons
-      lnMaxHeight= 0
-      FOR lni= 1 TO toDialog.ControlCount
-        IF toDialog.Controls( lnI).Name= .Name
+      .Top = ( 4* toDialog.nVDBU )  && margin before buttons
+      lnMaxHeight = 0
+      FOR lni = 1 TO toDialog.ControlCount
+        IF toDialog.Controls( lnI ).Name = .Name
           LOOP
         ENDIF
-        lnMaxHeight= MAX( lnMaxHeight, toDialog.Controls( lnI).Top + toDialog.Controls( lnI).Height)
+        lnMaxHeight = MAX( lnMaxHeight, toDialog.Controls( lnI ).Top + toDialog.Controls( lnI ).Height )
       ENDFOR
-      .Top= .Top + lnMaxHeight
-      .Visible= .T.
+      .Top = .Top + lnMaxHeight
+      .Visible = .T.
     ENDWITH
   ENDIF
 
-  IF ISNULL( toDialog)
+  IF ISNULL( toDialog )
     RETURN
   ENDIF
 
   *  LOCAL lnI, lnMaxHeight, lnMaxWidth
   WITH toDialog
     *-- Size the dialog
-    lnMaxHeight= .MinHeight
+    lnMaxHeight = .MinHeight
     lnMaxWidth = .MinWidth
 
-    FOR lni= 1 TO toDialog.ControlCount
-      lnMaxHeight= MAX( lnMaxHeight, .Controls( lnI).Top+  .Controls( lnI).Height)
-      lnMaxWidth = MAX( lnMaxWidth,  .Controls( lnI).Left+ .Controls( lnI).Width)
+    FOR lni = 1 TO toDialog.ControlCount
+      lnMaxHeight = MAX( lnMaxHeight, .Controls( lnI ).Top +  .Controls( lnI ).Height )
+      lnMaxWidth = MAX( lnMaxWidth,  .Controls( lnI ).Left + .Controls( lnI ).Width )
     ENDFOR
 
-    .Height= (7* .nVDBU)+ lnMaxHeight
-    .Width = 2*(7* .nHDBU)+ lnMaxWidth
+    .Height = ( 7* .nVDBU ) + lnMaxHeight
+    .Width = 2*( 7* .nHDBU ) + lnMaxWidth
 
     *-- Final fine-tune of thermometer
-    IF TYPE("toDialog.oTherm")= "O"
-      .oTherm.Left= .Width/2 - .oTherm.Width/2
+    IF TYPE( "toDialog.oTherm" ) = "O"
+      .oTherm.Left = .Width/2 - .oTherm.Width/2
     ENDIF
 
     *-- Final fine-tune of buttons
-    IF TYPE("toDialog.oButtons")= "O"
-      .oButtons.Left= .Width/2 - .oButtons.Width/2
-      .oButtons.Top= MAX( .oButtons.Top, .Height- (7* .nVDBU)- .oButtons.Height)
+    IF TYPE( "toDialog.oButtons" ) = "O"
+      .oButtons.Left = .Width/2 - .oButtons.Width/2
+      .oButtons.Top = MAX( .oButtons.Top, .Height- ( 7* .nVDBU ) - .oButtons.Height )
     ENDIF
 
     *-- Start the timer, if there's one
-    IF TYPE("toDialog.oTimer")= "O"
-      .oTimer.Enabled= .T.
+    IF TYPE( "toDialog.oTimer" ) = "O"
+      .oTimer.Enabled = .T.
     ENDIF
-
 
   ENDWITH
 
  *====================================
- *-- cGenericMsgBuilder::AddTitle(oo)
+ *-- cGenericMsgBuilder::AddTitle( oo )
  *====================================
  *
-  FUNCTION AddTitle( toDialog, toSpecPackage)
+  FUNCTION AddTitle( toDialog, toSpecPackage )
     LOCAL loMessageSpec
-    loMessageSpec= toSpecPackage.GetItem("Message Spec")
+    loMessageSpec = toSpecPackage.GetItem( "Message Spec" )
     LOCAL loINTL
-    loINTL= toSpecPackage.GetItem("INTL")
-    IF TYPE( "loINTL") <> "O"
-      loINTL= THIS
+    loINTL = toSpecPackage.GetItem( "INTL" )
+    IF TYPE( "loINTL" ) <> "O"
+      loINTL = this
     ENDIF
 
     LOCAL lcTitle
-    lcTitle= "loMessageSpec."+ THIS.cTitleProp
+    lcTitle = "loMessageSpec."+ this.cTitleProp
 
-    IF TYPE( "&lcTitle") <> "U"
-      lcTitle= ALLTRIM(&lcTitle)
-      IF !EMPTY( lcTitle)
+    IF TYPE( "&lcTitle" ) <> "U"
+      lcTitle = ALLTRIM(&lcTitle )
+      IF !EMPTY( lcTitle )
         *-- "\" means never a title, even in Windows
-        IF ALLTRIM( lcTitle) == "\"
+        IF ALLTRIM( lcTitle ) == "\"
           RETURN
         ENDIF
 
         *-- Build the title, including error number...
-        IF !EMPTY( lcTitle)
-           toDialog.Caption = loINTL.I( ALLTRIM( lcTitle))
+        IF !EMPTY( lcTitle )
+           toDialog.Caption = loINTL.I( ALLTRIM( lcTitle ))
         ENDIF
       ENDIF
     ENDIF
 
     LOCAL lcError
-    lcError= "loMessageSpec."+ THIS.cErrorProp
-    IF TYPE( "&lcError") <> "U"
-      lcError= ALLTRIM(&lcError)
-      IF !EMPTY( lcError)
-        toDialog.Caption = loINTL.I( strippat( stripext( SYS(16,1)))+ [ Error No ])+ ;
-                           ALLTRIM( lcError)+ ;
-                           [ ]+ ;
+    lcError = "loMessageSpec."+ this.cErrorProp
+    IF TYPE( "&lcError" ) <> "U"
+      lcError = ALLTRIM(&lcError )
+      IF !EMPTY( lcError )
+        toDialog.Caption = loINTL.I( strippat( stripext( SYS( 16,1 ))) + [Error No] ) + ;
+                           ALLTRIM( lcError ) + ;
+                           []+ ;
                            toDialog.Caption
       ENDIF
     ENDIF
 
-
     *-- In Windows all boxes have titles...
-    IF EMPTY( toDialog.Caption)
-       toDialog.Caption= loINTL.I( strippat( stripext( SYS(16,1))))
+    IF EMPTY( toDialog.Caption )
+       toDialog.Caption = loINTL.I( strippat( stripext( SYS( 16,1 ))))
     ENDIF
 
  *====================================
- *-- cGenericMsgBuilder::AddImage(oo)
+ *-- cGenericMsgBuilder::AddImage( oo )
  *====================================
  *
-  FUNCTION AddImage( toDialog, toSpecPackage)
+  FUNCTION AddImage( toDialog, toSpecPackage )
     LOCAL loMessageSpec
-    loMessageSpec= toSpecPackage.GetItem( "Message spec")
+    loMessageSpec = toSpecPackage.GetItem( "Message spec" )
 
-    IF !EMPTY( loMessageSpec.cGuiVisual)
-      toDialog.AddObject( "oImage", THIS.cImageClass, toSpecPackage)
+    IF !EMPTY( loMessageSpec.cGuiVisual )
+      toDialog.AddObject( "oImage", this.cImageClass, toSpecPackage )
     ENDIF
 
  *====================================
- *-- cGenericMsgBuilder::AddButtons(oo)
+ *-- cGenericMsgBuilder::AddButtons( oo )
  *====================================
  *
-  FUNCTION AddButtons( toDialog, toSpecPackage)
-    toDialog.AddObject( "oButtons", THIS.cButtonClass, toSpecPackage)
+  FUNCTION AddButtons( toDialog, toSpecPackage )
+    toDialog.AddObject( "oButtons", this.cButtonClass, toSpecPackage )
 
  *====================================
- *-- cGenericMsgBuilder::AddTherm(oo)
+ *-- cGenericMsgBuilder::AddTherm( oo )
  *====================================
  *
-  FUNCTION AddTherm( toDialog, toSpecPackage)
-    toDialog.AddObject( "oTherm", THIS.cThermClass, toSpecPackage)
+  FUNCTION AddTherm( toDialog, toSpecPackage )
+    toDialog.AddObject( "oTherm", this.cThermClass, toSpecPackage )
 
  *====================================
- *-- cGenericMsgBuilder::Addtext(oo)
+ *-- cGenericMsgBuilder::Addtext( oo )
  *====================================
  *
-  FUNCTION Addtext( toDialog, toSpecPackage)
+  FUNCTION Addtext( toDialog, toSpecPackage )
     LOCAL loMessageSpec
-    loMessageSpec= toSpecPackage.GetItem( "Message spec")
+    loMessageSpec = toSpecPackage.GetItem( "Message spec" )
 
-    toDialog.AddObject( "oText", THIS.cTextClass, toSpecPackage)
-    toDialog.SetText( loMessageSpec.cOriginal)
-    toDialog.SetTextAlignment( loMessageSpec.cAlignment)
+    toDialog.AddObject( "oText", this.cTextClass, toSpecPackage )
+    toDialog.SetText( loMessageSpec.cOriginal )
+    toDialog.SetTextAlignment( loMessageSpec.cAlignment )
 
  *====================================
- *-- cGenericMsgBuilder::Addtimer(oo)
+ *-- cGenericMsgBuilder::Addtimer( oo )
  *====================================
  *
-  FUNCTION AddTimer( toDialog, toSpecPackage)
+  FUNCTION AddTimer( toDialog, toSpecPackage )
     LOCAL loMessageSpec
-    loMessageSpec= toSpecPackage.GetItem( "Message spec")
+    loMessageSpec = toSpecPackage.GetItem( "Message spec" )
     *-- We might require a timer...
-    IF VAL( loMessageSpec.cTimeout)> 0
-      toDialog.AddObject( "oTimer", THIS.cTimerClass, toSpecPackage)
-      toDialog.oTimer.Top= 0
-      toDialog.oTimer.Left= 0      
+    IF VAL( loMessageSpec.cTimeout )> 0
+      toDialog.AddObject( "oTimer", this.cTimerClass, toSpecPackage )
+      toDialog.oTimer.Top = 0
+      toDialog.oTimer.Left = 0
     ENDIF
 
  *====================================
- *-- cGenericMsgBuilder::I(c)
+ *-- cGenericMsgBuilder::I( c )
  *====================================
  *
  *? Wire this to oINTL
-  FUNCTION I( tcPassed)
+  FUNCTION I( tcPassed )
     RETURN tcPassed
 
  *====================================
- *-- cGenericMsgBuilder::PositionDialog(oo)
+ *-- cGenericMsgBuilder::PositionDialog( oo )
  *====================================
  * Set the apropriate focus, if appropriate.
-   FUNCTION PositionDialog(toDialog, toSpecPackage)
+   FUNCTION PositionDialog( toDialog, toSpecPackage )
      LOCAL loMessageSpec
-     loMessageSpec= toSpecPackage.GetItem( "Message spec")
-     IF !EMPTY( loMessageSpec.cRow) OR ;
-       !EMPTY( loMessageSpec.cCol)
+     loMessageSpec = toSpecPackage.GetItem( "Message spec" )
+     IF !EMPTY( loMessageSpec.cRow ) OR ;
+       !EMPTY( loMessageSpec.cCol )
 
-       toDialog.TOP= VAL( loMessageSpec.cRow)
-       toDialog.Left= VAL( loMessageSpec.cCol)
-       toDialog.AutoCenter= .F.
+       toDialog.TOP = VAL( loMessageSpec.cRow )
+       toDialog.Left = VAL( loMessageSpec.cCol )
+       toDialog.AutoCenter = .F.
      ENDIF
 
  *====================================
- *-- cGenericMsgBuilder::SetButtonFocus(oo)
+ *-- cGenericMsgBuilder::SetButtonFocus( oo )
  *====================================
  * Set the apropriate focus.
  *
-  FUNCTION SetButtonFocus(toDialog, toSpecPackage)
+  FUNCTION SetButtonFocus( toDialog, toSpecPackage )
   LOCAL loMessageSpec
-  loMessageSpec= toSpecPackage.GetItem( "Message spec")
+  loMessageSpec = toSpecPackage.GetItem( "Message spec" )
   LOCAL lnTemp
-  lnTemp= VAL( loMessageSpec.cObject)
+  lnTemp = VAL( loMessageSpec.cObject )
 
   IF lnTemp > 0 AND ;
-     TYPE( "toDialog.oButtons") = "O" AND ;
+     TYPE( "toDialog.oButtons" ) = "O" AND ;
        toDialog.oButtons.ControlCount >= lnTemp
 
-    toDialog.oButtons.Controls( lnTemp).SetFocus()
+    toDialog.oButtons.Controls( lnTemp ).SetFocus()
  ENDIF
 
  *====================================
- *-- cGenericMsgBuilder::SetReturnType(oo)
+ *-- cGenericMsgBuilder::SetReturnType( oo )
  *====================================
  *
-  FUNCTION SetReturnType(toDialog, toSpecPackage)
+  FUNCTION SetReturnType( toDialog, toSpecPackage )
   LOCAL loMessageSpec
-  loMessageSpec= toSpecPackage.GetItem( "Message spec")
+  loMessageSpec = toSpecPackage.GetItem( "Message spec" )
   DO CASE
-  CASE TYPE( "loMessageSpec.cRetType") = "U"
-  CASE EMPTY( loMessageSpec.cRetType)
-  CASE loMessageSpec.cRetType= "C"
-    toDialog.nReturnIndex= 1
+  CASE TYPE( "loMessageSpec.cRetType" ) = "U"
+  CASE EMPTY( loMessageSpec.cRetType )
+  CASE loMessageSpec.cRetType = "C"
+    toDialog.nReturnIndex = 1
 
-  CASE loMessageSpec.cRetType= "N"
-    toDialog.nReturnIndex= 2
+  CASE loMessageSpec.cRetType = "N"
+    toDialog.nReturnIndex = 2
 
-  CASE loMessageSpec.cRetType= "L"
-    toDialog.nReturnIndex= 3
+  CASE loMessageSpec.cRetType = "L"
+    toDialog.nReturnIndex = 3
 
-  CASE loMessageSpec.cRetType= "M"
-    toDialog.nReturnIndex= 4
+  CASE loMessageSpec.cRetType = "M"
+    toDialog.nReturnIndex = 4
 
   ENDCASE
 
@@ -1317,11 +1305,11 @@ ENDDEFINE
 *//////////////////////////////////////////////////////////////////////////////
 DEFINE CLASS cDialogBuilder AS cGenericMsgBuilder
  *====================================
- *-- cDialogBuilder::Build(oo)
+ *-- cDialogBuilder::Build( oo )
  *====================================
-  FUNCTION BUILD(toDialog, toSpecPackage)
-    cGenericMsgBuilder::Build( @toDialog, @toSpecPackage)
-    THIS.Arrange( @toDialog)
+  FUNCTION BUILD( toDialog, toSpecPackage )
+    cGenericMsgBuilder::Build( @toDialog, @toSpecPackage )
+    this.Arrange( @toDialog )
 ENDDEFINE
 
 *//////////////////////////////////////////////////////////////////////////////
@@ -1331,56 +1319,55 @@ ENDDEFINE
 *            Buttons are below text
 *//////////////////////////////////////////////////////////////////////////////
 DEFINE CLASS cWorkingDialogBuilder AS cGenericMsgBuilder
-  cFormClass  =  "cFrmWorkingMsgSvc"
-  lButtons= .T.
-  lText   = .T.
+  cFormClass =  "cFrmWorkingMsgSvc"
+  lButtons = .T.
+  lText = .T.
 
  *====================================
- *-- cWorkingDialogBuilder::Build(oo)
+ *-- cWorkingDialogBuilder::Build( oo )
  *====================================
-  FUNCTION BUILD(toDialog, toSpecPackage)
-    cGenericMsgBuilder::Build( @toDialog, @toSpecPackage)
-    THIS.Arrange( @toDialog)
+  FUNCTION BUILD( toDialog, toSpecPackage )
+    cGenericMsgBuilder::Build( @toDialog, @toSpecPackage )
+    this.Arrange( @toDialog )
 ENDDEFINE
-
 
 *//////////////////////////////////////////////////////////////////////////////
 * CLASS....: c T h e r m B u i l d e r
 * Version..: March 31 1996
 *//////////////////////////////////////////////////////////////////////////////
 DEFINE CLASS cThermBuilder AS cGenericMsgBuilder
-  cFormClass  =  "cFrmThermMsgSvc"
-  lButtons= .T.
-  lText   = .T.
+  cFormClass =  "cFrmThermMsgSvc"
+  lButtons = .T.
+  lText = .T.
 
  *====================================
- *-- cThermBuilder::Build(oo)
+ *-- cThermBuilder::Build( oo )
  *====================================
-  FUNCTION BUILD(toDialog, toSpecPackage)
-    cGenericMsgBuilder::Build( @toDialog, @toSpecPackage)
+  FUNCTION BUILD( toDialog, toSpecPackage )
+    cGenericMsgBuilder::Build( @toDialog, @toSpecPackage )
     LOCAL loMessageSpec, loCallParameters, lxSecondParameter
-    loMessageSpec    = toSpecPackage.GetItem("Message Spec")
-    loCallParameters = ToSpecPackage.GetItem("Call parameters")
+    loMessageSpec = toSpecPackage.GetItem( "Message Spec" )
+    loCallParameters = ToSpecPackage.GetItem( "Call parameters" )
 
     *-- Go through the call parameters, looking for Numerics
     LOCAL lni, lci, lxtest
-    FOR lni= 1 TO loCallParameters.ItemCount
-      lcI= STR( lni, 1)
-      lxTest= loCallParameters.GetItem( "Parameter"+lcI)
-      IF TYPE( "lxTest")= "N"
-        toDialog.SetPercent( lxtest)
+    FOR lni = 1 TO loCallParameters.ItemCount
+      lcI = STR( lni, 1 )
+      lxTest = loCallParameters.GetItem( "Parameter"+lcI )
+      IF TYPE( "lxTest" ) = "N"
+        toDialog.SetPercent( lxtest )
       ENDIF
       DO CASE
-      CASE TYPE("lnText")<> "C"
-      CASE AT( "NOBUTTON", UPPER( STRTRAN(lxTest," "))) > 0
-        toDialog.oButtons.Visible= .F.
-      CASE AT( "BUTTON", UPPER( STRTRAN(lxTest," "))) > 0
-        toDialog.oButtons.Visible= .T.
+      CASE TYPE( "lnText" )<> "C"
+      CASE AT( "NOBUTTON", UPPER( STRTRAN( lxTest," " ))) > 0
+        toDialog.oButtons.Visible = .F.
+      CASE AT( "BUTTON", UPPER( STRTRAN( lxTest," " ))) > 0
+        toDialog.oButtons.Visible = .T.
         LOOP
       ENDCASE
     ENDFOR
 
-    THIS.Arrange( @toDialog)
+    this.Arrange( @toDialog )
 
 ENDDEFINE
 
@@ -1389,14 +1376,13 @@ ENDDEFINE
 * Version..: April 3 1996
 *//////////////////////////////////////////////////////////////////////////////
 DEFINE CLASS cTipBuilder AS cGenericMsgBuilder
-  cFormClass  =  "cFrmTODMsgSvc"
-  lButtons= .F.
-  lText   = .F.
-  lTitle  = .F.
-  lImage  = .F.
-  lTimer  = .F.
+  cFormClass =  "cFrmTODMsgSvc"
+  lButtons = .F.
+  lText = .F.
+  lTitle = .F.
+  lImage = .F.
+  lTimer = .F.
 ENDDEFINE
-
 
 *//////////////////////////////////////////////////////////////////////////////
 * CLASS....: c W a i t W i n d B u i l d e r
@@ -1405,28 +1391,28 @@ ENDDEFINE
 DEFINE CLASS cWaitWindBuilder AS cAbstractMsgBuilder
 * Compatibility note: Schemes not supported anymore since DOS is, er, dead.
  *====================================
- *-- cWaitWindBuilder::Build(oo)
+ *-- cWaitWindBuilder::Build( oo )
  *====================================
-  FUNCTION Build( toDialog, toSpecPackage)
-    cAbstractMsgBuilder::Build( @toDialog, @toSpecPackage)
+  FUNCTION Build( toDialog, toSpecPackage )
+    cAbstractMsgBuilder::Build( @toDialog, @toSpecPackage )
     LOCAL llWaitWind, jlNoWait, llWorking, jcRetVal, jnWaitTime, loMessageSpec
 
-    lcWaitTime   = []
-    jnWaitTime   = 0
-    loMessageSpec= toSpecPackage.GetItem("Message spec")
+    lcWaitTime = []
+    jnWaitTime = 0
+    loMessageSpec = toSpecPackage.GetItem( "Message spec" )
 
-    IF [WAIT ] $ loMessageSpec.cFunction
+    IF [WAIT] $ loMessageSpec.cFunction
        llWaitWind = .t.
 
        IF [NOWAIT] $ loMessageSpec.cFunction
           jlNowait = .T.
        ENDIF
 
-       IF !EMPTY( loMessageSpec.cTimeOut)
+       IF !EMPTY( loMessageSpec.cTimeOut )
           lcWaitTime =  loMessageSpec.cTimeOut
        ENDIF
 
-       jnWaitTime = VAL( lcWaitTime)
+       jnWaitTime = VAL( lcWaitTime )
        *-- We could have a WAIT/NOWAIT *and* a TIMEOUT
        *-- In this case, make the TIMEOUT prevail
        IF jnWaitTime > 0
@@ -1435,25 +1421,24 @@ DEFINE CLASS cWaitWindBuilder AS cAbstractMsgBuilder
 
     ENDIF
 
-    IF ! EMPTY( loMessageSpec.cErrno)
-        loMessageSpec.cOriginal = strippat( stripext( SYS(16,1))) + ;
-                     I( [ Error No ]) + ;
-                     ALLTRIM( loMessageSpec.cerrno) + ;
-                     [ ] + ;
+    IF ! EMPTY( loMessageSpec.cErrno )
+        loMessageSpec.cOriginal = strippat( stripext( SYS( 16,1 ))) + ;
+                     I( [Error No] ) + ;
+                     ALLTRIM( loMessageSpec.cerrno ) + ;
+                     [] + ;
                      loMessageSpec.cOriginal
     ENDIF
     IF jnWaitTime > 0
-      THIS.waitwind( loMessageSpec.cOriginal, jnWaitTime)
+      this.waitwind( loMessageSpec.cOriginal, jnWaitTime )
     ELSE
-      THIS.waitwind( loMessageSpec.cOriginal, jlNowait)
+      this.waitwind( loMessageSpec.cOriginal, jlNowait )
     ENDIF
    jcRetVal = []
 
-
  *====================================
- *-- cWaitWindBuilder::WaitWind(cx)
+ *-- cWaitWindBuilder::WaitWind( cx )
  *====================================
-  FUNCTION WaitWind( tcPhrase, txwaiting)
+  FUNCTION WaitWind( tcPhrase, txwaiting )
     *  Parameter List....: tcPhrase  - What goes in the WAIT window
     *                      txWaiting - Numeric = TIMEOUT
     *                                  .T.= Wait, .F. = NoWait
@@ -1466,9 +1451,9 @@ DEFINE CLASS cWaitWindBuilder AS cAbstractMsgBuilder
        jlWaiting, ;
        jnWaiting
 
-    jnWaiting  = 0
-    jlWaiting  = .F.
-    jcWaitType = TYPE( "txWaiting")
+    jnWaiting = 0
+    jlWaiting = .F.
+    jcWaitType = TYPE( "txWaiting" )
 
     DO CASE
     CASE jcWaitType = "N"
@@ -1477,19 +1462,19 @@ DEFINE CLASS cWaitWindBuilder AS cAbstractMsgBuilder
        jlWaiting = ! txwaiting
     ENDCASE
 
-    jcAnswerVal= []
+    jcAnswerVal = []
     jcPosition = []    && Roughed-in for the next release
-    jcNowait   = []
-    jcTime     = []
+    jcNowait = []
+    jcTime = []
 
     DO CASE
     CASE jlWaiting                                        && defaults to .f. if nothing was passed...
-       jcAnswerVal= "TO jcAnswerVal"
+       jcAnswerVal = "TO jcAnswerVal"
     CASE jnWaiting > 0
-       jcAnswerVal= "TO jcAnswerVal"
-       jcTime     = "TIME jnWaiting"
+       jcAnswerVal = "TO jcAnswerVal"
+       jcTime = "TIME jnWaiting"
     OTHERWISE
-       jcNoWait= "NOWAIT"
+       jcNoWait = "NOWAIT"
     ENDCASE
 
     WAIT WINDOW tcPhrase &jcPosition. &jcNowait. &jcTime. &jcAnswerVal.
@@ -1512,35 +1497,34 @@ DEFINE CLASS cfrmMsgSvc AS FORM
   *   ? Help option
 
 *-- Standard form properties
-  *  MinHeight= 84
-  MinHeight  = 15
-  MinWidth   = 175
-  MaxWidth   = SYSMETRIC(1) * 0.62
-  AlwaysOnTop= .T.
+  *  MinHeight = 84
+  MinHeight = 15
+  MinWidth = 175
+  MaxWidth = SYSMETRIC( 1 ) * 0.62
+  AlwaysOnTop = .T.
   AutoCenter = .T.
-  BackColor  = RGB( 192, 192, 192)
-  BorderStyle= 0 && no border
-  Caption    = "MsgSvc"
-  Closable   = .T.
-  ColorSource= 4 && Windows control panel
+  BackColor = RGB( 192, 192, 192 )
+  BorderStyle = 0 && no border
+  Caption = "MsgSvc"
+  Closable = .T.
+  ColorSource = 4 && Windows control panel
   ControlBox = .F.
-  Desktop    = .T.
-  FontName   = "MS Sans Serif"
-  FontSize   = 8
-  FontBold   = .F.
-  Height     = 175
-  MaxButton  = .F.
+  Desktop = .T.
+  FontName = "MS Sans Serif"
+  FontSize = 8
+  FontBold = .F.
+  Height = 175
+  MaxButton = .F.
   ShowWindow = 1
-  MinButton  = .F.
+  MinButton = .F.
   WindowType = 1   && Modal
 
 *-- Custom properties
-  oReturnPointer= .NULL.
+  oReturnPointer = .NULL.
   nReturnIndex = 1
   Type = "Dialog"
-  nHDBU=  6   && Horizontal Dialog Base Units
-  nVDBU=  8   && Vertical and
-
+  nHDBU =  6   && Horizontal Dialog Base Units
+  nVDBU =  8   && Vertical and
 
   *-- Initialize the return array
   DIMENSION aRetVals[4]  && For button return values
@@ -1549,29 +1533,29 @@ DEFINE CLASS cfrmMsgSvc AS FORM
  *-- cFrmMsgSvc::Init
  *====================================
   FUNCTION Init
-    *-- Initialize array (bin) of return values
-    THIS.aRetVals[1]= ''   && Original language caption
-    THIS.aRetVals[2]= 0    && Button number
-    THIS.aRetVals[3]= .F.  && First button
-    THIS.aRetVals[4]= 0    && MESSAGEBOX()-Compatible
+    *-- Initialize array ( bin ) of return values
+    this.aRetVals[1] = ''   && Original language caption
+    this.aRetVals[2] = 0    && Button number
+    this.aRetVals[3] = .F.  && First button
+    this.aRetVals[4] = 0    && MESSAGEBOX() -Compatible
 
     *-- Horizontal and Vertical dialog base units
-    THIS.nHDBU = FONTMETRIC(6, THIS.FontName, THIS.FontSize)/4
-    THIS.nVDBU = FONTMETRIC(1, THIS.FontName, THIS.FontSize)/8
+    this.nHDBU = FONTMETRIC( 6, this.FontName, this.FontSize )/4
+    this.nVDBU = FONTMETRIC( 1, this.FontName, this.FontSize )/8
 
  *====================================
- *-- cFrmMsgSvc::GetPercent( n)
+ *-- cFrmMsgSvc::GetPercent( n )
  *====================================
  *
   FUNCTION GetPercent
     RETURN 0
 
  *====================================
- *-- cFrmMsgSvc::SetPercent( n)
+ *-- cFrmMsgSvc::SetPercent( n )
  *====================================
  *
-  FUNCTION SetPercent( tnPassed)
-  IF TYPE( "THISFORM.oImageTimer")= "O" AND ;
+  FUNCTION SetPercent( tnPassed )
+  IF TYPE( "THISFORM.oImageTimer" ) = "O" AND ;
     THISFORM.oImageTimer.Enabled
 
     *-- Force an image animation
@@ -1580,31 +1564,31 @@ DEFINE CLASS cfrmMsgSvc AS FORM
   ENDIF
 
  *====================================
- *-- cFrmMsgSvc::SetText( c)
+ *-- cFrmMsgSvc::SetText( c )
  *====================================
  *
-  FUNCTION SetText( tcPassed)
-  IF TYPE( "THIS.oText") = "O" AND ;
-     TYPE( "tcPassed") = "C"
+  FUNCTION SetText( tcPassed )
+  IF TYPE( "this.oText" ) = "O" AND ;
+     TYPE( "tcPassed" ) = "C"
 
-     THIS.oText.Value= ALLTRIM(tcPassed)
+     this.oText.Value = ALLTRIM( tcPassed )
   ENDIF
 
  *====================================
- *-- cFrmMsgSvc::SetAlignment( c)
+ *-- cFrmMsgSvc::SetAlignment( c )
  *====================================
  *
-  FUNCTION SetTextAlignment( tcPassed)
-  IF TYPE( "THIS.oText") = "O" AND ;
-     TYPE( "tcPassed") = "C"
-    tcPassed= UPPER( tcPassed)
+  FUNCTION SetTextAlignment( tcPassed )
+  IF TYPE( "this.oText" ) = "O" AND ;
+     TYPE( "tcPassed" ) = "C"
+    tcPassed = UPPER( tcPassed )
     DO CASE
-    CASE EMPTY (tcPassed) or tcPassed= "L"
-      THIS.oText.Alignment= 0
-    CASE tcPassed= "C"
-      THIS.oText.Alignment= 2
-    CASE tcPassed= "R"
-      THIS.oText.Alignment= 1
+    CASE EMPTY ( tcPassed ) or tcPassed = "L"
+      this.oText.Alignment = 0
+    CASE tcPassed = "C"
+      this.oText.Alignment = 2
+    CASE tcPassed = "R"
+      this.oText.Alignment = 1
     ENDCASE
   ENDIF
 
@@ -1613,85 +1597,79 @@ DEFINE CLASS cfrmMsgSvc AS FORM
  *====================================
  * Pass the return values up the tree
   FUNCTION Unload
-    IF ! ISNULL( THIS.oReturnPointer)
-      THIS.oReturnPointer.ReturnValue= THIS.aRetVals[ THIS.nReturnIndex]
+    IF ! ISNULL( this.oReturnPointer )
+      this.oReturnPointer.ReturnValue = this.aRetVals[this.nReturnIndex]
     ENDIF
 ENDDEFINE
-
 
 *//////////////////////////////////////////////////////////////////////////////
 * CLASS....: c F r m T h e r m M s g S v c
 * Version..: March 31 1996
 *//////////////////////////////////////////////////////////////////////////////
 DEFINE CLASS cFrmThermMsgSvc AS cFrmMsgSvc
-  Height= 100
+  Height = 100
   Width = 300
-  WindowType= 0  && Modeless
+  WindowType = 0  && Modeless
 
 *-- Custom properties
-  Type= "Therm"
-  cFirstLine= ""
-
+  Type = "Therm"
+  cFirstLine = ""
 
  *====================================
- *-- cFrmThermMsgSvc::GetPercent( n)
+ *-- cFrmThermMsgSvc::GetPercent( n )
  *====================================
  *
-  FUNCTION GetPercent( tnPassed)
-    IF TYPE( "THIS.oTherm") = "O" AND ;
-       !ISNULL( THIS.oTherm)
+  FUNCTION GetPercent( tnPassed )
+    IF TYPE( "this.oTherm" ) = "O" AND ;
+       !ISNULL( this.oTherm )
 
-       RETURN THIS.oTherm.GetPercent( )
+       RETURN this.oTherm.GetPercent( )
     ELSE
       RETURN 0
     ENDIF
 
-
  *====================================
- *-- cFrmThermMsgSvc::SetPercent( n)
+ *-- cFrmThermMsgSvc::SetPercent( n )
  *====================================
  *
-  FUNCTION SetPercent( tnPassed)
-    IF TYPE( "THIS.oTherm") = "O" AND ;
-       !ISNULL( THIS.oTherm)
+  FUNCTION SetPercent( tnPassed )
+    IF TYPE( "this.oTherm" ) = "O" AND ;
+       !ISNULL( this.oTherm )
 
        cFrmMsgSvc::SetPercent()
 
-       THIS.oTherm.SetPercent( tnPassed)
-       IF TYPE( "THIS.oButtons")= "O"
-         THIS.oButtons.Controls(1).SetFocus()
+       this.oTherm.SetPercent( tnPassed )
+       IF TYPE( "this.oButtons" ) = "O"
+         this.oButtons.Controls( 1 ).SetFocus()
        ENDIF
     ENDIF
 
  *====================================
- *-- cFrmThermMsgSvc::SetText( c)
+ *-- cFrmThermMsgSvc::SetText( c )
  *====================================
  *
-  FUNCTION SetText( tcPassed)
-    IF ISNULL( tcPassed)
+  FUNCTION SetText( tcPassed )
+    IF ISNULL( tcPassed )
       RETURN .NULL.
     ENDIF
-    IF TYPE( "tcPassed") <> "C"
+    IF TYPE( "tcPassed" ) <> "C"
       RETURN .F.
     ENDIF
     Local lcPassed
-    lcPassed= ALLTRIM( tcPassed)
+    lcPassed = ALLTRIM( tcPassed )
 
-    IF THIS.GetPercent()= 0
-      THIS.cFirstLine= lcPassed
-      tcPassed= ccCR_LF
+    IF this.GetPercent() = 0
+      this.cFirstLine = lcPassed
+      tcPassed = ccCR_LF
     ENDIF
 
-
-    IF ! EMPTY( THIS.cFirstLine)
-      lcPassed= THIS.cFirstLine+ ;
-                ccCR_LF+ ;
+    IF ! EMPTY( this.cFirstLine )
+      lcPassed = this.cFirstLine + ;
+                ccCR_LF + ;
                 tcPassed
     ENDIF
 
-    cFrmMsgSvc::SetText( lcPassed)
-
-
+    cFrmMsgSvc::SetText( lcPassed )
 
 ENDDEFINE
 
@@ -1700,212 +1678,199 @@ ENDDEFINE
 * Version..: March 31 1996
 *//////////////////////////////////////////////////////////////////////////////
 DEFINE CLASS cFrmWorkingMsgSvc AS cFrmMsgSvc
-  Height    = 100
-  Width     = 300
-  WindowType= 0  && Modeless
-  Type      = "Working"
+  Height = 100
+  Width = 300
+  WindowType = 0  && Modeless
+  Type = "Working"
 ENDDEFINE
-
-
 
 *//////////////////////////////////////////////////////////////////////////////
 * CLASS....: c F R M T O D M s g S v c
 * Version..: April 3 1996
 *//////////////////////////////////////////////////////////////////////////////
 DEFINE CLASS cFrmTODMsgSvc AS cfrmMsgSvc
-  ScaleMode  = 3
-  Height     = 230
-  Width      = 427
-  DoCreate   = .T.
+  ScaleMode = 3
+  Height = 230
+  Width = 427
+  DoCreate = .T.
   AutoCenter = .T.
-  BackColor  = RGB(192,192,192)
-  BorderStyle= 2
-  Caption    = "Tip Of The Day"
-  FontSize   = 8
-  KeyPreview= .T.
-  MaxButton  = .F.
-  MaxWidth   = 430
-  MinButton  = .F.
+  BackColor = RGB( 192,192,192 )
+  BorderStyle = 2
+  Caption = "Tip Of The Day"
+  FontSize = 8
+  KeyPreview = .T.
+  MaxButton = .F.
+  MaxWidth = 430
+  MinButton = .F.
   WindowType = 1
-  WindowState= 0
+  WindowState = 0
 
   *-- The active workarea prior to TOD
-  noldarea= 1
-  Name    = "Tip"
-  Type    = "Tip Of The Day"
+  noldarea = 1
+  Name = "Tip"
+  Type = "Tip Of The Day"
 
   *-- Did we open TOD?
   ltodopened = .F.
 
   *-- Do we want random tips
-  lRandomTip= .T.
+  lRandomTip = .T.
 
   ADD OBJECT shape1 AS shape WITH ;
-    BackColor    = RGB(192,192,192), ;
-    Height       = 185, ;
-    Left         = 12, ;
-    Top          = 12, ;
-    Width        = 301, ;
-    SpecialEffect= 0, ;
-    Name         = "Shape1"
+    BackColor = RGB( 192,192,192 ), ;
+    Height = 185, ;
+    Left = 12, ;
+    Top = 12, ;
+    Width = 301, ;
+    SpecialEffect = 0, ;
+    Name = "Shape1"
 
   ADD OBJECT shape2 AS shape WITH ;
-    BackColor  = RGB(255,255,255), ;
-    BorderStyle= 1, ;
-    Height     = 171, ;
-    Left       = 19, ;
-    Top        = 19, ;
-    Width      = 287, ;
-    Name       = "Shape2"
+    BackColor = RGB( 255,255,255 ), ;
+    BorderStyle = 1, ;
+    Height = 171, ;
+    Left = 19, ;
+    Top = 19, ;
+    Width = 287, ;
+    Name = "Shape2"
 
   ADD OBJECT cmdOk AS cTODButton WITH ;
-    Top     = 12, ;
-    Left    = 325, ;
+    Top = 12, ;
+    Left = 325, ;
     Caption = ccOK, ;
-    Name    = "cmdOk"
-
+    Name = "cmdOk"
 
   ADD OBJECT cmdNextTip AS cTODButton WITH ;
-    Top     = 41, ;
-    Left    = 325, ;
+    Top = 41, ;
+    Left = 325, ;
     Caption = "\<Next Tip...", ;
-    Name    = "cmdNextTip"
-
+    Name = "cmdNextTip"
 
   ADD OBJECT cmdMoreTips AS cTODButton WITH ;
-    Top     = 80, ;
-    Left    = 325, ;
+    Top = 80, ;
+    Left = 325, ;
     Caption = "\<More Tips", ;
-    Name    = "cmdMoreTips"
-
+    Name = "cmdMoreTips"
 
   ADD OBJECT cmdHelp AS cTODButton WITH ;
-    Top     = 109, ;
-    Left    = 325, ;
+    Top = 109, ;
+    Left = 325, ;
     Caption = "\<Help", ;
-    Name    = "cmdHelp"
-
+    Name = "cmdHelp"
 
   ADD OBJECT check1 AS checkbox WITH ;
-    Top      = 203, ;
-    Left     = 12, ;
-    Height   = 18, ;
-    Width    = 300, ;
+    Top = 203, ;
+    Left = 12, ;
+    Height = 18, ;
+    Width = 300, ;
     FontName = "MS Sans Serif", ;
     FontSize = 8, ;
     FontBold = .F., ;
-    BackColor= RGB(192,192,192), ;
-    Caption  = "\<Show Tips at Startup", ;
-    Name     = "Check1"
+    BackColor = RGB( 192,192,192 ), ;
+    Caption = "\<Show Tips at Startup", ;
+    Name = "Check1"
 
   ADD OBJECT edit1 AS editbox WITH ;
-    BackColor    = RGB(255,255,255), ;
-    BackStyle    = 0, ;
-    BorderStyle  = 0, ;
-    FontName     = "MS Sans Serif", ;
-    FontSize     = 8, ;
-    FontBold     = .F., ;
-    Height       = 122, ;
-    Left         = 25, ;
-    Top          = 66, ;
-    Width        = 275, ;
-    SpecialEffect= 1, ;
-    ReadOnly     = .T., ;
-    ScrollBars   = 0, ;
-    TabStop      = .F., ;
-    Name         = "Edit1"
-
+    BackColor = RGB( 255,255,255 ), ;
+    BackStyle = 0, ;
+    BorderStyle = 0, ;
+    FontName = "MS Sans Serif", ;
+    FontSize = 8, ;
+    FontBold = .F., ;
+    Height = 122, ;
+    Left = 25, ;
+    Top = 66, ;
+    Width = 275, ;
+    SpecialEffect = 1, ;
+    ReadOnly = .T., ;
+    ScrollBars = 0, ;
+    TabStop = .F., ;
+    Name = "Edit1"
 
   ADD OBJECT label1 AS clblMsgSvc WITH ;
-    FontName= "MS Sans Serif", ;
-    FontSize= 8, ;
-    FontBold= .T., ;
+    FontName = "MS Sans Serif", ;
+    FontSize = 8, ;
+    FontBold = .T., ;
     Caption = "Did you know...", ;
-    Height  = 18, ;
-    Left    = 65, ;
-    Top     = 38, ;
-    Width   = 200, ;
-    Name    = "Label1"
-
+    Height = 18, ;
+    Left = 65, ;
+    Top = 38, ;
+    Width = 200, ;
+    Name = "Label1"
 
   ADD OBJECT image1 AS image WITH ;
-    Picture= "tod.bmp", ;
+    Picture = "tod.bmp", ;
     Height = 40, ;
-    Left   = 24, ;
-    Top    = 24, ;
-    Width  = 39, ;
-    Name   = "Image1"
-
+    Left = 24, ;
+    Top = 24, ;
+    Width = 39, ;
+    Name = "Image1"
 
   PROCEDURE Load
-    THIS.nOldArea=SELECT()
+    this.nOldArea =SELECT()
     SELECT *, " " AS Temp FROM MsgSvc ;
       INTO CURSOR __Tod ;
-     WHERE UPPER(ALLTRIM(cKey)) == "TIP"
-
+     WHERE UPPER( ALLTRIM( cKey )) == "TIP"
 
   FUNCTION Init
-    THIS.Edit1.BackStyle=1
-    IF THIS.lRandomTip
+    this.Edit1.BackStyle = 1
+    IF this.lRandomTip
       LOCAL lnRecords
-      =RAND(-1)
-      lnRecords=RAND()* RECCOUNT("__Tod")
+ =RAND(-1 )
+      lnRecords =RAND()* RECCOUNT( "__Tod" )
 
-      SKIP INT(lnRecords) IN __Tod
+      SKIP INT( lnRecords ) IN __Tod
       IF EOF()
         GO BOTTOM
       ENDIF
     ENDIF
-    IF TYPE( "_SCREEN.oINTL")= "O"
-      _Screen.oINTL.Localize(THIS)
+    IF TYPE( "_SCREEN.oINTL" ) = "O"
+      _Screen.oINTL.Localize( THIS )
       LOCAL lcTemp, lcField
-      lcTemp=_Screen.oINTL.GetLanguage()
-      lcField= "__Tod.c"+lcTemp
-      IF EMPTY( &lcField)
-        lcTemp= "Original"
+      lcTemp =_Screen.oINTL.GetLanguage()
+      lcField = "__Tod.c"+lcTemp
+      IF EMPTY( &lcField )
+        lcTemp = "Original"
       ENDIF
-      THIS.Edit1.Controlsource= "__Tod.c"+lcTemp
+      this.Edit1.Controlsource = "__Tod.c"+lcTemp
     ELSE
-      THIS.Edit1.Controlsource= "__TOD.cOriginal"
+      this.Edit1.Controlsource = "__TOD.cOriginal"
     ENDIF
 
     *? Kluge
-    THIS.Edit1.BackStyle=0
+    this.Edit1.BackStyle = 0
 
   PROCEDURE Destroy
-    SELECT (THIS.nOldArea)
-    IF THIS.lTODOpened
+    SELECT ( this.nOldArea )
+    IF this.lTODOpened
       USE IN __Tod
     ENDIF
 
-
-  PROCEDURE KeyPress( nKeyCode, nShiftAltCtrl)
+  PROCEDURE KeyPress( nKeyCode, nShiftAltCtrl )
   *-- Respond intelligently on escape
-  IF nKeycode= 27
-    THIS.Release()
+  IF nKeycode = 27
+    this.Release()
   ENDIF
 
   PROCEDURE cmdOk.Click
     RELEASE THISFORM
 
-
   PROCEDURE cmdNextTip.Click
     LOCAL lnOldArea
-    lnOldArea= SELECT()
+    lnOldArea = SELECT()
     SELECT __Tod
     SKIP
     IF EOF()
       LOCATE
     ENDIF
-    SELECT (lnOldArea)
+    SELECT ( lnOldArea )
     THISFORM.REFRESH
 
-
   PROCEDURE cmdMoreTips.Click
-    =MsgSvc("Subclass to suit")
+ =MsgSvc( "Subclass to suit" )
 
-  PROCEDURE check1.Interactivechange( tnIndex)
-    =MsgSvc("Subclass to suit")
+  PROCEDURE check1.Interactivechange( tnIndex )
+ =MsgSvc( "Subclass to suit" )
 
   PROCEDURE cmdHelp.Click
     Help
@@ -1914,7 +1879,7 @@ ENDDEFINE
 
 *//////////////////////////////////////////////////////////////////////////////
 * CLASS....: c P a c k a g e
-*          : This class serves as a holder (package) of other objects so
+*          : This class serves as a holder ( package ) of other objects so
 *          : that several object references can be passed as one object.
 *
 * Pattern  : COMPOSITE
@@ -1923,8 +1888,8 @@ ENDDEFINE
 *//////////////////////////////////////////////////////////////////////////////
 DEFINE CLASS cPackage AS Relation  && A lightweight.
   DIMENSION aItems[1,2]
-  Itemcount= 0
-  cClassId= "Package"
+  Itemcount = 0
+  cClassId = "Package"
 
  *====================================
  *-- cPackage::Init
@@ -1932,70 +1897,70 @@ DEFINE CLASS cPackage AS Relation  && A lightweight.
  *
  *
   FUNCTION Init
-    THIS.aItems[1]= .NULL.
-    THIS.aItems[2]= .NULL.
+    this.aItems[1] = .NULL.
+    this.aItems[2] = .NULL.
 
  *====================================
- *-- cPackage::GetItem(c)
+ *-- cPackage::GetItem( c )
  *====================================
  * Return the first item of a given type.
  *
-  FUNCTION GetItem( tcType)
-    IF ISNULL( tcType)
+  FUNCTION GetItem( tcType )
+    IF ISNULL( tcType )
       RETURN .NULL.
     ENDIF
 
     LOCAL lcRetVal, lcType, lnHit
 
-    lcRetVal= []
-    IF TYPE( "tcType") <> "C"
+    lcRetVal = []
+    IF TYPE( "tcType" ) <> "C"
       RETURN lcRetVal
     ENDIF
 
-    lcType= PROPER( ALLTRIM( tcType))
-    lnHit= ASCAN( THIS.aItems, lcType)
+    lcType = PROPER( ALLTRIM( tcType ))
+    lnHit = ASCAN( this.aItems, lcType )
     IF lnHit> 0
-      RETURN THIS.aItems[ lnHit+1]
+      RETURN this.aItems[lnHit + 1]
     ELSE
       RETURN lcRetVal
     ENDIF
 
  *====================================
- *-- cPackage::AddItem(cx)
+ *-- cPackage::AddItem( cx )
  *====================================
  * Add an item to this package
  *
   FUNCTION AddItem( tcType, txItem )
     LOCAL llRetVAal
 
-    IF ISNULL( tcType) OR ISNULL( txItem)
+    IF ISNULL( tcType ) OR ISNULL( txItem )
       RETURN .NULL.
     ENDIF
 
-    llRetVal= .F.
+    llRetVal = .F.
 
-    IF EMPTY( tcType) OR ;
-       TYPE( "tcType") <> "C"
+    IF EMPTY( tcType ) OR ;
+       TYPE( "tcType" ) <> "C"
 
       RETURN llRetVal
     ENDIF
 
     LOCAL lnFound, lntemp
-    lnFound=ASCAN( THIS.aItems, tcType)
+    lnFound =ASCAN( this.aItems, tcType )
     IF lnFound > 0
-      THIS.aItems( lnFound+1)= txItem
+      this.aItems( lnFound + 1 ) = txItem
     ELSE
-      IF ISNULL( THIS.aItems[ 1])
-        lnTemp= 0
+      IF ISNULL( this.aItems[1] )
+        lnTemp = 0
       ELSE
-        lnTemp= ALEN( THIS.aItems)
-        DIMENSION THIS.aItems[ lnTemp+ 2]
+        lnTemp = ALEN( this.aItems )
+        DIMENSION this.aItems[lnTemp + 2]
       ENDIF
-      THIS.aItems[ lnTemp+ 1]= PROPER( tcType)
-      THIS.aItems[ lnTemp+ 2]= txItem
+      this.aItems[lnTemp + 1] = PROPER( tcType )
+      this.aItems[lnTemp + 2] = txItem
     ENDIF
-    llRetVal= .T.
-    THIS.ItemCount= IIF(ISNULL( THIS.aItems[1]), 0 , ALEN( THIS.aItems,1))
+    llRetVal = .T.
+    this.ItemCount = IIF( ISNULL( this.aItems[1] ), 0 , ALEN( this.aItems,1 ))
   RETURN llRetVal
 
  *====================================
@@ -2005,12 +1970,12 @@ DEFINE CLASS cPackage AS Relation  && A lightweight.
  *
  FUNCTION Release
   LOCAL lni
-  FOR lni= 1 TO ALEN(THIS.aItems,1)
-    IF TYPE("THIS.aItems[lni, 2].cClassId") <> "U" AND THIS.aItems[lni, 2].cClassId= THIS.cClassId
-      THIS.aItems[lni, 2].Release()
+  FOR lni = 1 TO ALEN( this.aItems,1 )
+    IF TYPE( "this.aItems[lni, 2].cClassId" ) <> "U" AND this.aItems[lni, 2].cClassId = this.cClassId
+      this.aItems[lni, 2].Release()
     ENDIF
-    THIS.aItems[lni, 1]= .NULL.
-    THIS.aItems[lni, 2]= .NULL.
+    this.aItems[lni, 1] = .NULL.
+    this.aItems[lni, 2] = .NULL.
   ENDFOR
 
   RELEASE THIS
@@ -2023,50 +1988,48 @@ ENDDEFINE
 * Version..: March 31 1996
 *//////////////////////////////////////////////////////////////////////////////
 DEFINE CLASS cTODButton AS CommandButton
-  Height  = 24
-  Width   = 90
-  FontName= "MS Sans Serif"
-  FontSize= 8
-  FontBold= .F.
-  Name    = "TipOfTheDayButton"
+  Height = 24
+  Width = 90
+  FontName = "MS Sans Serif"
+  FontSize = 8
+  FontBold = .F.
+  Name = "TipOfTheDayButton"
 ENDDEFINE
 
 *
 *-- EndDefine: tod
 **************************************************
 
-
-
 *//////////////////////////////////////////////////////////////////////////////
 * CLASS....: c C m d M s g S v c
 * Version..: March 31 1996
 *//////////////////////////////////////////////////////////////////////////////
 DEFINE CLASS cCmdMsgSvc AS CommandButton
-  Height= 23
-  FontName= "MS SANS Serif"
-  FontSize= 8
-  FontBold= .F.
+  Height = 23
+  FontName = "MS SANS Serif"
+  FontSize = 8
+  FontBold = .F.
   DIMENSION aRetVals[4]
 
  *====================================
- *-- cCmdMsgSvc::Init(o)
+ *-- cCmdMsgSvc::Init( o )
  *====================================
  *
- FUNCTION Init( toSpecPackage)
-    THIS.aRetVals[1]= ''   && Original language caption
-    THIS.aRetVals[2]= 0    && Button number
-    THIS.aRetVals[3]= .F.  && First button
-    THIS.aRetVals[4]= 0    && MESSAGEBOX()-Compatible
+ FUNCTION Init( toSpecPackage )
+    this.aRetVals[1] = ''   && Original language caption
+    this.aRetVals[2] = 0    && Button number
+    this.aRetVals[3] = .F.  && First button
+    this.aRetVals[4] = 0    && MESSAGEBOX() -Compatible
 
  *====================================
  *-- cCmdMsgSvc::
  *====================================
  * Pass the return values up the tree
   FUNCTION Click
-    THISFORM.aRetVals[1]= THIS.aRetVals[1]  && Original language caption
-    THISFORM.aRetVals[2]= THIS.aRetVals[2]  && Button number
-    THISFORM.aRetVals[3]= THIS.aRetVals[3]  && First button
-    THISFORM.aRetVals[4]= THIS.aRetVals[4]  && MESSAGEBOX()-Compatible
+    THISFORM.aRetVals[1] = this.aRetVals[1]  && Original language caption
+    THISFORM.aRetVals[2] = this.aRetVals[2]  && Button number
+    THISFORM.aRetVals[3] = this.aRetVals[3]  && First button
+    THISFORM.aRetVals[4] = this.aRetVals[4]  && MESSAGEBOX() -Compatible
 
     THISFORM.Release()
 
@@ -2081,15 +2044,15 @@ DEFINE CLASS cTmrMsgSvc AS Timer
  *-- cTmrMsgSvc::Init
  *====================================
  *
- Name= "cTmrMsgSvc"
+ Name = "cTmrMsgSvc"
  Top = 0
- Left= 0
+ Left = 0
 
- FUNCTION Init( toSpecPackage)
+ FUNCTION Init( toSpecPackage )
    LOCAL loMessageSpec
-   loMessageSpec= toSpecPackage.GetItem( "Message spec")
-   IF VAL( loMessageSpec.cTimeout) > 0
-     THIS.Interval= VAL( loMessageSpec.cTimeout)*1000
+   loMessageSpec = toSpecPackage.GetItem( "Message spec" )
+   IF VAL( loMessageSpec.cTimeout ) > 0
+     this.Interval = VAL( loMessageSpec.cTimeout )*1000
    ENDIF
 
  FUNCTION Timer
@@ -2097,16 +2060,15 @@ DEFINE CLASS cTmrMsgSvc AS Timer
 
 ENDDEFINE
 
-
 *//////////////////////////////////////////////////////////////////////////////
 * CLASS....: c A b s t r a c t M s g C o n t a i n e r
 * Version..: March 31 1996
 *//////////////////////////////////////////////////////////////////////////////
 DEFINE CLASS cAbstractMsgContainer AS Container
-  oINTLPointer= .NULL.
-  FUNCTION Init( o)
-  FUNCTION SetPercent(n)
-  FUNCTION GetPercent(n)
+  oINTLPointer = .NULL.
+  FUNCTION Init( o )
+  FUNCTION SetPercent( n )
+  FUNCTION GetPercent( n )
 ENDDEFINE
 
 *//////////////////////////////////////////////////////////////////////////////
@@ -2114,7 +2076,7 @@ ENDDEFINE
 * Version..: March 31 1996
 *//////////////////////////////////////////////////////////////////////////////
 DEFINE CLASS cLinTherm AS Line
-  BorderColor = RGB( 192, 192, 192)
+  BorderColor = RGB( 192, 192, 192 )
   BorderWidth = 2
 ENDDEFINE
 
@@ -2123,11 +2085,10 @@ ENDDEFINE
 * Version..: March 31 1996
 *//////////////////////////////////////////////////////////////////////////////
 DEFINE CLASS cCtrThermBar AS cAbstractMsgContainer
-  BackColor    = RGB( 0, 0, 255)
-  BackStyle    = 1     && 1= Opaque
-  BorderWidth  = 0
-  SpecialEffect= 1     && 1= Sunken
-
+  BackColor = RGB( 0, 0, 255 )
+  BackStyle = 1     && 1 = Opaque
+  BorderWidth = 0
+  SpecialEffect = 1     && 1 = Sunken
 
 ENDDEFINE
 
@@ -2136,335 +2097,333 @@ ENDDEFINE
 * Version..: March 31 1996
 *//////////////////////////////////////////////////////////////////////////////
 DEFINE CLASS cCtrTherm AS cAbstractMsgContainer
-  BackColor    = RGB( 192, 192, 192)
-  BackStyle    = 1     && 1= Opaque
-  BorderWidth  = 1
-  Height= 20
-  SpecialEffect= 1     && 1= Sunken
-  Width= 285
+  BackColor = RGB( 192, 192, 192 )
+  BackStyle = 1     && 1 = Opaque
+  BorderWidth = 1
+  Height = 20
+  SpecialEffect = 1     && 1 = Sunken
+  Width = 285
 
-  nBorder= 3
-  nPercent= 0
+  nBorder = 3
+  nPercent = 0
  *====================================
- *-- cCtrTherm::Init(o)
+ *-- cCtrTherm::Init( o )
  *====================================
  * Build the thermometer bar illusion
-  FUNCTION INIT( toSpecPackage)
-  THIS.AddObject( "oLabel", "cThermBarLblMsgSvc")
-  WITH THIS.oLabel
-    .Top  = (THIS.Height/2)- (.Height/2) +1
-    .Left = (THIS.Width/2)- (TXTWIDTH(.Caption, .FontName, .FontSize)/2)
-    .Visible= .T.
+  FUNCTION INIT( toSpecPackage )
+  this.AddObject( "oLabel", "cThermBarLblMsgSvc" )
+  WITH this.oLabel
+    .Top = ( this.Height/2 ) - (.Height/2 ) + 1
+    .Left = ( this.Width/2 ) - ( TXTWIDTH(.Caption, .FontName, .FontSize )/2 )
+    .Visible = .T.
   ENDWITH
 
-  THIS.AddObject( "oTherm", "cCtrThermBar")
+  this.AddObject( "oTherm", "cCtrThermBar" )
 
-  WITH THIS.oTherm
-    .Top= THIS.nBorder
-    .Left=THIS.nBorder
-    .Height= THIS.Height-(2*THIS.nBorder)
-    .Visible      = .T.
-    .AddObject( "oLabel", "cThermBarLblMsgSvc")
+  WITH this.oTherm
+    .Top = this.nBorder
+    .Left =this.nBorder
+    .Height = this.Height-( 2*this.nBorder )
+    .Visible = .T.
+    .AddObject( "oLabel", "cThermBarLblMsgSvc" )
     WITH .oLabel
-      .Top  = THIS.Height/2- .Height/2- THIS.nBorder
-      .ForeColor= RGB(255,255,255)
-      .Visible= .F.
+      .Top = this.Height/2- .Height/2- this.nBorder
+      .ForeColor = RGB( 255,255,255 )
+      .Visible = .F.
     ENDWITH
   ENDWITH
 
   *-- Lay down therm bar separators
   LOCAL lnI, lcI
-  THIS.oLabel.Visible= .F.
-  FOR lnI= 1 TO 19
-    lcI=ALLTRIM(STR( lni,2))
-    THIS.AddObject("oSep"+lcI, "cLinTherm")
-    WITH THIS.oSep&lcI.
-      .Visible=.T.
-      .Left= lni*THIS.Width/20
-      .Height= THIS.Height- 5
-      .Width= 0
-      .Top= 3
+  this.oLabel.Visible = .F.
+  FOR lnI = 1 TO 19
+    lcI =ALLTRIM( STR( lni,2 ))
+    this.AddObject( "oSep"+lcI, "cLinTherm" )
+    WITH this.oSep&lcI.
+      .Visible = .T.
+      .Left = lni*this.Width/20
+      .Height = this.Height- 5
+      .Width = 0
+      .Top = 3
     ENDWITH
   ENDFOR
 
-  IF THIS.SpecialEffect= 1  && Sunken
-    THIS.AddObject("H3D", "Line")
-    WITH THIS.H3D
-      .BorderColor=RGB(255,255,255)
-      .BorderWidth=1
-      .Top=THIS.Height-1
-      .Left=1
-      .Width=THIS.Width-2
-      .Height=0
-      .Visible= .T.
+  IF this.SpecialEffect = 1  && Sunken
+    this.AddObject( "H3D", "Line" )
+    WITH this.H3D
+      .BorderColor =RGB( 255,255,255 )
+      .BorderWidth = 1
+      .Top =this.Height-1
+      .Left = 1
+      .Width =this.Width-2
+      .Height = 0
+      .Visible = .T.
     ENDWITH
-    THIS.AddObject("V3D", "Line")
-    WITH THIS.V3D
-      .BorderColor=RGB(255,255,255)
-      .BorderWidth=1
-      .Top= 1
-      .Left= THIS.Width-1
-      .Width=0
-      .Height=THIS.height-1
-      .Visible= .T.
+    this.AddObject( "V3D", "Line" )
+    WITH this.V3D
+      .BorderColor =RGB( 255,255,255 )
+      .BorderWidth = 1
+      .Top = 1
+      .Left = this.Width-1
+      .Width = 0
+      .Height =this.height-1
+      .Visible = .T.
     ENDWITH
   ENDIF
 
-  THIS.RefreshTherm()
+  this.RefreshTherm()
 
  *====================================
- *-- cCtrTherm::GetPercent(n)
+ *-- cCtrTherm::GetPercent( n )
  *====================================
-  FUNCTION GetPercent( tnPercent)
-    RETURN THIS.nPercent
+  FUNCTION GetPercent( tnPercent )
+    RETURN this.nPercent
 
  *====================================
- *-- cCtrTherm::SetPercent(n)
+ *-- cCtrTherm::SetPercent( n )
  *====================================
-  FUNCTION SetPercent( tnPercent)
+  FUNCTION SetPercent( tnPercent )
     DO CASE
-    CASE TYPE( "tnPercent") <> "N"
+    CASE TYPE( "tnPercent" ) <> "N"
     CASE tnPercent >= 100
       THISFORM.Release()
     CASE tnPercent < 0
-      THIS.nPercent = 0
+      this.nPercent = 0
     OTHERWISE
-      THIS.nPercent= tnPercent
+      this.nPercent = tnPercent
     ENDCASE
-    THIS.RefreshTherm()
+    this.RefreshTherm()
 
  *====================================
  *-- cCtrTherm::RefreshTherm()
  *====================================
   FUNCTION RefreshTherm
-   THIS.oLabel.Caption=ALLTRIM(STR(INT(THIS.nPercent),3))+ " %"
-   WITH THIS.oTherm
-     .Width= MAX(0, MIN(THIS.nPercent,100))/100 * (THIS.Width - (2*THIS.nBorder))
+   this.oLabel.Caption =ALLTRIM( STR( INT( this.nPercent ),3 )) + " %"
+   WITH this.oTherm
+     .Width = MAX( 0, MIN( this.nPercent,100 ))/100 * ( this.Width - ( 2*this.nBorder ))
      WITH .oLabel
-       .Caption=ALLTRIM(STR(THIS.nPercent,3,0))+ " %"
-       .Left = THIS.Width/2- TXTWIDTH(.Caption, ;
+       .Caption =ALLTRIM( STR( this.nPercent,3,0 )) + " %"
+       .Left = this.Width/2- TXTWIDTH(.Caption, ;
                                      .FontName, ;
-                                     .FontSize)/2 ;
-                          - THIS.nBorder-1
+                                     .FontSize )/2 ;
+                          - this.nBorder-1
 
-       .ForeColor= RGB(255,255,255)
-       .Visible= .F.
+       .ForeColor = RGB( 255,255,255 )
+       .Visible = .F.
      ENDWITH
    ENDWITH
 ENDDEFINE
-
 
 *//////////////////////////////////////////////////////////////////////////////
 * CLASS....: c C t r C o m m a n d B u t t o n
 * Version..: March 31 1996
 *//////////////////////////////////////////////////////////////////////////////
 DEFINE CLASS cCtrCommandButton AS cAbstractMsgContainer
- BackStyle= 0
- BorderWidth= 0
- Spacing= 6
- ButtonClass= "cCmdMsgSvc"
+ BackStyle = 0
+ BorderWidth = 0
+ Spacing = 6
+ ButtonClass = "cCmdMsgSvc"
 
  DIMENSION aTrans[5]
  DIMENSION aOriginal[5]
- FUNCTION I( tcPassed)
+ FUNCTION I( tcPassed )
    RETURN tcPassed
 
  *====================================
- *-- cCtrCommandButton::Init(oo)
+ *-- cCtrCommandButton::Init( oo )
  *====================================
- FUNCTION Init( toSpecPackage)
+ FUNCTION Init( toSpecPackage )
 
    *-- Analyse toSpecPackage
-   THIS.ButtonSpec( toSpecPackage)
+   this.ButtonSpec( toSpecPackage )
    *-- localize the captions
    *-- Create Buttons
-   THIS.AddButtons( THISFORM)
+   this.AddButtons( THISFORM )
 
  *====================================
- *-- cCtrCommandButton::ButtonSpec(o)
+ *-- cCtrCommandButton::ButtonSpec( o )
  *====================================
- FUNCTION ButtonSpec( toSpecPackage)
+ FUNCTION ButtonSpec( toSpecPackage )
  LOCAL lcFunction, lcUppFunction, loMessageSpec
- loMessageSpec=toSpecPackage.GetItem( "Message spec")
+ loMessageSpec =toSpecPackage.GetItem( "Message spec" )
  LOCAL loINTL
- loINTL= toSpecPackage.GetItem( "INTL")
- IF TYPE( "loINTL") <> "O"
-   loINTL= THIS
+ loINTL = toSpecPackage.GetItem( "INTL" )
+ IF TYPE( "loINTL" ) <> "O"
+   loINTL = this
  ENDIF
 
- lcFunction= loMessageSpec.cFunction
+ lcFunction = loMessageSpec.cFunction
 
- IF EMPTY( lcFunction)
-   lcFunction= ccOK
+ IF EMPTY( lcFunction )
+   lcFunction = ccOK
  ENDIF
- lcUppFunc = UPPER( ALLTRIM(lcFunction))
+ lcUppFunc = UPPER( ALLTRIM( lcFunction ))
 
  DO CASE
- CASE lcUppFunc== [OK]
-    DIMENSION THIS.aOriginal[1], THIS.aTrans[1]
-    THIS.aOriginal[1]= ccOK
-    THIS.aTrans[1]   = loINTL.I( [\!\<OK])
+ CASE lcUppFunc == [OK]
+    DIMENSION this.aOriginal[1], this.aTrans[1]
+    this.aOriginal[1] = ccOK
+    this.aTrans[1] = loINTL.I( [\!\<OK] )
 
- CASE lcUppFunc== [OC]
-    DIMENSION THIS.aOriginal[2], THIS.aTrans[2]
-    THIS.aOriginal[1]= ccOK
-    THIS.aOriginal[2]= ccCANCEL
-    THIS.aTrans[1]   = loINTL.I( [\!\<] + ccOK )
-    THIS.aTrans[2]   = loINTL.I( [\?\<] + ccCANCEL )
+ CASE lcUppFunc == [OC]
+    DIMENSION this.aOriginal[2], this.aTrans[2]
+    this.aOriginal[1] = ccOK
+    this.aOriginal[2] = ccCANCEL
+    this.aTrans[1] = loINTL.I( [\!\<] + ccOK )
+    this.aTrans[2] = loINTL.I( [\?\<] + ccCANCEL )
 
-   CASE lcUppFunc== [YN]
-    DIMENSION THIS.aOriginal[2], THIS.aTrans[2]
-    THIS.aOriginal[1]= ccYES
-    THIS.aOriginal[2]= ccNO
-    THIS.aTrans[1]   = loINTL.I( [\!\<] + ccYES)
-    THIS.aTrans[2]   = loINTL.I( [\<] + ccNO)
+   CASE lcUppFunc == [YN]
+    DIMENSION this.aOriginal[2], this.aTrans[2]
+    this.aOriginal[1] = ccYES
+    this.aOriginal[2] = ccNO
+    this.aTrans[1] = loINTL.I( [\!\<] + ccYES )
+    this.aTrans[2] = loINTL.I( [\<] + ccNO )
 
-   CASE lcUppFunc== [NY]
-    DIMENSION THIS.aOriginal[2], THIS.aTrans[2]
-    THIS.aOriginal[1]= ccNO
-    THIS.aOriginal[2]= ccYES
-    THIS.aTrans[1]   = loINTL.I( [\<] + ccNO)
-    THIS.aTrans[2]   = loINTL.I( [\?\<] + ccYES)
+   CASE lcUppFunc == [NY]
+    DIMENSION this.aOriginal[2], this.aTrans[2]
+    this.aOriginal[1] = ccNO
+    this.aOriginal[2] = ccYES
+    this.aTrans[1] = loINTL.I( [\<] + ccNO )
+    this.aTrans[2] = loINTL.I( [\?\<] + ccYES )
 
-   CASE lcUppFunc== [YNC]
-    DIMENSION THIS.aOriginal[3], THIS.aTrans[3]
-    THIS.aOriginal[1]= ccYES
-    THIS.aOriginal[2]= ccNO
-    THIS.aOriginal[3]= ccCancel
-    THIS.aTrans[1]   = loINTL.I( [\!\<]+ ccYes)
-    THIS.aTrans[2]   = loINTL.I( [\<]+ ccNO)
-    THIS.aTrans[3]   = loINTL.I( [\?\<]+ ccCANCEL)
+   CASE lcUppFunc == [YNC]
+    DIMENSION this.aOriginal[3], this.aTrans[3]
+    this.aOriginal[1] = ccYES
+    this.aOriginal[2] = ccNO
+    this.aOriginal[3] = ccCancel
+    this.aTrans[1] = loINTL.I( [\!\<]+ ccYes )
+    this.aTrans[2] = loINTL.I( [\<]+ ccNO )
+    this.aTrans[3] = loINTL.I( [\?\<]+ ccCANCEl )
 
-   CASE lcUppFunc== [NYC]
-    DIMENSION THIS.aOriginal[3], THIS.aTrans[3]
-    THIS.aOriginal[1]= ccNO
-    THIS.aOriginal[2]= ccYES
-    THIS.aOriginal[3]= ccCANCEL
-    THIS.aTrans[1]   = loINTL.I( [\!\<] + ccNO)
-    THIS.aTrans[2]   = loINTL.I( [\<]+ ccYES)
-    THIS.aTrans[3]   = loINTL.I( [\?\<]+ ccCANCEL)
+   CASE lcUppFunc == [NYC]
+    DIMENSION this.aOriginal[3], this.aTrans[3]
+    this.aOriginal[1] = ccNO
+    this.aOriginal[2] = ccYES
+    this.aOriginal[3] = ccCANCEL
+    this.aTrans[1] = loINTL.I( [\!\<] + ccNO )
+    this.aTrans[2] = loINTL.I( [\<]+ ccYES )
+    this.aTrans[3] = loINTL.I( [\?\<]+ ccCANCEl )
 
-   CASE lcUppFunc== [RC]
-    DIMENSION THIS.aOriginal[2], THIS.aTrans[2]
-    THIS.aOriginal[1]= ccRETRY
-    THIS.aOriginal[2]= ccCANCEL
-    THIS.aTrans[1]   = loINTL.I( [\!\<]+ ccRETRY)
-    THIS.aTrans[2]   = loINTL.I( [\?\<]+ ccCANCEL)
+   CASE lcUppFunc == [RC]
+    DIMENSION this.aOriginal[2], this.aTrans[2]
+    this.aOriginal[1] = ccRETRY
+    this.aOriginal[2] = ccCANCEL
+    this.aTrans[1] = loINTL.I( [\!\<]+ ccRETRY )
+    this.aTrans[2] = loINTL.I( [\?\<]+ ccCANCEl )
 
-   CASE lcUppFunc== [ARI]
-    DIMENSION THIS.aOriginal[3], THIS.aTrans[3]
-    THIS.aOriginal[1]= ccABORT
-    THIS.aOriginal[2]= ccRETRY
-    THIS.aOriginal[3]= ccIGNORE
-    THIS.aTrans[1]   = loINTL.I( [\!\<] + ccABORT)
-    THIS.aTrans[2]   = loINTL.I( [\<]+ ccRETRY)
-    THIS.aTrans[3]   = loINTL.I( [\<] + ccIGNORE)
+   CASE lcUppFunc == [ARI]
+    DIMENSION this.aOriginal[3], this.aTrans[3]
+    this.aOriginal[1] = ccABORT
+    this.aOriginal[2] = ccRETRY
+    this.aOriginal[3] = ccIGNORE
+    this.aTrans[1] = loINTL.I( [\!\<] + ccABORt )
+    this.aTrans[2] = loINTL.I( [\<]+ ccRETRY )
+    this.aTrans[3] = loINTL.I( [\<] + ccIGNORe )
 
-   CASE lcUppFunc== [CANCEL]
-    DIMENSION THIS.aOriginal[1], THIS.aTrans[1]
-    THIS.aOriginal[1]= ccCANCEL
-    THIS.aTrans[1]   = loINTL.I( [\?\<]+ ccCANCEL)
+   CASE lcUppFunc == [CANCEL]
+    DIMENSION this.aOriginal[1], this.aTrans[1]
+    this.aOriginal[1] = ccCANCEL
+    this.aTrans[1] = loINTL.I( [\?\<]+ ccCANCEl )
 
-   CASE lcUppFunc== [WORKING]
-    llWorking= .T.
+   CASE lcUppFunc == [WORKING]
+    llWorking = .T.
 
    * CASE [;] $ lcUppFunc
    OTHERWISE
     lcHoldVar = []
-    jnNumButtons = tokens( lcFunction, [;], .T.)
-    DIMENSION THIS.aOriginal[jnNumButtons], THIS.aTrans[jnNumButtons]
+    jnNumButtons = tokens( lcFunction, [;], .T. )
+    DIMENSION this.aOriginal[jnNumButtons], this.aTrans[jnNumButtons]
     FOR jni = 1 TO jnNumButtons
-       jcThisWord      = tokennum( lcFunction, jni, [;], .T.)   && *? added .T. on a hunch
-       THIS.aOriginal[jnI] = jcThisWord
-       THIS.aTrans[jnI] = loINTL.I( jcThisword)
-       lcHoldVar       = lcHoldVar + THIS.aTrans[jnI] + [;]
+       jcThisWord = tokennum( lcFunction, jni, [;], .T.)   && *? added .T. on a hunch
+       this.aOriginal[jnI] = jcThisWord
+       this.aTrans[jnI] = loINTL.I( jcThisword )
+       lcHoldVar = lcHoldVar + this.aTrans[jnI] + [;]
     ENDFOR
     *-- Eliminate trailing ";"
-    lcFunction = LEFT( lcHoldVar, LEN( lcHoldVar) - 1 )
+    lcFunction = LEFT( lcHoldVar, LEN( lcHoldVar ) - 1 )
  ENDCASE
 
  *====================================
- *-- cCtrCommandButton::AddButtons(oo)
+ *-- cCtrCommandButton::AddButtons( oo )
  *   Add buttons to the button container
  *====================================
- FUNCTION AddButtons( toDialog)
+ FUNCTION AddButtons( toDialog )
    LOCAL lnI, lcI, loTemp, laTemp, lcMsgBox
-   lcMsgBox= SPACE(9)+          ;
-             PADR( ccOK,    10)+ ;
-             PADR( ccCANCEL,10)+ ;
-             PADR( ccABORT, 10)+ ;
-             PADR( ccRETRY, 10)+ ;
-             PADR( ccIGNORE,10)+ ;
-             PADR( ccYES,   10)+ ;
-             PADR( ccNO,    10)
+   lcMsgBox = SPACE( 9 ) +          ;
+             PADR( ccOK,    10 ) + ;
+             PADR( ccCANCEL,10 ) + ;
+             PADR( ccABORT, 10 ) + ;
+             PADR( ccRETRY, 10 ) + ;
+             PADR( ccIGNORE,10 ) + ;
+             PADR( ccYES,   10 ) + ;
+             PADR( ccNO,    10 )
 
-   FOR lnI= 1 TO ALEN( THIS.aTrans)
-     IF TYPE("THIS.aTrans[ lnI]")= "L"
+   FOR lnI = 1 TO ALEN( this.aTrans )
+     IF TYPE( "this.aTrans[lnI]" ) = "L"
        EXIT
      ENDIF
-     lcName= "cmd"+STR( lnI,1)
-     THIS.AddObject( lcName, THIS.ButtonClass)
-     loTemp= THIS.&lcName.
-     loTemp.Caption= NoOldHot(THIS.aTrans[ lnI])
+     lcName = "cmd"+STR( lnI,1 )
+     this.AddObject( lcName, this.ButtonClass )
+     loTemp = this.&lcName.
+     loTemp.Caption = NoOldHot( this.aTrans[lnI] )
      *-- Add button characteristics
-     loTemp.aRetVals[1]= NOHOT(THIS.aOriginal[ lnI]) && Original language caption
-     loTemp.aRetVals[2]= lnI                  && Button number
-     loTemp.aRetVals[3]= (lnI=1)              && First button?
-     loTemp.aRetVals[4]= INT(AT(loTemp.aRetVals[1], lcMsgBox)/10) && MessageBox() compatibility
+     loTemp.aRetVals[1] = NOHOT( this.aOriginal[lnI] ) && Original language caption
+     loTemp.aRetVals[2] = lnI                  && Button number
+     loTemp.aRetVals[3] = ( lnI = 1 )              && First button?
+     loTemp.aRetVals[4] = INT( AT( loTemp.aRetVals[1], lcMsgBox )/10 ) && MessageBox() compatibility
 
      *-- Load ESC & Ctrl-Enter properties here
-     IF "\!" $ THIS.aTrans[lnI]
-       loTemp.Default=.T.
+     IF "\!" $ this.aTrans[lnI]
+       loTemp.Default = .T.
      ENDIF
 
-     IF "\?" $ THIS.aTrans[lnI]
-       loTemp.Cancel=.T.
+     IF "\?" $ this.aTrans[lnI]
+       loTemp.Cancel = .T.
      ENDIF
    ENDFOR
 
    *-- Lay them out
    LOCAL lnSpacing, lnHeight, lnMaxWidth, lnAvgWidth
-   lnMaxWidth= 0
-   lnAvgWidth= 0
-   IF THIS.ControlCount > 0
-     lnAvgWidth= FONTMETRIC(6, ;
-                            THIS.Controls(1).FontName, ;
-                            THIS.Controls(1).FontSize)
+   lnMaxWidth = 0
+   lnAvgWidth = 0
+   IF this.ControlCount > 0
+     lnAvgWidth = FONTMETRIC( 6, ;
+                            this.Controls( 1 ).FontName, ;
+                            this.Controls( 1 ).FontSize )
 
      *-- WIN95 guidelines
-     lnSpacing= lnAvgWidth
-     lnHeight=  FONTMETRIC(1, ;
-                           THIS.Controls(1).FontName, ;
-                           THIS.Controls(1).FontSize) * 7/4
+     lnSpacing = lnAvgWidth
+     lnHeight =  FONTMETRIC( 1, ;
+                           this.Controls( 1 ).FontName, ;
+                           this.Controls( 1 ).FontSize ) * 7/4
    ENDIF
 
-
-   FOR lnI=1 TO THIS.ControlCount
-     lnMaxWidth= MAX( lnMaxWidth, lnAvgWidth* ;
-                                  TXTWIDTH( NoHot(THIS.Controls(lnI).Caption), ;
-                                  THIS.Controls(lnI).FontName, ;
-                                  THIS.Controls(lnI).FontSize))
+   FOR lnI = 1 TO this.ControlCount
+     lnMaxWidth = MAX( lnMaxWidth, lnAvgWidth* ;
+                                  TXTWIDTH( NoHot( this.Controls( lnI ).Caption ), ;
+                                  this.Controls( lnI ).FontName, ;
+                                  this.Controls( lnI ).FontSize ))
    ENDFOR
-   lnMaxWidth= lnMaxWidth * (2.2)
+   lnMaxWidth = lnMaxWidth * ( 2.2 )
 
    *-- Adjust the button sizes
-   FOR lnI=1 TO THIS.ControlCount
-     THIS.Controls(lnI).Width= lnMaxWidth
-     THIS.Controls(lnI).Height= toDialog.nVDBU*14
-     THIS.Controls(lnI).Left  = (toDialog.nHDBU*4)+ ;
-                                ((lnI-1)* (lnMaxWidth+ (toDialog.nHDBU*4)))
-     THIS.Controls(lnI).Top= 0
-     THIS.Controls(lnI).Visible= .T.
+   FOR lnI = 1 TO this.ControlCount
+     this.Controls( lnI ).Width = lnMaxWidth
+     this.Controls( lnI ).Height = toDialog.nVDBU*14
+     this.Controls( lnI ).Left = ( toDialog.nHDBU*4 ) + ;
+                                (( lnI-1 )* ( lnMaxWidth + ( toDialog.nHDBU*4 )))
+     this.Controls( lnI ).Top = 0
+     this.Controls( lnI ).Visible = .T.
    ENDFOR
-   IF THIS.ControlCount> 0
-     THIS.Height= THIS.Controls(1).Height
-     THIS.Width = 2*(toDialog.nHDBU*4)+ ;
-                  (THIS.ControlCount* lnMaxWidth)+ ;
-                  ((THIS.ControlCount-1)*(toDialog.nHDBU*4))
+   IF this.ControlCount> 0
+     this.Height = this.Controls( 1 ).Height
+     this.Width = 2*( toDialog.nHDBU*4 ) + ;
+                  ( this.ControlCount* lnMaxWidth ) + ;
+                  (( this.ControlCount-1 )*( toDialog.nHDBU*4 ))
    ELSE
-     THIS.Parent.RemoveObject( THIS.Name)
-     * THIS.Height= 0
-     * THIS.Width=  0
+     this.Parent.RemoveObject( this.Name )
+     * this.Height = 0
+     * this.Width =  0
    ENDIF
 ENDDEFINE
 
@@ -2473,23 +2432,23 @@ ENDDEFINE
 * Version..: March 31 1996
 *//////////////////////////////////////////////////////////////////////////////
 DEFINE CLASS cEdtMsgSvc AS EditBox
-  Alignment  = 0
-  BackStyle  = 0 && Transparent
-  BorderStyle= 0 && none
-  FontName   = "MS SANS Serif"
-  FontSize   = 8
-  FontBold   = .F.
-  ReadOnly   = .T.
+  Alignment = 0
+  BackStyle = 0 && Transparent
+  BorderStyle = 0 && none
+  FontName = "MS SANS Serif"
+  FontSize = 8
+  FontBold = .F.
+  ReadOnly = .T.
   ScrollBars = 0 && none
-  TabStop    = .F.
-  Margin     = 0
-  Width      = 200
+  TabStop = .F.
+  Margin = 0
+  Width = 200
 
  *====================================
  *-- cEdtMsgSvc::Init()
  *====================================
  *
-  FUNCTION INIT( toSpecPackage)
+  FUNCTION INIT( toSpecPackage )
 
  *====================================
  *-- cEdtMsgSvc::When()
@@ -2512,98 +2471,95 @@ DEFINE CLASS cTmrAnimateMsgSvc AS cTmrMsgSvc
  *
  Interval = 400
  nCounter = 0
- nMaxImage= 1
- Enabled  = .F.
+ nMaxImage = 1
+ Enabled = .F.
 
  DIMENSION aImages[1]
 
  FUNCTION Timer
-   THIS.nCounter= THIS.nCounter+1
-   IF THIS.nCounter > THIS.nMaxImage
-     THIS.nCounter= 1
+   this.nCounter = this.nCounter + 1
+   IF this.nCounter > this.nMaxImage
+     this.nCounter = 1
    ENDIF
-   THISFORM.oImage.Picture= THIS.aImages[ THIS.nCounter]
+   THISFORM.oImage.Picture = this.aImages[this.nCounter]
 
-
- FUNCTION SetImage( toImage, tnImages)
+ FUNCTION SetImage( toImage, tnImages )
    *? Limited to 10 images???
-   THIS.nMaxImage= tnImages
-   DIMENSION THIS.aImages[ tnImages]
+   this.nMaxImage = tnImages
+   DIMENSION this.aImages[tnImages]
    LOCAL lnI, lcPre, lcPost, lnTemp, lcVarChar
-   lnTemp= AT( ".", toImage.Picture)
+   lnTemp = AT( ".", toImage.Picture )
 
-   lcPre= LEFT( toImage.Picture, lnTemp -1)
-   lcVarChar= RIGHT( lcPre,1)
-   lcPre= LEFT( lcPre, LEN( lcPre)-1)
+   lcPre = LEFT( toImage.Picture, lnTemp -1 )
+   lcVarChar = RIGHT( lcPre,1 )
+   lcPre = LEFT( lcPre, LEN( lcPre ) -1 )
 
-   lcPost= SUBS( toImage.Picture, lnTemp)
+   lcPost = SUBS( toImage.Picture, lnTemp )
 
-   FOR lnI= 1 TO tnImages
-     THIS.aImages[lnI]= lcPre+ CHR( ASC( lcVarChar)+lnI-1)+lcPost
+   FOR lnI = 1 TO tnImages
+     this.aImages[lnI] = lcPre + CHR( ASC( lcVarChar ) +lnI-1 ) +lcPost
    ENDFOR
 
 ENDDEFINE
-
 
 *//////////////////////////////////////////////////////////////////////////////
 * CLASS....: c I m g M s g S v c
 * Version..: March 31 1996
 *//////////////////////////////////////////////////////////////////////////////
 DEFINE CLASS cImgMsgSvc AS Image
-  Top   = 12
-  Left  = 12
+  Top = 12
+  Left = 12
   Width = 32
-  Height= 32
-  BackStyle= 0  && Transparent
+  Height = 32
+  BackStyle = 0  && Transparent
 
-  cPictureProp= "cGuiVisual"
-  lAnimate= .f.
-  nAnimate= 1
+  cPictureProp = "cGuiVisual"
+  lAnimate = .f.
+  nAnimate = 1
 
  *====================================
- *-- cImgMsgSvc::Init(o)
+ *-- cImgMsgSvc::Init( o )
  *====================================
  *
-  FUNCTION INIT( toSpecPackage)
+  FUNCTION INIT( toSpecPackage )
     LOCAL loMessageSpec
-    loMessageSpec= toSpecPackage.GetItem("Message spec")
+    loMessageSpec = toSpecPackage.GetItem( "Message spec" )
 
     LOCAL lcImageFile
-    lcImageFile= EVAL("loMessageSpec."+ THIS.cPictureProp)
-    IF EMPTY( lcImageFile)
+    lcImageFile = EVAL( "loMessageSpec."+ this.cPictureProp )
+    IF EMPTY( lcImageFile )
       RETURN .F.
     ENDIF
 
-    lcImageFile=UPPER( lcImageFile)
+    lcImageFile =UPPER( lcImageFile )
     IF "ANIMATE" $ lcImageFile
       LOCAL lnAnimatePos, lcAnimateSpec, lnAnimate
-      lnAnimatePos= AT( "ANIMATE", lcImageFile)
-      lcAnimateSpec= SUBS( lcImageFile, lnAnimatePos)
-      lcImageFile= ALLTRIM( LEFT( lcImageFile, lnAnimatePos-1))
-      lcAnimateSpec= ALLTRIM(STRTRAN( lcAnimateSpec, "ANIMATE"))
-      lnAnimate= VAL( lcAnimateSpec)
+      lnAnimatePos = AT( "ANIMATE", lcImageFile )
+      lcAnimateSpec = SUBS( lcImageFile, lnAnimatePos )
+      lcImageFile = ALLTRIM( LEFT( lcImageFile, lnAnimatePos - 1 ))
+      lcAnimateSpec = ALLTRIM( STRTRAN( lcAnimateSpec, "ANIMATE" ))
+      lnAnimate = VAL( lcAnimateSpec )
       IF lnAnimate> 0
-        THIS.lAnimate= .T.
-        THIS.nAnimate= lnAnimate
+        this.lAnimate = .T.
+        this.nAnimate = lnAnimate
       ENDIF
     ENDIF
 
     *-- There could be nothing left...
-    IF EMPTY( lcImageFile)
+    IF EMPTY( lcImageFile )
       RETURN .F.
     ENDIF
 
-
-    IF FILE( ALLTRIM( lcImageFile))
-      THIS.Picture= lcImageFile
+    IF FILE( ALLTRIM( lcImageFile ))
+      this.Picture = lcImageFile
     ELSE
       RETURN .F.
     ENDIF
 
-    IF THIS.lAnimate
-      THISFORM.AddObject("oImageTimer", "cTmrAnimateMsgSvc", tospecpackage)
-      THISFORM.oImageTimer.SetImage( THIS, THIS.nAnimate)
-      THISFORM.oImageTimer.Enabled= .T.
+    IF this.lAnimate
+      THISFORM.AddObject( "oImageTimer", "cTmrAnimateMsgSvc", tospecpackage )
+      THISFORM.oImageTimer.SetImage( this, this.nAnimate )
+      THISFORM.oImageTimer.Enabled = .T.
     ENDIF
 ENDDEFINE
 
@@ -2612,10 +2568,10 @@ ENDDEFINE
 * Version..: March 31 1996
 *//////////////////////////////////////////////////////////////////////////////
 DEFINE CLASS cLblMsgSvc AS Label
-  FontName= "MS Sans Serif"
-  FontSize= 8
-  FontBold= .F.
-  BackStyle= 0  && Transparent
+  FontName = "MS Sans Serif"
+  FontSize = 8
+  FontBold = .F.
+  BackStyle = 0  && Transparent
 ENDDEFINE
 
 *//////////////////////////////////////////////////////////////////////////////
@@ -2623,14 +2579,11 @@ ENDDEFINE
 * Version..: March 31 1996
 *//////////////////////////////////////////////////////////////////////////////
 DEFINE CLASS cThermBarLblMsgSvc AS Label
-  FontBold= .F.
-  BackStyle= 0  && transparent
-  BorderStyle= 0
+  FontBold = .F.
+  BackStyle = 0  && transparent
+  BorderStyle = 0
 
 ENDDEFINE
-
-
-
 
 *!***********************************************
 *!
@@ -2643,7 +2596,7 @@ PROCEDURE waitwind
 *  Author............: Steven M. Black
 *} Project...........: common
 *  Created...........: 11/22/91
-*  Copyright.........: (c) Steven Black Consulting, 1991
+*  Copyright.........: ( c ) Steven Black Consulting, 1991
 *) Description.......: A Wait window shell -- From Lisa Slater's
 *)                     compuserve suggestion
 *] Dependencies......:
@@ -2651,9 +2604,9 @@ PROCEDURE waitwind
 *  Parameter List....: tcPhrase   - What goes in the WAIT window
 *                      tnSchemeNo - Color of the WAIT window
 *                      txWaiting  - Numeric = TIMEOUT
-*                                   TRUE     = WAIT, .F. = NoWait
+*                                   TRUE = WAIT, .F. = NoWait
 
-PARAMETERS ;
+LPARAMETERS ;
            tcPhrase, ;
            tnSchemeno, ;
            txwaiting
@@ -2665,9 +2618,9 @@ PRIVATE ;
    jlWaiting, ;
    jnWaiting
 
-jnWaiting  = 0
-jlWaiting  = .F.
-jcWaitType = TYPE( "txWaiting")
+jnWaiting = 0
+jlWaiting = .F.
+jcWaitType = TYPE( "txWaiting" )
 
 DO CASE
 CASE jcWaitType = "N"
@@ -2676,7 +2629,7 @@ CASE jcWaitType = "L"
    jlWaiting = txwaiting
 ENDCASE
 
-IF EMPTY( tnSchemeno)
+IF EMPTY( tnSchemeno )
    tnSchemeno = 5
 ENDIF
 
@@ -2698,7 +2651,6 @@ SET COLOR OF SCHEME 5 TO
 
 RETURN jcAnswerVal
 
-
 *!***********************************************
 *!
 *!      Procedure: OK2INSERT
@@ -2709,23 +2661,23 @@ procedure ok2insert
 *  Version...........: 1.3 March 11 1995
 *} Project...........: INTL
 *  Created...........: 10/26/93
-*  Copyright.........: (c) Steven Black Consulting, 1993
+*  Copyright.........: ( c ) Steven Black Consulting, 1993
 *) Description.......: PROCEDURE ok2insert
 *)                     Sort of kills the point of the INSERT,
 *)                     so tell me a better way...
 
-PARAMETER tcNewAlias
+LPARAMETERS tcNewAlias
 
 PRIVATE jlRetVal, jcOldError, jnOldAlias
-jnOldalias=0
+jnOldalias = 0
 jlRetVal = .T.
 
-jcOldError        = ON( "ERROR")
+jcOldError = ON( "ERROR" )
 ON ERROR jlRetVal = .F.
 
-IF ! EMPTY( tcNewAlias)
+IF ! EMPTY( tcNewAlias )
    jnOldAlias = SELECT()
-   SELECT (tcNewAlias)
+   SELECT ( tcNewAlias )
 ENDIF
 
 IF EOF() OR BOF()
@@ -2733,17 +2685,16 @@ IF EOF() OR BOF()
 ENDIF
 
 *-- do something that might trigger an error
-jcField = FIELD( 1)
+jcField = FIELD( 1 )
 REPLACE &jcField WITH &jcField
 
 ON ERROR &jcOldError
 
-IF ! EMPTY( jnOldALias)
-  SELECT ( jnOldAlias)
+IF ! EMPTY( jnOldALias )
+  SELECT ( jnOldAlias )
 ENDIF
 
 RETURN jlRetVal
-
 
 *!***********************************************
 *!
@@ -2759,7 +2710,7 @@ procedure msgevltxt
 *) Description.......: PROCEDURE msgevltxt
 *)                     Evaluated {{}} within strings
 
-PARAMETERS m.olD_Text
+LPARAMETERS m.olD_Text
 PRIVATE ;
         m.eval_str1, ;
         m.eval_str2, ;
@@ -2785,103 +2736,96 @@ PRIVATE ;
         m.onError, ;
         m.sellast
 
-IF TYPE( [m.old_text])#[C]
+IF TYPE( [m.old_text] )#[C]
    RETURN m.old_Text
 ENDIF
-m.cR_lf   = CHR( 10)+ CHR( 13)
-m.onError = ON( [ERROR])
-m.nEw_Text= m.old_Text
+m.cR_lf = CHR( 10 ) + CHR( 13 )
+m.onError = ON( [ERROR] )
+m.nEw_Text = m.old_Text
 m.at_pos3 = 1
 DO WHILE .T.
-   m.at_pos= AT( [{{], SUBSTR( m.old_Text, m.at_pos3))
-   IF m.at_pos= 0
+   m.at_pos = AT( [{{], SUBSTR( m.old_Text, m.at_pos3 ))
+   IF m.at_pos = 0
       EXIT
    ENDIF
-   m.at_pos2= AT( [}}], SUBSTR( m.old_Text, m.at_pos+ m.at_pos3-1))
-   IF m.at_pos2= 0
+   m.at_pos2 = AT( [}}], SUBSTR( m.old_Text, m.at_pos + m.at_pos3-1 ))
+   IF m.at_pos2 = 0
       EXIT
    ENDIF
-   m.at_pos4= AT( [{{], SUBSTR( m.old_Text, m.at_pos+ m.at_pos3+ 1))
+   m.at_pos4 = AT( [{{], SUBSTR( m.old_Text, m.at_pos + m.at_pos3 + 1 ))
    IF m.at_pos4>0.and.m.at_pos4<m.at_pos2
-      m.at_pos4= OCCURS( [{{], SUBSTR( m.old_Text, m.at_pos+ m.at_pos3-1, ;
-         m.at_pos2-m.at_pos4))
-      m.at_pos4 = AT( [{{], SUBSTR( m.old_Text, m.at_pos+ m.at_pos3-1), m.at_pos4)
-      m.old_Str = SUBSTR( m.old_Text, m.at_pos+ m.at_pos3-1, m.at_pos2+ 1)
-      m.eval_str= SUBSTR( m.old_Str, 3, LEN( m.old_Str)-2)
-      m.old_Str = msgevltxt( m.eval_str)
-      m.old_Text= STRTRAN( m.old_Text, m.eval_str, m.old_Str)
-      m.nEw_Text= STRTRAN( m.nEw_Text, m.eval_str, m.old_Str)
+      m.at_pos4 = OCCURS( [{{], SUBSTR( m.old_Text, m.at_pos + m.at_pos3-1, ;
+         m.at_pos2-m.at_pos4 ))
+      m.at_pos4 = AT( [{{], SUBSTR( m.old_Text, m.at_pos + m.at_pos3-1 ), m.at_pos4 )
+      m.old_Str = SUBSTR( m.old_Text, m.at_pos + m.at_pos3-1, m.at_pos2 + 1 )
+      m.eval_str = SUBSTR( m.old_Str, 3, LEN( m.old_Str ) -2 )
+      m.old_Str = msgevltxt( m.eval_str )
+      m.old_Text = STRTRAN( m.old_Text, m.eval_str, m.old_Str )
+      m.nEw_Text = STRTRAN( m.nEw_Text, m.eval_str, m.old_Str )
       LOOP
    ENDIF
-   m.old_Str = SUBSTR( m.old_Text, m.at_pos+ m.at_pos3-1, m.at_pos2+ 1)
-   m.eval_str= ALLTRIM( SUBSTR( m.old_Str, 3, LEN( m.old_Str)-4))
+   m.old_Str = SUBSTR( m.old_Text, m.at_pos + m.at_pos3-1, m.at_pos2 + 1 )
+   m.eval_str = ALLTRIM( SUBSTR( m.old_Str, 3, LEN( m.old_Str ) -4 ))
    * DO esc_check
    m.evlmode = .F.
 
    DO CASE
-   CASE EMPTY( m.eval_str)
-      m.eval_str= []
-   CASE LEFT( m.eval_str, 2)== [&.]
-      m.eval_str= SUBSTR( m.eval_str, 3)
-      &eval_str                                       &&;
-         --------------------------------------------------------------;
-         ERROR ocCured during MACRO substitution OF {{&. <expc> }}.
-      m.eval_str= []
-   CASE LEFT( m.eval_str, 1)== [<]
-     *[smb]  m.eval_str= INSERT( SUBSTR( m.eval_str, 2))     &&;
-         --------------------------------------------------------------;
-         ERROR ocCured during evaluation OF {{< <FILE> }}.
+   CASE EMPTY( m.eval_str )
+      m.eval_str = []
+   CASE LEFT( m.eval_str, 2 ) == [&.]
+      m.eval_str = SUBSTR( m.eval_str, 3 )
+      &eval_str
+      m.eval_str = []
+   CASE LEFT( m.eval_str, 1 ) == [<]
+
    OTHERWISE
-      m.eval_str= EVALUATE( m.eval_str)               &&;
-         --------------------------------------------------------------;
-         ERROR ocCured during evaluation OF {{ <expc> }}.
+      m.eval_str = EVALUATE( m.eval_str )
    ENDCASE
-   IF EMPTY( m.onError)
+   IF EMPTY( m.onError )
       ON ERROR
    ELSE
       ON ERROR &onError
    ENDIF
-   m.var_type= TYPE( [m.eval_str])
+   m.var_type = TYPE( [m.eval_str] )
    DO CASE
-   CASE m.var_type== [C]
-      m.nEw_Str= m.eval_str
-   CASE m.var_type== [N]
-      m.nEw_Str= ALLTRIM( STR( m.eval_str, 24, 12))
-      DO WHILE RIGHT( m.nEw_Str, 1)== [0]
-         m.nEw_Str= LEFT( m.nEw_Str, LEN( m.nEw_Str)-1)
-         IF RIGHT( m.nEw_Str, 1)== [.]
-            m.nEw_Str= LEFT( m.nEw_Str, LEN( m.nEw_Str)-1)
+   CASE m.var_type == [C]
+      m.nEw_Str = m.eval_str
+   CASE m.var_type == [N]
+      m.nEw_Str = ALLTRIM( STR( m.eval_str, 24, 12 ))
+      DO WHILE RIGHT( m.nEw_Str, 1 ) == [0]
+         m.nEw_Str = LEFT( m.nEw_Str, LEN( m.nEw_Str ) -1 )
+         IF RIGHT( m.nEw_Str, 1 ) == [.]
+            m.nEw_Str = LEFT( m.nEw_Str, LEN( m.nEw_Str ) -1 )
             EXIT
          ENDIF
       ENDDO
-   CASE m.var_type== [D]
-      m.nEw_Str= DTOC( m.eval_str)
-   CASE m.var_type== [L]
-      m.nEw_Str= IIF( m.eval_str, [TRUE], [FALSE])
+   CASE m.var_type == [D]
+      m.nEw_Str = DTOC( m.eval_str )
+   CASE m.var_type == [L]
+      m.nEw_Str = IIF( m.eval_str, [TRUE], [FALSE] )
    OTHERWISE
-      m.nEw_Str= m.old_Str
+      m.nEw_Str = m.old_Str
    ENDCASE
-   m.nEw_Text= STRTRAN( m.nEw_Text, m.old_Str, m.nEw_Str)
-   m.at_pos2 = m.at_pos+ LEN( m.nEw_Str)
+   m.nEw_Text = STRTRAN( m.nEw_Text, m.old_Str, m.nEw_Str )
+   m.at_pos2 = m.at_pos + LEN( m.nEw_Str )
    IF m.at_pos2<= 0
       EXIT
    ENDIF
-   m.at_pos3= m.at_pos3+ m.at_pos2
+   m.at_pos3 = m.at_pos3 + m.at_pos2
 ENDDO
-m.j= 0
-DO WHILE [{{]$m.nEw_Text.and.[}}]$m.nEw_Text
-   *         =esc_check()
-   m.i       = LEN( m.nEw_Text)
-   m.nEw_Text= msgevltxt( m.nEw_Text)
-   IF m.i= LEN( m.nEw_Text)
-      IF m.j>= 2
+m.j = 0
+DO WHILE [{{] $ m.nEw_Text .and. [}}] $ m.nEw_Text
+   * =esc_check()
+   m.i = LEN( m.nEw_Text )
+   m.nEw_Text = msgevltxt( m.nEw_Text )
+   IF m.i = LEN( m.nEw_Text )
+      IF m.j >= 2
          EXIT
       ENDIF
-      m.j= m.j+ 1
+      m.j = m.j + 1
    ENDIF
 ENDDO
 RETURN m.nEw_Text
-
 
 *!*********************************************
 *!
@@ -2893,11 +2837,11 @@ PROCEDURE tokennum
 *} Project...........: COMMON
 *  Version...........: 1.1  Feb 6 1994
 *  Created...........: Sometime in early '92
-*  Copyright.........: (c) Steven Black Consulting, 1993
+*  Copyright.........: ( c ) Steven Black Consulting, 1993
 *) Description.......: PROCEDURE tokennum
 *)                     Return a specified of tokens from a string
 *] Dependencies......:
-*  Calling Samples...: tokennum( <expC>, <expN>[, <expC>])
+*  Calling Samples...: tokennum( <expC>, <expN>[, <expC>] )
 *  Parameter List....: tcPassedStr
 *                      tnTokenNum
 *                      tcBreakChar
@@ -2905,7 +2849,7 @@ PROCEDURE tokennum
 *  Returns...........: The n'th token in a string
 *  Major change list.: Support for counting duplicate break characters
 
-PARAMETERS ;
+LPARAMETERS ;
            tcPassedStr, ;
            tnTokenNum, ;
            tcBreakChar, ;
@@ -2916,18 +2860,18 @@ PRIVATE ;
    jcString1, ;
    jcX
 
-jcX = CHR(253)
+jcX = CHR( 253 )
 
 IF PARAMETERS() = 2
    tcBreakChar = " .,"
 ENDIF
 
-m.jcString1 = ALLTRIM( m.tcPassedStr)
+m.jcString1 = ALLTRIM( m.tcPassedStr )
 
-m.jcString1 = CHRTRAN( m.jcString1, tcBreakChar, REPLICATE(jcX, LEN(tcBreakChar)) )
+m.jcString1 = CHRTRAN( m.jcString1, tcBreakChar, REPLICATE( jcX, LEN( tcBreakChar )) )
 
-DO WHILE (! tlCountDupBreaks) AND AT( jcX+ jcX, m.jcString1) > 0
-   m.jcString1 = STRTRAN( m.jcString1, jcX+ jcX, jcX)
+DO WHILE (! tlCountDupBreaks ) AND AT( jcX + jcX, m.jcString1 ) > 0
+   m.jcString1 = STRTRAN( m.jcString1, jcX + jcX, jcX )
 ENDDO
 
 DO CASE
@@ -2935,27 +2879,27 @@ CASE m.tnTokenNum > 1
 
   DO CASE
   *-- no token tnTokenNum past end of string.
-  CASE AT( jcX, m.jcString1, m.tnTokenNum-1) = 0
+  CASE AT( jcX, m.jcString1, m.tnTokenNum-1 ) = 0
     m.jcRetVal = ""
 
   *-- token tnTokenNum is last token in string.
-  CASE AT( jcX, m.jcString1, m.tnTokenNum) = 0
+  CASE AT( jcX, m.jcString1, m.tnTokenNum ) = 0
     m.jcRetVal = SUBSTR( m.jcString1, ;
-                         AT( jcX, m.jcString1, m.tnTokenNum-1)+ 1)
+                         AT( jcX, m.jcString1, m.tnTokenNum-1 ) + 1 )
 
    *-- token tnTokenNum is in the middle.
    OTHERWISE
-    lnStartPos = AT( jcX, m.jcString1, m.tnTokenNum-1) +1
+    lnStartPos = AT( jcX, m.jcString1, m.tnTokenNum-1 ) + 1
     m.jcRetVal = SUBSTR( m.jcString1, ;
                          lnStartPos, ;
-                         AT( jcX, m.jcString1, m.tnTokenNum) - lnStartPos)
+                         AT( jcX, m.jcString1, m.tnTokenNum ) - lnStartPos )
    ENDCASE
 
 CASE m.tnTokenNum = 1
 
   *-- get first token.
-  IF AT( jcX, m.jcString1) > 0
-     m.jcRetVal = SUBSTR( m.jcString1, 1, AT( jcX, m.jcString1)-1)
+  IF AT( jcX, m.jcString1 ) > 0
+     m.jcRetVal = SUBSTR( m.jcString1, 1, AT( jcX, m.jcString1 ) -1 )
 
   *-- there is only one token.  get it.
   ELSE
@@ -2964,10 +2908,9 @@ CASE m.tnTokenNum = 1
 
 ENDCASE
 
-m.jcRetVal = ALLTRIM( m.jcRetVal)
+m.jcRetVal = ALLTRIM( m.jcRetVal )
 
 RETURN m.jcRetVal
-
 
 *!*********************************************
 *!
@@ -2979,19 +2922,18 @@ PROCEDURE tokens
 *} Project...........: Common
 *  Version...........: 1.1  Feb 6 1994
 *  Created...........: Sometime in early '92
-*  Copyright.........: (c) Steven Black Consulting, 1993
+*  Copyright.........: ( c ) Steven Black Consulting, 1993
 *) Description.......: PROCEDURE tokens
 *)
 *] Dependencies......:
-*  Calling Samples...: tokens( <expC>[, <expC>])
+*  Calling Samples...: tokens( <expC>[, <expC>] )
 *  Parameter List....: tcPassedString
 *                      tcBreakChar
 *                      tlCountDupBreaks
 *  Returns...........: The number of tokens in a string
 *  Major change list.: Support for counting duplicate break characters
 
-
-PARAMETERS ;
+LPARAMETERS ;
            tcPassedString, ;
            tcBreakChar, ;
            tlCountDupBreaks
@@ -3001,7 +2943,7 @@ PRIVATE ;
         tcPassedString, ;
         jcX
 
-jcX = CHR( 253)
+jcX = CHR( 253 )
 
 DO CASE
 CASE PARAMETERS() = 0
@@ -3012,31 +2954,30 @@ ENDCASE
 
 m.tcPassedString = CHRTRAN( m.tcPassedString, ;
                             m.tcBreakChar, ;
-                            REPLICATE( jcX, LEN( m.tcBreakChar)))
+                            REPLICATE( jcX, LEN( m.tcBreakChar )))
 
-m.tcPassedString = ALLTRIM( m.tcPassedString)
+m.tcPassedString = ALLTRIM( m.tcPassedString )
 
-DO WHILE (! tlCountDupBreaks) AND AT( jcX+ jcX, m.tcPassedString) > 0
-   m.tcPassedString = STRTRAN( m.tcPassedString, jcX+jcX, jcX)
+DO WHILE (! tlCountDupBreaks ) AND AT( jcX + jcX, m.tcPassedString ) > 0
+   m.tcPassedString = STRTRAN( m.tcPassedString, jcX +jcX, jcX )
 ENDDO
 
-RETURN ( OCCURS( jcX, m.tcPassedString) + 1)
+RETURN ( OCCURS( jcX, m.tcPassedString ) + 1 )
 
 FUNCTION i
 LPARAMETERS Passed
 RETURN Passed
-
 
 *!*********************************************
 *!
 *!       Procedure: NoHot
 *!
 *!*********************************************
-Procedure NoHot
+PROCEDURE NoHot
 *  Author............: Steven M. Black
 *} Project...........: common
 *  Created...........: 05/09/92
-*  Copyright.........: (c) Steven Black Consulting, 1993
+*  Copyright.........: ( c ) Steven Black Consulting, 1993
 *) Description.......: PROCEDURE NoFeatures
 *)                     Feed it a string, and it strips out hotkey assignments
 *)                     returning the featurless string
@@ -3044,25 +2985,23 @@ Procedure NoHot
 *  Calling Samples...: nohot(<ExpC>)
 *  Parameter List....:
 
-PARAMETERS tcPassedPrompt
+LPARAMETERS tcPassedPrompt
 *-- This is the fastest, though not the most legible, way
 *-- to code this.
 *--                                     Hot Key, Ctrl Enter, Escape
-RETURN STRTRAN( STRTRAN( STRTRAN( tcPassedPrompt, "\<"), "\!"), "\?")
-
+RETURN STRTRAN( STRTRAN( STRTRAN( tcPassedPrompt, "\<" ), "\!" ), "\?" )
 
 *!*********************************************
 *!
 *!       Procedure: NoOldHot
 *!
 *!*********************************************
-Procedure NoOldHot
-PARAMETERS tcPassedPrompt
+PROCEDURE NoOldHot
+LPARAMETERS tcPassedPrompt
 *-- This is the fastest, though not the most legible, way
 *-- to code this.
 *--
-RETURN STRTRAN( STRTRAN( tcPassedPrompt, "\!"), "\?")
-
+RETURN STRTRAN( STRTRAN( tcPassedPrompt, "\!" ), "\?" )
 
 *!***********************************************
 *!
@@ -3077,19 +3016,18 @@ PRIVATE ;
    jnNamelen, ;
    jnSlashPos
 
-m.jnSlashPos = RAT( "\", tcFileName)
+m.jnSlashPos = RAT( "\", tcFileName )
 IF m.jnSlashPos <> 0
-   m.jnNamelen  = LEN( tcFileName) - m.jnSlashPos
-   tcFileName   = RIGHT( tcFileName, m.jnNamelen)
+   m.jnNamelen = LEN( tcFileName ) - m.jnSlashPos
+   tcFileName = RIGHT( tcFileName, m.jnNamelen )
 ELSE
-   m.jnColPos = RAT( ":", tcFileName)
+   m.jnColPos = RAT( ":", tcFileName )
    IF m.jnColPos <> 0
-      m.jnNamelen  = LEN( tcFileName) - m.jnColPos
-      tcFileName   = RIGHT( tcFileName, m.jnNamelen)
+      m.jnNamelen = LEN( tcFileName ) - m.jnColPos
+      tcFileName = RIGHT( tcFileName, m.jnNamelen )
    ENDIF
 ENDIF
 RETURN tcFileName
-
 
 *!***********************************************
 *!
@@ -3106,11 +3044,11 @@ PRIVATE ;
 
 jcRetVal = m.tcFileName
 
-m.jnDotPos   = RAT( ".", m.tcFileName)
-m.jnTermintr = MAX( RAT( "\", m.tcFileName), RAT( ":", m.tcFileName))
+m.jnDotPos = RAT( ".", m.tcFileName )
+m.jnTermintr = MAX( RAT( "\", m.tcFileName ), RAT( ":", m.tcFileName ))
 
 IF m.jnDotPos > m.jnTermintr
-   m.jcRetVal = LEFT( m.tcFileName, m.jnDotPos-1)
+   m.jcRetVal = LEFT( m.tcFileName, m.jnDotPos-1 )
 ENDIF
 
 RETURN m.jcRetVal
@@ -3124,91 +3062,55 @@ FUNCTION strtranc
 *  Author............: Ken Levy
 *  Version...........: 2.0
 *} Project...........: GENSCRNX
-PARAMETERS tcSearched, tcSearchFor , tcReplacement, tnStartOccurrence, tnNumberOfOccurrences
+LPARAMETERS tcSearched, tcSearchFor , tcReplacement, tnStartOccurrence, tnNumberOfOccurrences
 PRIVATE lcRetVal, at_pos, at_pos2, lnOccurence, lnSubstitutionsDone
 
-IF EMPTY( tcSearched).OR.EMPTY( tcSearchFor )
+IF EMPTY( tcSearched ).OR.EMPTY( tcSearchFor )
   RETURN tcSearched
 ENDIF
 
-lcRetVal= tcSearched
+lcRetVal = tcSearched
 IF TYPE('tnStartOccurrence')# 'N'
-  tnStartOccurrence= 1
+  tnStartOccurrence = 1
 ENDIF
 
 IF TYPE( 'tnNumberOfOccurrences')#'N'
-  tnNumberOfOccurrences= LEN( tcSearched)
+  tnNumberOfOccurrences = LEN( tcSearched )
 ENDIF
 
 IF tnStartOccurrence< 1 OR tnNumberOfOccurrences< 1
   RETURN tcSearched
 ENDIF
 
-lnOccurence=0
-lnSubstitutionsDone=0
-m.at_pos2=1
+lnOccurence = 0
+lnSubstitutionsDone = 0
+m.at_pos2 = 1
 DO WHILE .T.
-  m.at_pos= ATC( tcSearchFor ,SUBSTR( lcRetVal, m.at_pos2))
-  IF m.at_pos=0
+  m.at_pos = ATC( tcSearchFor ,SUBSTR( lcRetVal, m.at_pos2 ))
+  IF m.at_pos = 0
     EXIT
   ENDIF
-  lnOccurence= lnOccurence+ 1
+  lnOccurence = lnOccurence + 1
   IF lnOccurence< tnStartOccurrence
-    m.at_pos2= m.at_pos+ m.at_pos2+ LEN( tcSearchFor)- 1
+    m.at_pos2 = m.at_pos + m.at_pos2 + LEN( tcSearchFor ) - 1
     LOOP
   ENDIF
 
   *[smb] 6/20/97
-  lcRetVal=LEFT( lcRetVal, m.at_pos+ m.at_pos2- 2)+ tcReplacement+ ;
-         IIF( (m.at_pos+ m.at_pos2+ LEN( tcSearchFor )- 1)> LEN(lcRetVal), ;
+  lcRetVal = LEFT( lcRetVal, m.at_pos + m.at_pos2 - 2 ) + tcReplacement + ;
+         IIF( ( m.at_pos + m.at_pos2 + LEN( tcSearchFor ) - 1 )> LEN( lcRetVal ), ;
           '' , ;
-         SUBSTR(lcRetVal, m.at_pos+ m.at_pos2+ LEN( tcSearchFor )- 1))
+         SUBSTR( lcRetVal, m.at_pos + m.at_pos2 + LEN( tcSearchFor ) - 1 ))
 
-  lnSubstitutionsDone= lnSubstitutionsDone+ 1
+  lnSubstitutionsDone = lnSubstitutionsDone + 1
   IF lnSubstitutionsDone>= tnNumberOfOccurrences
     EXIT
   ENDIF
-  m.at_pos2= m.at_pos+ m.at_pos2+ LEN( tcReplacement)- 1
-  IF m.at_pos2> LEN( lcRetVal)
+  m.at_pos2 = m.at_pos + m.at_pos2 + LEN( tcReplacement ) - 1
+  IF m.at_pos2 > LEN( lcRetVal )
     EXIT
   ENDIF
 ENDDO
 RETURN lcRetVal
 
 * END strtranc
-
-****************************************************************************
-* MSGSVC() History
-*
-* ==========================================================================
-* MSGSVC NEW FOR FALL 97              IMPROVED                   Oct 11 1997
-* ==========================================================================
-*  Single Ok button now the same size as the others.
-*
-* ==========================================================================
-* MSGSVC NEW FOR VFP 5.0              IMPROVED                   Aug 15 1997
-* ==========================================================================
-*   Esc key no longer closes dialogs that don't have cancel buttons
-*   Editbox backcolor problem in Tip-Of-The-Day dialog fixed
-*   Better handling of %C% embedded cookies
-*   Strings like "Yes", "No", "Cancel", etc are longer assumed to be English original.
-*   Esc key closes the tip of the day dialog
-*
-* ==========================================================================
-* MSGSVC NEW FOR VFP 3.0              IMPROVED                      Apr 6 96
-* ==========================================================================
-*   Win95 GUI
-*   Tip of the day
-*   Animated icons
-*   Objectified
-*   Looks better if icon is missing
-*   No Read.
-*   WORKING functionality
-*   Return type "C" -- It's the default but doesn't work if specified
-*   Lowercase %Cx% now being respected in Msgsvc
-*   Default dialog is now Grey
-*   Flexbox re-engineerd to look more like MESSAGEBOX
-*   Default Windows font now ARIAL 10 B for VFP
-*   Default Windows font now MS Sans Serif 8 Regular for VFP :)
-*   MESSAGEBOX() return value compatibility
-*

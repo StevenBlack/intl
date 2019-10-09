@@ -1,10 +1,10 @@
 *  Program...........: INTL.PRG
 #DEFINE ccProgramName   "Steven Black's INTL Toolkit for Visual FoxPro"
 *  Version...........:
-#DEFINE ccMajorVersion "5-6-7-8-9"
+#DEFINE ccMajorVersion "9"
 #DEFINE ccRevision     "00"
-#DEFINE ccBuild        "185"
-#DEFINE ccDate         "July 18 2015"
+#DEFINE ccBuild        "186"
+#DEFINE ccDate         "October 8, 2019"
 *  Author............: Steven M. Black
 *} Project...........: INTL for Visual FoxPro
 *  Created...........: 04/30/93
@@ -201,7 +201,6 @@ IF TYPE( "m.lMprDrv2")<> "U"
    RETURN
 ENDIF
    RETURN
-
 
 *//////////////////////////////////////////////////////////////////////////////
 * CLASS....: c I N T L A b s t r a c t
@@ -747,7 +746,6 @@ ELSE
    RETURN NULL
 ENDIF
 
-
 *====================================
 *-- cINTLAbstract::SetHook( x )
 *====================================
@@ -771,7 +769,6 @@ IF INTL_HOOK_TEST
 ELSE
    RETURN NULL
 ENDIF
-
 
 *====================================
 *-- cINTLAbstract::SetStrategy( cx )
@@ -843,7 +840,6 @@ ELSE
 ENDIF
 
 ENDDEFINE
-
 
 *//////////////////////////////////////////////////////////////////////////////
 * CLASS....: c I N T L M e m e n t o
@@ -1002,7 +998,6 @@ IF TYPE( "oMementoHolder.BaseClass" )<>"U" AND ;
      oMementoHolder.Baseclass == "Page" OR ;
      oMementoHolder.Baseclass == "Toolbar" )
 
-
    IF TYPE( "oMementoHolder.oINTLMemento" )<> "O"
       oMementoHolder.AddObject( "oINTLMemento", "cINTLMemento" )
    ELSE
@@ -1136,7 +1131,6 @@ LOCAL llRetVal, lcAlias
 lcRetVal = ""
 
 lcAlias = PROPER( tcAlias )
-
 
 IF lcAlias = "String"   OR ;
    lcAlias = "Font"     OR ;
@@ -1776,7 +1770,6 @@ RETURN .T.
 
 ENDDEFINE
 
-
 *//////////////////////////////////////////////////////////////////////////////
 * CLASS....: I N T L
 * Purpose..: This class is the template method for localization
@@ -1803,7 +1796,6 @@ nDefaultConfig       = 1
 
 DIMENSION Languages[1]
 languages[1] = NULL
-
 
 *====================================
 *-- INTL::Execute( ax )
@@ -1902,7 +1894,6 @@ OTHERWISE
    lxRetVal = txPassed1
 ENDCASE
 RETURN lxRetVal
-
 
 *====================================
 *-- INTL::Init( [c|n|o], [c|n|o], [c|n|o])
@@ -2271,7 +2262,6 @@ FUNCTION Localize( txPara1, txPara2 )
      this.Execute( @laObjects, -1 )
    ENDIF
 
-
    *-- Step 6.  Localize to the new language/locale (if required )
    this.POP()
    this.SetConfig( lnFinalConfig )
@@ -2293,7 +2283,6 @@ FUNCTION Localize( txPara1, txPara2 )
        loBasis.RemoveObject("oINTLMemento" )
      ENDIF
    ENDIF
-
 
    *-- Unlock the screen
    IF ! ISNULL( loScreenLockedObj )
@@ -2372,7 +2361,6 @@ ENDIF
 
 ENDDEFINE
 
-
 *//////////////////////////////////////////////////////////////////////////////
 * CLASS....: c I N T L S T R A T E G Y
 * Purpose..: SuperClass for localization classes
@@ -2411,7 +2399,6 @@ DEFINE CLASS cINTLStrategy AS cINTLMemento
   *
   FUNCTION GetTable()
     RETURN this.cTable
-
 
   *====================================
   *-- cINTLStrategy::GetUpdateMode()
@@ -2596,7 +2583,6 @@ DEFINE CLASS cINTLStrategy AS cINTLMemento
           jcPossible = jcPossible+ ":"
        ENDIF
 
-
        IF !jlHadEqual AND RIGHTC( jcPossible, 1)= "="
           jcPossible = LEFTC( jcPossible, LENC( jcPossible)- 1 )
        ENDIF
@@ -2608,7 +2594,6 @@ DEFINE CLASS cINTLStrategy AS cINTLMemento
     ENDIF
 
     RETURN jcRetVal
-
 
   *====================================
   *-- cINTLStrategy::Init( toPassed )
@@ -2770,7 +2755,6 @@ DEFINE CLASS cINTLStrategy AS cINTLMemento
       ENDIF
       *-- Error block End
 
-
       IF lSetindex
         *-- Check if the tag exists!
         IF TAGCOUNT( "Strings", "Strings" ) = 0
@@ -2881,7 +2865,6 @@ DEFINE CLASS cINTLStrategy AS cINTLMemento
     ENDIF
     RETURN llRetVal
 
-
   *====================================
   *-- cINTLStrategy::SetTable( c )
   *====================================
@@ -2902,7 +2885,6 @@ DEFINE CLASS cINTLStrategy AS cINTLMemento
       llRetVal = .T.
     ENDIF
     RETURN llRetVal
-
 
   *====================================
   *-- cINTLStrategy::SetUpdateMode( l )
@@ -2936,7 +2918,6 @@ DEFINE CLASS cINTLStrategy AS cINTLMemento
 
 ENDDEFINE
 
-
 *//////////////////////////////////////////////////////////////////////////////
 * CLASS....: c I N T L C U R R E N C Y
 * Purpose..: Currency localization class
@@ -2949,7 +2930,6 @@ DEFINE CLASS cINTLCurrency AS cINTLStrategy
   *-- Exposed properties
   Name = "cINTLCurrency"
   cType = "Currency"
-
 
   DIMENSION aConversion[1, 2]
   aConversion[1, 1] = ccDefaultLanguage
@@ -3034,7 +3014,6 @@ FUNCTION Execute( laObjects, txpassed2 )
 
    ENDFOR
 RETURN lxRetVal
-
 
   *====================================
   *-- cINTLCurrency::GetConfig( )
@@ -3194,7 +3173,6 @@ RETURN lxRetVal
 
     RETURN llRetval
 
-
 ENDDEFINE
 
 *//////////////////////////////////////////////////////////////////////////////
@@ -3336,7 +3314,6 @@ FUNCTION I( tcPassed1, tcContext )
 
 ENDDEFINE
 
-
 *//////////////////////////////////////////////////////////////////////////////
 * CLASS....: c I N T L F O N T
 * Purpose..: Font localization strategy
@@ -3470,7 +3447,6 @@ FUNCTION I( tcPassed1, tcContext )
 RETURN STRTRAN(cINTLStrategy::I( lcCookie+ tcPassed1),lcCookie )
 
 
-
 *====================================
 *-- cINTLFont::SetConfig( tnPassed )
 *====================================
@@ -3522,7 +3498,6 @@ FUNCTION SetConfig( txPara1 )
      ENDFOR
    ENDCASE
    RETURN llRetVal
-
 
 ENDDEFINE
 
@@ -3635,7 +3610,6 @@ FUNCTION I( tcPassed1, tcContext )
 
 ENDDEFINE
 
-
 *//////////////////////////////////////////////////////////////////////////////
 * CLASS....: c I N T L S T R I N G
 * Purpose..: String localization strategy
@@ -3654,7 +3628,6 @@ lStrategyOpen  = .F.
 Name           = "cINTLString"
 nConfig        = 7
 nDefaultConfig = 7
-
 
 *====================================
 *-- cINTLString::aLang( a )
@@ -3711,7 +3684,6 @@ FUNCTION aLang( taArray )
    ENDIF
    RETURN lnRetVal
 
-
 *====================================
 *-- cINTLString::IsValidLanguage( [c])
 *====================================
@@ -3740,7 +3712,6 @@ FUNCTION IsValidLanguage( tcLanguage )
    DIMENSION ScratchArray[1]
    this.aLang( @ScratchArray )
 RETURN ASCAN( ScratchArray, tcLanguage)> 0
-
 
 *====================================
 *-- cINTLString::Execute( ax )
@@ -3924,7 +3895,6 @@ FUNCTION Execute( laObj, txpassed2 )
    ENDFOR
 RETURN lxRetVal
 
-
 *====================================
 *-- cINTLString::CreateStrategyTable( [c])
 *====================================
@@ -3945,7 +3915,6 @@ ENDIF
 IF ISNULL( tcFile )
    RETURN NULL
 ENDIF
-
 
 IF TYPE( 'tcFile')= "O" OR ;
     EMPTY( tcFile) OR ;
@@ -3986,7 +3955,6 @@ IF ! FILE( this.GetTable())
    RETURN .T.
 ENDIF
 RETURN .F.
-
 
 *====================================
 *-- cINTLString::CreateStrategyCDX()
@@ -4127,7 +4095,6 @@ RETURN llRetVal
                        this.cAlias, ;
                        TAGNO( ccDefaultLanguageField, this.cAlias ))
 
-
            llRetVal = .T.
          ENDIF
          SET EXACT &lcOldExact
@@ -4161,7 +4128,6 @@ RETURN llRetVal
       this.ResourceLogLocation(  txPassed, tcWhere )
     ENDIF
 
-
   *====================================
   *-- cINTLString::UpdateResource( c[c])
   *====================================
@@ -4187,7 +4153,6 @@ RETURN llRetVal
     RETURN llRetVal
 
 ENDDEFINE
-
 
 *//////////////////////////////////////////////////////////////////////////////
 * CLASS....: c I N T L R I G H T T O L E F T
@@ -4308,7 +4273,6 @@ FUNCTION Execute( laObj, txpassed2 )
          ENDDO
        ENDFOR
 
-
      *-- Secial PageFrame consideration
      *-- Reverse the pages...
      *-- ...and don't lose the activepage.
@@ -4368,7 +4332,6 @@ FUNCTION Execute( laObj, txpassed2 )
 RETURN lxRetVal
 ENDDEFINE
 
-
 *//////////////////////////////////////////////////////////////////////////////
 * I N T L T R A V E R S E
 *//////////////////////////////////////////////////////////////////////////////
@@ -4424,7 +4387,6 @@ FUNCTION Next
 
        this.oHook = CREATEOBJECT( "cINTLTraverse", @lxRetVal )
      ENDIF
-
 
    CASE lcBaseClass = "Commandgroup" OR ;
         lcBaseClass = "Optiongroup"
@@ -4486,7 +4448,6 @@ FUNCTION Next
 
 ENDDEFINE
 
-
 *!*********************************************
 *!
 *!       Procedure: NoHot( c )
@@ -4512,7 +4473,6 @@ lcRetval = tcPassedPrompt
 *-- to code this.
 *--                                     Hot Key, Ctrl Enter, Escape
 RETURN STRTRAN( STRTRAN( STRTRAN( STRTRAN( STRTRAN( lcRetVal, "\<" ), "\!" ), "\?" ), ":" ), "=" )
-
 
 
 *!*********************************************
@@ -4608,7 +4568,6 @@ xnsplitpos = AT_C( tcToSearch, ;
             RIGHTC( tcExpression, ;
                    LENC( tcExpression)- xnsplitpos- LENC( tcToSearch)+ 1 ))
 
-
 *====================================
 *-- within( ccc[n[n]])
 *====================================
@@ -4683,7 +4642,6 @@ IF lnLeft>0
    ENDIF
 ENDIF
 RETURN lcRetVal
-
 
 * ///////////////////////////////////
 * G E N M E N U X  start
@@ -4869,7 +4827,6 @@ SCAN
 ENDSCAN
 RETURN
 
-
 *!*********************************************
 *!
 *!       Procedure: IMenuEnvlp
@@ -4928,7 +4885,6 @@ RETURN
 * G E N M E N U  end
 * ///////////////////////////////////
 
-
 * ///////////////////////////////////
 * C O M M O N  start
 * ///////////////////////////////////
@@ -4958,7 +4914,6 @@ PROCEDURE oktoint
 PARAMETER tcToInt
 RETURN ( ! EMPTY( tcToInt )) AND NeedInt( tcToInt )
 
-
 *!*********************************************
 *!
 *!       Procedure: NeedInt( c )
@@ -4980,7 +4935,6 @@ PROCEDURE needint
 *  Major change list.:
 PARAMETER tcPassedString
 RETURN ! ( LEFTC( tcPassedString, 2) = "I(" OR ( "+I(" $ tcPassedString) OR ( "=I(" $ tcPassedString) )
-
 
 *!*********************************************
 *!
@@ -5019,7 +4973,6 @@ ELSE
    ENDIF
 ENDIF
 RETURN
-
 
 *!*********************************************
 *!
@@ -5220,7 +5173,6 @@ DO WHILE !EMPTY( lcTagFound )
     lcTagFound = TAG( lnTagNum, tcAlias )
 ENDDO
    RETURN llIsTag
-
 
 * ///////////////////////////////////
 * C O M M O N  end
