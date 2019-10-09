@@ -4872,12 +4872,12 @@ CASE lcLocalize = "Run"
    *-- Update the strings table?
    *-- This does it
    IF llStrUpd
-      updstrings( TRIM( Prompt), lcMnx_name ))
+      updstrings( TRIM( Prompt ), lcMnx_name )
    ENDIF
 RETURN tcLeader + TRIM( tcPassedString) + tcFollower
 
 CASE lcLocalize = "Generate"
-RETURN "[" + EVAL( tcLeader+ TRIM( tcPassedString)+ tcFollower) + "]"
+RETURN "[" + EVAL( tcLeader + TRIM( tcPassedString) + tcFollower) + "]"
 
 ENDCASE
 RETURN
@@ -4995,7 +4995,7 @@ IF PARAMETERS() <= 1
   ENDIF
 ENDIF
 IF TYPE( "m.returnmline" ) == "N"
-  m.returnmline =  s.T.
+  m.returnmline =  .T.
 ENDIF
 DO CASE
   CASE TYPE( "m.occurance" ) # "N"
