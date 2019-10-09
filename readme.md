@@ -7297,16 +7297,16 @@ name for the options underneath the submenu.
 
 For example: the regular FoxPro sysmenu has 7 menu pads. Each of these
 menu pads is associated with two records in the mnx file. The first
-associated record identifies the Pad name ("_msm_file" ) and the prompt
-name for the menu pad ("\\<File" ). Since this record is to be shown on
+associated record identifies the Pad name ("_msm_file") and the prompt
+name for the menu pad ("\\<File"). Since this record is to be shown on
 the menu, the objtype field is 3. The second associated record
 identifies the submenu popup. The popup objtype field is 2. Since this
 information will not appear on the menu, the prompt field is left empty
-but the name field contains the name of the popup (_mfile ).
+but the name field contains the name of the popup (_mfile).
 
 | Field Name | Type | Description
 | --- | --- |
-| OBJTYPE | N-2 | Type of menu object. 1 = first record of the mnx file, 2 = popup definition, 3 = menu item (visible on an actual menu item ). |
+| OBJTYPE | N-2 | Type of menu object. 1 = first record of the mnx file, 2 = popup definition, 3 = menu item (visible on an actual menu item). |
 | OBJCODE | N-2
 
 Type of menu item where objtype is 3.
@@ -7314,18 +7314,18 @@ Type of menu item where objtype is 3.
 80 - Procedure<br>
 67 - Command<br>
 78 - Bar<br>
-22 - First Menu Setup Record (FoxPro 2.5 )<br>
-20 - First Menu Setup Record (FoxPro 2.0 ) |
-| NAME | M | The name for a submenu (if objtype = 2 ) or menu bar # (if objtype = 3 ). For the top level system menu, this field is always _msysmenu. For submenus (objcode = 77 ), this field is left empty. |
+22 - First Menu Setup Record (FoxPro 2.5)<br>
+20 - First Menu Setup Record (FoxPro 2.0) |
+| NAME | M | The name for a submenu (if objtype = 2) or menu bar # (if objtype = 3). For the top level system menu, this field is always _msysmenu. For submenus (objcode = 77), this field is left empty. |
 | PROMPT | M | The prompt for all menu pad items. |
 | COMMAND | M | Command Statement. |
 | MESSAGE | M | The message field for menu pads, submenus and menu items. GENMENU.PRG in FoxPro for dos doesn't use this value. |
 | PROCTYPE | N-1 | 1 = Procedure, 0 = Expression. Defaults to 1 when a menu is first created. |
 | PROCEDURE | M | Procedure for menu pad items and general menu bar. |
 | SETUPTYPE | N-1 | 1 = Procedure, 0 = Expression. Always 1. This field is only filled in for the first record. |
-| SETUP | M | Menu Setup Code (first record of table only ). For the remaining records in the mnx file, this field is kept empty. |
+| SETUP | M | Menu Setup Code (first record of table only). For the remaining records in the mnx file, this field is kept empty. |
 | CLEANTYPE | N-1 | 1 = Procedure, 0 = Expression. Always 1. This field is only filled in for the first record. |
-| CLEANUP | M | Menu cleanup code (first record of table only ). |
+| CLEANUP | M | Menu cleanup code (first record of table only). |
 | MARK | C-1 | The Mark character for a menu pad. |
 | KEYNAME | M | The actual keystroke that is the shortcut key for the menu item. |
 | KEYLABEL | M | The label that displays beside the menu item to identify the shortcut held in the keyname field. |
@@ -7336,7 +7336,7 @@ Type of menu item where objtype is 3.
 | ITEMNUM | C-3 | The Item Number of each menu pad item in a particular menu popup. The highest number for a particular popup should be equal to the numitems field for the same popup. |
 | COMMENT | M | The Comment snippet. |
 | LOCATION | N-1 | Location of Menu. 0 = Replace, 1 = Append, 2 = Before, 3 = After. If Before or After, the pad name where the menu is placed is stored in the Name field. |
-| SCHEME | N-2 | Color scheme for the menu bar and popup. It is not used for specific menu bars. The top level (_msysmenu ) submenu record receives a default of Scheme 3, while submenus beneath use Scheme 4.
+| SCHEME | N-2 | Color scheme for the menu bar and popup. It is not used for specific menu bars. The top level (_msysmenu) submenu record receives a default of Scheme 3, while submenus beneath use Scheme 4.
 
 ### Technical Note - Reordering Menus
 
@@ -7377,7 +7377,7 @@ Any mark placed over, under, or through a Latin-based character, usually
 indicates a change in phonetic value from the unmarked state.
 
 #----
-#### `Double-byte character set (DBCS )`
+#### `Double-byte character set (DBCS)`
 
 A character set with some characters consisting of one byte and others
 consisting of two bytes.
@@ -7432,7 +7432,7 @@ program to provide cultural compatibility for the end user in a specific
 *locale*. Language is but one of the localizable elements.
 
 #----
-#### `Multi-byte character set (MBCS )`
+#### `Multi-byte character set (MBCS)`
 
 A character set with some characters consisting of more than one byte.
 
@@ -7451,13 +7451,10 @@ which raw source code is generated.
 
 When the finished program is actually executing.
 
-#----
-#### `Single-byte character set (SBCS )`
+#### `Single-byte character set (SBCS)`
 
 A character encoding scheme wherein each character is represented by one
 byte. By definition, a SBCS can have a maximum of 256 characters.
-
-----
 
 1.  Keep in mind all major word processing programs bundle two different
     English dictionaries in their North American releases.
@@ -7489,30 +7486,30 @@ I owe them a great deal.
 First and foremost, once again, to **Susie Hamberger** for her love,
 patience, and understanding. You all should be so lucky.
 
-Thanks also to **José Constant** (Belgium ) for vigilant work during beta
-testing; **Markus Egger**(Austria ) for many great ideas; **Bob Grommes,
-Drew Speedie** (USA ) and **Mark Giesen** (Holland ) for finding many
+Thanks also to **José Constant** (Belgium) for vigilant work during beta
+testing; **Markus Egger** (Austria) for many great ideas; **Bob Grommes,
+Drew Speedie** (USA) and **Mark Giesen** (Holland) for finding many
 “gotchas” and for providing elegant solutions that I am more than
-happy to include in the INTL codebase; **Günter Huber** (Austria ) for
+happy to include in the INTL codebase; **Günter Huber** (Austria) for
 his help in my understanding FoxPro’s international features; **Ken
-Levy** (USA ) the author and creator of
-GENSCRNX., and **Andrew Ross MacNeill** (Canada ) for creating and
-refining GENMENUX; **Shai Mittleman** (USA ) for ideas and insight into
+Levy** (USA) the author and creator of
+GENSCRNX., and **Andrew Ross MacNeill** (Canada) for creating and
+refining GENMENUX; **Shai Mittleman** (USA) for ideas and insight into
 new features; **Alan Schwartz, Chick Bornheim, Andy Neil, Dale
 Kiefling** and all the other excellent people in Northern California
 including **Les Pinter** and **John Thornton.**
 
 Finally, to **Larry MacDonald** and **Hélène Michaud**
-(North Sails ), **Jim Mayer**
-(UNHCR, Geneva ), **Rainer Becker**
-(ISYS GMBH, Frankfurt Germany ) and
+(North Sails), **Jim Mayer**
+(UNHCR, Geneva), **Rainer Becker**
+(ISYS GMBH, Frankfurt Germany) and
 **Chuck Melton** (Melton Technologies,
-Winston-Salem NC, USA ), **Brian Thomas**
-(The International Red Cross, Geneva ),
-**Alan Griver** (<span class ="smallcaps">Flash Creative
-Management</span> ), **Daniel Gramunt**
-(Nokia, Lausanne ), **Scott Plantz**
-(emedicine.com ) and many others, all of
+Winston-Salem NC, USA), **Brian Thomas**
+(The International Red Cross, Geneva),
+**Alan Griver** (Flash Creative
+Management), **Daniel Gramunt**
+(Nokia, Lausanne), **Scott Plantz**
+(emedicine.com) and many others, all of
 whom have, over the years, provided me with interesting and rewarding
 international opportunities.
 
@@ -7528,10 +7525,10 @@ February 2006
 **Andrew Ross MacNeill**
 Ottawa ON Canada
 
-Copyright: None (Public domain )
+Copyright: None (Public domain)
 
 All source code and documentation contained in
-`genmenux`.zip has been placed into the
+genmenux.zip has been placed into the
 public domain. You may use, modify, copy, distribute, and demonstrate
 any source code, example programs, or documentation contained in
 GENMENUX.ZIP freely without copyright protection. All files contained in
