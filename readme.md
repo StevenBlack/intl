@@ -474,7 +474,7 @@ The INTL data strategy, like all strategies, is bitwise-configured. You can cont
 oINTL.SetConfig( BITSET( oINTL.GetConfig(), 2 ))
 *-- Get a handle on the data strategy:
 oData = _SCREEN.oINTL.GetStrategy("Data" )
-*-- We want ControlSource (2 )
+*-- We want ControlSource (2)
 *-- property localized.
 oPicture.SetConfig( 2 )
 ```
@@ -528,7 +528,7 @@ The INTL picture strategy, like all strategies, is bitwise-configured. You can c
 oINTL.SetConfig( BITSET( oINTL.GetConfig(), 3 ))
 *-- Get a handle on the font strategy:
 oPicture = _SCREEN.oINTL.GetStrategy("Picture" )
-*-- We want Picture (1 ), DownPicture( 2 ) and Icon (4 )
+*-- We want Picture (1), DownPicture( 2 ) and Icon (4)
 *-- properties localized. 1+2+4 = 7
 oPicture.SetConfig( 7 )
 ```
@@ -3801,7 +3801,7 @@ Obviously, you'll want to avoid passing AERROR() messages to the user unless you
 
 ----
 
-### `AFIELDS( ArrayName [, nWorkArea | cTableAlias] )`
+### `AFIELDS( ArrayName [, nWorkArea | cTableAlias])`
 
 AFIELDS()` places structural information about the current table into an
 array.
@@ -3895,7 +3895,7 @@ code page. The current VFP code page can be determined with `CPCURRENT()`.
 
 ----
 
-### `AT_C( cSearchExpression, cExpressionSearched [, nOccurrence] )`
+### `AT_C( cSearchExpression, cExpressionSearched [, nOccurrence])`
 
 **`AT_C()` is similar to `AT()`, but works with single- and double-byte characters.**
 
@@ -3905,7 +3905,7 @@ code page. The current VFP code page can be determined with `CPCURRENT()`.
 
 ----
 
-### `ATCC( cSearchExp, cExpSearched [, nOccurrence] )`
+### `ATCC( cSearchExp, cExpSearched [, nOccurrence])`
 
 **`ATCC()` is like `ATC()`, and works with single- and double-byte characters.**
 
@@ -3915,7 +3915,7 @@ code page. The current VFP code page can be determined with `CPCURRENT()`.
 
 ----
 
-### `ATCLINE( cSearchExpression, cExpressionSearched )`
+### `ATCLINE( cSearchExpression, cExpressionSearched)`
 
 **There is no `ATCLINEC()` function in VFP as one might expect.**
 
@@ -3925,7 +3925,7 @@ code page. The current VFP code page can be determined with `CPCURRENT()`.
 
 ----
 
-### `ATLINE(cSearchExpression, cExpressionSearched )`
+### `ATLINE(cSearchExpression, cExpressionSearched)`
 
 **There is no `ATLINEC()` function in VFP as one might expect since `ATLINE()` is already double-byte enabled..**
 
@@ -3943,7 +3943,7 @@ code page. The current VFP code page can be determined with `CPCURRENT()`.
 
 ----
 
-### `CDOW(dExpression | tExpression )`
+### `CDOW(dExpression | tExpression)`
 
 **`CDOW()` is dependent on the VFP localization.**
 
@@ -3963,7 +3963,7 @@ code page. The current VFP code page can be determined with `CPCURRENT()`.
 
 ----
 
-### `CHRTRANC(cSearched, cSearchFor, cReplacement )`
+### `CHRTRANC(cSearched, cSearchFor, cReplacement)`
 
 **`CHRTRANC()` is like `CHRTRAN()` and works with single- and double-byte characters.**
 
@@ -3973,7 +3973,7 @@ code page. The current VFP code page can be determined with `CPCURRENT()`.
 
 ----
 
-### `CMONTH(dExpression | tExpression )`
+### `CMONTH(dExpression | tExpression)`
 
 **The text returned from `CMONTH()` varies with the localized version of VFP.**
 
@@ -4045,7 +4045,7 @@ stored procedures to the code page you specify.
 
 ----
 
-### `CPCONVERT(nCurrentCodePage, nNewCodePage, cExpression )`
+### `CPCONVERT(nCurrentCodePage, nNewCodePage, cExpression)`
 
 **`CPCONVERT()` is used to transform character or memo data.**
 
@@ -4055,7 +4055,7 @@ stored procedures to the code page you specify.
 
 ----
 
-### `CPCURRENT([1 | 2] )`
+### `CPCURRENT([1 | 2])`
 
 **Use CPCURRENT() to reckon system code page information.**
 
@@ -4074,16 +4074,16 @@ CPCURRENT() returns the code page setting (if any ) in your VFP configuration fi
 - The current operating system code page if you have included the
   following line in your configuration file: `CODEPAGE = AUTO`
 
-In VFP, `CPCURRENT(1 )` returns the Windows code page, regardless of your
+In VFP, `CPCURRENT(1)` returns the Windows code page, regardless of your
 configuration CODEPAGE setting.
 
-`CPCURRENT(2 )` always returns the underlying operating system code page,
+`CPCURRENT(2)` always returns the underlying operating system code page,
 regardless of your configuration CODEPAGE setting. For example, if
-you're running Windows, `CPCURRENT(2 )` returns the MS-DOS code page.
+you're running Windows, `CPCURRENT(2)` returns the MS-DOS code page.
 
 ----
 
-### `CPDBF([nWorkArea | cTableAlias] )`
+### `CPDBF([nWorkArea | cTableAlias])`
 
 **`CPDBF()` gives table code page information.**
 
@@ -4094,7 +4094,7 @@ especially if it comes from another platform or another locale.
 
 ---
 
-### `CPZERO( cFilename[, codepage_number] )`
+### `CPZERO( cFilename[, codepage_number])`
 
 **Use `cpzero.prg` to change a table's code page id.**
 
@@ -4134,7 +4134,7 @@ fields.
 
 ----
 
-### `CTOD(cExpression )`
+### `CTOD(cExpression)`
 
 **IF your date format doesn't match `SET DATE`, no error is generated, and a blank date value (` / / ` ) results.**
 
@@ -4152,7 +4152,7 @@ all work equally well.
 
 ----
 
-### `CTOT(cExpression )`
+### `CTOT(cExpression)`
 
 **IF your date format doesn't match `SET DATE`, no error is generated, and a blank value (` / / : : AM` ) results.**
 
@@ -4235,7 +4235,7 @@ Control Panel.
 
 ----
 
-### `DBGETPROP(cName, cType, cProperty )`
+### `DBGETPROP(cName, cType, cProperty)`
 
 `DBGETPROP()` returns a property for the current database, fields, named
 connections, tables, or views in the current database.
@@ -4342,7 +4342,7 @@ window is changed to a new value, then ole Bound controls and ole
 Container controls placed thereon afterwards use the new value.
 
 If `DefOLELCID` is set to zero for a form or the main VFP
-window, `SYS(3004 )` determines the default Locale ID for ole Bound
+window, `SYS(3004)` determines the default Locale ID for ole Bound
 controls and ole Container controls placed on the Form or the main VFP
 window.
 
@@ -4363,11 +4363,11 @@ Here is a listing of Locale Ids:
 **Note:** the `DefOLELCID` property only affects the language of the user
 interface, which ole controls display, and not the language of the ole
 automation commands. The ole automation command language is affected
-only by the Global LocaleID, set with SYS(3005 ).
+only by the Global LocaleID, set with SYS(3005).
 
 ----
 
-### `DMY(dExpression | tExpression )`
+### `DMY(dExpression | tExpression)`
 
 `DMY()` returns a character expression in day-month-year sequence, for
 example `"26 June 1996"`.
@@ -4378,7 +4378,7 @@ varies with VFP's localized language. `DMY()` respects the setting of
 
 ----
 
-### `DTOC(dExpression | tExpression [, 1] )`
+### `DTOC(dExpression | tExpression [, 1])`
 
 `DTOC()` returns a Character-type Date from a Date or DateTime expression.
 
@@ -4386,7 +4386,7 @@ varies with VFP's localized language. `DMY()` respects the setting of
 
 ----
 
-### `DTOS(dExpression | tExpression )`
+### `DTOS(dExpression | tExpression)`
 
 **DTOS() is unaffected by SET CENTURY.**
 
@@ -4395,7 +4395,7 @@ DTOS() returns a character-string date in a yyyymmdd format from a specified Dat
 
 ----
 
-### `DTOT(dDateExpression )`
+### `DTOT(dDateExpression)`
 
 `DTOT()` returns a DateTime value from a Date expression.
 
@@ -4454,7 +4454,7 @@ occurs and the new file is not marked with a code page.
 
 ----
 
-### `FDATE(cFileName )`
+### `FDATE(cFileName)`
 
 `FDATE()` is a low level file function that returns the last modification
 date for a file.
@@ -4487,7 +4487,7 @@ the language of VFP localization. This otherwise cannot be controlled.
 
 ----
 
-### `GETCP([nCodePage] [, cDialogCaption] [, cDialogTitle] )`
+### `GETCP([nCodePage] [, cDialogCaption] [, cDialogTitle])`
 
 GETCP() prompts for a code page by displaying the Code Page dialog box,
 and then returns the number of the code page chosen.
@@ -4499,7 +4499,7 @@ to display properly in an alternate language.
 
 ----
 
-### `GETDIR([cDirectory [, cDialogCaption]] )`
+### `GETDIR([cDirectory [, cDialogCaption]])`
 
 GETDIR() displays the Select Directory dialog box from which a directory
 or folder can be chosen.
@@ -4533,7 +4533,7 @@ The `GETEXPR TO` dialog.
 
 ----
 
-### `GETFILE([cFileExtensions] [, cDialogCaption] [, cOpenButtonCaption] [, nButtonType] [, cCreatorType] )`
+### `GETFILE([cFileExtensions] [, cDialogCaption] [, cOpenButtonCaption] [, nButtonType] [, cCreatorType])`
 
 GETFILE() displays the Open dialog box and returns the name of the file
 you chose.
@@ -4570,7 +4570,7 @@ The GETFONT() dialog.
 
 ----
 
-### `GETPICT([cFileExt] [, cFileNameCaption] [, cOpenButtonCaption] )`
+### `GETPICT([cFileExt] [, cFileNameCaption] [, cOpenButtonCaption])`
 
 GETPICT() displays the Open dialog box and returns the name of the
 picture file you chose.
@@ -4596,7 +4596,7 @@ The GETPRINTER() dialog.
 
 ----
 
-### `HOUR(tExpression )`
+### `HOUR(tExpression)`
 
 `HOUR()` returns the hour portion from a DateTime expression.
 
@@ -4606,7 +4606,7 @@ on a 24 hour format, and is not affected by the current setting of
 
 ----
 
-### `IDXCOLLATE([cCDXFileName,] nIndexNumber [, nWorkArea | cTableAlias] )`
+### `IDXCOLLATE([cCDXFileName,] nIndexNumber [, nWorkArea | cTableAlias])`
 
 `IDXCOLLATE()` returns the collation sequence for an index or index tag.
 
@@ -4621,7 +4621,7 @@ indexes and index tags.
 
 ----
 
-### `IMESTATUS([nExpression] )`
+### `IMESTATUS([nExpression])`
 
 The Input Method Editor (IME ) is a program that performs the conversion
 between keystrokes and ideographs or other characters, usually by
@@ -4680,7 +4680,7 @@ See [`SET COLLATE TO cSequenceName`](#set-collate-to-csequencename).
 
 ----
 
-### `ISLEADBYTE(cExpression )`
+### `ISLEADBYTE(cExpression)`
 
 `ISLEADBYTE()` returns logical true if the first byte of the first
 character in a character expression is a lead byte. `ISLEADBYTE()` lets
@@ -4690,7 +4690,7 @@ character. Otherwise, the character is a single-byte character.
 
 ----
 
-### `LEFTC(cExpression, nExpression )`
+### `LEFTC(cExpression, nExpression)`
 
 `LEFTC()`, which is similar to `LEFT()`, returns a specified number of
 characters from a character expression containing any combination of
@@ -4727,7 +4727,7 @@ text that localized according to the language of VFP.
 
 ----
 
-### `LOCFILE(cFileName [, cFileExt] [, cCaption] [, cCreatorType] )`
+### `LOCFILE(cFileName [, cFileExt] [, cCaption] [, cCreatorType])`
 
 `LOCFILE()` locates a file on disk and returns the file name with its
 path.
@@ -4751,7 +4751,7 @@ The LOCFILE() dialog.
 
 ----
 
-### `MDY(dExpression | tExpression )`
+### `MDY(dExpression | tExpression)`
 
 `MDY()` returns a character expression in month-day-year sequence, for
 example "June 26 1996".
@@ -4767,11 +4767,11 @@ CENTURY`.
 `MESSAGE()` returns the current error message as a character string.
 
 **Internationalization Gotcha**: the error message is in the localized
-language of VFP. Note that `AERROR(2 )` returns the same value as `MESSAGE()`.
+language of VFP. Note that `AERROR(2)` returns the same value as `MESSAGE()`.
 
 ----
 
-### `MESSAGEBOX(cMsgText [, nDialogType [, cTitleBarText]] )`
+### `MESSAGEBOX(cMsgText [, nDialogType [, cTitleBarText]])`
 
 `MESSAGEBOX()` displays a user-defined dialog box.
 
@@ -4856,7 +4856,7 @@ from VFP and will vary in language with the localized version of VFP.
 
 ----
 
-### `OEMTOANSI(cExpression )`
+### `OEMTOANSI(cExpression)`
 
 OEMTOANSI() converts each character of a character expression to the
 corresponding character in the ansi character set. This FoxPro command
@@ -4898,13 +4898,13 @@ when the OLE Bound control or OLE Container control is instantiated.
 If the Form or the main VFP window's `DefOLELCID` property is
 zero when the OLE Bound control or OLE Container control is placed on
 the Form or the main VFP window, the control uses the current
-VFP Locale ID as witnessed by SYS(3004 ). You can use the
+VFP Locale ID as witnessed by SYS(3004). You can use the
 `DefOLELCID` property of Form objects to specify their Locale ID.
 
 The `OLELCID` property only affects the language of the user interface,
 which OLE controls display, and not the language of the OLE automation
 commands. The OLE automation command language is affected only by the
-Global LocaleID, set with SYS(3005 ).
+Global LocaleID, set with SYS(3005).
 
 Here is a list of OLE locale id's.
 
@@ -4922,7 +4922,7 @@ Here is a list of OLE locale id's.
 
 ----
 
-### `PEMSTATUS( oObject |cClass, cPEMName, nAttibute )`
+### `PEMSTATUS( oObject |cClass, cPEMName, nAttibute)`
 
 The PEMSTATUS() function returns useful state information about a
 property, event or method. **Internationalization Gotcha:** using
@@ -4942,7 +4942,7 @@ PRMBAR(), PRMPAD() PROMPT() return text from menus.
 
 ----
 
-### `PRTINFO(nPrinterSetting [, cPrinterName] )`
+### `PRTINFO(nPrinterSetting [, cPrinterName])`
 
 **Printer settings vary from locale to locale.**
 
@@ -4952,7 +4952,7 @@ PRTINFO() returns the specified printer setting.
 
 ----
 
-### `PUTFILE([cDialogCaption] [, cFileName] [, cFileExtensions] )`
+### `PUTFILE([cDialogCaption] [, cFileName] [, cFileExtensions])`
 
 `PUTFILE()` invokes the Save As dialog box and returns the file name you
 specify.
@@ -4977,7 +4977,7 @@ The PUTFILE() dialog.
 
 ----
 
-### `RATC(cSearchExpression, cExpressionSearched [, nOccurrence] )`
+### `RATC(cSearchExpression, cExpressionSearched [, nOccurrence])`
 
 `RATC()`, which is similar to RAT(), returns the numeric position of the
 last occurrence of a character expression or memo field within another
@@ -4987,7 +4987,7 @@ characters.
 
 ----
 
-### `RATLINE(cSearchExpression, cExpressionSearched )`
+### `RATLINE(cSearchExpression, cExpressionSearched)`
 
 `RATLINE()` returns the line number of the last occurrence of a character
 expression within another character expression or memo field, counting
@@ -5005,7 +5005,7 @@ perspective, VFP's Relational Integrity (RI ) builder leaves much to be
 desired. Here's a summary of the problems:
 
 **Update and Delete triggers** are problematic because procedures
-RIDelete and RIUpdate contain a test on `(UPPER(SYS(2011 ))="RECORD LOCKED"`. This test will always return `.F.` if your application runs on a
+RIDelete and RIUpdate contain a test on `(UPPER(SYS(2011))="RECORD LOCKED"`. This test will always return `.F.` if your application runs on a
 different localization of VFP!
 
 As if that weren't enough, calls to the RIError function, which may
@@ -5147,7 +5147,7 @@ week.
 | `7` | Saturday |
 
 If you omit nExpression, the first-day-of-the-week is reset to Sunday
-(1 ). The first-day-of-the-week can also be set with the Week Starts On
+(1). The first-day-of-the-week can also be set with the Week Starts On
 list box in the International tab of the Options dialog.
 
 ----
@@ -5253,7 +5253,7 @@ current Windows system settings.
 not updated when the Windows system settings are changed.
 
 The Windows system settings are specified in International option of the
-Windows Control Panel. When `SET SYSFORMATS` is `ON`, the following `SET`
+Windows Control Panel. When `SET SYSFORMATS ON`, the following `SET`
 commands can be used to override the current system settings. However,
 changing the Windows system settings when SET SYSFORMATS is ON overrides
 these `SET` commands.
@@ -5279,7 +5279,7 @@ SET SEPARATOR
 
 ----
 
-### `STRCONV(cExpression, nSetting )`
+### `STRCONV(cExpression, nSetting)`
 
 **`STRCONV()` is used to go to transform strings among n-byte systems.**
 
@@ -5294,39 +5294,39 @@ lists the values of nSetting and the type of conversion performed:
 | `4` | Converts double-byte Katakana characters in `cExpression` to double-byte Hiragana characters. |
 | `5` | Converts double-byte characters to UNICODE (wide characters ). |
 | `6` | Converts UNICODE (wide characters ) to double-byte characters. |
-| `7` | Converts `cExpression` to locale specific lowercase. |
-| `8` | Converts `cExpression` to locale specific uppercase. |
+| `7` | Converts `cExpression` to locale-specific lowercase. |
+| `8` | Converts `cExpression` to locale-specific uppercase. |
 
 ----
 
-### `STUFFC(cExpr, nStartRepl, nCharsReplaced, cReplaced )`
+### `STUFFC(cExpr, nStartRepl, nCharsReplaced, cReplaced)`
 
 **`STUFFC()` is like `STUFF()`, only it seamlessly handles double-byte characters.**
 
-`STUFFC()`, which is similar to STUFF(), returns a character string created by replacing
+`STUFFC()`, which is similar to `STUFF()`, returns a character string created by replacing
 a specified number of characters in a character expression with another character expression.
 The character expressions can consist of any combination of single-byte and double-byte characters.
 
 ----
 
-### `SYS(13 )`
+### `SYS(13)`
 
-Use `PRINTSTATUS()` instead of `SYS(13 )`.
+Use `PRINTSTATUS()` instead of `SYS(13)`.
 
-`SYS(13 )` returns the status of the printer.
+`SYS(13)` returns the status of the printer.
 
 **Internationalization Gotcha:** in English versions of VFP, this return value is
-`"READY"` or `"OFFLINE"`. If the printer is connected to a COM port, `SYS(13 )` returns
+`"READY"` or `"OFFLINE"`. If the printer is connected to a COM port, `SYS(13)` returns
 READY if the printer returns "Clear To Send Data" or "Data Set Ready". This return value
 comes from VFP and varies with its localization language. Fortunately, we have a
 language-independent workaround: use `PRINTSTATUS()`, which returns `.T.` or `.F.`,
-instead of `SYS(13 )`.
+instead of `SYS(13)`.
 
 ----
 
-### `SYS(15, cTranslationExpression, cTranslated )`
+### `SYS(15, cTranslationExpression, cTranslated)`
 
-**`SYS(15 )` is ancient history.**
+**`SYS(15)` is ancient history.**
 
 Translates a second character string from the first character string. Included
 for backward compatibility; use `SET COLLATE` instead.
@@ -5338,9 +5338,9 @@ FoxPro for Macintosh, EUROPEAN.MEM is located in the Goodies:Misc
 folder.
 
 Stored in EUROPEAN.MEM is a character memory variable called EUROPEAN,
-for use with `SYS(15 )` in FoxPro for MS-DOS. Another character memory
-variable, EUROANSI, is provided for use with `SYS(15 )` in VFP and FoxPro
-for Macintosh. These memory variables can be used with `SYS(15 )` to
+for use with `SYS(15)` in FoxPro for MS-DOS. Another character memory
+variable, EUROANSI, is provided for use with `SYS(15)` in VFP and FoxPro
+for Macintosh. These memory variables can be used with `SYS(15)` to
 translate accented characters to the corresponding characters without
 the accents.
 
@@ -5359,60 +5359,60 @@ characters doesn't preserve the expected alphabetical order.
 
 ----
 
-### `SYS(20, cExpressionTransformed, nCharacters )`
+### `SYS(20, cExpressionTransformed, nCharacters)`
 
-**`SYS(20 )` is ancient history too.**
+**`SYS(20)` is ancient history too.**
 
-`SYS(20 )` transforms a character expression containing German text to a
+`SYS(20)` transforms a character expression containing German text to a
 character string. Included for backward compatibility. Use SET COLLATE instead.
 
 ----
 
-### `SYS(1037 )`
+### `SYS(1037)`
 
 **The Print Setup language is determined by the OS.**
 
-`SYS(1037 )` invokes the Print Setup dialog.
+`SYS(1037)` invokes the Print Setup dialog.
 
 **Internationalization Gotcha:** this service comes from the operating system, and will
 thus be in its localized language.
 
 ----
 
-### `SYS(2006 )`
+### `SYS(2006)`
 
 **The graphics card and monitor information comes from VFP.**
 
-`SYS(2006 )` returns the type of graphics card and monitor you are using, as in `"VGA/COLOR"`.
+`SYS(2006)` returns the type of graphics card and monitor you are using, as in `"VGA/COLOR"`.
 
 **Internationalization Gotcha:** this result is generated by VFP and can only be
 localized by using a localized version of VFP.
 
 ----
 
-### `SYS(2011 )`
+### `SYS(2011)`
 
-**The lock status reported by `SYS(2011 )` varies with VFP localization.**
+**The lock status reported by `SYS(2011)` varies with VFP localization.**
 
-`SYS(2011 )` returns the record or table lock status for the current work area without attempting
+`SYS(2011)` returns the record or table lock status for the current work area without attempting
 to lock the table or record.
 
 **Internationalization Gotcha:** the values returned (`"Exclusive"`, `"Record Unlocked"`, `"Record Locked"` ) come from VFP and vary with its localization.
 
 ----
 
-### `SYS(3004 )`
+### `SYS(3004)`
 
-`SYS(3004 )` returns the Locale ID used by ole automation and ole controls.
+`SYS(3004)` returns the Locale ID used by ole automation and ole controls.
 
 **Internationalization Gotcha**: the Locale ID determines the language
 in which ole automation and ole controls exchange information.
 
 ----
 
-### `SYS(3005, nLocaleID )`
+### `SYS(3005, nLocaleID)`
 
-`SYS(3005 )` sets the Locale ID, used by ole automation and ole controls.
+`SYS(3005)` sets the Locale ID, used by ole automation and ole controls.
 Here are the locales in VFP:
 
 | `nLocaleID` | Language |
@@ -5429,13 +5429,13 @@ Here are the locales in VFP:
 
 ----
 
-### `SYS(3006, nLanguageID )`
+### `SYS(3006, nLanguageID)`
 
-`SYS(3006 )` sets the Language ID and the Locale ID.
+`SYS(3006)` sets the Language ID and the Locale ID.
 
 ----
 
-### `SUBSTRC(cExpression, nStartPosition [, nCharactersReturned] )`
+### `SUBSTRC(cExpression, nStartPosition [, nCharactersReturned])`
 
 **SUBSTRC() is like SUBSTR(), but handles double-byte characters too.**
 
@@ -5453,24 +5453,24 @@ display garbage in the tooltip window unless you are running on a localized vers
 
 ----
 
-### `TTOC(tExpression [, 1] )`
+### `TTOC(tExpression [, 1])`
 
 `TTOC()` returns a Character value from a DateTime expression that respects `SET HOURS`,
 `SET CENTURY` and `SET DATE` so parsing this Character expression is not a good idea.
 
 ----
 
-### `VERSION(), VERSION(3 )`
+### `VERSION(), VERSION(3)`
 
-The return value from `VERSION()` is localized by VFP. `VERSION(3 )` is useful to determine
+The return value from `VERSION()` is localized by VFP. `VERSION(3)` is useful to determine
 the current VFP localization language. `VERSION()` returns a character string containing
 the VFP version number you are using.
 
 **Internationalization Gotcha:** This string is in the localization language of VFP.
 
-`VERSION(3 )` returns the localized VFP language, according to the following table:
+`VERSION(3)` returns the localized VFP language, according to the following table:
 
-| `VERSION(3 )` | Language |
+| `VERSION(3)` | Language |
 | ---- | ---- |
 | `00` | English |
 | `33` | French |
@@ -5497,7 +5497,7 @@ WINDOW` display font.
 
 ----
 
-### `WEEK(dExpr | tExpr [, nFirstWeek] [, nFirstDayOfWeek] )`
+### `WEEK(dExpr | tExpr [, nFirstWeek] [, nFirstDayOfWeek])`
 
 **You can make `WEEK()` respect the International settings by passing 0 for parameters 2 and 3.**
 
