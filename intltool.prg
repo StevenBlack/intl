@@ -26,7 +26,7 @@ cType = "Abstract"
 Abstract_ID = "Visual INTL Iterator"   && Class signature, don't change.
 
 *====================================
-*-- cAbstractIterator::Accept( o )
+*-- cAbstractIterator::Accept( o)
 *====================================
 * Accept a visitor object
 *
@@ -49,31 +49,31 @@ FUNCTION First()
 RETURN .NULL.
 
 *====================================
-*-- cAbstractIterator::GetAlias( c )
+*-- cAbstractIterator::GetAlias(c)
 *====================================
 FUNCTION GetAlias( x )
 RETURN .NULL.
 
 *====================================
-*-- cAbstractIterator::GetCurrentSourceID( x )
+*-- cAbstractIterator::GetCurrentSourceID(x)
 *====================================
 FUNCTION GetCurrentSourceID( x )
 RETURN .NULL.
 
 *====================================
-*-- cAbstractIterator::GetStructure()
+*-- cAbstractIterator::GetStructure(x)
 *====================================
 FUNCTION GetStructure( x )
 RETURN .NULL.
 
 *====================================
-*-- cAbstractIterator::GetType()
+*-- cAbstractIterator::GetType(x)
 *====================================
 FUNCTION GetType( x )
 RETURN This.cType
 
 *====================================
-*-- cAbstractIterator::Init( x )
+*-- cAbstractIterator::Init( x)
 *====================================
 FUNCTION Init( x )
 RETURN
@@ -91,9 +91,9 @@ FUNCTION Next
 RETURN .NULL.
 
 *====================================
-*-- cAbstractIterator::Open( xx )
+*-- cAbstractIterator::Open(xx)
 *====================================
-FUNCTION Open( x,y )
+FUNCTION Open( x, y )
 RETURN .NULL.
 
 *====================================
@@ -122,7 +122,7 @@ FUNCTION SetAlias( x )
 RETURN .NULL.
 
 *====================================
-*-- cAbstractIterator::SetStructure()
+*-- cAbstractIterator::SetStructure(x)
 *====================================
 FUNCTION SetStructure( x )
 RETURN .NULL.
@@ -202,7 +202,7 @@ FUNCTION GetStructure()
 RETURN This.cStructure
 
 *====================================
-*-- cTableIterator::Init( c )
+*-- cTableIterator::Init( c)
 *====================================
 FUNCTION Init( tcPassed )
 
@@ -268,7 +268,7 @@ This.ProgrammaticChange()
 RETURN
 
 *====================================
-*-- cTableIterator::Open( x )
+*-- cTableIterator::Open(cc)
 *====================================
 * Open the table to be iterated
 *
@@ -341,7 +341,7 @@ This.ProgrammaticChange()
 RETURN
 
 *====================================
-*-- cTableIterator::SetAlias( c )
+*-- cTableIterator::SetAlias(c)
 *====================================
 * Set the alias of the file to iterate
 *
@@ -350,7 +350,7 @@ This.cAlias = PROPER( tcPassed )
 RETURN
 
 *====================================
-*-- cTableIterator::SetStructure( c )
+*-- cTableIterator::SetStructure(c)
 *====================================
 * Set the table to iterate
 *
@@ -373,7 +373,7 @@ cType = "Project"
 cSuffix = ".PJX"
 
 *====================================
-*-- cProjectIterator::Init( x )
+*-- cProjectIterator::Init(x)
 *====================================
 * Parameters:
 *   tcPassed: the .PJX file
@@ -421,7 +421,7 @@ FUNCTION GetHomeDir()
 RETURN This.cProjectHomeDir
 
 *====================================
-*-- cProjectIterator::SetprojectHomeDir( c )
+*-- cProjectIterator::SetprojectHomeDir(c)
 *====================================
 * Set the project home directory property
 *
@@ -507,7 +507,7 @@ FUNCTION VisitFRX( loIterator )
 FUNCTION VisitString( tcElement, tcOrigin )
 
 *====================================
-*-- MetaDataVisitor::PropSrch( ccn )
+*-- MetaDataVisitor::PropSrch(ccn)
 *====================================
 *-- Search the properties memo
 *
@@ -542,7 +542,7 @@ ENDDEFINE
 *///////////////////////////////////
 DEFINE CLASS cINTLReportTransformVisitor AS cMetaDataVisitor
 *====================================
-*-- cINTLReportTransformVisitor::Visit( o )
+*-- cINTLReportTransformVisitor::Visit(o)
 *====================================
 FUNCTION VISIT( toIterator )
 IF ISNULL( toIterator )
@@ -565,7 +565,7 @@ ENDCASE
 RETURN
 
 *====================================
-*-- cINTLReportTransformVisitor::VisitPJX( o )
+*-- cINTLReportTransformVisitor::VisitPJX(o)
 *====================================
 FUNCTION VisitPJX( toIterator )
 LOCAL lcProjItem, nAtPos, lcExt, loEngine
@@ -588,7 +588,7 @@ ENDDO
 RETURN
 
 *====================================
-*-- cINTLReportTransformVisitor::VisitFRX( o )
+*-- cINTLReportTransformVisitor::VisitFRX(o)
 *====================================
 FUNCTION VisitFRX( toIterator )
 LOCAL lnOldSelect, lcAlias
@@ -609,7 +609,7 @@ SELECT ( lnOldSelect )
 RETURN
 
 *====================================
-*-- cINTLReportTransformVisitor::VisitFRXRecord( o )
+*-- cINTLReportTransformVisitor::VisitFRXRecord(o)
 *====================================
 FUNCTION VisitFRXRecord( toIterator )
 REPLACE Expr WITH "I(" + ALLTRIM( Expr ) + ")", ObjType WITH 8
@@ -629,7 +629,7 @@ cOldINTLLang = .NULL.
 lINTLInstanced = .NULL.
 
 *====================================
-*-- cINTLUpdateVisitor::Init( o )
+*-- cINTLUpdateVisitor::Init(o)
 *====================================
 FUNCTION INIT( toPassed )
 
@@ -705,7 +705,7 @@ ENDIF
 RETURN
 
 *====================================
-*-- cINTLUpdateVisitor::GetCurrentSourceID( o )
+*-- cINTLUpdateVisitor::GetCurrentSourceID(o)
 *====================================
 * Return values suitable for the
 * STRINGS.cWhere field
@@ -749,7 +749,7 @@ ENDCASE
 RETURN
 
 *====================================
-*-- cINTLUpdateVisitor::Visit( o )
+*-- cINTLUpdateVisitor::Visit(o)
 *====================================
 FUNCTION VISIT( toIterator )
 IF ISNULL( toIterator )
@@ -807,7 +807,7 @@ WAIT CLEAR
 RETURN
 
 *====================================
-*-- cINTLUpdateVisitor::VisitCode( c )
+*-- cINTLUpdateVisitor::VisitCode(c)
 *====================================
 FUNCTION VisitCode( tcFileName )
 IF ISNULL( tcFileName )
@@ -854,7 +854,7 @@ ENDIF
 WAIT CLEAR
 
 *====================================
-*-- cINTLUpdateVisitor::VisitCodeMemo( m, c )
+*-- cINTLUpdateVisitor::VisitCodeMemo(mc)
 *====================================
 FUNCTION VisitCodeMemo( tmMemo, tcFileName )
 PRIVATE ;
@@ -901,7 +901,7 @@ ENDFOR
 RETURN
 
 *====================================
-*-- cINTLUpdateVisitor::VisitDBCRecord( o )
+*-- cINTLUpdateVisitor::VisitDBCRecord(o)
 *====================================
 FUNCTION VisitDBCRecord( loIterator )
 *? Not supported as of yet
@@ -917,7 +917,7 @@ SELECT ( lnOldSelect )
 RETURN
 
 *====================================
-*-- cINTLUpdateVisitor::VisitExpression( c )
+*-- cINTLUpdateVisitor::VisitExpression(c)
 *====================================
 FUNCTION VisitExpression( tcExpression )
 IF tcExpression = "'" OR ;
@@ -929,7 +929,7 @@ ENDIF
 RETURN
 
 *====================================
-*-- cINTLUpdateVisitor::VisitSCXRecord( o )
+*-- cINTLUpdateVisitor::VisitSCXRecord(o)
 *====================================
 FUNCTION VisitSCXRecord( loIterator )
 LOCAL lcAlias, lcProperties, lcMethods
@@ -950,7 +950,7 @@ ENDIF
 RETURN
 
 *====================================
-*-- cINTLUpdateVisitor::VisitPropertiesMemo( c )
+*-- cINTLUpdateVisitor::VisitPropertiesMemo(c)
 *====================================
 FUNCTION VisitPropertiesMemo( tcMemo, tcProperty )
 LOCAL lnI, lcProp
@@ -966,7 +966,7 @@ ENDDO
 RETURN
 
 *====================================
-*-- cINTLUpdateVisitor::VisitMNXRecord( o )
+*-- cINTLUpdateVisitor::VisitMNXRecord(o)
 *====================================
 FUNCTION VisitMNXRecord( loIterator )
 
@@ -1005,7 +1005,7 @@ ENDDO
 RETURN
 
 *====================================
-*-- cINTLUpdateVisitor::VisitMetaTable( o )
+*-- cINTLUpdateVisitor::VisitMetaTable(o)
 *====================================
 FUNCTION VisitMetaTable( toIterator, tcMethod )
 LOCAL lcStructure
@@ -1031,7 +1031,7 @@ ENDDO
 RETURN
 
 *====================================
-*-- cINTLUpdateVisitor::VisitPJX( o )
+*-- cINTLUpdateVisitor::VisitPJX(o)
 *====================================
 FUNCTION VisitPJX( toIterator )
 LOCAL lcProjItem, nAtPos, lcExt, loEngine
@@ -1092,7 +1092,7 @@ ENDDO
 RETURN
 
 *====================================
-*-- cINTLUpdateVisitor::VisitFRXRecord( o )
+*-- cINTLUpdateVisitor::VisitFRXRecord(o)
 *====================================
 FUNCTION VisitFRXRecord( loIterator )
 LOCAL lnOldSelect, lcAlias
@@ -1106,7 +1106,7 @@ SELECT ( lnOldSelect )
 RETURN
 
 *====================================
-*-- cINTLUpdateVisitor::VisitString( c[c])
+*-- cINTLUpdateVisitor::VisitString(c[c])
 *====================================
 FUNCTION VisitString( tcElement, tcOrigin )
 IF ! EMPTY( tcElement ) ;
@@ -1126,7 +1126,7 @@ ENDIF
 RETURN
 
 *====================================
-*-- cINTLUpdateVisitor::strproc( ccc )
+*-- cINTLUpdateVisitor::strproc(ccc)
 *====================================
 FUNCTION strproc( tcLine, tcLeadFunc, tcAlias, tcSource )
 
@@ -1266,8 +1266,8 @@ FUNCTION trimfile
 PARAMETERS filename,plattype
 PRIVATE at_pos
 
-m.at_pos = RAT('\',m.filename )
-m.filename = ALLTRIM( IIF( m.at_pos = 0,m.filename,LEFT( m.filename,m.at_pos )))
+m.at_pos = RAT('\', m.filename )
+m.filename = ALLTRIM( IIF( m.at_pos = 0, m.filename,LEFT( m.filename,m.at_pos )))
 IF m.plattype
   m.filename = IIF( _DOS.OR._UNIX,UPPER( m.filename ),LOWER( m.filename ))
 ENDIF
