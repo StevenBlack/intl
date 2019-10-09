@@ -3,7 +3,7 @@
 *  Version...........: 5.0.020 February 7 2005
 *} Project...........: INTL for Visual FoxPro
 *  Created...........: 4/10/93
-*  Copyright.........: ( c ) Steven Black Consulting /UP! 1993-2005
+*  Copyright.........: (c) Steven Black Consulting /UP! 1993-2005
 *) Description.......: Ancilary tools for the INTL Toolkit for Visual FoxPro
 *-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 *  Calling Samples...:
@@ -895,7 +895,7 @@ FOR lni = 1 to ALINES( laLines, tmMemo )
   ENDIF
 
   This.strproc( lcLine, "I(", "strings", tcFileName )
-   * This.strproc( lcSnipLine, "MSGSVC( ", "msgsvc", lcFileName )
+   * This.strproc( lcSnipLine, "MSGSVC(", "msgsvc", lcFileName )
   lcLine = ""
 ENDFOR
 RETURN
@@ -1142,7 +1142,7 @@ IF EMPTY( tcAlias )
    tcAlias = "strings"
 ENDIF
 
-*-- Check for the function leader loke "I( " or "MSGSVC( "
+*-- Check for the function leader like "I(" or "MSGSVC("
 IF tcLeadFunc $ UPPER( tcLine )
    *-- Normalize it
    lcSearchKey = STRTRAN( tcLine, LOWER( tcLeadFunc ), UPPER( tcLeadFunc ))

@@ -2317,8 +2317,8 @@ lcBaseCLass = UPPER( toPassedObject.BaseClass )+ " "
 
 *-- Don't bother with ignorables.
 IF !( lcBaseCLass $ ccIgnoreables )
-   DIMENSION taPassedArray[IIF( ALEN( taPassedArray)= 1 AND ;
-                                   TYPE( "taPassedArray[1]" )<> "O", ;
+   DIMENSION taPassedArray[IIF( ALEN( taPassedArray) = 1 AND ;
+                                   TYPE( "taPassedArray[1]" ) <> "O", ;
                                 1, ;
                                 ALEN( taPassedArray)+ 1)]
 

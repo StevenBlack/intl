@@ -17,7 +17,7 @@
 *)                     dups found elsewhere in INTL.
 *} Project...........: INTL
 *  Created...........: 09/22/93
-*  Copyright.........: ( c ) Steven Black Consulting, 1993-1997
+*  Copyright.........: (c) Steven Black Consulting, 1993-1997
 *)
 *] Dependencies......: Assumes that if MsgSvc.DBF is open, it is
 *]                     ORDER()'d properly
@@ -36,10 +36,6 @@
 *  Major change list.: See at EOF()
 *
 *===========================================================
-*  ER List for VFP ( no promises )
-*            Add a MESSAGE capability to MSGSVC
-*            Parameter that sets the default button ( ala MESSAGEBOX())?
-*=============================================================
 #DEFINE ccCr_Lf         CHR( 13 ) + CHR( 10 )
 #DEFINE ccParseDelim    "~"
 #DEFINE FALSE           .F.
