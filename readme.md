@@ -5622,7 +5622,7 @@ previous section yields something as follows:**
 | **Program-Time** | Cultural content added at program time by programmers who are presumably also linguists. | BIG. Essentially no Locale block other than maybe CONFIG.FP/w, and setup metadata. One app/exe for **all** locales. |
 | **Generate-Time** | Cultural content added by automated means when generating source. Swapping from string / object / screen / menu libraries. | One app/exe for **each** locale. |
 | **Link-Time** | Cultural content added by automated means when building the application. Swapping project records from compiled obj libraries. Not inherently easy with native VFP tools. | One app/exe for **each** locale. |
-| **Run-Time** | Cultural content added by automated means (from phrasebook tables ) when executing the application. Translation is essentially independent of the development team. | One app/exe for **all** locales, with one locale resource for each locale. app/exe independent of locale block. Swapping from string / graphic resources. |
+| **Run-Time** | Cultural content added by automated means (from phrasebook tables) when executing the application. Translation is essentially independent of the development team. | One app/exe for **all** locales, with one locale resource for each locale. app/exe independent of locale block. Swapping from string / graphic resources. |
 
 Enabling techniques segmented by timing.
 
@@ -5638,7 +5638,7 @@ significant. To show this, let's take the apparently simple example of
 adapting a Canadian VFP program for an American customer, or vice versa.
 
 One would think, given the common language and very similar culture,
-porting an application from Canada to America (or vice versa ) is
+porting an application from Canada to America (or vice versa) is
 trivial. Well, the language is *not* common. The British form of English
 is used in Canada, while American English is the USA standard[1].
 
@@ -5652,12 +5652,12 @@ and validate them.
 
 How significant are cultural differences? Consider the United States and
 Canada. The United States and Canada share a common electrical plug
-(most countries don’t! ), they mostly speak the same language, they have
+(most countries don’t!), they mostly speak the same language, they have
 a common telephone country code, the same television broadcasting
 standards, mostly common accounting standards, and in many ways the same
 elements of culture. One might think, given their unparalleled
 commonality, porting an application from Canada to America (or vice
-versa ) is trivial. What could possibly be easier?
+versa) is trivial. What could possibly be easier?
 
 Consider two of the last few lines on invoices, the tax lines. Across
 North America tax mechanisms are amorphic. Within North America the
@@ -5670,11 +5670,11 @@ following will vary:
 
   - **What Rates Apply.** In Quebec, one tax rate applies to goods, and
     another applies to services. Throughout Canada, some single-serving
-    foods are considered snacks (taxable ), whereas buying a given number
-    of the same foods makes them groceries (not taxable ).
+    foods are considered snacks (taxable), whereas buying a given number
+    of the same foods makes them groceries (not taxable).
 
   - **Number of Tax Layers.** In Canada, there is a maximum of two
-    levels of sales tax (Federal and Provincial ). In the United States,
+    levels of sales tax (Federal and Provincial). In the United States,
     there can be other layers of taxation, depending on the county and
     city where you do business.
 
@@ -5842,7 +5842,7 @@ world. How will your application perform, say, over a German version of
 Windows, or with a German version of VFP? This matters. Many foreign
 code pages are unable to display some line draw characters, so that VFP
 will display boxes with umlaut characters in the corners. Many European
-VFP developers use the 437 (US ) code page, if they are able, to minimize
+VFP developers use the 437 (US) code page, if they are able, to minimize
 such problems.
 
 Always assume that foreign versions of operating systems and system
@@ -5944,7 +5944,7 @@ external files rather than embedded in source code. That way the
 localization team can focus on translating strings rather than locating
 and changing them while mucking dangerously in the source code.
 
-If you browse a typical VFP form table (.SCX file ), you notice that
+If you browse a typical VFP form table (.SCX file), you notice that
 objects and strings created in the form designer are stored in
 individual records in this table. The localizable elements are kept in
 string or memo fields within each record. The same is true for menus,
@@ -5969,8 +5969,8 @@ Figure 2, adapted from a variety of data sources including the Microsoft
 Developers' Network CD, shows one recommendation for string allowances.
 
 For example, the German word for "restore" is "zurckspeichern" (114%
-longer ) or "wiederherstellen" (128% longer ). "Save" in French becomes
-"sauvegarder" (175% longer ).
+longer) or "wiederherstellen" (128% longer). "Save" in French becomes
+"sauvegarder" (175% longer).
 
 In tight display or printing situations, make sure your English text
 leaves room for potentially longer foreign equivalents. When in doubt,
@@ -5993,7 +5993,7 @@ characters. Redesigning an entire menu structure for localization is
 time-consuming.
 
 Many applications allow shortcut keys (usually the first character in a
-word ) for accessing menu items. This usually means you must organize
+word) for accessing menu items. This usually means you must organize
 menus so no menu items on the same menu level have the same leading
 character. This can cause problems during localization. Two or more of
 the English menu items might translate into foreign words beginning with
@@ -6023,7 +6023,7 @@ creating a long string from several short strings will likely make no
 sense when the same combination pattern is used in another language.
 
 Many languages have gender forms not found in English. Politically
-correct nomenclature (alderman/alderwoman ), increasingly a headache in
+correct nomenclature (alderman/alderwoman), increasingly a headache in
 English, is handled in a variety of ways. Gender-neutral terms like
 “employee” may not be so in other languages, like “employé” and the
 feminine “employée” in French.
@@ -6067,7 +6067,7 @@ address information.
 Don't assume things will line-up!
 
 Business law differs significantly from country to country, and this can
-affect forms design. Germany (in particular ) requires a lot of
+affect forms design. Germany (in particular) requires a lot of
 information on invoices. Things like the firm's tax number, the names of
 the officers and managing directors, details about the firm's banking
 arrangements, and terms and conditions of sale can take several
@@ -6097,7 +6097,7 @@ Locale customs may mean dramatic variation from Western standards.
 Nowhere is this more apparent than in writing systems. Here is a brief
 summary of the major writing systems of the world:
 
-**Western Writing Systems** (Latin, Greek, and Cyrillic scripts )
+**Western Writing Systems** (Latin, Greek, and Cyrillic scripts)
 
 Characteristics:
 
@@ -6106,15 +6106,15 @@ Characteristics:
 * Distinct capital and small letters.
 * Use Arabic numerals.
 
-**Far Eastern Writing Systems** (Chinese, Japanese, Korean )
+**Far Eastern Writing Systems** (Chinese, Japanese, Korean)
 
 Characteristics:
 
 * Composed of ideograms.
-* Read from top to bottom from right to left (left to right in Korean ).
+* Read from top to bottom from right to left (left to right in Korean).
 * No case distinction.
 
-**Middle Eastern Writing Systems** (Arab and Hebrew scripts )
+**Middle Eastern Writing Systems** (Arab and Hebrew scripts)
 
 Characteristics:
 
@@ -6125,7 +6125,7 @@ Characteristics:
 
 The different characteristics of these languages make for special
 programming difficulties. For an excellent treatise of this subject,
-refer to the *Microsoft Developer Network CD*, in Number 5 (or later )
+refer to the *Microsoft Developer Network CD*, in Number 5 (or later)
 for a document titled *International Handbook For Software Design.*
 
 In particular, bear in mind that locales may, depending on their writing
@@ -6224,7 +6224,7 @@ extra effort required to maintain separate functions.
 
 I could manage with one copy of reusable functions, with control
 functions within each function to determine which "personality"
-(international or not ) to run. I don't perceive this to lead to less
+(international or not) to run. I don't perceive this to lead to less
 maintenance work, but it would definitely slow down the functions.
 
 ### Nonlinguistic Variation
@@ -6244,7 +6244,7 @@ equivalent Canadian terms, province, Postal Code, and SIN number, are
 similarly unacceptable in the United States. The rub is the Canadian and
 American ways to calculate and validate these items are also
 incompatible. A Canadian firm might use the Metric system (or a
-combination of Metric and Imperial ), while American sister firms use the
+combination of Metric and Imperial), while American sister firms use the
 Imperial measurement system. The situation in North America is far more
 complex than most people realize. Logical and programmatic variations
 underlie what appear to be simple cosmetic problems.
@@ -6287,7 +6287,7 @@ the extra effort required to maintain separate functions.
 
 You can manage with one copy of reusable functions, with control
 functions within each function to determine which version (international
-or not ) to run. This does not clearly lead to less maintenance, and it
+or not) to run. This does not clearly lead to less maintenance, and it
 certainly slows down the functions.
 
 ### Maintainability
@@ -6318,7 +6318,7 @@ of the strings in a phrase book. A variety of methods can be invoked to
 translate strings in the source code by matching the strings at
 generate-time or at run-time with those in a phrase book. You could even
 write routines to write strings from the phrasebook into the source (or
-a copy of the source ) automatically for you.
+a copy of the source) automatically for you.
 
 Sometimes removing strings from the source code is completely
 ill-advised: if performance is a key factor and the source must do a
@@ -6359,7 +6359,7 @@ If the application exists already, then an enabling effort provides a
 good opportunity to revisit the source code. This is to the delight or
 dread of programmers. This opens a dilemma: do you use this engineering
 opportunity, or do you just enable? This is an important question. The
-answer depends on (among other things ) the installed base, the version
+answer depends on (among other things) the installed base, the version
 control strategy, the quality of the code, and how many of the original
 developers are still around.
 
@@ -6383,7 +6383,7 @@ efficiency, and long term maintainability. These things can be impeded
 by evolving incremental enabling.
 
 With a retrofit, the program workings (and perhaps a significant
-installed base ) pre-exists. In this situation, the application of
+installed base) pre-exists. In this situation, the application of
 cosmetic patches, without damaging the underlying program and unduly
 affecting portability, is the primary concern. Whether the application
 pre-exists has a significant impact on the mind-set of the enabling
@@ -6418,8 +6418,8 @@ Localization projects are often a matter of degree.
 ### Remember the 80-20 Rule
 
 When a system is enabled for another culture, it is often to accommodate
-a minority of users. The 80-20 rule (or some similarly stacked ratio )
-usually applies: a vast majority of users use one (usually the original )
+a minority of users. The 80-20 rule (or some similarly stacked ratio)
+usually applies: a vast majority of users use one (usually the original)
 version.
 
 Depending on the mix of techniques you use, enabling can increase the
@@ -6651,7 +6651,7 @@ ACTIVATE MENU clause in your code.
 ----
 #### `*:AUTOHOT (GENMENUX Directive)`
 
-Automatically adds hot keys to menu pads (not bars ) that have none
+Automatically adds hot keys to menu pads (not bars) that have none
 assigned. This is useful if you sometimes forget to create hot keys for
 your menus. By default, it uses the first letter of the Menu Pad. If it
 is already being used by one of the other menu pads, it will proceed to
@@ -6723,7 +6723,7 @@ Defines a color scheme for an individual menu pad or item. Example:
 #### `*:DEFAULT (GENMENUX Directive)`
 
 Adds the statement SET SYSMENU SAVE to the cleanup code. This makes the
-menu the default (SET SYSMENU TO DEFAULT ) after it has been created.
+menu the default (SET SYSMENU TO DEFAULT) after it has been created.
 Called: Setup snippet.
 
 ----
@@ -6850,7 +6850,7 @@ want the user to see a lot of menu activity.
 
 Menu items appear based on the condition defined in `<expC>`. This
 condition is evaluated at run-time, allowing menu items to completely
-disappear when not being used (as opposed to being grayed out ). IF
+disappear when not being used (as opposed to being grayed out). IF
 statements in the cleanup code `RELEASE` the menu pads that do not meet
 the condition specified. The *:IF directive also supports keywords that
 allow you to use the values of the bar number, prompt or popup name.
@@ -6868,11 +6868,11 @@ Example:
 ```
 
 ```
-*:IF FILE("CLIENTS.APP" )
+*:IF FILE("CLIENTS.APP")
 ```
 
 ```
-*:IF chk_sc("*PROMPT*","*ITEMNUM*" )
+*:IF chk_sc("*PROMPT*","*ITEMNUM*")
 ```
 
 ----
@@ -6923,7 +6923,7 @@ snippet.
 
 Updates the location of the menu based on <expC1>. <expC1> can
 either be REPLACE, APPEND, BEFORE, or AFTER (just like the Menu
-options ). If <expC1> is BEFORE or AFTER, <expC2> should contain
+options). If <expC1> is BEFORE or AFTER, <expC2> should contain
 either the system menu prompt or pad name that precedes or follows the
 menu.
 
@@ -6962,7 +6962,7 @@ the screen. Called: Setup snippet.
 ----
 #### `*:NOCOMMENT (GENMENUX Directive)`
 
-(Undocumented ) Strips out all comments from the .MPR file.
+(Undocumented) Strips out all comments from the .MPR file.
 
 ----
 #### `*:NOGEN (GENMENUX Directive)`
@@ -7013,7 +7013,7 @@ Places the PAD or POPUP at the Row and Column specified by <nRow> and
 <nCol>. This is useful for moving your menu around the screen in
 different locations for your various popups. *:POPPOS must occur within
 a submenu. Example: *:PADPOS 5,6 (This will position the pad at row 5,
-column 6. )
+column 6.)
 
 ----
 #### `*:POPCOLOR <expC> (GENMENUX Directive)`
@@ -7070,7 +7070,7 @@ This only works with *:POPFILES or *:POPFIELD. This allows you to open
 up a table to use the *:POPFIELD directive more easily. You are
 responsible for closing any opened tables. Example:
 
-*:POPPRECOMMAND = OPENFILE("CLIENTS" )
+*:POPPRECOMMAND = OPENFILE("CLIENTS")
 
 ----
 #### `*:POPTITLE <expC> (GENMENUX Directive)`
@@ -7111,7 +7111,7 @@ SELECTION PAD in the FoxPro help file.
 #### `*:SYSDEFAULT (GENMENUX Directive)`
 
 Adds SET SYSMENU SAVE to the cleanup code. This makes the menu become
-the default (SET SYSMENU TO DEFAULT ) after it has been created.
+the default (SET SYSMENU TO DEFAULT) after it has been created.
 
 ----
 #### `*:SYSPOP (GENMENUX Directive)`
@@ -7152,8 +7152,8 @@ COLOR SCHEME 6
 
 Text surrounded by double braces performs the EVALUATION of <expC> at
 compile-time and returns the value in string form. {{<expC>}} is
-replaced with the string of EVALUATE(<expC> ). <expC> can be any type
-(character, numeric, date, logical, etc. ) and {{<expC>}} will always
+replaced with the string of EVALUATE(<expC>). <expC> can be any type
+(character, numeric, date, logical, etc.) and {{<expC>}} will always
 return the result in character form. Example: if the following command
 was in the Setup snippet and assuming the current date was 06/01/93:
 
