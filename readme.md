@@ -6,9 +6,9 @@ This document serves to describe the following things:
 
 * The INTL Toolkit for Visual FoxPro,
 * [GENMENUX](#using-genmenux),
-* non-linguistic and strategic issues in international development,
-* Visual FoxPro’s international features, and
-* other issues germane to spanning locales with your applications.
+* [non-linguistic and strategic issues in international development](#international-issues),
+* [Visual FoxPro’s international features](#vfps-international-features), and
+* [other issues germane to spanning locales with your applications](#localization-factors-to-consider).
 
 # Table of Contents
 
