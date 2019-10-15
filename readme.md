@@ -39,7 +39,7 @@ This document serves to describe the following things:
   * [How to Batch-Update `strings.dbf`](#how-to-batch-update-stringsdbf)
   * [How to Localize Reports](#how-to-localize-reports)
   * [Details of How INTL Works](#details-of-how-intl-works)
-  * [Details of How MsgSvc() Works](#details-of-how-msgsvc-works)
+  * [Details of How `MsgSvc()` Works](#details-of-how-msgsvc-works)
   * [How to Distribute INTL Files](#how-to-distribute-intl-files)
   * [Toolkit File Descriptions](#toolkit-file-descriptions)
   * [Overview of the INTL Class Library](#overview-of-the-intl-class-library)
@@ -669,7 +669,7 @@ The default exchange rate for all currencies is `1.00`.
 
 With the `cINTLCurrency` class that ships with INTL, you assign currency conversion factors to different currencies. By default the conversion factor used by the Currency strategy is `1.00`.
 
-If you need time-dependent currency conversions, you can subclass cINTLCurrency to do anything you need it to do, such as lookups.
+If you need time-dependent currency conversions, you can subclass `cINTLCurrency` to do anything you need it to do, such as lookups.
 
 Let's configure INTL for the following currencies: Canadian dollar, Euro, and US dollar. Assume that our data is based in Canadian dollars.
 
@@ -864,9 +864,9 @@ object to completely override a memento from the first — then first
 localize the form back to original (which removes the Form.oINTL member)
 and *then* localize to the new locale using the second INTL object.
 
-## Details of How MsgSvc() Works
+## Details of How `MsgSvc()` Works
 
-Upon first invocation, MsgSvc() creates an object named `_SCREEN.oMsgSvc`
+Upon first invocation, `MsgSvc()` creates an object named `_SCREEN.oMsgSvc`
 which thereafter will manage messaging. If an object named
 `_SCREEN.oINTL` exists, the `_SCREEN.MsgSvc` object will obey its language
 settings and use its services.
@@ -881,7 +881,7 @@ For run time localization, you need to distribute the following files:
 | INTL.PRG | For best performance, SET PROCEDURE TO INTL Additive. |
 | MSGSVC.DBF<br>
 MSGSVC.FPT<br>
-MSGSVC.CDX | If you use MsgSvc() you will need to distribute these files. |
+MSGSVC.CDX | If you use `MsgSvc()` you will need to distribute these files. |
 | MSGSVC.PRG | The message services library. |
 | NOHOT.PRG | For best performance, place this function in your first SET PROCEDURE file. |
 | STRINGS.DBF<br>
@@ -951,7 +951,7 @@ A string specifying the name of the currency strategy class.
 |  |  |
 | ----- | ----- |
 | **Default** | "cINTLCurrency" |
-| **Remarks** | You may subclass cINTLCurrency to suit your particular needs. You may then use the `SetStrategy("Currency",cYourCurrencyClass)` method to set this currency strategy property to something other than the default. |
+| **Remarks** | You may subclass `cINTLCurrency` to suit your particular needs. You may then use the `SetStrategy("Currency",cYourCurrencyClass)` method to set this currency strategy property to something other than the default. |
 | **See Also** | **`cINTLMemento::GetStrategy()`** |
 
 ----
@@ -962,7 +962,7 @@ A string specifying the name of the currency strategy class.
 |  |  |
 | ----- | ----- |
 | **Default** | "cINTLData" |
-| **Remarks** | You may subclass cINTLData to suit your particular needs. You may use the `SetStrategy("Data", cYourDataClass)` method to set this data strategy property to something other than the default. |
+| **Remarks** | You may subclass `cINTLData` to suit your particular needs. You may use the `SetStrategy("Data", cYourDataClass)` method to set this data strategy property to something other than the default. |
 | **See Also** | **`cINTLMemento::GetStrategy()`** |
 
 ----
@@ -975,7 +975,7 @@ A string specifying the name of the font strategy class.
 |  |  |
 | ----- | ----- |
 | **Default** | "cINTLFont" |
-| **Remarks** | You may subclass cINTLFont to suit your particular needs. You may use the `SetStrategy("Font", cYourFontClass)` to set the font strategy property to something other than the default. |
+| **Remarks** | You may subclass `cINTLFont` to suit your particular needs. You may use the `SetStrategy("Font", cYourFontClass)` to set the font strategy property to something other than the default. |
 | **See Also** | **`cINTLMemento::GetStrategy()`** |
 
 ----
@@ -988,7 +988,7 @@ A string specifying the name of the picture strategy class.
 |  |  |
 | ----- | ----- |
 | **Default** | "cINTLPicture" |
-| **Remarks** | You may subclass cINTLPicture to suit your particular needs. You may use the ::SetStrategy("Picture", cYourPictureClass ) to set the picture strategy property to something other than the default. |
+| **Remarks** | You may subclass `cINTLPicture` to suit your particular needs. You may use the ::SetStrategy("Picture", cYourPictureClass ) to set the picture strategy property to something other than the default. |
 | **See Also** | **`cINTLMemento::GetStrategy()`** |
 
 ----
@@ -1001,7 +1001,7 @@ A string specifying the name of the string strategy class. The string strategy c
 |  |  |
 | ----- | ----- |
 | **Default** | "cINTLSting" |
-| **Remarks** | You may subclass cINTLString to suit your particular needs. You may use the `SetStrategy("String", cYourStringClass)` to set the property. |
+| **Remarks** | You may subclass `cINTLString` to suit your particular needs. You may use the `SetStrategy("String", cYourStringClass)` to set the property. |
 | **See Also** | **`cINTLMemento::GetStrategy()`** |
 | **The `cINTLString` strategy class is by far the most useful, and it provides services to other strategies.** | **Note:** many strategies use string-based services that are provided by the active string strategy class. To reduce cohesion with a particular cStringStrategy class, many string methods that would normally belong in class cStringStrategy are found in class cINTLStrategy, the parent strategy class. Thus all strategies have some inherent string localization abilities. | |
 
@@ -1427,11 +1427,11 @@ Returns the version stamp for your INTL for Visual FoxPro software.
 | **Return** | A 2-line version signature. |
 | **Remarks** | The version number may be important to resolve technical support issues. |
 
-## Class cINTLCurrency
+## Class `cINTLCurrency`
 
 **You can subclass the `cINTLCurrency` class to adapt it to your multi-currency needs.**  The `cINTLCurrency` class is used to localize currency fields so you can, among other things, swap the locale on the fly and adjust currency values dynamically. The native `cINTLCurrency` class works rather simply with one constant exchange rate per currency. For more complex mechanisms, like those that use a lookup table to reckon currency conversions as a function of time, can be accommodated by subclassing the `cINTLCurrency` class.
 
-### Class cINTLCurrency Exposed Methods
+### Class `cINTLCurrency` Exposed Methods
 
 ----
 #### `cINTLCurrency::GetConversion()`
@@ -1502,39 +1502,39 @@ _SCREEN.oINTL.SetLocale( "Canada )
 _SCREEN.oINTL.GetConversion() && 1.3205 |
 ```
 
-## Class cINTLData
+## Class `cINTLData`
 
 ![](./media/image11.png)
 
 **You can** **display different data in different locales.**
 
-Class cINTLData is a strategy used to localize the data sources in your applications. For example, cINTLData can be used to switch the display of data for different locales.
+Class `cINTLData` is a strategy used to localize the data sources in your applications. For example, cINTLData can be used to switch the display of data for different locales.
 
 Data translations are kept in `strings.dbf` and are prefixed with the characters “`((Data ))`”. For example: `((Data))Customer.cType`
 
 
 
-## Class cINTLFont
+## Class `cINTLFont`
 
 ![](./media/image12.png)
 
 **To display the characters of some languages, you may need to change fonts.**
 
-Class cINTLFont is a strategy used to localize the fonts in your applications. For example, cINTLFont can be used to switch from "Arial" to "Arial CE" or "Arial Cyr" for use in Eastern Europe and the former Soviet Union.
+Class `cINTLFont` is a strategy used to localize the fonts in your applications. For example, cINTLFont can be used to switch from "Arial" to "Arial CE" or "Arial Cyr" for use in Eastern Europe and the former Soviet Union.
 
 Font translations are kept in `strings.dbf` and are prefixed with the characters “`((Font))`”. For example: `((Font))Arial,10`.
 
-### Class cINTLFont Exposed Properties
+### Class `cINTLFont` Exposed Properties
 
 Here are the exposed properties of class cINTLFont.
 
-#### cINTLFont::nConfig
+#### `cINTLFont::nConfig`
 
 | Default | 3 |
 | ------- | ----- |
 | Remarks | Stores the current configuration information for this font strategy object. |
 
-### Class cINTLFont Exposed Methods
+### Class `cINTLFont` Exposed Methods
 
 Here are the exposed methods of class cINTLFont.
 
@@ -2097,7 +2097,7 @@ Stores the configuration integer for this particular object.
 | **Remarks** | Stores the default configuration for the strategy object. |
 | **See Also:** | **`cINTLMemento::GetConfig()`**<br>`cINTLMemento::SetConfig()`<br>`cINTLMemento::SetDefaults()` |
 
-## Class cINTLPicture
+## Class `cINTLPicture`
 
 **Use a `cINTLPicture` strategy to localize graphical elements.**
 
@@ -2105,7 +2105,7 @@ A `cINTLPicture` strategy object is used to localize the graphical elements of y
 images and graphical mouse cursors. Picture translations are kept in `strings.dbf` and are prefixed with the characters
 `“((Picture))”`. For example: `((Picture))Working.BMP`.
 
-## Class cINTLRightToLeft
+## Class `cINTLRightToLeft`
 
 **The `cINTLRightToLeft` strategy is useful for Middle-Eastern cultures.**
 
@@ -2116,14 +2116,14 @@ Note that the `cINTLRightToLeft` strategy only rearranges controls, and does not
 of the displayed text. To change the direction of the displayed text, you must be using a Middle-Eastern version
 of Windows and the RightToLeft properties of the form objects must be logical true.
 
-## Class cINTLStrategy
+## Class `cINTLStrategy`
 
 ![](./media/image16.png)
 
 The cINTLStrategy class serves as an abstract class for concrete
 localization subclasses.
 
-### Class cINTLStrategy Exposed Properties
+### Class `cINTLStrategy` Exposed Properties
 
 #### `cINTLStrategy::lStrategyOpen`
 
@@ -2145,7 +2145,7 @@ The default configuration integer.
 | **Default** | `1` |
 | **See Also** | **`cINTLMemento::GetConfig()`**<br>`cINTLMemento::SetConfig()`<br>`cINTLMemento::SetDefaults()` |`
 
-### Class cINTLStrategy Exposed Methods
+### Class `cINTLStrategy` Exposed Methods
 
 ----
 #### `cINTLStrategy::GetAlias()`
@@ -2275,9 +2275,9 @@ Controls the resource updating behavior of this strategy.
 | **Remarks** | Some strategies may not support automatic resource updating. |
 | **See Also** | **`cINTLStrategy::GetUpdateMode()`** |
 
-### Class cINTLStrategy Protected Properties
+### Class `cINTLStrategy` Protected Properties
 
-#### cINTLStrategy::cAlias
+#### `cINTLStrategy::cAlias`
 
 Stores the alias of the strategy object’s resource table.
 
@@ -2287,7 +2287,7 @@ Stores the alias of the strategy object’s resource table.
 | **Remarks** | Some strategies don’t use resource tables. |
 | **See Also** | **`cINTLStrategy::cTable`**<br>`cINTLStrategy::GetAlias`
 
-#### cINTLStrategy::cTable
+#### `cINTLStrategy::cTable`
 
 Stores the resource table name to be used by the strategy object.
 
@@ -2297,7 +2297,7 @@ Stores the resource table name to be used by the strategy object.
 | **Remarks** | Some strategies don’t use resource tables.
 | **See Also** | **`cINTLStrategy::cAlias`**<br>`cINTLStrategy::GetTable`<br>`cINTLStrategy::SetTable`<br>`cINTLStrategy::OpenStrategy` |
 
-#### cINTLStrategy::lUpdate
+#### `cINTLStrategy::lUpdate`
 
 Logical true or false, controlling strategy resource updating.
 
@@ -2307,7 +2307,7 @@ Logical true or false, controlling strategy resource updating.
 | **Remarks** | If the lUpdate property is set to logical true, then INTL will automatically update the resource table as new resource values are encountered. Some strategies don’t use resource tables, and therefore cannot have an lUpdate property set to logical true. |
 | **See Also** | **`cINTLStrategy::GetUpdateMode`**<br>`cINTLStrategy::SetUpdateMode`<br>`cINTLString::UpdateResource` |
 
-#### cINTLStrategy::lUpdateable
+#### `cINTLStrategy::lUpdateable`
 
 Stores logical true or false depending if the strategy resource table is
 updateable.
@@ -2643,29 +2643,31 @@ activate INTL behavior and control INTL processes.
 This is the native FoxPro statement to specify which menu generator
 program to use. We absolutely need this to be:
 
+```
 _GENMENU =<expC PATH\\>GENMENUX.PRG.
+```
 
-#### _INTLEXPLICIT
+#### `_INTLEXPLICIT`
 
 Used to put INTL in "explicit" mode, whereby INTL will only localize
 objects containing *:INTL EXPLICIT in the comment snippet. Useful for
 creating subtle same-language variants. Default is OFF.
 
-Example: _INTLEXPLICIT = ON
+Example: `_INTLEXPLICIT = ON`
 
-#### _INTLLANG
+#### `_INTLLANG`
 
 Used to specify the language of localization. There must be an
 equivalent "c" plus language field in the STRINGS table.
 
-Example: _INTLLANG = French
+Example: `_INTLLANG = French`
 
 ...assumes a cFrench field exists in the STRINGS table.
 
 This setting is overridden by the m._INTLLANG build-time memory
 variable explained below.
 
-#### _INTLTIMING
+#### `_INTLTIMING`
 
 Controls the type of localization to be performed. The acceptable values
 are RUN and GENERATE. The default is RUN**.** One way to change this
@@ -2676,7 +2678,7 @@ Example: _INTLTIMING = RUN
 This setting is overridden by the m._INTLTIMING build-time memory
 variable explained below.
 
-#### _INTLUPDATE "OFF" |"ON" |<Path>
+#### `_INTLUPDATE "OFF" |"ON" |<Path>`
 
 Controls whether the STRINGS table is refreshed at generate-time.
 Arguments are either OFF (the default), ON, or the path to `strings.dbf`,
@@ -2684,7 +2686,7 @@ which acts as an implicit ON.
 
 Example: _INTLUPDATE = C:\\MyProj\\
 
-#### _MNXDRV2
+#### `_MNXDRV2`
 
 This instructs GENMENUX to process each menu record with the proper
 drivers. We use the second hook in GENMENUX for the INTL
@@ -2699,12 +2701,12 @@ This is overridden by the *:MNXDRV2 menu setup snippet directive.
 The following memory variables will override the commands set in
 CONFIG.FP.
 
-#### m._GENMENU
+#### `m._GENMENU`
 
 Specifies which menu generation program
 to use.
 
-#### m._INTLEXPLICIT = "ON" |"OFF"
+#### `m._INTLEXPLICIT = "ON" |"OFF"`
 
 Used to put INTL in "explicit" mode, whereby INTL will only localize
 objects containing *:INTL EXPLICIT in the comment snippet. Useful for
@@ -2712,14 +2714,14 @@ creating subtle same-language variants. Default is "OFF".
 
 Example: m._INTLEXPLICIT ="ON"
 
-#### m._INTLLANG
+#### `m._INTLLANG`
 
 Used to specify the language of localization. There must be an
 equivalent "c" plus language field in the STRINGS table. Example:
 m._INTLLANG ="French" ...assumes a cFrench field exists in the STRINGS
 table.
 
-#### m._INTLUPDATE = "OFF" |"ON" |<Path>
+#### `m._INTLUPDATE = "OFF" |"ON" |<Path>`
 
 Controls whether the STRINGS table is refreshed at generate-time.
 Arguments are either OFF (the default), ON, or the path to `strings.dbf`,
@@ -2732,12 +2734,12 @@ Example: _INTLUPDATE = C:\\MyProj\\
 GENMENUX comes with a number of built-in directives. Two of them are of
 special interest in creating multilingual applications:
 
-#### *:IF <expC>
+#### `*:IF <expC>`
 
 Placed in the comment snippet of an object, it will *bracket* the object
 with the specified if statement.
 
-#### *:DELETE
+#### `*:DELETE`
 
 Placed in the comment snippet of an object, this will suppress the
 object at generate time.
@@ -2755,22 +2757,22 @@ Because of their nature, dialog messages are different from other simple interfa
 
 For maximum flexibility, I recommend that strings and messages be handled by separate mechanism. Thus INTL for Visual FoxPro comes with two related objects. The INTL object, stored at _SCREEN.oINTL, handles strings, fonts, currencies, and so on. The message services object called oMsgSvc, stored at _SCREEN.oMsgSvc, handles dialog services.
 
-The source for message services is found in MSGSVC.PRG. The message services are personified by the MsgSvc() function, which uses the MSGSVC.DBF table to store message resources. |
-| **MsgSvc() is a flexible run-time function for messaging.** | MsgSvc() provides run-time multilingual and cross platform messaging in VFP. It serves to launch many sorts of messages, dialogs, and text services. |
-| **MsgSvc() is table-based, and encapsulates all the multilingual behavior of messages.** | MsgSvc() is table-based and works only as a run-time mechanism. Like I(), it will append new records in the message phrase book (called `MSGSVC.DBF`) if required. It can return the user's choice as text in the *original* language of the developer, or return as a number, or return a logical value. You choose. |
-| **MsgSvc() is centralized message handling. Regardless of INTL, it makes sense to use it.** | MsgSvc() is powerful. All my user-dialogs now route through it, even for applications that aren’t multi-lingual or cross-platform. The main advantage of a clearing-house for messaging is the ability to control all messages from a single point. If you have existing applications, a one-time pass through the source to route dialogs through MsgSvc() pays good dividends. Do it.
+The source for message services is found in MSGSVC.PRG. The message services are personified by the `MsgSvc()` function, which uses the MSGSVC.DBF table to store message resources. |
+| **MsgSvc() is a flexible run-time function for messaging.** | `MsgSvc()` provides run-time multilingual and cross platform messaging in VFP. It serves to launch many sorts of messages, dialogs, and text services. |
+| **MsgSvc() is table-based, and encapsulates all the multilingual behavior of messages.** | `MsgSvc()` is table-based and works only as a run-time mechanism. Like I(), it will append new records in the message phrase book (called `MSGSVC.DBF`) if required. It can return the user's choice as text in the *original* language of the developer, or return as a number, or return a logical value. You choose. |
+| **MsgSvc() is centralized message handling. Regardless of INTL, it makes sense to use it.** | `MsgSvc()` is powerful. All my user-dialogs now route through it, even for applications that aren’t multi-lingual or cross-platform. The main advantage of a clearing-house for messaging is the ability to control all messages from a single point. If you have existing applications, a one-time pass through the source to route dialogs through `MsgSvc()` pays good dividends. Do it.
 
 ## Up And Running
 
 For a demonstration of a variety of messages created with MSGSVC(),
 please examine and execute MSGDEMO.PRG from the Toolkit diskette.
 
-To use MsgSvc(), you need:
+To use `MsgSvc()`, you need:
 
   - MSGSVC.PRG bundled with your application ;
 
   - The MSGSVC.DBF table either opened by your application or placed so
-    that MsgSvc() can find it (in the application’s root or in the VFP
+    that `MsgSvc()` can find it (in the application’s root or in the VFP
     path).
 
 Call `MsgSvc(<expC>)` whenever you need to display a simple dialog, WAIT
@@ -2780,24 +2782,25 @@ WINDOW, text block, or thermometer bar.
 
 MsgSvc() can return a variety of data types, depending on type of dialog
 and the value in the cRetType field in the MSGSVC.DBF table. Here is a
-list of the possible data types returned by MsgSvc() dialogs:
+list of the possible data types returned by `MsgSvc()` dialogs:
 
-| cRetType | MsgSvc() Returns
+| cRetType | `MsgSvc()` Returns
 | --- | --- |
-| **O** | MsgSvc() automatically returns an object reference for all modeless dialogs. |
+| **O** | `MsgSvc()` automatically returns an object reference for all modeless dialogs. |
 | **C** | The string of the button prompt selected by the user, if any, *in the developer’s language*, no matter the language of execution. This will be the null string in the event of a dialog timeout or if the escape key is pressed. |
 | **L** | TRUE if the first button was selected, false otherwise. |
 | **M**
 
 Compatibility with MESSAGEBOX(), namely
-<p>0 - Button selected is incompatible with MESSAGEBOX()
-<p>1 - OK
-<p>2 - Cancel
-<p>3 - Abort
-<p>4 - Retry
-<p>5 - Ignore
-<p>6 - Yes
-<p>7 - No |
+* 0 - Button selected is incompatible with MESSAGEBOX()
+* 1 - OK
+* 2 - Cancel
+* 3 - Abort
+* 4 - Retry
+* 5 - Ignore
+* 6 - Yes
+* 7 - No |
+
 | **N** | The number of the button selected, 1 for the first button, 2 for the second, and so on. Returns 0 if no button was selected; for example, if the dialog times out, or if releasing the dialog is the result of the Esc key.
 
 **MSGSVC() return data types.**
@@ -2807,7 +2810,7 @@ Compatibility with MESSAGEBOX(), namely
 Here is a description of the fields in the MSGSVC.DBF table and how they
 affect the generation and handling of user interface messages.
 
-#### Field MsgSvc.cKey
+#### Field `MsgSvc.cKey`
 
 The case insensitive search key for the table. MSGSVC.DBF. The search
 key can be any string you like.
@@ -2819,31 +2822,31 @@ what the message delivers. For example:
 = MsgSvc( "Printer Not Responding" )
 ```
 
-If a MsgSvc() call is made with an argument that doesn’t exist in the
-cKey field of MSGSVC.DBF, then MsgSvc() appends a new record to
+If a `MsgSvc()` call is made with an argument that doesn’t exist in the
+cKey field of MSGSVC.DBF, then `MsgSvc()` appends a new record to
 MSGSVC.DBF and displays a dialog with an <OK> push button having the
 calling argument for a message.
 
-#### Field MsgSvc.cFunction
+#### Field `MsgSvc.cFunction`
 
 The cFunction field controls the type of message generated by MSGSVC().
 
-| Cfunction | Result |
+| cFunction | Result |
 | ----- | ----- |
-| Blank | Produces a dialog with an <ok> push button. |
-| ARI | Produces an <abort> <retry> <ignore> push button. |
-| NY | Produces a dialog with <no> <yes> push buttons. |
-| NYC | Produces a dialog with <no> <yes> <cancel> push buttons. |
-| OC | Produces an <ok> <cancel> push button dialog. |
-| Ok | Produces a dialog with an <ok> push button. |
-| RC | Produces a <Retry> <Cancel> dialog. |
-| TEXT | Returns the message as a stream of text, useful for placing blocks of text on screen. Embedded carriage returns are expected, with the " |" character serving as an additional carriage return symbol. |
-| Tip | Produces a "Tip-of-the-Day" dialog. |
-| WAIT | Produces a WAIT WINDOW dialog. |
-| WAIT NOWAIT | Produces a WAIT WINDOW...NOWAIT dialog. |
-| Working | Brings forth a modeless "Working" type of dialog that can be cleared with a parameterless MsgSvc() call. |
-| YN | Produces a dialog with <yes><no> push buttons. |
-| YNC | Produces a dialog with <yes><no><cancel> push buttons. |
+| `Blank` | Produces a dialog with an `<ok>` push button. |
+| `ARI` | Produces an `<abort> <retry> <ignore>` push button. |
+| `NY` | Produces a dialog with `<no> <yes>` push buttons. |
+| `NYC` | Produces a dialog with `<no> <yes> <cancel>` push buttons. |
+| `OC` | Produces an `<ok> <cancel>` push button dialog. |
+| `Ok` | Produces a dialog with an `<ok>` push button. |
+| `RC` | Produces a `<Retry> <Cancel>` dialog. |
+| `TEXT` | Returns the message as a stream of text, useful for placing blocks of text on screen. Embedded carriage returns are expected, with the " |" character serving as an additional carriage return symbol. |
+| `Tip` | Produces a "Tip-of-the-Day" dialog. |
+| `WAIT` | Produces a `WAIT WINDOW` dialog. |
+| `WAIT NOWAIT` | Produces a `WAIT WINDOW...NOWAIT` dialog. |
+| `Working` | Brings forth a modeless "Working" type of dialog that can be cleared with a parameterless `MsgSvc()` call. |
+| `YN` | Produces a dialog with `<yes><no>` push buttons. |
+| `YNC` | Produces a dialog with `<yes><no><cancel>` push buttons. |
 
 ***Personalized Push Buttons*** may be created with semi-colon delimited
 syntax in the cFunction field. For example, the following field values
@@ -2855,28 +2858,28 @@ MsgSvc( “Spock!” )
 
 | Field | Value |
 | ----- | ----- |
-| CKEY | `“Spock!”` |
-| CFUNCTION | "\\<Phasers;\\<Lasers;\\<Run Away" |
-| CTITLE | "MSGSVC() Custom Button Example" |
-| CORIGINAL | "What do you want to do now, Mr Spock?" |
-| CGUIVISUAL | "Info.BMP" |
+| `CKEY` | `“Spock!”` |
+| `CFUNCTION` | "\\<Phasers;\\<Lasers;\\<Run Away" |
+| `CTITLE` | "MSGSVC() Custom Button Example" |
+| `CORIGINAL` | "What do you want to do now, Mr Spock?" |
+| `CGUIVISUAL` | "Info.BMP" |
 
 All the elements of the dialog are localized by the INTL Toolkit. So the
 title and push button text all get referenced to foreign-language
 equivalents in the `strings.dbf` table.
 
-#### Field MsgSvc.cOriginal
+#### Field `MsgSvc.cOriginal`
 
 The text message, in the developer’s tongue, that you want to display.
 The " |" character can be used (as can hard-returns) to create line
 breaks.
 
-#### Field MsgSvc.cFrench, cGerman, cSpanish....
+#### Field `MsgSvc.cFrench, cGerman, cSpanish....`
 
 Like the rest of INTL tools, the linguistic variants of the message go
 here.
 
-#### Field MsgSvc.cErrno
+#### Field `MsgSvc.cErrno`
 
 An error number. All error messages should have an associated error
 number, which you can enter here. This automatically produces an "Error
@@ -2884,36 +2887,36 @@ Number nnn" prefix in the title of the dialog box or in the wait window
 message. The nice thing about this error number field is it’s very easy
 to produce a multilingual lists of errors and error numbers.
 
-#### Field MsgSvc.cObject
+#### Field `MsgSvc.cObject`
 
 Use this field to designate which button has initial focus. A value of
 "1" sets focus to the first button, "2" sets focus to the second button,
 and so on.
 
-#### Field MsgSvc.CALIGNMENT
+#### Field `MsgSvc.CALIGNMENT`
 
 C, L, or R depending if you want text to be center, left, or right
 aligned in the dialog box. This attribute has no effect on wait window
 messages.
 
-#### Field MsgSvc.CBELL
+#### Field `MsgSvc.cBell`
 
 If there is anything in the bell field, a beep will be produced.
 Sometime in the future, you will be able to specify a sequence of tones
 or a tune to play.
 
-#### Field MsgSvc.cRow, cCol
+#### Field `MsgSvc.cRow, cCol`
 
 The row and columns for the upper left hand corner of the dialog box.
 This defaults to the center of the desktop for dialogs. cRow and cCol
 have no effect on the positioning of wait window dialogs.
 
-#### Field MsgSvc.CVISUAL
+#### Field `MsgSvc.cVisual`
 
 Included for backward compatibility with character-mode version of
 FoxPro.
 
-#### Field MsgSvc.cGUIVisual
+#### Field `MsgSvc.cGUIVisual`
 
 The name of the bitmap or icon file for display in the dialog box.
 Examples of the syntax in this field are:
@@ -2926,18 +2929,18 @@ Examples of the syntax in this field are:
 | <p>~MacFilename
 <p>*-- Note the “~” | This signifies no Windows icon, and a Macintosh icon. Again, the tilde "~" symbol delimits the two platforms.
 
-#### Field MsgSvc.COBJECT
+#### Field `MsgSvc.cObject`
 
 Which button number is originally selected. Note this is a character
 field, but numeric entries are assumed.
 
-#### Field MsgSvc.cTimeout
+#### Field `MsgSvc.cTimeout`
 
 Time delay in seconds before the message disappears and processing
 control is passed back to the program. If the dialog times out, then the
 null string is returned.
 
-#### Field MsgSvc.cTitle
+#### Field `MsgSvc.cTitle`
 
 The title of the dialog box. The title is automatically localized.
 
@@ -2950,13 +2953,13 @@ automatically placed in the dialog title.
 
 Wait Windows do not have titles.
 
-#### Field MsgSvc.cWhere
+#### Field `MsgSvc.cWhere`
 
 This field is maintained by INTL Toolkit utilities that audit the
 project file and hunt-down strings. cWhere will contain the file names
 containing the calls to this message.
 
-#### Field MsgSvc.cWINFont , cMACFont
+#### Field `MsgSvc.cWINFont , cMACFont`
 
 These fields are used to control text and button fonts in dialog boxes.
 The syntax for these fields is as follows:
@@ -2969,18 +2972,18 @@ The fonts specifications themselves are comma delimited. For example:
 It is recommended that True Type fonts only be used with MSGSVC() dialog
 boxes.
 
-#### Field MsgSvc.cFont, nFontSize, cFontStyle
+#### Field `MsgSvc.cFont, nFontSize, cFontStyle`
 
 These fields are still supported (for now) but are no longer needed and
 can be eliminated. If you are upgrading from a prior version of MSGSVC,
 please transfer the pertinent information to the cWinFont and cMacFont
 fields as appropriate.
 
-## MsgSvc() Examples
+## `MsgSvc()` Examples
 
 Here are some common uses of the MSGSVC() function.
 
-### WAIT WINDOW messages
+### `WAIT WINDOW` messages
 
 If the cFunction field in the MSGSVC.DBF record contains the string WAIT
 or WAIT NOWAIT, then a WAIT WINDOW or a WAIT WINDOW NOWAIT is created.
@@ -2992,18 +2995,18 @@ are the main items that created the dialog below:
 
 | Field | Value |
 | ----- | ----- |
-| cKey | Construction Zone |
-| cTitle | (Blank) |
-| cFunction | (Blank) |
-| cGUIVisual | WORK.BMP |
-| cOriginal | Sorry! |Feature Under Construction |
+| `cKey` | Construction Zone |
+| `cTitle` | (Blank) |
+| `cFunction` | (Blank) |
+| `cGUIVisual` | WORK.BMP |
+| `cOriginal` | Sorry! |Feature Under Construction |
 
 ![](./media/image19.wmf)
 
 Note that since the cTitle field is blank, the title under FoxPro for
 Windows follows standard Microsoft application design guidelines,
 therefore the name of the application issuing the message—in this case I
-was running MsgSvc() from the command window. The blank cFunction field
+was running `MsgSvc()` from the command window. The blank cFunction field
 issues an <OK> push button by default.
 
 The icon is **always** **assumed to be 32x32 pixels in size.**
@@ -3012,11 +3015,11 @@ The icon is **always** **assumed to be 32x32 pixels in size.**
 
 | Field | Value |
 | ----- | ----- |
-| cKey | Construction Zone |
-| cTitle | This is the Window |
-| cFunction | YN |
-| cGUIVisual | (Blank) |
-| cOriginal | "Archive tagged message?" |
+| `cKey` | Construction Zone |
+| `cTitle` | This is the Window |
+| `cFunction` | YN |
+| `cGUIVisual` | (Blank) |
+| `cOriginal` | "Archive tagged message?" |
 
 Note the use of YN, a standard cFunction button specification.
 
@@ -3024,23 +3027,27 @@ Note the use of YN, a standard cFunction button specification.
 
 ### Substituting Text
 
-If the second passed parameter to MsgSvc() is type character, then
+If the second passed parameter to `MsgSvc()` is type character, then
 string substitution will take place. Consider the following example:
 
 | Field | Value |
 | --------- | ----- |
-| cKey | Swap |
-| cOriginal | Hello %C1%, how's your %C2% %C3%? |
+| `cKey` | Swap |
+| `cOriginal` | Hello %C1%, how's your %C2% %C3%? |
 
 Calling this dialog as follows:
 
-\= MSGSVC( "Swap", "Bill\~lovely wife\~Chloe")
+```
+=MSGSVC( "Swap", "Bill\~lovely wife\~Chloe")
+```
 
 yields the message "Hello Bill, how's your lovely wife Chloe?"
 
 Similarly,
 
-\= MSGSVC( "Swap", "Bob\~back")
+```
+=MSGSVC( "Swap", "Bob\~back")
+```
 
 yields the message "Hello Bill, how's your back ?"
 
@@ -3049,8 +3056,8 @@ variables at runtime.
 
 ### Thermometer Bars
 
-If one of the MsgSvc() parameters is numeric, you’ll get a thermometer
-bar. The general call to MsgSvc() to create a thermometer is as follows:
+If one of the `MsgSvc()` parameters is numeric, you’ll get a thermometer
+bar. The general call to `MsgSvc()` to create a thermometer is as follows:
 
 ```
 MSGSVC( <expC>, <expN> )
@@ -3121,8 +3128,8 @@ cFunction field. MSGSVC() will behave like I() and return the message
 
 ### Tip of the Day
 
-You can use MsgSvc() to create a Tip of the Day dialog. All the records
-in MsgSvc() having a cKey field value of "Tip" will automatically appear
+You can use `MsgSvc()` to create a Tip of the Day dialog. All the records
+in `MsgSvc()` having a cKey field value of "Tip" will automatically appear
 in the Tip of the Day dialog. Invoke Tip of the Day as follows:
 
 ```
@@ -3144,15 +3151,10 @@ user can move sequentially through tips, invoke help, etc.
 ```
 lcAction = MyDialog( "Ask User Something" )
 DO CASE
-
 CASE lcAction = "Retry"
-
 ...
-
 CASE lcActions = "Cancel"
-
 ...
-
 ENDCASE
 ```
 
@@ -3180,19 +3182,15 @@ included with your software.
 You can do a batch update of `strings.dbf` for all the interface strings
 in an entire project with the following invocation:
 
+```
 SET PROC TO INTLTool
-
 *-- Create a project iterator
-
 oIterator = create( "CProjectIterator", cProjectFile )
-
 *-- Create an object to "visit" a the project
-
 oVisitor = create( "cINTLUpdateVisitor" )
-
 *-- Go!
-
 oIterator.Accept( oVisitor )
+```
 
 In the code above, the following things happen:
 
@@ -3332,20 +3330,17 @@ example:
 **Example:** enable all the reports in the VFP sample
 application.
 
+```
 SET PROC TO Intltool
-
 *-- Create a project iterator
-
 oIterato = create("CProjectIterator",HOME()+
 "SAMPLES\\MAINSAMP\\Tastrade" )
-
 *-- Create a report visitor
-
 oVisito = createobject("cINTLReportTransformVisitor" )
-
 *-- Have the visitor visit the iterator
-
 oIterator.Accept( oVisitor )
+```
+
 
 ## Transforming Reports Based on a .FRX
 
@@ -3400,6 +3395,7 @@ iterator's services.
 | Arguments | `oVisitor`. an object possessing a Visit() method which will initiate the specialized task. |
 
 **Example**
+
 ```
 SET PROC TO INTLTools
 *-- Create a menu table iterator
@@ -3562,16 +3558,15 @@ Returns a property from the properties memo fields in the structure.
 | --- | --- |
 | **Syntax** | `oVisitor.PropSrch( cMemo, cProperty[, nOccurence] )` |
 | **Returns** | The property setting if found, `CHR(0)` otherwise. |
-| Arguments
+| Arguments |cMemo: the name of the memo field or a memory variable containing the memo text string.<br>CProperty: the property to search for.<br>nOccurence: the occurrence number for the property in the memo field. |
 
-cMemo: the name of the memo field or a memory variable containing the memo text string.
-<p>CProperty: the property to search for.
-<p>nOccurence: the occurrence number for the property in the memo field. |
-| Example
+**Example:**
 
+```
 USE MyScx.Scx
-<p>Skip 10 && Go to some record
-<p>lcCaption = oVisitor.PropSrch( Properties, "Caption" )
+Skip 10 && Go to some record
+lcCaption = oVisitor.PropSrch( Properties, "Caption" )
+```
 
 ----
 #### `INTLVisitor::VisitCode()`
@@ -3585,7 +3580,7 @@ Visit a code file, such as a .PRG, .H, .MPR.
 | **Arguments** | cFileName: the name of the code file to visit. |
 | **See Also** | **INTLVisitor::VisitString()** |
 
-**Example**
+**Example:**
 ```
 *-- This will update `strings.dbf` with
 *-- parameters to I() calls in code.
@@ -4869,7 +4864,7 @@ language of VFP. Note that `AERROR(2)` returns the same value as `MESSAGE()`.
 
 **Internationalization Gotcha**: this is essentially a Windows service, so the
 language of the buttons displayed by `MESSAGEBOX()` will be those of the Windows
-localization. For more flexible user-defined dialog boxes, consider using MsgSvc().
+localization. For more flexible user-defined dialog boxes, consider using `MsgSvc()`.
 
 For example, the following line yields the box below wherein the “Yes”
 and “No” button captions cannot be touched.
