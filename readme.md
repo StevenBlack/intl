@@ -1294,50 +1294,50 @@ will message or delegate to an object attached to the ohook reference.
 
 | Function | Remarks |
 | ----- | ------- |
-| `cINTLAbstract::aStrat()` | Hooked |
-| `cINTLAbstract::alang()` | Hooked |
-| `cINTLAbstract::CreateStrategyTable()` | Hooked |
-| `cINTLAbstract::AdornMemento()` | |
-| `cINTLAbstract::CreateStrategy()` | Hooked |
-| `cINTLAbstract::Execute()` | Hooked |
-| `cINTLAbstract::GetConfig()` | Hooked |
-| `cINTLAbstract::GetConversion()` | Hooked |
-| `cINTLAbstract::GetStrategy()` | Hooked |
-| `cINTLAbstract::GetExplicit()` | Hooked |
-| `cINTLAbstract::GetLanguage()` | Hooked |
-| `cINTLAbstract::GetConfig()` | Hooked |
-| `cINTLAbstract::GetTable()` | Hooked |
-| `cINTLAbstract::GetAlias()` | Hooked |
-| `cINTLAbstract::GetUpdateMode()` | Hooked |
-| `cINTLAbstract::I()` | Hooked |
-| `cINTLAbstract::Init()` | |
-| `cINTLAbstract::IsValidLanguage()` | Hooked |
-| `cINTLAbstract::LoadStrategies()` | |
-| `cINTLAbstract::Localize()` | Hooked |
-| `cINTLAbstract::LoopOut()` | Hooked |
-| `cINTLAbstract::Mov()` | |
-| `cINTLAbstract::objArray()` | |
-| `cINTLAbstract::OpenStrategy()` | Hooked |
-| `cINTLAbstract::Pitch()` | |
-| `cINTLAbstract::Pop()` | |
-| `cINTLAbstract::Push()` | |
-| `cINTLAbstract::Release()` | |
-| `cINTLAbstract::SetConfig()` | Hooked |
-| `cINTLAbstract::SetConversion()` | Hooked |
-| `cINTLAbstract::SetDefaults()` | Hooked |
-| `cINTLAbstract::SetExplicit()` | Hooked |
-| `cINTLAbstract::SetLanguage()` | Hooked |
-| `cINTLAbstract::SetLocale()` | Hooked |
-| `cINTLAbstract::SetHook()` | Hooked |
-| `cINTLAbstract::SetStrategy()` | Hooked |
-| `cINTLAbstract::SetAlias()` | Hooked |
-| `cINTLAbstract::SetTable()` | Hooked |
-| `cINTLAbstract::SetUpdateMode()` | Hooked |
-| `cINTLAbstract::UpdateResource()` | Hooked |
+| [`cINTLAbstract::aStrat()`](#cintlabstractastrat) | Hooked |
+| [`cINTLAbstract::alang()`](#cintlabstractalang) | Hooked |
+| [`cINTLAbstract::CreateStrategyTable()`](#cintlabstractcreatestrategytable) | Hooked |
+| [`cINTLAbstract::AdornMemento()`](#cintlabstractadornmemento) | |
+| [`cINTLAbstract::CreateStrategy()`](#cintlabstractcreatestrategy) | Hooked |
+| [`cINTLAbstract::Execute()`](#cintlabstractexecute) | Hooked |
+| [`cINTLAbstract::GetConfig()`](#cintlabstractgetconfig) | Hooked |
+| [`cINTLAbstract::GetConversion()`](#cintlabstractgetconversion) | Hooked |
+| [`cINTLAbstract::GetStrategy()`](#cintlabstractgetstrategy) | Hooked |
+| [`cINTLAbstract::GetExplicit()`](#cintlabstractgetexplicit) | Hooked |
+| [`cINTLAbstract::GetLanguage()`](#cintlabstractgetlanguage) | Hooked |
+| [`cINTLAbstract::GetConfig()`](#cintlabstractgetconfig) | Hooked |
+| [`cINTLAbstract::GetTable()`](#cintlabstractgettable) | Hooked |
+| [`cINTLAbstract::GetAlias()`](#cintlabstractgetalias) | Hooked |
+| [`cINTLAbstract::GetUpdateMode()`](#cintlabstractgetupdatemode) | Hooked |
+| [`cINTLAbstract::I()`](#cintlabstracti) | Hooked |
+| [`cINTLAbstract::Init()`](#cintlabstractinit) | |
+| [`cINTLAbstract::IsValidLanguage()`](#cintlabstractisvalidlanguage) | Hooked |
+| [`cINTLAbstract::LoadStrategies()`](#cintlabstractloadstrategies) | |
+| [`cINTLAbstract::Localize()`](#cintlabstractlocalize) | Hooked |
+| [`cINTLAbstract::LoopOut()`](#cintlabstractloopout) | Hooked |
+| [`cINTLAbstract::Mov()`](#cintlabstractmov) | |
+| [`cINTLAbstract::objArray()`](#cintlabstractobjarray) | |
+| [`cINTLAbstract::OpenStrategy()`](#cintlabstractopenstrategy) | Hooked |
+| [`cINTLAbstract::Pitch()`](#cintlabstractpitch) | |
+| [`cINTLAbstract::Pop()`](#cintlabstractpop) | |
+| [`cINTLAbstract::Push()`](#cintlabstractpush) | |
+| [`cINTLAbstract::Release()`](#cintlabstractrelease) | |
+| [`cINTLAbstract::SetConfig()`](#cintlabstractsetconfig) | Hooked |
+| [`cINTLAbstract::SetConversion()`](#cintlabstractsetconversion) | Hooked |
+| [`cINTLAbstract::SetDefaults()`](#cintlabstractsetdefaults) | Hooked |
+| [`cINTLAbstract::SetExplicit()`](#cintlabstractsetexplicit) | Hooked |
+| [`cINTLAbstract::SetLanguage()`](#cintlabstractsetlanguage) | Hooked |
+| [`cINTLAbstract::SetLocale()`](#cintlabstractsetlocale) | Hooked |
+| [`cINTLAbstract::SetHook()`](#cintlabstractsethook) | Hooked |
+| [`cINTLAbstract::SetStrategy()`](#cintlabstractsetstrategy) | Hooked |
+| [`cINTLAbstract::SetAlias()`](#cintlabstractsetalias) | Hooked |
+| [`cINTLAbstract::SetTable()`](#cintlabstractsettable) | Hooked |
+| [`cINTLAbstract::SetUpdateMode()`](#cintlabstractsetupdatemode) | Hooked |
+| [`cINTLAbstract::UpdateResource()`](#cintlabstractupdateresource) | Hooked |
 
 ### Class `cINTLAbstract` Exposed Methods
 
-----
+
 #### `cINTLAbstract::GetHook()`
 
 Returns an object reference to the hook of the object.
@@ -1347,7 +1347,7 @@ Returns an object reference to the hook of the object.
 | **Syntax** | `this.GetHook()` |
 | **Return** | Hook object reference if the current object is hooked, `.NULL.` otherwise. |
 | **Arguments** | None. |
-| **Example** | this.GetHook() |
+| **Example** | `this.GetHook()` |
 | **Remarks** | GetHook returns an object reference (if a hook is defined) or `.NULL.` if not. |
 | **See Also** | [`cINTLMemento::SetHook()`](#cintlmementosethook) |
 
@@ -1442,7 +1442,7 @@ Gets a currency conversion factor from memory.
 | **Syntax** | oINTL.GetConversion( cLocale )
 | **Return** | A numeric conversion factor. |
 | **Arguments** | cLocale: the name of the local to fetch. |
-| **See Also** | **`cINTLCurrency::SetConversion`** |
+| **See Also** | [`cINTLCurrency::SetConversion`](#cintlcurrencysetconversion) |
 
 **Example**
 ```
@@ -1464,7 +1464,7 @@ Localizes a numeric currency value.
 | **Syntax** | `oINTL.I ( nValue )` |
 | **Return** | A numeric conversion factor. |
 | **Arguments** | nValue: the original currency value. |
-| **See Also** | **`cINTLCurrency::GetConversion`** |
+| **See Also** | [`cINTLCurrency::GetConversion`](#cintlcurrencygetconversion) |
 
 **Example**
 ```
@@ -1488,7 +1488,7 @@ Sets a currency exchange rate.
 | **Syntax** | `oINTL.SetConversion( cLocale, nFactor )` |
 | **Return** | A numeric conversion factor. |
 | **Arguments** | `cLocale`: the name of the local to fetch. |
-| **See Also** | **`cINTLCurrency::GetConversion`** |
+| **See Also** | [`cINTLCurrency::GetConversion`](#cintlcurrencygetconversion) |
 
 **Example**
 
@@ -2036,7 +2036,7 @@ object.
 |  |  |
 | --- | --- |
 | **Default** | "Original"
-| **See Also** | `cINTLMemento::GetLanguage()`<br>`cINTLMemento::SetLanguage()` |
+| **See Also** | [`cINTLMemento::GetLanguage()`](#cintlmementogetlanguage)<br>[`cINTLMemento::SetLanguage()`](#cintlmementosetlanguage) |
 
 ----
 #### `cINTLMemento::cLocale`
@@ -2046,7 +2046,7 @@ Stores the current locale name of this particular INTL object.
 |  |  |
 | --- | --- |
 | **Default** | "Original"
-| **See Also** | `cINTLMemento::GetLocale()`<br>`cINTLMemento::SetLocale()` |
+| **See Also** | [`cINTLMemento::GetLocale()`](#cintlmementogetlocale)<br>[`cINTLMemento::SetLocale()`](#cintlmementosetlocale) |
 
 ----
 #### `cINTLMemento::cStringStrategy()`
@@ -2056,7 +2056,7 @@ Default class name for the string strategy.
 |  |  |
 | --- | --- |
 | **Default** | `"cINTL"cINTLString"` |
-| **See Also** | `cINTLMemento::GetStrategy()`<br>`cINTLMemento::SetDefaults()`<br>`cINTLMemento::SetStrategy()`<br>`cINTLMemento::aStrat()` |
+| **See Also** | [`cINTLMemento::GetStrategy()`](#cintlmementogetstrategy)<br>[`cINTLMemento::SetDefaults()`](#cintlmementosetdefaults)<br>[`cINTLMemento::SetStrategy()`](#cintlmementosetstrategy)<br>[`cINTLMemento::aStrat()`](#cintlmementoastrat) |
 
 ----
 #### `cINTLMemento::lExplicit`
@@ -2068,7 +2068,7 @@ references to an INTL object in members named oINTL.
 |  |  |
 | --- | --- |
 | **Default** | `.F.` |
-| **See Also** | `cINTLMemento::aStrategies[...]`<br>`cINTLMemento::GetStrategy()`<br>`cINTLMemento::SetStrategy()`<br>`cINTLMemento::GetConfig()`<br>`cINTLMemento::SetConfig()` |`
+| **See Also** | [`cINTLMemento::aStrategies[...]`](#cintlmementoastrategies[...])<br>[`cINTLMemento::GetStrategy()`](#cintlmementogetstrategy)<br>[`cINTLMemento::SetStrategy()`](#cintlmementosetstrategy)<br>[`cINTLMemento::GetConfig()`](#cintlmementogetconfig)<br>[`cINTLMemento::SetConfig()`](#cintlmementosetconfig) |`
 
 ----
 #### `cINTLMemento::nConfig`
@@ -2078,7 +2078,7 @@ Stores the configuration integer for this particular object.
 |  |  |
 | --- | --- |
 | **Default** | `1` |
-| **See Also** | `cINTLMemento::aStrategies[...]`<br>`cINTLMemento::GetConfig()`<br>`cINTLMemento::SetConfig()` |`
+| **See Also** | `cINTLMemento::aStrategies[...]`<br>[`cINTLMemento::GetConfig()`](#cintlmementogetconfig)<br>[`cINTLMemento::SetConfig()`](#cintlmementosetconfig) |`
 
 ----
 #### `cINTLMemento::nDefaultConfig`
@@ -2127,7 +2127,7 @@ open.
 | --- | --- |
 | **Default** | Logical false. |
 | **Remarks** | This property is set to logical true when the strategy resource table is open, though there is no guarantee that the table won’t be closed. Used purely for performance reasons. |
-| **See Also** | `cINTLMemento::aStrategies[...]`<br>`cINTLMemento::GetStrategy()`<br>`cINTLMemento::SetStrategy()` |`
+| **See Also** | `cINTLMemento::aStrategies[...]`<br>[`cINTLMemento::GetStrategy()`](#cintlmementogetstrategy)<br>[`cINTLMemento::SetStrategy()`](#cintlmementosetstrategy) |`
 
 #### `cINTLStrategy::nDefaultConfig`
 
@@ -2136,7 +2136,7 @@ The default configuration integer.
 |  |  |
 | --- | --- |
 | **Default** | `1` |
-| **See Also** | `cINTLMemento::GetConfig()`<br>`cINTLMemento::SetConfig()`<br>`cINTLMemento::SetDefaults()` |`
+| **See Also** | [`cINTLMemento::GetConfig()`](#cintlmementogetconfig)<br>[`cINTLMemento::SetConfig()`](#cintlmementosetconfig)<br>[`cINTLMemento::SetDefaults()`](#cintlmementosetdefaults) |`
 
 ### Class `cINTLStrategy` Exposed Methods
 
@@ -2288,7 +2288,7 @@ Stores the resource table name to be used by the strategy object.
 | --- | --- |
 | **Default** | `"Strings.DBF"` |
 | **Remarks** | Some strategies don’t use resource tables.
-| **See Also** | `cINTLStrategy::cAlias`<br>`cINTLStrategy::GetTable`<br>`cINTLStrategy::SetTable`<br>`cINTLStrategy::OpenStrategy` |
+| **See Also** | [`cINTLStrategy::cAlias`](#cintlstrategycalias)<br>[`cINTLStrategy::GetTable()`](#cintlstrategygettable)<br>[`cINTLStrategy::SetTable()`](#cintlstrategysettable)<br>[`cINTLStrategy::OpenStrategy()`](#cintlstrategyopenstrategy) |
 
 #### `cINTLStrategy::lUpdate`
 
@@ -2298,7 +2298,7 @@ Logical true or false, controlling strategy resource updating.
 | --- | --- |
 | **Default** | `.T.` |
 | **Remarks** | If the lUpdate property is set to logical true, then INTL will automatically update the resource table as new resource values are encountered. Some strategies don’t use resource tables, and therefore cannot have an lUpdate property set to logical true. |
-| **See Also** | `cINTLStrategy::GetUpdateMode`<br>`cINTLStrategy::SetUpdateMode`<br>`cINTLString::UpdateResource` |
+| **See Also** | [`cINTLStrategy::GetUpdateMode()`](#cintlstrategygetupdatemode)<br>[`cINTLStrategy::SetUpdateMode()`](#cintlstrategysetupdatemode)<br>[`cINTLString::UpdateResource()`](#cintlstringupdateresource) |
 
 #### `cINTLStrategy::lUpdateable`
 
@@ -2309,7 +2309,7 @@ updateable.
 | --- | --- |
 | **Default** | `.T.` |
 | **Remarks** | Some strategies don’t use resource tables, and are therefore not updateable. |
-| **See Also** | `cINTLStrategy::GetUpdateMode`<br>`cINTLStrategy::SetUpdateMode`<br>`cINTLString::UpdateResource` |
+| **See Also** | [`cINTLStrategy::GetUpdateMode()`](#cintlstrategygetupdatemode)<br>[`cINTLStrategy::SetUpdateMode()`](#cintlstrategysetupdatemode)<br>[`cINTLString::UpdateResource()`](#cintlstringupdateresource) |
 
 ## class `cINTLString`
 
@@ -2390,7 +2390,6 @@ Creates the resource table used by this strategy object.
 | **Return** | `.T.` if successful, `.F.` otherwise. |
 | **Arguments** | None. |
 | **Remarks** | Some strategies may not use resource tables. |
-| **See Also** | [`cINTLString::CreateStrategyTable()`](#cintlstringcreatestrategytable) |
 
 **Example**
 ```
@@ -2415,7 +2414,6 @@ table.
 | **Return** | `.T.` if successful, `.F.` otherwise. |
 | **Arguments** | None. |
 | **Remarks** | Some strategies may not use resource tables. |
-| **See Also** | [`cINTLString::CreateStrategyCDX()`](#cintlstringcreatestrategycdx) |
 
 **Example**
 ```
