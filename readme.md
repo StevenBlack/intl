@@ -951,7 +951,7 @@ A string specifying the name of the currency strategy class.
 | ----- | ----- |
 | **Default** | `"cINTL"cINTLCurrency"` |
 | **Remarks** | You may subclass `cINTLCurrency` to suit your particular needs. You may then use the `SetStrategy("Currency",cYourCurrencyClass)` method to set this currency strategy property to something other than the default. |
-| **See Also** | `cINTLMemento::GetStrategy()` |
+| **See Also** | [`cINTLMemento::GetStrategy()`](#cintlmementogetstrategy) |
 
 ----
 #### `INTL::cDataStrategy`
@@ -962,7 +962,7 @@ A string specifying the name of the currency strategy class.
 | ----- | ----- |
 | **Default** | `"cINTL"cINTLData"` |
 | **Remarks** | You may subclass `cINTLData` to suit your particular needs. You may use the `SetStrategy("Data", cYourDataClass)` method to set this data strategy property to something other than the default. |
-| **See Also** | `cINTLMemento::GetStrategy()` |
+| **See Also** | [`cINTLMemento::GetStrategy()`](#cintlmementogetstrategy) |
 
 ----
 #### `INTL::cFontStrategy`
@@ -975,7 +975,7 @@ A string specifying the name of the font strategy class.
 | ----- | ----- |
 | **Default** | `"cINTL"cINTLFont"` |
 | **Remarks** | You may subclass `cINTLFont` to suit your particular needs. You may use the `SetStrategy("Font", cYourFontClass)` to set the font strategy property to something other than the default. |
-| **See Also** | `cINTLMemento::GetStrategy()` |
+| **See Also** | [`cINTLMemento::GetStrategy()`](#cintlmementogetstrategy) |
 
 ----
 #### `INTL::cPictureStrategy`
@@ -988,7 +988,7 @@ A string specifying the name of the picture strategy class.
 | ----- | ----- |
 | **Default** | `"cINTL"cINTLPicture"` |
 | **Remarks** | You may subclass `cINTLPicture` to suit your particular needs. You may use the ::SetStrategy("Picture", cYourPictureClass ) to set the picture strategy property to something other than the default. |
-| **See Also** | `cINTLMemento::GetStrategy()` |
+| **See Also** | [`cINTLMemento::GetStrategy()`](#cintlmementogetstrategy) |
 
 ----
 #### `INTL::cStringStrategy`
@@ -1001,7 +1001,7 @@ A string specifying the name of the string strategy class. The string strategy c
 | ----- | ----- |
 | **Default** | `"cINTL"cINTLSting"` |
 | **Remarks** | You may subclass `cINTLString` to suit your particular needs. You may use the `SetStrategy("String", cYourStringClass)` to set the property. |
-| **See Also** | `cINTLMemento::GetStrategy()` |
+| **See Also** | [`cINTLMemento::GetStrategy()`](#cintlmementogetstrategy) |
 | **The `cINTLString` strategy class is by far the most useful, and it provides services to other strategies.** | **Note:** many strategies use string-based services that are provided by the active string strategy class. To reduce cohesion with a particular `cStringStrategy` class, many string methods that would normally belong in class `cStringStrategy` are found in class cINTLStrategy, the parent strategy class. Thus all strategies have some inherent string localization abilities. | |
 
 ### Class INTL Exposed Methods
@@ -1065,7 +1065,7 @@ strategy.
 | **Return** | The character value of the string strategy table name. |
 | **Arguments** | None. |
 | **Remarks** | The GetTable() method is a *hookable* method, meaning that if an object of class INTL has an attached hook object, then GetTable() defers to the method of the hook object. Since by default objects of class INTL are hooked with an object of the `cINTLStringStrategy` class, invoking `oINTL.GetTable()` is equivalent to invoking `oINTL.oStringStrategy.GetTable()`. |
-| **See Also** | `cINTLStrategy::SetTable()` |
+| **See Also** | [`cINTLStrategy::SetTable()`](#cintlstrategysettable) |
 
 **Example**
 ```
@@ -1085,7 +1085,7 @@ Returns the setting for the update mode of the current string strategy.
 | **Syntax** | `oINTL.<StrategyObject>.GetUpdateMode()` |
 | **Return** | Logical true if update mode is currently "On", false otherwise. |
 | **Arguments** | None. |
-| **See Also** | `cINTLStrategy::SetUpdateMode` |
+| **See Also** | [`cINTLStrategy::SetUpdateMode`](#cINTLStrategySetUpdateMode) |
 | **Remarks** | If GetUpdateMode() is logical true then, for some strategies, this cause INTL resource files to be self-maintained. For example, the native string strategy will add new strings to `strings.dbf` as they are encountered if the string strategy's update mode is set to true.<br><br>The `GetUpdateMode()` method is a *hookable* method, meaning that if an object of class INTL has an attached hook object, then GetUpdateMode() defers to the method of the hook object. Since by default objects of class INTL are hooked with an object of the `cINTLStringStrategy` class, invoking `oINTL.GetUpdateMode()` is equivalent to invoking `oINTL.oStringStrategy.GetUpdateMode()`. |
 
 **Example**
@@ -1143,7 +1143,7 @@ invoke it when necessary.
 | **Syntax** | `oX = CREATE( "INTL" )`<br>`oX.LoadStrategies()` |
 | **Return** | True if successful, false otherwise. |
 | **Arguments** | None. |
-| **See Also** | **`cINTLMemento::SetHook** |`
+| **See Also** | **`cINTLMemento::SetHook`** |
 
 **Example**
 ```
@@ -1163,7 +1163,7 @@ characteristics of the main INTL object.
 | **Syntax** | `oINTL.Localize( [cLang \| oObj][,cLang \| oObj] )` |
 | **Return** | Logical true if successful, false if otherwise. |
 | **Arguments** | `cLang`: the language to localize the object.<br>`oObj`: the object to localize. Default is `THISFORM`. |
-| **See Also** | `INTL::Execute()` |
+| **See Also** | [`INTL::Execute()`](#intlexecute) |
 
 **Example**
 ```
@@ -1229,7 +1229,7 @@ String used to store the type of INTL class.
 | --- | --- |
 | **Default** | “Abstract” |
 | **Remarks** | The cType is typically the type of strategy, such as “String”, “Font”, “Currency”, and so on. |
-| **See Also:** | **`cINTLAbstract::GetType()`** |
+| **See Also:** | `cINTLAbstract::GetType()` |
 
 ----
 #### `cINTLAbstract::Visible`
@@ -1251,7 +1251,7 @@ Used by the INTL class for identification purposes.
 | --- | --- |
 | **Default** | "Visual INTL" |
 | **Remarks** | This property should never be changed. |
-| **See Also** | `cINTLAbstract::Name` |
+| **See Also** | [`cINTLAbstract::Name`](#cintlabstractname) |
 
 ----
 #### `cINTLAbstract::oLogicalParent`
@@ -1349,7 +1349,7 @@ Returns an object reference to the hook of the object.
 | **Arguments** | None. |
 | **Example** | this.GetHook() |
 | **Remarks** | GetHook returns an object reference (if a hook is defined) or `.NULL.` if not. |
-| **See Also** | `cINTLMemento::SetHook()` |
+| **See Also** | [`cINTLMemento::SetHook()`](#cintlmementosethook) |
 
 ----
 #### `cINTLAbstract::GetLogicalParent()`
@@ -1363,7 +1363,7 @@ Returns the name of the INTL object’s logical parent.
 | **Arguments** | None. |
 | **Example** | `this.GetLogicalParent()` |
 | **Remarks** | Returns the name of the INTL object’s logical parent if one has been defined, or `.NULL.` otherwise. |
-| **See Also** | `cINTLAbstract::SetLogicalParent()` |
+| **See Also** | [`cINTLAbstract::SetLogicalParent()`](#cintlabstractsetlogicalparent) |
 
 ----
 #### `cINTLAbstract::IsINTLClass()`
@@ -1376,7 +1376,7 @@ Returns true if a reference is an object belonging to the INTL class.
 | **Return** | Logical true if the object is a member of the INTL class. |
 | **Arguments** | An expression that may or may not evaluate to type "O". |
 | **Example** | `this.IsINTLClass( CREATE( "ComboBox" )) && Returns .F.`|
-| **Remarks** | An expression is considered to be a member of the INTL class if it contains an exposed property named "INTL_Abstract_ID". |
+| **Remarks** | An expression is considered to be a member of the INTL class if it contains an exposed property named `"INTL_Abstract_ID"`. |
 
 ----
 #### `cINTLAbstract::Release()`
@@ -1402,7 +1402,7 @@ This access method sets the pointer to the object’s logical parent.
 | **Arguments** | oObject: an object reference. |
 | **Example** | ?this.SetLogicalParent( _SCREEN.oINTL ) |
 | **Remarks** | The logical parent reference is automatically assigned by the SetHook() method. INTL classes do not use the logical parent back-pointer reference. Included here for compatibility with some object-oriented error handlers my customers use. |
-| **See Also** | `cINTLAbstract::GetLogicalParent()` |
+| **See Also** | [`cINTLAbstract::GetLogicalParent()`](#cintlabstractgetlogicalparent) |
 
 ----
 #### `cINTLAbstract::GetType()`
@@ -1442,7 +1442,7 @@ Gets a currency conversion factor from memory.
 | **Syntax** | oINTL.GetConversion( cLocale )
 | **Return** | A numeric conversion factor. |
 | **Arguments** | cLocale: the name of the local to fetch. |
-| **See Also** | **cINTLCurrency::SetConversion**
+| **See Also** | **`cINTLCurrency::SetConversion`** |
 
 **Example**
 ```
@@ -1464,7 +1464,7 @@ Localizes a numeric currency value.
 | **Syntax** | `oINTL.I ( nValue )` |
 | **Return** | A numeric conversion factor. |
 | **Arguments** | nValue: the original currency value. |
-| **See Also** | **`cINTLCurrency::GetConversion`**
+| **See Also** | **`cINTLCurrency::GetConversion`** |
 
 **Example**
 ```
@@ -1488,7 +1488,7 @@ Sets a currency exchange rate.
 | **Syntax** | `oINTL.SetConversion( cLocale, nFactor )` |
 | **Return** | A numeric conversion factor. |
 | **Arguments** | `cLocale`: the name of the local to fetch. |
-| **See Also** | **cINTLCurrency::GetConversion**
+| **See Also** | **`cINTLCurrency::GetConversion`** |
 
 **Example**
 
@@ -1654,15 +1654,9 @@ object.
 | --- | --- |
 | **Syntax** | `oINTL.aStrat( @taArray [, nType] )` |
 | **Return** | The size or the array, 0 if nothing found. |
-| **Arguments**
-
-taArray: an array, always passed by reference.
-<p>nType: the type of array desired<br>
-0 - Standard 1- D array of strategy names (Default)<br>
-1 - 2-dimension array of strategy names and object references<br>
-2 - 2-dimension array of strategy names and configuration integers |
+| **Arguments** | taArray: an array, always passed by reference.<br>nType: the type of array desired<br>0 - Standard 1- D array of strategy names (Default)<br>1 - 2-dimension array of strategy names and object references<br>2 - 2-dimension array of strategy names and configuration integers |
 | **Remarks** | The array must be passed by reference. Like all other FoxPro array functions, the passed array is automatically redimensioned. |
-| **See Also** | `cINTLString::Alang` |
+| **See Also** | [`cINTLString::Alang`](#cintlstringalang) |
 
 **Example**
 ```
@@ -1688,7 +1682,7 @@ Returns an integer encoding the object’s configuration.
 | **Syntax** | `oINTL.GetConfig()` |
 | **Return** | Integer. |
 | **Arguments** | None. |
-| **See Also** | `cINTLMemento::SetConfig()` |
+| **See Also** | [`cINTLMemento::SetConfig()`](#cintlmementosetconfig) |
 
 **Example**
 ```
@@ -1707,7 +1701,7 @@ objects.
 | **Syntax** | `oINTL.GetLanguage()` |
 | **Return** | Character string containing the name of a language. |
 | **Arguments** | None. |
-| **See Also** | `cINTLMemento::SetLanguage()` |
+| **See Also** | [`cINTLMemento::SetLanguage()`](#cintlmementosetlanguage) |
 
 **Example**
 ```
@@ -1725,7 +1719,7 @@ Returns true if explicit localization is enabled.
 | **Syntax** | `oINTL.GetExplicit()` |
 | **Return** | Logical true if the INTL object is in explicit mode, false otherwise. |
 | **Arguments** | None. |
-| **See Also** | `cINTLMemento::SetExplicit()` |
+| **See Also** | [`cINTLMemento::SetExplicit()`](#cintlmementosetexplicit) |
 
 **Example**
 ```
@@ -1761,7 +1755,7 @@ Returns the value of the INTL object locale property.
 | **Syntax** | `oINTL.GetLocale( @oPointer )` |
 | **Return** | Name of the current locale. |
 | **Arguments** | None. |
-| **See Also** | `cINTLMemento::SetLocale` |
+| **See Also** | [`cINTLMemento::SetLocale`](#cintlmementosetlocale) |
 
 **Example**
 ```
@@ -1804,7 +1798,7 @@ Move selected properties of this object to the object specified.
 | **Syntax** | `this.Mov( oObject )` |
 | **Return** | True |
 | **Arguments** | `oObject`: the INTL class object to configure. |
-| **See Also** | **`cINTLMemento::Pitch()`**<br>`cINTLMemento::Pop()`<br>`cINTLMemento::Push()` |
+| **See Also** | [`cINTLMemento::Pitch()`](#cintlmementopitch)<br>[`cINTLMemento::Pop()`](#cintlmementopop)<br>[`cINTLMemento::Push()`](#cintlmementopush) |
 
 **Example**
 
@@ -1837,7 +1831,7 @@ Removes the internal configuration of an INTL object off a stack.
 | **Arguments** | None. |
 | **Example** | `oINTL.Pitch()` |
 | **Remarks** | You wouldn't normally use this function unless you have a reason to save and restore INTL’s state. |
-| **See Also** | **`cINTLMemento::Pop()`**<br>`cINTLMemento::Push()` |
+| **See Also** | [`cINTLMemento::Pop()`](#cintlmementopop)<br>[`cINTLMemento::Push()`](#cintlmementopush) |
 
 ----
 #### `cINTLMemento::Pop()`
@@ -1850,7 +1844,7 @@ Pops the internal configuration of an INTL object off the stack.
 | **Return** | `.T.` if successful, `.F.` otherwise. |
 | **Arguments** | None. |
 | **Remarks** | You wouldn't normally use this function unless you have a reason to save and restore INTL’s state. |
-| **See Also** | **`cINTLMemento::Pitch()`**<br>`cINTLMemento::Push()` |
+| **See Also** | [`cINTLMemento::Pitch()`](#cintlmementopitch)<br>[`cINTLMemento::Push()`](#cintlmementopush) |
 
 **Example**
 ```
@@ -1872,7 +1866,7 @@ Stores the internal configuration of an INTL object on a stack.
 | **Return** | The index in the stack where the configuration is stored. |
 | **Arguments** | None. |
 | **Remarks** | You wouldn't normally use this function unless you have a reason to save and restore INTL’s state. |
-| **See Also** | **`cINTLMemento::Pitch()`**<br>`cINTLMemento::Pop()` |
+| **See Also** | [`cINTLMemento::Pitch()`](#cintlmementopitch)<br>[`cINTLMemento::Pop()`](#cintlmementopop) |
 
 **Example**
 ```
@@ -1896,7 +1890,7 @@ your interface.
 | **Return** | `.T.` if successful, `.F.` otherwise. |
 | **Arguments** | `nExpression`: a numeric configuration integer. |
 | **Remarks** | Invoking `SetConfig()` automatically triggers a call to `LoadStrategies()` to refresh the object's loaded strategies. |
-| **See Also** | `cINTLMemento::GetConfig()` |
+| **See Also** | [`cINTLMemento::GetConfig()`](#cintlmementogetconfig) |
 
 **Example**
 ```
@@ -1916,7 +1910,7 @@ Sets the operational properties of INTL objects to their defaults.
 | **Arguments** | None. |
 | **Example** | `oINTL.SetDefaults()` |
 | **Remarks** | The default configuration is set 'at the factory' and cannot be changed programmatically. |
-| **See Also** | `cINTLMemento::SetConfig()` |
+| **See Also** | [`cINTLMemento::SetConfig()`](#cintlmementosetconfig) |
 
 ----
 #### `cINTLMemento::SetExplicit()`
@@ -1928,7 +1922,7 @@ Sets the INTL object into Explicit mode.
 | **Syntax** | `oINTL.SetExplicit( lSetting )` |
 | **Return** | `.T.` if successful, `.F.` otherwise. |
 | **Arguments** | lSetting: logical true to turn on Explicit mode, false to turn it off. |
-| **See Also** | `cINTLMemento::GetExplicit()` |
+| **See Also** | [`cINTLMemento::GetExplicit()`](#cintlmementogetexplicit) |
 
 **Example**
 ```
@@ -1946,7 +1940,7 @@ Sets the hook reference pointer.
 | **Syntax** | `oINTL.SetHook( oRefenceObject )`
 | **Return** | `.T.` if successful, `.F.` otherwise. |
 | **Arguments** | `oReferenceObject`: the name of an object to act as reference. A null string nullifies the reference. |
-| **See Also** | `cINTLAbstract::GetHook()` |
+| **See Also** | [`cINTLAbstract::GetHook()`](#cintlabstractgethook) |
 
 **Example**
 ```
@@ -1967,7 +1961,7 @@ Sets the language for subsequent localization.
 | **Syntax** | `oINTL.SetLanguage( cLanguage )` |
 | **Return** | `.T.` if successful, `.F.` otherwise. |
 | **Arguments** | `cLanguage`: the language the INTL object will use in subsequent localizations. |
-| **See Also** | `cINTLMemento::GetLanguage()` |
+| **See Also** | [`cINTLMemento::GetLanguage()`](#cintlmementogetlanguage) |
 
 **Example**
 ```
@@ -1985,7 +1979,7 @@ Set the INTL locale.
 | **Syntax** | `oINTL.SetLocale( cLocalename )` |
 | **Return** | `.T.` if successful, `.F.` otherwise. |
 | **Arguments** | `cLocalename`: the alias of a locale. |
-| **See Also** | `cINTLMemento::GetLocale()` |
+| **See Also** | [`cINTLMemento::GetLocale()`](#cintlmementogetlocale) |
 
 **Example**
 ```
@@ -2005,7 +1999,7 @@ Loads a strategy.
 | **Arguments** | `cStrategy`: a strategy name. Valid names for native strategies include "String", "Currency", "Data", or "Font".<br>`cClass`: the name of a strategy class.<br>`oObject`: a strategy object. |
 | **Example** | `oINTL.SetStrategy( "Currency","cINTLCurrency" )` |
 | **Remarks** | The cStrategy argument becomes the alias by which the strategy is named. If cStrategy is one of the native INTL aliases ("String", "Font", "Data", "Picture", or "Currency") then an automatic `::SetConfig()` is executed. For example, if `oINTL.GetConfig()` returns 1, then after `oINTL.SetStrategy( "Currency", "cMyCurrency" )` it will report `17`. |
-| **See Also** | `cINTLMemento::GetStrategy()` |
+| **See Also** | [`cINTLMemento::GetStrategy()`](#cintlmementogetstrategy) |
 
 ----
 #### `cINTLMemento::SetStrategyClass()`
@@ -2019,7 +2013,7 @@ instantiations.
 | **Return** | `.T.` if successful, `.F.` otherwise. |
 | **Arguments** | `cStrategy`: a strategy name. Valid names for native strategies include “String”, "Currency", "Data", “Picture” and "Font".<br>`CStrategyClass`:the name of a class to associate with the strategy name. |
 | **Example** | `oINTL.SetStrategyClass( "Currency", “MyCurrencyClass” )` |
-| **See Also** | `cINTLMemento::GetStrategyClass()` |
+| **See Also** | [`cINTLMemento::GetStrategyClass()`](#cintlmementogetstrategyclass) |
 
 ### Class `cINTLMemento` Protected Properties
 
@@ -2031,7 +2025,7 @@ This array member stores the stack of INTL configuration properties.
 |  |  |
 | --- | --- |
 | **Default** | .NULL.
-| **See Also** | **`cINTLMemento::Pitch()`**<br>`cINTLMemento::Pop()`<br>`cINTLMemento::Push()` |
+| **See Also** | [`cINTLMemento::Pitch()`](#cintlmementopitch)<br>[`cINTLMemento::Pop()`](#cintlmementopop)<br>[`cINTLMemento::Push()`](#cintlmementopush) |
 
 ----
 #### `cINTLMemento::cLang`
@@ -2042,7 +2036,7 @@ object.
 |  |  |
 | --- | --- |
 | **Default** | "Original"
-| **See Also** | **`cINTLMemento::GetLanguage()`**<br>`cINTLMemento::SetLanguage()` |
+| **See Also** | `cINTLMemento::GetLanguage()`<br>`cINTLMemento::SetLanguage()` |
 
 ----
 #### `cINTLMemento::cLocale`
@@ -2052,7 +2046,7 @@ Stores the current locale name of this particular INTL object.
 |  |  |
 | --- | --- |
 | **Default** | "Original"
-| **See Also** | **`cINTLMemento::GetLocale()`**<br>`cINTLMemento::SetLocale()` |
+| **See Also** | `cINTLMemento::GetLocale()`<br>`cINTLMemento::SetLocale()` |
 
 ----
 #### `cINTLMemento::cStringStrategy()`
@@ -2062,7 +2056,7 @@ Default class name for the string strategy.
 |  |  |
 | --- | --- |
 | **Default** | `"cINTL"cINTLString"` |
-| **See Also** | **`cINTLMemento::GetStrategy()`**<br>`cINTLMemento::SetDefaults()`<br>`cINTLMemento::SetStrategy()`<br>`cINTLMemento::aStrat()` |
+| **See Also** | `cINTLMemento::GetStrategy()`<br>`cINTLMemento::SetDefaults()`<br>`cINTLMemento::SetStrategy()`<br>`cINTLMemento::aStrat()` |
 
 ----
 #### `cINTLMemento::lExplicit`
@@ -2074,7 +2068,7 @@ references to an INTL object in members named oINTL.
 |  |  |
 | --- | --- |
 | **Default** | `.F.` |
-| **See Also** | **`cINTLMemento::aStrategies[...]`**<br>`cINTLMemento::GetStrategy()`<br>`cINTLMemento::SetStrategy()`<br>`cINTLMemento::GetConfig()`<br>`cINTLMemento::SetConfig()` |`
+| **See Also** | `cINTLMemento::aStrategies[...]`<br>`cINTLMemento::GetStrategy()`<br>`cINTLMemento::SetStrategy()`<br>`cINTLMemento::GetConfig()`<br>`cINTLMemento::SetConfig()` |`
 
 ----
 #### `cINTLMemento::nConfig`
@@ -2084,7 +2078,7 @@ Stores the configuration integer for this particular object.
 |  |  |
 | --- | --- |
 | **Default** | `1` |
-| **See Also** | **`cINTLMemento::aStrategies[...]`**<br>`cINTLMemento::GetConfig()`<br>`cINTLMemento::SetConfig()` |`
+| **See Also** | `cINTLMemento::aStrategies[...]`<br>`cINTLMemento::GetConfig()`<br>`cINTLMemento::SetConfig()` |`
 
 ----
 #### `cINTLMemento::nDefaultConfig`
@@ -2094,7 +2088,7 @@ Stores the configuration integer for this particular object.
 | --- | --- |
 | **Default** | `3` — meaning both `FontName` and `DynamicFontName` properties are localized.
 | **Remarks** | Stores the default configuration for the strategy object. |
-| **See Also:** | **`cINTLMemento::GetConfig()`**<br>`cINTLMemento::SetConfig()`<br>`cINTLMemento::SetDefaults()` |
+| **See Also:** | `cINTLMemento::GetConfig()`<br>`cINTLMemento::SetConfig()`<br>`cINTLMemento::SetDefaults()` |
 
 ## Class `cINTLPicture`
 
@@ -2133,7 +2127,7 @@ open.
 | --- | --- |
 | **Default** | Logical false. |
 | **Remarks** | This property is set to logical true when the strategy resource table is open, though there is no guarantee that the table won’t be closed. Used purely for performance reasons. |
-| **See Also** | **`cINTLMemento::aStrategies[...]`**<br>`cINTLMemento::GetStrategy()`<br>`cINTLMemento::SetStrategy()` |`
+| **See Also** | `cINTLMemento::aStrategies[...]`<br>`cINTLMemento::GetStrategy()`<br>`cINTLMemento::SetStrategy()` |`
 
 #### `cINTLStrategy::nDefaultConfig`
 
@@ -2142,7 +2136,7 @@ The default configuration integer.
 |  |  |
 | --- | --- |
 | **Default** | `1` |
-| **See Also** | **`cINTLMemento::GetConfig()`**<br>`cINTLMemento::SetConfig()`<br>`cINTLMemento::SetDefaults()` |`
+| **See Also** | `cINTLMemento::GetConfig()`<br>`cINTLMemento::SetConfig()`<br>`cINTLMemento::SetDefaults()` |`
 
 ### Class `cINTLStrategy` Exposed Methods
 
@@ -2157,7 +2151,7 @@ Returns the alias of the resource table used by this strategy.
 | **Return** | The name of the alias for the strategy’s resource table (if there is one) or `.NULL.` (if there isn’t). |
 | **Arguments** | None. |
 | **Remarks** | Some strategies may not use resource tables. Note that ::GetAlias() returns the value of the strategy’s cAlias property, and does not indicate if the resource table actually exists. |
-| **See Also** | `cINTLStrategy::GetTable()` |
+| **See Also** | [`cINTLStrategy::GetTable()`](#cintlstrategygettable) |
 
 **Example**
 ```
@@ -2180,7 +2174,7 @@ Returns the name of the strategy object’s resource table.
 | **Return** | The name of the strategy’s resource table (if there is one) or `.NULL.` (if there isn’t.) |
 | **Arguments** | None. |
 | **Remarks** | Some strategies may not use resource tables. Note that ::GetTable() returns the value of the strategy’s cTable property, and does not indicate if the resource table actually exists. |
-| **See Also** | `cINTLStrategy::GetAlias()` |
+| **See Also** | [`cINTLStrategy::GetAlias()`](#cintlstrategygetalias) |
 
 **Example**
 ```
@@ -2202,7 +2196,7 @@ Returns the setting for the update mode of the current strategy.
 | **Return** | Logical true if so, false otherwise. |
 | **Arguments** | None. |
 | **Remarks** | Strategies may possess the ability to automatically update or refresh their resource files. The update mode controls whether this feature is on or off.
-| **See Also** | `cINTLStrategy::SetUpdateMode()` |
+| **See Also** | [`cINTLStrategy::SetUpdateMode()`](#cintlstrategysetupdatemode) |
 
 **Example**
 ```
@@ -2245,7 +2239,7 @@ Sets a new value for the alias of the strategy object’s resource table.
 | **Arguments** | `cAlias`: the alias of the resource table. |
 | **Example** | `oINTL.SetAlias( "C:\\NEW\\Strings.DBF" )` |
 | **Remarks** | Some strategies may not use resource tables. |
-| **See Also** | `cINTLStrategy::GetAlias` |
+| **See Also** | [`cINTLStrategy::GetAlias`](#cintlstrategygetalias) |
 
 ----
 #### `cINTLStrategy::SetTable()`
@@ -2259,7 +2253,7 @@ Sets the name of the strategy object’s resource table.
 | **Arguments** | `cFilename`: the name of a strategy resource table. |
 | **Example** | `oINTL.SetTable( "C:\\NEW\\Strings.DBF" )` |
 | **Remarks** | Some strategies may not use resource tables. |
-| **See Also** | `cINTLStrategy::GetTable()` |
+| **See Also** | [`cINTLStrategy::GetTable()`](#cintlstrategygettable) |
 
 ----
 #### `cINTLStrategy::SetUpdateMode()`
@@ -2272,7 +2266,7 @@ Controls the resource updating behavior of this strategy.
 | **Return** | `.T.` if successful, `.F.` otherwise. |
 | **Arguments** | `lOnOff`: logical true to enable update mode, false to disable. |
 | **Remarks** | Some strategies may not support automatic resource updating. |
-| **See Also** | `cINTLStrategy::GetUpdateMode()` |
+| **See Also** | [`cINTLStrategy::GetUpdateMode()`](#cintlstrategygetupdatemode) |
 
 ### Class `cINTLStrategy` Protected Properties
 
@@ -2284,7 +2278,7 @@ Stores the alias of the strategy object’s resource table.
 | --- | --- |
 | **Default** | `"Strings"` |
 | **Remarks** | Some strategies don’t use resource tables. |
-| **See Also** | **`cINTLStrategy::cTable`**<br>`cINTLStrategy::GetAlias`
+| **See Also** | `cINTLStrategy::cTable`<br>`cINTLStrategy::GetAlias`
 
 #### `cINTLStrategy::cTable`
 
@@ -2294,7 +2288,7 @@ Stores the resource table name to be used by the strategy object.
 | --- | --- |
 | **Default** | `"Strings.DBF"` |
 | **Remarks** | Some strategies don’t use resource tables.
-| **See Also** | **`cINTLStrategy::cAlias`**<br>`cINTLStrategy::GetTable`<br>`cINTLStrategy::SetTable`<br>`cINTLStrategy::OpenStrategy` |
+| **See Also** | `cINTLStrategy::cAlias`<br>`cINTLStrategy::GetTable`<br>`cINTLStrategy::SetTable`<br>`cINTLStrategy::OpenStrategy` |
 
 #### `cINTLStrategy::lUpdate`
 
@@ -2304,7 +2298,7 @@ Logical true or false, controlling strategy resource updating.
 | --- | --- |
 | **Default** | `.T.` |
 | **Remarks** | If the lUpdate property is set to logical true, then INTL will automatically update the resource table as new resource values are encountered. Some strategies don’t use resource tables, and therefore cannot have an lUpdate property set to logical true. |
-| **See Also** | **`cINTLStrategy::GetUpdateMode`**<br>`cINTLStrategy::SetUpdateMode`<br>`cINTLString::UpdateResource` |
+| **See Also** | `cINTLStrategy::GetUpdateMode`<br>`cINTLStrategy::SetUpdateMode`<br>`cINTLString::UpdateResource` |
 
 #### `cINTLStrategy::lUpdateable`
 
@@ -2315,7 +2309,7 @@ updateable.
 | --- | --- |
 | **Default** | `.T.` |
 | **Remarks** | Some strategies don’t use resource tables, and are therefore not updateable. |
-| **See Also** | **`cINTLStrategy::GetUpdateMode`**<br>`cINTLStrategy::SetUpdateMode`<br>`cINTLString::UpdateResource` |
+| **See Also** | `cINTLStrategy::GetUpdateMode`<br>`cINTLStrategy::SetUpdateMode`<br>`cINTLString::UpdateResource` |
 
 ## class `cINTLString`
 
@@ -2353,7 +2347,7 @@ Stores the current configuration integer for the string strategy.
 | **Default** | `7` |
 | --- | --- |
 | **Remarks** | Use `SetConfig()` and `GetConfig()` to change the configuration integer.<br>The string strategy is bitwise configured with the following values:<br>[`1`] `Caption`<br>[`2`] `Tooltip`<br>[`4`] `Statusbartext` |
-| **See Also** | `cINTLMemento::GetConfig()` |
+| **See Also** | [`cINTLMemento::GetConfig()`](#cintlmementogetconfig) |
 
 #### `cINTLString::nDefaultConfig`
 
@@ -2362,7 +2356,7 @@ Stores the default configuration integer for this strategy.
 | **Default** | 7 |
 | ----- | ----- |
 | **Remarks** | This integer is used in the SetDefaults() method, which is used to restore a strategy to its factory defaults. |
-| **See Also** | `cINTLMemento::SetDefaults` |
+| **See Also** | [`cINTLMemento::SetDefaults`](#cintlmementosetdefaults) |
 
 ### Class `cINTLString` Exposed Methods
 
@@ -2377,7 +2371,7 @@ string strategy object.
 | **Return** | The number of rows in the array, 0 if nothing found. |
 | **Arguments** | An array, passed by reference, to store the language collection. |
 | **Remarks** | The array must be passed by reference. Like all other FoxPro array functions, the array will be automatically redimensioned by this function. ALang() returns 0 if the strings table is missing. ALang() does not leave the strings table open if it was previously unopened. |
-| **See Also** | `cINTLString::IsValidLanguage()` |
+| **See Also** | [`cINTLString::IsValidLanguage()`](#cintlstringisvalidlanguage) |
 
 **Example**
 ```
@@ -2396,7 +2390,7 @@ Creates the resource table used by this strategy object.
 | **Return** | `.T.` if successful, `.F.` otherwise. |
 | **Arguments** | None. |
 | **Remarks** | Some strategies may not use resource tables. |
-| **See Also** | `cINTLString::CreateStrategyTable()` |
+| **See Also** | [`cINTLString::CreateStrategyTable()`](#cintlstringcreatestrategytable) |
 
 **Example**
 ```
@@ -2421,7 +2415,7 @@ table.
 | **Return** | `.T.` if successful, `.F.` otherwise. |
 | **Arguments** | None. |
 | **Remarks** | Some strategies may not use resource tables. |
-| **See Also** | `cINTLString::CreateStrategyCDX()` |
+| **See Also** | [`cINTLString::CreateStrategyCDX()`](#cintlstringcreatestrategycdx) |
 
 **Example**
 ```
@@ -2469,7 +2463,7 @@ strategy object.
 | **Syntax** | `oINTL.IsValidLanguage( cLanguage )` |
 | **Return** | `.T.` if the passed language is supported by the string strategy. |
 | **Arguments** | `cLanguage`: a field name (minus the leading "c") in `strings.dbf`. |
-| **See Also** | `cINTLString::Alang` |
+| **See Also** | [`cINTLString::Alang`](#cintlstringalang) |
 
 **Example**
 ```
@@ -2498,7 +2492,7 @@ Inserts an item into the resource table.
 | **Arguments** | `cString`: the item to insert into the resource file<br>`cOriginalFile`: string for the cWhere field. |
 | **Example** | `oINTL.ResourceInsert( "New", "MyPrg.PRG" )` |
 | **Remarks** | This method inserts an item without regard to duplicates. Use the `cINTLString::IsInResource()` method to determine if the element is a duplicate. |
-| **See Also** | `cINTLString::IsInResource`<br>`cINTLString::UpdateResource` |
+| **See Also** | [`cINTLString::IsInResource`](#isinresource)<br>[`cINTLString::UpdateResource`](#cintlstringupdateresource) |
 
 ----
 #### `cINTLString::SetConfig()`
@@ -2511,7 +2505,7 @@ Sets the configuration of the string strategy object.
 | **Return** | `.T.` if successful, `.F.` otherwise. |
 | **Arguments** | `nConfigInteger`: a configuration integer that encodes the sum of configuration bytes. The configuration bytes are as follows:<br>1 Localize Caption properties.<br>2 Localize Tooltiptext properties.<br>4 Localize Statusbartext properties. |
 | **Remarks** | The default value for `nConfigInteger` is `7`, meaning: localize the `Caption`, `Tooltiptexts`, and `Statusbartext` properties. |
-| **See Also** | `cINTLStrategy::GetConfig()` |
+| **See Also** | [`cINTLStrategy::GetConfig()`](#cintlstrategygetconfig) |
 
 **Example**
 ```
@@ -2530,7 +2524,7 @@ This method updates the resource file with the passed argument.
 | **Return** | Logical true always. |
 | **Arguments** | xArgument: the value to insert into the resource table. |
 | **Remarks** | Note that the UpdateResource() method unconditionally inserts values into the resource table without regard for duplication or type checking. Some strategies may not support resource updating. |
-| **See Also** | `cINTLStrategy::GetUpdateMode()` |
+| **See Also** | [`cINTLStrategy::GetUpdateMode()`](#cintlstrategygetupdatemode) |
 
 # Localizing VFP Menus
 
@@ -3608,7 +3602,7 @@ The code to execute on expressions.
 | **Syntax** | `oVisitor.VisitExpression( cExpression )` |
 | **Return** | Logical true always. |
 | **Arguments** | cExpression: the expression to be processed. |
-| **See Also** | `INTLVisitor::VisitString()` |
+| **See Also** | [`INTLVisitor::VisitString()`](#INTLVisitorVisitString) |
 
 ----
 #### `INTLVisitor::VisitSCXRecord()`
