@@ -1105,7 +1105,7 @@ The `I()` function is an all-purpose localization method.
 | **Return** | Localized value of `cString` or `nAmount` or `oObject`. |
 | **Argumemnts:** | `cString`: a string to localize. The string could be an interface item, a font name and size, a data source, or a file name.<br>`nAount`: an amount to localize.<br>`oObject`: an object (or a container of objects) to traverse. |
 | **Remarks** | The `INTL::I()` method is a *hookable* method, meaning that if an object of class INTL has an attached hook object, then `INTL.I()` defers to the hook object. Since by default objects of class INTL are hooked with an object of the `cINTLStringStrategy` class, invoking `oINTL.I()` is equivalent to invoking `oINTL.oStringStrategy.I()`. |
-| **See Also** | **`cINTLMemento::SetLocale`**<br>`cINTLCurrency::GetConversion()` |
+| **See Also** | **`cINTLMemento::SetLocale()`**<br>`cINTLCurrency::GetConversion()` |
 
 **Example**
 ```
@@ -1400,7 +1400,7 @@ This access method sets the pointer to the object’s logical parent.
 | **Syntax** | `oINTL.SetLogicalParent( oObject )` |
 | **Return** | `.T.` if successful, `.F.` otherwise. |
 | **Arguments** | oObject: an object reference. |
-| **Example** | ?this.SetLogicalParent( _SCREEN.oINTL ) |
+| **Example** | `this.SetLogicalParent( _SCREEN.oINTL )` |
 | **Remarks** | The logical parent reference is automatically assigned by the SetHook() method. INTL classes do not use the logical parent back-pointer reference. Included here for compatibility with some object-oriented error handlers my customers use. |
 | **See Also** | [`cINTLAbstract::GetLogicalParent()`](#cintlabstractgetlogicalparent) |
 
@@ -1442,7 +1442,7 @@ Gets a currency conversion factor from memory.
 | **Syntax** | oINTL.GetConversion( cLocale )
 | **Return** | A numeric conversion factor. |
 | **Arguments** | cLocale: the name of the local to fetch. |
-| **See Also** | [`cINTLCurrency::SetConversion`](#cintlcurrencysetconversion) |
+| **See Also** | [`cINTLCurrency::SetConversion()`](#cintlcurrencysetconversion) |
 
 **Example**
 ```
@@ -1463,8 +1463,8 @@ Localizes a numeric currency value.
 | --- | --- |
 | **Syntax** | `oINTL.I ( nValue )` |
 | **Return** | A numeric conversion factor. |
-| **Arguments** | nValue: the original currency value. |
-| **See Also** | [`cINTLCurrency::GetConversion`](#cintlcurrencygetconversion) |
+| **Arguments** | `nValue`: the original currency value. |
+| **See Also** | [`cINTLCurrency::GetConversion()`](#cintlcurrencygetconversion) |
 
 **Example**
 ```
@@ -1488,7 +1488,7 @@ Sets a currency exchange rate.
 | **Syntax** | `oINTL.SetConversion( cLocale, nFactor )` |
 | **Return** | A numeric conversion factor. |
 | **Arguments** | `cLocale`: the name of the local to fetch. |
-| **See Also** | [`cINTLCurrency::GetConversion`](#cintlcurrencygetconversion) |
+| **See Also** | [`cINTLCurrency::GetConversion()`](#cintlcurrencygetconversion) |
 
 **Example**
 
@@ -1654,7 +1654,7 @@ object.
 | --- | --- |
 | **Syntax** | `oINTL.aStrat( @taArray [, nType] )` |
 | **Return** | The size or the array, 0 if nothing found. |
-| **Arguments** | taArray: an array, always passed by reference.<br>nType: the type of array desired<br>0 - Standard 1- D array of strategy names (Default)<br>1 - 2-dimension array of strategy names and object references<br>2 - 2-dimension array of strategy names and configuration integers |
+| **Arguments** | `taArray`: an array, always passed by reference.<br>`nType`: the type of array desired<br>`0 `- Standard 1- D array of strategy names (Default)<br>`1` - 2-dimension array of strategy names and object references<br>`2` - 2-dimension array of strategy names and configuration integers |
 | **Remarks** | The array must be passed by reference. Like all other FoxPro array functions, the passed array is automatically redimensioned. |
 | **See Also** | [`cINTLString::Alang`](#cintlstringalang) |
 
@@ -1755,7 +1755,7 @@ Returns the value of the INTL object locale property.
 | **Syntax** | `oINTL.GetLocale( @oPointer )` |
 | **Return** | Name of the current locale. |
 | **Arguments** | None. |
-| **See Also** | [`cINTLMemento::SetLocale`](#cintlmementosetlocale) |
+| **See Also** | [`cINTLMemento::SetLocale()`](#cintlmementosetlocale) |
 
 **Example**
 ```
