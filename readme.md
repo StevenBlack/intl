@@ -97,7 +97,6 @@ This document serves to describe the following:
 - [Glossary of Terms](#glossary-of-terms)
 - [Acknowledgments](#acknowledgments)
 
-
 # Installing INTL
 
 First, put the INTL files into a clean new directory.
@@ -106,7 +105,7 @@ Then,
 
 * **Deploy files:** Manually place files relative to your project as described in How to [Correctly Place Your INTL Files](#how-to-correctly-place-your-intl-files).
 
-* **Modify CONFIG.FPW:** For menus, add the two lines to CONFIG.FPW as explained in [How to Localize Menus](#how-to-localize-menus).
+* **Modify the CONFIG.FPW file:** For menus, add the two lines to the CONFIG.FPW file as explained in [How to Localize Menus](#how-to-localize-menus).
 
 * **Seed your Form class definition:** For now, probably forever, invoke INTL in forms with a Form::Init() statement that calls the INTL object. See [How to Get Automatic Form Localization](#how-to-get-automatic-form-localization).
 
@@ -146,33 +145,38 @@ SCREEN.AddObject( "oINTL", "INTL" )
 
 ## How to Localize Forms
 
-Localize forms by passing their object references to the `INTL.Localize()`
-method of an INTL class object.
+Localize forms by passing their object references to the `Localize()`
+method of an INTL object.
 
 Forms (and any other container ) are localized by passing its reference to the `oINTL.Localize()` method.
 
 ```
 *-- Configure oINTL to another language
 _SCREEN.oINTL.SetLanguage( "French" )
+
 *-- Instantiate a form. If the form calls INTL in its Init()
 *-- method, then the form appears in French....
 DO FORM MyForm Name MyForm
-*-- ....or you can localize the form on the fly.
+```
+
+....or you can localize the form on the fly.
+
+```
 _SCREEN.oINTL.Localize( MyForm )
 ```
 
 ## How to Get Automatic Form Localization
 
-**Place a call to oINTL in your `Form.Init()` hierarchy.**
+**Place a call to `oINTL` in your `Form.Init()` hierarchy.**
 
 To make your forms localize themselves automatically call the `oINTL.Localize()` method in your form class hierarchy. To do so, place the following code in the `Init()` method of your form class definition. |
 
 ```
 *-- Don't forget to call the ParentClass!
-ParentClass::Init()
+DODEFAULT()
 
 IF TYPE("_SCREEN.oINTL" ) == "O"
-  _SCREEN.oINTL.Localize( THIS )
+  _SCREEN.oINTL.Localize( This )
 ENDIF
 ```
 
