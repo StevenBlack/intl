@@ -1441,9 +1441,9 @@ Gets a currency conversion factor from memory.
 
 |  |  |
 | --- | --- |
-| **Syntax** | oINTL.GetConversion( cLocale )
+| **Syntax** | `oINTL.GetConversion( cLocale )`
 | **Return** | A numeric conversion factor. |
-| **Arguments** | cLocale: the name of the local to fetch. |
+| **Arguments** | `cLocale`: the name of the local to fetch. |
 | **See Also** | [`cINTLCurrency::SetConversion()`](#cintlcurrencysetconversion) |
 
 **Example**
