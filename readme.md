@@ -914,7 +914,7 @@ can be best placed relative to your project, see How to [Correctly Place Your IN
 
 The figure below shows an OMT diagram of the INTL class hierarchy.
 
-![](./media/image8.wmf)
+![](./media/image8.png)
 
 The INTL class hierarchy.
 
@@ -934,7 +934,7 @@ cINTLStrategy is the Parentclass of various localization engines.
 
 ## Class `INTL`
 
-![](./media/image9.wmf)
+![](./media/image9.png)
 
 The INTL class provides services to localize objects and other elements
 in your application.
@@ -2998,7 +2998,7 @@ are the main items that created the dialog below:
 | `cGUIVisual` | WORK.BMP |
 | `cOriginal` | Sorry! |Feature Under Construction |
 
-![](./media/image19.wmf)
+![](./media/image19.png)
 
 Note that since the cTitle field is blank, the title under FoxPro for
 Windows follows standard Microsoft application design guidelines,
@@ -3020,7 +3020,7 @@ The icon is **always** **assumed to be 32x32 pixels in size.**
 
 Note the use of YN, a standard cFunction button specification.
 
-![](./media/image20.wmf)
+![](./media/image20.png)
 
 ### Substituting Text
 
@@ -3080,19 +3080,19 @@ bars:
 MSGSVC( "A Process is happening", 10)
 ```
 
-![](./media/image21.wmf)
+![](./media/image21.png)
 
 ```
 MSGSVC( "Step 1 is complete", 40 )
 ```
 
-![](./media/image22.wmf)
+![](./media/image22.png)
 
 ```
 MSGSVC( "We're almost done", 75 )
 ```
 
-![](./media/image23.wmf)
+![](./media/image23.png)
 
 ```
 MSGSVC( "Done!", 100 )
@@ -3106,7 +3106,7 @@ You can quickly create a thermometer bar with this simple call:
 MSGSVC( 30 )
 ```
 
-![](./media/image24.wmf)
+![](./media/image24.png)
 
 To get a more minimalist thermometer bar, try this:
 
@@ -3114,7 +3114,7 @@ To get a more minimalist thermometer bar, try this:
 MSGSVC( 30, “NoButton NoText” )
 ```
 
-![](./media/image25.wmf)
+![](./media/image25.png)
 
 ### Text Blocks
 
@@ -3137,7 +3137,7 @@ Tips are kept in MSGSVC.DBF with a cKey value of “Tip”. When the Tip of
 the Day dialog is invoked, a random tip is selected, and thereafter the
 user can move sequentially through tips, invoke help, etc.
 
-![](./media/image26.wmf)
+![](./media/image26.png)
 
 ## Localizing Smart
 
@@ -3374,7 +3374,7 @@ Create your own visitors to manage your VFP source— it's easy!
 
 The figure below shows a diagram of the cINTLIterator class.
 
-![](./media/image5.wmf)
+![](./media/image5.png)
 
 ### Class INTLIterator Exposed Methods
 
@@ -3694,7 +3694,7 @@ The diagram below illustrates the default configuration for INTL. The
 INTL object is *hooked* with an object of the String strategy. This is
 what gives INTL its default behavior.
 
-![](./media/image2.wmf)
+![](./media/image2.png)
 
 The reason why the line....
 
@@ -4597,7 +4597,7 @@ The line...
 
 ...makes this rather unlocalizable dialog.
 
-![](./media/image28.wmf)
+![](./media/image28.png)
 
 The `GETDIR()` dialog
 
@@ -4609,7 +4609,7 @@ The `GETDIR()` dialog
 VFP and you cannot control its display language. To get a localized
 expression builder, you will need a localized version of VFP.
 
-![](./media/image29.wmf)
+![](./media/image29.png)
 
 The `GETEXPR TO` dialog.
 
@@ -4631,7 +4631,7 @@ The line...
 ```
 ...produces this:
 
-![](./media/image30.wmf)
+![](./media/image30.png)
 
 The `GETFILE()` dialog.
 
@@ -4646,7 +4646,7 @@ you choose.
 comes from VFP and the language of the dialog varies with VFP's
 localization.
 
-> ![](./media/image31.wmf)
+> ![](./media/image31.png)
 
 The GETFONT() dialog.
 
@@ -4672,7 +4672,7 @@ name of the printer you select.
 **Internationalization Gotcha**: this dialog comes from the operating
 system and the display language varies with its localization.
 
-> ![](./media/image32.wmf)
+> ![](./media/image32.png)
 
 The GETPRINTER() dialog.
 
@@ -4827,7 +4827,7 @@ For example, the line...
 ...yields the following dialog under Windows NT 3.51. There are many
 interface strings on this dialog you can’t localize.
 
-> ![](./media/image33.wmf)
+> ![](./media/image33.png)
 
 The LOCFILE() dialog.
 
@@ -4870,7 +4870,7 @@ and “No” button captions cannot be touched.
 ?MESSAGEBOX("cMsgText" , 4, "cTitleBarText" )
 ```
 
-![](./media/image34.wmf)
+![](./media/image34.png)
 
 A `MESSAGEBOX()` dialog.
 
@@ -5055,7 +5055,7 @@ For example, the following line...
 
 creates this dialog. We basically can’t localize this.
 
-![](./media/image35.wmf)
+![](./media/image35.png)
 
 The PUTFILE() dialog.
 
