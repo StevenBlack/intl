@@ -2094,6 +2094,8 @@ Stores the configuration integer for this particular object.
 
 ## Class `cINTLPicture`
 
+![](./media/image14.png)
+
 **Use a `cINTLPicture` strategy to localize graphical elements.**
 
 A `cINTLPicture` strategy object is used to localize the graphical elements of your applications, like bitmaps, icons,
