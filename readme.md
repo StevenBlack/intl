@@ -53,7 +53,7 @@ This document serves to describe the following:
   * [Class `cINTLPicture`](#class-cintlpicture)
   * [Class `cINTLRightToLeft`](#class-cintlrighttoleft)
   * [Class `cINTLStrategy`](#class-cintlstrategy)
-  * [class `cINTLString`](#class-cintlstring)
+  * [Class `cINTLString`](#class-cintlstring)
 - [Localizing VFP Menus](#localizing-vfp-menus)
   * [Using GENMENUX to Invoke INTL](#using-genmenux-to-invoke-intl)
   * [INTL CONFIG.FPW Menu Statements](#intl-configfpw-menu-statements)
@@ -1002,7 +1002,7 @@ A string specifying the name of the string strategy class. The string strategy c
 | **Default** | `"cINTL"cINTLSting"` |
 | **Remarks** | You may subclass `cINTLString` to suit your particular needs. You may use the `SetStrategy("String", cYourStringClass)` to set the property. |
 | **See Also** | [`cINTLMemento::GetStrategy()`](#cintlmementogetstrategy) |
-| **The `cINTLString` strategy class is by far the most useful, and it provides services to other strategies.** | **Note:** many strategies use string-based services that are provided by the active string strategy class. To reduce cohesion with a particular `cStringStrategy` class, many string methods that would normally belong in class `cStringStrategy` are found in class cINTLStrategy, the parent strategy class. Thus all strategies have some inherent string localization abilities. | |
+| **The `cINTLString` strategy class is by far the most useful, and it provides services to other strategies.** | **Note:** many strategies use string-based services that are provided by the active string strategy class. To reduce cohesion with a particular `cStringStrategy` class, many string methods that would normally belong in class `cStringStrategy` are found in class `cINTLStrategy`, the parent strategy class. Thus all strategies have some inherent string localization abilities. | |
 
 ### Class `INTL` Exposed Methods
 
@@ -2311,7 +2311,7 @@ updateable.
 | **Remarks** | Some strategies don’t use resource tables, and are therefore not updateable. |
 | **See Also** | [`cINTLStrategy::GetUpdateMode()`](#cintlstrategygetupdatemode)<br>[`cINTLStrategy::SetUpdateMode()`](#cintlstrategysetupdatemode)<br>[`cINTLString::UpdateResource()`](#cintlstringupdateresource) |
 
-## class `cINTLString`
+## Class `cINTLString`
 
 ![](./media/image17.png)
 
@@ -2580,14 +2580,17 @@ benefit from INTL at run-time.
     sure you have the correct CONFIG.FP file. In CONFIG.FP, add the
     following lines:
 
-_GENMENU =<PATH>\GENMENUX.PRG
-
+```
+_GENMENU =[PATH]\GENMENUX.PRG
 _MNXDRV2 = INTL
+```
 
   - For now, to avoid re-starting FoxPro, set the following system
     memory variables:
 
-_GENMENU ="<PATH>\GENMENUX.PRG"
+```
+_GENMENU ="[PATH]\GENMENUX.PRG"
+```
 
   - Add I.PRG and MSGSVC.PRG to your project.
 
@@ -2602,7 +2605,7 @@ _GENMENU ="<PATH>\GENMENUX.PRG"
 
   - To set to another run-time language, add a new language field in the
     `strings.dbf` and MSGSVC.DBF tables, create a memory variable called
-    _INTLLANG, and make it equal to the language you wish to run. For
+    `_INTLLANG`, and make it equal to the language you wish to run. For
     example, to create a Spanish version:
 
 <!-- end list -->
@@ -2611,7 +2614,7 @@ _GENMENU ="<PATH>\GENMENUX.PRG"
 
 2.  Add a cSPANISH memo field to MSGSVC.DBF
 
-3.  _SCREEN.oINTL.SetLanguage( “Spanish” )
+3.  `_SCREEN.oINTL.SetLanguage( “Spanish” )`
 
 4.  Run the program.
 
@@ -2635,7 +2638,7 @@ This is the native FoxPro statement to specify which menu generator
 program to use. We absolutely need this to be:
 
 ```
-_GENMENU =<expC PATH\\>GENMENUX.PRG.
+_GENMENU =[expC PATH]\GENMENUX.PRG.
 ```
 
 #### `_INTLEXPLICIT`
@@ -2664,18 +2667,18 @@ Controls the type of localization to be performed. The acceptable values
 are RUN and GENERATE. The default is RUN**.** One way to change this
 default is to change the appropriate \#DEFINE statement in INTL.PRG.
 
-Example: _INTLTIMING = RUN
+Example: `_INTLTIMING = RUN`
 
 This setting is overridden by the m._INTLTIMING build-time memory
 variable explained below.
 
-#### `_INTLUPDATE "OFF" |"ON" |<Path>`
+#### `_INTLUPDATE "OFF" |"ON" |[PATH]`
 
 Controls whether the STRINGS table is refreshed at generate-time.
 Arguments are either OFF (the default), ON, or the path to `strings.dbf`,
 which acts as an implicit ON.
 
-Example: _INTLUPDATE = C:\\MyProj\\
+Example: `_INTLUPDATE = C:\MyProj\`
 
 #### `_MNXDRV2`
 
@@ -2683,7 +2686,7 @@ This instructs GENMENUX to process each menu record with the proper
 drivers. We use the second hook in GENMENUX for the INTL
 driver.
 
-Example: _MNXDRV2 = INTL
+Example: `_MNXDRV2 = INTL`
 
 This is overridden by the *:MNXDRV2 menu setup snippet directive.
 
@@ -2712,13 +2715,13 @@ equivalent "c" plus language field in the STRINGS table. Example:
 m._INTLLANG ="French" ...assumes a cFrench field exists in the STRINGS
 table.
 
-#### `m._INTLUPDATE = "OFF" |"ON" |<Path>`
+#### `m._INTLUPDATE = "OFF" |"ON" |[PATH]`
 
 Controls whether the STRINGS table is refreshed at generate-time.
 Arguments are either OFF (the default), ON, or the path to `strings.dbf`,
 which acts as an implicit ON.
 
-Example: _INTLUPDATE = C:\\MyProj\\
+Example: `_INTLUPDATE = C:\MyProj\`
 
 ## Two Very Useful GENMENUX Comment Directives
 
@@ -2739,19 +2742,22 @@ object at generate time.
 
 ## Introduction
 
-| **Interface messages are fundamentally different than simple interface strings.**
+**Interface messages are fundamentally different than simple interface strings.**
 
 Because of their nature, dialog messages are different from other simple interface strings. Simple interface strings are short – typically a word, a phrase, or a sentence. Messages in dialogs can be long, multi-sentenced, and sometimes contain one or more variable components.
-<p>Furthermore, dialogs are often used to get responses from users, and that triggers program branching. It’s important to get dialogs right because they are so visible, both to the user and to the developer mucking around in source code.
-| --- | --- |
-| **INTL includes MSGSVC.PRG and MSGSVC.DBF that provide message services.**
 
-For maximum flexibility, I recommend that strings and messages be handled by separate mechanism. Thus INTL for Visual FoxPro comes with two related objects. The INTL object, stored at _SCREEN.oINTL, handles strings, fonts, currencies, and so on. The message services object called oMsgSvc, stored at _SCREEN.oMsgSvc, handles dialog services.
+Furthermore, dialogs are often used to get responses from users, and that triggers program branching. It’s important to get dialogs right because they are so visible, both to the user and to the developer mucking around in source code.
 
-The source for message services is found in MSGSVC.PRG. The message services are personified by the `MsgSvc()` function, which uses the MSGSVC.DBF table to store message resources. |
-| **MsgSvc() is a flexible run-time function for messaging.** | `MsgSvc()` provides run-time multilingual and cross platform messaging in VFP. It serves to launch many sorts of messages, dialogs, and text services. |
-| **MsgSvc() is table-based, and encapsulates all the multilingual behavior of messages.** | `MsgSvc()` is table-based and works only as a run-time mechanism. Like I(), it will append new records in the message phrase book (called `MSGSVC.DBF`) if required. It can return the user's choice as text in the *original* language of the developer, or return as a number, or return a logical value. You choose. |
-| **MsgSvc() is centralized message handling. Regardless of INTL, it makes sense to use it.** | `MsgSvc()` is powerful. All my user-dialogs now route through it, even for applications that aren’t multi-lingual or cross-platform. The main advantage of a clearing-house for messaging is the ability to control all messages from a single point. If you have existing applications, a one-time pass through the source to route dialogs through `MsgSvc()` pays good dividends. Do it.
+**INTL includes MSGSVC.PRG and MSGSVC.DBF that provide message services.**
+
+For maximum flexibility, I recommend that strings and messages be handled by separate mechanism. Thus INTL for Visual FoxPro comes with two related objects. The INTL object, stored at `_SCREEN.oINTL`, handles strings, fonts, currencies, and so on. The message services object called `oMsgSvc`, stored at `_SCREEN.oMsgSvc`, handles dialog services.
+
+The source for message services is found in MSGSVC.PRG. The message services are personified by the `MsgSvc()` function, which uses the MSGSVC.DBF table to store message resources.
+**`MsgSvc()` is a flexible run-time function for messaging.** `MsgSvc()` provides run-time multilingual and cross platform messaging in VFP. It serves to launch many sorts of messages, dialogs, and text services.
+
+**`MsgSvc()` is table-based, and encapsulates all the multilingual behavior of messages.** `MsgSvc()` is table-based and works only as a run-time mechanism. Like I(), it will append new records in the message phrase book (called `MSGSVC.DBF`) if required. It can return the user's choice as text in the *original* language of the developer, or return as a number, or return a logical value. You choose.
+
+**`MsgSvc()` is centralized message handling. Regardless of INTL, it makes sense to use it.** `MsgSvc()` is powerful. All my user-dialogs now route through it, even for applications that aren’t multi-lingual or cross-platform. The main advantage of a clearing-house for messaging is the ability to control all messages from a single point. If you have existing applications, a one-time pass through the source to route dialogs through `MsgSvc()` pays good dividends. Do it.
 
 ## Up And Running
 
@@ -2766,7 +2772,7 @@ To use `MsgSvc()`, you need:
     that `MsgSvc()` can find it (in the application’s root or in the VFP
     path).
 
-Call `MsgSvc(<expC>)` whenever you need to display a simple dialog, WAIT
+Call `MsgSvc(expC)` whenever you need to display a simple dialog, WAIT
 WINDOW, text block, or thermometer bar.
 
 ## MSGSVC() Dialog Return Values
@@ -2815,7 +2821,7 @@ what the message delivers. For example:
 
 If a `MsgSvc()` call is made with an argument that doesn’t exist in the
 cKey field of MSGSVC.DBF, then `MsgSvc()` appends a new record to
-MSGSVC.DBF and displays a dialog with an <OK> push button having the
+MSGSVC.DBF and displays a dialog with an [OK] push button having the
 calling argument for a message.
 
 #### Field `MsgSvc.cFunction`
@@ -2824,20 +2830,20 @@ The cFunction field controls the type of message generated by MSGSVC().
 
 | cFunction | Result |
 | ----- | ----- |
-| `Blank` | Produces a dialog with an `<ok>` push button. |
-| `ARI` | Produces an `<abort> <retry> <ignore>` push button. |
-| `NY` | Produces a dialog with `<no> <yes>` push buttons. |
-| `NYC` | Produces a dialog with `<no> <yes> <cancel>` push buttons. |
-| `OC` | Produces an `<ok> <cancel>` push button dialog. |
-| `Ok` | Produces a dialog with an `<ok>` push button. |
-| `RC` | Produces a `<Retry> <Cancel>` dialog. |
+| `Blank` | Produces a dialog with an `[ok]` push button. |
+| `ARI` | Produces an `[abort] [retry] [ignore]` push button. |
+| `NY` | Produces a dialog with `[no] [yes]` push buttons. |
+| `NYC` | Produces a dialog with `[no] [yes] [cancel]` push buttons. |
+| `OC` | Produces an `[ok] [cancel]` push button dialog. |
+| `Ok` | Produces a dialog with an `[ok]` push button. |
+| `RC` | Produces a `[Retry] [Cancel]` dialog. |
 | `TEXT` | Returns the message as a stream of text, useful for placing blocks of text on screen. Embedded carriage returns are expected, with the " |" character serving as an additional carriage return symbol. |
 | `Tip` | Produces a "Tip-of-the-Day" dialog. |
 | `WAIT` | Produces a `WAIT WINDOW` dialog. |
 | `WAIT NOWAIT` | Produces a `WAIT WINDOW...NOWAIT` dialog. |
 | `Working` | Brings forth a modeless "Working" type of dialog that can be cleared with a parameterless `MsgSvc()` call. |
-| `YN` | Produces a dialog with `<yes><no>` push buttons. |
-| `YNC` | Produces a dialog with `<yes><no><cancel>` push buttons. |
+| `YN` | Produces a dialog with `[yes][no]` push buttons. |
+| `YNC` | Produces a dialog with `[yes][no][cancel]` push buttons. |
 
 ***Personalized Push Buttons*** may be created with semi-colon delimited
 syntax in the cFunction field. For example, the following field values
@@ -2998,7 +3004,7 @@ Note that since the cTitle field is blank, the title under FoxPro for
 Windows follows standard Microsoft application design guidelines,
 therefore the name of the application issuing the message—in this case I
 was running `MsgSvc()` from the command window. The blank cFunction field
-issues an <OK> push button by default.
+issues an [OK] push button by default.
 
 The icon is **always** **assumed to be 32x32 pixels in size.**
 
