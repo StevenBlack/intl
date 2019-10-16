@@ -2104,6 +2104,8 @@ images and graphical mouse cursors. Picture translations are kept in `strings.db
 
 ## Class `cINTLRightToLeft`
 
+![](./media/image15.png)
+
 **The `cINTLRightToLeft` strategy is useful for Middle-Eastern cultures.**
 
 A `cINTLRightTiLeft` strategy object is used to reverse a form's objects so the form reads from right to left or vice versa.
