@@ -1,9 +1,10 @@
 *  Program...........: INTLTool.PRG
 *  Author............: Steven M. Black
 *  Version...........: 5.0.020 February 7 2005
+*  Latest Version....: https://github.com/StevenBlack/intl/
 *} Project...........: INTL for Visual FoxPro
 *  Created...........: 4/10/93
-*  Copyright.........: (c) Steven Black Consulting /UP! 1993-2005
+*  Copyright.........: (c) Steven Black Consulting /UP! 1993-2019
 *) Description.......: Ancilary tools for the INTL Toolkit for Visual FoxPro
 *-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 *  Calling Samples...:

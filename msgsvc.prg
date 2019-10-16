@@ -3,7 +3,7 @@
 *                      INTL Toolkit Version
 *************************************************************************
 *  Version...........: 5.00.61 October 8, 2019
-*  Latest Version....: Check http://www.stevenblack.com
+*  Latest Version....: https://github.com/StevenBlack/intl/
 *  Description.......: Central Square for Messages.
 *  Author............: Steven M. Black - email: steveb@stevenblack.com
 *  Special thanks to.: Dale Kiefling
@@ -17,7 +17,7 @@
 *)                     dups found elsewhere in INTL.
 *} Project...........: INTL
 *  Created...........: 09/22/93
-*  Copyright.........: (c) Steven Black Consulting, 1993-1997
+*  Copyright.........: (c) Steven Black Consulting, 1993-2019
 *)
 *] Dependencies......: Assumes that if MsgSvc.DBF is open, it is
 *]                     ORDER()'d properly

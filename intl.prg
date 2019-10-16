@@ -5,24 +5,12 @@
 #DEFINE ccRevision     "00"
 #DEFINE ccBuild        "186"
 #DEFINE ccDate         "October 8, 2019"
+*  Latest Version....: https://github.com/StevenBlack/intl/
 *  Author............: Steven M. Black
 *} Project...........: INTL for Visual FoxPro
 *  Created...........: 04/30/93
-*  Copyright.........: (c) Steven Black Consulting /UP! 1993-2004
-*
-*                 All World Rights Reserved.
-*
-*      By using this software, you agree to use INTL and
-*      related tools for your personal use only, after having
-*      paid for a license to use INTL, and not to duplicate
-*      or distribute INTL and related tools to anyone or anyw
-*      other party without the consent of Steven Black.
-*
-*              ===>  Single developer version  <====
-*
-*      You must purchase one copy of INTL for each developer
-*      in your development group.
-*
+*  Copyright.........: (c) Steven Black Consulting 1993-2019
+*  License...........: MIT
 *) Description.......: Multilingual Visual FoxPro tools and classes
 *)
 *)  Visual FoxPro WIN MAC
@@ -52,11 +40,6 @@
 *               2. "*:MNXDRV2 INTL" in menu setup snippet
 *                   or with "_MNXDRV2=INTL" in CONFIG.FPx
 *
-*  Parameter List....:
-*  Returns...........: Nothing
-*  Major change list.: See "INTL Revision Notes" below
-*  Disabilities......: None
-*  Notes.............:
 *-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 *******************************************************************************
 *-- Default language behavior
