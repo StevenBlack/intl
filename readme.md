@@ -1252,7 +1252,7 @@ Used by the INTL class for identification purposes.
 
 |  |  |
 | --- | --- |
-| **Default** | "Visual INTL" |
+| **Default** | `"Visual INTL"` |
 | **Remarks** | This property should never be changed. |
 | **See Also** | [`cINTLAbstract::Name`](#cintlabstractname) |
 
@@ -1351,7 +1351,7 @@ Returns an object reference to the hook of the object.
 | **Return** | Hook object reference if the current object is hooked, `.NULL.` otherwise. |
 | **Arguments** | None. |
 | **Example** | `this.GetHook()` |
-| **Remarks** | GetHook returns an object reference (if a hook is defined) or `.NULL.` if not. |
+| **Remarks** | `GetHook()` returns an object reference (if a hook is defined) or `.NULL.` if not. |
 | **See Also** | [`cINTLMemento::SetHook()`](#cintlmementosethook) |
 
 ----
@@ -1415,7 +1415,7 @@ Returns the type of INTL object this is.
 |  |  |
 | --- | --- |
 | **Syntax** | `oINTL.GetType()` |
-| **Return** | A string, the object type, such as “INTL”, “String”, “Font”, “Currency”, and so on. |
+| **Return** | A string, the object type, such as `“INTL”`, `“String”`, `“Font”`, `“Currency”`, and so on. |
 | **Remarks** | When you subclass a strategy, don’t change its type property unless you also change its basic function. |
 
 ----
