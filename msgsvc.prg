@@ -2,40 +2,37 @@
 *************************************************************************
 *                      INTL Toolkit Version
 *************************************************************************
-*  Version...........: 5.00.61 October 8, 2019
-*  Latest Version....: https://github.com/StevenBlack/intl/
-*  Description.......: Central Square for Messages.
-*  Author............: Steven M. Black - email: steveb@stevenblack.com
-*  Special thanks to.: Dale Kiefling
-*                      Andrew MacNeill
-*                      Alan Schwartz
-*                      Drew Speedie
+* Version...........: 5.00.61 October 8, 2019
+* Latest Version....: https://github.com/StevenBlack/intl/
+* Description.......: Central Square for Messages.
+* Author............: Steven M. Black - email: steveb@stevenblack.com
+* Project...........: INTL for Visual FoxPro
+* Repository........: https://github.com/StevenBlack/intl/
+* Special thanks to.: Dale Kiefling
+*                     Andrew MacNeill
+*                     Alan Schwartz
+*                     Drew Speedie
+**                     This version contains some support
+*                     functions for portability.... Take note
+*                     that I(), NOHOT(), msgevltxt() etc... are all
+*                     dups found elsewhere in INTL.
+* Project...........: INTL
+* Created...........: 09/22/93
+* Copyright.........: (c) Steven Black Consulting, 1993-2019
 *
-*)                     This version contains some support
-*)                     functions for portability.... Take note
-*)                     that I(), NOHOT(), msgevltxt() etc... are all
-*)                     dups found elsewhere in INTL.
-*} Project...........: INTL
-*  Created...........: 09/22/93
-*  Copyright.........: (c) Steven Black Consulting, 1993-2019
-*)
-*] Dependencies......: Assumes that if MsgSvc.DBF is open, it is
-*]                     ORDER()'d properly
-*
-*  Calling Samples
-*          Typical...: =msgsvc( "Some Key Expression" )
-*     String Swaps...: =msgvvc( "SomeKey", "Two~three~ain't bad"]
-*  Thermometer bar...: =msgsvc( "in-bar message", "Therm", 30 )
-*
-*  Parameter List....: tcMessageKey
-*                      txVariable
-*                      tnHowFar
-*  Returns...........: Either Character, Numeric, or Logical depending
-*                      on the cRetType field in MSGSVC.DBF
-*
-*  Major change list.: See at EOF()
-*
-*===========================================================
+* Dependencies......: Assumes that if MsgSvc.DBF is open, it is
+*                     ORDER()'d properly
+* Calling Samples
+*         Typical...: =msgsvc( "Some Key Expression" )
+*    String Swaps...: =msgvvc( "SomeKey", "Two~three~ain't bad"]
+* Thermometer bar...: =msgsvc( "in-bar message", "Therm", 30 )
+* Parameter List....: tcMessageKey
+*                     txVariable
+*                     tnHowFar
+* Returns...........: Either Character, Numeric, or Logical depending
+*                     on the cRetType field in MSGSVC.DBF
+* Major change list.: See at EOF()
+**===========================================================
 #DEFINE ccCr_Lf         CHR( 13 ) + CHR( 10 )
 #DEFINE ccParseDelim    "~"
 #DEFINE FALSE           .F.

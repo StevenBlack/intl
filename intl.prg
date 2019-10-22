@@ -1,22 +1,23 @@
 *  Program...........: INTL.PRG
+
 #DEFINE ccProgramName   "Steven Black's INTL Toolkit for Visual FoxPro"
 *  Version...........:
 #DEFINE ccMajorVersion "9"
 #DEFINE ccRevision     "00"
 #DEFINE ccBuild        "186"
 #DEFINE ccDate         "October 8, 2019"
-*  Latest Version....: https://github.com/StevenBlack/intl/
-*  Author............: Steven M. Black
-*} Project...........: INTL for Visual FoxPro
-*  Created...........: 04/30/93
-*  Copyright.........: (c) Steven Black Consulting 1993-2019
-*  License...........: MIT
-*) Description.......: Multilingual Visual FoxPro tools and classes
-*)
-*)  Visual FoxPro WIN MAC
-*)  =====================
-*)     INTL class hierarchy
-*)     Menu driver for GENMENUX
+* Author............: Steven Black
+* Project...........: INTL for Visual FoxPro
+* Repository........: https://github.com/StevenBlack/intl/
+* Created...........: 04/30/93
+* Copyright.........: (c) Steven Black Consulting 1993-2019
+* License...........: MIT
+* Description.......: Multilingual Visual FoxPro tools and classes
+*
+*  Visual FoxPro WIN MAC
+*  =====================
+*     INTL class hierarchy
+*     Menu driver for GENMENUX
 *
 *  Calling Samples...:
 *

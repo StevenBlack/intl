@@ -1,19 +1,17 @@
-*  Program...........: INTLTool.PRG
-*  Author............: Steven M. Black
-*  Version...........: 5.0.020 February 7 2005
-*  Latest Version....: https://github.com/StevenBlack/intl/
-*} Project...........: INTL for Visual FoxPro
-*  Created...........: 4/10/93
-*  Copyright.........: (c) Steven Black Consulting /UP! 1993-2019
-*) Description.......: Ancilary tools for the INTL Toolkit for Visual FoxPro
-*-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-*  Calling Samples...:
+* Program...........: INTLTool.PRG
+* Author............: Steven Black
+* Project...........: INTL for Visual FoxPro
+* Repository........: https://github.com/StevenBlack/intl/
+* Project...........: INTL for Visual FoxPro
+* Description.......: Ancilary tools for the INTL Toolkit for Visual FoxPro
+*- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+* Calling Samples...:
 * =>To update the Strings table
-*            SET PROC TO INTLTool
-*            oIterator = create( "CProjectIterator","C:\VFP\Samples\Tastrade\Tastrade" )
-*            oVisitor = create( "cIntlUpdateVisitor" )
-*            oIterator.Accept( oVisitor )
-*-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+*           SET PROC TO INTLTool
+*           oIterator = create( "CProjectIterator","C:\VFP\Samples\Tastrade\Tastrade" )
+*           oVisitor = create( "cIntlUpdateVisitor" )
+*           oIterator.Accept( oVisitor )
+*- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 #DEFINE ccBreakStr      " .+-/\*$#@(){}^%!=<>,;"
 
