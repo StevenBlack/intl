@@ -953,7 +953,7 @@ A string specifying the name of the currency strategy class.
 
 |  |  |
 | ----- | ----- |
-| **Default** | `"cINTL"cINTLCurrency"` |
+| **Default** | `"cINTLCurrency"` |
 | **Remarks** | You may subclass `cINTLCurrency` to suit your particular needs. You may then use the `SetStrategy("Currency",cYourCurrencyClass)` method to set this currency strategy property to something other than the default. |
 | **See Also** | [`cINTLMemento::GetStrategy()`](#cintlmementogetstrategy) |
 
@@ -964,7 +964,7 @@ A string specifying the name of the currency strategy class.
 
 |  |  |
 | ----- | ----- |
-| **Default** | `"cINTL"cINTLData"` |
+| **Default** | `"cINTLData"` |
 | **Remarks** | You may subclass `cINTLData` to suit your particular needs. You may use the `SetStrategy("Data", cYourDataClass)` method to set this data strategy property to something other than the default. |
 | **See Also** | [`cINTLMemento::GetStrategy()`](#cintlmementogetstrategy) |
 
@@ -977,7 +977,7 @@ A string specifying the name of the font strategy class.
 
 |  |  |
 | ----- | ----- |
-| **Default** | `"cINTL"cINTLFont"` |
+| **Default** | `"cINTLFont"` |
 | **Remarks** | You may subclass `cINTLFont` to suit your particular needs. You may use the `SetStrategy("Font", cYourFontClass)` to set the font strategy property to something other than the default. |
 | **See Also** | [`cINTLMemento::GetStrategy()`](#cintlmementogetstrategy) |
 
@@ -990,7 +990,7 @@ A string specifying the name of the picture strategy class.
 
 |  |  |
 | ----- | ----- |
-| **Default** | `"cINTL"cINTLPicture"` |
+| **Default** | `"cINTLPicture"` |
 | **Remarks** | You may subclass `cINTLPicture` to suit your particular needs. You may use the ::SetStrategy("Picture", cYourPictureClass ) to set the picture strategy property to something other than the default. |
 | **See Also** | [`cINTLMemento::GetStrategy()`](#cintlmementogetstrategy) |
 
@@ -1003,7 +1003,7 @@ A string specifying the name of the string strategy class. The string strategy c
 
 |  |  |
 | ----- | ----- |
-| **Default** | `"cINTL"cINTLSting"` |
+| **Default** | `"cINTLSting"` |
 | **Remarks** | You may subclass `cINTLString` to suit your particular needs. You may use the `SetStrategy("String", cYourStringClass)` to set the property. |
 | **See Also** | [`cINTLMemento::GetStrategy()`](#cintlmementogetstrategy) |
 | **The `cINTLString` strategy class is by far the most useful, and it provides services to other strategies.** | **Note:** many strategies use string-based services that are provided by the active string strategy class. To reduce cohesion with a particular `cStringStrategy` class, many string methods that would normally belong in class `cStringStrategy` are found in class `cINTLStrategy`, the parent strategy class. Thus all strategies have some inherent string localization abilities. | |
@@ -2061,7 +2061,7 @@ Default class name for the string strategy.
 
 |  |  |
 | --- | --- |
-| **Default** | `"cINTL"cINTLString"` |
+| **Default** | `"cINTLString"` |
 | **See Also** | [`cINTLMemento::GetStrategy()`](#cintlmementogetstrategy)<br>[`cINTLMemento::SetDefaults()`](#cintlmementosetdefaults)<br>[`cINTLMemento::SetStrategy()`](#cintlmementosetstrategy)<br>[`cINTLMemento::aStrat()`](#cintlmementoastrat) |
 
 ----
