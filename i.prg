@@ -1,7 +1,8 @@
 **********************************************************************
 * Program....: i.prg
-* Version....:
 * Author.....: Steven Black
+* Project....: INTL for Visual FoxPro
+* Repository.: https://github.com/StevenBlack/intl/
 * Purpose....: Helper function to broker localization calls.
 **********************************************************************
 LPARAMETERS txFirst, txSecond
