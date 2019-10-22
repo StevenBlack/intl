@@ -880,16 +880,16 @@ For run time localization, you need to distribute the following files:
 
 | File | Notes
 | --- | --- |
-| I.PRG | For best performance, place this function in your first SET PROCEDURE file. |
-| INTL.PRG | For best performance, SET PROCEDURE TO INTL Additive. |
-| MSGSVC.DBF<br>
-MSGSVC.FPT<br>
-MSGSVC.CDX | If you use `MsgSvc()` you will need to distribute these files. |
-| MSGSVC.PRG | The message services library. |
-| NOHOT.PRG | For best performance, place this function in your first SET PROCEDURE file. |
-| STRINGS.DBF<br>
-STRINGS.FPT<br>
-STRINGS.CDX | You’ll need to distribute these too. |
+| `i.prg` | For best performance, place this function in your first `SET PROCEDURE` file. |
+| `intl.prg` | For best performance, `SET PROCEDURE TO INTL Additive`. |
+| `msgsvc.dbf`<br>
+`msgsvc.fpt`<br>
+`msgsvc.cdx` | If you use `MsgSvc()` you will need to distribute these files. |
+| `msgsvc.prg` | The message services library. |
+| `nohot.prg` | For best performance, place this function in your first `SET PROCEDURE` file. |
+| `strings.dbf`<br>
+`strings.fpt`<br>
+`strings.cdx` | You’ll need to distribute these too. |
 
 For the STRINGS and MSGSVC tables and files, if you include them in your
 APP or EXE then they will, of course, be read-only.
@@ -901,16 +901,15 @@ can be best placed relative to your project, see How to [Correctly Place Your IN
 
 | File | Description
 | --- | --- |
-| ADDENDUM.TXT | Late breaking news that may or may not be included in the documentation or the help file. |
-| GENMENUX.ZIP | An archive of the latest available GENMENUX program by Andrew Ross MacNeill. |
-| I.PRG | A stand-alone function that serves as a shortcut to the `_SCREEN.oINTL.I()` method. |
-| INTL.HLP | A 32-bit Windows help application for INTL, suitable for Windows 95 and Windows NT. |
-| INTL.PRG | The core code for the classes and utilities in the INTL toolkit. |
-| INTLTOOL.PRG | Developer’s utilities to do batch operations on project files and other VFP structures. Do not distribute this file with your applications. |
-| `MSGSVC.DBF`<br>`MSGSVC.FPT`<br>`MSGSVC.CDX` | Table and supporting files containing messages for dialogs, wait windows, thermometer bars and text blocks. |
-| MSGSVC.PRG | The message services library. |
-| NOHOT.PRG | `NOHOT()` strips hot key characters from FoxPro prompt expressions. It is a one-line function that you should cut and paste as a procedure somewhere in your application’s invocation stack. |
-| `STRINGS.DBF`<br>`STRINGS.FPT`<br>`STRINGS.CDX` | Table and supporting files containing translated phrases. |
+| `addendum.txt` | Late breaking news that may or may not be included in the documentation or the help file. |
+| `genmenux.zip` | An archive of the latest available GENMENUX program by Andrew Ross MacNeill. |
+| `i.prg` | A stand-alone function that serves as a shortcut to the `_SCREEN.oINTL.I()` method. |
+| `intl.prg` | The core code for the classes and utilities in the INTL toolkit. |
+| `intltool.prg` | Developer’s utilities to do batch operations on project files and other VFP structures. Do not distribute this file with your applications. |
+| `msgsvc.dbf`<br>`msgsvc.fpt`<br>`msgsvc.cdx` | Table and supporting files containing messages for dialogs, wait windows, thermometer bars and text blocks. |
+| `msgsvc.prg` | The message services library. |
+| `nohot.prg` | `nohot()` strips hot key characters from FoxPro prompt expressions. It is a one-line function that you should cut and paste as a procedure somewhere in your application’s invocation stack. |
+| `strings.dbf`<br>`strings.fpt`<br>`strings.cdx` | Table and supporting files containing translated phrases. |
 
 ## Overview of the INTL Class Library
 
@@ -1021,7 +1020,7 @@ object in turn to all the active localization strategies.
 | --- | --- |
 | **Syntax** | `oINTL.Execute( @PassedObject )` |
 | **Return** | Nothing |
-| **Arguments** | PassedObject: Can be of type numeric, string, or object. It can also be an array of object references. |
+| **Arguments** | `PassedObject`: Can be of type numeric, string, or object. It can also be an array of object references. |
 | **See Also** | **INTL::ObjArray()** |
 
 **Example**
