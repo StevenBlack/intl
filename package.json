@@ -1,0 +1,33 @@
+{
+  "name": "Steven Black's INTL Toolkit for Visual FoxPro",
+  "description": "Localization toolkit for Visual FoxPro",
+  "version": "1.0.0",
+  "keywords": [
+    "Visual FoxPro",
+    "localization",
+    "international",
+    "multilingual"
+  ],
+  "maintainers": [
+    {
+      "name": "Steven Black",
+      "email": "intl@sbc.io",
+      "web": "http://sbc.io"
+    }
+  ],
+  "bugs": {
+    "web": "https://github.com/StevenBlack/intl/issues"
+  },
+  "repositories": [
+    {
+      "type": "git",
+      "url": "https://github.com/StevenBlack/intl"
+    }
+  ],
+  "licenses": [
+    {
+      "name": "MIT",
+      "url": "https://github.com/StevenBlack/intl/blob/master/license.txt"
+    }
+  ]
+}
