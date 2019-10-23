@@ -1138,7 +1138,7 @@ parameters are used to initialize the state of INTL.
 
 Loads an array with the strategy objects as implied by
 INTL::GetConfig(). Unless you create your own custom mechanisms, you
-wouldn't normally call the LoadStrategies()method since INTL classes
+wouldn't normally call the `LoadStrategies()` method since INTL classes
 invoke it when necessary.
 
 |  |  |
@@ -1146,7 +1146,7 @@ invoke it when necessary.
 | **Syntax** | `oX = CREATE( "INTL" )`<br>`oX.LoadStrategies()` |
 | **Return** | True if successful, false otherwise. |
 | **Arguments** | None. |
-| **See Also** | **`cINTLMemento::SetHook`** |
+| **See Also** | **[`cINTLMemento::SetHook`](#cintlmementosethook)** |
 
 **Example**
 ```
@@ -1895,7 +1895,7 @@ your interface.
 | **Return** | `.T.` if successful, `.F.` otherwise. |
 | **Arguments** | `nExpression`: a numeric configuration integer. |
 | **Remarks** | Invoking `SetConfig()` automatically triggers a call to `LoadStrategies()` to refresh the object's loaded strategies. |
-| **See Also** | [`cINTLMemento::GetConfig()`](#cintlmementogetconfig) |
+| **See Also** | [`cINTLMemento::GetConfig()`](#cintlmementogetconfig), [`cINTLAbstract::LoadStrategies()`](#cintlabstractloadstrategies) |
 
 **Example**
 ```
@@ -1926,7 +1926,7 @@ Sets the INTL object into Explicit mode.
 | --- | --- |
 | **Syntax** | `oINTL.SetExplicit( lSetting )` |
 | **Return** | `.T.` if successful, `.F.` otherwise. |
-| **Arguments** | lSetting: logical true to turn on Explicit mode, false to turn it off. |
+| **Arguments** | `lSetting`: `.T.` to turn on Explicit mode, `.F.` to turn it off. |
 | **See Also** | [`cINTLMemento::GetExplicit()`](#cintlmementogetexplicit) |
 
 **Example**
@@ -3738,7 +3738,7 @@ TYPE( "this.oHook.INTL_Abstract_ID" )&lt;&gt; "U"
 *====================================
 * Set the Explicit mode.
 *
-FUNCTION SetExplicit(   tlSetting )
+FUNCTION SetExplicit( tlSetting )
 *-- Broadcast first to the hooks
 IF INTL_HOOK_TEST
    this.oHook.SetExplicit( @tlSetting )
@@ -7600,17 +7600,14 @@ new features; **Alan Schwartz, Chick Bornheim, Andy Neil, Dale
 Kiefling** and all the other excellent people in Northern California
 including **Les Pinter** and **John Thornton.**
 
-Finally, to **Larry MacDonald** and **Hélène Michaud**
-(North Sails), **Jim Mayer**
-(UNHCR, Geneva), **Rainer Becker**
-(ISYS GMBH, Frankfurt Germany) and
-**Chuck Melton** (Melton Technologies,
-Winston-Salem NC, USA), **Brian Thomas**
-(The International Red Cross, Geneva),
-**Alan Griver** (Flash Creative
-Management), **Daniel Gramunt**
-(Nokia, Lausanne), **Scott Plantz**
-(emedicine.com) and many others, all of
+Finally, to **Larry MacDonald** and **Hélène Michaud** (North Sails),
+**Jim Mayer** (UNHCR, Geneva),
+**Rainer Becker** (ISYS GMBH, Frankfurt Germany),
+**Chuck Melton** (Melton Technologies, Winston-Salem NC, USA),
+**Brian Thomas** (The International Red Cross, Geneva),
+**Alan Griver** (Flash Creative Management),
+**Daniel Gramunt** (Nokia, Lausanne),
+**Scott Plantz** (emedicine.com) and many others, all of
 whom have, over the years, provided me with interesting and rewarding
 international opportunities.
 
@@ -7637,5 +7634,4 @@ GENMENUX.ZIP are provided “as is” without warranty of any kind. In no
 event shall its authors, contributors, or distributors be liable for any
 damages.
 
-Comments/Suggestions/Problems/Questions: Please ask: Andrew Ross
-MacNeill andrew@aksel.co
+Comments/Suggestions/Problems/Questions: Please ask: Andrew Ross MacNeill andrew@aksel.co
