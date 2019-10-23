@@ -3376,9 +3376,9 @@ pointer, and welcoming visitor classes that do most of the specialized
 You can use this iterator class for a variety of uses unrelated to INTL.
 Create your own visitors to manage your VFP source— it's easy!
 
-### Overview of the INTLIterator Class
+### Overview of the INTLIterator Classes
 
-The figure below shows a diagram of the cINTLIterator class.
+The figure below shows a diagram of the cINTLIterator classes.
 
 ![](./media/image5.png)
 
@@ -4654,7 +4654,7 @@ localization.
 
 > ![](./media/image31.png)
 
-The GETFONT() dialog.
+The `GETFONT()` dialog.
 
 ----
 
@@ -4680,7 +4680,7 @@ system and the display language varies with its localization.
 
 > ![](./media/image32.png)
 
-The GETPRINTER() dialog.
+The `GETPRINTER()` dialog.
 
 ----
 
@@ -4835,7 +4835,7 @@ interface strings on this dialog you can’t localize.
 
 > ![](./media/image33.png)
 
-The LOCFILE() dialog.
+The `LOCFILE()` dialog.
 
 ----
 
@@ -5063,13 +5063,13 @@ creates this dialog. We basically can’t localize this.
 
 ![](./media/image35.png)
 
-The PUTFILE() dialog.
+The `PUTFILE()` dialog.
 
 ----
 
 ### `RATC(cSearchExpression, cExpressionSearched [, nOccurrence])`
 
-`RATC()`, which is similar to RAT(), returns the numeric position of the
+`RATC()`, which is similar to `RAT()`, returns the numeric position of the
 last occurrence of a character expression or memo field within another
 character expression or memo field. The character expressions or memo
 fields can contain any combination of single-byte and double-byte
