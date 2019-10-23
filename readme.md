@@ -56,13 +56,13 @@ This document serves to describe the following:
   * [Class `cINTLString`](#class-cintlstring)
 - [Localizing VFP Menus](#localizing-vfp-menus)
   * [Using GENMENUX to Invoke INTL](#using-genmenux-to-invoke-intl)
-  * [INTL CONFIG.FPW Menu Statements](#intl-configfpw-menu-statements)
+  * [INTL `config.fpw` Menu Statements](#intl-configfpw-menu-statements)
   * [INTL Menu Memory Variables](#intl-menu-memory-variables)
   * [Two Very Useful GENMENUX Comment Directives](#two-very-useful-genmenux-comment-directives)
 - [Message Services](#message-services)
   * [Introduction](#introduction)
   * [Up And Running](#up-and-running)
-  * [MSGSVC() Dialog Return Values](#msgsvc-dialog-return-values)
+  * [`MsgSvc()` Dialog Return Values](#msgsvc-dialog-return-values)
   * [Fields in MsgSvc.DBF](#fields-in-msgsvcdbf)
   * [`MsgSvc()` Examples](#msgsvc-examples)
   * [Localizing Smart](#localizing-smart)
@@ -105,9 +105,9 @@ Then,
 
 * **Deploy files:** Manually place files relative to your project as described in How to [Correctly Place Your INTL Files](#how-to-correctly-place-your-intl-files).
 
-* **Modify the CONFIG.FPW file:** For menus, add the two lines to the CONFIG.FPW file as explained in [How to Localize Menus](#how-to-localize-menus).
+* **Modify the `config.fpw` file:** For menus, add the two lines to the `config.fpw` file as explained in [How to Localize Menus](#how-to-localize-menus).
 
-* **Seed your Form class definition:** For now, probably forever, invoke INTL in forms with a Form::Init() statement that calls the INTL object. See [How to Get Automatic Form Localization](#how-to-get-automatic-form-localization).
+* **Seed your Form class definition:** For now, probably forever, invoke INTL in forms with a `Form::Init()` statement that calls the INTL object. See [How to Get Automatic Form Localization](#how-to-get-automatic-form-localization).
 
 * If you need localization, **instantiate an INTL object:** Now when localization is required, create and configure an INTL object as described in [How to Instantiate an INTL Object](#how-to-instantiate-an-intl-object).
 
@@ -182,9 +182,9 @@ ENDIF
 
 ## How to Localize Menus
 
-Just like in prior versions of INTL, a GENMENUX driver is used to localize menus. To activate GENMENUX and its INTL.PRG driver, put the following lines in your CONFIG.FPW:
+Just like in prior versions of INTL, a GENMENUX driver is used to localize menus. To activate GENMENUX and its INTL.PRG driver, put the following lines in your `config.fpw`:
 
-Add these lines to CONFIG.FPW.
+Add these lines to `config.fpw`.
 
 ```
 *-- Configuring for INTL menus.
@@ -450,7 +450,7 @@ Strings can be localized by providing translations in `strings.dbf`.
 | `Yes` | `Oui` |
 | `No` | `Non` |
 
-**Configure the String Strategy with its SetConfig() method.**
+**Configure the String Strategy with its `SetConfig()` method.**
 
 The INTL String strategy, like all strategies, is bitwise-configured. You can control the string strategy object as follows:
 
@@ -609,7 +609,7 @@ for example:
 | `((Picture))Doctor.BMP` | `((Picture))Doktor.BMP` |
 | `((Picture))Friend.BMP` | `((Picture))Comrade.BMP` |
 
-**Configure the Picture Strategy with its SetConfig() method.**
+**Configure the Picture Strategy with its `SetConfig()` method.**
 
 The INTL picture strategy, like all strategies, is bitwise-configured. You can control the picture strategy object as follows:
 
@@ -723,7 +723,7 @@ Use `oINTL.SetConfig()` or `oINTL.SetStrategy()` to load the Currency strategy.
 ```
 OINTL = _SCREEN.oINTL
 oINTL.SetStratrgy( "RightToLeft", "cINTLRightToLeft" )
-An alternate (and more cryptic ) way is to use INTL's SetConfig() metto make INTL invoke the Font strategy of a given class, as follows:
+An alternate (and more cryptic ) way is to use INTL's `SetConfig()` method make INTL invoke the Font strategy of a given class, as follows:
 OINTL = _SCREEN.oINTL<b
 *-- Set bit 2^5 "ON"
 oINTL.SetConfig( BITSET( oINTL.GetConfig(), 5 ))
@@ -741,7 +741,7 @@ The INTL toolkit right-to-left strategy is a little different from other strateg
 * If you develop in a right-to-left writing system, you can use a `cINTLRightToLeft` strategy to write from left-to-right.
 
 
-Let's configure INTL for a right-to-left language. The cleanest way to do this is with a subclass of the `INTL::SetLanguage()` method. Alternately, you could also do it with the SetLocale() method. Either way, the implementation is the same.
+Let's configure INTL for a right-to-left language. The cleanest way to do this is with a subclass of the `INTL::SetLanguage()` method. Alternately, you could also do it with the `SetLocale()` method. Either way, the implementation is the same.
 
 In this example, we use `SetLanguage()` to configure for the RightToLeft transformation.
 
@@ -818,7 +818,7 @@ INTL for this particular object.
 ## How to Substitute Your Own Strategies
 
 If you wish to substitute your own strategies in subsequent strategy
-instantiations, use the SetStrategyClass() method to assign a new
+instantiations, use the `SetStrategyClass()` method to assign a new
 strategy class to an existing strategy alias.
 
 ```
@@ -842,8 +842,8 @@ before the .APP or .EXE is created.
 
 Localizing reports is something you really only need to do once. The
 transformation process turns your report labels into report expressions
-containing a call to INTL's I() function. For example, the report label
-"Name:" becomes expression I("Name:").
+containing a call to INTL's `I()` function. For example, the report label
+`"Name:"` becomes expression `I("Name:")`.
 
 See [Transforming Reports Based on a .PJX](#transforming-reports-based-on-a-pjx).
 
@@ -860,7 +860,7 @@ will be helpful to know the following things:
 
   - When an INTL object finds a form containing a member named oINTL, it
     will adopt the member's configuration as determined by its
-    GETCONFIG() value.
+    `GETCONFIG()` value.
 
 If you need alternate behavior — for example if you need the second INTL
 object to completely override a memento from the first — then first
@@ -1046,7 +1046,7 @@ Returns the alias of the resource table associated with the default localization
 | **Syntax** | `oINTL.GetAlias()` |
 | **Return** | The character value of the string strategy table alias. |
 | **Arguments** | None. |
-| **Remarks** | The `GetAlias()` method is a *hookable* method, meaning that if an object of class `INTL` has an attached hook object, then GetAlias() defers to the method of the hook object. Since by default objects of class `INTL` are hooked with an object of the `cINTLStringStrategy` class, invoking `oINTL.GetAlias()` is the equivalent of invoking `oINTL.oStringStrategy.getAlias()`. |
+| **Remarks** | The `GetAlias()` method is a *hookable* method, meaning that if an object of class `INTL` has an attached hook object, then `GetAlias()` defers to the method of the hook object. Since by default objects of class `INTL` are hooked with an object of the `cINTLStringStrategy` class, invoking `oINTL.GetAlias()` is the equivalent of invoking `oINTL.oStringStrategy.getAlias()`. |
 
 **Example**
 ```
@@ -1067,7 +1067,7 @@ strategy.
 | **Syntax** | oINTL.GetTable()
 | **Return** | The character value of the string strategy table name. |
 | **Arguments** | None. |
-| **Remarks** | The GetTable() method is a *hookable* method, meaning that if an object of class `INTL` has an attached hook object, then GetTable() defers to the method of the hook object. Since by default objects of class `INTL` are hooked with an object of the `cINTLStringStrategy` class, invoking `oINTL.GetTable()` is equivalent to invoking `oINTL.oStringStrategy.GetTable()`. |
+| **Remarks** | The `GetTable()` method is a *hookable* method, meaning that if an object of class `INTL` has an attached hook object, then `GetTable()` defers to the method of the hook object. Since by default objects of class `INTL` are hooked with an object of the `cINTLStringStrategy` class, invoking `oINTL.GetTable()` is equivalent to invoking `oINTL.oStringStrategy.GetTable()`. |
 | **See Also** | [`cINTLStrategy::SetTable()`](#cintlstrategysettable) |
 
 **Example**
@@ -1075,7 +1075,7 @@ strategy.
 _SCREEN.AddObject( "oINTL", "INTL" )
 *-- The following two are equivalent
 _SCREEN.oINTL.oStringStrategy.GetTable()
-_SCREEN.oINTL.GetTable() |
+_SCREEN.oINTL.GetTable()
 ```
 
 ----
@@ -1089,7 +1089,7 @@ Returns the setting for the update mode of the current string strategy.
 | **Return** | `.T.` if update mode is currently "On", false otherwise. |
 | **Arguments** | None. |
 | **See Also** | [`cINTLStrategy::SetUpdateMode`](#cINTLStrategySetUpdateMode) |
-| **Remarks** | If GetUpdateMode() is logical true then, for some strategies, this cause INTL resource files to be self-maintained. For example, the native string strategy will add new strings to `strings.dbf` as they are encountered if the string strategy's update mode is set to true.<br><br>The `GetUpdateMode()` method is a *hookable* method, meaning that if an object of class `INTL` has an attached hook object, then GetUpdateMode() defers to the method of the hook object. Since by default objects of class `INTL` are hooked with an object of the `cINTLStringStrategy` class, invoking `oINTL.GetUpdateMode()` is equivalent to invoking `oINTL.oStringStrategy.GetUpdateMode()`. |
+| **Remarks** | If `GetUpdateMode()` is logical true then, for some strategies, this cause INTL resource files to be self-maintained. For example, the native string strategy will add new strings to `strings.dbf` as they are encountered if the string strategy's update mode is set to true.<br><br>The `GetUpdateMode()` method is a *hookable* method, meaning that if an object of class `INTL` has an attached hook object, then `GetUpdateMode()` defers to the method of the hook object. Since by default objects of class `INTL` are hooked with an object of the `cINTLStringStrategy` class, invoking `oINTL.GetUpdateMode()` is equivalent to invoking `oINTL.oStringStrategy.GetUpdateMode()`. |
 
 **Example**
 ```
@@ -1264,7 +1264,7 @@ Object reference to the logical parents of INTL objects.
 |  |  |
 | --- | --- |
 | **Default** | `.NULL.` |
-| **Remarks** | This property is useful for callbacks and for error handling. The logical parent property is automatically set by the SetHook() method. |
+| **Remarks** | This property is useful for callbacks and for error handling. The logical parent property is automatically set by the `SetHook()` method. |
 | **See Also** | **`cINTLAbstract::GetLogicalParent()`**<br>`cINTLAbstract::SetLogicalParent()`<br>`cINTLAbstract::GetHook()` |
 
 ----
@@ -1404,7 +1404,7 @@ This access method sets the pointer to the object’s logical parent.
 | **Return** | `.T.` if successful, `.F.` otherwise. |
 | **Arguments** | oObject: an object reference. |
 | **Example** | `this.SetLogicalParent( _SCREEN.oINTL )` |
-| **Remarks** | The logical parent reference is automatically assigned by the SetHook() method. INTL classes do not use the logical parent back-pointer reference. Included here for compatibility with some object-oriented error handlers my customers use. |
+| **Remarks** | The logical parent reference is automatically assigned by the `SetHook()` method. INTL classes do not use the logical parent back-pointer reference. Included here for compatibility with some object-oriented error handlers my customers use. |
 | **See Also** | [`cINTLAbstract::GetLogicalParent()`](#cintlabstractgetlogicalparent) |
 
 ----
@@ -1932,7 +1932,7 @@ Sets the INTL object into Explicit mode.
 **Example**
 ```
 _SCREEN.AddObject( "oINTL", "INTL" )
-_SCREEN.oINTL.SetExplicit() |
+_SCREEN.oINTL.SetExplicit()
 ```
 
 ----
@@ -2159,7 +2159,7 @@ Returns the alias of the resource table used by this strategy.
 | **Syntax** | `_SCREEN.oINTL.GetAlias()` |
 | **Return** | The name of the alias for the strategy’s resource table (if there is one) or `.NULL.` (if there isn’t). |
 | **Arguments** | None. |
-| **Remarks** | Some strategies may not use resource tables. Note that ::GetAlias() returns the value of the strategy’s cAlias property, and does not indicate if the resource table actually exists. |
+| **Remarks** | Some strategies may not use resource tables. Note that `::GetAlias()` returns the value of the strategy’s cAlias property, and does not indicate if the resource table actually exists. |
 | **See Also** | [`cINTLStrategy::GetTable()`](#cintlstrategygettable) |
 
 **Example**
@@ -2179,10 +2179,10 @@ Returns the name of the strategy object’s resource table.
 
 |  |  |
 | --- | --- |
-| **Syntax** | _SCREEN.oINTL.GetTable() |
+| **Syntax** | `_SCREEN.oINTL.GetTable()` |
 | **Return** | The name of the strategy’s resource table (if there is one) or `.NULL.` (if there isn’t.) |
 | **Arguments** | None. |
-| **Remarks** | Some strategies may not use resource tables. Note that ::GetTable() returns the value of the strategy’s cTable property, and does not indicate if the resource table actually exists. |
+| **Remarks** | Some strategies may not use resource tables. Note that `::GetTable()` returns the value of the strategy’s `cTable` property, and does not indicate if the resource table actually exists. |
 | **See Also** | [`cINTLStrategy::GetAlias()`](#cintlstrategygetalias) |
 
 **Example**
@@ -2221,7 +2221,7 @@ Handles localization tasks of this particular strategy.
 |  |  |
 | --- | --- |
 | **Syntax** | `cINTLStrategy.I( expr1, expr2 )` |
-| **Return** | Typically the localization of expr1 according to `cINTLMemento::GetLanguage() or `cINTLMemento::SetLocale()`. |`
+| **Return** | Typically the localization of expr1 according to `cINTLMemento::GetLanguage()` or `cINTLMemento::SetLocale()`.
 | **Arguments** | Varies according to what's required by the strategy subclass instance. Typically `expr1` is a string, a number, or a file name to localize. `Expr2` is usually an additional qualifier. For example, in a custom currency strategy, `expr2` might be used to pass a valuation date. |
 
 ----
@@ -2364,7 +2364,7 @@ Stores the default configuration integer for this strategy.
 
 | **Default** | 7 |
 | ----- | ----- |
-| **Remarks** | This integer is used in the SetDefaults() method, which is used to restore a strategy to its factory defaults. |
+| **Remarks** | This integer is used in the `SetDefaults()` method, which is used to restore a strategy to its factory defaults. |
 | **See Also** | [`cINTLMemento::SetDefaults`](#cintlmementosetdefaults) |
 
 ### Class `cINTLString` Exposed Methods
@@ -2379,7 +2379,7 @@ string strategy object.
 | --- | --- |
 | **Return** | The number of rows in the array, 0 if nothing found. |
 | **Arguments** | An array, passed by reference, to store the language collection. |
-| **Remarks** | The array must be passed by reference. Like all other FoxPro array functions, the array will be automatically redimensioned by this function. ALang() returns 0 if the strings table is missing. ALang() does not leave the strings table open if it was previously unopened. |
+| **Remarks** | The array must be passed by reference. Like all other FoxPro array functions, the array will be automatically redimensioned by this function. `Alang()` returns 0 if the strings table is missing. `Alang()` does not leave the strings table open if it was previously unopened. |
 | **See Also** | [`cINTLString::IsValidLanguage()`](#cintlstringisvalidlanguage) |
 
 **Example**
@@ -2530,7 +2530,7 @@ This method updates the resource file with the passed argument.
 | **Syntax** | `oINTL.UpdateResource( xArgument )` |
 | **Return** | `.T.` always. |
 | **Arguments** | xArgument: the value to insert into the resource table. |
-| **Remarks** | Note that the UpdateResource() method unconditionally inserts values into the resource table without regard for duplication or type checking. Some strategies may not support resource updating. |
+| **Remarks** | Note that the `UpdateResource()` method unconditionally inserts values into the resource table without regard for duplication or type checking. Some strategies may not support resource updating. |
 | **See Also** | [`cINTLStrategy::GetUpdateMode()`](#cintlstrategygetupdatemode) |
 
 # Localizing VFP Menus
@@ -2538,15 +2538,15 @@ This method updates the resource file with the passed argument.
 ## Using GENMENUX to Invoke INTL
 
 GENMENUX is a menu generator *shell*. It creates a custom environment
-from which it calls the regular FoxPro menu generator GENMENU.PRG (or a
+from which it calls the regular FoxPro menu generator `genmenu.prg` (or a
 substitute generator of your choice). GENMENUX is hassle-free and, once
 installed, you might never think about it again. The following diagrams
-illustrate the relationship between GENMENU.PRG and GENMENUX.
+illustrate the relationship between `genmenu.prg` and GENMENUX.
 
 The standard FoxPro menu generation process. Metadata created by the
-menu builder is processed by GENMENU.PRG to create a FoxPro source code
+menu builder is processed by `genmenu.prg` to create a FoxPro source code
 file.  The GENMENUX process. Temporary files, created before and after
-the standard FoxPro GENMENU.PRG process, are created and processed by
+the standard FoxPro `genmenu.prg` process, are created and processed by
 GENMENUX. GENMENUX allows optional user-defined drivers like INTL.
 
 In general terms, GENMENUX works as follows:
@@ -2558,7 +2558,7 @@ In general terms, GENMENUX works as follows:
     drivers can add, edit or delete records in the temporary file.
 
 3.  The modified temporary file is processed by the standard FoxPro
-    GENMENU.PRG (or any routine you
+    `genmenu.prg` (or any routine you
     specify) to generate a temporary source file (MPR), whose output is
     stored in a temporary memo field.
 
@@ -2586,7 +2586,7 @@ Here, step by step, is what you need to make your VFP menus
 benefit from INTL at run-time.
 
   - Before proceeding, do a quick query of FoxPro’s `SYS(2019)` to make
-    sure you have the correct CONFIG.FP file. In CONFIG.FP, add the
+    sure you have the correct `config.fpw` file. In `config.fpw`, add the
     following lines:
 
 ```
@@ -2601,27 +2601,27 @@ _MNXDRV2 = INTL
 _GENMENU ="[PATH]\GENMENUX.PRG"
 ```
 
-  - Add I.PRG and MSGSVC.PRG to your project.
+  - Add I.PRG and `msgsvc.prg` to your project.
 
-  - Put STRINGS.DBF/FPT/CDX and
-    MSGSVC.DBF/FPT/CDX in your project root directory. Data files are
+  - Put `strings.dbf/fpt/cdx` and
+    `msgsvc.dbf/fpt/cdx` in your project root directory. Data files are
     opened automatically by INTL functions if they aren’t already
     opened. You may keep these tables where you wish, but you must
-    instruct your application where to find them, typically with SET
-    PATH. Keep these files in the root for now.
+    instruct your application where to find them, typically with `SET
+    PATH`. Keep these files in the root for now.
 
   - Rebuild all.
 
   - To set to another run-time language, add a new language field in the
-    `strings.dbf` and MSGSVC.DBF tables, create a memory variable called
+    `strings.dbf` and `msgsvc.cbf` tables, create a memory variable called
     `_INTLLANG`, and make it equal to the language you wish to run. For
     example, to create a Spanish version:
 
 <!-- end list -->
 
-1.  Add a cSPANISH field to `strings.dbf`
+1.  Add a `cSPANISH` field to `strings.dbf`
 
-2.  Add a cSPANISH memo field to MSGSVC.DBF
+2.  Add a `cSPANISH` memo field to `msgsvc.dbf`.
 
 3.  `_SCREEN.oINTL.SetLanguage( “Spanish” )`
 
@@ -2636,9 +2636,9 @@ phrases.
 The final step is to translate the literals in the STRINGS.cOriginal
 field into Spanish.
 
-## INTL CONFIG.FPW Menu Statements
+## INTL `config.fpw` Menu Statements
 
-The following CONFIG.FP statements
+The following `config.fpw` statements
 activate INTL behavior and control INTL processes.
 
 #### _GENMENU
@@ -2653,7 +2653,7 @@ _GENMENU =[expC PATH]\GENMENUX.PRG.
 #### `_INTLEXPLICIT`
 
 Used to put INTL in "explicit" mode, whereby INTL will only localize
-objects containing *:INTL EXPLICIT in the comment snippet. Useful for
+objects containing `*:INTL EXPLICIT` in the comment snippet. Useful for
 creating subtle same-language variants. Default is OFF.
 
 Example: `_INTLEXPLICIT = ON`
@@ -2697,12 +2697,12 @@ driver.
 
 Example: `_MNXDRV2 = INTL`
 
-This is overridden by the *:MNXDRV2 menu setup snippet directive.
+This is overridden by the `*:MNXDRV2` menu setup snippet directive.
 
 ## INTL Menu Memory Variables
 
 The following memory variables will override the commands set in
-CONFIG.FP.
+`config.fpw`.
 
 #### `m._GENMENU`
 
@@ -2712,7 +2712,7 @@ to use.
 #### `m._INTLEXPLICIT = "ON" |"OFF"`
 
 Used to put INTL in "explicit" mode, whereby INTL will only localize
-objects containing *:INTL EXPLICIT in the comment snippet. Useful for
+objects containing `*:INTL EXPLICIT` in the comment snippet. Useful for
 creating subtle same-language variants. Default is "OFF".
 
 Example: m._INTLEXPLICIT ="ON"
@@ -2757,11 +2757,11 @@ Because of their nature, dialog messages are different from other simple interfa
 
 Furthermore, dialogs are often used to get responses from users, and that triggers program branching. It’s important to get dialogs right because they are so visible, both to the user and to the developer mucking around in source code.
 
-**INTL includes MSGSVC.PRG and MSGSVC.DBF that provide message services.**
+**INTL includes `msgsvc.prg` and `msgsvc.cbf` that provide message services.**
 
 For maximum flexibility, I recommend that strings and messages be handled by separate mechanism. Thus INTL for Visual FoxPro comes with two related objects. The INTL object, stored at `_SCREEN.oINTL`, handles strings, fonts, currencies, and so on. The message services object called `oMsgSvc`, stored at `_SCREEN.oMsgSvc`, handles dialog services.
 
-The source for message services is found in MSGSVC.PRG. The message services are personified by the `MsgSvc()` function, which uses the MSGSVC.DBF table to store message resources.
+The source for message services is found in MSGSVC.PRG. The message services are personified by the `MsgSvc()` function, which uses the `msgsvc.cbf` table to store message resources.
 **`MsgSvc()` is a flexible run-time function for messaging.** `MsgSvc()` provides run-time multilingual and cross platform messaging in VFP. It serves to launch many sorts of messages, dialogs, and text services.
 
 **`MsgSvc()` is table-based, and encapsulates all the multilingual behavior of messages.** `MsgSvc()` is table-based and works only as a run-time mechanism. Like I(), it will append new records in the message phrase book (called `MSGSVC.DBF`) if required. It can return the user's choice as text in the *original* language of the developer, or return as a number, or return a logical value. You choose.
@@ -2770,24 +2770,21 @@ The source for message services is found in MSGSVC.PRG. The message services are
 
 ## Up And Running
 
-For a demonstration of a variety of messages created with MSGSVC(),
-please examine and execute MSGDEMO.PRG from the Toolkit diskette.
-
 To use `MsgSvc()`, you need:
 
-  - MSGSVC.PRG bundled with your application ;
+  - `msgsvc.prg` bundled with your application ;
 
-  - The MSGSVC.DBF table either opened by your application or placed so
+  - The `msgsvc.cbf` table either opened by your application or placed so
     that `MsgSvc()` can find it (in the application’s root or in the VFP
     path).
 
 Call `MsgSvc(expC)` whenever you need to display a simple dialog, WAIT
 WINDOW, text block, or thermometer bar.
 
-## MSGSVC() Dialog Return Values
+## `MsgSvc()` Dialog Return Values
 
-MsgSvc() can return a variety of data types, depending on type of dialog
-and the value in the cRetType field in the MSGSVC.DBF table. Here is a
+`MsgSvc()` can return a variety of data types, depending on type of dialog
+and the value in the cRetType field in the `msgsvc.cbf` table. Here is a
 list of the possible data types returned by `MsgSvc()` dialogs:
 
 | cRetType | `MsgSvc()` Returns
@@ -2809,11 +2806,11 @@ Compatibility with MESSAGEBOX(), namely
 
 | **N** | The number of the button selected, 1 for the first button, 2 for the second, and so on. Returns 0 if no button was selected; for example, if the dialog times out, or if releasing the dialog is the result of the Esc key.
 
-**MSGSVC() return data types.**
+**`MsgSvc()` return data types.**
 
 ## Fields in MsgSvc.DBF
 
-Here is a description of the fields in the MSGSVC.DBF table and how they
+Here is a description of the fields in the `msgsvc.cbf` table and how they
 affect the generation and handling of user interface messages.
 
 #### Field `MsgSvc.cKey`
@@ -2835,7 +2832,7 @@ calling argument for a message.
 
 #### Field `MsgSvc.cFunction`
 
-The cFunction field controls the type of message generated by MSGSVC().
+The cFunction field controls the type of message generated by MsgSvc().
 
 | cFunction | Result |
 | ----- | ----- |
@@ -2865,10 +2862,10 @@ MsgSvc( “Spock!” )
 | Field | Value |
 | ----- | ----- |
 | `CKEY` | `“Spock!”` |
-| `CFUNCTION` | "\\<Phasers;\\<Lasers;\\<Run Away" |
-| `CTITLE` | "MSGSVC() Custom Button Example" |
-| `CORIGINAL` | "What do you want to do now, Mr Spock?" |
-| `CGUIVISUAL` | "Info.BMP" |
+| `CFUNCTION` | `"\\<Phasers;\\<Lasers;\\<Run Away"` |
+| `CTITLE` | `"MsgSvc() Custom Button Example"` |
+| `CORIGINAL` | `"What do you want to do now, Mr Spock?"` |
+| `CGUIVISUAL` | `"Info.BMP"` |
 
 All the elements of the dialog are localized by the INTL Toolkit. So the
 title and push button text all get referenced to foreign-language
@@ -2975,7 +2972,7 @@ The syntax for these fields is as follows:
 Note the tilde "\~" delimiting the text and button font specifications.
 The fonts specifications themselves are comma delimited. For example:
 
-It is recommended that True Type fonts only be used with MSGSVC() dialog
+It is recommended that True Type fonts only be used with `MsgSvc()` dialog
 boxes.
 
 #### Field `MsgSvc.cFont, nFontSize, cFontStyle`
@@ -2987,11 +2984,11 @@ fields as appropriate.
 
 ## `MsgSvc()` Examples
 
-Here are some common uses of the MSGSVC() function.
+Here are some common uses of the `MsgSvc()` function.
 
 ### `WAIT WINDOW` messages
 
-If the cFunction field in the MSGSVC.DBF record contains the string WAIT
+If the cFunction field in the `msgsvc.cbf` record contains the string WAIT
 or WAIT NOWAIT, then a WAIT WINDOW or a WAIT WINDOW NOWAIT is created.
 
 ### A Simple Dialog
@@ -3128,8 +3125,8 @@ MSGSVC( 30, “NoButton NoText” )
 ### Text Blocks
 
 Sometimes you just need to translate blocks of text -- whole paragraphs
-for example. MSGSVC() handles this with the TEXT keyword in the
-cFunction field. MSGSVC() will behave like I() and return the message
+for example. `MsgSvc()` handles this with the TEXT keyword in the
+cFunction field. `MsgSvc()` will behave like `I()` and return the message
 (or its translation) as a character string.
 
 ### Tip of the Day
@@ -3142,7 +3139,7 @@ in the Tip of the Day dialog. Invoke Tip of the Day as follows:
 MSGSVC( "Tip" )
 ```
 
-Tips are kept in MSGSVC.DBF with a cKey value of “Tip”. When the Tip of
+Tips are kept in `msgsvc.cbf` with a cKey value of “Tip”. When the Tip of
 the Day dialog is invoked, a random tip is selected, and thereafter the
 user can move sequentially through tips, invoke help, etc.
 
@@ -3390,15 +3387,15 @@ The figure below shows a diagram of the cINTLIterator class.
 ----
 #### `INTLIterator::Accept()`
 
-Accepts a visitor object and launches the visitor's VISIT() method using
+Accepts a visitor object and launches the visitor's `Visit()` method using
 THIS as an argument, which gives the visitor a handle to access this
 iterator's services.
 
 |  |  |
 | --- | --- |
 | **Syntax** | `oIterator.Accept( oVisitor )` |
-| **Returns** | Whatever the visitor chooses to return from its VISIT() method. |
-| Arguments | `oVisitor`. an object possessing a Visit() method which will initiate the specialized task. |
+| **Returns** | Whatever the visitor chooses to return from its `Visit()` method. |
+| Arguments | `oVisitor`. an object possessing a `Visit()` method which will initiate the specialized task. |
 
 **Example**
 
@@ -3455,8 +3452,8 @@ Returns the alias of the structure being iterated.
 #### `INTLIterator::GetCurrent()`
 
 Returns the current item as defined by each iterator. Unless otherwise
-specified, this function returns `.NULL.` For the cProjectIterator class,
-the GetCurrent() method returns the full path and file name of the
+specified, this function returns `.NULL.` For the `cProjectIterator` class,
+the `GetCurrent()` method returns the full path and file name of the
 current project record.
 
 |  |  |
@@ -3846,7 +3843,7 @@ themes found herein:
 
 **The language of native VFP services will vary with the localized language of VFP.**
 
-* ***Some services come from VFP***, so their display language varies with the localized version of VFP. For example, dialogs like GETFILE() and LOCFILE() are VFP dialogs and, aside from parameters you can pass, these dialogs will appear in English on English versions of VFP.
+* ***Some services come from VFP***, so their display language varies with the localized version of VFP. For example, dialogs like `GETFILE()` and `LOCFILE()` are VFP dialogs and, aside from parameters you can pass, these dialogs will appear in English on English versions of VFP.
 
 **The language of some things in VFP cannot be controlled.**
 
@@ -3876,19 +3873,19 @@ error.
 
 | **VFP errors vary with the localization language of VFP.**
 
-When a VFP error occurs, ArrayName[2] contains the text of the error message, which is the same as the value returned by MESSAGE().
+When a VFP error occurs, `ArrayName[2]` contains the text of the error message, which is the same as the value returned by `MESSAGE()`.
 
 **Internationalization Gotcha:** this error message varies according to the localized version of VFP.
 
-When ole errors numbered 1427 or 1429 occur, then ArrayName[2] contains the text of the VFP error message ("OLE Idispatch exception code"), and ArrayName[3] contains the text of the ole error message.
+When ole errors numbered 1427 or 1429 occur, then `ArrayName[2]` contains the text of the VFP error message ("OLE Idispatch exception code"), and `ArrayName[3]` contains the text of the ole error message.
 
 **Internationalization Gotcha:** the VFP error message varies with the localization of VFP, and the ole error message usually varies with the localization of Windows.
 
-Similarly, when an odbc error numbered 1526 occurs , then ArrayName[2] contains the text of the VFP error message ("Connectivity error:"), and ArrayName[3] contains the text of the odbc error message.
+Similarly, when an odbc error numbered 1526 occurs , then `ArrayName[2]` contains the text of the VFP error message ("Connectivity error:"), and `ArrayName[3]` contains the text of the odbc error message.
 
 **Internationalization Gotcha:** both the VFP and ODBC error messages vary with the localization of VFP.
 
-Obviously, you'll want to avoid passing AERROR() messages to the user unless you are sure that their workstation has the correct localized versions of Windows and VFP.
+Obviously, you'll want to avoid passing `AERROR()` messages to the user unless you are sure that their workstation has the correct localized versions of Windows and VFP.
 
 ----
 
@@ -3917,11 +3914,11 @@ with `DBSETPROP( cTableAlias,"Table","RuleText", cRuleText )`.
 
 ### `ANSITOEM()`
 
-**`ANSITOOEM()` is for backward compatibility and for conversions with DOS. Use CPCONVERT() instead.**
+**`ANSITOOEM()` is for backward compatibility and for conversions with DOS. Use `CPCONVERT()` instead.**
 
 `ANSITOOEM()` converts each character of a character expression to the corresponding character in the ms-dos (oem) character set. `ANSITOOEM()` is used to move data from VFP and FoxPro for Macintosh to FoxPro for ms-dos.
 
-**Internationalization Tip** this function is included for backward compatibility. Use CPCONVERT() instead. |
+**Internationalization Tip** this function is included for backward compatibility. Use `CPCONVERT()` instead. |
 
 ----
 
@@ -4148,11 +4145,11 @@ stored procedures to the code page you specify.
 
 ### `CPCURRENT([1 | 2])`
 
-**Use CPCURRENT() to reckon system code page information.**
+**Use `CPCURRENT()` to reckon system code page information.**
 
-CPCURRENT() returns the code page setting (if any ) in your VFP configuration file, or returns the current operating system code page.
+`CPCURRENT()` returns the code page setting (if any ) in your VFP configuration file, or returns the current operating system code page.
 
-**Internationalization Gotcha:** CPCURRENT() returns one of the following:
+**Internationalization Gotcha:** `CPCURRENT()` returns one of the following:
 
 - In VFP, the current operating system code page if the CODEPAGE
   configuration item isn't included in your configuration file. In
@@ -4160,7 +4157,7 @@ CPCURRENT() returns the code page setting (if any ) in your VFP configuration fi
   configuration item isn't included in your configuration file.
 
 - The code page number specified in the CODEPAGE = configuration item
-  in CONFIG.FPW.
+  in `config.fpw`.
 
 - The current operating system code page if you have included the
   following line in your configuration file: `CODEPAGE = AUTO`
@@ -4205,11 +4202,11 @@ resulting from prior automatic code page translation. |
 
 ### `CREATE CURSOR ... NOCPTRANS`
 
-CREATE CURSOR - SQL creates a temporary table. The NOCPTRANS argument,
+`CREATE CURSOR` - SQL creates a temporary table. The `NOCPTRANS` argument,
 which applies when specifying field-level attributes, prevents
 translation to a different code page for character and memo fields.
 
-**Internationalization Gotcha:** use the NOCPTRANS if conversion to
+**Internationalization Gotcha:** use the `NOCPTRANS` if conversion to
 another code page is anticipated. Note that this is more likely if a
 subset of the temporary table is saved to disk.
 
@@ -5270,7 +5267,7 @@ Options dialog.
 **Internationalization Tip:** multilingual applications need
 multilingual help. Use `SET HELP` TO to point to different help files as
 required. To specify a default startup Help file, use a `HELP =`
-configuration line in CONFIG.FPW.
+configuration line in `config.fpw`.
 
 ----
 
@@ -5353,7 +5350,7 @@ these `SET` commands.
 
 When VFP is started, the VFP system settings are the default
 settings of these `SET` commands. To use the Windows system settings when
-VFP is started, place the following line in your VFP CONFIG.FPW
+VFP is started, place the following line in your VFP `config.fpw`
 configuration file:
 
 ```
@@ -5530,7 +5527,7 @@ Here are the locales in VFP:
 
 ### `SUBSTRC(cExpression, nStartPosition [, nCharactersReturned])`
 
-**SUBSTRC() is like SUBSTR(), but handles double-byte characters too.**
+**`SUBSTRC()` is like `SUBSTR()`, but handles double-byte characters too.**
 
 `SUBSTRC()` returns a character string from the given character expression or memo field.
 The character expression or memo field can contain any combination of single-byte and
@@ -5712,7 +5709,7 @@ previous section yields something as follows:**
 
 | | Locale Block | Application Block |
 | ----- | ----- | ----- |
-| **Program-Time** | Cultural content added at program time by programmers who are presumably also linguists. | BIG. Essentially no Locale block other than maybe CONFIG.FP/w, and setup metadata. One app/exe for **all** locales. |
+| **Program-Time** | Cultural content added at program time by programmers who are presumably also linguists. | BIG. Essentially no Locale block other than maybe CONFIG.FP, and setup metadata. One app/exe for **all** locales. |
 | **Generate-Time** | Cultural content added by automated means when generating source. Swapping from string / object / screen / menu libraries. | One app/exe for **each** locale. |
 | **Link-Time** | Cultural content added by automated means when building the application. Swapping project records from compiled obj libraries. Not inherently easy with native VFP tools. | One app/exe for **each** locale. |
 | **Run-Time** | Cultural content added by automated means (from phrasebook tables) when executing the application. Translation is essentially independent of the development team. | One app/exe for **all** locales, with one locale resource for each locale. app/exe independent of locale block. Swapping from string / graphic resources. |
@@ -6125,7 +6122,7 @@ Similarly, do not assume that plural forms are formed with an “s” suffix
 as in English.
 
 Note the pitfalls of using results returned from VFP functions like
-cdow() and cmonth(). These will return
+`CDOW()` and `CMONTH()`. These will return
 different results with different localizations of VFP.
 
 #### Idioms
@@ -6658,7 +6655,7 @@ functions that provide additional functionality.
 Calls a driver before standard GENMENUX processing begins. At _MNXDRV1,
 the menu MNX table is in the current workarea with the pointer
 positioned at the first record. The driver is *not* called for every
-record in the menu table. Called: Setup snippet, CONFIG.FP.
+record in the menu table. Called: Setup snippet, `config.fpw`.
 
 ----
 #### `*:MNXDRV2 <expC> (GENMENUX Directive)`
@@ -6666,7 +6663,7 @@ record in the menu table. Called: Setup snippet, CONFIG.FP.
 Calls a GENMENUX driver after standard GENMENUX processing has begun.
 This driver can be considered a *line driver* i.e. it can be a one-line
 command. It is processed through each record of the menu file from
-within a SCAN statement. Called: Setup snippet, CONFIG.FP.
+within a SCAN statement. Called: Setup snippet, `config.fpw`.
 
 ----
 #### `*:MNXDRV3 <expC> (GENMENUX Directive)`
@@ -6674,19 +6671,19 @@ within a SCAN statement. Called: Setup snippet, CONFIG.FP.
 Calls a GENMENUX driver after standard GENMENUX processing and menu
 re-ordering has been completed. This driver can be considered a line
 driver— i.e. it can simply be a one-line command. It is processed
-through each record of the menu file from within a SCAN statement. DO
+through each record of the menu file from within a `SCAN` statement. DO
 NOT DELETE ANY RECORDS IN THE MNX file as your menu file will be
 corrupted. Use MNXDRV2 if you want to do that. Called: Setup snippet,
-CONFIG.FP.
+`config.fpw`.
 
 ----
 #### `*:MNXDRV4 <expC> (GENMENUX Directive)`
 
-Calls a driver before the standard GenMenu is called. No SCAN statement
+Calls a driver before the standard GenMenu is called. No `SCAN` statement
 propels this driver. When this driver is called, the menu MNX file is in
 the current workarea with the pointer at the first record. The driver is
 *not* called for every record in the menu table. Called: Setup snippet,
-CONFIG.FP.
+`config.fpw`.
 
 ----
 #### `*:MNXDRV5 <expC> (GENMENUX Directive)`
@@ -6698,14 +6695,14 @@ created here should be placed in the MPR file. The MNXDRV5 driver is
 passed the same two parameters as the regular GenMenu. The MNXDRV5
 directive is identical to the GENMENUX directive and will override the
 setting of the GENMENUX driver, if used. Called: Setup snippet,
-CONFIG.FP.
+`config.fpw`.
 
 ----
 #### `*:MPRDRV1 <expC> (GENMENUX Directive)`
 
 Calls a GENMENUX driver that will update the MPR file within the
 temporary project file. When it starts, the just created MPR file is in
-the memo field named OBJECT. Called: Setup snippet, CONFIG.FP.
+the memo field named OBJECT. Called: Setup snippet, `config.fpw`.
 
 ----
 #### `*:MPRDRV2 <expC> (GENMENUX Directive)`
@@ -6714,7 +6711,7 @@ Calls a GENMENUX driver that will update the MPR file within the
 temporary project file. When it starts, the just created MPR file is in
 the memo field named OBJECT. The MPRDRV2 driver is called as the very
 last item in GENMENUX before the removal of the temporary project files.
-Called: Setup snippet, CONFIG.FP.
+Called: Setup snippet, `config.fpw`.
 
 ----
 #### `*:AFTER <expC> |<expN> (GENMENUX Directive)`
@@ -6728,8 +6725,8 @@ menu pads or numeric expressions for menu bars. See also:
 #### `*:ARRAY <cArray> (GENMENUX Directive)`
 
 Adds a loop for a popup that allows the BARs of the popup to be defined
-based on the array `<cArray>`. If the Array is two dimensions, the ON
-SELECT BAR statement calls the command identified in the second column
+based on the array `<cArray>`. If the Array is two dimensions, the `ON
+SELECT BAR` statement calls the command identified in the second column
 of the array.
 
 Example: `*:ARRAY a_fldNames`
@@ -6748,22 +6745,22 @@ Automatically adds hot keys to menu pads (not bars) that have none
 assigned. This is useful if you sometimes forget to create hot keys for
 your menus. By default, it uses the first letter of the Menu Pad. If it
 is already being used by one of the other menu pads, it will proceed to
-the second letter, and so on. The CONFIG.FP argument can be either ON or
+the second letter, and so on. The `config.fpw` argument can be either ON or
 OFF. When adding it to the Setup snippet, the argument is ignored. It is
-automatically turned on. Called: Setup snippet, CONFIG.FP.
+automatically turned on. Called: Setup snippet, `config.fpw`.
 
 ----
 #### `*:AUTOPOS (GENMENUX Directive)`
 
 Allows the user to click on the line where the menu is to start. This
-results in a *:LINE directive being added to the Setup/Menu Procedure
+results in a `*:LINE` directive being added to the Setup/Menu Procedure
 snippet.
 
 ----
 #### `*:AUTORUN (GENMENUX Directive)`
 
 Automatically runs the generated MPR file once it has been generated.
-Ignored when building from a project. Called: Setup snippet, CONFIG.FP.
+Ignored when building from a project. Called: Setup snippet, `config.fpw`.
 
 ----
 #### `*:BARHOT (GENMENUX Directive)`
@@ -6772,7 +6769,7 @@ BARHOT will create hot keys for all menu bar items in the same way
 AUTOHOT creates hot keys for Menu Pads. This directive can only be
 called in the Comment snippet. However, if it is called at the top pad
 of a menu, all of the items in the submenu will be updated accordingly.
-Called: Setup/Menu Procedure Snippet Comment snippet, CONFIG.FP.
+Called: Setup/Menu Procedure Snippet Comment snippet, `config.fpw`.
 
 ----
 #### `*:BEFORE <expC> |<expN> (GENMENUX Directive)`
@@ -6786,7 +6783,7 @@ menu pads or numeric expressions for menu bars. See also: *:AFTER.
 
 This directive places all menu definition statements matching logical
 condition in a CASE statement at the end of the menu definition. This is
-useful for grouping *:IF <span class ="underline"> </span> statements,
+useful for grouping `*:IF` statements,
 which would make menu processing run slightly faster. See also:
 `*:REFPRG`.
 
@@ -6810,19 +6807,21 @@ GENMENUX to use the appropriate RGB setting for the menu bar.
 
 Defines a color scheme for an individual menu pad or item. Example:
 
+```
 *:COLORSET 7
+```
 
 ----
 #### `*:DEFAULT (GENMENUX Directive)`
 
-Adds the statement SET SYSMENU SAVE to the cleanup code. This makes the
-menu the default (SET SYSMENU TO DEFAULT) after it has been created.
+Adds the statement `SET SYSMENU SAVE` to the cleanup code. This makes the
+menu the default (`SET SYSMENU TO DEFAULT`) after it has been created.
 Called: Setup snippet.
 
 ----
 #### `*:DEFLIB <cLibrary> (GENMENUX Directive)`
 
-Since every object must belong to a library, *:DEFLIB allows you to
+Since every object must belong to a library, `*:DEFLIB` allows you to
 define the library for an entire menu. This is useful if you create a
 single menu that contains all of your library objects and want to place
 each object into a single library.
@@ -6830,12 +6829,12 @@ each object into a single library.
 ----
 #### `*:DEFOBJ [<cLibrary>.]<cObject> (GENMENUX Directive)`
 
-To define a library object, place the *:DEFOBJ directive in the comment
+To define a library object, place the `*:DEFOBJ` directive in the comment
 field for the menu pad, submenu or procedure to be defined. The object
 will be inserted into the FOXMNX table belonging to the library
 specified by cLibrary. If cLibrary is not specified, then the library
-will be the one identified by the *:DEFLIB directive. **Example of How
-to Define Library Objects**: in the CONFIG.FP, specify the template file
+will be the one identified by the `*:DEFLIB` directive. **Example of How
+to Define Library Objects**: in the `config.fpw`, specify the template file
 with the command:
 
 ```
@@ -6854,7 +6853,7 @@ _DEFLIB ="TOOLS"
 Identifies any objects in the menu as belonging to the Tools library.
 
 On any menu pad, submenu, command or procedure that should be defined in
-the Library, add the *:DEFOBJ directive in the Comment snippet. If the
+the Library, add the `*:DEFOBJ` directive in the Comment snippet. If the
 "About..." menu pad contains a procedure that is the same between
 different applications, add the following line to the Comment snippet:
 
@@ -6881,7 +6880,7 @@ object Reindex.
 
 Makes the DEFINE POPUP statement conditional on if it already exists.
 DEFINE POPUP is slow. This directive will place an IF...ENDIF statement
-around the popup definition for <expC> so the definition is
+around the popup definition for `<expC>` so the definition is
 conditional, making the MPR run considerably faster. Example:
 
 *:DEFPOPIF options.
@@ -6927,15 +6926,15 @@ or `BAR` from the menu. Called: Comment snippet. Example:
 ----
 #### `*:GENMENUX <expC> (GENMENUX Directive)`
 
-Define whats GENMENU.PRG program to use. This is helpful if you want to
+Define whats `genmenu.prg` program to use. This is helpful if you want to
 use a different menu generator for a particular menu. Called: Setup
-snippet, CONFIG.FP
+snippet, `config.fpw`
 
 ----
 #### `*:HIDE /m._HIDE (GENMENUX Directive)`
 
 Hides the menu bar during the running of the MPR file and shows it at
-the end. This is useful if you use a lot of *:IF statements and don’t
+the end. This is useful if you use a lot of `*:IF` statements and don’t
 want the user to see a lot of menu activity.
 
 ----
@@ -6945,7 +6944,7 @@ Menu items appear based on the condition defined in `<expC>`. This
 condition is evaluated at run-time, allowing menu items to completely
 disappear when not being used (as opposed to being grayed out). IF
 statements in the cleanup code `RELEASE` the menu pads that do not meet
-the condition specified. The *:IF directive also supports keywords that
+the condition specified. The `*:IF` directive also supports keywords that
 allow you to use the values of the bar number, prompt or popup name.
 These keywords must be wrapped in quotes and stars in order to work
 properly. The valid keywords are:
@@ -6984,26 +6983,26 @@ snippet.
 #### `*:INCLIB (GENMENUX Directive)`
 
 Defines the default library for referencing library objects, place the
-*:INCLIB directive in the Setup or Menu Procedure snippet of the menu.
+`*:INCLIB` directive in the Setup or Menu Procedure snippet of the menu.
 
 ----
 #### `*:INSOBJ <cLibrary>.<cObject> (GENMENUX Directive)`
 
 References a library object and makes it replace a menu option in a
 menu. The object will be replaced by the object <cObject> from the
-FOXMNX table belonging to the library specified by cLibrary. If cLibrary
+FOXMNX table belonging to the library specified by `cLibrary`. If `cLibrary`
 is not specified, then the library will be the one identified by the
 `*:INCLIB` directive.
 
 ----
 #### `*:INSCX <cWinName> [SAVE [MODAL]] (GENMENUX Directive)`
 
-*:INSCX places a DO MENU.MPR in the SCX specified by cWinName. If there
-are no clauses, *:INSCX will place the statement at the bottom of the
-Screen Setup Code. If SAVE is specified, *:INSCX places a PUSH MENU and
-POP MENU in the setup and cleanup code. If MODAL is also specified,
-INSCX places the DO command in the When clause for the screen and the
-POP MENU _MSYSMENU command in the Deactivate snippet.
+`*:INSCX` places a `DO MENU.MPR` in the SCX specified by `cWinName`. If there
+are no clauses, `*:INSCX` will place the statement at the bottom of the
+Screen Setup Code. If SAVE is specified, `*:INSCX` places a `PUSH MENU` and
+`POP MENU` in the setup and cleanup code. If MODAL is also specified,
+`*:INSCX` places the DO command in the When clause for the screen and the
+`POP MENU _MSYSMENU` command in the `Deactivate` snippet.
 
 ----
 #### `*:LINE <expN> (GENMENUX Directive)`
@@ -7028,9 +7027,9 @@ Renames the Menu bar from _MSYSMENU to <expC>.
 ----
 #### `*:MESSAGE <expC> (GENMENUX Directive)`
 
-Adds a message prompt as defined by <expC>. <expC> may be a function
+Adds a message prompt as defined by `<expC>`. `<expC>` may be a function
 or string. If it is a string, it should be enclosed in quotes. In FoxPro
-for Windows, *:MESSAGE overrides what’s in the Message field. Called:
+for Windows, `*:MESSAGE` overrides what’s in the Message field. Called:
 Comment snippet.
 
 ----
@@ -7089,42 +7088,45 @@ thermometer distracting.
 #### `*:PADCOLOR <expC> (GENMENUX Directive)`
 
 Changes the default Menu PAD color setting. Normally, GenMenu defaults
-to COLOR SCHEME 4. Using *:PADCOLOR, the default scheme can be changed
+to `COLOR SCHEME 4`. Using `*:PADCOLOR` the default scheme can be changed
 to any particular setting. Called: Setup snippet.
 
 ----
 #### `*:PADNAME <expC> (GENMENUX Directive)`
 
-Ensures that the current pad’s name is <expC>. Example:
+Ensures that the current pad’s name is `expC`. Example:
 
+```
 *:PADNAME options
+```
 
 ----
 #### `*:PADPOS | POPPOS <nRow>,<nCol> (GENMENUX Directive)`
 
-Places the PAD or POPUP at the Row and Column specified by <nRow> and
-<nCol>. This is useful for moving your menu around the screen in
-different locations for your various popups. *:POPPOS must occur within
-a submenu. Example: *:PADPOS 5,6 (This will position the pad at row 5,
+Places the PAD or POPUP at the Row and Column specified by `<nRow>` and
+`<nCol>`. This is useful for moving your menu around the screen in
+different locations for your various popups. `*:POPPOS` must occur within
+a submenu. Example: `*:PADPOS 5,6` (This will position the pad at row 5,
 column 6.)
 
 ----
 #### `*:POPCOLOR <expC> (GENMENUX Directive)`
 
 Changes the default menu popup color setting. Normally, GenMenu defaults
-to COLOR SCHEME 3. Using *:POPCOLOR, the default scheme can be changed
+to `COLOR SCHEME 3`. Using `*:POPCOLOR` the default scheme can be changed
 to any particular setting. Called: Setup snippet
 
 ----
 #### `*:POPCOMMAND <expC> (GENMENUX Directive)`
 
 Identifies the action taken when a file or field has been chosen from a
-popup created with *:POPFILES or *:POPFIELDS. <expC> must be a valid
+popup created with `*:POPFILES` or `*:POPFIELDS`. `<expC>` must be a valid
 FoxPro function or command. Example:
 
+```
 *:POPCOMMAND DO deaPop WITH PROMPT()
-
 *:POPCOMMAND WAIT WINDOW "You chose "+PROMPT()
+```
 
 Called: Comment snippet.
 
@@ -7132,47 +7134,52 @@ Called: Comment snippet.
 #### `*:POPFIELDS <expC> (GENMENUX Directive)`
 
 Creates menus of popups of fields in the current table. The popup shows
-the field <expC> for all records from the current table. In order to
+the field `<expC>` for all records from the current table. In order to
 have something happen when a file is selected from the popup, you must
-use *:POPCOMMAND. Example:
+use `*:POPCOMMAND`. Example:
 
+```
 *:POPFIELDS name
-
 *:POPFIELDS "Client Name: "+name
+```
 
 ----
 #### `*:POPFILES <expC> (GENMENUX Directive)`
 
 Creates menu popups of specific files. The popup will show all files
-matching the skeleton in <expC>. Use *:POPCOMMAND to trigger a
+matching the skeleton in `<expC>`. Use `*:POPCOMMAND` to trigger a
 process upon selection. Place this directive in the comment snippet of
 the first menu bar where you want the popup to be. For example, if the
 popup is to appear under the File Open menu, add a submenu to the Open
-option and the first bar and add the *:POPFILES directive to the
+option and the first bar and add the `*:POPFILES` directive to the
 comment snippet. Example:
 
+```
 *:POPFILES *.PJX
-
 *:POPFILES "*.DBF"
+```
 
 ----
 #### `*:POPPRECOMMAND <expC> (GENMENUX Directive)`
 
 Allows for a command or function to be called before a popup is defined.
-This only works with *:POPFILES or *:POPFIELD. This allows you to open
-up a table to use the *:POPFIELD directive more easily. You are
+This only works with `*:POPFILES` or `*:POPFIELD`.  This allows you to open
+up a table to use the `*:POPFIELD` directive more easily. You are
 responsible for closing any opened tables. Example:
 
+```
 *:POPPRECOMMAND = OPENFILE("CLIENTS")
+```
 
 ----
 #### `*:POPTITLE <expC> (GENMENUX Directive)`
 
-*:POPTITLE defines the popup with a title of <expC>. Handy if you
+`*:POPTITLE` defines the popup with a title of `<expC>`. Handy if you
 need titles on any of your popups. Example:
 
+```
 *:POPTITLE "Menu Options"
-
+```
 
 ----
 #### `*:REFPRG <file> (GENMENUX Directive)`
@@ -7185,68 +7192,67 @@ MPR file. See also: *:CASE.
 ----
 #### `*:SELECTBAR (GENMENUX Directive)`
 
-GenMenu uses ON BAR statement for activating popups. Using *:SELECTBAR
-will change the ON BAR statements to read ON SELECTION BAR which changes
+GenMenu uses `ON BAR` statement for activating popups. Using `*:SELECTBAR`
+will change the `ON BAR` statements to read `ON SELECTION BAR` which changes
 the behaviour of activating menu popups. This works best when moving the
-popups in different locations on the screen. See ON BAR and ON SELECTION
-BAR in the FoxPro help file.
+popups in different locations on the screen. See `ON BAR` and `ON SELECTION BAR` in
+the FoxPro help file.
 
 ----
 #### `*:SELECTPAD (GENMENUX Directive)`
 
 GenMenu places ON PAD statements for activating popups. Using
-*:SELECTPAD will change the ON PAD statements to read ON SELECTION PAD
+`*:SELECTPAD` will change the `ON PAD` statements to read `ON SELECTION PAD`
 which changes the behaviour of activating menus. Works best when moving
-the menus to different locations on the screen. See ON PAD and ON
-SELECTION PAD in the FoxPro help file.
+the menus to different locations on the screen. See `ON PAD` and `ON SELECTION PAD` in
+the FoxPro help file.
 
 ----
 #### `*:SYSDEFAULT (GENMENUX Directive)`
 
-Adds SET SYSMENU SAVE to the cleanup code. This makes the menu become
-the default (SET SYSMENU TO DEFAULT) after it has been created.
+Adds `SET SYSMENU SAVE` to the cleanup code. This makes the menu become
+the default (`SET SYSMENU TO DEFAULT`) after it has been created.
 
 ----
 #### `*:SYSPOP (GENMENUX Directive)`
 
-Wraps the procedure statement with PUSH MENU _MSYSMENU / SET SYSMENU
-OFF/POP MENU _MSYSMENU. It can be defined in either the CONFIG.FP,
-Setup or Procedure snippets.
+Wraps the procedure statement with `PUSH MENU _MSYSMENU` / `SET SYSMENU OFF / POP MENU _MSYSMENU`.
+It can be defined in either the `config.fpw`, Setup or Procedure snippets.
 
 ----
 #### `*:VERTICAL <nStrtRow>,<nSkpRow> (GENMENUX Directive)`
 
-*:VERTICAL causes the menu to be created vertically instead of
-horizontally. You specify the starting row with nStrtRow and define the
-number of rows between menu options using nSkipRow.
+`*:VERTICAL` causes the menu to be created vertically instead of
+horizontally. You specify the starting row with `nStrtRow` and define the
+number of rows between menu options using `nSkipRow`.
 
 ----
 #### `*:WINDOW <expC1> [CLAUSES [<expC2>]] (GENMENUX Directive)`
 
-Adds the argument IN WINDOW <expC1> to the menu definition. This
-allows you to create menus within windows. When using *:WINDOW, be sure
+Adds the argument `IN WINDOW <expC1>` to the menu definition. This
+allows you to create menus within windows. When using `*:WINDOW,` be sure
 to DEFINE the window before running the MPR file. If not, the MPR file
-uses the FoxPro desktop to place the menu. Use the CLAUSES command to
-automatically create a window named <expC1>. You may specify
-additional clauses for the DEFINE WINDOW statement in <expC2>. If you
-do not specify a FROM clause, *:WINDOW will allow you to size and place
-it during compilation by displaying a Window on the screen. *:WINDOW
+uses the FoxPro desktop to place the menu. Use the `CLAUSES` command to
+automatically create a window named `<expC1>`. You may specify
+additional clauses for the `DEFINE WINDOW` statement in `<expC2>`. If you
+do not specify a FROM clause, `*:WINDOW` will allow you to size and place
+it during compilation by displaying a Window on the screen. `*:WINDOW`
 works well under DOS to create MDI-style applications. You can simply
-add *:WINDOW to your setup code and it works. Example:
+add `*:WINDOW` to your setup code and it works. Example:
 
+```
 *:WINDOW w_temp CLAUSES ;
-
 FROM 5,5 TO 12,50 ;
-
 COLOR SCHEME 6
+```
 
 ----
 #### `{{<exp>}} (GENMENUX Directive)`
 
-Text surrounded by double braces performs the EVALUATION of <expC> at
-compile-time and returns the value in string form. {{<expC>}} is
-replaced with the string of EVALUATE(<expC>). <expC> can be any type
-(character, numeric, date, logical, etc.) and {{<expC>}} will always
+Text surrounded by double braces performs the EVALUATION of `<expC>` at
+compile-time and returns the value in string form. `{{<expC>}}` is
+replaced with the string of `EVALUATE(<expC>)`. `<expC>` can be any type
+(character, numeric, date, logical, etc.) and `{{<expC>}}` will always
 return the result in character form. Example: if the following command
 was in the Setup snippet and assuming the current date was 06/01/93:
 
@@ -7264,25 +7270,31 @@ WAIT 'Version Date is 06/01/93' WINDOW
 #### `{{&.<expC>}} (GENMENUX Directive)`
 
 Text surrounded by double braces with a &. immediately after the open
-braces performs the macro substitution of <expC> at compile-time and
-returns a null value in string form. {{<expC>}} is replaced with a
-null string. <expC> can be any FoxPro command that can be executed
+braces performs the macro substitution of `<expC>` at compile-time and
+returns a null value in string form. `{{<expC>}}` is replaced with a
+null string. `<expC>` can be any FoxPro command that can be executed
 within a macro substitution string. Example: if the following command
 was in the Setup snippet and assuming the current date was 06/01/93:
 
+```
 {{& WAIT '{{DATE()}}' WINDOW NOWAIT}}
+```
 
-the following WAIT WINDOW would appear at compile-time of the screen:
+the following `WAIT WINDOW` would appear at compile-time of the screen:
 
+```
 06/01/93
+```
 
 If the following command was in the Setup snippet:
 
+```
 {{&.DO MYPROG}}
+```
 
-then a program called MYPROG would be executed as a subroutine at
+then a program called `MYPROG` would be executed as a subroutine at
 compile-time of the screen. If the program was to return a character
-string for code insertion, then {{MYPROG()}} would have been used.
+string for code insertion, then `{{MYPROG()}}` would have been used.
 
 Called: Anywhere.
 
@@ -7295,66 +7307,70 @@ details when specific drivers are called:
 
 2.  Creation of temporary files.
 
-3.  Verify NOXGEN directive, place GENMENUX header in setup code. If
-    DEFAULT directive is used, place in Cleanup snippet. Identify
+3.  Verify `*:NOXGEN` directive, place GENMENUX header in setup code. If
+    `*:DEFAULT` directive is used, place in Cleanup snippet. Identify
     variables for processing other setup directives, and identify new
     menu name.
 
-4.  Run MNXDRV1 on entire MNX file.
+4.  Run `*:MNXDRV1` on entire MNX file.
 
 5.  Update menu hot keys by scanning through each pad line by line.
 
 6.  Process the following directives line by line:
-    IGNORE
-    GENIF
-    DELETE
-    MESSAGE
 
-7.  Run MNXDRV2 on each line of the MNX file.
+    *:IGNORE
+    *:GENIF
+    *:DELETE
+    *:MESSAGE
+
+7.  Run `*:MNXDRV2` on each line of the MNX file.
 
 8.  Reorder menu pads that may have been deleted because of previous
     directives.
 
-9.  Generate *:IF support by adding IF statement to CLEANUP code.
+9.  Generate `*:IF` support by adding IF statement to CLEANUP code.
 
-10. Run MNXDRV3 on each line of the MNX file.
+10. Run `*:MNXDRV3` on each line of the MNX file.
 
-11. Run MNXDRV4 on entire MNX file.
+11. Run `*:MNXDRV4` on entire MNX file.
 
-12. Identify MNXDRV5 driver. If it doesn't exist, check for _GENMENUX
+12. Identify `*:MNXDRV5` driver. If it doesn't exist, check for _GENMENUX
     directive. Also identify future MPR drivers so you don't have to go
     back into the file later on.
 
-13. Run either GENMENU.PRG or MNXDRV5.
+13. Run either `genmenu.prg` or `*:MNXDRV5`.
 
 14. Copy generated MPR file into Memo file of temporary project.
 
-15. Compare MNX and MPR file line by line for adding of POPFILES,
-    POPFIELDS and POPCOMMAND directives.
+15. Compare MNX and MPR file line by line for adding of `*:POPFILES`,
+    `*:POPFIELDS` and `*:POPCOMMAND` directives.
 
-16. Run MPRDRV1.
+16. Run `*:MPRDRV1`.
 
 17. Process directives through MPR file.
-    NOMARGIN
-    NOBAR
-    WINDOW
-    POPCOLOR
-    PADCOLOR
-    NOSHADOW
-    LINE
-    MENUNAME
 
-18. Run MPRDRV2.
+    *:NOMARGIN
+    *:NOBAR
+    *:WINDOW
+    *:POPCOLOR
+    *:PADCOLOR
+    *:NOSHADOW
+    *:LINE
+    *:MENUNAME
+
+18. Run `*:MPRDRV2`.
 
 19. Remove Temporary files.
 
-20. If *:AUTORUN, run MPR file.
+20. If `*:AUTORUN,` run MPR file.
 
 ## Checklist for GENMENUX
 
-Are your CONFIG.FP files set so
+Are your `config.fpw` files set so
 
-_GENMENU =<Path\\>GENMENUX.PRG.?
+```
+_GENMENU =<Path\>GENMENUX.PRG.
+```
 
 ## The MNX Structure
 
@@ -7391,7 +7407,7 @@ name for the options underneath the submenu.
 For example: the regular FoxPro sysmenu has 7 menu pads. Each of these
 menu pads is associated with two records in the mnx file. The first
 associated record identifies the Pad name ("_msm_file") and the prompt
-name for the menu pad ("\\<File"). Since this record is to be shown on
+name for the menu pad (`"\<File"`). Since this record is to be shown on
 the menu, the objtype field is 3. The second associated record
 identifies the submenu popup. The popup objtype field is 2. Since this
 information will not appear on the menu, the prompt field is left empty
@@ -7399,37 +7415,29 @@ but the name field contains the name of the popup (_mfile).
 
 | Field Name | Type | Description
 | --- | --- |
-| OBJTYPE | N-2 | Type of menu object. 1 = first record of the mnx file, 2 = popup definition, 3 = menu item (visible on an actual menu item). |
-| OBJCODE | N-2
-
-Type of menu item where objtype is 3.
-<p>77 - Submenu item<br>
-80 - Procedure<br>
-67 - Command<br>
-78 - Bar<br>
-22 - First Menu Setup Record (FoxPro 2.5)<br>
-20 - First Menu Setup Record (FoxPro 2.0) |
-| NAME | M | The name for a submenu (if objtype = 2) or menu bar # (if objtype = 3). For the top level system menu, this field is always _msysmenu. For submenus (objcode = 77), this field is left empty. |
-| PROMPT | M | The prompt for all menu pad items. |
-| COMMAND | M | Command Statement. |
-| MESSAGE | M | The message field for menu pads, submenus and menu items. GENMENU.PRG in FoxPro for dos doesn't use this value. |
-| PROCTYPE | N-1 | 1 = Procedure, 0 = Expression. Defaults to 1 when a menu is first created. |
-| PROCEDURE | M | Procedure for menu pad items and general menu bar. |
-| SETUPTYPE | N-1 | 1 = Procedure, 0 = Expression. Always 1. This field is only filled in for the first record. |
-| SETUP | M | Menu Setup Code (first record of table only). For the remaining records in the mnx file, this field is kept empty. |
-| CLEANTYPE | N-1 | 1 = Procedure, 0 = Expression. Always 1. This field is only filled in for the first record. |
-| CLEANUP | M | Menu cleanup code (first record of table only). |
-| MARK | C-1 | The Mark character for a menu pad. |
-| KEYNAME | M | The actual keystroke that is the shortcut key for the menu item. |
-| KEYLABEL | M | The label that displays beside the menu item to identify the shortcut held in the keyname field. |
-| SKIPFOR | M | The skipfor clause. |
-| NAMECHANGE | L | Identifies if the pad or menu name has changed. |
-| NUMITEMS | N-2 | Number of items found in a submenu. Blank for all entries other than ones where the objtype is 2. |
-| LEVELNAME | C-10 | Name of the popup that each menu item belongs to. For main system pads, this is always _msysmenu. |
-| ITEMNUM | C-3 | The Item Number of each menu pad item in a particular menu popup. The highest number for a particular popup should be equal to the numitems field for the same popup. |
-| COMMENT | M | The Comment snippet. |
-| LOCATION | N-1 | Location of Menu. 0 = Replace, 1 = Append, 2 = Before, 3 = After. If Before or After, the pad name where the menu is placed is stored in the Name field. |
-| SCHEME | N-2 | Color scheme for the menu bar and popup. It is not used for specific menu bars. The top level (_msysmenu) submenu record receives a default of Scheme 3, while submenus beneath use Scheme 4.
+| `OBJTYPE` | N-2 | Type of menu object. 1 = first record of the mnx file, 2 = popup definition, 3 = menu item (visible on an actual menu item). |
+| `OBJCODE` | N-2 |Type of menu item where objtype is `3`.<p>`77` - Submenu item<br>`80` - Procedure<br>`67` - Command<br>`78` - Bar |
+| `NAME` | M | The name for a submenu (if objtype = 2) or menu bar # (if objtype = 3). For the top level system menu, this field is always _msysmenu. For submenus (objcode = 77), this field is left empty. |
+| `PROMPT` | M | The prompt for all menu pad items. |
+| `COMMAND` | M | Command Statement. |
+| `MESSAGE` | M | The message field for menu pads, submenus and menu items. `genmenu.prg` in FoxPro for dos doesn't use this value. |
+| `PROCTYPE` | N-1 | `1` = Procedure, `0` = Expression. Defaults to `1` when a menu is first created. |
+| `PROCEDURE` | M | Procedure for menu pad items and general menu bar. |
+| `SETUPTYPE` | N-1 | `1` = Procedure, `0` = Expression. Always `1`. This field is only filled in for the first record. |
+| `SETUP` | M | Menu Setup Code (first record of table only). For the remaining records in the mnx file, this field is kept empty. |
+| `CLEANTYPE` | N-1 | `1` = Procedure, `0` = Expression. Always `1`. This field is only filled in for the first record. |
+| `CLEANUP` | M | Menu cleanup code (first record of table only). |
+| `MARK` | C-1 | The Mark character for a menu pad. |
+| `KEYNAME` | M | The actual keystroke that is the shortcut key for the menu item. |
+| `KEYLABEL` | M | The label that displays beside the menu item to identify the shortcut held in the keyname field. |
+| `SKIPFOR` | M | The skipfor clause. |
+| `NAMECHANGE` | L | Identifies if the pad or menu name has changed. |
+| `NUMITEMS` | N-2 | Number of items found in a submenu. Blank for all entries other than ones where the objtype is 2. |
+| `LEVELNAME` | C-10 | Name of the popup that each menu item belongs to. For main system pads, this is always _msysmenu. |
+| `ITEMNUM` | C-3 | The Item Number of each menu pad item in a particular menu popup. The highest number for a particular popup should be equal to the numitems field for the same popup. |
+| `COMMENT` | M | The Comment snippet. |
+| `LOCATION | N-1 | Location of Menu. `0` = Replace, `1` = Append, `2` = Before, `3` = After. If Before or After, the pad name where the menu is placed is stored in the Name field. |
+| `SCHEME | N-2 | Color scheme for the menu bar and popup. It is not used for specific menu bars. The top level (`_msysmenu)` submenu record receives a default of Scheme 3, while submenus beneath use Scheme 4.
 
 ### Technical Note - Reordering Menus
 
