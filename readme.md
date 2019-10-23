@@ -3167,7 +3167,12 @@ ENDCASE
 
 ## Iterators And Visitors
 
-| **Iterators traverse structures, and Visitors control the iterators.** | This section describes INTL tools that are designed to make localization tasks a little easier. There are two classes of tools: the *iterator* class traverses VFP structures (like project, form and report tables); and the *visitor* class conducts operations on the structures being traversed by an *iterator*. |
+**Iterators traverse structures, and Visitors control the iterators.**
+
+This section describes INTL tools that are designed to make localization tasks a little easier.
+There are two classes of tools: the *iterator* class traverses VFP structures (like project,
+form and report tables); and the *visitor* class conducts operations on the structures being
+traversed by an *iterator*.
 
 All the INTL tools work essentially the same way: VFP structures are
 traversed and operations are performed during the traversal. We use
@@ -3205,8 +3210,8 @@ In the code above, the following things happen:
     iterator's services to visit each project record.
 
 Note that the visitor object needs the services of an INTL object, which
-it will create as _SCREEN.oINTL if an object named _SCREEN.oINTL does
-not exist. Therefore, the file INTL.PRG must be available so an oINTL
+it will create as `_SCREEN.oINTL` if an object named `_SCREEN.oINTL` does
+not exist. Therefore, the file `intl.prg` must be available so an `oINTL`
 object can be created.
 
 ## Updating `strings.dbf` Based on a .SCX
@@ -3234,8 +3239,8 @@ In the code above, the following things happen:
     iterator to visit each form record.
 
 Note that the visitor object needs the services of an INTL object, which
-it will create as _SCREEN.oINTL if an object named _SCREEN.oINTL does
-not exist. Therefore, the file INTL.PRG must be available so an oINTL
+it will create as `_SCREEN.oINTL` if an object named `_SCREEN.oINTL` does
+not exist. Therefore, the file `intl.prg` must be available so an `oINTL`
 object can be created.
 
 ## Updating `strings.dbf` Based on a .VCX
@@ -3252,6 +3257,7 @@ oVisitor = create( "cINTLUpdateVisitor" )
 *-- Go!
 oIterator.Accept( oVisitor )
 ```
+
 In the code above, the following things happen:
 
 1.  A visual class library iterator is created.
@@ -3262,8 +3268,8 @@ In the code above, the following things happen:
     iterator to visit each form record.
 
 Note that the visitor object needs the services of an INTL object, which
-it will create as _SCREEN.oINTL if an object named _SCREEN.oINTL does
-not exist. Therefore, the file INTL.PRG must be available so an oINTL
+it will create as `_SCREEN.oINTL` if an object named `_SCREEN.oINTL` does
+not exist. Therefore, the file `intl.prg` must be available so an `oINTL`
 object can be created.
 
 ## Updating `strings.dbf` Based on a .MNX
@@ -3291,8 +3297,8 @@ In the code above, the following things happen:
     iterator to visit each form record.
 
 Note that the visitor object needs the services of an INTL object, which
-it will create as _SCREEN.oINTL if an object named _SCREEN.oINTL does
-not exist. Therefore, the file INTL.PRG must be available so an oINTL
+it will create as `_SCREEN.oINTL` if an object named `_SCREEN.oINTL` does
+not exist. Therefore, the file `intl.prg` must be available so an `oINTL`
 object can be created.
 
 ## Updating `strings.dbf` Based on a .FRX
@@ -3320,8 +3326,8 @@ In the code above, the following things happen:
     iterator to visit each form record.
 
 Note that the visitor object needs the services of an INTL object, which
-it will create as _SCREEN.oINTL if an object named _SCREEN.oINTL does
-not exist. Therefore, the file INTL.PRG must be available so an oINTL
+it will create as `_SCREEN.oINTL` if an object named `_SCREEN.oINTL` does
+not exist. Therefore, the file `intl.prg` must be available so an `oINTL`
 object can be created.
 
 ## Transforming Reports Based on a .PJX
@@ -3374,7 +3380,7 @@ pointer, and welcoming visitor classes that do most of the specialized
 (non-navigation) work.
 
 You can use this iterator class for a variety of uses unrelated to INTL.
-Create your own visitors to manage your VFP source— it's easy!
+Create your own visitors to manage your VFP source — it's easy!
 
 ### Overview of the INTLIterator Classes
 
