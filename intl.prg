@@ -1,11 +1,11 @@
-*  Program...........: INTL.PRG
+*  Program...........: intl.prg
 
 #DEFINE ccProgramName   "Steven Black's INTL Toolkit for Visual FoxPro"
 *  Version...........:
-#DEFINE ccMajorVersion "9"
-#DEFINE ccRevision     "00"
-#DEFINE ccBuild        "186"
-#DEFINE ccDate         "October 8, 2019"
+#DEFINE ccMajorVersion "1"
+#DEFINE ccMinorVersion "0"
+#DEFINE ccPatchVersion "0"
+#DEFINE ccDate         "October 24, 2019"
 * Author............: Steven Black
 * Project...........: INTL for Visual FoxPro
 * Repository........: https://github.com/StevenBlack/intl/
@@ -202,10 +202,10 @@ INTL_Abstract_ID = "Visual INTL"      && Class signature, don't change.
 Name            = "cINTLAbstract"    && Identifyer, don't change.
 
 *-- Protected Properties
-PROTECTED Visible, cMajorVersion, cRevision, cBuild, cDate
+PROTECTED Visible, cMajorVersion, cMinorVersion, cPatchVersion, cDate
 cMajorVersion = ccMajorversion
-cRevision     = ccRevision
-cBuild        = ccBuild
+cMinorVersion = ccMinorVersion
+cPatchVersion = ccPatchVersion
 cDate         = ccDate
 cType         = "Abstract"
 Visible       = .F.
@@ -808,8 +808,7 @@ ENDIF
 * NotHookable.
 *
 FUNCTION GetVersion( txPassed )
-* RETURN ccProgramName+ CHR(13)+ CHR(10)+ this.cMajorVersion+"."+ this.cRevision+"."+ this.cBuild+ " "+ this.cDate
-RETURN ccProgramName+ " "+this.cMajorVersion+"."+ this.cRevision+"."+ this.cBuild+ " "+ this.cDate
+RETURN ccProgramName + " " + this.cMajorVersion + "." + this.cMinorVersion + "." + this.cPatchVersion + " " + this.cDate
 
 *====================================
 *-- cINTLAbstract::UpdateResource( xx )
