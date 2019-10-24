@@ -1,5 +1,10 @@
 # Steven Black's INTL Toolkit for Visual FoxPro
 
+[![license](https://img.shields.io/github/license/StevenBlack/intl.svg)](https://github.com/StevenBlack/intl/blob/master/license.txt)
+[![repo size](https://img.shields.io/github/repo-size/StevenBlack/intl.svg)](https://github.com/StevenBlack/intl)
+[![last commit](https://img.shields.io/github/last-commit/StevenBlack/intl.svg)](https://github.com/StevenBlack/intl/commits/master)
+[![commit activity](https://img.shields.io/github/commit-activity/y/StevenBlack/intl.svg)](https://github.com/StevenBlack/intl/commits/master)
+
 ***INTL makes short work of creating multilingual software in Visual FoxPro (VFP).***
 It gives you the ability to create multilingual Visual FoxPro applications while minimizing the hassles of creating multi-version software.
 
