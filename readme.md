@@ -1440,14 +1440,18 @@ Returns the version stamp for your INTL for Visual FoxPro software.
 
 ![](./media/image10.png)
 
-**You can subclass the `cINTLCurrency` class to adapt it to your multi-currency needs.**  The `cINTLCurrency` class is used to localize currency fields so you can, among other things, swap the locale on the fly and adjust currency values dynamically. The native `cINTLCurrency` class works rather simply with one constant exchange rate per currency. For more complex mechanisms, like those that use a lookup table to reckon currency conversions as a function of time, can be accommodated by subclassing the `cINTLCurrency` class.
+**You can subclass the `cINTLCurrency` class to adapt it to your multi-currency needs.**  The `cINTLCurrency` class is used to localize currency fields so you can, among other things, swap the
+locale on the fly and adjust currency values dynamically. The native `cINTLCurrency` class works
+rather simply with one constant exchange rate per currency. For more complex mechanisms — like
+currency conversion lookups as a function of time, subclass the `cINTLCurrency` class and
+implement what you need.
 
 ### Class `cINTLCurrency` Exposed Methods
 
 ----
 #### `cINTLCurrency::GetConversion()`
 
-Gets a currency conversion factor from memory.
+Returns a currency conversion factor.
 
 |  |  |
 | --- | --- |
