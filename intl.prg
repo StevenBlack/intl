@@ -14,11 +14,6 @@
 * License...........: MIT
 * Description.......: Multilingual Visual FoxPro tools and classes
 *
-*  Visual FoxPro WIN MAC
-*  =====================
-*     INTL class hierarchy
-*     Menu driver for GENMENUX
-*
 *  Calling Samples...:
 *
 *    Visual FoxPro
@@ -58,7 +53,7 @@
 *******************************************************************************
 *-- Timing behavior
 *******************************************************************************
-*?  Note: Visual INTL is Run=Time only for now
+*?  Note: Visual INTL is Run=Time only
 #DEFINE cLocalize       "Run"
 * #DEFINE cLocalize     "Generate"
 
