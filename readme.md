@@ -1534,8 +1534,9 @@ Here are the exposed properties of class cINTLFont.
 
 #### `cINTLFont::nConfig`
 
-| Default | 3 |
-| ------- | ----- |
+|  |  |
+| --- | --- |
+| Default | `3` |
 | Remarks | Stores the current configuration information for this font strategy object. |
 
 ### Class `cINTLFont` Exposed Methods
@@ -1571,9 +1572,9 @@ _SCREEN.oINTL.oFontStrategy.SetConfig( 1 + 2 ) |
 
 ![](./media/image13.png)
 
-|  |  |
-| ----- | ----- |
-| **The `cINTLMemento` class is used to store status and configuration information.** | A `cINTLMemento` object encapsulates all the properties and access methods of INTL objects. This class serves as an INTL configuration token and also the superclass of all INTL master objects and their attached hooks and strategies. |
+**The `cINTLMemento` class is used to store status and configuration information.**
+
+A `cINTLMemento` object encapsulates all the properties and access methods of INTL objects. This class serves as an INTL configuration token and also the superclass of all INTL master objects and their attached hooks and strategies. |
 
 Thus all useful INTL objects are subclasses of `cINTLMemento`.
 
@@ -1817,6 +1818,7 @@ this.Mov( oX )
 You wouldn't normally use this function. The example above is equivalent to performing:
 
 ```
+oX = CREATEOBJECT( "INTL" )
 oX.SetLanguage( this.GetLanguage())
 oX.SetConfig( this.GetConfig())
 oX.SetExplicit( this.GetExplicit())
@@ -2003,7 +2005,7 @@ Loads a strategy.
 | **Return** | `.T.` if successful, `.F.` otherwise. |
 | **Arguments** | `cStrategy`: a strategy name. Valid names for native strategies include "String", "Currency", "Data", or "Font".<br>`cClass`: the name of a strategy class.<br>`oObject`: a strategy object. |
 | **Example** | `oINTL.SetStrategy( "Currency","cINTLCurrency" )` |
-| **Remarks** | The cStrategy argument becomes the alias by which the strategy is named. If cStrategy is one of the native INTL aliases ("String", "Font", "Data", "Picture", or "Currency") then an automatic `::SetConfig()` is executed. For example, if `oINTL.GetConfig()` returns 1, then after `oINTL.SetStrategy( "Currency", "cMyCurrency" )` it will report `17`. |
+| **Remarks** | The `cStrategy` argument becomes the alias by which the strategy is named. If `cStrategy` is one of the native INTL aliases (`"String"`, `"Font"`, `"Data"`, `"Picture"`, or `"Currency"`) then an automatic `::SetConfig()` is executed. For example, if `oINTL.GetConfig()` returns 1, then after `oINTL.SetStrategy( "Currency", "cMyCurrency" )` it will report `17`. |
 | **See Also** | [`cINTLMemento::GetStrategy()`](#cintlmementogetstrategy) |
 
 ----
@@ -2016,7 +2018,7 @@ instantiations.
 | --- | --- |
 | **Syntax** | `oINTL.SetStrategyClass( cStrategy, cStrategyClass )`
 | **Return** | `.T.` if successful, `.F.` otherwise. |
-| **Arguments** | `cStrategy`: a strategy name. Valid names for native strategies include “String”, "Currency", "Data", “Picture” and "Font".<br>`CStrategyClass`:the name of a class to associate with the strategy name. |
+| **Arguments** | `cStrategy`: a strategy name. Valid names for native strategies include `“String”`, `"Currency"`, `"Data"`, `“Picture”` and `"Font"`.<br>`CStrategyClass`:the name of a class to associate with the strategy name. |
 | **Example** | `oINTL.SetStrategyClass( "Currency", “MyCurrencyClass” )` |
 | **See Also** | [`cINTLMemento::GetStrategyClass()`](#cintlmementogetstrategyclass) |
 
@@ -2066,9 +2068,9 @@ Default class name for the string strategy.
 ----
 #### `cINTLMemento::lExplicit`
 
-`.T.` if the localization is explicit. Explicit localization
+Value is `.T.` if the localization is explicit. Explicit localization
 localizes only objects containing "INTL" properties or have associated
-references to an INTL object in members named oINTL.
+references to an INTL object in members named `oINTL`.
 
 |  |  |
 | --- | --- |
@@ -2129,7 +2131,7 @@ localization subclasses.
 
 #### `cINTLStrategy::lStrategyOpen`
 
-`.T.` if, at last indication, the strategy resource files were
+Value is `.T.` if, at last indication, the strategy resource files were
 open.
 
 |  |  |
@@ -2301,7 +2303,7 @@ Stores the resource table name to be used by the strategy object.
 
 #### `cINTLStrategy::lUpdate`
 
-`.T.` or false, controlling strategy resource updating.
+value is `.T.` or `.F.`, controlling strategy resource updating.
 
 |  |  |
 | --- | --- |
@@ -2311,7 +2313,7 @@ Stores the resource table name to be used by the strategy object.
 
 #### `cINTLStrategy::lUpdateable`
 
-Stores logical true or false depending if the strategy resource table is
+Stores logical `.T.` or `.F.` depending if the strategy resource table is
 updateable.
 
 |  |  |
