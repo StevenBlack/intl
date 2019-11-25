@@ -189,7 +189,7 @@ ENDIF
 
 ## How to Localize Menus
 
-Just like in prior versions of INTL, a GENMENUX driver is used to localize menus. To activate GENMENUX and its INTL.PRG driver, put the following lines in your `config.fpw`:
+A GENMENUX driver is used to localize menus. To activate GENMENUX and its INTL.PRG driver, put the following lines in your `config.fpw`:
 
 Add these lines to `config.fpw`.
 
@@ -221,7 +221,7 @@ Use the `SetLanguage()` method to change INTL’s language.
 
 INTL comes with a table named `strings.dbf` which contains a variety of fields, one of which is `cOriginal`, and it may contain other fields for different languages, for example `cFrench`, `cGerman`, `cSpanish`, and so on.
 
-The languages you support are determined by the structure of the `strings.dbf` table. To add a new language, just change the structure of `strings.dbf`.
+The languages you support are determined by the structure of the `strings.dbf` table. To add a new language change the structure of `strings.dbf`.
 
 To change the current localization language, use the `SetLanguage()` method. Say we want a form to be in French. First set the language, then localize the form:
 
@@ -327,18 +327,18 @@ Follow the steps in the section titled [Installing INTL](#installing-intl). Make
 **Modify the structure of `strings.dbf` and add one field for each language you need.**
 
 * Copy the `strings.dbf` table that comes with INTL and put it in your project root directory.
-* `ZAP` the `strings.dbf` table that you just placed in your project root.
+* `ZAP` the `strings.dbf` table that you placed in your project root.
 * `MODIFY STRUCTURE` of `strings.dbf` and add a new column named `cSwahili` with a length of 120. Note that the "c" in `cSwahili` is required.
 
 
-**Make your application create an INTL object.**  Early in your application, instantiate an INTL object just as described in How to [Instantiate an INTL Object](#how-to-instantiate-an-intl-object). Displaying in a different language is now just a matter of using its `SetLanguage()` method.
+**Make your application create an INTL object.**  Early in your application, instantiate an INTL object as described in How to [Instantiate an INTL Object](#how-to-instantiate-an-intl-object). Displaying in a different language is now a matter of using its `SetLanguage()` method.
 
 **Do a “Build All”.** Open your project, select "Build", and build an App or Exe, being sure to select "Recompile All Files". Go to lunch.
 
-**To automatically load `strings.dbf`, either run your app or use the INTLTool utility.** There are two ways to populate the `strings.dbf` table with your project's interface strings. The first way is to simply run your program. As objects are instantiated, INTL will append the strings (like `Caption`, `Tooltiptext`, etc.) into the strings table. A better way is to run the INTLTool update program. See [INTLTool](#intltool).
+**To automatically load `strings.dbf`, either run your app or use the INTLTool utility.** There are two ways to populate the `strings.dbf` table with your project's interface strings. The first way is to run your program. As objects are instantiated, INTL will append the strings (like `Caption`, `Tooltiptext`, etc.) into the strings table. A better way is to run the INTLTool update program. See [INTLTool](#intltool).
 
 **Input the translations in the `strings.dbf` table.** In the `cSwahili` column, type-in Swahili translations, complete with hot-keys and shortcut-keys as required.
-Note: you can get a "quick-and-dirty" translation for testing and internal demos by simply doing:
+Note: you can get a "quick-and-dirty" translation for testing and internal demos by doing:
 
 ```
 `REPLACE ALL cSwahili with "**"+TRIM(cOriginal)+"**" FOR cOriginal <> "(("`
@@ -374,7 +374,7 @@ with the `SetLanguage()` and `SetLocale()` methods.
 
 Strategies are bitwise configured.
 
-Configuring individual strategies is easy. Simply get a reference to the strategy, then configure it. Here are the configuration meanings for each configurable strategy.
+Configuring individual strategies as follows: get a reference to the strategy, then configure it. Here are the configuration meanings for each configurable strategy.
 
 | Strategy | Value | Localization |
 | --- | --- | --- |
@@ -531,7 +531,7 @@ Data can be locale-specific.
 
 Sometimes it is the data itself that needs to be localized. INTL allows you to present different fields for different locales.
 
-The Data strategy works just like the other strategies.
+The Data strategy works like the other strategies.
 
 The following table lists the configuration bits for the INTL object to load the Picture strategy, and the configuration integers to configure the Picture strategy.
 
@@ -583,7 +583,7 @@ oPicture.SetConfig( 2 )
 
 **Images can be locale-specific.**  Some of the icons and images we use every day may not be appropriate in other locales. INTL provides a way to change the displayed images when we change locales.
 
-**The Picture strategy works just like the other strategies.** The following table lists the configuration bits for the INTL object to load the Picture strategy, and the configuration integers to configure the Picture strategy.
+**The Picture strategy works like the other strategies.** The following table lists the configuration bits for the INTL object to load the Picture strategy, and the configuration integers to configure the Picture strategy.
 
 | Class | Configuration bits | Localization |
 | --- | --- | --- |
@@ -793,11 +793,11 @@ _SCREEN.oINTL.SetStrategy("Currency", "cMyCurrency" )
 ## How to Create Your Own Generic Strategy
 
 You can create your own strategies and use INTL to automatically invoke
-them. Just make your new strategy a subclass of the cINTLStrategy class
+them. Make your new strategy a subclass of the cINTLStrategy class
 (so you'll have the properties and methods INTL expects) and then run
 with it!
 
-Just as in the case of subclassing an existing strategy, use the
+As in the case of subclassing an existing strategy, use the
 `SetStrategy()` method to load your strategy into INTL.
 
 ## How to Make INTL Ignore an Object
@@ -1441,8 +1441,7 @@ Returns the version stamp for your INTL for Visual FoxPro software.
 ![](./media/image10.png)
 
 **You can subclass the `cINTLCurrency` class to adapt it to your multi-currency needs.**  The `cINTLCurrency` class is used to localize currency fields so you can, among other things, swap the
-locale on the fly and adjust currency values dynamically. The native `cINTLCurrency` class works
-rather simply with one constant exchange rate per currency. For more complex mechanisms — like
+locale on the fly and adjust currency values dynamically. The native `cINTLCurrency` class works with one constant exchange rate per currency. For more complex mechanisms — like
 currency conversion lookups as a function of time, subclass the `cINTLCurrency` class and
 implement what you need.
 
@@ -1899,7 +1898,7 @@ _SCREEN.oINTL.Push() && Returns 2
 
 Sets the configuration of an INTL object. You can configure INTL to
 selectively localize strings, fonts, datasources, graphical elements,
-and currency values. By default, INTL will just localize the strings in
+and currency values. By default, INTL will localize the strings in
 your interface.
 
 |  |  |
@@ -3137,7 +3136,7 @@ MSGSVC( 30, “NoButton NoText” )
 
 ### Text Blocks
 
-Sometimes you just need to translate blocks of text -- whole paragraphs
+Sometimes you need to translate blocks of text -- whole paragraphs
 for example. `MsgSvc()` handles this with the TEXT keyword in the
 cFunction field. `MsgSvc()` will behave like `I()` and return the message
 (or its translation) as a character string.
@@ -3745,7 +3744,7 @@ designed to do one of three things with it:
 
 **Broadcast hooks don't care about the hook's return value.**
 
-Broadcast hooks permit you to augment the behavior of methods without changing the source code. By simply attaching a hook, you can attach code to methods and this code will be invoked automatically before the regular method code executes.
+Broadcast hooks permit you to augment the behavior of methods without changing the source code. With a hook, you can attach code to methods and this code will be invoked automatically before the regular method code executes.
 
 Broadcast hooks in INTL are invoked from methods with code like the following:
 
@@ -3877,7 +3876,7 @@ themes found herein:
 Here are a few things to keep in mind. These apply to many of the topics
 that follow.
 
-**These "`AS nCodePage`" elements recur in many of the topics below, and they are listed here just once. Keep these factors in mind.** | <ul>
+**These "`AS nCodePage`" elements recur in many of the topics below, and they are listed here once. Keep these factors in mind.** | <ul>
 
 * Wherever you see `nCodePage` in a command description, you can use `GETCP()` to display the Code Page dialog box, allowing you to specify a code page for the imported table or file.
 * In general, in cases where a nCodePage argument is permitted, and a value of 0 is assigned, no code page translation will take place.
@@ -5662,7 +5661,7 @@ The term *locale* can have a wide interpretation. Linguistic difference
 is not the sole determinant of locale boundaries. In some situations
 California is arguably a separate locale from Nevada given the
 differences in state regulations. Within some companies you can find
-significant functional differences by simply taking an elevator or
+significant functional differences by taking an elevator or
 walking down the hall. Whenever you deal with separate groups, you will
 find locale-based differences.
 
@@ -6689,7 +6688,7 @@ within a SCAN statement. Called: Setup snippet, `config.fpw`.
 
 Calls a GENMENUX driver after standard GENMENUX processing and menu
 re-ordering has been completed. This driver can be considered a line
-driver— i.e. it can simply be a one-line command. It is processed
+driver— i.e. it can be a one-line command. It is processed
 through each record of the menu file from within a `SCAN` statement. DO
 NOT DELETE ANY RECORDS IN THE MNX file as your menu file will be
 corrupted. Use MNXDRV2 if you want to do that. Called: Setup snippet,
@@ -6720,14 +6719,14 @@ setting of the GENMENUX driver, if used. Called: Setup snippet,
 #### `*:MPRDRV1 <expC> (GENMENUX Directive)`
 
 Calls a GENMENUX driver that will update the MPR file within the
-temporary project file. When it starts, the just created MPR file is in
+temporary project file. When it starts, the created MPR file is in
 the memo field named OBJECT. Called: Setup snippet, `config.fpw`.
 
 ----
 #### `*:MPRDRV2 <expC> (GENMENUX Directive)`
 
 Calls a GENMENUX driver that will update the MPR file within the
-temporary project file. When it starts, the just created MPR file is in
+temporary project file. When it starts, the created MPR file is in
 the memo field named OBJECT. The MPRDRV2 driver is called as the very
 last item in GENMENUX before the removal of the temporary project files.
 Called: Setup snippet, `config.fpw`.
@@ -7033,7 +7032,7 @@ snippet.
 #### `*:LOCATION <expC1>,<expC2> (GENMENUX Directive)`
 
 Updates the location of the menu based on <expC1>. <expC1> can
-either be REPLACE, APPEND, BEFORE, or AFTER (just like the Menu
+either be REPLACE, APPEND, BEFORE, or AFTER (like the Menu
 options). If <expC1> is BEFORE or AFTER, <expC2> should contain
 either the system menu prompt or pad name that precedes or follows the
 menu.
@@ -7256,8 +7255,7 @@ automatically create a window named `<expC1>`. You may specify
 additional clauses for the `DEFINE WINDOW` statement in `<expC2>`. If you
 do not specify a FROM clause, `*:WINDOW` will allow you to size and place
 it during compilation by displaying a Window on the screen. `*:WINDOW`
-works well under DOS to create MDI-style applications. You can simply
-add `*:WINDOW` to your setup code and it works. Example:
+works well under DOS to create MDI-style applications. You can add `*:WINDOW` to your setup code and it works. Example:
 
 ```
 *:WINDOW w_temp CLAUSES ;
@@ -7541,7 +7539,7 @@ The term *locale* can have a wide interpretation. Linguistic difference
 is not the sole determinant of locale boundaries. In some situations
 California is arguably a separate locale from Nevada given the
 differences in state regulations. Within some companies you can find
-significant functional differences by simply taking an elevator or
+significant functional differences by taking an elevator or
 walking down the hall. Whenever you deal with separate groups, you will
 find locale-based differences.
 
